@@ -17,16 +17,11 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\App;
 use App\Models\FdOneForm;
-use App\Models\FormOneOtherPdfList;
-use App\Models\FormOneBankAccount;
-use App\Models\FormOneAdviserList;
-use App\Models\FormOneSourceOfFund;
-use App\Models\FormOneMemberList;
 use App\Models\NgoMemberList;
 use App\Models\NgoOtherDoc;
 use App\Models\NgoMemberNidPhoto;
 use App\Models\NameChange;
-use App\Models\Renew;
+use App\Models\NgoRenew;
 use App\Models\NgoRenewInfo;
 class RenewController extends Controller
 {
@@ -46,7 +41,7 @@ class RenewController extends Controller
 
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  Renew::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoRenew::where('user_id',Auth::user()->id)->latest()->get();
         return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
     }
 
@@ -57,7 +52,7 @@ class RenewController extends Controller
         $get_all_data_new = NgoRenewInfo::where('user_id',Auth::user()->id)->latest()->get();
          $all_parti = FdOneForm::where('user_id',Auth::user()->id)->get();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  Renew::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoRenew::where('user_id',Auth::user()->id)->latest()->get();
 
 
 
@@ -254,7 +249,7 @@ return redirect('/allStaffInformationForRenew');
 
 
 
-        $add_renew_request = new Renew();
+        $add_renew_request = new NgoRenew();
         $add_renew_request->fd_one_form_id = $Ngorenewinfo_get_id;
         $add_renew_request->user_id = Auth::user()->id;
         $add_renew_request->time_for_api =$main_time;

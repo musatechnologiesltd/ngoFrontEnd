@@ -62,12 +62,7 @@ $ngo_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 @endif
 
-<?php
 
-$get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->value('status');
-
-
-?>
 @if(empty($get_reg_id))
 <li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('reg_sub.reg_sub')}}</a></li>
 @else
@@ -75,7 +70,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->valu
 
 @endif
 <li class="{{ Route::is('informationResetPage')  ? 'active_link' : '' }}"> <a href="{{ route('informationResetPage') }}"> <i class="fa fa-cog pe-1 dashboard_icon" aria-hidden="true"></i>{{ trans('first_info.reset')}}</a></li>
-    <li class="{{ Route::is('logout')  ? 'active_link' : '' }}"> <a href="{{ route('logout') }}"> <i class="fa fa-sign-out pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('first_info.logout')}}</a></li>
+<li class="{{ Route::is('logout')  ? 'active_link' : '' }}"> <a href="{{ route('logout') }}"> <i class="fa fa-sign-out pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('first_info.logout')}}</a></li>
 
-    {{-- <li class="{{ Route::is('resetAllData')  ? 'active_link' : '' }}"> <a href="{{ route('resetAllData') }}"> <i class="fa fa-trash pe-1 dashboard_icon" aria-hidden="true"></i>Reset</a></li> --}}
+
 

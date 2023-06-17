@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
 use App\Models\FdOneForm;
-use App\Models\FormOneOtherPdfList;
-use App\Models\FormOneBankAccount;
-use App\Models\FormOneAdviserList;
-use App\Models\FormOneSourceOfFund;
-use App\Models\FormOneMemberList;
+use App\Models\FdOneOtherPdfList;
+use App\Models\FdOneBankAccount;
+use App\Models\FdOneAdviserList;
+use App\Models\FdOneSourceOfFund;
+use App\Models\FdOneMemberList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
@@ -18,8 +18,6 @@ use PDF;
 use DateTime;
 use DateTimezone;
 use Response;
-use App\Models\Ngo_type_and_language;
-use App\Models\Ngo_committee_member;
 class FdoneformController extends Controller
 {
 
@@ -35,7 +33,7 @@ class FdoneformController extends Controller
 
     public function otherInfoFromOneDownload($id){
 
-        $get_file_data = FormOneOtherPdfList::where('id',$id)->value('information_type');
+        $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_type');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -55,7 +53,7 @@ class FdoneformController extends Controller
 
     public function sourceOfFundDocDownload($id){
 
-        $get_file_data = FormOneSourceOfFund::where('id',$id)->value('letter_file');
+        $get_file_data = FdOneSourceOfFund::where('id',$id)->value('letter_file');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -119,7 +117,7 @@ if(empty($formCompleteStatus)){
           }elseif($formCompleteStatus == 'next_step_from_two'){
 
             $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            $formOneMemberList = FormOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
+            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
 
             return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
 
@@ -132,7 +130,7 @@ if(empty($formCompleteStatus)){
         }elseif($formCompleteStatus == 'save_and_exit_from_three'){
 
             $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            $formOneMemberList = FormOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
+            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
 
             return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
 
@@ -159,7 +157,7 @@ if(empty($formCompleteStatus)){
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
 
 
-        $formOneMemberList = FormOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
+        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
 
         return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
 
@@ -177,11 +175,11 @@ if(empty($formCompleteStatus)){
     public function fdFormOneInfo(){
 
         $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $get_all_data_adviser_bank = DB::table('form_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-        $get_all_data_other= DB::table('form_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_data_adviser = DB::table('form_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $formOneMemberList = FormOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_source_of_fund_data = DB::table('form_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
       'May','June','July','August','September','October','November','December','Saturday','Sunday',
@@ -339,7 +337,7 @@ if(empty($formCompleteStatus)){
         $cutomeFileName = time().date("Ymd");
 
 
-        $uploadOneSourceOfFund = FormOneSourceOfFund::find($request->id);
+        $uploadOneSourceOfFund = FdOneSourceOfFund::find($request->id);
         $uploadOneSourceOfFund->name = $request->name_sour;
         $uploadOneSourceOfFund->address = $request->address;
         if ($request->hasfile('letter_file')) {
@@ -357,7 +355,7 @@ if(empty($formCompleteStatus)){
     }
 
     public function adviserDataUpdate(Request $request){
-        $addAdviserData = FormOneAdviserList::find($request->id);
+        $addAdviserData = FdOneAdviserList::find($request->id);
         $addAdviserData->name = $request->name;
         $addAdviserData->information = $request->information;
 
@@ -369,7 +367,7 @@ if(empty($formCompleteStatus)){
 
     public function otherInformationAUpdate(Request $request){
         $cutomeFileName = time().date("Ymd");
-        $otherInformationData = FormOneOtherPdfList::find($request->mid);
+        $otherInformationData = FdOneOtherPdfList::find($request->mid);
 
         if ($request->hasfile('letter_file')) {
             $file = $request->file('letter_file');
@@ -389,7 +387,7 @@ if(empty($formCompleteStatus)){
     public function sourceOfFundDelete(Request $request)
     {
 
-        $admins = FormOneSourceOfFund::find($request->id);
+        $admins = FdOneSourceOfFund::find($request->id);
         if (!is_null($admins)) {
             $admins->delete();
         }
@@ -402,7 +400,7 @@ if(empty($formCompleteStatus)){
     public function adviserDataDelete(Request $request)
     {
 
-        $admins = FormOneAdviserList::find($request->id);
+        $admins = FdOneAdviserList::find($request->id);
         if (!is_null($admins)) {
             $admins->delete();
         }
@@ -416,7 +414,7 @@ if(empty($formCompleteStatus)){
     public function otherInformationADelete(Request $request)
     {
 
-        $admins = FormOneOtherPdfList::find($request->id);
+        $admins = FdOneOtherPdfList::find($request->id);
         if (!is_null($admins)) {
             $admins->delete();
         }
@@ -471,10 +469,10 @@ if(empty($formCompleteStatus)){
 
      if (array_key_exists("letter_file", $input)){
 
-       $deleteData = FormOneSourceOfFund::where('fd_one_form_id',$stepTwoId)->delete();
+       $deleteData = FdOneSourceOfFund::where('fd_one_form_id',$stepTwoId)->delete();
 
         foreach($personName as $key => $personName){
-         $form= new FormOneSourceOfFund();
+         $form= new FdOneSourceOfFund();
          $form->name=$input['name'][$key];
          $form->address=$input['address'][$key];
          $file=$input['letter_file'][$key];
@@ -555,7 +553,7 @@ if(empty($formCompleteStatus)){
                     $arr_all = implode(",",$request->citizenship5);
                 }
 
-                $form= new FormOneMemberList();
+                $form= new FdOneMemberList();
                 $form->name=$input['staff_name'][$key];
                 $form->now_working_at=$input['now_working_at'][$key];
                 $form->position=$input['staff_position'][$key];
@@ -589,7 +587,7 @@ if(empty($formCompleteStatus)){
                 $arr_all = implode(",",$request->citizenship5);
             }
 
-            $form= new FormOneMemberList();
+            $form= new FdOneMemberList();
             $form->name=$input['staff_name'][$key];
             $form->position=$input['staff_position'][$key];
             $form->address=$input['staff_address'][$key];
@@ -635,7 +633,7 @@ return redirect('/othersInformation');
 
         $main_time = $dt->format('H:i:s');
 
-        $delete_all_the_data = FormOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->delete();
+        $delete_all_the_data = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->delete();
 
 
         $allStaffDetailInfo = FdOneForm::find($request->id);
@@ -668,7 +666,7 @@ return redirect('/othersInformation');
                     $arr_all = implode(",",$request->citizenship5);
                 }
 
-                $form= new FormOneMemberList();
+                $form= new FdOneMemberList();
                 $form->name=$input['staff_name'][$key];
                 $form->position=$input['staff_position'][$key];
                 $form->now_working_at=$input['now_working_at'][$key];
@@ -702,7 +700,7 @@ return redirect('/othersInformation');
                 $arr_all = implode(",",$request->citizenship5);
             }
 
-            $form= new FormOneMemberList();
+            $form= new FdOneMemberList();
             $form->name=$input['staff_name'][$key];
             $form->position=$input['staff_position'][$key];
             $form->address=$input['staff_address'][$key];
@@ -791,7 +789,7 @@ return redirect('/othersInformation');
 
 
      }else{
-     $form= new FormOneBankAccount();
+     $form= new FdOneBankAccount();
      $form->account_number=$request->account_number;
      $form->account_type=$request->account_type;
      $form->name_of_bank=$request->name_of_bank;
@@ -810,7 +808,7 @@ if (array_key_exists("name", $input)){
         $new_cat_dec = $input['name'];
      foreach($new_cat_dec as $key => $new_cat_dec){
 
-        $form1= new FormOneAdviserList();
+        $form1= new FdOneAdviserList();
         $form1->name=$input['name'][$key];
         $form1->information=$input['information'][$key];
         $form1->fd_one_form_id = $request->id;
@@ -829,7 +827,7 @@ if (array_key_exists("name", $input)){
      foreach($new_cat_dec_new as $key => $new_cat_dec_new){
 
 
-        $form2= new FormOneOtherPdfList();
+        $form2= new FdOneOtherPdfList();
 
         $file=$input['information_type'][$key];
         $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
@@ -916,7 +914,7 @@ return redirect('/fdFormOneInfo');
 
     if($request->bank_id == 'p'){
 
-        $form= new FormOneBankAccount();
+        $form= new FdOneBankAccount();
         $form->account_number=$request->account_number;
         $form->account_type=$request->account_type;
         $form->name_of_bank=$request->name_of_bank;
@@ -928,7 +926,7 @@ return redirect('/fdFormOneInfo');
 
     }else{
 
-    $form= FormOneBankAccount::find($request->bank_id);
+    $form= FdOneBankAccount::find($request->bank_id);
     $form->account_number=$request->account_number;
     $form->account_type=$request->account_type;
     $form->name_of_bank=$request->name_of_bank;
@@ -953,7 +951,7 @@ if(in_array(null, $input['name'])){
        $new_cat_dec = $input['name'];
        foreach($new_cat_dec as $key => $new_cat_dec){
 
-       $form1= new FormOneAdviserList();
+       $form1= new FdOneAdviserList();
        $form1->name=$input['name'][$key];
        $form1->information=$input['information'][$key];
        $form1->fd_one_form_id = $request->id;
@@ -974,7 +972,7 @@ if(in_array(null, $input['name'])){
     foreach($new_cat_dec_new as $key => $new_cat_dec_new){
 
 
-       $form2= new FormOneOtherPdfList();
+       $form2= new FdOneOtherPdfList();
 
        $file=$input['information_type'][$key];
        $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
@@ -1006,11 +1004,11 @@ return redirect('/othersInformation');
 
         $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
         $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-        $get_all_data_adviser_bank = DB::table('form_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-        $get_all_data_other= DB::table('form_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_data_adviser = DB::table('form_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $formOneMemberList = FormOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_source_of_fund_data = DB::table('form_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
 
         $file_Name_Custome = 'fd_one_form';

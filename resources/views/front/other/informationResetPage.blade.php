@@ -33,27 +33,29 @@
                                     <label for="" class="form-label">Select (নির্বাচন করুন)</label>
                                     <br>
                                     <div class="form-check ms-3">
-                                        <input class="form-check-input" type="radio" name="" id="" value="" checked>
-                                        <label class="form-check-label"  for="">হ্যা </label>
+                                        <input class="form-check-input" type="radio" name="mm" id="mm1" value="" checked>
+                                        <label class="form-check-label"  for="mm1">হ্যা </label>
                                     </div>
                                     <div class="form-check ms-3">
-                                        <input class="form-check-input " type="radio" name="" id="" value="">
-                                        <label class="form-check-label" for="">না </label>
+                                        <input class="form-check-input " type="radio" name="mm" id="mm2" value="">
+                                        <label class="form-check-label" for="mm2">না </label>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                     <div class="d-grid d-md-flex justify-content-start mt-4">
                         <button class="btn btn-registration" onclick="deleteTag(2)" >Delete Info
                         </button>
 
-                        <form id="delete-form-2" action="{{ route('reset_all_data') }}" method="POST" style="display: none;">
+                        <form id="delete-form-2" action="{{ route('resetAllData') }}" method="POST" style="display: none;">
 
                             @csrf
 
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -26,7 +26,11 @@
                 </div>
                 @if (Auth::check())
 
-             <?php   $ngo_status_list = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->value('status'); ?>
+             <?php
+             $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
+             $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$fdoneFormId)->value('status');
+              ?>
 
                 @if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing')
 

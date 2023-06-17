@@ -8,11 +8,6 @@ use DB;
 use Response;
 use App\Models\FormEight;
 use App\Models\FdOneForm;
-use App\Models\FormOneOtherPdfList;
-use App\Models\FormOneBankAccount;
-use App\Models\FormOneAdviserList;
-use App\Models\FormOneSourceOfFund;
-use App\Models\FormOneMemberList;
 use App\Models\NgoMemberList;
 use App\Models\NgoOtherDoc;
 use App\Models\NgoMemberNidPhoto;
@@ -21,7 +16,7 @@ use App;
 use Session;
 use DateTime;
 use DateTimezone;
-use App\Models\NameChange;
+use App\Models\NgoNameChange;
 use Illuminate\Support\Str;
 class NamechangeController extends Controller
 {
@@ -31,7 +26,7 @@ class NamechangeController extends Controller
         ->value('ngo_type');
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  NameChange::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoNameChange::where('user_id',Auth::user()->id)->latest()->get();
         return view('front.name_change.name_change',compact('ngo_list_all','name_change_list_all'));
     }
 
@@ -443,7 +438,7 @@ class NamechangeController extends Controller
 
         $main_time = $dt->format('H:i:s a');
 
-        $new_data_add = new NameChange();
+        $new_data_add = new NgoNameChange();
         $new_data_add->user_id = Auth::user()->id;
         $new_data_add->previous_name_eng =  Session::get('previous_name');
         $new_data_add->previous_name_ban = Session::get('previous_name_ban');
@@ -517,7 +512,7 @@ return Response::make(file_get_contents($file), 200, [
 
     public function sourceOfFund($id){
 
-        $form_one_data = DB::table('form_one_source_of_funds')->where('id',$id)->value('letter_file');
+        $form_one_data = DB::table('fd_one_source_of_funds')->where('id',$id)->value('letter_file');
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
@@ -536,7 +531,7 @@ return Response::make(file_get_contents($file), 200, [
 
     public function otherPdfFromFDOneForm($id){
 
-        $form_one_data = DB::table('form_one_other_pdf_lists')->where('id',$id)->value('information_pdf');
+        $form_one_data = DB::table('fd_one_other_pdf_lists')->where('id',$id)->value('information_pdf');
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 

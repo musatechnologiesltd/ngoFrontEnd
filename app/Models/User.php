@@ -22,8 +22,8 @@ class User extends Authenticatable
         'user_phone',
         'user_address',
         'user_image',
-        'user_email',
-        'user_password',
+        'email',
+        'password',
         'is_email_verified'
     ];
 

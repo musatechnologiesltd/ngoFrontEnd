@@ -33,11 +33,9 @@
                     <div class="user_dashboard_right">
 
                         <h4>{{ trans('first_info.profile')}}</h4>
-                        <?php
-
-$get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->value('status');
-
-
+<?php
+            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
 ?>
 @if(empty($get_reg_id))
                         {{-- <button class="btn btn-sm btn-danger"  onclick="deleteTag(2)" >{{ trans('first_info.reset')}}</button>
@@ -61,7 +59,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->valu
                                     <table class="table table-borderless">
                                         <tr>
                                             <td>{{ trans('first_info.name')}}</td>
-                                            <td>: {{ Auth::user()->name }}</td>
+                                            <td>: {{ Auth::user()->user_name }}</td>
                                         </tr>
                                         <tr>
                                             <td>{{ trans('first_info.email')}}</td>
@@ -83,10 +81,10 @@ $get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->valu
                                             <td>{{ trans('header.phone_number')}}</td>
                                             <td>:
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,Auth::user()->phone) }}
+                                                {{ str_replace($engDATE, $bangDATE,Auth::user()->user_phone) }}
 
                                                 @else
-                                                {{ Auth::user()->phone}}
+                                                {{ Auth::user()->user_phone}}
                                                 @endif
                                             </td>
                                         </tr>
@@ -126,8 +124,9 @@ $count = 11;
 
             }
 
-
-            $data1_m_one = DB::table('form_eights')->where('user_id',Auth::user()->id)
+            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
+            $data1_m_one = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
                                            ->get();
 
 
@@ -139,8 +138,9 @@ $count1 = 11;
 
 
 
-
-                                           $data1 = DB::table('form_eights')->where('user_id',Auth::user()->id)
+                                            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
+                                           $data1 = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
                                            ->first();
 
                                            $count1 = 0;
@@ -152,7 +152,7 @@ $count1 = 11;
 
                                         }
 
-                                        $data2_m_one = DB::table('ngo_member_nid_photos')->where('user_id',Auth::user()->id)
+                                        $data2_m_one = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
                                            ->get();
 
                                            if(count($data2_m_one) == 0){
@@ -161,7 +161,7 @@ $count2 = 11;
                                         }else{
 
 
-                                           $data2 = DB::table('ngo_member_nid_photos')->where('user_id',Auth::user()->id)
+                                           $data2 = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
                                            ->first();
 
                                            $count2 = 0;
@@ -172,7 +172,7 @@ $count2 = 11;
                 }
             }
 
-            $data3_m_one = DB::table('ngo_other_docs')->where('user_id',Auth::user()->id)
+            $data3_m_one = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
                                            ->get();
 
                                            if(count($data3_m_one) == 0){
@@ -182,7 +182,7 @@ $count3 = 11;
 
 
 
-                    $data3 = DB::table('ngo_other_docs')->where('user_id',Auth::user()->id)
+                    $data3 = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
                                            ->first();
 
 
@@ -265,11 +265,11 @@ $count3 = 11;
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="post" action="{{ route('register.update') }}">
+            <form method="post" action="{{ route('register.update') }}"  enctype="multipart/form-data" id="form" data-parsley-validate="">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">{{ trans('header.person_name')}}</label>
-                    <input type="text" value="{{ Auth::user()->name }}" class="form-control" name="name" id="">
+                    <input type="text" value="{{ Auth::user()->user_name }}" class="form-control" name="name" id="">
 
                     <input type="hidden" value="{{ Auth::user()->id }}" class="form-control" name="id" id="">
                 </div>
@@ -283,8 +283,23 @@ $count3 = 11;
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">{{ trans('header.phone_number')}}</label>
-                    <input type="text" value="{{ Auth::user()->phone }}" class="form-control" name="phone" id="">
+                    <input type="text" value="{{ Auth::user()->user_phone }}" class="form-control" name="phone" id="">
                     {{-- <div id="" class="form-text">Must be use valid phone number for varification</div> --}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">{{ trans('fd_one_step_one.Address')}}</label>
+                    <input type="text" value="{{ Auth::user()->user_address }}" class="form-control" name="address" id="">
+                    {{-- <div id="" class="form-text">Must be use valid phone number for varification</div> --}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">{{ trans('ngo_member_doc.image')}}</label>
+                    <input type="file" value="" class="form-control" name="user_image" id="">
+                    {{-- <div id="" class="form-text">Must be use valid phone number for varification</div> --}}
+                    @if(empty(Auth::user()->user_image))
+                    <img src="{{ asset('/') }}public/mainu.jpg" style="height:50px;"/>
+                    @else
+                    <img src="{{ asset('/') }}{{ Auth::user()->user_image }}" style="height:50px;"/>
+                    @endif
                 </div>
                 <div class="d-grid d-md-flex justify-content-md-end">
                     <button type="submit" class="btn btn-registration">{{ trans('first_info.update1')}}</button>

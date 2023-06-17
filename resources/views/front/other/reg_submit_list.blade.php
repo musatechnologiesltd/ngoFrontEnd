@@ -22,7 +22,8 @@
 ?>
 <?php
 
-$get_reg_id = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->value('status');
+$getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
 
 
 ?>

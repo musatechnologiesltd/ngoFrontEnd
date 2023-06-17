@@ -12,18 +12,18 @@ use Hash;
 use Illuminate\Support\Str;
 use Mail;
 use DB;
-use App\Models\Namechange;
-use App\Models\Renew;
+use App\Models\NgoNameChange;
+use App\Models\NgoRenew;
 use App\Models\FormEight;
 use App\Models\FdOneForm;
 use App\Models\FormOneOtherPdfList;
 use App\Models\FormOneBankAccount;
 use App\Models\Fdoneformadviser;
-use App\Models\FormOneSourceOfFund;
-use App\Models\FormOneMemberList;
+use App\Models\FdOneSourceOfFund;
+use App\Models\FdOneMemberList;
 use App\Models\NgoMemberNidPhoto;
 use App\Models\NgoOtherDoc;
-use App\Models\Ngo_member_doc;
+use App\Http\Controllers\NGO\CommonController;
 class AuthController extends Controller
 {
 
@@ -119,7 +119,7 @@ class AuthController extends Controller
                         ->with('success','You have Successfully logged in');
         }
 
-        return redirect("login")->with('error','Oppes! You have entered invalid credentials');
+        return redirect("login")->with('error','Opps! You have entered invalid credentials');
     }
 
     public function postRegistration(Request $request)
@@ -152,22 +152,23 @@ class AuthController extends Controller
 
 
     public function updateRegistration(Request $request){
-
+        $filePath="userImage";
         $time_dy = time().date("Ymd");
         $get_previous_email_all = User::where('id',$request->id)->value('email');
 
         if($get_previous_email_all == $request->email){
 
             $get_all_data = User::find($request->id);
-            $get_all_data->name = $request->name;
+            $get_all_data->user_name = $request->name;
+            $get_all_data->user_phone = $request->phone;
+            $get_all_data->user_address = $request->address;
             $get_all_data->email = $request->email;
 
-            if ($request->hasfile('image')) {
-                $file = $request->file('image');
-                $extension = $time_dy.$file->getClientOriginalName();
-                $filename = $extension;
-                $file->move('public/uploads/', $filename);
-                $get_all_data->image =  'public/uploads/'.$filename;
+            if ($request->hasfile('user_image')) {
+
+                $file = $request->file('user_image');
+                $get_all_data->user_image =  CommonController::imageUpload($request,$file,$filePath);
+
 
             }
 
@@ -189,15 +190,15 @@ class AuthController extends Controller
 
 
         $get_all_data = User::find($request->id);
-        $get_all_data->name = $request->name;
+        $get_all_data->user_name = $request->name;
+        $get_all_data->user_phone = $request->phone;
+        $get_all_data->user_address = $request->address;
         $get_all_data->email = $request->email;
         $get_all_data->is_email_verified = 0;
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $get_all_data->image =  'public/uploads/'.$filename;
+        if ($request->hasfile('user_image')) {
+
+            $file = $request->file('user_image');
+            $get_all_data->user_image =  CommonController::imageUpload($request,$file,$filePath);
 
         }
         if ($request->password) {
@@ -232,9 +233,10 @@ class AuthController extends Controller
     public function create(array $data)
     {
       return User::create([
-        'name' => $data['name'],
+        'user_name' => $data['name'],
         'email' => $data['email'],
-        'phone' => $data['phone'],
+        'user_phone' => $data['phone'],
+       // 'user_address' => $data['address'],
         'password' => Hash::make($data['password'])
       ]);
     }
@@ -243,26 +245,29 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-
-            $ngo_status_list = DB::table('ngo_statuses')->where('user_id',Auth::user()->id)->value('status');
+            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+            $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
 
             if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing'){
 
-
-            return view('front.dashboard.dashboard');
+                $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
+            return view('front.dashboard.dashboard',compact('get_reg_id'));
 
             }else{
 
-                $name_change_list_r = Renew::where('user_id',Auth::user()->id)->get();
-                $name_change_list = Namechange::where('user_id',Auth::user()->id)->get();
 
-                $ngo_list_all_form_eight = FormEight::where('user_id',Auth::user()->id)->first();
 
-$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-$form_member_data_doc = NgoMemberNidPhoto::where('user_id',$ngo_list_all->user_id)->get();
-$form_ngo_data_doc = NgoOtherDoc::where('user_id',$ngo_list_all->user_id)->get();
-$all_source_of_fund = FormOneSourceOfFund::where('fd_one_form_id',$ngo_list_all->id)->get();
-$get_all_data_other= FormOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id)
+$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+
+
+$name_change_list_r = NgoRenew::where('fd_one_form_id',$ngo_list_all)->get();
+$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all)->get();
+
+$ngo_list_all_form_eight = FormEight::where('fd_one_form_id',$ngo_list_all)->first();
+$form_member_data_doc = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all)->get();
+$form_ngo_data_doc = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all)->get();
+$all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all)->get();
+$get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all)
             ->get();
 
                 return view('front.dashboard.accept_dashboard',compact('name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));

@@ -57,7 +57,7 @@
             @endif
             @if (Auth::check())
             <div class="p-2">
-                <button class="btn  btn-registration" onclick="location.href = '{{ route('dashboard') }}';">{{ Auth::user()->name }}</button>
+                <button class="btn  btn-registration" onclick="location.href = '{{ route('dashboard') }}';">{{ Auth::user()->user_name }}</button>
             </div>
             @else
             <div class="p-2">
