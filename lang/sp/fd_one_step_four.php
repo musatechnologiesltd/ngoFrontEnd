@@ -25,6 +25,7 @@ return [
     'information_pdf'=>'Information PDF',
     'add_new_information'=>'Add New Information',
     'step_4'=>'Step 4',
+    'step_5'=>'Step 5',
     'Main_Account_Details'=>'Main Account Details',
     'Submit'=>'Submit',
     'fd_update'=>'Update FD01-From',

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
 use App\Models\NgoMemberNidPhoto;
+use App\Models\FormCompleteStatus;
 use Response;
 use DateTime;
 use DateTimezone;
@@ -15,16 +16,41 @@ class NgomemberdocController extends Controller
 {
     public function index(){
 
-        $all_ngo_member_doc = NgoMemberNidPhoto::where('user_id',Auth::user()->id)->latest()->get();
 
-        if(count($all_ngo_member_doc) == 0){
 
-            return redirect('/ngoMemberDocument/create');
+        return view('front.ngo_member_doc.index');
 
-        }else{
+    }
 
-        return view('front.ngo_member_doc.index',compact('all_ngo_member_doc'));
-        }
+    public function ngoMemberDocFinalUpdate(){
+
+        $checkCompleteStatusData = DB::table('form_complete_statuses')
+   ->where('user_id',Auth::user()->id)
+   ->first();
+
+   if(!$checkCompleteStatusData){
+
+       $newStatusData = new FormCompleteStatus();
+       $newStatusData->user_id = Auth::user()->id;
+       $newStatusData->fd_one_form_step_one_status = 1;
+       $newStatusData->fd_one_form_step_two_status = 1;
+       $newStatusData->fd_one_form_step_three_status = 1;
+       $newStatusData->fd_one_form_step_four_status = 1;
+       $newStatusData->form_eight_status = 1;
+       $newStatusData->ngo_member_status = 1;
+       $newStatusData->ngo_member_nid_photo_status = 1;
+       $newStatusData->ngo_other_document_status = 0;
+       $newStatusData->save();
+   }else{
+
+       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+       ->update([
+           'ngo_member_nid_photo_status' => 1
+        ]);
+
+
+   }
+   return redirect('/ngoAllRegistrationForm');
     }
 
 
@@ -38,6 +64,8 @@ class NgomemberdocController extends Controller
 
 
     public function store(Request $request){
+
+        //dd($request->all());
         $time_dy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
@@ -47,23 +75,23 @@ class NgomemberdocController extends Controller
 
 
         $request->validate([
-            'person_name.*' => 'required|string',
-            'person_image.*' => 'required',
-            'person_nid_copy.*' => 'required',
+            'member_name.*' => 'required|string',
+            'member_image.*' => 'required',
+            'member_nid_copy.*' => 'required',
         ]);
 
 
-        $condition_main_image = $input['person_name'];
-
+        $condition_main_image = $input['member_name'];
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
         foreach($condition_main_image as $key => $all_condition_main_image){
 
-            $file_size = number_format($input['person_nid_copy'][$key]->getSize() / 1048576,2);
+            $file_size = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
 
             $form= new NgoMemberNidPhoto();
 
-            $file=$input['person_nid_copy'][$key];
-            $file_image=$input['person_image'][$key];
+            $file=$input['member_nid_copy'][$key];
+            $file_image=$input['member_image'][$key];
 
             $name=$time_dy.$file->getClientOriginalName();
             $name_image=$time_dy.$file_image->getClientOriginalName();
@@ -71,16 +99,16 @@ class NgomemberdocController extends Controller
             $file->move('public/uploads/', $name);
             $file_image->move('public/uploads/', $name_image);
 
-            $form->person_image='public/uploads/'.$name_image;
-            $form->person_nid_copy='uploads/'.$name;
-            $form->person_name=$input['person_name'][$key];
+            $form->member_image='public/uploads/'.$name_image;
+            $form->member_nid_copy='uploads/'.$name;
+            $form->member_name=$input['member_name'][$key];
             $form->time_for_api = $main_time;
-            $form->user_id = Auth::user()->id;
-            $form->person_nid_copy_size =$file_size;
+            $form->fd_one_form_id = $fdOneFormId;
+            $form->member_nid_copy_size =$file_size;
             $form->save();
        }
 
-       return redirect('/ngoMemberDocument')->with('success','Created Successfully');
+       return redirect()->back()->with('success','Created Successfully');
 
     }
 
@@ -93,30 +121,30 @@ class NgomemberdocController extends Controller
 
             $form= NgoMemberNidPhoto::find($id);
 
-            if ($request->hasfile('person_nid_copy')) {
-                $file = $request->file('person_nid_copy');
+            if ($request->hasfile('member_nid_copy')) {
+                $file = $request->file('member_nid_copy');
                 $file_size = number_format($file->getSize() / 1048576,2);
                 $extension = $time_dy.$file->getClientOriginalName();
             $filename = $extension;
             $file->move('public/uploads/', $filename);
-            $form->person_nid_copy =  'uploads/'.$filename;
-            $form->person_nid_copy_size =$file_size;
+            $form->member_nid_copy =  'uploads/'.$filename;
+            $form->member_nid_copy_size =$file_size;
 
             }
-            if ($request->hasfile('person_image')) {
-                $file1 = $request->file('person_image');
+            if ($request->hasfile('member_image')) {
+                $file1 = $request->file('member_image');
               $extension1 = $time_dy.$file1->getClientOriginalName();
             $filename1 = $extension1;
             $file->move('public/uploads/', $filename1);
-            $form->person_image =  'public/uploads/'.$filename1;
+            $form->member_image =  'public/uploads/'.$filename1;
 
             }
-            $form->person_name=$request->person_name;
-            $form->user_id = Auth::user()->id;
+            $form->member_name=$request->member_name;
+
 
             $form->save();
 
-            return redirect('/ngoMemberDocument')->with('info','Updated Successfully');
+            return redirect()->back()->with('info','Updated Successfully');
 
 
     }
@@ -136,7 +164,7 @@ class NgomemberdocController extends Controller
 
     public function ngoMemberDocumentDownload($id){
 
-        $get_file_data = NgoMemberNidPhoto::where('id',$id)->value('person_nid_copy');
+        $get_file_data = NgoMemberNidPhoto::where('id',$id)->value('member_nid_copy');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);

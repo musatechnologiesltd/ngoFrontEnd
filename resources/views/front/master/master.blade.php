@@ -433,6 +433,15 @@ $("document").ready(function(){
 
 });
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('.js-example-basic-multiple, .distinct-single, .sub-distinct-single').select2();
+    });
+    $(document).ready(function () {
+        $('.js-example-basic-single').select2();
+    });
+</script>
 </body>
 
 </html>

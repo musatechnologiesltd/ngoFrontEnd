@@ -201,7 +201,7 @@ Route::controller(FdoneformController::class)->group(function () {
 
  Route::resource('ngoMemberDocument',NgomemberdocController::class);
  Route::controller(NgomemberdocController::class)->group(function () {
-
+    Route::get('/ngoMemberDocFinalUpdate', 'ngoMemberDocFinalUpdate')->name('ngoMemberDocFinalUpdate');
     Route::get('/ngoMemberDocumentDownload/{id}', 'ngoMemberDocumentDownload')->middleware(['auth'])->name('ngoMemberDocumentDownload');
     Route::get('/ngoMemberDocumentView', 'ngoMemberDocumentView')->middleware(['auth'])->name('ngoMemberDocumentView');
 
@@ -213,6 +213,7 @@ Route::resource('ngoMember',NgomemberController::class);
 
 Route::controller(NgomemberController::class)->group(function () {
     Route::get('/ngoMemberView', 'ngoMemberView')->name('ngoMemberView');
+    Route::get('/ngoMemberFinalUpdate', 'ngoMemberFinalUpdate')->name('ngoMemberFinalUpdate');
 
 });
 
@@ -229,6 +230,10 @@ Route::controller(NgodocumentController::class)->group(function () {
 
 Route::resource('formEightNgoCommitteMember',FormeightController::class);
 Route::controller(FormeightController::class)->group(function () {
+
+    Route::get('/updateDateData', 'updateDateData')->name('updateDateData');
+
+
     Route::get('/formEightNgoCommitteeMemberView', 'formEightNgoCommitteeMemberView')->name('formEightNgoCommitteeMemberView');
     Route::post('/uploadFromEightPdf', 'uploadFromEightPdf')->name('uploadFromEightPdf');
     Route::get('/formEightNgoCommitteeMemberTotalView', 'formEightNgoCommitteeMemberTotalView')->name('formEightNgoCommitteeMemberTotalView');

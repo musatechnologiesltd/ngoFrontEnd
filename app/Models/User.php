@@ -50,6 +50,13 @@ class User extends Authenticatable
         return $this->hasMany(NgoRenewInfo::class,'user_id');
     }
 
+
+    public function ngoCompleteStatus()
+    {
+        return $this->hasMany(NgoCompleteStatus::class,'user_id');
+    }
+
+
     /**
      * The attributes that should be hidden for serialization.
      *

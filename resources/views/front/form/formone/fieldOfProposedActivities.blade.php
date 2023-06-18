@@ -16,13 +16,14 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
+                        <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
-                        <li >{{ trans('fd_one_step_one.Particulars_of_Organisation')}}</li>
-                        <li class="active">{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</li>
-                        <li>{{ trans('fd_one_step_three.All_staff_details_information')}} </li>
-                        <li>{{ trans('fd_one_step_four.o_info')}}</li>
+                        <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
@@ -99,7 +100,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 <?php
 
-$getAllSourceOfFundData = DB::table('form_one_source_of_funds')->Where('fd_one_form_id',$allFormOneData->id)->get();
+$getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_form_id',$allFormOneData->id)->get();
 
 
                 ?>

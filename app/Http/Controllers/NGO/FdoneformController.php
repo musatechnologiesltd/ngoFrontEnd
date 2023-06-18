@@ -11,6 +11,7 @@ use App\Models\FdOneBankAccount;
 use App\Models\FdOneAdviserList;
 use App\Models\FdOneSourceOfFund;
 use App\Models\FdOneMemberList;
+use App\Models\FormCompleteStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
@@ -196,7 +197,7 @@ if(empty($formCompleteStatus)){
 
 
     public function particularsOfOrganisationPost(Request $request){
-
+// dd($request->all());
 
          $r_number = mt_rand(1000000000000000, 9999999999999999);
 
@@ -255,15 +256,38 @@ if(empty($formCompleteStatus)){
 
         Session::put('mm_id',$mm_id);
 
-       if($request->submit_value == 'save_and_exit_from_one'){
+$checkCompleteStatusData = DB::table('form_complete_statuses')
+->where('user_id',Auth::user()->id)
+->first();
 
-        return redirect('/fdFormOneInfo');
+if(!$checkCompleteStatusData){
 
-       }else{
+    $newStatusData = new FormCompleteStatus();
+    $newStatusData->user_id = Auth::user()->id;
+    $newStatusData->fd_one_form_step_one_status = 1;
+    $newStatusData->fd_one_form_step_two_status = 0;
+    $newStatusData->fd_one_form_step_three_status = 0;
+    $newStatusData->fd_one_form_step_four_status = 0;
+    $newStatusData->form_eight_status = 0;
+    $newStatusData->ngo_member_status = 0;
+    $newStatusData->ngo_member_nid_photo_status = 0;
+    $newStatusData->ngo_other_document_status = 0;
+    $newStatusData->save();
+}else{
 
-        return redirect('/fieldOfProposedActivities');
+    FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+    ->update([
+        'fd_one_form_step_one_status' => 1
+     ]);
 
-       }
+
+}
+
+
+
+        return redirect('/ngoAllRegistrationForm');
+
+
 
 
     }
@@ -296,15 +320,34 @@ if(empty($formCompleteStatus)){
 
        Session::put('mm_id',$mm_id);
 
-      if($request->submit_value == 'save_and_exit_from_one'){
+       $checkCompleteStatusData = DB::table('form_complete_statuses')
+->where('user_id',Auth::user()->id)
+->first();
 
-       return redirect('/fdFormOneInfo');
+if(!$checkCompleteStatusData){
 
-       }else{
+    $newStatusData = new FormCompleteStatus();
+    $newStatusData->user_id = Auth::user()->id;
+    $newStatusData->fd_one_form_step_one_status = 1;
+    $newStatusData->fd_one_form_step_two_status = 0;
+    $newStatusData->fd_one_form_step_three_status = 0;
+    $newStatusData->fd_one_form_step_four_status = 0;
+    $newStatusData->form_eight_status = 0;
+    $newStatusData->ngo_member_status = 0;
+    $newStatusData->ngo_member_nid_photo_status = 0;
+    $newStatusData->ngo_other_document_status = 0;
+    $newStatusData->save();
+}else{
 
-       return redirect('/fieldOfProposedActivities');
+    FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+    ->update([
+        'fd_one_form_step_one_status' => 1
+     ]);
 
-       }
+
+}
+
+       return redirect('/ngoAllRegistrationForm');
      }
 
 
@@ -427,6 +470,7 @@ if(empty($formCompleteStatus)){
 
     public function fieldOfProposedActivitiesUpdate(Request $request){
 
+        //dd($request->all());
         $cutomeFileName = time().date("Ymd");
 
 
@@ -489,130 +533,40 @@ if(empty($formCompleteStatus)){
         Session::put('mm_id',$stepTwoId);
 
 
-        if($request->submit_value == 'save_and_exit_from_two'){
+        $checkCompleteStatusData = DB::table('form_complete_statuses')
+        ->where('user_id',Auth::user()->id)
+        ->first();
 
-             return redirect('/fdFormOneInfo');
+        if(!$checkCompleteStatusData){
 
+            $newStatusData = new FormCompleteStatus();
+            $newStatusData->user_id = Auth::user()->id;
+            $newStatusData->fd_one_form_step_one_status = 1;
+            $newStatusData->fd_one_form_step_two_status = 1;
+            $newStatusData->fd_one_form_step_three_status = 0;
+            $newStatusData->fd_one_form_step_four_status = 0;
+            $newStatusData->form_eight_status = 0;
+            $newStatusData->ngo_member_status = 0;
+            $newStatusData->ngo_member_nid_photo_status = 0;
+            $newStatusData->ngo_other_document_status = 0;
+            $newStatusData->save();
         }else{
 
-            return redirect('/allStaffDetailsInformation');
-
- }
-
-}
-
+            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+            ->update([
+                'fd_one_form_step_two_status' => 1
+             ]);
 
 
-    public function allStaffDetailsInformationPost(Request $request){
-
-
-        $request->validate([
-            'staff_name.*' => 'required|string',
-            'staff_position.*' => 'required|string',
-            'staff_address.*' => 'required|string',
-            'date_of_join.*' => 'required|string',
-            'address.*' => 'required|string',
-            'salary_statement.*' => 'required|string',
-            'other_occupation.*' => 'required|string',
-            'submit_value' => 'required|string',
-        ]);
-
-
-
-        $allStaffDetailInfo = FdOneForm::find($request->id);
-        $allStaffDetailInfo->user_id = Auth::user()->id;
-        $allStaffDetailInfo->complete_status = $request->submit_value;
-        $allStaffDetailInfo->save();
-
-
-        $input = $request->all();
-        $new_cat_dec = $input['staff_name'];
-
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
-        $main_time = $dt->format('H:i:s');
-
-
-        if (array_key_exists("now_working_at", $input)){
-
-            foreach($new_cat_dec as $key => $new_cat_dec){
-
-                if($key == 0){
-                    $arr_all = implode(",",$request->citizenship1);
-                }elseif($key == 1){
-
-                    $arr_all = implode(",",$request->citizenship2);
-
-                }elseif($key == 2){
-                    $arr_all = implode(",",$request->citizenship3);
-                }
-                elseif($key == 3){
-                    $arr_all = implode(",",$request->citizenship4);
-                }elseif($key == 4){
-                    $arr_all = implode(",",$request->citizenship5);
-                }
-
-                $form= new FdOneMemberList();
-                $form->name=$input['staff_name'][$key];
-                $form->now_working_at=$input['now_working_at'][$key];
-                $form->position=$input['staff_position'][$key];
-                $form->address=$input['staff_address'][$key];
-                $form->date_of_join=$input['date_of_join'][$key];
-                $form->citizenship=$arr_all;
-                $form->salary_statement=$input['salary_statement'][$key];
-                $form->other_occupation	=$input['other_occupation'][$key];
-                $form->time_for_api =  $main_time;
-                $form->fd_one_form_id = Session::get('mm_id');
-                $form->save();
-            }
-
-
-        }else{
-
-        foreach($new_cat_dec as $key => $new_cat_dec){
-
-            if($key == 0){
-                $arr_all = implode(",",$request->citizenship1);
-            }elseif($key == 1){
-
-                $arr_all = implode(",",$request->citizenship2);
-
-            }elseif($key == 2){
-                $arr_all = implode(",",$request->citizenship3);
-            }
-            elseif($key == 3){
-                $arr_all = implode(",",$request->citizenship4);
-            }elseif($key == 4){
-                $arr_all = implode(",",$request->citizenship5);
-            }
-
-            $form= new FdOneMemberList();
-            $form->name=$input['staff_name'][$key];
-            $form->position=$input['staff_position'][$key];
-            $form->address=$input['staff_address'][$key];
-            $form->date_of_join=$input['date_of_join'][$key];
-            $form->citizenship=$arr_all;
-            $form->salary_statement=$input['salary_statement'][$key];
-            $form->other_occupation	=$input['other_occupation'][$key];
-            $form->time_for_api =  $main_time;
-            $form->fd_one_form_id = Session::get('mm_id');
-            $form->save();
         }
 
-    }
-
-
-        if($request->submit_value == 'save_and_exit_from_three'){
-
- return redirect('/fdFormOneInfo');
-}else{
-
-return redirect('/othersInformation');
-
- }
+               return redirect('/ngoAllRegistrationForm');
 
 }
+
+
+
+
 
 
     public function allStaffDetailsInformationUpdate(Request $request){
@@ -627,7 +581,7 @@ return redirect('/othersInformation');
             'other_occupation.*' => 'required|string',
             'submit_value' => 'required|string',
         ]);
-
+        //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
@@ -716,146 +670,45 @@ return redirect('/othersInformation');
     }
 
 
-        if($request->submit_value == 'save_and_exit_from_three'){
+    $checkCompleteStatusData = DB::table('form_complete_statuses')
+    ->where('user_id',Auth::user()->id)
+    ->first();
 
- return redirect('/fdFormOneInfo');
+    if(!$checkCompleteStatusData){
 
-}else{
+        $newStatusData = new FormCompleteStatus();
+        $newStatusData->user_id = Auth::user()->id;
+        $newStatusData->fd_one_form_step_one_status = 1;
+        $newStatusData->fd_one_form_step_two_status = 1;
+        $newStatusData->fd_one_form_step_three_status = 1;
+        $newStatusData->fd_one_form_step_four_status = 0;
+        $newStatusData->form_eight_status = 0;
+        $newStatusData->ngo_member_status = 0;
+        $newStatusData->ngo_member_nid_photo_status = 0;
+        $newStatusData->ngo_other_document_status = 0;
+        $newStatusData->save();
+    }else{
 
- return redirect('/othersInformation');
- }
+        FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+        ->update([
+            'fd_one_form_step_three_status' => 1
+         ]);
+
+
+    }
+
+           return redirect('/ngoAllRegistrationForm');
 
     }
 
 
 
 
-    public function othersInformationPost(Request $request){
-        $cutomeFileName = time().date("Ymd");
 
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-        $main_time = $dt->format('H:i:s a');
-
-
-        $request->validate([
-
-            'information_type.*' => 'required',
-            'name.*' => 'required',
-            'information.*' => 'required',
-            'submit_value' => 'required|string',
-            'treasury_number' => 'required|string',
-            'vat_invoice_number' => 'required|string',
-            'attach_the__supporting_papers' => 'required',
-            'board_of_revenue_on_fees' => 'required',
-
-        ]);
-
-
-
-     $stepFourData = FdOneForm::find($request->id);
-     $stepFourData->user_id = Auth::user()->id;
-     $stepFourData->treasury_number = $request->treasury_number;
-     $stepFourData->vat_invoice_number = $request->vat_invoice_number;
-
-     if ($request->hasfile('attach_the__supporting_papers')) {
-         $file = $request->file('attach_the__supporting_papers');
-         $extension = $cutomeFileName.$file->getClientOriginalName();
-         $filename = $extension;
-         $file->move('public/uploads/', $filename);
-         $stepFourData->attach_the__supporting_paper ='uploads/'.$filename;
-
-     }
-
-
-     if ($request->hasfile('board_of_revenue_on_fees')) {
-        $file = $request->file('board_of_revenue_on_fees');
-        $extension = $cutomeFileName.$file->getClientOriginalName();
-        $filename = $extension;
-        $file->move('public/uploads/', $filename);
-        $stepFourData->board_of_revenue_on_fees = 'uploads/'.$filename;
-
-    }
-
-     $stepFourData->complete_status = $request->submit_value;
-     $stepFourData->save();
-
-
-     $mm_id = $stepFourData->id;
-
-
-
-     if(empty($request->account_number)){
-
-
-     }else{
-     $form= new FdOneBankAccount();
-     $form->account_number=$request->account_number;
-     $form->account_type=$request->account_type;
-     $form->name_of_bank=$request->name_of_bank;
-     $form->branch_name_of_bank=$request->branch_name_of_bank;
-     $form->bank_address=$request->bank_address;
-     $form->fd_one_form_id = $request->id;
-     $form->time_for_api = $main_time;
-     $form->save();
-    }
-
-     $input = $request->all();
-
-
-if (array_key_exists("name", $input)){
-
-        $new_cat_dec = $input['name'];
-     foreach($new_cat_dec as $key => $new_cat_dec){
-
-        $form1= new FdOneAdviserList();
-        $form1->name=$input['name'][$key];
-        $form1->information=$input['information'][$key];
-        $form1->fd_one_form_id = $request->id;
-        $form1->time_for_api = $main_time;
-        $form1->save();
-
-     }
-
-    }
-
-    if (array_key_exists("information_type", $input)){
-
-        $new_cat_dec_new = $input['information_type'];
-
-
-     foreach($new_cat_dec_new as $key => $new_cat_dec_new){
-
-
-        $form2= new FdOneOtherPdfList();
-
-        $file=$input['information_type'][$key];
-        $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
-        $file->move('public/uploads/', $name);
-        $form2->information_pdf='uploads/'.$name;
-        $form2->fd_one_form_id = $request->id;
-        $form2->time_for_api = $main_time;
-        $form2->save();
-
-     }
-
-    }
-
-
-    if($request->submit_value == 'all_complete'){
-
-return redirect('/fdFormOneInfo');
-
-}else{
-
-    return redirect('/othersInformation');
-}
-
-}
 
 
     public function othersInformationUpdate(Request $request){
-
+//dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
@@ -986,16 +839,33 @@ if(in_array(null, $input['name'])){
 
    }
 
+   $checkCompleteStatusData = DB::table('form_complete_statuses')
+   ->where('user_id',Auth::user()->id)
+   ->first();
 
-   if($request->submit_value == 'all_complete'){
+   if(!$checkCompleteStatusData){
 
-    return redirect('/fdFormOneInfo');
+       $newStatusData = new FormCompleteStatus();
+       $newStatusData->user_id = Auth::user()->id;
+       $newStatusData->fd_one_form_step_one_status = 1;
+       $newStatusData->fd_one_form_step_two_status = 1;
+       $newStatusData->fd_one_form_step_three_status = 1;
+       $newStatusData->fd_one_form_step_four_status = 1;
+       $newStatusData->form_eight_status = 0;
+       $newStatusData->ngo_member_status = 0;
+       $newStatusData->ngo_member_nid_photo_status = 0;
+       $newStatusData->ngo_other_document_status = 0;
+       $newStatusData->save();
+   }else{
 
-}else{
+       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+       ->update([
+           'fd_one_form_step_four_status' => 1
+        ]);
 
-return redirect('/othersInformation');
 
-}
+   }
+   return redirect('/ngoAllRegistrationForm');
 
 }
 

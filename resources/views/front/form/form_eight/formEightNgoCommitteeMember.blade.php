@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('form 8_bn.list')}} | {{ trans('header.ngo_ab')}}
+{{ trans('first_info.all_reg_form')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -9,174 +9,18 @@
 @endsection
 
 @section('body')
-<section>
-    <div class="container">
-        <div class="form-card">
-            <div class="dashboard_box">
-                <div class="dashboard_left">
-
-                    <ul>
-                        @include('front.include.sidebar_dash')
-                         </ul>
-                </div>
-                <div class="dashboard_right">
-                    <div class="committee_container">
-                        <div class="d-flex justify-content-between mb-4">
-                            <div class="p-2">
-                                <h5>{{ trans('form 8_bn.list')}}</h5>
-                            </div>
-                            <div class="p-2">
-                                <button class="btn btn-primary btn-custom" type="button"
-                                        onclick="location.href = '{{ route('formEightNgoCommitteMember.create') }}';">
-                                        {{ trans('form 8_bn.add')}}
-                                </button>
-                            </div>
-                        </div>
-
-                        <?php
-                    if(empty($from_date_to)){
-
-                        $newDate1 = date("Y-m-d");
-                        $newDate2 = date("Y-m-d");
-                        $to_total_year = '';
-                    }else{
 
 
 
-$from_date_to = DB::table('ngo_committee_members')->where('user_id',Auth::user()->id)->value('form_date');
 
-$newDate1 = date("Y-m-d", strtotime($from_date_to));
-
-
-
-$to_date_to = DB::table('ngo_committee_members')->where('user_id',Auth::user()->id)->value('to_date');
-
-$newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
-                    ->format('Y-m-d');;
-
-//dd($newDate2);
-$to_total_year = DB::table('ngo_committee_members')->where('user_id',Auth::user()->id)->value('total_year');
-}
-                        ?>
-                        <div class="row">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <form method="get" action="{{ route('formEightNgoCommitteeMemberTotalView') }}"  id="form" data-parsley-validate="">
-
-                                            <div class="row">
-                                                <div class="mb-3 col-xl-4 col-sm-12">
-                                                    <label for="" class="form-label">{{ trans('form 8_bn.from')}}</label>
-                                                    <input type="date" value="{{ $newDate1 }}" data-parsley-required class="form-control" name="form_date" id="form_date">
-                                                </div>
-                                                <div class="mb-3 col-xl-4 col-sm-12">
-                                                    <label for="" class="form-label">{{ trans('form 8_bn.to')}}</label>
-                                                    <input type="date" value="{{ $newDate2 }}"  data-parsley-required class="form-control" name="to_date" id="to_date">
-                                                </div>
-                                                <div class="mb-3 col-xl-4 col-sm-12">
-                                                    <label for="" class="form-label">{{ trans('form 8_bn.total')}}</label>
-                                                    <input type="text" value="{{ $to_total_year }}"  class="form-control" name="total_year" id="total_year">
-                                                </div>
-                                            </div>
-                                       <button  class="btn btn-success btn-sm" type="submit">
-                                        {{ trans('form 8_bn.submit')}}</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <table class="table table-bordered mt-4 custom_table">
-                                    <tr>
-                                        <th>{{ trans('form 8_bn.sl')}}</th>
-                                        <th>{{ trans('form 8_bn.name')}} & {{ trans('form 8_bn.designation')}}</th>
-                                        <th>{{ trans('form 8_bn.date_of_birth')}}</th>
-                                        <th>{{ trans('form 8_bn.address')}}</th>
-
-                                        <th>{{ trans('form 8_bn.action')}}</th>
-                                    </tr>
-                                   @foreach($all_data_list as $key=>$main_all_data_list)
-                                    <tr>
-                                        <td>{{ $key+1 }}</td>
-                                        <td>{{ $main_all_data_list->name }} <br> <span class="text-success">{{ trans('form 8_bn.designation')}}:</span>
-                                            {{ $main_all_data_list->desi }}
-                                        </td>
-                                        <td>
-
-                                            <?php
-
-$newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
-
-                                                ?>
-
-@if(session()->get('locale') == 'en')
-
-
-{{ str_replace($engDATE, $bangDATE, $newDate12)}}
-
-
-@else
-
-    {{ $newDate12 }}
-@endif
-
-                                        </td>
-                                        <td><span>{{ trans('form 8_bn.present_address')}}:</span>  {{ $main_all_data_list->present_address }} <br>
-                                            <span>{{ trans('form 8_bn.permanent_address')}}:</span>  {{ $main_all_data_list->permanent_address }}
-                                        </td>
-
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-sm btn-primary" onclick="location.href = '{{ route('formEightNgoCommitteMember.edit',$main_all_data_list->name_slug) }}';"><i
-                                                            class="bi bi-pencil-fill"></i></button>
+@include('front.form.ngo_registration_form_form08')
 
 
 
-                                                <button type="button" onclick="deleteTag({{ $main_all_data_list->id}})" class="btn btn-sm btn-danger"><i
-                                                            class="bi bi-trash"></i></button>
 
-                                                            <form id="delete-form-{{ $main_all_data_list->id }}" action="{{ route('formEightNgoCommitteMember.destroy',$main_all_data_list->id) }}" method="POST" style="display: none;">
-
-                                                                @csrf
-                                                                @method('DELETE')
-                                                            </form>
-
-
-                                                <button id="member_id{{ $main_all_data_list->id }}" class="btn btn-success btn-sm" type="button"
-                                                        data-bs-toggle="offcanvas"
-                                                        data-bs-target="#offcanvasWithBothOptions"
-                                                        aria-controls="offcanvasWithBothOptions"><i
-                                                            class="bi bi-eye-fill"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<div class=" offcanvas offcanvas-end" style="width:40vw !important" data-bs-scroll="true" tabindex="-1"
-     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">{{ trans('form 8_bn.personal_info')}}</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="committee_profile" id="main_content_table">
-
-        </div>
-    </div>
-</div>
 @endsection
 
 @section('script')
-
 <script>
     $(document).ready(function(){
 
@@ -194,7 +38,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
         data: {form_date:form_date,to_date:to_date},
         success: function(data) {
           $("#total_year").val('');
-          $("#total_year").val(data);
+          $("#total_year").val(data.data);
         }
         });
 
@@ -215,7 +59,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
         data: {form_date:form_date,to_date:to_date},
         success: function(data) {
           $("#total_year").val('');
-          $("#total_year").val(data);
+          $("#total_year").val(data.data);
         }
         });
 
@@ -249,5 +93,307 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
 
 </script>
+<script>
+    $(document).ready(function () {
+    $('#form1').validate({ // initialize the plugin
+        rules: {
 
+
+            district: {
+                required: true
+            },
+            sub_district: {
+                required: true
+            },
+            name: {
+                required: true
+            },
+
+            address: {
+                required: true
+            },
+
+
+            annual_budget: {
+                required: true
+            }
+
+
+        },
+
+
+               messages:
+ {
+
+
+
+
+            district: {
+                required: " district Field is required"
+            },
+            sub_district: {
+                required: " sub_district Field is required"
+            },
+            name: {
+                required: " name Field is required"
+            },
+            address: {
+                required: " address Field is required"
+            },
+            annual_budget: {
+                required: " annual_budget Field is required"
+            }
+
+
+
+
+
+ }
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function () {
+    $('#form').validate({ // initialize the plugin
+        rules: {
+
+
+            district: {
+                required: true
+            },
+            sub_district: {
+                required: true
+            },
+            name: {
+                required: true
+            },
+
+            address: {
+                required: true
+            },
+            letter_file: {
+                required: true
+            },
+            annual_budget: {
+                required: true
+            }
+
+
+        },
+
+
+               messages:
+ {
+
+
+
+
+            district: {
+                required: " district Field is required"
+            },
+            sub_district: {
+                required: " sub_district Field is required"
+            },
+            name: {
+                required: " name Field is required"
+            },
+            address: {
+                required: " address Field is required"
+            },
+            letter_file: {
+                required: " letter_file Field is required"
+            },
+            annual_budget: {
+                required: " annual_budget Field is required"
+            }
+
+
+
+
+
+ }
+    });
+});
+</script>
+<script>
+
+
+
+
+    $("[id^=final_b_get]").click(function () {
+
+        var id = $(this).data("id");
+        var name = $('#sname'+id).val();
+        var information = $('#sinformation'+id).val();
+
+
+        $.ajax({
+                    url: "{{ route('adviserDataUpdate') }}",
+                    type: 'get',
+                    data: {
+                        "name": name,
+                        "information": information,
+                        "id": id,
+
+                    },
+                    success: function (data) {
+                        //alert('success');
+                        location.reload(true);
+                    }
+                });
+
+    });
+        $("[id^=adeleteRecord]").click(function () {
+
+            var x = confirm("Are you sure you want to delete?");
+            if (x) {
+                var id = $(this).data("id");
+                var token = $("meta[name='csrf-token']").attr("content");
+
+                $.ajax({
+                    url: "{{ route('adviserDataDelete') }}",
+                    type: 'get',
+                    data: {
+                        "id": id,
+
+                    },
+                    success: function (data) {
+                        alert('success');
+                        location.reload(true);
+                    }
+                });
+            } else {
+                return false;
+            }
+
+        });
+    </script>
+    <script>
+        $("[id^=sadeleteRecord]").click(function () {
+
+            var x = confirm("Are you sure you want to delete?");
+            if (x) {
+                var id = $(this).data("id");
+                var token = $("meta[name='csrf-token']").attr("content");
+
+                $.ajax({
+                    url: "{{ route('otherInformationADelete') }}",
+                    type: 'get',
+                    data: {
+                        "id": id,
+
+                    },
+                    success: function (data) {
+                        alert('success');
+                        location.reload(true);
+                    }
+                });
+            } else {
+                return false;
+            }
+
+        });
+    </script>
+<script>
+    $("[id^=deleteRecord]").click(function () {
+
+        var x = confirm("Are you sure you want to delete?");
+        if (x) {
+            var id = $(this).data("id");
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            $.ajax({
+                url: "{{ route('sourceOfFundDelete') }}",
+                type: 'get',
+                data: {
+                    "id": id,
+
+                },
+                success: function (data) {
+                    alert('success');
+                    location.reload(true);
+                }
+            });
+        } else {
+            return false;
+        }
+
+    });
+</script>
+
+
+
+
+
+<!--//add new row-->
+
+<script>
+    var i = 0;
+    $("#dynamic-ar").click(function () {
+        ++i;
+        $("#dynamicAddRemove").append('<tr>' +
+            '<td>' +
+            '<input type="text" name="name[]" required placeholder="দাতা সংস্থার নাম" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" name="address[]" required placeholder="দাতা সংস্থার ঠিকানা" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input class="form-control" accept=".pdf" required name="letter_file[]" type="file" id="">' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
+
+<script>
+    var i = 0;
+    $("#dynamic-advisor").click(function () {
+        ++i;
+        $("#dynamicAddRemoveAdvisor").append('<tr>' +
+            '<td>' +
+            '<input type="text" name="" placeholder="পরামর্শকের নাম" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" name="" placeholder="পরামর্শকের ঠিকানা" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field-advisor"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field-advisor', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
+
+<script>
+    var i = 0;
+    $("#dynamic-information").click(function () {
+        ++i;
+        $("#dynamicAddRemoveInformation").append('<tr>' +
+            '<td>' +
+            '<input type="file" accept=".pdf" name="" placeholder="" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field-information', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
 @endsection

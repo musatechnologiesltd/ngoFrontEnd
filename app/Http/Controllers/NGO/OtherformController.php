@@ -19,6 +19,12 @@ use Illuminate\Support\Str;
 use Mail;
 use DateTime;
 use DateTimezone;
+use App\Models\FdOneOtherPdfList;
+use App\Models\FdOneBankAccount;
+use App\Models\FdOneAdviserList;
+use App\Models\FdOneSourceOfFund;
+use App\Models\FdOneMemberList;
+use Response;
 class OtherformController extends Controller
 {
 

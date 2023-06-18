@@ -1,14 +1,3 @@
-@extends('front.master.master')
-
-@section('title')
-{{ trans('ngo_member.ngo_member')}} | {{ trans('header.ngo_ab')}}
-@endsection
-
-@section('css')
-
-@endsection
-
-@section('body')
 <section>
     <div class="container">
         <div class="form-card">
@@ -195,7 +184,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                 <a href="{{ route('formEightNgoCommitteMember.index') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
                                 <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_member_list" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
 
-                                @if(empty($ngoMemberLists))
+                                @if(count($ngoMemberLists) == 0)
 
                                 <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
                                 @else
@@ -291,10 +280,6 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
         </div>
     </div>
 </div>
-
-@endsection
-
-@section('script')
 <script>
     $(document).ready(function(){
 
@@ -325,4 +310,3 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 
 
 </script>
-@endsection

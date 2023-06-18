@@ -1081,16 +1081,16 @@ section.section {
     margin-top: 15px;
 }
 
-.left-side .progress-bar {
+.progress-bar {
     list-style: none;
     /*color:#fff;*/
     font-size: 13px;
     font-weight: 700;
     counter-reset: container 0;
-  overflow: visible !important;
+    padding-bottom: 40px;
 }
 
-.left-side .progress-bar li {
+.progress-bar li {
     position: relative;
     margin-left: 40px;
     margin-top: 40px;
@@ -1099,7 +1099,7 @@ section.section {
     text-align: left;
 }
 
-.left-side .progress-bar li::before {
+.progress-bar li::before {
     content: counter(container);
     line-height: 25px;
     text-align: center;
@@ -1109,42 +1109,42 @@ section.section {
     border: 1px solid #83a59c;
     border-radius: 50%;
     left: -40px;
-    top: 0;
+    top: -3px;
     z-index: 10;
     background-color: #006A4E;
 }
 
 
-.left-side .progress-bar li::after {
+.progress-bar li::after {
     content: '';
     position: absolute;
-    height: 67px;
+    height: 60px;
     width: 2px;
     background-color: #4c9984;
     z-index: 1;
     left: -27px;
-    top: -57px;
+    top: -40px;
 }
 
 
-.left-side .progress-bar li.active::after {
+.progress-bar li.active::after {
     background-color: #fff;
 
 }
 
-.left-side .progress-bar li:first-child:after {
+.progress-bar li:first-child:after {
     display: none;
 }
 
 /*.progress-bar li:last-child:after{*/
 /*  display:none;  */
 /*}*/
-.left-side .progress-bar li.active::before {
+.progress-bar li.active::before {
     color: #fff;
     border: 1px solid #fff;
 }
 
-.left-side .progress-bar li.active {
+.progress-bar li.active {
     color: #fff;
 }
 
@@ -1152,12 +1152,33 @@ section.section {
     display: none;
 }
 
+.fd01_tablist
+{
+    display: flex;
+    position: relative;
+    margin-bottom: 45px;
+}
+.fd01_tab {
+    width: 20.16%;
+    margin-right: 10px;
+    display: inline-block;
+    height: 7px;
+    background: #e6e6e6;
+    border-radius: 3.5px;
+}
+
+.fd01_checked {
+    background: #006A4E !important;
+}
+
+
 /*left-side-end*/
 .container .form-card .right-side {
-    width: 70%;
+    width: 100%;
     background-color: #fff;
-    height: 100%;
-    border-radius: 20px;
+    height: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 
@@ -1303,7 +1324,7 @@ section.section {
 --------------------------------------------------------------*/
 
 .faq_header_box {
-    height: 260px;
+    height: 300px;
     width: 100vw;
     background: rgb(144, 183, 125);
     background: linear-gradient(257deg, rgba(144, 183, 125, 1) 0%, rgba(66, 133, 91, 1) 100%);
@@ -1317,12 +1338,12 @@ section.section {
     color: #F42A41;
 }
 
-.faq_header_box h1 {
-    font-size: 26px;
+.faq_header_box h4 {
+    font-size: 16px;
 }
 
-.faq_header_box h4 {
-    font-size: 12px;
+body {
+    margin-top: 20px;
 }
 
 .section_padding_130 {
@@ -1454,7 +1475,7 @@ section.section {
 # Committee Office Info Page Design
 --------------------------------------------------------------*/
 .committee_container {
-    padding: 20px;
+    padding: 40px;
 }
 
 .committee-number {
@@ -1756,7 +1777,7 @@ section.section {
 /*confrimation text*/
 .confirmation_icon
 {
-    font-size: 105px !important;
+    font-size: 105px;
     color: #006A4E;
 }
 
@@ -1975,3 +1996,62 @@ section.section {
     font-size: 14px;
     margin-top: 11px;
 }
+
+
+/*nvisa application card body*/
+
+.card
+{
+    border: 1px solid #075E24;
+}
+
+.card-header
+{
+    background-color: #075E24 !important;
+    color: #fff !important;
+}
+
+.nvisa-avatar
+{
+    height: 200px;
+    width: 100%;
+    margin-top: 40%;
+    margin-bottom: 20px;
+    background-color: #d5d5d5;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.nvisa-avatar img
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+}
+
+/*FD09 FOrm*/
+
+.form9_upper_box
+{
+    margin-bottom: 20px;
+}
+.form9_upper_box h3
+{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+.form9_upper_box h4
+{
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.form9_upper_box h5
+{
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+

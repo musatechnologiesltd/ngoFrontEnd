@@ -16,13 +16,14 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_three.Step_3')}}</h3>
+                        <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
-                        <li >{{ trans('fd_one_step_one.Particulars_of_Organisation')}}</li>
-                        <li >{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</li>
-                        <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li>
-                        <li>{{ trans('fd_one_step_four.o_info')}}</li>
+                        <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
@@ -39,8 +40,8 @@
 
 
 <?php
-$getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
-            ->whereNotNull('people_bangla')->orderBy('id','desc')->get();
+$getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
+            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
 ?>
             <form action="{{ route('allStaffDetailsInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
                 @csrf
@@ -89,9 +90,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>
@@ -145,9 +146,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>
@@ -201,9 +202,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>
@@ -257,9 +258,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>
@@ -313,9 +314,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" >{{ $allGetCityzenshipData->people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>
@@ -390,9 +391,9 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('people_english')
 
                                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                                     @if(session()->get('locale') == 'en')
-                                    <option value="{{ $allGetCityzenshipData->people_english }}" {{ (in_array($allGetCityzenshipData->people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->people_bangla }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                     @else
-                                <option value="{{ $allGetCityzenshipData->people_english }}" {{ (in_array($allGetCityzenshipData->people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->people_english }}</option>
+                                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                 @endif
                                 @endforeach
                                 </select>

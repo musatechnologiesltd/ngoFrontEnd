@@ -15,16 +15,10 @@ class NgodocumentController extends Controller
 {
     public function index(){
 
-        $ngo_list_all = NgoOtherDoc::where('user_id',Auth::user()->id)->latest()->get();
 
-        if(count($ngo_list_all) == 0){
 
-            return redirect('/ngoDocument/create');
+        return view('front.ngo_doc.index');
 
-        }else{
-
-        return view('front.ngo_doc.index',compact('ngo_list_all'));
-        }
     }
 
 
@@ -53,7 +47,7 @@ class NgodocumentController extends Controller
 
 
         $condition_main_image = $input['pdf_file_list'];
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['pdf_file_list'][$key]->getSize() / 1048576,2);
@@ -64,7 +58,7 @@ class NgodocumentController extends Controller
             $file->move('public/uploads/', $name);
             $form->pdf_file_list='uploads/'.$name;
             $form->time_for_api = $main_time;
-            $form->user_id = Auth::user()->id;
+            $form->fd_one_form_id = $fdOneFormId;
             $form->file_size =$file_size;
             $form->save();
        }
@@ -72,7 +66,7 @@ class NgodocumentController extends Controller
 
 
 
-         return redirect('/ngoDocument')->with('success','Created Successfully');
+         return redirect()->back()->with('success','Created Successfully');
 
 
     }
@@ -116,7 +110,7 @@ class NgodocumentController extends Controller
         $time_dy = time().date("Ymd");
 
         $updateOtherPdf =NgoOtherDoc::find($id);
-        $updateOtherPdf->user_id = Auth::user()->id;
+        $updateOtherPdf->fd_one_form_id = $fdOneFormId;
       if ($request->hasfile('pdf_file_list')) {
         $file_size = number_format($request->pdf_file_list->getSize() / 1048576,2);
             $file = $request->file('pdf_file_list');
@@ -131,7 +125,7 @@ class NgodocumentController extends Controller
         $updateOtherPdf->save();
 
 
-        return redirect('/ngoDocument')->with('success','Created Successfully');
+        return redirect()->back()->with('success','Created Successfully');
 
 
     }

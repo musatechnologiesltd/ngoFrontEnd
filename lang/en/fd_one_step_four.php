@@ -26,6 +26,7 @@ return [
     'information_pdf'=>'তথ্য পিডিএফ',
     'add_new_information'=>'নতুন তথ্য যোগ',
     'step_4'=>'ধাপ ০৪',
+    'step_5'=>'ধাপ ০৫',
     'Main_Account_Details'=>'মাদার একাউন্ট এর বিস্তারিত বিবরণ',
     'Submit'=>'জমা দিন',
     'fd_update'=>'এফডি -০১ ফরম আপডেট করুন',
