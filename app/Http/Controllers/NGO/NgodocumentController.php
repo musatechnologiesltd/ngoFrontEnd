@@ -12,6 +12,7 @@ use App\Models\NgoOtherDoc;
 use App\Models\FormCompleteStatus;
 use DateTime;
 use DateTimezone;
+use App\Http\Controllers\NGO\CommonController;
 class NgodocumentController extends Controller
 {
     public function index(){
@@ -52,12 +53,10 @@ class NgodocumentController extends Controller
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['pdf_file_list'][$key]->getSize() / 1048576,2);
-
+            $filePath="NgoOtherDoc";
             $form= new NgoOtherDoc();
             $file=$input['pdf_file_list'][$key];
-            $name=$time_dy.$file->getClientOriginalName();
-            $file->move('public/uploads/', $name);
-            $form->pdf_file_list='uploads/'.$name;
+            $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
             $form->time_for_api = $main_time;
             $form->fd_one_form_id = $fdOneFormId;
             $form->file_size =$file_size;
@@ -141,16 +140,13 @@ class NgodocumentController extends Controller
 
     public function update(Request $request,$id){
         $time_dy = time().date("Ymd");
-
+        $filePath="NgoOtherDoc";
         $updateOtherPdf =NgoOtherDoc::find($id);
         $updateOtherPdf->fd_one_form_id = $fdOneFormId;
       if ($request->hasfile('pdf_file_list')) {
         $file_size = number_format($request->pdf_file_list->getSize() / 1048576,2);
             $file = $request->file('pdf_file_list');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $updateOtherPdf->pdf_file_list =  'uploads/'.$filename;
+            $updateOtherPdf->pdf_file_list =CommonController::pdfUpload($request,$file,$filePath);
             $updateOtherPdf->file_size =$file_size;
 
         }

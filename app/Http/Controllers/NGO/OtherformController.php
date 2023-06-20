@@ -11,6 +11,7 @@ use App\Models\FormEight;
 use App\Models\NgoMemberNidPhoto;
 use App\Models\NgoOtherDoc;
 use App\Models\NgoStatus;
+use App\Http\Controllers\NGO\CommonController;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Support\Facades\App;

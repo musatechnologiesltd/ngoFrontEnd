@@ -19,6 +19,7 @@ use PDF;
 use DateTime;
 use DateTimezone;
 use Response;
+use App\Http\Controllers\NGO\CommonController;
 class FdoneformController extends Controller
 {
 
@@ -368,11 +369,9 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         $uploadVerifiedPdf = FdOneForm::find($request->id);
         if ($request->hasfile('verified_fd_one_form')) {
+            $filePath="verifiedFdOneForm";
             $file = $request->file('verified_fd_one_form');
-            $extension = $cutomeFileName.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $uploadVerifiedPdf->verified_fd_one_form = 'uploads/'.$filename;
+   $uploadVerifiedPdf->verified_fd_one_form =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $uploadVerifiedPdf->save();
@@ -395,11 +394,9 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $uploadOneSourceOfFund->name = $request->name_sour;
         $uploadOneSourceOfFund->address = $request->address;
         if ($request->hasfile('letter_file')) {
+             $filePath="FdOneSourceOfFund";
             $file = $request->file('letter_file');
-            $extension = $cutomeFileName.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $uploadOneSourceOfFund->letter_file =  'uploads/'.$filename;
+   $uploadOneSourceOfFund->letter_file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $uploadOneSourceOfFund->save();
@@ -424,11 +421,9 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $otherInformationData = FdOneOtherPdfList::find($request->mid);
 
         if ($request->hasfile('letter_file')) {
+            $filePath="FdOneOtherPdfList";
             $file = $request->file('letter_file');
-            $extension = $cutomeFileName.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $otherInformationData->letter_file =  'uploads/'.$filename;
+   $otherInformationData->letter_file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $otherInformationData->save();
@@ -500,11 +495,10 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         $updateDataStepTwo->annual_budget = $request->annual_budget;
         if ($request->hasfile('plan_of_operation')) {
+            $filePath="FdOneForm";
             $file = $request->file('plan_of_operation');
-            $extension = $cutomeFileName.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $updateDataStepTwo->plan_of_operation ='uploads/'.$filename;
+
+            $updateDataStepTwo->plan_of_operation =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $updateDataStepTwo->complete_status = $request->submit_value;
@@ -531,9 +525,12 @@ if($request->submit_value == 'exit_from_step_one_edit'){
          $form->name=$input['name'][$key];
          $form->address=$input['address'][$key];
          $file=$input['letter_file'][$key];
-         $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
-         $file->move('public/uploads/', $name);
-         $form->letter_file='uploads/'.$name;
+        //  $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
+        //  $file->move('public/uploads/', $name);
+        //  $form->letter_file='uploads/'.$name;
+
+        $filePath="FdOneSourceOfFund";
+        $form->letter_file =CommonController::pdfUpload($request,$file,$filePath);
         $form->fd_one_form_id = $stepTwoId;
         $form->time_for_api = $main_time;
          $form->save();
@@ -765,21 +762,17 @@ if($request->submit_value == 'exit_from_step_one_edit'){
     $stepFourData->vat_invoice_number = $request->vat_invoice_number;
 
     if ($request->hasfile('attach_the__supporting_papers')) {
+        $filePath="attach_the_supporting_papers";
         $file = $request->file('attach_the__supporting_papers');
-        $extension = $cutomeFileName.$file->getClientOriginalName();
-        $filename = $extension;
-        $file->move('public/uploads/', $filename);
-        $stepFourData->attach_the__supporting_paper = 'uploads/'.$filename;
+        $stepFourData->attach_the__supporting_paper =CommonController::pdfUpload($request,$file,$filePath);
 
     }
 
 
     if ($request->hasfile('board_of_revenue_on_fees')) {
        $file = $request->file('board_of_revenue_on_fees');
-       $extension = $cutomeFileName.$file->getClientOriginalName();
-       $filename = $extension;
-       $file->move('public/uploads/', $filename);
-       $stepFourData->board_of_revenue_on_fees = 'uploads/'.$filename;
+       $filePath="board_of_revenue_on_fees";
+       $stepFourData->board_of_revenue_on_fees =CommonController::pdfUpload($request,$file,$filePath);
 
    }
 
@@ -855,11 +848,10 @@ if(in_array(null, $input['name'])){
 
 
        $form2= new FdOneOtherPdfList();
-
+       $filePath="FdOneOtherPdfList";
        $file=$input['information_type'][$key];
-       $name=time().mt_rand(1000000000, 9999999999).'.'.$file->getClientOriginalExtension();
-       $file->move('public/uploads/', $name);
-       $form2->information_pdf='uploads/'.$name;
+
+       $form2->information_pdf=CommonController::pdfUpload($request,$file,$filePath);
        $form2->fd_one_form_id = $request->id;
        $form2->time_for_api = $main_time;
        $form2->save();

@@ -76,11 +76,11 @@ $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','M
                                             <div class="row">
                                                 <div class="mb-3 col-xl-4 col-sm-12">
                                                     <label for="" class="form-label">{{ trans('form 8_bn.from')}}</label>
-                                                    <input type="date" value="{{ $newDate1 }}" data-parsley-required class="form-control" name="form_date" id="form_date">
+                                                    <input type="text" value="{{ $newDate1 }}" data-parsley-required class="form-control" name="form_date" id="form_date">
                                                 </div>
                                                 <div class="mb-3 col-xl-4 col-sm-12">
                                                     <label for="" class="form-label">{{ trans('form 8_bn.to')}}</label>
-                                                    <input type="date" value="{{ $newDate2 }}"  data-parsley-required class="form-control" name="to_date" id="to_date">
+                                                    <input type="text" value="{{ $newDate2 }}"  data-parsley-required class="form-control" name="to_date" id="to_date">
                                                 </div>
                                                 <div class="mb-3 col-xl-4 col-sm-12">
                                                     <label for="" class="form-label">{{ trans('form 8_bn.total')}}</label>
@@ -162,7 +162,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.date_of_birth')}} <span class="text-danger">*</span> :</label>
-                                                                                                <input type="date" data-parsley-required name="dob" value="{{ $main_all_data_list->dob }}" class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="dob" value="{{ $main_all_data_list->dob }}" class="form-control" id="datepicker1">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.nid_no')}} <span class="text-danger">*</span> :</label>
@@ -305,7 +305,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.date_of_birth')}} <span class="text-danger">*</span> :</label>
-                                    <input type="date" data-parsley-required name="dob" class="form-control" id="">
+                                    <input type="text" data-parsley-required name="dob" class="form-control" id="datepicker">
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.nid_no')}} <span class="text-danger">*</span> :</label>

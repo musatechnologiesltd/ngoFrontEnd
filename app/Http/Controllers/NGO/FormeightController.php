@@ -13,6 +13,7 @@ use PDF;
 use DateTime;
 use DateTimezone;
 use Carbon\Carbon;
+use App\Http\Controllers\NGO\CommonController;
 class FormeightController extends Controller
 {
 
@@ -238,11 +239,10 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
         $updateVerifiedPdf =FormEight::find($request->id);
         if ($request->hasfile('verified_form_eight')) {
+
+            $filePath="FdOneOtherPdfList";
             $file = $request->file('verified_form_eight');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $updateVerifiedPdf->verified_form_eight =  'uploads/'.$filename;
+            $updateVerifiedPdf->verified_form_eight =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $updateVerifiedPdf->save();

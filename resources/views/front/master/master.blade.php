@@ -16,6 +16,7 @@
     <!-- ResNova App favicon -->
     <link rel="shortcut icon" href="{{ asset('/') }}public/front/assets/img/logo/logo.png">
     <!-- Vendor CSS Files -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="{{ asset('/') }}public/front/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('/') }}public/front/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="{{ asset('/') }}public/front/assets/vendor/slick-slider/slick.css" rel="stylesheet">
@@ -42,6 +43,7 @@
 @else
 <script src="{{ asset('/')}}public/front/assets/parsely1.js"></script>
 @endif
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <style>
 
     .parsley-required{
@@ -442,6 +444,41 @@ $("document").ready(function(){
         $('.js-example-basic-single').select2();
     });
 </script>
+<script>
+   $( function() {
+	$( "#datepicker" ).datepicker({
+		dateFormat: "dd-mm-yy"
+		,	duration: "fast"
+	});
+} );
+    </script>
+
+<script>
+    $( function() {
+     $( "#datepicker1" ).datepicker({
+         dateFormat: "dd-mm-yy"
+         ,	duration: "fast"
+     });
+ } );
+
+ //
+
+ $( function() {
+     $( "#form_date" ).datepicker({
+         dateFormat: "dd-mm-yy"
+         ,	duration: "fast"
+     });
+ } );
+
+ //
+
+ $( function() {
+     $( "#to_date" ).datepicker({
+         dateFormat: "dd-mm-yy"
+         ,	duration: "fast"
+     });
+ } );
+     </script>
 </body>
 
 </html>

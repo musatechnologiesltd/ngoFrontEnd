@@ -12,6 +12,7 @@ use App\Models\FormCompleteStatus;
 use Response;
 use DateTime;
 use DateTimezone;
+use App\Http\Controllers\NGO\CommonController;
 class NgomemberdocController extends Controller
 {
     public function index(){
@@ -89,18 +90,12 @@ class NgomemberdocController extends Controller
             $file_size = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
 
             $form= new NgoMemberNidPhoto();
-
+            $filePath="NgoMemberNidPhoto";
             $file=$input['member_nid_copy'][$key];
             $file_image=$input['member_image'][$key];
 
-            $name=$time_dy.$file->getClientOriginalName();
-            $name_image=$time_dy.$file_image->getClientOriginalName();
-
-            $file->move('public/uploads/', $name);
-            $file_image->move('public/uploads/', $name_image);
-
-            $form->member_image='public/uploads/'.$name_image;
-            $form->member_nid_copy='uploads/'.$name;
+            $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
+            $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
             $form->member_name=$input['member_name'][$key];
             $form->time_for_api = $main_time;
             $form->fd_one_form_id = $fdOneFormId;
@@ -120,23 +115,20 @@ class NgomemberdocController extends Controller
 
 
             $form= NgoMemberNidPhoto::find($id);
-
+            $filePath="NgoMemberNidPhoto";
             if ($request->hasfile('member_nid_copy')) {
                 $file = $request->file('member_nid_copy');
                 $file_size = number_format($file->getSize() / 1048576,2);
-                $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $form->member_nid_copy =  'uploads/'.$filename;
+
+
+                $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
             $form->member_nid_copy_size =$file_size;
 
             }
             if ($request->hasfile('member_image')) {
-                $file1 = $request->file('member_image');
-              $extension1 = $time_dy.$file1->getClientOriginalName();
-            $filename1 = $extension1;
-            $file->move('public/uploads/', $filename1);
-            $form->member_image =  'public/uploads/'.$filename1;
+            $file1 = $request->file('member_image');
+
+            $form->member_image =CommonController::imageUpload($request,$file1,$filePath);
 
             }
             $form->member_name=$request->member_name;

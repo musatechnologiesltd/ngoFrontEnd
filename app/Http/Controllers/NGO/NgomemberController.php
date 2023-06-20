@@ -11,6 +11,7 @@ use App\Models\NgoMemberList;
 use App\Models\FormCompleteStatus;
 use DateTime;
 use DateTimezone;
+use App\Http\Controllers\NGO\CommonController;
 class NgomemberController extends Controller
 {
     public function index(){

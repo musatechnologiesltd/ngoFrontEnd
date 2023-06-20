@@ -25,6 +25,7 @@ use Response;
 use App\Models\NgoMemberList;
 use App\Models\NgoOtherDoc;
 use App\Models\NgoMemberNidPhoto;
+use App\Http\Controllers\NGO\CommonController;
 class RegsubmitController extends Controller
 {
     public function regSubmitList(){

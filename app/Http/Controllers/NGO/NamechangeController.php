@@ -18,6 +18,7 @@ use DateTime;
 use DateTimezone;
 use App\Models\NgoNameChange;
 use Illuminate\Support\Str;
+use App\Http\Controllers\NGO\CommonController;
 class NamechangeController extends Controller
 {
     public function nameChange(){
@@ -287,18 +288,14 @@ class NamechangeController extends Controller
             $file_size = number_format($input['person_nid_copy'][$key]->getSize() / 1048576,2);
 
             $form= new NgoMemberNidPhoto();
-
+            $filePath="NgoMemberNidPhoto";
             $file=$input['person_nid_copy'][$key];
             $file_image=$input['person_image'][$key];
 
-            $name=$time_dy.$file->getClientOriginalName();
-            $name_image=$time_dy.$file_image->getClientOriginalName();
 
-            $file->move('public/uploads/', $name);
-            $file_image->move('public/uploads/', $name_image);
+            $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
+            $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
 
-            $form->member_image='public/uploads/'.$name_image;
-            $form->member_nid_copy='uploads/'.$name;
             $form->member_name=$input['person_name'][$key];
             $form->time_for_api = $main_time;
             $form->fd_one_form_id = $fdOneFormId;
@@ -319,21 +316,22 @@ class NamechangeController extends Controller
         $form= NgoMemberNidPhoto::find($request->id);
 
         if ($request->hasfile('person_nid_copy')) {
+            $filePath="NgoMemberNidPhoto";
             $file = $request->file('person_nid_copy');
-            $file_size = number_format($file->getSize() / 1048576,2);
-            $extension = $time_dy.$file->getClientOriginalName();
-        $filename = $extension;
-        $file->move('public/uploads/', $filename);
-        $form->member_nid_copy =  'uploads/'.$filename;
+
+
+
+        $form->member_nid_copy =CommonController::pdfUpload($request,$file,$filePath);
+        $file_size = number_format($file->getSize() / 1048576,2);
         $form->member_nid_copy_size =$file_size;
 
         }
         if ($request->hasfile('person_image')) {
+            $filePath="NgoMemberNidPhoto";
             $file1 = $request->file('person_image');
-          $extension1 = $time_dy.$file1->getClientOriginalName();
-        $filename1 = $extension1;
-        $file->move('public/uploads/', $filename1);
-        $form->member_image =  'public/uploads/'.$filename1;
+
+
+        $form->member_image = CommonController::imageUpload($request,$file1,$filePath);
 
         }
         $form->member_name=$request->person_name;
@@ -385,9 +383,10 @@ class NamechangeController extends Controller
 
             $form= new NgoOtherDoc();
             $file=$input['primary_portal'][$key];
-            $name=$time_dy.$file->getClientOriginalName();
-            $file->move('public/uploads/', $name);
-            $form->pdf_file_list='uploads/'.$name;
+            $filePath="NgoOtherDoc";
+            // $name=$time_dy.$file->getClientOriginalName();
+            // $file->move('public/uploads/', $name);
+            $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
             $form->time_for_api = $main_time;
             $form->fd_one_form_id  = $fdOneFormId;
             $form->	file_size =$file_size;
@@ -410,10 +409,11 @@ class NamechangeController extends Controller
       if ($request->hasfile('primary_portal')) {
         $file_size = number_format($request->primary_portal->getSize() / 1048576,2);
             $file = $request->file('primary_portal');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $ngoOtherDoc->pdf_file_list =  'uploads/'.$filename;
+            // $extension = $time_dy.$file->getClientOriginalName();
+            // $filename = $extension;
+            // $file->move('public/uploads/', $filename);
+            $filePath="NgoOtherDoc";
+            $ngoOtherDoc->pdf_file_list =CommonController::pdfUpload($request,$file,$filePath);
             $ngoOtherDoc->file_size =$file_size;
 
         }

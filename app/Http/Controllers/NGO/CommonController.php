@@ -27,4 +27,29 @@ class CommonController extends Controller
     //$imageUrl = $this->imageUpload($request);
 
     }
+
+
+    public static  function pdfUpload($request,$file,$filePath){
+
+
+        $path = public_path('uploads/'.$filePath);
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }
+
+
+        $extension = $file->getClientOriginalName();
+        $filename = $extension;
+        $file->move('public/uploads/'.$filePath.'/', $filename);
+        $imageUrl =  'uploads/'.$filePath.'/'.$filename;
+
+
+    return $imageUrl;
+    //$imageUrl = $this->imageUpload($request);
+
+    }
+
+
+
 }

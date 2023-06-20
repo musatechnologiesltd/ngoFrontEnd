@@ -43,7 +43,7 @@
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.date_of_birth')}} <span class="text-danger">*</span> :</label>
-                                    <input type="date" data-parsley-required name="dob" class="form-control" id="">
+                                    <input type="text" data-parsley-required name="dob" class="form-control" id="#datepicker">
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.nid_no')}} <span class="text-danger">*</span> :</label>

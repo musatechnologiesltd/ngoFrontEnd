@@ -124,7 +124,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.date_of_birth')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="date" data-parsley-required name="dob" value="{{ $main_all_data_list->member_dob }}" class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="dob" value="{{ $main_all_data_list->member_dob }}" class="form-control" id="datepicker">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.nid_no')}} <span class="text-danger">*</span> </label>
@@ -236,7 +236,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('ngo_member.date_of_birth')}} <span class="text-danger">*</span> </label>
-                                    <input type="date" data-parsley-required name="dob" class="form-control" id="">
+                                    <input type="text" data-parsley-required name="dob" class="form-control" id="datepicker1">
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('ngo_member.nid_no')}} <span class="text-danger">*</span> </label>

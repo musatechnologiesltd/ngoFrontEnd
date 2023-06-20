@@ -38,7 +38,7 @@
                                     <label for="" class="form-label">{{ trans('form 8_bn.name')}} <span class="text-danger">*</span> </label>
                                     <input type="text" name="name" value="{{ $all_data_list->name }}"  class="form-control" id="">
 
-                    
+
 
                                 </div>
                                <div class=" mb-3">
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.date_of_birth')}} <span class="text-danger">*</span> </label>
-                                    <input type="date" name="dob" value="{{ $all_data_list->dob }}" class="form-control" id="">
+                                    <input type="text" name="dob" value="{{ $all_data_list->dob }}" class="form-control" id="datepicker">
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.nid_no')}} <span class="text-danger">*</span> </label>

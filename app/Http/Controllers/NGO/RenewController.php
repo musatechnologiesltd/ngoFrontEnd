@@ -24,6 +24,7 @@ use App\Models\NgoMemberNidPhoto;
 use App\Models\NameChange;
 use App\Models\NgoRenew;
 use App\Models\NgoRenewInfo;
+use App\Http\Controllers\NGO\CommonController;
 class RenewController extends Controller
 {
     public function renew(){
@@ -71,6 +72,7 @@ class RenewController extends Controller
         $time_dy = time().date("Ymd");
 
 
+        $filePath="NgoRenewInfo";
 
         $ngoRenew = NgoRenewInfo::find($request->id);
         $ngoRenew->user_id = Auth::user()->id;
@@ -92,20 +94,16 @@ class RenewController extends Controller
         $ngoRenew->profession = $request->profession;
         if ($request->hasfile('foregin_pdf')) {
          $file = $request->file('foregin_pdf');
-         $extension = $time_dy.$file->getClientOriginalName();
-         $filename = $extension;
-         $file->move('public/uploads/', $filename);
-         $ngoRenew->foregin_pdf = 'uploads/'.$filename;
+
+         $ngoRenew->foregin_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
      }
 
 
      if ($request->hasfile('yearly_budget')) {
          $file = $request->file('yearly_budget');
-         $extension = $time_dy.$file->getClientOriginalName();
-         $filename = $extension;
-         $file->move('public/uploads/', $filename);
-         $ngoRenew->yearly_budget = 'uploads/'.$filename;
+
+         $ngoRenew->yearly_budget =CommonController::pdfUpload($request,$file,$filePath);
 
      }
 
@@ -130,7 +128,7 @@ return redirect('/allStaffInformationForRenew');
 
         $time_dy = time().date("Ymd");
 
-
+        $filePath="NgoRenewInfo";
 
        $ngoRenew = new NgoRenewInfo();
        $ngoRenew->fd_one_form_id = $request->id;
@@ -154,20 +152,16 @@ return redirect('/allStaffInformationForRenew');
 
        if ($request->hasfile('foregin_pdf')) {
         $file = $request->file('foregin_pdf');
-        $extension = $time_dy.$file->getClientOriginalName();
-        $filename = $extension;
-        $file->move('public/uploads/', $filename);
-        $ngoRenew->foregin_pdf = 'uploads/'.$filename;
+
+        $ngoRenew->foregin_pdf = CommonController::pdfUpload($request,$file,$filePath);
 
     }
 
 
     if ($request->hasfile('yearly_budget')) {
         $file = $request->file('yearly_budget');
-        $extension = $time_dy.$file->getClientOriginalName();
-        $filename = $extension;
-        $file->move('public/uploads/', $filename);
-        $ngoRenew->yearly_budget = 'uploads/'.$filename;
+
+        $ngoRenew->yearly_budget =CommonController::pdfUpload($request,$file,$filePath);
 
     }
 
@@ -204,7 +198,7 @@ return redirect('/allStaffInformationForRenew');
         $time_dy = time().date("Ymd");
 
        $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)->orderBy('id','desc')->value('id');
-
+       $filePath="NgoRenewInfo";
 
         $ngoRenew = NgoRenewInfo::find($Ngorenewinfo_get_id);
         $ngoRenew->main_account_number = $request->main_account_number;
@@ -215,28 +209,22 @@ return redirect('/allStaffInformationForRenew');
 
         if ($request->hasfile('change_ac_number')) {
             $file = $request->file('change_ac_number');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $ngoRenew->change_ac_number = 'uploads/'.$filename;
+
+            $ngoRenew->change_ac_number =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
         if ($request->hasfile('copy_of_chalan')) {
             $file = $request->file('copy_of_chalan');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $ngoRenew->copy_of_chalan = 'uploads/'.$filename;
+
+            $ngoRenew->copy_of_chalan =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
         if ($request->hasfile('due_vat_pdf')) {
             $file = $request->file('due_vat_pdf');
-            $extension = $time_dy.$file->getClientOriginalName();
-            $filename = $extension;
-            $file->move('public/uploads/', $filename);
-            $ngoRenew->due_vat_pdf = 'uploads/'.$filename;
+
+            $ngoRenew->due_vat_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
         $ngoRenew->save();
