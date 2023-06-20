@@ -252,6 +252,15 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                             </div>
 
                         </div>
+                        @if(Route::is('formEightNgoCommitteeMemberViewFormEdit') )
+                        <div class="buttons d-flex justify-content-end mt-4">
+                        {{-- <a href="{{ route('ngoAllRegistrationForm') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a> --}}
+
+                        <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.back')}}</button>
+
+                        </div>
+                        @else
+
                         <div class="buttons d-flex justify-content-end mt-4">
                             <a href="{{ route('othersInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_form_eight" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
@@ -263,6 +272,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                             <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
                             @endif
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -372,6 +382,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
     </div>
 </div>
 
+@if(Route::is('formEightNgoCommitteeMemberViewFormEdit'))
 <script>
 
 
@@ -382,6 +393,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
         var to_date = $('#to_date').val();
         var form_date = $('#form_date').val();
         var total_year = $('#total_year').val();
+        var finalStep = 2;
 
 if(total_year.length == 0){
     $('#view_text2').html('Calculate Total Year');
@@ -392,7 +404,7 @@ if(total_year.length == 0){
     $.ajax({
         url: "{{ route('updateDateData') }}",
         method: 'GET',
-        data: {form_date:form_date,to_date:to_date,total_year:total_year},
+        data: {finalStep:finalStep,form_date:form_date,to_date:to_date,total_year:total_year},
         success: function(data) {
 
             $('#view_text2').html('');
@@ -407,4 +419,44 @@ if(total_year.length == 0){
 
     });
 </script>
+
+@else
+
+<script>
+
+
+
+
+    $(".submit_button").click(function () {
+
+        var to_date = $('#to_date').val();
+        var form_date = $('#form_date').val();
+        var total_year = $('#total_year').val();
+        var finalStep = 1;
+
+if(total_year.length == 0){
+    $('#view_text2').html('Calculate Total Year');
+    $("#view_text2").css({"color": "red"});
+}else{
+
+
+    $.ajax({
+        url: "{{ route('updateDateData') }}",
+        method: 'GET',
+        data: {finalStep:finalStep,form_date:form_date,to_date:to_date,total_year:total_year},
+        success: function(data) {
+
+            $('#view_text2').html('');
+
+            window.location.href = data;
+
+        }
+        });
+
+}
+
+
+    });
+</script>
+@endif
 

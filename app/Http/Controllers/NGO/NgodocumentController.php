@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use DB;
 use Response;
 use App\Models\NgoOtherDoc;
+use App\Models\FormCompleteStatus;
 use DateTime;
 use DateTimezone;
 class NgodocumentController extends Controller
@@ -68,6 +69,38 @@ class NgodocumentController extends Controller
 
          return redirect()->back()->with('success','Created Successfully');
 
+
+    }
+
+
+    public function ngoDocumentFinal(){
+        $checkCompleteStatusData = DB::table('form_complete_statuses')
+        ->where('user_id',Auth::user()->id)
+        ->first();
+
+        if(!$checkCompleteStatusData){
+
+            $newStatusData = new FormCompleteStatus();
+            $newStatusData->user_id = Auth::user()->id;
+            $newStatusData->fd_one_form_step_one_status = 1;
+            $newStatusData->fd_one_form_step_two_status = 1;
+            $newStatusData->fd_one_form_step_three_status = 1;
+            $newStatusData->fd_one_form_step_four_status = 1;
+            $newStatusData->form_eight_status = 1;
+            $newStatusData->ngo_member_status = 1;
+            $newStatusData->ngo_member_nid_photo_status = 1;
+            $newStatusData->ngo_other_document_status = 1;
+            $newStatusData->save();
+        }else{
+
+            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+            ->update([
+                'ngo_other_document_status' => 1
+             ]);
+
+
+        }
+        return redirect('/ngoAllRegistrationForm');
 
     }
 

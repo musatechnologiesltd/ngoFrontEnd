@@ -163,7 +163,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $all_ngo_member_doc = NgoMemberNidPhoto::where('user_id',Auth::user()->id)
+                $all_ngo_member_doc = NgoMemberNidPhoto::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
 
             }
@@ -174,7 +174,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $all_data_list1 = FormEight::where('user_id',Auth::user()->id)
+                $all_data_list1 = FormEight::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
 
             }
@@ -185,7 +185,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $all_data_list = NgoMemberList::where('user_id',Auth::user()->id)
+                $all_data_list = NgoMemberList::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
 
             }
@@ -194,7 +194,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $ngo_list_all = NgoOtherDoc::where('user_id',Auth::user()->id)
+                $ngo_list_all = NgoOtherDoc::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
 
             }
@@ -206,7 +206,7 @@ class OtherformController extends Controller
 
             }else{
 
-                $all_parti = FdOneForm::where('user_id',Auth::user()->id)
+                $all_parti = FdOneForm::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
             }
 
@@ -215,7 +215,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)
+                $first_form_check = NgoTypeAndLanguage::where('fd_one_form_id',$getFdOneFormId)
                 ->delete();
 
             }
@@ -338,12 +338,12 @@ return redirect('ngoAllRegistrationForm');
 
 
 
-        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->value('registration_number');
+        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
 
 
         $category_list = new NgoStatus();
-        $category_list->user_id = Auth::user()->id;
-        $category_list->reg_id = $get_reg_id;
+        $category_list->fd_one_form_id = $get_reg_id->id;
+        $category_list->reg_id = $get_reg_id->registration_number;
         $category_list->reg_type = $request->reg_type;
         $category_list->status = 'Ongoing';
         $category_list->email = Auth::user()->email;

@@ -134,7 +134,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             <td>{{ trans('reg_sub.f_fd')}}</td>
                                             <td style="position:relative">
 
-                                                @if($complete_status_fd_one == 'all_complete')
+                                                @if($complete_status_fd_one == 'save_and_exit_from_three')
 
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
                                                 @else

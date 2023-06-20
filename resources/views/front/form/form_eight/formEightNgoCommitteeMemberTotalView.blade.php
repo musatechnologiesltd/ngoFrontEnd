@@ -1,27 +1,25 @@
-@extends('front.master.master')
+<?php
+ $allFdOneData = DB::table('fd_one_forms')
+       ->where('user_id',Auth::user()->id)->first();
 
-@section('title')
-{{ trans('form 8_bn.list')}} | {{ trans('header.ngo_ab')}}
-@endsection
+ $all_partiw = DB::table('form_eights')->where('fd_one_form_id',$allFdOneData->id)
+ ->latest()->get();
 
-@section('css')
 
-@endsection
 
-@section('body')
+$complete_status_fd_eight_id = DB::table('form_eights')->where('fd_one_form_id',$allFdOneData->id)->value('id');
+$complete_status_fd_eight = DB::table('form_eights')->where('fd_one_form_id',$allFdOneData->id)->value('complete_status');
+$complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id',$allFdOneData->id)->value('verified_form_eight');
 
-<section>
-    <div class="container">
-        <div class="form-card">
-            <div class="dashboard_box">
-                <div class="dashboard_left">
+$engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
+      'May','June','July','August','September','October','November','December','Saturday','Sunday',
+      'Monday','Tuesday','Wednesday','Thursday','Friday');
+      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
+      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
+      বুধবার','বৃহস্পতিবার','শুক্রবার'
+      );
+?>
 
-                    <ul>
-                        @include('front.include.sidebar_dash')
-                    </ul>
-
-                </div>
-                <div class="dashboard_right">
                     @include('flash_message')
                     <div class="user_dashboard_right">
                         <h4>{{ trans('first_info.form_eight')}} </h4>
@@ -47,7 +45,7 @@
                                        @if($complete_status_fd_eight == 'complete')
 
                         @if($complete_status_fd_eight_pdf == 0)
-                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#formEightexampleModal">
                             {{ trans('form 8_bn.upload_pdf')}}
                         </button>
                         @else
@@ -63,7 +61,7 @@
 
 
                         ?>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#formEightexampleModal">
                             @if(session()->get('locale') == 'en')
                             পুনরায় আপলোড করুন
                             @else
@@ -73,7 +71,7 @@
                         <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
                         @endif
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="formEightexampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -117,7 +115,7 @@
 
                             <?php
 
-                    $data = DB::table('form_eights')->where('user_id',Auth::user()->id)
+                    $data = DB::table('form_eights')->where('fd_one_form_id',$allFdOneData->id)
                            ->first();
 
 
@@ -306,14 +304,5 @@ foreach ($data   as $a) {
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-@endsection
 
-@section('script')
-
-@endsection

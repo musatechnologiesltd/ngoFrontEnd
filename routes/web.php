@@ -57,7 +57,7 @@ Route::controller(NamechangeController::class)->group(function () {
     Route::get('formEightDataAdd', 'formEightDataAdd')->name('formEightDataAdd');
     Route::get('formEightDataEdit/{id}', 'formEightDataEdit')->name('formEightDataEdit');
     Route::post('formEightDataStore', 'formEightDataStore')->name('formEightDataStore');
-    Route::post('formEightDataUpdate', 'formEightDataUpdate')->name('formEightData_update');
+    Route::post('formEightDataUpdate', 'formEightDataUpdate')->name('formEightDataUpdate');
     Route::post('formEightDataDelete/{id}','delete')->name('formEightDataDelete');
 
 
@@ -220,7 +220,7 @@ Route::controller(NgomemberController::class)->group(function () {
 Route::resource('ngoDocument',NgodocumentController::class);
 
 Route::controller(NgodocumentController::class)->group(function () {
-
+    Route::get('/ngoDocumentFinal', 'ngoDocumentFinal')->name('ngoDocumentFinal');
     Route::get('/ngoDocumentDownload/{id}', 'ngoDocumentDownload')->name('ngoDocumentDownload');
     Route::get('/ngoDocumentView', 'ngoDocumentView')->name('ngoDocumentView');
 

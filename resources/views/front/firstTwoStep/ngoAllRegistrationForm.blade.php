@@ -82,102 +82,78 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-12">
-                                    <div class="card-body">
-                                        <div class="box">
-                                            <a href="{{ route('particularsOfOrganisation') }}">
-                                                <div class="box_content">
-                                                    <div class="box_icon">
-                                                        <i class="fa fa-file-pdf-o"></i>
-                                                    </div>
-                                                    <h5>{{ trans('first_info.fd_one')}}</h5>
 
-                                                    <p>{{ trans('first_info.Application_for_registration')}}</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <div class="card-body">
-                                        <div class="box">
-                                            <a href="{{ route('formEightNgoCommitteMember.index') }}">
-                                                <div class="box_content">
-                                                    <div class="box_icon">
-                                                        <i class="fa fa-user-plus"></i>
-                                                    </div>
-                                                    <h5>{{ trans('first_info.form_eight')}}</h5>
-                                                    <p>{{ trans('first_info.Application_for_registration')}}</p>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <div class="card-body">
-                                        <div class="box">
-                                            <a href="{{ route('ngoMember.index') }}">
-                                                <div class="box_content">
-                                                    <div class="box_icon">
-                                                        <i class="fa fa-user"></i>
-                                                    </div>
-                                                    @if(session()->get('locale') == 'en')
-                                                    <h5>সদস্যের তথ্য</h5>
-                                                    <p>এনজিও এর  সকল সদস্যদের তথ্য</p>
-                                                    @else
-                                                    <h5>Member's Info</h5>
-                                                    <p>NGO ALl Member's Information</p>
-                                                    @endif
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <div class="card-body">
-                                        <div class="box">
-                                            <a href="{{ route('ngoDocument.index') }}">
-                                                <div class="box_content">
-                                                    <div class="box_icon">
-                                                        <i class="fa fa-file-powerpoint-o"></i>
-                                                    </div>
-                                                    @if(session()->get('locale') == 'en')
-                                                    <h5>অন্যান্য নথি</h5>
-                                                    <p>এনজিও এর সকল  নথি</p>
+                            <ul class="nav nav-tabs custom_tab">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">{{ trans('first_info.fd_one')}}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">{{ trans('first_info.form_eight')}}</a>
+                                </li>
 
-                                                    @else
-                                                    <h5>Other's Document</h5>
-                                                    <p>NGO ALl Document</p>
-                                                    @endif
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen1"> @if(session()->get('locale') == 'en')
+                                       সদস্যের তথ্য
+
+                                        @else
+                                   Member's Info
+
+                                        @endif</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen2">      @if(session()->get('locale') == 'en')
+                                        অন্যান্য নথি
+
+
+                                        @else
+                                        Other's Document
+
+                                        @endif</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">   @if(session()->get('locale') == 'en')
+                                   ছবি ও এনআইডি
+
+                                        @else
+                                     Image & NID
+
+                                            @endif</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content custom_tab_content">
+                                <div class="tab-pane container active" id="tofban">
+                                   @include('front.form.formone.fdFormOneInfo')
+
                                 </div>
-                                <div class="col-lg-4 col-sm-12">
-                                    <div class="card-body">
-                                        <div class="box">
-                                            <a href="{{ route('ngoMemberDocument.index') }}">
-                                                <div class="box_content">
-                                                    <div class="box_icon">
-                                                        <i class="fa fa-image"></i>
-                                                    </div>
-                                                    @if(session()->get('locale') == 'en')
-                                                    <h5>ছবি ও এনআইডি  জমা দিন</h5>
-                                                    <p>পাসপোর্ট সাইজের ছবি ও জাতীয় পরিচয়পত্রের সত্যায়িত কপি
-                                                        কার্যনির্বাহী কমিটির সদস্যদের কার্ড</p>
-                                                    @else
-                                                    <h5>Image & NID Submit</h5>
-                                                    <p>Attested copy of Passport' size photograph and National Identity
-                                                        Card of Executive Committee members</p>
-                                                        @endif
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="tab-pane container" id="tofen">
+                                  @include('front.form.form_eight.formEightNgoCommitteeMemberTotalView')
+
                                 </div>
+
+                                <div class="tab-pane container" id="tofen1">
+                                  @include('front.ngomember.finalView')
+
+                                </div>
+
+                                <div class="tab-pane container" id="tofen2">
+                                    @include('front.ngo_doc.finalView')
+
+                                </div>
+
+                                <div class="tab-pane container" id="tofen3">
+                                @include('front.ngo_member_doc.finalView')
+
+                                </div>
+
+
                             </div>
+
                         </div>
                     </div>
                 </div>

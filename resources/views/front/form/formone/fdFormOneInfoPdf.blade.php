@@ -154,7 +154,7 @@
 
        <?php
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->where('people_english',$allformOneData->citizenship)->value('people_bangla');
+                                    $getCityzendata = DB::table('countries')->where('country_people_english',$allformOneData->citizenship)->value('country_people_bangla');
                                     }else{
 
                                     $getCityzendata = $allformOneData->citizenship;
@@ -292,7 +292,7 @@
 
 
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->whereIn('people_english',$convetArray)->get();
+                                    $getCityzendata = DB::table('countries')->whereIn('country_people_english',$convetArray)->get();
                                     }else{
 
                                     $getCityzendata = $allFormOneMemberList->citizenship;
@@ -306,7 +306,7 @@
             <td style="width:4px">:</td>
             <td> @if($getngoForLanguage =='দেশিও')
                                       @foreach($getCityzendata as $all_getCityzendata)
-                                      {{$all_getCityzendata->people_bangla}},
+                                      {{$all_getCityzendata->country_people_bangla}},
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}

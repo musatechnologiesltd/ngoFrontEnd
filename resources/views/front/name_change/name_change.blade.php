@@ -84,8 +84,8 @@
             </div>
 
             <?php
-
-            $name_change_list = DB::table('name_changes')->where('user_id',Auth::user()->id)->latest()->value('status');
+$fdOneFormid = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+            $name_change_list = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormid->id)->latest()->value('status');
 
 
 

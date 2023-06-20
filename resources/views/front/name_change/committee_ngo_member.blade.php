@@ -145,14 +145,14 @@
                                        @foreach($form_eight_list as $key=>$main_all_data_list)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td>{{ $main_all_data_list->name }} <br> <span class="text-success">{{ trans('form 8_bn.designation')}}:</span>
-                                                {{ $main_all_data_list->desi }}
+                                            <td>{{ $main_all_data_list->member_name }} <br> <span class="text-success">{{ trans('form 8_bn.designation')}}:</span>
+                                                {{ $main_all_data_list->member_designation }}
                                             </td>
                                             <td>
 
                                                 <?php
 
-    $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
+    $newDate12 = date("d-m-Y", strtotime($main_all_data_list->member_dob ));
 
                                                     ?>
 
@@ -168,13 +168,13 @@
     @endif
 
                                             </td>
-                                            <td><span>{{ trans('form 8_bn.present_address')}}:</span>  {{ $main_all_data_list->present_address }} <br>
-                                                <span>{{ trans('form 8_bn.permanent_address')}}:</span>  {{ $main_all_data_list->permanent_address }}
+                                            <td><span>{{ trans('form 8_bn.present_address')}}:</span>  {{ $main_all_data_list->member_present_address }} <br>
+                                                <span>{{ trans('form 8_bn.permanent_address')}}:</span>  {{ $main_all_data_list->member_permanent_address }}
                                             </td>
 
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <button type="button" class="btn btn-sm btn-primary" onclick="location.href = '{{ route('ngoCommitteMemberEdit',$main_all_data_list->name_slug) }}';"><i
+                                                    <button type="button" class="btn btn-sm btn-primary" onclick="location.href = '{{ route('ngoCommitteMemberEdit',$main_all_data_list->member_name_slug) }}';"><i
                                                                 class="bi bi-pencil-fill"></i></button>
 
 

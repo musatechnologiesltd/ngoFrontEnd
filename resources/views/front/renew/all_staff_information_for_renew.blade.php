@@ -37,8 +37,8 @@
 
 
 <?php
-$get_cityzenship_data = DB::table('countries')->whereNotNull('people_english')
-            ->whereNotNull('people_bangla')->orderBy('id','desc')->get();
+$get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
+            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
 ?>
             <form action="{{ route('otherInformationForRenew') }}" method="get" enctype="multipart/form-data" id="form"  data-parsley-validate="">
 
@@ -104,9 +104,9 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('people_english')
                                         multiple="multiple">
                                         @foreach($get_cityzenship_data as $all_get_cityzenship_data)
                                         @if(session()->get('locale') == 'en')
-                                        <option value="{{ $all_get_cityzenship_data->people_bangla }}" {{ (in_array($all_get_cityzenship_data->people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_bangla }}</option>
+                                        <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $all_get_cityzenship_data->people_english }}" {{ (in_array($all_get_cityzenship_data->people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_english }}</option>
+                                    <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                 </select>

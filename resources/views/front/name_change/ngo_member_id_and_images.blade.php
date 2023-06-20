@@ -139,7 +139,7 @@
 
 <?php
 
-                                $file_path = url($all_all_ngo_member_doc->person_nid_copy);
+                                $file_path = url($all_all_ngo_member_doc->member_nid_copy);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
@@ -151,13 +151,13 @@
 
                                     <div class="file-box-image">
                                         <div class="file-top">
-                                            <img class="file-top-img" src="{{ asset('/') }}{{ $all_all_ngo_member_doc->person_image }}"
+                                            <img class="file-top-img" src="{{ asset('/') }}{{ $all_all_ngo_member_doc->member_image }}"
                                                  alt="Card image cap">
                                         </div>
                                         <div class="mt-2">
-                                            <h6>{{ $all_all_ngo_member_doc->person_name  }}</h6>
+                                            <h6>{{ $all_all_ngo_member_doc->member_name  }}</h6>
                                             <p class="mb-1">{{ $filename }}</p>
-                                            <p>{{ $all_all_ngo_member_doc->person_nid_copy_size }} {{ trans('other_doc.m_b')}}</p>
+                                            <p>{{ $all_all_ngo_member_doc->member_nid_copy_size }} {{ trans('other_doc.m_b')}}</p>
 
 
                                             <a class="btn btn-sm btn-registration" target="_blank" href = '{{ route('ngoMemberDocumentDownload',$all_all_ngo_member_doc->id) }}'><i class="fa fa-download"></i>
@@ -193,7 +193,7 @@
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="" class="form-label">{{ trans('ngo_member_doc.person_name')}}</label>
-                                                    <input type="text" name="person_name" value="{{ $all_all_ngo_member_doc->person_name  }}" class="form-control" id="">
+                                                    <input type="text" name="person_name" value="{{ $all_all_ngo_member_doc->member_name  }}" class="form-control" id="">
 
                                                     <input type="hidden" name="id" value="{{ $all_all_ngo_member_doc->id  }}" class="form-control" id="">
                                                 </div>
@@ -201,13 +201,13 @@
                                                     <label for="" class="form-label">{{ trans('ngo_member_doc.image')}}</label>
                                                     <input type="file" name="person_image" class="form-control" id="">
 
-                                                    <img src="{{ asset('/') }}{{ $all_all_ngo_member_doc->person_image  }}" height="30" />
+                                                    <img src="{{ asset('/') }}{{ $all_all_ngo_member_doc->member_image  }}" height="30" />
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="" class="form-label">{{ trans('ngo_member_doc.nid_copy')}}</label>
                                                     <input type="file" name="person_nid_copy" class="form-control" id="">
 
-                                                    <iframe src="{{ asset('/') }}{{'public/'. $all_all_ngo_member_doc->person_nid_copy  }}"
+                                                    <iframe src="{{ asset('/') }}{{'public/'. $all_all_ngo_member_doc->member_nid_copy  }}"
 style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 </div>
                                                 <div class="modal-footer">

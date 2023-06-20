@@ -347,7 +347,18 @@ if(!$checkCompleteStatusData){
 
 }
 
+if($request->submit_value == 'exit_from_step_one_edit'){
+
+    return redirect('/ngoAllRegistrationForm');
+}elseif($request->submit_value == 'go_to_step_two'){
+    Session::put('fdOneFormEdit','fdOneFormEdit');
+    return redirect('/fieldOfProposedActivities');
+}else{
+
        return redirect('/ngoAllRegistrationForm');
+    }
+
+
      }
 
 
@@ -560,7 +571,16 @@ if(!$checkCompleteStatusData){
 
         }
 
+        if($request->submit_value == 'exit_from_step_two_edit'){
+
+            return redirect('/ngoAllRegistrationForm');
+        }elseif($request->submit_value == 'go_to_step_three'){
+            Session::put('fdOneFormEditThree','go_to_step_three');
+            return redirect('/allStaffDetailsInformation');
+        }else{
+
                return redirect('/ngoAllRegistrationForm');
+            }
 
 }
 
@@ -697,7 +717,16 @@ if(!$checkCompleteStatusData){
 
     }
 
+    if($request->submit_value == 'exit_from_step_three_edit'){
+
+        return redirect('/ngoAllRegistrationForm');
+    }elseif($request->submit_value == 'go_to_step_four'){
+        Session::put('fdOneFormEditFour','go_to_step_four');
+        return redirect('/othersInformation');
+    }else{
+
            return redirect('/ngoAllRegistrationForm');
+        }
 
     }
 

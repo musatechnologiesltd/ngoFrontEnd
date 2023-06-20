@@ -28,20 +28,20 @@ class FormeightController extends Controller
       );
 
       $file_Name_Custome = 'form_eight';
-
-      $all_partiw = FormEight::where('user_id',Auth::user()->id)
+      $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+      $all_partiw = FormEight::where('fd_one_form_id',$fdOneFormId)
 
       ->get();
 
-      $all_partiw_form_date = FormEight::where('user_id',Auth::user()->id)
+      $all_partiw_form_date = FormEight::where('fd_one_form_id',$fdOneFormId)
 
       ->value('form_date');
 
-      $all_partiw_to_date = FormEight::where('user_id',Auth::user()->id)
+      $all_partiw_to_date = FormEight::where('fd_one_form_id',$fdOneFormId)
 
       ->value('to_date');
 
-      $all_partiw_total_year = FormEight::where('user_id',Auth::user()->id)
+      $all_partiw_total_year = FormEight::where('fd_one_form_id',$fdOneFormId)
 
       ->value('total_year');
 
@@ -191,7 +191,8 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
      }
 
      public function formEightNgoCommitteeMemberViewFormEdit(){
-        $all_data_list = FormEight::where('user_id',Auth::user()->id)->latest()->get();
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+        $all_data_list = FormEight::where('fd_one_form_id',$fdOneFormId)->latest()->get();
         $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
         'May','June','July','August','September','October','November','December','Saturday','Sunday',
         'Monday','Tuesday','Wednesday','Thursday','Friday');
@@ -199,7 +200,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
         বুধবার','বৃহস্পতিবার','শুক্রবার'
         );
-        return view('front.form.form_eight.form_8_ngo_committee_member',compact('bangDATE','engDATE','all_data_list'));
+        return view('front.form.form_eight.formEightNgoCommitteeMember',compact('bangDATE','engDATE','all_data_list'));
 
      }
 
@@ -247,7 +248,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $updateVerifiedPdf->save();
 
 
-        return redirect('/formEightNgoCommitteMember')->with('success','Uploaded Successfully');
+        return redirect()->back()->with('success','Uploaded Successfully');
     }
 
 

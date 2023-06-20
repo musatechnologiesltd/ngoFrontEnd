@@ -8,6 +8,7 @@ use DB;
 use Response;
 use App\Models\NgoTypeAndLanguage;
 use App\Models\FormEight;
+use App\Models\FdOneMemberList;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use PDF;
@@ -41,7 +42,7 @@ class RenewController extends Controller
 
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  NgoRenew::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
         return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
     }
 
@@ -52,7 +53,7 @@ class RenewController extends Controller
         $get_all_data_new = NgoRenewInfo::where('user_id',Auth::user()->id)->latest()->get();
          $all_parti = FdOneForm::where('user_id',Auth::user()->id)->get();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  NgoRenew::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
 
 
@@ -187,7 +188,7 @@ return redirect('/allStaffInformationForRenew');
     public function allStaffInformationForRenew(){
 
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-        $all_partiw = FormOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
+        $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
 
         return view('front.renew.all_staff_information_for_renew',compact('all_partiw'));
     }
@@ -251,7 +252,6 @@ return redirect('/allStaffInformationForRenew');
 
         $add_renew_request = new NgoRenew();
         $add_renew_request->fd_one_form_id = $Ngorenewinfo_get_id;
-        $add_renew_request->user_id = Auth::user()->id;
         $add_renew_request->time_for_api =$main_time;
         $add_renew_request->status = 'Ongoing';
         $add_renew_request->save();

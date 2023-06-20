@@ -16,6 +16,7 @@ use App\Models\NgoNameChange;
 use App\Models\NgoRenew;
 use App\Models\FormEight;
 use App\Models\FdOneForm;
+use App\Models\FdOneOtherPdfList;
 use App\Models\FormOneOtherPdfList;
 use App\Models\FormOneBankAccount;
 use App\Models\Fdoneformadviser;
@@ -256,18 +257,18 @@ class AuthController extends Controller
             }else{
 
 
+                $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
 
 
-$name_change_list_r = NgoRenew::where('fd_one_form_id',$ngo_list_all)->get();
-$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all)->get();
+$name_change_list_r = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->get();
+$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-$ngo_list_all_form_eight = FormEight::where('fd_one_form_id',$ngo_list_all)->first();
-$form_member_data_doc = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all)->get();
-$form_ngo_data_doc = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all)->get();
-$all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all)->get();
-$get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all)
+$ngo_list_all_form_eight = FormEight::where('fd_one_form_id',$ngo_list_all->id)->first();
+$form_member_data_doc = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
+$form_ngo_data_doc = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
+$all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all->id)->get();
+$get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id)
             ->get();
 
                 return view('front.dashboard.accept_dashboard',compact('name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));

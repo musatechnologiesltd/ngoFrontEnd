@@ -237,7 +237,7 @@
 @if(count($ngoOtherDocLists) == 0)
 <button class="btn btn-custom next_button" type="button">{{ trans('fd_one_step_four.Submit')}}</button>
 @else
-                            <button class="btn btn-custom next_button" type="submit">{{ trans('fd_one_step_four.Submit')}}</button>
+                            <button class="btn btn-custom next_button" onclick="location.href = '{{ route('ngoDocumentFinal') }}';">{{ trans('fd_one_step_four.Submit')}}</button>
                             @endif
                         </div>
                     </div>

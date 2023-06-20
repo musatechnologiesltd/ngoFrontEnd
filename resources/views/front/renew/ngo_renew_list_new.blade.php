@@ -95,8 +95,8 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             $query_to_get_data = DB::table('countries')->where('id','!=',18)->orderBy('id','desc')->get();
 
 
-            $get_cityzenship_data = DB::table('countries')->whereNotNull('people_english')
-            ->whereNotNull('people_bangla')->orderBy('id','desc')->get();
+            $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
+            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
 
             $get_country_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                             ?>
@@ -182,9 +182,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->people_bangla }}" {{ (in_array($all_get_cityzenship_data->people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_bangla }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
                 @else
-            <option value="{{ $all_get_cityzenship_data->people_english }}" {{ (in_array($all_get_cityzenship_data->people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_english }}</option>
+            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
             @endif
             @endforeach
 
@@ -265,8 +265,8 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             $query_to_get_data = DB::table('countries')->where('id','!=',18)->orderBy('id','desc')->get();
 
 
-            $get_cityzenship_data = DB::table('countries')->whereNotNull('people_english')
-            ->whereNotNull('people_bangla')->orderBy('id','desc')->get();
+            $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
+            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
 
             $get_country_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                             ?>
@@ -352,9 +352,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->people_bangla }}" {{ (in_array($all_get_cityzenship_data->people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_bangla }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
                 @else
-            <option value="{{ $all_get_cityzenship_data->people_english }}" {{ (in_array($all_get_cityzenship_data->people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->people_english }}</option>
+            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
             @endif
             @endforeach
 

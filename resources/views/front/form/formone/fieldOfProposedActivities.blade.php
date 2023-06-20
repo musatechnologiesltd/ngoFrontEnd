@@ -254,13 +254,22 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 
 
                     </div>
+@if(Session::get('fdOneFormEdit') == 'fdOneFormEdit')
+
+<div class="buttons d-flex justify-content-end mt-4">
+    <a href="{{ route('fdOneFormEdit') }}"  class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
+    <button class="btn btn-danger me-2" name="submit_value" value="exit_from_step_two_edit" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
+    <button class="btn btn-custom next_button" name="submit_value" value="go_to_step_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+</div>
 
 
+@else
                     <div class="buttons d-flex justify-content-end mt-4">
                         <a href="{{ route('backFromStepTwo') }}"  class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
-                        <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_two" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
-                        <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_two" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                        <button class="btn btn-danger me-2" name="submit_value" value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
+                        <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
                     </div>
+                    @endif
 
                 </div>
 

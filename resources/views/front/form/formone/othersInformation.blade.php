@@ -576,12 +576,22 @@ Update
 
                     </div>
 
+                    @if(Session::get('fdOneFormEditFour') == 'go_to_step_four')
                     <div class="buttons d-flex justify-content-end mt-4">
-                        <a href="{{ route('fieldOfProposedActivities') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
+                        <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
                         <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
-                        <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+
 
                     </div>
+                    @else
+
+                    <div class="buttons d-flex justify-content-end mt-4">
+                        <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
+                        <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
+                        <button class="btn btn-custom next_button" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+
+                    </div>
+                    @endif
                 </div>
             </form>
 

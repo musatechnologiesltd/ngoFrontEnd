@@ -26,7 +26,7 @@ class NamechangeController extends Controller
         ->value('ngo_type');
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $name_change_list_all =  NgoNameChange::where('user_id',Auth::user()->id)->latest()->get();
+        $name_change_list_all =  NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
         return view('front.name_change.name_change',compact('ngo_list_all','name_change_list_all'));
     }
 
@@ -49,7 +49,7 @@ class NamechangeController extends Controller
              Session::put('new_name_ban',$request->new_name_ban);
 
 
-        $form_eight_list = FormEight::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
 
         return view('front.name_change.view_form_8_for_change',compact('ngo_list_all','form_eight_list'));
 
@@ -59,7 +59,7 @@ class NamechangeController extends Controller
     public function formEightDataAdd(Request $request){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = FormEight::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
 
 
@@ -69,7 +69,7 @@ class NamechangeController extends Controller
     public function ngoCommitteMemberAdd(Request $request){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoMemberList::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
 
 
@@ -77,7 +77,7 @@ class NamechangeController extends Controller
 
 
     public function ngoCommitteMemberEdit($id){
-        $all_data_list = NgoMemberList::where('name_slug',$id)->first();
+        $all_data_list = NgoMemberList::where('member_name_slug',$id)->first();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         return view('front.name_change.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
 
@@ -92,7 +92,7 @@ class NamechangeController extends Controller
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
         $main_time = $dt->format('H:i:s');
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
         $request->validate([
             'name' => 'required|string',
@@ -107,18 +107,18 @@ class NamechangeController extends Controller
         ]);
 
         $ngoMemberData = new NgoMemberList();
-        $ngoMemberData->name = $request->name;
-        $ngoMemberData->name_slug = Str::slug($request->name,"_");
-        $ngoMemberData->desi = $request->desi;
-        $ngoMemberData->dob = $request->dob;
+        $ngoMemberData->member_name = $request->name;
+        $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
+        $ngoMemberData->member_designation = $request->desi;
+        $ngoMemberData->member_dob = $request->dob;
         $ngoMemberData->time_for_api = $main_time;
-        $ngoMemberData->phone = $request->phone;
-        $ngoMemberData->nid_no = $request->nid_no;
-        $ngoMemberData->father_name = $request->father_name;
-        $ngoMemberData->present_address = $request->present_address;
-        $ngoMemberData->permanent_address = $request->permanent_address;
-        $ngoMemberData->name_supouse = $request->name_supouse;
-        $ngoMemberData->user_id = Auth::user()->id;
+        $ngoMemberData->member_mobile = $request->phone;
+        $ngoMemberData->member_nid_no = $request->nid_no;
+        $ngoMemberData->member_father_name = $request->father_name;
+        $ngoMemberData->member_present_address = $request->present_address;
+        $ngoMemberData->member_permanent_address = $request->permanent_address;
+        $ngoMemberData->member_name_supouse = $request->name_supouse;
+        $ngoMemberData->fd_one_form_id = $fdOneFormId;
         $ngoMemberData->save();
 
 
@@ -131,16 +131,16 @@ class NamechangeController extends Controller
         $time_dy = time().date("Ymd");
 
         $ngoMemberData = NgoMemberList::find($request->id);
-        $ngoMemberData->name = $request->name;
-        $ngoMemberData->name_slug = Str::slug($request->name,"_");
-        $ngoMemberData->desi = $request->desi;
-        $ngoMemberData->dob = $request->dob;
-        $ngoMemberData->phone = $request->phone;
-        $ngoMemberData->nid_no = $request->nid_no;
-        $ngoMemberData->father_name = $request->father_name;
-        $ngoMemberData->present_address = $request->present_address;
-        $ngoMemberData->permanent_address = $request->permanent_address;
-        $ngoMemberData->name_supouse = $request->name_supouse;
+        $ngoMemberData->member_name = $request->name;
+        $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
+        $ngoMemberData->member_designation = $request->desi;
+        $ngoMemberData->member_dob = $request->dob;
+        $ngoMemberData->member_mobile = $request->phone;
+        $ngoMemberData->member_nid_no = $request->nid_no;
+        $ngoMemberData->member_father_name = $request->father_name;
+        $ngoMemberData->member_present_address = $request->present_address;
+        $ngoMemberData->member_permanent_address = $request->permanent_address;
+        $ngoMemberData->member_name_supouse = $request->name_supouse;
         $ngoMemberData->save();
 
 
@@ -160,7 +160,7 @@ class NamechangeController extends Controller
         $main_time = $dt->format('H:i:s');
 
 
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $request->validate([
             'name' => 'required|string',
             'desi' => 'required|string',
@@ -194,7 +194,7 @@ class NamechangeController extends Controller
         $formEightData->profession = $request->profession;
         $formEightData->job_des = $request->job_des;
         $formEightData->service_status = $request->service_status;
-        $formEightData->user_id = Auth::user()->id;
+        $formEightData->fd_one_form_id = $fdOneFormId;
         $formEightData->save();
 
 
@@ -242,7 +242,9 @@ class NamechangeController extends Controller
     public function ngoCommitteMember(Request $request){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoMemberList::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
+
+
         return view('front.name_change.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
     }
 
@@ -251,7 +253,7 @@ class NamechangeController extends Controller
     public function ngoMemberNidAndImage(Request $request){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoMemberNidPhoto::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
     }
 
@@ -259,7 +261,7 @@ class NamechangeController extends Controller
     public function ngoMemberNidAndImageAdd(){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoMemberNidPhoto::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
 
     }
@@ -267,7 +269,7 @@ class NamechangeController extends Controller
 
     public function ngoMemberNidAndImageStore(Request $request){
 
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $time_dy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
@@ -295,12 +297,12 @@ class NamechangeController extends Controller
             $file->move('public/uploads/', $name);
             $file_image->move('public/uploads/', $name_image);
 
-            $form->person_image='public/uploads/'.$name_image;
-            $form->person_nid_copy='uploads/'.$name;
-            $form->person_name=$input['person_name'][$key];
+            $form->member_image='public/uploads/'.$name_image;
+            $form->member_nid_copy='uploads/'.$name;
+            $form->member_name=$input['person_name'][$key];
             $form->time_for_api = $main_time;
-            $form->user_id = Auth::user()->id;
-            $form->person_nid_copy_size =$file_size;
+            $form->fd_one_form_id = $fdOneFormId;
+            $form->member_nid_copy_size =$file_size;
             $form->save();
        }
 
@@ -322,8 +324,8 @@ class NamechangeController extends Controller
             $extension = $time_dy.$file->getClientOriginalName();
         $filename = $extension;
         $file->move('public/uploads/', $filename);
-        $form->person_nid_copy =  'uploads/'.$filename;
-        $form->person_nid_copy_size =$file_size;
+        $form->member_nid_copy =  'uploads/'.$filename;
+        $form->member_nid_copy_size =$file_size;
 
         }
         if ($request->hasfile('person_image')) {
@@ -331,11 +333,10 @@ class NamechangeController extends Controller
           $extension1 = $time_dy.$file1->getClientOriginalName();
         $filename1 = $extension1;
         $file->move('public/uploads/', $filename1);
-        $form->person_image =  'public/uploads/'.$filename1;
+        $form->member_image =  'public/uploads/'.$filename1;
 
         }
-        $form->person_name=$request->person_name;
-        $form->user_id = Auth::user()->id;
+        $form->member_name=$request->person_name;
 
         $form->save();
 
@@ -347,7 +348,7 @@ class NamechangeController extends Controller
     public function allNgoRelatedDocument(Request $request){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoOtherDoc::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
 
     }
@@ -356,7 +357,7 @@ class NamechangeController extends Controller
     public function addOtherDoc(){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $form_eight_list = NgoOtherDoc::where('user_id',Auth::user()->id)->get();
+        $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
         return view('front.name_change.add_other_doc',compact('ngo_list_all','form_eight_list'));
 
     }
@@ -377,7 +378,7 @@ class NamechangeController extends Controller
 
 
         $condition_main_image = $input['primary_portal'];
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['primary_portal'][$key]->getSize() / 1048576,2);
@@ -388,7 +389,7 @@ class NamechangeController extends Controller
             $file->move('public/uploads/', $name);
             $form->pdf_file_list='uploads/'.$name;
             $form->time_for_api = $main_time;
-            $form->user_id = Auth::user()->id;
+            $form->fd_one_form_id  = $fdOneFormId;
             $form->	file_size =$file_size;
             $form->save();
        }
@@ -406,7 +407,6 @@ class NamechangeController extends Controller
         $time_dy = time().date("Ymd");
 
         $ngoOtherDoc =NgoOtherDoc::find($request->id);
-        $ngoOtherDoc->user_id = Auth::user()->id;
       if ($request->hasfile('primary_portal')) {
         $file_size = number_format($request->primary_portal->getSize() / 1048576,2);
             $file = $request->file('primary_portal');
@@ -437,9 +437,9 @@ class NamechangeController extends Controller
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
         $main_time = $dt->format('H:i:s a');
-
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $new_data_add = new NgoNameChange();
-        $new_data_add->user_id = Auth::user()->id;
+        $new_data_add->fd_one_form_id = $fdOneFormId;
         $new_data_add->previous_name_eng =  Session::get('previous_name');
         $new_data_add->previous_name_ban = Session::get('previous_name_ban');
         $new_data_add->present_name_eng = Session::get('new_name');
@@ -492,7 +492,9 @@ return Response::make(file_get_contents($file), 200, [
 
     public function formEightPdf($main_id){
 
-        $form_one_data = DB::table('form_eights')->where('user_id',$main_id)->value('s_pdf');
+        $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+
+        $form_one_data = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('verified_form_eight');
 
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -573,7 +575,7 @@ return Response::make(file_get_contents($file), 200, [
 
     public function ngoMemberDocument($id){
 
-        $form_one_data = DB::table('ngo_member_nid_photos')->where('id',$id)->value('person_nid_copy');
+        $form_one_data = DB::table('ngo_member_nid_photos')->where('id',$id)->value('member_nid_copy');
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 

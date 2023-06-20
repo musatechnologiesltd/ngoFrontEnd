@@ -1,27 +1,25 @@
-@extends('front.master.master')
 
-@section('title')
-{{ trans('fd_one_step_one.all_info')}} | {{ trans('header.ngo_ab')}}
-@endsection
+              <?php
 
-@section('css')
+       $allformOneData = DB::table('fd_one_forms')
+       ->where('user_id',Auth::user()->id)->first();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-@endsection
+       $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
+      'May','June','July','August','September','October','November','December','Saturday','Sunday',
+      'Monday','Tuesday','Wednesday','Thursday','Friday');
+      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
+      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
+      বুধবার','বৃহস্পতিবার','শুক্রবার'
+      );
 
-@section('body')
 
-<section>
-    <div class="container">
-        <div class="form-card">
-            <div class="dashboard_box">
-                <div class="dashboard_left">
 
-                    <ul>
-                        @include('front.include.sidebar_dash')
-                    </ul>
-
-                </div>
-                <div class="dashboard_right">
+              ?>
                     @include('flash_message')
                     <div class="user_dashboard_right">
                         <h4>{{ trans('fd_one_step_one.f_form')}} </h4>
@@ -44,7 +42,7 @@
                         </a>
                                     </td>
                                     <td>
-                                        @if($allformOneData->complete_status == 'all_complete')
+                                       
 
                         @if($allformOneData->verified_fd_one_form == 0)
                         <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -100,10 +98,9 @@
       </div>
     </div>
   </div>
-                        @else
 
 
-                        @endif
+
                                     </td>
                                     <td>
                                        <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
@@ -229,7 +226,7 @@ foreach ($data   as $a) {
                                 </tr>
                                  <?php
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->where('people_english',$allformOneData->citizenship)->value('people_bangla');
+                                    $getCityzendata = DB::table('countries')->where('country_people_english',$allformOneData->citizenship)->value('country_people_bangla');
                                     }else{
 
                                     $getCityzendata = $allformOneData->citizenship;
@@ -358,7 +355,7 @@ foreach ($data   as $a) {
 
 
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->whereIn('people_english',$convetArray)->get();
+                                    $getCityzendata = DB::table('countries')->whereIn('country_people_english',$convetArray)->get();
                                     }else{
 
                                     $getCityzendata = $allFormOneMemberList->citizenship;
@@ -372,7 +369,7 @@ foreach ($data   as $a) {
                                     <td>:
                                         @if($getngoForLanguage =='দেশিও')
                                       @foreach($getCityzendata as $all_getCityzendata)
-                                      {{$all_getCityzendata->people_bangla}},
+                                      {{$all_getCityzendata->country_people_bangla}},
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}
@@ -519,14 +516,4 @@ attached
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
-@endsection
-
-@section('script')
-
-@endsection

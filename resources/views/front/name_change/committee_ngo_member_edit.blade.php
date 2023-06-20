@@ -98,34 +98,34 @@
 
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.name')}}</label>
-                                <input type="text" name="name" value="{{ $all_data_list->name }}"  class="form-control" id="">
+                                <input type="text" name="name" value="{{ $all_data_list->member_name }}"  class="form-control" id="">
 
                                 <input type="hidden" name="id" value="{{ $all_data_list->id }}"  class="form-control" id="">
 
                             </div>
                            <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.designation')}}</label>
-                                <input type="text" name="desi" value="{{ $all_data_list->desi }}" class="form-control" id="">
+                                <input type="text" name="desi" value="{{ $all_data_list->member_designation }}" class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.date_of_birth')}}</label>
-                                <input type="date" name="dob" value="{{ $all_data_list->dob }}" class="form-control" id="">
+                                <input type="date" name="dob" value="{{ $all_data_list->member_dob }}" class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.nid_no')}}</label>
-                                <input type="text" name="nid_no" value="{{ $all_data_list->nid_no }}"  class="form-control" id="">
+                                <input type="text" name="nid_no" value="{{ $all_data_list->member_nid_no }}"  class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}}</label>
-                                <input type="text" name="phone" value="{{ $all_data_list->phone }}" class="form-control" id="">
+                                <input type="text" name="phone" value="{{ $all_data_list->member_mobile }}" class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}}</label>
-                                <input type="text" name="father_name" value="{{ $all_data_list->father_name }}" class="form-control" id="">
+                                <input type="text" name="father_name" value="{{ $all_data_list->member_father_name }}" class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.present_address')}}</label>
-                                <input type="text" value="{{ $all_data_list->present_address }}" class="form-control"  name="present_address" id="exampleFormControlTextarea1"
+                                <input type="text" value="{{ $all_data_list->member_present_address }}" class="form-control"  name="present_address" id="exampleFormControlTextarea1"
                                           rows="2"/>
 
 
@@ -133,14 +133,14 @@
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.permanent_address')}}</label>
-                                <input type="text" class="form-control" value="{{ $all_data_list->permanent_address }}" name="permanent_address"   id="exampleFormControlTextarea1"
+                                <input type="text" class="form-control" value="{{ $all_data_list->member_permanent_address }}" name="permanent_address"   id="exampleFormControlTextarea1"
                                           rows="2"/>
 
 
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('form 8_bn.name_of_spouse')}}</label>
-                                <input type="text" name="name_supouse" value="{{ $all_data_list->name_supouse }}" class="form-control" id="">
+                                <input type="text" name="name_supouse" value="{{ $all_data_list->member_name_supouse }}" class="form-control" id="">
                             </div>
                             {{-- <div class=" mb-3">
                                 <label for="" class="form-label">Educational Qualification</label>

@@ -136,7 +136,7 @@
 
                                                       <?php
 
-                                                      $allEnglishCountry = DB::table('countries')->where('name_bangla',$ngo_list_all->country_of_origin)->value('name_english');
+                                                      $allEnglishCountry = DB::table('countries')->where('country_name_bangla',$ngo_list_all->country_of_origin)->value('country_name_english');
 
                                                       ?>
                                                         <tr>
@@ -160,8 +160,8 @@
 
 
 
-
-                                     $renew_list_all = DB::table('renews')->where('user_id',Auth::user()->id)->get();
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+                                     $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',Auth::user()->id)->get();
 
 
                                         ?>
@@ -460,13 +460,13 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">{{ trans('header.person_name')}}</label>
-                                                <input type="text" value="{{ Auth::user()->name }}" class="form-control" name="name" id="">
+                                                <input type="text" value="{{ Auth::user()->user_name }}" class="form-control" name="name" id="">
 
                                                 <input type="hidden" value="{{ Auth::user()->id }}" class="form-control" name="id" id="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputEmail1" class="form-label">{{ trans('header.email')}}</label>
-                                                <input type="email" value="{{ Auth::user()->email }}" class="form-control" name="email" id="" aria-describedby="emailHelp">
+                                                <input type="email" value="{{ Auth::user()->user_email }}" class="form-control" name="email" id="" aria-describedby="emailHelp">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">{{ trans('header.password')}}</label>
@@ -475,13 +475,13 @@
 
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">প্রোফাইল ছবি</label>
-                                                <input type="file" class="form-control" name="image" name="password" id="">
+                                                <input type="file" class="form-control" name="user_image"  id="">
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label for="exampleInputPassword1" class="form-label">{{ trans('header.phone_number')}}</label>
-                                                <input type="text" value="{{ Auth::user()->phone }}" class="form-control" name="phone" id="">
+                                                <input type="text" value="{{ Auth::user()->user_phone }}" class="form-control" name="phone" id="">
                                                 {{-- <div id="" class="form-text">Must be use valid phone number for varification</div> --}}
                                             </div>
                                             <div class="d-grid d-md-flex justify-content-md-end">

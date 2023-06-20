@@ -140,9 +140,9 @@
 
                                   <?php
 
-
-                                  $users = DB::table('name_changes')->where('user_id',Auth::user()->id)->value('present_name_eng');
-                                  $users1 = DB::table('name_changes')->where('user_id',Auth::user()->id)->value('present_name_ban');
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+                                  $users = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)->value('present_name_eng');
+                                  $users1 = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)->value('present_name_ban');
                                   ?>
 
 

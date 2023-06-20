@@ -85,8 +85,8 @@
             </div>
 
             <?php
-
-            $name_change_list = DB::table('renews')->where('user_id',Auth::user()->id)->latest()->value('status');
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+            $name_change_list = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )->latest()->value('status');
 
 
 
