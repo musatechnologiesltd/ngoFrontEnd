@@ -75,6 +75,25 @@
                         </div>
 
                         <div class="profile_link_box">
+                            <a href="{{ route('renew') }}">
+                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                            </a>
+                        </div>
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('renew') }}">
+                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09form')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('renew') }}">
+                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>লগ আউট</p>
                             </a>

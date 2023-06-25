@@ -34,7 +34,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -189,47 +189,9 @@
 
   });
 
-  /**
-   * Initiate portfolio lightbox 
-   */
-  const portfolioLightbox = GLightbox({
-    selector: '.portfolio-lightbox'
-  });
 
-  /**
-   * Portfolio details slider
-   */
-  new Swiper('.portfolio-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
 
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  });
+
 
   /**
    * Animation on scroll
@@ -257,5 +219,22 @@ $(".slideshow").slick({
 });
 
 
-// add new row
 
+/* Sidebar */
+
+const sidebar = document.querySelector('#sidebar');
+const sidebarToggler = document.querySelector('.sidebar_toggler');
+
+
+// Toggling the Sidebar
+sidebarToggler.addEventListener('click', () => {
+  sidebar.classList.toggle('show');
+});
+
+
+// Closing the Sidebar on clicking Outside and on the Sidebar-Links
+window.addEventListener('click', (e) => {
+  if (e.target.id !== 'sidebar' && e.target.className !== 'sidebar_toggler') {
+    sidebar.classList.remove('show');
+  }
+});

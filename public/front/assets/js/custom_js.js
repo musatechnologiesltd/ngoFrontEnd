@@ -39,16 +39,6 @@ submit_click.forEach(function(submit_click_form){
     });
 });
 
-var heart=document.querySelector(".fa-heart");
-heart.addEventListener('click',function(){
-    heart.classList.toggle('heart');
-});
-
-
-var share=document.querySelector(".fa-share-alt");
-share.addEventListener('click',function(){
-    share.classList.toggle('share');
-});
 
 
 
