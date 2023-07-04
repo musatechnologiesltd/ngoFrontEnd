@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('necessary_document_for_work_permits', function (Blueprint $table) {
+        Schema::create('n_visa_necessary_document_for_work_permits', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('n_visa_id')->unsigned();
             $table->foreign('n_visa_id')->references('id')->on('n_visas')->onDelete('cascade');
-            $table->string('nomination_letter_of_buyer_')->nullable();
+            $table->string('nomination_letter_of_buyer')->nullable();
             $table->string('registration_letter_of_board_of_investment')->nullable();
             $table->string('employee_contract_copy')->nullable();
             $table->string('board_of_the_directors_sign_letter')->nullable();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('necessary_document_for_work_permits');
+        Schema::dropIfExists('n_visa_necessary_document_for_work_permits');
     }
 };

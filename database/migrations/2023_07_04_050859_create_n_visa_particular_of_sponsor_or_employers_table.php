@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('particular_of_sponsor_or_employers', function (Blueprint $table) {
+        Schema::create('n_visa_particular_of_sponsor_or_employers', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('n_visa_id')->unsigned();
             $table->foreign('n_visa_id')->references('id')->on('n_visas')->onDelete('cascade');
@@ -47,6 +47,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('particular_of_sponsor_or_employers');
+        Schema::dropIfExists('n_visa_particular_of_sponsor_or_employers');
     }
 };

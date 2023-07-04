@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('particulars_of_foreign_incumbnets', function (Blueprint $table) {
+        Schema::create('n_visa_particulars_of_foreign_incumbnets', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('n_visa_id')->unsigned();
             $table->foreign('n_visa_id')->references('id')->on('n_visas')->onDelete('cascade');
@@ -46,6 +46,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('particulars_of_foreign_incumbnets');
+        Schema::dropIfExists('n_visa_particulars_of_foreign_incumbnets');
     }
 };

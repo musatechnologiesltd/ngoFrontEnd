@@ -12,6 +12,9 @@ use App\Http\Controllers\NGO\FdoneformController;
 use App\Http\Controllers\NGO\RegsubmitController;
 use App\Http\Controllers\NGO\NamechangeController;
 use App\Http\Controllers\NGO\RenewController;
+use App\Http\Controllers\NGO\NVisaController;
+use App\Http\Controllers\NGO\Fd9Controller;
+use App\Http\Controllers\NGO\Fd9OneController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -162,6 +165,10 @@ Route::controller(OtherformController::class)->group(function () {
 
 
 Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('nVisa',NVisaController::class);
+    Route::resource('fdNineForm',Fd9Controller::class);
+    Route::resource('fdNineOneForm',Fd9OneController::class);
 
 Route::controller(FdoneformController::class)->group(function () {
 

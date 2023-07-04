@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-এনজিওর নাম পরিবর্তন | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -19,8 +19,9 @@
       বুধবার','বৃহস্পতিবার','শুক্রবার'
       );
 
-?>
 
+
+?>
 
 <section>
 
@@ -64,22 +65,20 @@
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nameChange') }}">
-                                <p class="{{ Route::is('ngoCommitteMemberAdd') || Route::is('nameChange') || Route::is('sendNameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
+                                <p class="{{ Route::is('nameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
                             </a>
                         </div>
 
-                         <div class="profile_link_box">
+                        <div class="profile_link_box">
                             <a href="{{ route('renew') }}">
                                 <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>আবেদন পুনর্নবীকরণ</p>
                             </a>
                         </div>
-
                         <div class="profile_link_box">
                             <a href="{{ route('nVisa.index') }}">
                                 <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create') || Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
-
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>লগ আউট</p>
@@ -89,81 +88,62 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-lg-9 col-md-6 col-sm-12">
-                @include('flash_message')
                 <div class="card">
-                    <div class="card-header">
-                        {{ trans('ngo_member.ngo_member')}}
-                    </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('ngoCommitteMemberStore') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-                            @csrf
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.name')}}</label>
-                                <input type="text" data-parsley-required name="name"  class="form-control" id="">
+                        <div class="name_change_box">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="others_inner_section">
+                                        <h1>{{ trans('fd9.nvisa')}}</h1>
+                                        <div class="notice_underline"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="d-grid d-md-flex justify-content-end">
+                                        <button type="button" class="btn btn-registration"
+                                                onclick="location.href = '{{ route('nVisa.create') }}';">নতুন ভিসার আবেদন  যুক্ত করুন
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                           <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.designation')}}</label>
-                                <input type="text" data-parsley-required name="desi" class="form-control" id="">
+                            @if(count($nVisaList) == 0)
+                            <div class="no_name_change">
+                                <div class="d-flex justify-content-center pt-5">
+                                    <img src="{{ asset('/') }}public/noresult.png" alt="" width="120" height="120">
+                                </div>
+                                <div class="text-center">
+                                    <h5>কোনো এন-ভিসা আবেদনের তালিকা নেই</h5>
+                                </div>
                             </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.date_of_birth')}}</label>
-                                <input type="text" data-parsley-required name="dob" class="form-control" id="datepicker">
+                            @else
+                            <div class="no_name_change pt-4">
+                                <h5 class="pb-3">ভিসার তালিকা</h5>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>SL. No.</th>
+                                        <th>Date</th>
+                                        <th>Name</th>
+                                        <th>Passport Number</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>1/12/1994</td>
+                                        <td>X</td>
+                                        <td>Y</td>
+                                        <td><span class="text-success">Ongoing</span></td>
+                                        <td><button class="btn btn-outline-success"> <i class="fa fa-eye"></i> </button></td>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.nid_no')}}</label>
-                                <input type="text" data-parsley-required name="nid_no"  class="form-control" id="">
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.mobile_no')}}</label>
-                                <input type="text" data-parsley-required name="phone" class="form-control" id="">
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.fathers_name')}}</label>
-                                <input type="text" data-parsley-required name="father_name" class="form-control" id="">
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.present_address')}}</label>
-                                <input type="text"class="form-control"  data-parsley-required name="present_address" id="exampleFormControlTextarea1"
-                                          rows="2"/>
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.permanent_address')}}</label>
-                                <input type="text"class="form-control" data-parsley-required  name="permanent_address"  id="exampleFormControlTextarea1"
-                                          rows="2"/>
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('ngo_member.name_of_spouse')}}</label>
-                                <input type="text" data-parsley-required name="name_supouse" class="form-control" id="">
-                            </div>
-
-                            {{-- <div class=" mb-3">
-                                <label for="" class="form-label">Signature</label>
-                                <input type="file" data-parsley-required accept=".jpg,.jpeg,.png" name="image" class="form-control" id="">
-                            </div>
-                            <div class=" mb-3">
-                                <label for="" class="form-label">Date</label>
-                                <input type="date" data-parsley-required name="main_date" class="form-control" id="">
-                            </div> --}}
-                            <div class="d-grid d-md-flex justify-content-md-end">
-                                <button type="submit" class="btn btn-registration"
-                                       >{{ trans('form 8_bn.add')}}
-                                </button>
-                            </div>
-                        </form>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </section>
-
-@endsection
-
-@section('script')
-
 @endsection

@@ -455,6 +455,15 @@ $("document").ready(function(){
 
 <script>
     $( function() {
+     $( ".datepicker" ).datepicker({
+         dateFormat: "dd-mm-yy"
+         ,	duration: "fast"
+     });
+ } );
+     </script>
+
+<script>
+    $( function() {
      $( "#datepicker1" ).datepicker({
          dateFormat: "dd-mm-yy"
          ,	duration: "fast"

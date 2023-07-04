@@ -74,21 +74,8 @@
                             </a>
                         </div>
                         <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
-                            </a>
-                        </div>
-
-
-                        <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09form')}}</p>
-                            </a>
-                        </div>
-
-                        <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                            <a href="{{ route('nVisa.index') }}">
+                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create') || Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
