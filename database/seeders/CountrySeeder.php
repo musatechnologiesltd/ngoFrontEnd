@@ -259,8 +259,8 @@ class CountrySeeder extends Seeder
             'country_iso_code' => "CF",
             'country_name_english' => "CENTRAL AFRICAN REPUBLIC",
             'country_name_bangla' => "মধ্য আফ্রিকান প্রজাতন্ত্র",
-            'country_people_english' =>"NULL",
-            'country_people_bangla' => "NULL"
+            'country_people_english' =>"",
+            'country_people_bangla' => ""
         ],
         [
 
@@ -334,8 +334,8 @@ class CountrySeeder extends Seeder
             'country_iso_code' => "CY",
             'country_name_english' => "CYPRUS",
             'country_name_bangla' => "সাইপ্রাস",
-            'country_people_english' =>"NULL",
-            'country_people_bangla' =>"NULL",
+            'country_people_english' =>"",
+            'country_people_bangla' =>"",
         ],
         [
 
@@ -709,7 +709,7 @@ class CountrySeeder extends Seeder
         ],
         [
 
-            'country_iso_code' => "NULL",
+            'country_iso_code' => "NK",
             'country_name_english' => "North Korea",
             'country_name_bangla' => "উত্তর কোরিয়া",
             'country_people_english' => "Korean",
