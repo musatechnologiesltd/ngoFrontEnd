@@ -70,4 +70,10 @@ class NVisa extends Model
     {
         return $this->hasOne(NVisaAuthorizedPersonalOfTheOrg::class,'n_visa_id');
     }
+
+
+    public function fd9Form()
+    {
+        return $this->hasOne(Fd9Form::class,'n_visa_id');
+    }
 }

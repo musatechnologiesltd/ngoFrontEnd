@@ -76,7 +76,13 @@
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nVisa.index') }}">
-                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create') || Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fdNineOneForm.index') }}">
+                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
@@ -121,21 +127,37 @@
                                 <h5 class="pb-3">ভিসার তালিকা</h5>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>SL. No.</th>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Passport Number</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>ক্র:নং:</th>
+                                        <th>আবেদনকারীর ছবি</th>
+                                        <th>জারি করা ওয়ার্ক পারমিট এর রেফারেন্স নং</th>
+                                        <th>ওয়ার্ক পারমিটের ধরন</th>
+                                        <th>ভিসার কার্যকর এর  তারিখ</th>
+                                        <th>কার্যকলাপ</th>
                                     </tr>
+                                    @foreach($nVisaList as $key=>$allnVisaList)
                                     <tr>
-                                        <td>01</td>
-                                        <td>1/12/1994</td>
-                                        <td>X</td>
-                                        <td>Y</td>
-                                        <td><span class="text-success">Ongoing</span></td>
-                                        <td><button class="btn btn-outline-success"> <i class="fa fa-eye"></i> </button></td>
+
+                                        <td>{{ $key+1 }}</td>
+                                        <td><img src="{{ asset('/') }}{{ $allnVisaList->applicant_photo }}" style="height: 40px;"/></td>
+                                        <td>{{ $allnVisaList->visa_ref_no }}</td>
+                                        <td>{{ $allnVisaList->visa_category }}</td>
+                                        <td>{{ str_replace($engDATE,$bangDATE,$allnVisaList->permit_efct_date) }}</td>
+                                        <td>
+                                            <a  href="{{ route('nVisa.edit',$allnVisaList->id) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
+                                            <a  href="{{ route('nVisa.show',$allnVisaList->id) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <button type="button" onclick="deleteTag({{ $allnVisaList->id}})" class="btn btn-sm btn-outline-danger"><i
+                                                class="bi bi-trash"></i></button>
+
+                                                <form id="delete-form-{{ $allnVisaList->id }}" action="{{ route('nVisa.destroy',$allnVisaList->id) }}" method="POST" style="display: none;">
+
+                                                    @csrf
+                                                    @method('DELETE')
+@method('DELETE')
+                                                </form>
+
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </table>
                             </div>
                             @endif

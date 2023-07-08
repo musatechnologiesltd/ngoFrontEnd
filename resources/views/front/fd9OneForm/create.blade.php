@@ -95,85 +95,77 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-6 col-sm-12">
-                <form method="post" action="{{ route('nVisa.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-                    @csrf
                 <div class="card">
                     <div class="card-body">
                         <div class="name_change_box">
                             <div class="row">
-                                <div class="col-lg-6 col-sm-12">
+                                <div class="col-lg-12 col-sm-12">
                                     <div class="others_inner_section">
-                                        <h1>এন-ভিসা আবেদন</h1>
+                                        <h1>Application Form for Work Permit (Permit) of Foreign Expert, Advisor,
+                                            Officer or Volunteer</h1>
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="card mt-3 ">
-                                <div class="card-header custom-color">
-                                    নিরাপত্তা ছাড়পত্রের জন্য আবেদন
-                                </div>
+                            <div class="card mt-3 card-custom-color">
                                 <div class="card-body">
-                                    @include('front.nVisa.basicInfo')
+
+                                    <div class="form9_upper_box">
+                                        <h3>এফডি-৯(১) ফরম</h3>
+                                        <h4>বিদেশি বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবী এর ওয়ার্ক পারমিটের
+                                            (কার্যানুমতি) আবেদন ফরম</h4>
+
+                                        <div>
+                                            <p>বরাবর <br>
+                                                মহাপরিচালক <br>
+                                                এনজিও বিষয় ব্যুরো <br>
+                                                প্রধানমন্ত্রীর কার্যালয়</p>
+                                            <p>নিষয়ঃ সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী “<input
+                                                        type="text" class="form-control custom-form"> ”' এর ওয়ার্ক পারমিট প্রসঙ্গে।
+                                            </p>
+                                            <p>
+                                                সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর
+                                                <input type="text" class="form-control custom-form" id="" placeholder=""> তারিখ
+                                            </p>
+
+                                            <p class="mt-3">
+                                                উপর্যুক্ত বিষয় ও সূত্রের বরাতে <input type="text" class="form-control custom-form"
+                                                                                      id="" placeholder=""> সংস্থার
+                                                <input type="text" class="form-control custom-form" id="" placeholder=""> প্রকল্পের
+                                                আওতায় <input type="text" class="form-control custom-form" id="" placeholder="">
+                                                হিসেবে বিদেশী বিশেষজ্ঞ/ উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <input
+                                                        type="text" class="form-control custom-form" id="" placeholder=""> কে <input
+                                                        type="text" class="form-control custom-form" id="" placeholder=""> খ্রি:
+                                                পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে উক্ত ব্যাক্তির
+                                                অনুমোদিত সময়ের জন্য ওয়ার্ক পারমিট ইস্যু করার জন্য ওয়ার্ক পারমিট ইস্যু
+                                                করার জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
+                                            </p>
+                                            <ul>
+                                                <li>নিয়োগপত্র সত্যায়ন প্রমাণক :  <input type="text" class="form-control custom-form"
+                                                                                        id="" placeholder=""></li>
+                                                <li>ফর্ম ৯ এর কপি: <input type="text" class="form-control custom-form"
+                                                                         id="" placeholder=""></li>
+                                                <li>ছবি: <input type="text" class="form-control custom-form"
+                                                               id="" placeholder=""></li>
+                                                <li>এন ভিসা নিয়ে আগমনের তারিখ (প্রমানসহ): <input type="text" class="form-control custom-form"
+                                                                                                id="" placeholder=""></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-grid d-md-flex justify-content-md-end">
+                                        <button type="button" class="btn btn-registration"
+                                                onclick="location.href = '#';">Submit Information
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.prticularOfSponsorEmployeer')
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.prticularsOfForeignIncubment')
-
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.employmentInformation')
-
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.workPlaceAddress')
-
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.compensationAndBenefits')
-
-                            </div>
-                            <div class="card mt-3 ">
-                                @include('front.nVisa.manPowerOfTheOffice')
-
-                            </div>
-                            <div class="card mt-3 ">
-
-                                @include('front.nVisa.documentForWorkPermit')
-
-
-
-                            </div>
-                            <div class="card mt-3 ">
-
-                                @include('front.nVisa.authorizedPersonOrganization')
-
-
-
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-
             </div>
-
         </div>
     </div>
 </section>
-@endsection
-
-@section('script')
-<script>
-    var loadFile = function (event) {
-        var output = document.getElementById('output');
-        output.src = URL.createObjectURL(event.target.files[0]);
-        output.onload = function () {
-            URL.revokeObjectURL(output.src) // free memory
-        }
-    };
-</script>
 @endsection

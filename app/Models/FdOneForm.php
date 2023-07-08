@@ -116,10 +116,7 @@ class FdOneForm extends Model
         return $this->hasMany(NgoStatus::class,'fd_one_form_id');
     }
 
-    public function fd9Form()
-    {
-        return $this->hasMany(Fd9Form::class,'fd_one_form_id');
-    }
+   
 
 
     public function fd9OneForm()

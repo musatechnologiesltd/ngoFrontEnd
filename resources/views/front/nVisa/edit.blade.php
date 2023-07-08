@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-এনজিওর নাম পরিবর্তন | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -19,8 +19,9 @@
       বুধবার','বৃহস্পতিবার','শুক্রবার'
       );
 
-?>
 
+
+?>
 
 <section>
 
@@ -64,7 +65,7 @@
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nameChange') }}">
-                                <p class="{{ Route::is('ngoMemberNidAndImageAdd') || Route::is('nameChange') || Route::is('sendNameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
+                                <p class="{{ Route::is('nameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
                             </a>
                         </div>
 
@@ -73,7 +74,6 @@
                                 <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>আবেদন পুনর্নবীকরণ</p>
                             </a>
                         </div>
-
                         <div class="profile_link_box">
                             <a href="{{ route('nVisa.index') }}">
                                 <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
@@ -85,7 +85,6 @@
                                 <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
-
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>লগ আউট</p>
@@ -95,59 +94,87 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-lg-9 col-md-6 col-sm-12">
-                @include('flash_message')
-
-                <form method="post" action="{{ route('ngoMemberNidAndImageStore') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
+                <form method="post" action="{{ route('nVisa.update',$nVisaEdit->id) }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
+                    @method('PUT')
                 <div class="card">
-                    <div class="card-header">
-                        {{ trans('ngo_member_doc.m_b')}}
-                    </div>
                     <div class="card-body">
+                        <div class="name_change_box">
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="others_inner_section">
+                                        <h1>এন-ভিসা আবেদন</h1>
+                                        <div class="notice_underline"></div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <table class="table table-borderless" id="dynamicAddRemove">
-                            <tr>
-                                <th> {{ trans('ngo_member_doc.person_name')}}</th>
-                                <th> {{ trans('ngo_member_doc.image')}}</th>
-                                <th> {{ trans('ngo_member_doc.nid_copy')}}</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input class="form-control" data-parsley-required name="person_name[]" type="text" id="" required>
-                                </td>
-                                <td>
-                                    <input class="form-control" data-parsley-required accept=".jpg,.jpeg,.png" name="person_image[]" type="file" id="" required>
-                                </td>
-                                <td>
-                                    <input class="form-control" data-parsley-required accept=".pdf" name="person_nid_copy[]" type="file" id="" required>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">
-                            {{ trans('ngo_member_doc.add_new_nid')}}
-                        </button>
+                            <div class="card mt-3 ">
+                                <div class="card-header custom-color">
+                                    নিরাপত্তা ছাড়পত্রের জন্য আবেদন
+                                </div>
+                                <div class="card-body">
+                                    @include('front.nVisa.basicInfoEdit')
+                                </div>
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.prticularOfSponsorEmployeerEdit')
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.prticularsOfForeignIncubmentEdit')
+
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.employmentInformationEdit')
+
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.workPlaceAddressEdit')
+
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.compensationAndBenefitsEdit')
+
+                            </div>
+                            <div class="card mt-3 ">
+                                @include('front.nVisa.manPowerOfTheOfficeEdit')
+
+                            </div>
+                            <div class="card mt-3 ">
+
+                                @include('front.nVisa.documentForWorkPermitEdit')
+
+
+
+                            </div>
+                            <div class="card mt-3 ">
+
+                                @include('front.nVisa.authorizedPersonOrganizationEdit')
+
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="d-grid d-md-flex justify-content-md-end mt-5">
-                    <button type="submit" class="btn btn-registration">{{ trans('other_doc.add_new_document')}}
-                    </button>
-                </div>
-
             </form>
+
             </div>
+
         </div>
     </div>
-
 </section>
-
 @endsection
 
 @section('script')
-
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function () {
+            URL.revokeObjectURL(output.src) // free memory
+        }
+    };
+</script>
 @endsection

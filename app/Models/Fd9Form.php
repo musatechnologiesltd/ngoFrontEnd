@@ -12,7 +12,7 @@ class Fd9Form extends Model
     public $table = "fd9_forms";
 
     protected $fillable = [
-        'fd_one_form_id',
+        'n_visa_id',
         'fd9_foreigner_name',
         'fd9_father_name',
         'fd9_husband_or_wife_name',
@@ -47,15 +47,13 @@ class Fd9Form extends Model
 
 ];
 
-   public function fdOneForm()
-    {
-        return $this->belongsTo(FdOneForm::class,'fd_one_form_id');
-    }
+public function nVisa()
+{
+    return $this->belongsTo(NVisa::class,'n_visa_id');
+}
 
     public function fd9ForeignerEmployeeFamilyMemberList()
     {
         return $this->hasMany(Fd9ForeignerEmployeeFamilyMemberList::class,'fd9_form_id');
     }
-
-
 }

@@ -22,5 +22,4 @@ public function fd9Form()
 {
     return $this->belongsTo(Fd9Form::class,'fd9_form_id');
 }
-
 }
