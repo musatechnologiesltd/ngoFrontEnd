@@ -302,7 +302,7 @@ $basic =DB::table('n_visa_compensation_and_benifits')
                 <input type="text" class="form-control" name="currency_annual" id="">
             </td>
             @else
-            <td>চ. চিকিৎসা ভাতা</td>
+            <td>ছ. বার্ষিক বোনাস</td>
             <td>
                 <select class="form-control" name="payment_type_annual" id="">
                     <option value="">--একটা নির্বাচন করুন--</option>

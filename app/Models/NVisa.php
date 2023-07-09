@@ -23,6 +23,7 @@ class NVisa extends Model
         'forwarding_letter',
         'salary_remarks',
         'other_benefit',
+        'status',
 
 ];
 

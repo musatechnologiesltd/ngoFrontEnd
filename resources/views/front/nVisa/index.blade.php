@@ -132,6 +132,7 @@
                                         <th>জারি করা ওয়ার্ক পারমিট এর রেফারেন্স নং</th>
                                         <th>ওয়ার্ক পারমিটের ধরন</th>
                                         <th>ভিসার কার্যকর এর  তারিখ</th>
+                                        <th>Status</th>
                                         <th>কার্যকলাপ</th>
                                     </tr>
                                     @foreach($nVisaList as $key=>$allnVisaList)
@@ -143,8 +144,15 @@
                                         <td>{{ $allnVisaList->visa_category }}</td>
                                         <td>{{ str_replace($engDATE,$bangDATE,$allnVisaList->permit_efct_date) }}</td>
                                         <td>
+                                            @if(empty($allnVisaList->status))
+                                             <span class="text-success">Ongoing</span>
+ @else
+ <span class="text-success">Accepted</span>
+ @endif
+                                         </td>
+                                        <td>
                                             <a  href="{{ route('nVisa.edit',$allnVisaList->id) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
-                                            <a  href="{{ route('nVisa.show',$allnVisaList->id) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <a  href="{{ route('nVisa.show',base64_encode($allnVisaList->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
                                             <button type="button" onclick="deleteTag({{ $allnVisaList->id}})" class="btn btn-sm btn-outline-danger"><i
                                                 class="bi bi-trash"></i></button>
 
@@ -152,7 +160,7 @@
 
                                                     @csrf
                                                     @method('DELETE')
-@method('DELETE')
+
                                                 </form>
 
                                         </td>

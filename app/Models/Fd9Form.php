@@ -44,6 +44,8 @@ class Fd9Form extends Model
         'fd9_other_information',
         'fd9_foreigner_passport_size_photo',
         'fd9_copy_of_passport',
+        'verified_fd_nine_form',
+        'status',
 
 ];
 

@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('forwarding_letter')->nullable();
             $table->string('salary_remarks')->nullable();
             $table->string('other_benefit')->nullable();
+            $table->string('status',11)->nullable();
             $table->timestamps();
         });
     }

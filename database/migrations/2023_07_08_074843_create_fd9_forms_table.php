@@ -48,6 +48,8 @@ return new class extends Migration
             $table->string('fd9_other_information')->nullable();
             $table->string('fd9_foreigner_passport_size_photo')->nullable();
             $table->string('fd9_copy_of_passport')->nullable();
+            $table->string('verified_fd_nine_form')->nullable();
+            $table->string('status',11)->nullable();
             $table->timestamps();
         });
     }

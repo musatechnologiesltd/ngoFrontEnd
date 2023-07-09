@@ -134,14 +134,36 @@
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
+                                    @foreach($fd9OneList as $key=>$allFd9OneList)
                                     <tr>
-                                        <td>01</td>
-                                        <td>1/12/1994</td>
-                                        <td>X</td>
-                                        <td>Y</td>
-                                        <td><span class="text-success">Ongoing</span></td>
-                                        <td><button class="btn btn-outline-success"> <i class="fa fa-eye"></i> </button></td>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($allFd9OneList->application_date)) )}}</td>
+                                        <td>{{ $allFd9OneList->sarok_number }}</td>
+                                        <td>{{ $allFd9OneList->prokolpo_name }}</td>
+                                        <td>
+                                           @if(empty($allFd9OneList->status))
+                                            <span class="text-success">Ongoing</span>
+@else
+<span class="text-success">Accepted</span>
+@endif
+                                        </td>
+                                        <td>
+
+                                            <a  href="{{ route('fdNineOneForm.edit',$allFd9OneList->id) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
+                                            <a  href="{{ route('fdNineOneForm.show',base64_encode($allFd9OneList->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <button type="button" onclick="deleteTag({{ $allFd9OneList->id}})" class="btn btn-sm btn-outline-danger"><i
+                                                class="bi bi-trash"></i></button>
+
+                                                <form id="delete-form-{{ $allFd9OneList->id }}" action="{{ route('fdNineOneForm.destroy',$allFd9OneList->id) }}" method="POST" style="display: none;">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                </form>
+
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </table>
                             </div>
                             @endif

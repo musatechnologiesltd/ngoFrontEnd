@@ -1051,19 +1051,21 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
  $findIdCom = NVisaCompensationAndBenifits::where('n_visa_id',$nVisaId)
  ->value('id');
 
-
+// dd($request->all());
  if(empty($request->amount_annual)){
 
  }else{
 
+    NVisaCompensationAndBenifits::where('id', $findIdCom)
+    ->where('salary_category','Annual Bonus')
+       ->update([
+           'payment_type' => $request->payment_type_annual,
+           'amount' => $request->amount_annual,
+           'currency' => $request->currency_annual,
+        ]);
 
-     $amount_annual=NVisaCompensationAndBenifits::find($findIdCom);
-     $amount_annual->n_visa_id = $nVisaId;
-     $amount_annual->salary_category ='Annual Bonus';
-     $amount_annual->payment_type = $request->payment_type_annual;
-     $amount_annual->amount = $request->amount_annual;
-     $amount_annual->currency = $request->currency_annual;
-     $amount_annual->save();
+
+
 
  }
 
@@ -1072,13 +1074,17 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
-     $amount_medical=NVisaCompensationAndBenifits::find($findIdCom);
-     $amount_medical->n_visa_id = $nVisaId;
-     $amount_medical->salary_category ='Medical Allowance';
-     $amount_medical->payment_type = $request->payment_type_medical;
-     $amount_medical->amount = $request->amount_medical;
-     $amount_medical->currency = $request->currency_medical;
-     $amount_medical->save();
+
+
+
+     NVisaCompensationAndBenifits::where('id', $findIdCom)
+     ->where('salary_category','Medical Allowance')
+        ->update([
+            'payment_type' => $request->payment_type_medical,
+            'amount' => $request->amount_medical,
+            'currency' => $request->currency_medical,
+         ]);
+
 
  }
 
@@ -1087,13 +1093,18 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
-     $amount_entertainment=NVisaCompensationAndBenifits::find($findIdCom);
-     $amount_entertainment->n_visa_id = $nVisaId;
-     $amount_entertainment->salary_category ='Entertainment Allowance';
-     $amount_entertainment->payment_type = $request->payment_type_entertainment;
-     $amount_entertainment->amount = $request->amount_entertainment;
-     $amount_entertainment->currency = $request->currency_entertainment;
-     $amount_entertainment->save();
+
+
+
+     NVisaCompensationAndBenifits::where('id', $findIdCom)
+     ->where('salary_category','Entertainment Allowance')
+        ->update([
+            'payment_type' => $request->payment_type_entertainment,
+            'amount' => $request->amount_entertainment,
+            'currency' => $request->currency_entertainment,
+         ]);
+
+
 
  }
 
@@ -1102,13 +1113,15 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
-     $amount_conveyance=NVisaCompensationAndBenifits::find($findIdCom);
- $amount_conveyance->n_visa_id = $nVisaId;
- $amount_conveyance->salary_category ='Conveyance';
- $amount_conveyance->payment_type = $request->payment_type_conveyance;
- $amount_conveyance->amount = $request->amount_conveyance;
- $amount_conveyance->currency = $request->currency_conveyance;
- $amount_conveyance->save();
+
+
+ NVisaCompensationAndBenifits::where('id', $findIdCom)
+ ->where('salary_category','Conveyance')
+    ->update([
+        'payment_type' => $request->payment_type_conveyance,
+        'amount' => $request->amount_conveyance,
+        'currency' => $request->currency_conveyance,
+     ]);
 
  }
 
@@ -1116,13 +1129,15 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
- $amount_home=NVisaCompensationAndBenifits::find($findIdCom);
- $amount_home->n_visa_id = $nVisaId;
- $amount_home->salary_category ='House Rent';
- $amount_home->payment_type = $request->payment_type_home;
- $amount_home->amount = $request->amount_home;
- $amount_home->currency = $request->currency_home;
- $amount_home->save();
+
+
+ NVisaCompensationAndBenifits::where('id', $findIdCom)
+ ->where('salary_category','House Rent')
+    ->update([
+        'payment_type' => $request->payment_type_home,
+        'amount' => $request->amount_home,
+        'currency' => $request->currency_home,
+     ]);
 
  }
 
@@ -1131,13 +1146,15 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
- $amount_overseas=NVisaCompensationAndBenifits::find($findIdCom);
- $amount_overseas->n_visa_id = $nVisaId;
- $amount_overseas->salary_category ='Overseas Allowance';
- $amount_overseas->payment_type = $request->payment_type_overseas;
- $amount_overseas->amount = $request->amount_overseas;
- $amount_overseas->currency = $request->currency_overseas;
- $amount_overseas->save();
+
+
+ NVisaCompensationAndBenifits::where('id', $findIdCom)
+ ->where('salary_category','Overseas Allowance')
+    ->update([
+        'payment_type' => $request->payment_type_overseas,
+        'amount' => $request->amount_overseas,
+        'currency' => $request->currency_overseas,
+     ]);
 
  }
 
@@ -1145,13 +1162,15 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  }else{
 
- $amount_basic=NVisaCompensationAndBenifits::find($findIdCom);
- $amount_basic->n_visa_id = $nVisaId;
- $amount_basic->salary_category ='Basic Salary';
- $amount_basic->payment_type = $request->payment_type_basic;
- $amount_basic->amount = $request->amount_basic;
- $amount_basic->currency = $request->currency_basic;
- $amount_basic->save();
+
+
+ NVisaCompensationAndBenifits::where('id', $findIdCom)
+ ->where('salary_category','Basic Salary')
+    ->update([
+        'payment_type' => $request->payment_type_basic,
+        'amount' => $request->amount_basic,
+        'currency' => $request->currency_basic,
+     ]);
 
  }
 
@@ -1168,5 +1187,23 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
             $admins->delete();
         }
         return back()->with('error','Deleted successfully!');
+    }
+
+
+    public function show($id){
+         $id =base64_decode($id);
+
+         $nVisaEdit = NVisa::where('id',$id)
+       ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice','fd9Form'])->first();
+
+       $getCityzenshipData = Country::whereNotNull('country_people_english')
+       ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+
+
+$countryList = Country::orderBy('id','asc')->get();
+$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+return view('front.nVisa.show',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+
     }
 }

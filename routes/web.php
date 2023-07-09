@@ -168,7 +168,20 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('nVisa',NVisaController::class);
     Route::resource('fdNineForm',Fd9Controller::class);
+
+
     Route::resource('fdNineOneForm',Fd9OneController::class);
+
+    Route::controller(Fd9OneController::class)->group(function () {
+
+        Route::post('/mainPdfUpload', 'mainPdfUpload')->name('mainPdfUpload');
+
+        Route::get('/mainPdfDownload/{id}', 'mainPdfDownload')->name('mainPdfDownload');
+
+        Route::get('/niyogPotroDownload/{id}', 'niyogPotroDownload')->name('niyogPotroDownload');
+        Route::get('/formNinePdfDownload/{id}', 'formNinePdfDownload')->name('formNinePdfDownload');
+        Route::get('/nVisaCopyDownload/{id}', 'nVisaCopyDownload')->name('nVisaCopyDownload');
+    });
 
 Route::controller(FdoneformController::class)->group(function () {
 

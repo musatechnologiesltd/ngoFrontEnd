@@ -24,12 +24,17 @@ return new class extends Migration
             $table->string('prokolpo_name')->nullable();
             $table->string('designation_name')->nullable();
             $table->string('foreigner_name_for_body')->nullable();
-            $table->string('expire_date')->nullable();
+            $table->string('expire_from_date')->nullable();
+            $table->string('expire_to_date')->nullable();
             $table->string('attestation_of_appointment_letter')->nullable();
             $table->string('copy_of_form_nine')->nullable();
             $table->string('foreigner_image')->nullable();
             $table->string('arrival_date_in_nvisa')->nullable();
             $table->string('copy_of_nvisa')->nullable();
+            $table->string('proposed_from_date')->nullable();
+            $table->string('proposed_to_date')->nullable();
+            $table->string('verified_fd_nine_one_form')->nullable();
+            $table->string('status',11)->nullable();
             $table->timestamps();
         });
     }

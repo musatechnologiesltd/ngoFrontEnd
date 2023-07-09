@@ -301,4 +301,9 @@ return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_a
 
 
     }
+
+    public function show($id){
+
+        
+    }
 }

@@ -89,7 +89,7 @@
 
                         <div class="profile_link_box">
                             <a href="{{ route('fdNineOneForm.index') }}">
-                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                                <p class="{{ Route::is('fdNineOneForm.show') || Route::is('fdNineOneForm.edit') || Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
@@ -117,8 +117,9 @@
                             <div class="card mt-3 card-custom-color">
 
                                 <div class="card-body">
-                                    <form method="post" action="{{ route('fdNineOneForm.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                                    <form method="post" action="{{ route('fdNineOneForm.update',$fd9OneList->id) }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                         @csrf
+                                        @method('PUT')
                                     <div class="form9_upper_box">
                                         <h3>এফডি-৯(১) ফরম</h3>
                                         <h4>বিদেশি বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবী এর ওয়ার্ক পারমিটের
@@ -130,39 +131,109 @@
                                                 এনজিও বিষয় ব্যুরো <br>
                                                 প্রধানমন্ত্রীর কার্যালয়</p>
                                             <p>নিষয়ঃ সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী “<input
-                                                        type="text" class="form-control custom-form" name="foreigner_name_for_subject" required> ”' এর ওয়ার্ক পারমিট প্রসঙ্গে।
+                                                        type="text" class="form-control custom-form" value="{{ $fd9OneList->foreigner_name_for_subject }}" name="foreigner_name_for_subject" required> ”' এর ওয়ার্ক পারমিট প্রসঙ্গে।
                                             </p>
                                             <p>
                                                 সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর
-                                                <input type="text" class="form-control custom-form" name="sarok_number" id="" placeholder="" required> তারিখ <input type="text" class="form-control custom-form datepicker" id="" required  ="" name="application_date">
+                                                <input type="text" class="form-control custom-form" value="{{ $fd9OneList->sarok_number }}" name="sarok_number" id="" placeholder="" required> তারিখ <input type="text" class="form-control custom-form datepicker" id="" required  ="" name="application_date" value="{{ $fd9OneList->application_date }}">
                                             </p>
 
                                             <p class="mt-3">
-                                                উপর্যুক্ত বিষয় ও সূত্রের বরাতে <input type="text" name="institute_name" required class="form-control custom-form"
+                                                উপর্যুক্ত বিষয় ও সূত্রের বরাতে <input type="text" value="{{ $fd9OneList->institute_name }}"  name="institute_name" required class="form-control custom-form"
                                                                                       id="" placeholder=""> সংস্থার
-                                                <input type="text" name="prokolpo_name" required class="form-control custom-form" id="" placeholder=""> প্রকল্পের
-                                                আওতায় <input type="text" class="form-control custom-form" required name="designation_name" id="" placeholder="">
+                                                <input type="text" name="prokolpo_name" value="{{ $fd9OneList->prokolpo_name }}" required class="form-control custom-form" id="" placeholder=""> প্রকল্পের
+                                                আওতায় <input type="text" class="form-control custom-form" required value="{{ $fd9OneList->designation_name }}" name="designation_name" id="" placeholder="">
                                                 হিসেবে বিদেশী বিশেষজ্ঞ/ উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <input
-                                                        type="text" class="form-control custom-form" required name="foreigner_name_for_body" id="" placeholder=""> কে <input
-                                                        type="text" class="form-control datepicker custom-form" required name="expire_from_date" id="" placeholder=""> খ্রি: হতে
+                                                        type="text" class="form-control custom-form" required value="{{ $fd9OneList->foreigner_name_for_body }}" name="foreigner_name_for_body" id="" placeholder=""> কে <input
+                                                        type="text" class="form-control datepicker custom-form" required value="{{ $fd9OneList->expire_from_date }}" name="expire_from_date" id="" placeholder=""> খ্রি: হতে
                                                         <input
-                                                        type="text" class="form-control datepicker custom-form" required name="expire_to_date" id="" placeholder=""> পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে উক্ত ব্যাক্তির
+                                                        type="text" class="form-control datepicker custom-form" required value="{{ $fd9OneList->expire_to_date }}" name="expire_to_date" id="" placeholder="">
+                                                পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে উক্ত ব্যাক্তির
                                                 অনুমোদিত সময়ের জন্য ওয়ার্ক পারমিট ইস্যু করার জন্য ওয়ার্ক পারমিট ইস্যু
                                                 করার জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
                                             </p>
                                             <ul>
                                                 <li>নিয়োগপত্র সত্যায়ন প্রমাণক :  <input type="file" name="attestation_of_appointment_letter" accept="application/pdf" class="form-control custom-form"
-                                                                                        id="" required placeholder=""></li>
-                                                <li>ফর্ম ৯ এর কপি: <input type="file" name="copy_of_form_nine" required accept="application/pdf"class="form-control custom-form"
-                                                                         id="" placeholder=""></li>
+                                                                                        id=""  placeholder="">
+
+                                                                                        <?php
+
+                                                                                        if(!$fd9OneList->attestation_of_appointment_letter){
+
+                                                                                        }else{
+
+
+
+                                                                                        $file_path = url($fd9OneList->attestation_of_appointment_letter);
+                                                                                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                                                                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                                                        echo $filename.'.'.$extension ;
+                                                                                        }
+
+
+
+
+                                                                                                        ?>
+                                                                                    </li>
+                                                <li>ফর্ম ৯ এর কপি: <input type="file" name="copy_of_form_nine"  accept="application/pdf"class="form-control custom-form"
+                                                                         id="" placeholder="">
+                                                                         <?php
+
+                                                                         if(!$fd9OneList->copy_of_form_nine){
+
+                                                                         }else{
+
+
+
+                                                                         $file_path = url($fd9OneList->copy_of_form_nine);
+                                                                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                                                         $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                                         echo $filename.'.'.$extension ;
+                                                                         }
+
+
+
+
+                                                                                         ?>
+                                                                        </li>
                                                 <li>ছবি: <input type="file" accept="image/*" name="foreigner_image" class="form-control custom-form"
-                                                               id="" placeholder=""></li>
-                                                <li>এন ভিসা নিয়ে আগমনের তারিখ (প্রমানসহ): <input type="text" required name="arrival_date_in_nvisa"  class="form-control datepicker custom-form"
-                                                                                                id="" placeholder=""><input required type="file" accept="application/pdf" name="copy_of_nvisa" class="form-control custom-form"
-                                                                                                id="" placeholder=""></li>
+                                                               id="" placeholder="">
+
+                                                               @if(!$fd9OneList->foreigner_image)
+
+                                                               @else
+<img src="{{ asset('/') }}{{ $fd9OneList->foreigner_image }}" style="height:40px;"/>
+
+                                                               @endif
+
+
+                                                            </li>
+                                                <li>এন ভিসা নিয়ে আগমনের তারিখ (প্রমানসহ): <input type="text" required name="arrival_date_in_nvisa" value="{{ $fd9OneList->arrival_date_in_nvisa }}"  class="form-control datepicker custom-form"
+                                                                                                id="" placeholder=""><input  type="file" accept="application/pdf" name="copy_of_nvisa" class="form-control custom-form"
+                                                                                                id="" placeholder="">  <?php
+
+                                                                                                if(!$fd9OneList->copy_of_nvisa){
+
+                                                                                                }else{
+
+
+
+                                                                                                $file_path = url($fd9OneList->copy_of_nvisa);
+                                                                                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                                                                                $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                                                                echo $filename.'.'.$extension ;
+                                                                                                }
+
+
+
+
+                                                                                                                ?></li>
                                             </ul>
-                                            <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span><input type="text" required name="proposed_from_date" class="datepicker form-control custom-form"
-                                                id="" placeholder=""></span> হতে <span><input type="text" required name="proposed_to_date" class="datepicker form-control custom-form"
+                                            <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span><input type="text" required name="proposed_from_date" value="{{ $fd9OneList->proposed_from_date }}" class="datepicker form-control custom-form"
+                                                id="" placeholder=""></span> হতে <span><input type="text" required name="proposed_to_date" value="{{ $fd9OneList->proposed_to_date }}" class="datepicker form-control custom-form"
                                                     id="" placeholder=""></span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
                                         </div>
                                     </div>
