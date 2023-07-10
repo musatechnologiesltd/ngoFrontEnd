@@ -236,9 +236,9 @@
 
                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                      ?>
-
+সংযুক্ত
                                      @endif
-                                     <a href="{{ route('niyogPotroDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>
+                                     {{-- <a href="{{ route('niyogPotroDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a> --}}
     </td>
                             </tr>
                             <tr>
@@ -255,9 +255,9 @@
 
                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                      ?>
-
+সংযুক্ত
                                      @endif
-                                     <a href="{{ route('formNinePdfDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>
+                                     {{-- <a href="{{ route('formNinePdfDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a> --}}
     </td>
                             </tr>
                             <tr>
@@ -281,9 +281,9 @@
 
                                 $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                 ?>
-
+সংযুক্ত,
                                 @endif
-<a href="{{ route('nVisaCopyDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>,
+{{-- <a href="{{ route('nVisaCopyDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>, --}}
                                 {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->arrival_date_in_nvisa))) }}</td>
                             </tr>
                         </table>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\NGO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NVisa;
+use App\Models\NgoStatus;
 use App\Models\Country;
 use App\Models\Fd9Form;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
@@ -304,6 +305,63 @@ return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_a
 
     public function show($id){
 
-        
+
+    }
+
+
+    public function mainFd9PdfDownload($id){
+
+
+        $nVisaEdit = NVisa::where('id',$id)
+       ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice','fd9Form'])->first();
+
+       $getCityzenshipData = Country::whereNotNull('country_people_english')
+       ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+
+
+$countryList = Country::orderBy('id','asc')->get();
+$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+
+        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
+      'May','June','July','August','September','October','November','December','Saturday','Sunday',
+      'Monday','Tuesday','Wednesday','Thursday','Friday');
+      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
+      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
+      বুধবার','বৃহস্পতিবার','শুক্রবার'
+      );
+
+$file_Name_Custome = "Fd9_Form";
+        $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
+            'engDATE'=>$engDATE,
+            'bangDATE'=>$bangDATE,
+            'nVisaEdit'=>$nVisaEdit,
+            'getCityzenshipData'=>$getCityzenshipData,
+            'countryList'=>$countryList,
+            'ngo_list_all'=>$ngo_list_all,
+            'ngoStatus'=>$ngoStatus
+
+        ],[],['format' => 'A4']);
+    return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+    }
+
+    public function mainFd9PdfUpload(Request $request){
+
+        $fd9FormInfo = Fd9Form::find($request->id);
+
+        if ($request->hasfile('verified_fd_nine_form')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('verified_fd_nine_form');
+
+            $fd9FormInfo->verified_fd_nine_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+        $fd9FormInfo->save();
+
+
+        return redirect()->back()->with('success','Update Successfully');
     }
 }

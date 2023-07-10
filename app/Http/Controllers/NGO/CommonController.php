@@ -17,7 +17,7 @@ class CommonController extends Controller
         }
 
 
-        $extension = $file->getClientOriginalName();
+        $extension = time().mt_rand(1000000000, 9999999999).$file->getClientOriginalName();
         $filename = $extension;
         $file->move('public/uploads/'.$filePath.'/', $filename);
         $imageUrl =  'public/uploads/'.$filePath.'/'.$filename;
@@ -39,7 +39,7 @@ class CommonController extends Controller
         }
 
 
-        $extension = $file->getClientOriginalName();
+        $extension = time().mt_rand(1000000000, 9999999999).$file->getClientOriginalName();
         $filename = $extension;
         $file->move('public/uploads/'.$filePath.'/', $filename);
         $imageUrl =  'uploads/'.$filePath.'/'.$filename;

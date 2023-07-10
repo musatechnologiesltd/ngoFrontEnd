@@ -5,6 +5,7 @@ namespace App\Http\Controllers\NGO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NVisa;
+use App\Models\NgoStatus;
 use App\Models\Country;
 use App\Models\NVisaAuthorizedPersonalOfTheOrg;
 use App\Models\NVisaCompensationAndBenifits;
@@ -1202,8 +1203,61 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-return view('front.nVisa.show',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
 
     }
+
+
+
+    public function nVisaDocumentDownload($cat,$id){
+
+
+if($cat == 'nomination'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('nomination_letter_of_buyer');
+}elseif($cat == 'investment'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('registration_letter_of_board_of_investment');
+
+}elseif($cat == 'contract'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('employee_contract_copy');
+
+}elseif($cat == 'directors'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('board_of_the_directors_sign_letter');
+
+}elseif($cat == 'shareHolder'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('share_holder_copy');
+
+}elseif($cat == 'passportCopy'){
+
+    $get_file_data = NVisaNecessaryDocumentForWorkPermit::where('id',$id)->value('passport_photocopy');
+
+}
+
+
+
+
+$file_path = url('public/'.$get_file_data);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$file= public_path('/'). $get_file_data;
+
+$headers = array(
+          'Content-Type: application/pdf',
+        );
+
+// return Response::download($file,$filename.'.pdf', $headers);
+
+return Response::make(file_get_contents($file), 200, [
+    'content-type'=>'application/pdf',
+]);
+
+
+    }
+
+
 }

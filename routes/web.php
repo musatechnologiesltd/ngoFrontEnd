@@ -167,9 +167,19 @@ Route::controller(OtherformController::class)->group(function () {
 Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('nVisa',NVisaController::class);
+
+    Route::controller(NVisaController::class)->group(function () {
+
+        Route::get('/nVisaDocumentDownload/{cat}/{id}', 'nVisaDocumentDownload')->name('nVisaDocumentDownload');
+    });
+
     Route::resource('fdNineForm',Fd9Controller::class);
 
+    Route::controller(Fd9Controller::class)->group(function () {
+        Route::post('/mainFd9PdfUpload', 'mainFd9PdfUpload')->name('mainFd9PdfUpload');
 
+        Route::get('/mainFd9PdfDownload/{id}', 'mainFd9PdfDownload')->name('mainFd9PdfDownload');
+    });
     Route::resource('fdNineOneForm',Fd9OneController::class);
 
     Route::controller(Fd9OneController::class)->group(function () {
