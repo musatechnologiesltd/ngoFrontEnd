@@ -256,7 +256,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                         <div class="buttons d-flex justify-content-end mt-4">
                         {{-- <a href="{{ route('ngoAllRegistrationForm') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a> --}}
 
-                        <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.back')}}</button>
+                        <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">আপডেট করুন </button>
 
                         </div>
                         @else
@@ -266,7 +266,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_form_eight" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             @if(count($formEightData) == 0)
 
-                            <button class="btn btn-custom " name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                            <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
 
                             @else
                             <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
@@ -389,7 +389,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
 
     $(".submit_button").click(function () {
-
+//alert(33);
         var to_date = $('#to_date').val();
         var form_date = $('#form_date').val();
         var total_year = $('#total_year').val();

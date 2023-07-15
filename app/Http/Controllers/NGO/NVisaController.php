@@ -79,7 +79,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
     public function store(Request $request){
 
-
+//dd($request->all());
 
 
 
@@ -116,7 +116,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
             'phone' => 'required|string',
             'city' => 'required|string',
             'fax_no' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|string',
             'date_of_birth' => 'required|string',
             'martial_status' => 'required|string',
             'employed_designation' => 'required|string',
@@ -133,21 +133,21 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
             'work_road_no' => 'required|string',
             'work_org_type' => 'required|string',
             'desired_effective_date' => 'required|string',
-            'contact_person_mobile_number' => 'required|integer',
+            'contact_person_mobile_number' => 'required|string',
             'work_district' => 'required|string',
             'work_thana' => 'required|string',
-            'work_email' => 'required|email',
+            'work_email' => 'required|string',
             'auth_person_org_name' => 'required|string',
             'auth_person_org_house_no' => 'required|string',
             'auth_person_org_flat_no' => 'required|string',
             'auth_person_org_road_no' => 'required|string',
             'auth_person_org_post_office' => 'required|string',
-            'auth_person_org_mobile' => 'required|integer',
+            'auth_person_org_mobile' => 'required|string',
             'auth_person_org_district' => 'required|string',
             'auth_person_org_thana' => 'required|string',
             'submission_date' => 'required|string',
             'expatriate_name' => 'required|string',
-            'expatriate_email' => 'required|email',
+            'expatriate_email' => 'required|string',
         ]);
 
       //dd($request->passport_photocopy);

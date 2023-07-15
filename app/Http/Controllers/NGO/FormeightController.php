@@ -365,7 +365,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
         $start_date_one = date("d/m/Y", strtotime($request->form_date));
-        //dd($start_date_one);
+
 
         $end_date_one = date("d/m/Y", strtotime($request->to_date));
 
@@ -382,8 +382,8 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
                         if(count($all_partiw) > 0){
-
-                            $users_update = FormEight::where('fd_one_form_id',$fdOneFormId)
+                            //dd(22);
+                            FormEight::where('fd_one_form_id',$fdOneFormId)
                             ->whereNull('form_date')
                             ->update([
                                 'form_date' => $start_date_one,
@@ -395,7 +395,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
                         }
-
+                        //dd(33);
                         $checkCompleteStatusData = DB::table('form_complete_statuses')
    ->where('user_id',Auth::user()->id)
    ->first();

@@ -264,7 +264,7 @@ class Fd9OneController extends Controller
 
     public function mainPdfDownload($id){
 
-
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();
 
 
@@ -280,6 +280,7 @@ $file_Name_Custome = "Fd9.1_Form";
         $pdf=PDF::loadView('front.fd9OneForm.mainPdfDownload',[
             'engDATE'=>$engDATE,
             'bangDATE'=>$bangDATE,
+            'ngo_list_all'=>$ngo_list_all,
             'fd9OneList'=>$fd9OneList
 
         ],[],['format' => 'A4']);

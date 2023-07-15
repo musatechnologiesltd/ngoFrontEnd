@@ -203,7 +203,7 @@
                         <table class="table table-borderless">
                             <tr>
                                 <td>বিষয়:</td>
-                                <td>সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী "<span>{{ $fd9OneList->foreigner_name_for_subject }}</span>" এর
+                                <td>{{ $ngo_list_all->organization_name }} সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী "<span>{{ $fd9OneList->foreigner_name_for_subject }}</span>" এর
                                     ওয়ার্ক পারমিট প্রসঙ্গে।
                                 </td>
                             </tr>
