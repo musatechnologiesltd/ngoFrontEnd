@@ -48,6 +48,15 @@
                             <div class="card">
                                 <div class="card-body file-manager">
                                     <div class="files">
+                                      @if(count($ngoMemberDocLists) == 0)
+                                      
+                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                      <h2>তথ্য পাওয়া যায়নি</h2>
+                                      @else
+                                      <h2>Data Not Found</h2>
+                                      @endif
+                                      
+                                      @else
                                         @foreach($ngoMemberDocLists as $all_all_ngo_member_doc)
 
 
@@ -134,6 +143,7 @@
                                             </div>
                                         </div>
                                         @endforeach
+                                      @endif
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +154,18 @@
 
                             @if(count($ngoMemberDocLists) == 0)
 
+                          @if(count($ngoMemberDocLists) >= 2)
+
                             <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @else
+                                 <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @endif
                             @else
+                          @if(count($ngoMemberDocLists) >= 2)
                             <a class="btn btn-custom submit_button" href="{{ route('ngoMemberDocFinalUpdate') }}">{{ trans('fd_one_step_one.Next_Step')}}</a>
+                          @else
+                          <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @endif
                             @endif
 
                         </div>

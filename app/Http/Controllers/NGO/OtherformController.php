@@ -41,20 +41,13 @@ class OtherformController extends Controller
         return view('front.other.informationResetPage');
     }
 
-    public function changeLanguage(Request $request){
+    public function changeLanguage($lan){
+      
+      //dd($lan);
+            App::setLocale($lan);
+            session()->put('locale',$lan);
 
-
-        $get_lang =  session()->get('locale');
-
-        if($get_lang == 'en'){
-            App::setLocale('sp');
-            session()->put('locale','sp');
-
-        }else{
-            App::setLocale('en');
-            session()->put('locale','en');
-
-        }
+     
 
         return redirect()->back();
 

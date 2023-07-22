@@ -144,7 +144,7 @@ Route::controller(OtherformController::class)->group(function () {
     Route::get('ngoInstructionPage', 'ngoInstructionPage')->name('ngoInstructionPage');
     Route::get('ngoRegistrationFeeList', 'ngoRegistrationFeeList')->name('ngoRegistrationFeeList');
     Route::get('lang/change', 'change')->name('changeLang');
-    Route::get('changeLanguage', 'changeLanguage')->name('changeLanguage');
+    Route::get('changeLanguage/{lan}', 'changeLanguage')->name('changeLanguage');
 
     Route::group(['middleware' => ['auth']], function() {
     Route::post('finalSubmitRegForm', 'finalSubmitRegForm')->name('finalSubmitRegForm');

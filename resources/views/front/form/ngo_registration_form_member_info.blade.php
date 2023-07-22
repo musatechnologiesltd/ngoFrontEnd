@@ -186,9 +186,18 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 
                                 @if(count($ngoMemberLists) == 0)
 
+
+                             @if(count($ngoMemberLists) >= 2)
                                 <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                              @else
+  <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                              @endif
                                 @else
+                              @if(count($ngoMemberLists) >= 2)
                                 <a class="btn btn-custom submit_button" href="{{ route('ngoMemberFinalUpdate') }}">{{ trans('fd_one_step_one.Next_Step')}}</a>
+                              @else
+  <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                              @endif
                                 @endif
 
                             </div>

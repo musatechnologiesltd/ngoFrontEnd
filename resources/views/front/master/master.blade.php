@@ -23,6 +23,7 @@
     <link href="{{ asset('/') }}public/front/assets/vendor/select2/css/select2.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('/') }}public/front/assets/css/responsive_style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/') }}public/front/assets/vendor/fontawesome4.7.0/css/font-awesome.min.css">
 
 

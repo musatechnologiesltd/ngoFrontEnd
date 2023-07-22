@@ -46,6 +46,16 @@
                             <div class="card">
                                 <div class="card-body file-manager">
                                     <div class="files">
+                                       @if(count($ngoOtherDocLists) == 0)
+                                      
+                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                      <h2>তথ্য পাওয়া যায়নি</h2>
+                                      @else
+                                      <h2>Data Not Found</h2>
+                                      @endif
+                                      
+                                      @else
+                                      
                                         @foreach($ngoOtherDocLists as $key=>$all_ngo_list_all)
 
                                         <?php
@@ -228,6 +238,7 @@
         @method('DELETE')
                                             </form>
                                             @endforeach
+                                      @endif
                                     </div>
                                 </div>
                             </div>
@@ -235,9 +246,17 @@
                         <div class="buttons d-flex justify-content-end mt-4">
                             <button class="btn btn-dark me-2 back_button"  onclick="location.href = '{{ route('ngoMemberDocument.index') }}';">{{ trans('fd_one_step_one.back')}}</button>
 @if(count($ngoOtherDocLists) == 0)
+                          @if(count($ngoOtherDocLists) >= 2)
 <button class="btn btn-custom next_button" type="button">{{ trans('fd_one_step_four.Submit')}}</button>
+                          @else
+                          <button class="btn btn-custom next_button" type="button" disabled>{{ trans('fd_one_step_four.Submit')}}</button>
+                          @endif
 @else
+                          @if(count($ngoOtherDocLists) >= 2)
                             <button class="btn btn-custom next_button" onclick="location.href = '{{ route('ngoDocumentFinal') }}';">{{ trans('fd_one_step_four.Submit')}}</button>
+                          @else
+                          <button class="btn btn-custom next_button" type="button" disabled>{{ trans('fd_one_step_four.Submit')}}</button>
+                          @endif
                             @endif
                         </div>
                     </div>
