@@ -256,7 +256,7 @@
             @if(session()->get('locale') == 'en')
             <td></td>
 
-            <td colspan="4">{{ str_replace($engDATE, $bangDATE, $key+1 )}}. কর্মকর্তা {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+            <td colspan="4">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
 
             @else
             <td></td>
@@ -364,7 +364,7 @@
             @if(session()->get('locale') == 'en')
             <td></td>
 
-            <td colspan="3">{{ str_replace($engDATE, $bangDATE, $key+1 )}}. পরামর্শক {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+            <td colspan="3">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
             <td></td>
             @else
             <td></td>

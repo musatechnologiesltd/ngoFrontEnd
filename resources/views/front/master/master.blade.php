@@ -161,14 +161,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও লগ ইন
 		@else
         	NGO Log In
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -180,14 +180,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
-			এনজিও রেজিস্ট্রেশান
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+			এনজিও নিবন্ধন
 		@else
         	 Registration For User
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -200,14 +200,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			ইমেল যাচাইকরণ
 		@else
         	Email Verification Page
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -220,14 +220,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			ইমেল যাচাই সম্পন্ন
 		@else
         	Email Verified
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -240,14 +240,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			আবেদনের অবস্থান পর্যবেক্ষণ
 		@else
         	Application Status Check
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -260,14 +260,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			আবেদনের অবস্থান ফলাফল
 		@else
         	Application Status Result
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -280,14 +280,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিওর সকল কার্যাবলীর নির্দেশনা
 		@else
         	NGO Instruction
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform
@@ -300,14 +300,14 @@
 <div class="faq_header_box">
 	<div class="container">
       <h1>
-		@if(session()->get('locale') == 'en')
+		@if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিওর নিবন্ধন ফি তালিকা
 		@else
         	NGO Registration Fee List
 		@endif
 	  </h1>
       <h4>
-        @if(session()->get('locale') == 'en')
+        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
 			এনজিও বিষয়ক ব্যুরো ডিজিটাল প্ল্যাটফর্ম
 		@else
         	NGO Affairs Bureau Digital Platform

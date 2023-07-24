@@ -50,7 +50,7 @@
             <div class="p-2">
                 <button onclick="location.href = '{{ route('changeLanguage','sp') }}';" class="btn button-sign {{ session()->get('locale') == 'sp' ? 'lang_active_button' : '' }}" >English</button>
             </div>
-          
+
           @endif
            @if (Auth::check())
             <div class="p-2">
@@ -176,7 +176,7 @@
 
                     <div class="sidebar_content sidebar_foot">
                         <p>
-                              @if(session()->get('locale') == 'en')
+                              @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
             &copy; <strong><span>এনজিও অনলাইন নিবন্ধন পোর্টাল, v১.0.0</span></strong>. সর্বস্বত্ব সংরক্ষিত.
             @else
             &copy; <strong><span>NGO Online Registration Portal, v1.0.0</span></strong>. All Rights Reserved.

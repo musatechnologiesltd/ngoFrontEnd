@@ -183,15 +183,9 @@ if(empty($formCompleteStatus)){
         $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
         $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-       $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-        return view('front.form.formone.fdFormOneInfo',compact('bangDATE','engDATE','get_all_source_of_fund_data','formOneMemberList','get_all_data_adviser','get_all_data_other','get_all_data_adviser_bank','allformOneData'));
+
+        return view('front.form.formone.fdFormOneInfo',compact('get_all_source_of_fund_data','formOneMemberList','get_all_data_adviser','get_all_data_other','get_all_data_adviser_bank','allformOneData'));
 
 
     }
@@ -906,19 +900,12 @@ if(in_array(null, $input['name'])){
 
         $payment_detail = 11;
 
-        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
+
 
 
         $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
             'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-            'engDATE'=>$engDATE,
-            'bangDATE'=>$bangDATE,
+           
             'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
             'formOneMemberList'=>$formOneMemberList,
             'get_all_data_adviser'=>$get_all_data_adviser,

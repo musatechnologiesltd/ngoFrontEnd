@@ -27,8 +27,8 @@
                         মহাপরিচালক <br>
                         এনজিও বিষয় ব্যুরো, ঢাকা <br>
                         জনাব,</p>
-                    <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{str_replace($engDATE,$bangDATE,$ngo_list_all->registration_number)}}
-                        তারিখঃ {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
+                    <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
+                        তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
                         অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                         এনডিসা প্রাপ্তির সুপারিশপত্র
                         পাওয়ার জন্য আবেদন করছিঃ</p>
@@ -61,12 +61,12 @@
                 <tr>
                     <td>৩.</td>
                     <td>জন্ম স্থান ও তারিখ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
+                    <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
                 </tr>
                 <tr>
                     <td>৪.</td>
                     <td>পাসপোর্ট নম্বর, ইস্যু ও মেয়াদোর্ত্তীণ তারিখ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
+                    <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
                 </tr>
                 <tr>
                     <td>৫.</td>
@@ -229,7 +229,7 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২১.</td>
                     <td>এক্সটেনশন হয়ে থাকলে তার সময়কাল</td>
-                    <td>: {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
+                    <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
                 </tr>
                 <tr>
                     <td>২২.</td>

@@ -10,18 +10,7 @@
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
-
-
-
-?>
+@include('translate')
 
 <section>
 
@@ -209,14 +198,14 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর <span>{{ $fd9OneList->sarok_number }}</span> তারিখ <span>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->application_date))) }}</span>
+                                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর <span>{{ $fd9OneList->sarok_number }}</span> তারিখ <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->application_date))) }}</span>
                                 </td>
                             </tr>
                         </table>
 
                         <p class="mt-3 mb-2">
                             উপর্যুক্ত বিষয় ও সূত্রের বরাতে "<span>{{ $fd9OneList->institute_name }}</span>" সংস্থার "<span>{{ $fd9OneList->prokolpo_name }}</span>" প্রকল্পের আওতায় "<span>{{ $fd9OneList->designation_name }}</span>" হিসেবে বিদেশী বিশেষজ্ঞ/
-                            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <span>{{ $fd9OneList->foreigner_name_for_body }}</span> কে <span>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }}</span> খ্রি: হতে <span>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }}</span> পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
+                            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <span>{{ $fd9OneList->foreigner_name_for_body }}</span> কে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }}</span> খ্রি: হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }}</span> পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
                             উক্ত ব্যাক্তির অনুমোদিত সময়ের জন্য ওয়ার্ক পারমিট ইস্যু করার জন্য ওয়ার্ক পারমিট ইস্যু করার
                             জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
                         </p>
@@ -284,11 +273,11 @@
 সংযুক্ত,
                                 @endif
 {{-- <a href="{{ route('nVisaCopyDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>, --}}
-                                {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->arrival_date_in_nvisa))) }}</td>
+                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->arrival_date_in_nvisa))) }}</td>
                             </tr>
                         </table>
 
-                        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
+                        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
                         <div class="row">
                             <div class="col-lg-6 col-sm-12"></div>
