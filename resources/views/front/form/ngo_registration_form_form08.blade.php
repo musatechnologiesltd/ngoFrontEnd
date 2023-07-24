@@ -52,9 +52,9 @@ $newDate1 = date("Y-m-d", strtotime($from_date_to));
 
 $to_date_to = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('to_date');
 
-$newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
-->format('Y-m-d');;
-
+// $newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
+// ->format('Y-m-d');;
+$newDate2 = date("Y-m-d", strtotime($to_date_to));
 //dd($newDate2);
 $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('total_year');
 }
@@ -265,6 +265,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
 
   @if(count($formEightData) >= 2)
+
                            <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
                           @else
                             <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
@@ -272,6 +273,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 @endif
                             @else
                             @if(count($formEightData) >= 2)
+
                            <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
                           @else
   <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
@@ -436,7 +438,7 @@ if(total_year.length == 0){
 
 
     $(".submit_button").click(function () {
-
+        //alert(33);
         var to_date = $('#to_date').val();
         var form_date = $('#form_date').val();
         var total_year = $('#total_year').val();

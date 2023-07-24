@@ -221,7 +221,7 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
 ?>
-<form action="{{ route('update_renew_information_list') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+<form action="{{ route('updateRenewInformationList') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
     @csrf
 <div class="main active">
     <div class="text">

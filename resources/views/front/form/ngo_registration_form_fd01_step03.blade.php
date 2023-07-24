@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required  type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required  type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -241,7 +241,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -297,7 +297,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -366,7 +366,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]"  value="{{ $allFormOneMemberList->date_of_join }}" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]"  value="{{ $allFormOneMemberList->date_of_join }}" required type="text" class="form-control datepicker" id="">
                                     </div>
 
                                     <?php

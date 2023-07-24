@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0-rc1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 22, 2023 at 04:21 PM
--- Server version: 5.7.40-0ubuntu0.18.04.1
--- PHP Version: 8.1.17
+-- Host: 127.0.0.1
+-- Generation Time: Jul 24, 2023 at 12:21 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `badhan_ngo`
+-- Database: `ngo_v2`
 --
 
 -- --------------------------------------------------------
@@ -29,19 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `admin_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_name_ban` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin_mobile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin_name` varchar(255) NOT NULL,
+  `admin_name_ban` varchar(255) NOT NULL,
+  `admin_mobile` varchar(255) NOT NULL,
   `designation_list_id` bigint(20) UNSIGNED NOT NULL,
   `branch_id` bigint(20) UNSIGNED NOT NULL,
-  `admin_sign` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `admin_job_start_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `admin_job_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `admin_image` text COLLATE utf8mb4_unicode_ci,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `admin_sign` varchar(255) DEFAULT NULL,
+  `admin_job_start_date` varchar(255) DEFAULT NULL,
+  `admin_job_end_date` varchar(255) DEFAULT NULL,
+  `admin_image` text DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
   `admin_email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -63,8 +63,8 @@ INSERT INTO `admins` (`id`, `admin_name`, `admin_name_ban`, `admin_mobile`, `des
 
 CREATE TABLE `branches` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `branch_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `branch_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `branch_name` varchar(255) NOT NULL,
+  `branch_code` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -88,11 +88,11 @@ INSERT INTO `branches` (`id`, `branch_name`, `branch_code`, `created_at`, `updat
 
 CREATE TABLE `countries` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `country_iso_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_name_english` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_name_bangla` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_people_english` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_people_bangla` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_iso_code` varchar(255) DEFAULT NULL,
+  `country_name_english` varchar(255) DEFAULT NULL,
+  `country_name_bangla` varchar(255) DEFAULT NULL,
+  `country_people_english` varchar(255) DEFAULT NULL,
+  `country_people_bangla` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -305,7 +305,7 @@ INSERT INTO `countries` (`id`, `country_iso_code`, `country_name_english`, `coun
 CREATE TABLE `designation_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `branch_id` bigint(20) UNSIGNED NOT NULL,
-  `designation_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -330,8 +330,8 @@ INSERT INTO `designation_lists` (`id`, `branch_id`, `designation_name`, `created
 CREATE TABLE `designation_steps` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `designation_list_id` bigint(20) UNSIGNED NOT NULL,
-  `designation_step` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `designation_serial` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `designation_step` varchar(255) NOT NULL,
+  `designation_serial` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -354,12 +354,12 @@ INSERT INTO `designation_steps` (`id`, `designation_list_id`, `designation_step`
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` longtext NOT NULL,
+  `exception` longtext NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -371,8 +371,8 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `fd9_foreigner_employee_family_member_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd9_form_id` bigint(20) UNSIGNED NOT NULL,
-  `family_member_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `family_member_age` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `family_member_name` varchar(255) DEFAULT NULL,
+  `family_member_age` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -394,39 +394,39 @@ INSERT INTO `fd9_foreigner_employee_family_member_lists` (`id`, `fd9_form_id`, `
 CREATE TABLE `fd9_forms` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `fd9_foreigner_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_father_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_husband_or_wife_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_mother_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_birth_place` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_dob` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_passport_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_passport_issue_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_passport_expiration_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_identification_mark_given_in_passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_male_or_female` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_marital_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_nationality_or_citizenship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_details_if_multiple_citizenships` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_previous_citizenship_is_grounds_for_non_retention` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_current_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_number_of_family_members` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_academic_qualification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_technical_and_other_qualifications_if_any` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_past_experience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_countries_that_have_traveled` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_offered_post` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_name_of_proposed_project` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_date_of_appointment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_extension_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_post_available_for_foreigner_and_working` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_previous_work_experience_in_bangladesh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_total_foreigner_working` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_other_information` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_foreigner_passport_size_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fd9_copy_of_passport` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verified_fd_nine_form` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fd9_foreigner_name` varchar(255) DEFAULT NULL,
+  `fd9_father_name` varchar(255) DEFAULT NULL,
+  `fd9_husband_or_wife_name` varchar(255) DEFAULT NULL,
+  `fd9_mother_name` varchar(255) DEFAULT NULL,
+  `fd9_birth_place` varchar(255) DEFAULT NULL,
+  `fd9_dob` varchar(255) DEFAULT NULL,
+  `fd9_passport_number` varchar(255) DEFAULT NULL,
+  `fd9_passport_issue_date` varchar(255) DEFAULT NULL,
+  `fd9_passport_expiration_date` varchar(255) DEFAULT NULL,
+  `fd9_identification_mark_given_in_passport` varchar(255) DEFAULT NULL,
+  `fd9_male_or_female` varchar(255) DEFAULT NULL,
+  `fd9_marital_status` varchar(255) DEFAULT NULL,
+  `fd9_nationality_or_citizenship` varchar(255) DEFAULT NULL,
+  `fd9_details_if_multiple_citizenships` varchar(255) DEFAULT NULL,
+  `fd9_previous_citizenship_is_grounds_for_non_retention` varchar(255) DEFAULT NULL,
+  `fd9_current_address` varchar(255) DEFAULT NULL,
+  `fd9_number_of_family_members` varchar(255) DEFAULT NULL,
+  `fd9_academic_qualification` varchar(255) DEFAULT NULL,
+  `fd9_technical_and_other_qualifications_if_any` varchar(255) DEFAULT NULL,
+  `fd9_past_experience` varchar(255) DEFAULT NULL,
+  `fd9_countries_that_have_traveled` varchar(255) DEFAULT NULL,
+  `fd9_offered_post` varchar(255) DEFAULT NULL,
+  `fd9_name_of_proposed_project` varchar(255) DEFAULT NULL,
+  `fd9_date_of_appointment` varchar(255) DEFAULT NULL,
+  `fd9_extension_date` varchar(255) DEFAULT NULL,
+  `fd9_post_available_for_foreigner_and_working` varchar(255) DEFAULT NULL,
+  `fd9_previous_work_experience_in_bangladesh` varchar(255) DEFAULT NULL,
+  `fd9_total_foreigner_working` varchar(255) DEFAULT NULL,
+  `fd9_other_information` varchar(255) DEFAULT NULL,
+  `fd9_foreigner_passport_size_photo` varchar(255) DEFAULT NULL,
+  `fd9_copy_of_passport` varchar(255) DEFAULT NULL,
+  `verified_fd_nine_form` varchar(255) DEFAULT NULL,
+  `status` varchar(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -447,24 +447,24 @@ INSERT INTO `fd9_forms` (`id`, `n_visa_id`, `fd9_foreigner_name`, `fd9_father_na
 CREATE TABLE `fd9_one_forms` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `foreigner_name_for_subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sarok_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `application_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `institute_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `prokolpo_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `designation_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreigner_name_for_body` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expire_from_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expire_to_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `attestation_of_appointment_letter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `copy_of_form_nine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreigner_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `arrival_date_in_nvisa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `copy_of_nvisa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proposed_from_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `proposed_to_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verified_fd_nine_one_form` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foreigner_name_for_subject` varchar(255) DEFAULT NULL,
+  `sarok_number` varchar(255) DEFAULT NULL,
+  `application_date` varchar(255) DEFAULT NULL,
+  `institute_name` varchar(255) DEFAULT NULL,
+  `prokolpo_name` varchar(255) DEFAULT NULL,
+  `designation_name` varchar(255) DEFAULT NULL,
+  `foreigner_name_for_body` varchar(255) DEFAULT NULL,
+  `expire_from_date` varchar(255) DEFAULT NULL,
+  `expire_to_date` varchar(255) DEFAULT NULL,
+  `attestation_of_appointment_letter` varchar(255) DEFAULT NULL,
+  `copy_of_form_nine` varchar(255) DEFAULT NULL,
+  `foreigner_image` varchar(255) DEFAULT NULL,
+  `arrival_date_in_nvisa` varchar(255) DEFAULT NULL,
+  `copy_of_nvisa` varchar(255) DEFAULT NULL,
+  `proposed_from_date` varchar(255) DEFAULT NULL,
+  `proposed_to_date` varchar(255) DEFAULT NULL,
+  `verified_fd_nine_one_form` varchar(255) DEFAULT NULL,
+  `status` varchar(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -485,9 +485,9 @@ INSERT INTO `fd9_one_forms` (`id`, `fd_one_form_id`, `foreigner_name_for_subject
 CREATE TABLE `fd_one_adviser_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `information` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `information` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -498,8 +498,7 @@ CREATE TABLE `fd_one_adviser_lists` (
 
 INSERT INTO `fd_one_adviser_lists` (`id`, `fd_one_form_id`, `name`, `information`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'unit_add', 'fdfds', '14:46:00 pm', '2023-07-15 02:46:00', '2023-07-15 02:46:00'),
-(2, 2, 'ওয়াটার এইড', 'বানানী', '14:50:40 pm', '2023-07-22 02:50:40', '2023-07-22 02:50:40'),
-(3, 3, 'report_add', '555', '15:17:43 pm', '2023-07-22 03:17:43', '2023-07-22 03:17:43');
+(5, 5, '555', '555', '14:57:26 pm', '2023-07-24 02:57:26', '2023-07-24 02:57:26');
 
 -- --------------------------------------------------------
 
@@ -510,12 +509,12 @@ INSERT INTO `fd_one_adviser_lists` (`id`, `fd_one_form_id`, `name`, `information
 CREATE TABLE `fd_one_bank_accounts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `account_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `account_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_bank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `branch_name_of_bank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_number` varchar(255) DEFAULT NULL,
+  `account_type` varchar(255) DEFAULT NULL,
+  `name_of_bank` varchar(255) DEFAULT NULL,
+  `branch_name_of_bank` varchar(255) DEFAULT NULL,
+  `bank_address` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -526,8 +525,7 @@ CREATE TABLE `fd_one_bank_accounts` (
 
 INSERT INTO `fd_one_bank_accounts` (`id`, `fd_one_form_id`, `account_number`, `account_type`, `name_of_bank`, `branch_name_of_bank`, `bank_address`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'fdsfds', 'fsdfdsf', 'sdfd', 'sdfs', 'sdfds', '14:46:00 pm', '2023-07-15 02:46:00', '2023-07-15 02:46:00'),
-(2, 2, '1271440002577', 'সাভিং', 'ঢাকা ব্যাংক', 'বাড্ডা', 'ঢাকা', '14:50:40 pm', '2023-07-22 02:50:40', '2023-07-22 02:50:40'),
-(3, 3, '33', 'rr', '33', '33', '33', '15:17:43 pm', '2023-07-22 03:17:43', '2023-07-22 03:17:43');
+(5, 5, 'tryrty', '33', '33', '33', 'qweqw', '14:57:26 pm', '2023-07-24 02:57:26', '2023-07-24 02:57:26');
 
 -- --------------------------------------------------------
 
@@ -538,32 +536,32 @@ INSERT INTO `fd_one_bank_accounts` (`id`, `fd_one_form_id`, `account_number`, `a
 CREATE TABLE `fd_one_forms` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `registration_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `registration_number_given_by_admin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organization_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organization_name_ban` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organization_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_of_head_office` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_of_head_office_eng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_of_origin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_head_in_bd` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `citizenship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `plan_of_operation` text COLLATE utf8mb4_unicode_ci,
-  `local_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `annual_budget` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `treasury_number` text COLLATE utf8mb4_unicode_ci,
-  `attach_the__supporting_paper` text COLLATE utf8mb4_unicode_ci,
-  `vat_invoice_number` text COLLATE utf8mb4_unicode_ci,
-  `board_of_revenue_on_fees` text COLLATE utf8mb4_unicode_ci,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `complete_status` text COLLATE utf8mb4_unicode_ci,
-  `verified_fd_one_form` text COLLATE utf8mb4_unicode_ci,
+  `registration_number` varchar(255) DEFAULT NULL,
+  `registration_number_given_by_admin` varchar(255) DEFAULT NULL,
+  `organization_name` varchar(255) DEFAULT NULL,
+  `organization_name_ban` varchar(255) DEFAULT NULL,
+  `organization_address` varchar(255) DEFAULT NULL,
+  `address_of_head_office` varchar(255) DEFAULT NULL,
+  `address_of_head_office_eng` varchar(255) DEFAULT NULL,
+  `country_of_origin` varchar(255) DEFAULT NULL,
+  `name_of_head_in_bd` varchar(255) DEFAULT NULL,
+  `job_type` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `citizenship` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `plan_of_operation` text DEFAULT NULL,
+  `local_address` varchar(255) DEFAULT NULL,
+  `annual_budget` varchar(255) DEFAULT NULL,
+  `treasury_number` text DEFAULT NULL,
+  `attach_the__supporting_paper` text DEFAULT NULL,
+  `vat_invoice_number` text DEFAULT NULL,
+  `board_of_revenue_on_fees` text DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
+  `complete_status` text DEFAULT NULL,
+  `verified_fd_one_form` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -574,8 +572,7 @@ CREATE TABLE `fd_one_forms` (
 
 INSERT INTO `fd_one_forms` (`id`, `user_id`, `registration_number`, `registration_number_given_by_admin`, `organization_name`, `organization_name_ban`, `organization_address`, `address_of_head_office`, `address_of_head_office_eng`, `country_of_origin`, `name_of_head_in_bd`, `job_type`, `address`, `district`, `phone`, `email`, `citizenship`, `profession`, `plan_of_operation`, `local_address`, `annual_budget`, `treasury_number`, `attach_the__supporting_paper`, `vat_invoice_number`, `board_of_revenue_on_fees`, `time_for_api`, `complete_status`, `verified_fd_one_form`, `created_at`, `updated_at`) VALUES
 (1, 1, '1863', '7493951141738010', 'Padma Hut', 'Padma Hut', 'Padma Hut', 'বাড্ডা ,ঢাকা', 'Badda,Dhaka', 'বাংলাদেশ', 'Kamruzzaman kajol', 'Full-Time', 'Rajshahi', 'gaibandha', '01646735100', 'kkajol428@gmail.com', 'Bangladeshi', 'পেশা নাই', 'uploads/FdOneForm/16894106878599065505sample.pdf', '0', '4534', '23343', 'uploads/attach_the_supporting_papers/16894107608924705009dummy.pdf', '4545', 'uploads/board_of_revenue_on_fees/16894107607178925569dummy.pdf', '14:43:24', 'save_and_exit_from_three', 'uploads/verifiedFdOneForm/16894109483189589021dummy.pdf', '2023-07-15 02:43:24', '2023-07-15 02:49:08'),
-(2, 2, '0', '2872310102711392', 'Development Voluntary Activities (USCA)', 'উন্নয়ন সেচ্ছাসেবা কার্যক্রম (উসেকা)', '২৩/২, সাহাপাড়া রোদ, পোঃ বাসাবাটী, উপজেলাঃ বাগেরহাট সদর, জেলাঃ বাগেরহাট', '২৩/২, সাহাপাড়া রোদ, পোঃ বাসাবাটী, উপজেলাঃ বাগেরহাট সদর, জেলাঃ বাগেরহাট', '23/2, Sahapara Rod, Po: Basabati, Upazila: Bagerhat Sadar, District: Bagerhat', 'Bangladesh', 'কাজী লিয়াকত আলী', 'Full-Time', '২৩/২, সাহাপাড়া রোদ, পোঃ বাসাবাটী, উপজেলাঃ বাগেরহাট সদর, জেলাঃ বাগেরহাট', 'সম্পূর্ণ বাংলাদেশ', '01516773534', 'kazi@mail.com', 'Bangladeshi', 'শিক্ষক', NULL, '0', '১২,০০,০০০ টাকা', '২৫২৫২৫২৩২৫', 'uploads/attach_the_supporting_papers/16900158401378860479Letter of Commitment from Prospective donor.pdf', '২৩৪২৩২৪২২৪৩৪২', 'uploads/board_of_revenue_on_fees/16900158403090681075Letter of Commitment from Prospective donor.pdf', '14:23:20', 'save_and_exit_from_three', NULL, '2023-07-22 02:23:20', '2023-07-22 02:50:40'),
-(3, 3, '0', '2243481456729154', 'REZH1Jzz71', '5CnNnV5BOR', 'DgeKYSmzc7', '1foOGtQoFI', 'TDmjRChpqO', 'বাংলাদেশ', 'ivdEhReRFj', 'Full-Time', 'uoWGt7OMLU', 'ertr', '33783233333', 'rtrg9@jk0p.com', 'Afghanistan,Albanian', 'g2BKK6n1nv', 'uploads/FdOneForm/16900174012733994162sample (1).pdf', '0', 'erewre', '23343', 'uploads/attach_the_supporting_papers/16900174639816500705sample (1).pdf', '4545', 'uploads/board_of_revenue_on_fees/16900174637017479961sample (1).pdf', '15:16:09', 'save_and_exit_from_three', NULL, '2023-07-22 03:16:09', '2023-07-22 03:17:43');
+(5, 3, '1122', '2253700566853007', 'RdLRVPrcQO', 'RLWsojyR48', 'DfXLhdJBA1', 'r8gO4bawNh', 'K7SazO4EJ4', 'বাংলাদেশ', 'lPge51yXCX', 'Full-Time', 'hPIhbkAm6X', '55', '06201155555', 'q5pwh@o40t.com', 'Afghanistan,Andorran', '8ESEQh9JiW', 'uploads/FdOneForm/16901889867766333050sample.pdf', '0', '5555', '23343', 'uploads/attach_the_supporting_papers/16901890464446001616sample.pdf', '4545', 'uploads/board_of_revenue_on_fees/16901890461406498510sample.pdf', '14:56:06', 'save_and_exit_from_three', 'uploads/verifiedFdOneForm/16901910971093956611sample.pdf', '2023-07-24 02:56:06', '2023-07-24 03:31:37');
 
 -- --------------------------------------------------------
 
@@ -586,15 +583,15 @@ INSERT INTO `fd_one_forms` (`id`, `user_id`, `registration_number`, `registratio
 CREATE TABLE `fd_one_member_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_join` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `citizenship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `salary_statement` text COLLATE utf8mb4_unicode_ci,
-  `other_occupation` text COLLATE utf8mb4_unicode_ci,
-  `now_working_at` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `date_of_join` varchar(255) DEFAULT NULL,
+  `citizenship` varchar(255) DEFAULT NULL,
+  `salary_statement` text DEFAULT NULL,
+  `other_occupation` text DEFAULT NULL,
+  `now_working_at` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -609,16 +606,11 @@ INSERT INTO `fd_one_member_lists` (`id`, `fd_one_form_id`, `name`, `position`, `
 (3, 1, '2Np3H6VKzr', 'ofcId97gh4', 'pbuQ3hbWwm', 'udNSIv3iER', 'Welsh,Zambian', 'v9jGPBJHsD', 'TKBN38ou7q', NULL, '14:45:24', '2023-07-15 02:45:25', '2023-07-15 02:45:25'),
 (4, 1, 'urrWxW6eVa', 'QnTGTMzOVa', 'j4amfedels', 'aYJtNqoFVP', 'Welsh,Uzbekistani', 'r0Ppka1CH3', 'IhoF4kBZG4', NULL, '14:45:24', '2023-07-15 02:45:25', '2023-07-15 02:45:25'),
 (5, 1, 'wwHoHXE0I5', 'LUSb9dyqv0', 'CjoNaO7OvI', 'tOk4AII7HG', 'Welsh,Zambian', 'JlGoBWhCkx', '8WpJHrfaoN', NULL, '14:45:24', '2023-07-15 02:45:25', '2023-07-15 02:45:25'),
-(6, 2, 'মোঃ রনি হোসেন', 'ব্যবস্থাপনা পরিচালক', 'বাড্ডা, ঢাকা', '২৩শে ফেব্রুয়ারী ২০২৩', 'Bangladeshi', '১৫,০০০ টাকা', 'মুসা টেকনলোজিজ লিমিটেড এর সিটিও হিসেবে আছেন', NULL, '14:39:59', '2023-07-22 02:39:59', '2023-07-22 02:39:59'),
-(7, 2, 'শেখ আব্দুল রাজ্জাক', 'ম্যানেজার', 'বাড্ডা, ঢাকা', '২৩শে ফেব্রুয়ারী ২০২৩', 'Zimbabwean', '১৫,০০০ টাকা', 'প্রযোজ্য নয়', NULL, '14:39:59', '2023-07-22 02:39:59', '2023-07-22 02:39:59'),
-(8, 2, 'মোঃ রনি হোসেন', 'ম্যানেজার', 'মুনিগঞ্জ, বাগেরহাট সদর, বাগেরহাট', '২৩শে ফেব্রুয়ারী ২০২৩', 'Zimbabwean,Zambian', '১৫,০০০ টাকা', 'প্রযোজ্য নয়', NULL, '14:39:59', '2023-07-22 02:39:59', '2023-07-22 02:39:59'),
-(9, 2, 'শেখ আব্দুল রাজ্জাক', 'ম্যানেজার', 'বাড্ডা, ঢাকা', '০১/০১/২০২২ ইং', 'Welsh,Scottish,Lao', '১৫,০০০ টাকা', 'মুসা টেকনলোজিজ লিমিটেড এর সিটিও হিসেবে আছেন', NULL, '14:39:59', '2023-07-22 02:39:59', '2023-07-22 02:39:59'),
-(10, 2, 'মোঃ রনি হোসেন', 'ব্যবস্থাপনা পরিচালক', 'বাড্ডা, ঢাকা', '২৩শে ফেব্রুয়ারী ২০২৩', 'Yemeni', '১৫,০০০ টাকা', 'প্রযোজ্য নয়', NULL, '14:39:59', '2023-07-22 02:39:59', '2023-07-22 02:39:59'),
-(11, 3, 'frDb91H0SN', 'M0v2XLaHxg', 'Jmw4bSvLRC', 'MMwvRXOXnz', 'Welsh,Scottish', 'k6RfUyp6s9', 'hdhVDMAOoy', NULL, '15:17:11', '2023-07-22 03:17:11', '2023-07-22 03:17:11'),
-(12, 3, 'vrs5oG7mD3', 'QDuYn61Ngx', 'hmsO4wf41R', 'sOOKZVSUNT', 'Welsh,Lao', 'Wt6D7Ac61n', 'o2sxeR7JPk', NULL, '15:17:11', '2023-07-22 03:17:11', '2023-07-22 03:17:11'),
-(13, 3, 'ojFlgpsh0G', 'sUDxkJyW5D', 'Zl220JcYPw', 'sBO0xdXZeE', 'Welsh,Scottish', 'kKrBPb21mK', '7bTpaaxCoD', NULL, '15:17:11', '2023-07-22 03:17:11', '2023-07-22 03:17:11'),
-(14, 3, 'hyFNzxOjlI', 'jbXGyl4IRk', 'qKXruIfW6U', 'Bg5sNQr6bZ', 'Welsh,Scottish', 'LDOUes08Fw', '9iQ9h0WulC', NULL, '15:17:11', '2023-07-22 03:17:11', '2023-07-22 03:17:11'),
-(15, 3, 'y7vZzbyCUQ', 'NNn7gp76xR', 'L4P6zrp132', '2SdJxzONU5', 'Welsh,Zimbabwean', 'w6pCVdm3Lp', '7nfxUEignb', NULL, '15:17:11', '2023-07-22 03:17:11', '2023-07-22 03:17:11');
+(31, 5, 'BoZpxGIgjr', 'AMnoDsX9Te', 'VDchPRvkPc', '2023-07-24', 'Welsh,Lao', '3ywxycstGa', '54TtVmqTAI', NULL, '14:56:57', '2023-07-24 02:56:57', '2023-07-24 02:56:57'),
+(32, 5, 'dS9PGe0B4F', 'BMshrdxggO', 'SkGsQqwVHY', '2023-07-18', 'Welsh,Zambian', 'EPZN09FWee', 'wm3FgmQBdk', NULL, '14:56:57', '2023-07-24 02:56:57', '2023-07-24 02:56:57'),
+(33, 5, 'EkrBtqWnCr', 'BnjSabr2EC', 'T03gnku24v', '2023-07-12', 'Welsh,Zambian', 'zHG4xMBkcm', 't6AQtXSJU8', NULL, '14:56:57', '2023-07-24 02:56:57', '2023-07-24 02:56:57'),
+(34, 5, 'dG4x0Q4EPy', 'shk7ShOupg', 'YdOgdKt1Df', '2023-07-19', 'Welsh,Zimbabwean', 'qHG9c6cBCV', '1alTIgNwXo', NULL, '14:56:57', '2023-07-24 02:56:57', '2023-07-24 02:56:57'),
+(35, 5, 'jbk5hHkzeH', 'ft1nQ7Hnmv', 'oA2Mt4Vutp', '2023-07-14', 'Welsh,Zambian', 'XBzAkNLABU', '8mghTUrRVG', NULL, '14:56:57', '2023-07-24 02:56:57', '2023-07-24 02:56:57');
 
 -- --------------------------------------------------------
 
@@ -629,8 +621,8 @@ INSERT INTO `fd_one_member_lists` (`id`, `fd_one_form_id`, `name`, `position`, `
 CREATE TABLE `fd_one_other_pdf_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `information_pdf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `information_pdf` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -641,8 +633,7 @@ CREATE TABLE `fd_one_other_pdf_lists` (
 
 INSERT INTO `fd_one_other_pdf_lists` (`id`, `fd_one_form_id`, `information_pdf`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'uploads/FdOneOtherPdfList/16894107605694228606dummy.pdf', '14:46:00 pm', '2023-07-15 02:46:00', '2023-07-15 02:46:00'),
-(2, 2, 'uploads/FdOneOtherPdfList/16900158406581873095Letter of Commitment from Prospective donor.pdf', '14:50:40 pm', '2023-07-22 02:50:40', '2023-07-22 02:50:40'),
-(3, 3, 'uploads/FdOneOtherPdfList/16900174631862816593sample (1).pdf', '15:17:43 pm', '2023-07-22 03:17:43', '2023-07-22 03:17:43');
+(5, 5, 'uploads/FdOneOtherPdfList/16901890461963535597sample.pdf', '14:57:26 pm', '2023-07-24 02:57:26', '2023-07-24 02:57:26');
 
 -- --------------------------------------------------------
 
@@ -653,10 +644,10 @@ INSERT INTO `fd_one_other_pdf_lists` (`id`, `fd_one_form_id`, `information_pdf`,
 CREATE TABLE `fd_one_source_of_funds` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `letter_file` text COLLATE utf8mb4_unicode_ci,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `letter_file` text DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -668,9 +659,7 @@ CREATE TABLE `fd_one_source_of_funds` (
 INSERT INTO `fd_one_source_of_funds` (`id`, `fd_one_form_id`, `name`, `address`, `letter_file`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'ff', 'ff', 'uploads/FdOneSourceOfFund/16894106871487242294dummy.pdf', '14:44:47', '2023-07-15 02:44:47', '2023-07-15 02:44:47'),
 (2, 1, 'ffr', 'ffr5', 'uploads/FdOneSourceOfFund/16894106875117131939dummy.pdf', '14:44:47', '2023-07-15 02:44:47', '2023-07-15 02:44:47'),
-(3, 2, 'ওয়াটার এইড', 'বানানী', 'uploads/FdOneSourceOfFund/16900150388706332828Letter of Commitment from Prospective donor.pdf', '14:37:18', '2023-07-22 02:37:18', '2023-07-22 02:37:18'),
-(4, 2, 'রাইহান ইসলাম', 'বানানী', 'uploads/FdOneSourceOfFund/16900150386344268016Letter of Commitment from Prospective donor.pdf', '14:37:18', '2023-07-22 02:37:18', '2023-07-22 02:37:18'),
-(5, 3, 'report_add', 'frr', 'uploads/FdOneSourceOfFund/16900174015404810106sample (1).pdf', '15:16:41', '2023-07-22 03:16:41', '2023-07-22 03:16:41');
+(7, 5, '55', '555', 'uploads/FdOneSourceOfFund/16901889868838024391sample.pdf', '14:56:26', '2023-07-24 02:56:26', '2023-07-24 02:56:26');
 
 -- --------------------------------------------------------
 
@@ -699,8 +688,7 @@ CREATE TABLE `form_complete_statuses` (
 
 INSERT INTO `form_complete_statuses` (`id`, `user_id`, `fd_one_form_step_one_status`, `fd_one_form_step_two_status`, `fd_one_form_step_three_status`, `fd_one_form_step_four_status`, `form_eight_status`, `ngo_member_status`, `ngo_member_nid_photo_status`, `ngo_other_document_status`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, '2023-07-15 02:43:25', '2023-07-15 03:10:44'),
-(2, 2, 1, 1, 1, 1, 1, 1, 0, 0, '2023-07-22 02:23:20', '2023-07-22 04:16:02'),
-(3, 3, 1, 1, 1, 1, 1, 1, 1, 0, '2023-07-22 03:16:09', '2023-07-22 04:27:01');
+(5, 3, 1, 1, 1, 1, 1, 1, 1, 1, '2023-07-24 02:56:06', '2023-07-24 03:31:23');
 
 -- --------------------------------------------------------
 
@@ -711,26 +699,26 @@ INSERT INTO `form_complete_statuses` (`id`, `user_id`, `fd_one_form_step_one_sta
 CREATE TABLE `form_eights` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `dob` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nid_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `father_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `present_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `permanent_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_supouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `edu_quali` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_des` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `service_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `form_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `total_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` text COLLATE utf8mb4_unicode_ci,
-  `complete_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verified_form_eight` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `name_slug` varchar(255) DEFAULT NULL,
+  `desi` varchar(255) DEFAULT NULL,
+  `dob` varchar(255) DEFAULT NULL,
+  `nid_no` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `father_name` varchar(255) DEFAULT NULL,
+  `present_address` varchar(255) DEFAULT NULL,
+  `permanent_address` varchar(255) DEFAULT NULL,
+  `name_supouse` varchar(255) DEFAULT NULL,
+  `edu_quali` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `job_des` varchar(255) DEFAULT NULL,
+  `service_status` varchar(255) DEFAULT NULL,
+  `form_date` varchar(255) DEFAULT NULL,
+  `to_date` varchar(255) DEFAULT NULL,
+  `total_year` varchar(255) DEFAULT NULL,
+  `time_for_api` text DEFAULT NULL,
+  `complete_status` varchar(255) DEFAULT NULL,
+  `verified_form_eight` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -741,9 +729,12 @@ CREATE TABLE `form_eights` (
 
 INSERT INTO `form_eights` (`id`, `fd_one_form_id`, `name`, `name_slug`, `desi`, `dob`, `nid_no`, `phone`, `father_name`, `present_address`, `permanent_address`, `name_supouse`, `edu_quali`, `profession`, `job_des`, `service_status`, `form_date`, `to_date`, `total_year`, `time_for_api`, `complete_status`, `verified_form_eight`, `created_at`, `updated_at`) VALUES
 (1, 1, '7accs3uQKY', '7accs3uqky', 'xO3ZTvwh0S', '22-07-2023', 'EnV47isMUf', '595579', 'DHBl4h83UZ', 'KYut69CSPn', 'LCoAzQmLwA', 'dTvyc8SfTl', 'fxX2Onhh5z', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত', 'ueozhjsPR1', 'হ্যাঁ', '15/07/2023', '15/07/2023', '1 years, 1 months', '14:46:24', 'complete', 'uploads/FdOneOtherPdfList/16894122693324283522dummy.pdf', '2023-07-15 02:46:24', '2023-07-15 03:11:09'),
-(2, 2, 'মোঃ রনি হোসেন', 'mo_rni_hosen', 'ম্যানেজার', '13-07-2023', '৩২১৪৪৩১২৪৪১১৩৩', '1738300022', 'মোঃ আব্দুল হক হাওলাদার', 'বাড্ডা', 'মাদারীপুর', 'N/A', 'কম্পিউটার সায়েন্স', 'স্ব সেবা', 'ব্যবসা', 'হ্যাঁ', '01/07/2023', '22/07/2023', '0 বছর 1 মাস', '15:41:08', 'complete', NULL, '2023-07-22 03:41:08', '2023-07-22 03:41:56'),
-(3, 3, 'ilmBYiRWPD', 'ilmbyirwpd', 'kak42vvGDq', '31-07-2023', '9btweiJ6Ak', '532596', 'O84dbrTt66', 'zD87Z98l4K', 'bTWFRBILDc', 'vekaTBesRM', 'k3f5hyJ1u1', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত', 'S25CtFZMrf', 'হ্যাঁ', NULL, NULL, NULL, '15:55:27', NULL, NULL, '2023-07-22 03:55:27', '2023-07-22 03:55:27'),
-(4, 3, 'aJ2aWC4zOO', 'aj2awc4zoo', '4JCo9dI4CR', '31-07-2023', 'RnSXviWKpN', '530072', 'uQRgTdoe2E', 'LKt7Yw9k9s', 'buSwDnhuXl', 'P7aqQMdfLu', 'w7iZElLF8S', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত', '2JcZ8LpRQ5', 'হ্যাঁ', NULL, NULL, NULL, '15:55:42', NULL, NULL, '2023-07-22 03:55:42', '2023-07-22 03:55:42');
+(7, 5, 'cmEw3qTLo0', 'cmew3qtlo0', 'EuX1hCs4xo', '24-07-2023', 'z4z4nLdtBp', '96870466666', 'Zmb739gWVj', '0odmAB2Gdn', 'dYqGmYfUU5', '52S9HjHBwZ', 'iKwqu2MIRd', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত', 'SBFbVCFukd', 'হ্যাঁ', '2023-07-24', '2023-07-29', '0 বছর 1 মাস', '14:57:46', 'complete', 'uploads/FdOneOtherPdfList/16901911109357474090sample.pdf', '2023-07-24 02:57:46', '2023-07-24 03:31:50'),
+(8, 5, 'xBOUArbi4w', 'xbouarbi4w', 'rbnnYHQlHo', '31-07-2023', 'F33aBLMytC', '65492166666', 'ZTJWssWSH2', 'IMOkbIuyH8', 'EuPmobW5C5', 'Aww3nRMA8g', 'CbwlxxyP2H', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত', '84zndstuq5', 'হ্যাঁ', '2023-07-24', '2023-07-29', '0 বছর 1 মাস', '14:58:04', 'complete', NULL, '2023-07-24 02:58:04', '2023-07-24 03:27:32'),
+(9, 5, 'R7Ykl7BhNo', 'r7ykl7bhno', 'eFQcfUHGVY', '25-07-2023', 'K5M2BLcleH', '132976', 'M9HMIkIUv0', 'FXbWDMQ4En', 'JkjQVOcfs5', 'ObkbCeTaae', 'boL8DcAnSe', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত<', '6uxOUU7t8O', 'হ্যাঁ', NULL, NULL, NULL, '15:35:31', NULL, NULL, '2023-07-24 03:35:31', '2023-07-24 03:35:31'),
+(10, 5, 'NFEnJAYQbr', 'nfenjayqbr', 'D2KIXW80Pz', '24-07-2023', '9fiDtuwZAp', '635280', 'wc0U18NIxU', 's0hUtfD30d', 'MMcAX9wBoM', 'Iq90m1leUf', '7xo25nsWuG', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত<', 'jE3EFblmkD', 'হ্যাঁ', NULL, NULL, NULL, '15:41:17', NULL, NULL, '2023-07-24 03:41:17', '2023-07-24 03:41:17'),
+(11, 5, '1oXDpzcbku', '1oxdpzcbku', '42Dmo6spwh', '31-07-2023', '2cnTYGu6bW', '44669755555', '0bl0FPbvIU', 'iS48FzQ7jn', '4OryBeMHI0', 'TU82fknUvK', 'xJ8vlC59C1', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত<', 'NaVjvN4JDu', 'হ্যাঁ', NULL, NULL, NULL, '15:48:47', NULL, NULL, '2023-07-24 03:48:47', '2023-07-24 03:48:47'),
+(14, 5, '7mTOirK2y9', '7mtoirk2y9', '1hiD8iR7l6', '25-07-2023', '1IGaTDupoV', '05203977777', '8MZ2D1Qr6x', 'hlX9Lu9BHi', 'LmLmrU2Xkh', 'LmJghdUifI', 'v1t54I5nkh', 'সরকারি/আধা/সরকারি স্বায়ত্তশাসিত<', 'SxJpSN2MFP', 'হ্যাঁ', NULL, NULL, NULL, '15:57:39', NULL, NULL, '2023-07-24 03:57:39', '2023-07-24 03:57:39');
 
 -- --------------------------------------------------------
 
@@ -754,11 +745,11 @@ INSERT INTO `form_eights` (`id`, `fd_one_form_id`, `name`, `name_slug`, `desi`, 
 CREATE TABLE `forwarding_letters` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `admin_id` bigint(20) UNSIGNED NOT NULL,
-  `fd9_form_id` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `apply_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apply_month_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apply_year_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sarok_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fd9_form_id` varchar(200) DEFAULT NULL,
+  `apply_date` varchar(255) NOT NULL,
+  `apply_month_name` varchar(255) NOT NULL,
+  `apply_year_name` varchar(255) NOT NULL,
+  `sarok_number` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -779,7 +770,7 @@ INSERT INTO `forwarding_letters` (`id`, `admin_id`, `fd9_form_id`, `apply_date`,
 CREATE TABLE `forwarding_letter_onulipis` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `forwarding_letter_id` bigint(20) UNSIGNED NOT NULL,
-  `onulipi_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `onulipi_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -800,7 +791,7 @@ INSERT INTO `forwarding_letter_onulipis` (`id`, `forwarding_letter_id`, `onulipi
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -862,7 +853,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -874,7 +865,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_type` varchar(255) NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -884,9 +875,9 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\Models\\Admin', 2),
+(2, 'App\\Models\\Admin', 4),
 (3, 'App\\Models\\Admin', 3),
-(4, 'App\\Models\\Admin', 3),
-(2, 'App\\Models\\Admin', 4);
+(4, 'App\\Models\\Admin', 3);
 
 -- --------------------------------------------------------
 
@@ -897,10 +888,10 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 CREATE TABLE `ngo_durations` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `ngo_duration_start_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ngo_duration_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ngo_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngo_duration_start_date` varchar(255) DEFAULT NULL,
+  `ngo_duration_end_date` varchar(255) DEFAULT NULL,
+  `ngo_status` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -911,7 +902,8 @@ CREATE TABLE `ngo_durations` (
 
 INSERT INTO `ngo_durations` (`id`, `fd_one_form_id`, `ngo_duration_start_date`, `ngo_duration_end_date`, `ngo_status`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, '2023-07-15', '2033-07-15', 'Accepted', NULL, '2023-07-15 03:12:27', '2023-07-15 03:12:27'),
-(2, 1, '2023-07-15', '2033-07-15', 'Accepted', NULL, '2023-07-15 03:14:18', '2023-07-15 03:14:18');
+(2, 1, '2023-07-15', '2033-07-15', 'Accepted', NULL, '2023-07-15 03:14:18', '2023-07-15 03:14:18'),
+(3, 5, '2023-07-24', '2033-07-24', 'Accepted', NULL, '2023-07-24 03:32:53', '2023-07-24 03:32:53');
 
 -- --------------------------------------------------------
 
@@ -922,18 +914,18 @@ INSERT INTO `ngo_durations` (`id`, `fd_one_form_id`, `ngo_duration_start_date`, 
 CREATE TABLE `ngo_member_lists` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `member_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_name_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_dob` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_nid_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_father_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_present_address` text COLLATE utf8mb4_unicode_ci,
-  `member_permanent_address` text COLLATE utf8mb4_unicode_ci,
-  `member_name_supouse` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `verified_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `member_name` varchar(255) DEFAULT NULL,
+  `member_name_slug` varchar(255) DEFAULT NULL,
+  `member_designation` varchar(255) DEFAULT NULL,
+  `member_dob` varchar(255) DEFAULT NULL,
+  `member_nid_no` varchar(255) DEFAULT NULL,
+  `member_mobile` varchar(255) DEFAULT NULL,
+  `member_father_name` varchar(255) DEFAULT NULL,
+  `member_present_address` text DEFAULT NULL,
+  `member_permanent_address` text DEFAULT NULL,
+  `member_name_supouse` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
+  `verified_file` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -944,10 +936,9 @@ CREATE TABLE `ngo_member_lists` (
 
 INSERT INTO `ngo_member_lists` (`id`, `fd_one_form_id`, `member_name`, `member_name_slug`, `member_designation`, `member_dob`, `member_nid_no`, `member_mobile`, `member_father_name`, `member_present_address`, `member_permanent_address`, `member_name_supouse`, `time_for_api`, `verified_file`, `created_at`, `updated_at`) VALUES
 (1, 1, 'eUlzAjSw8j', 'eulzajsw8j', 'CrxKN5ayre', '30-07-2023', 'GulqzIENHn', '98007833333', 'VICtfdehwX', 'DhKIluPsIp', 'd2JMDQ0Fgx', 'lq4leAqSFC', '14:47:04', '0', '2023-07-15 02:47:04', '2023-07-15 02:47:04'),
-(2, 3, '35rQbkVtpC', '35rqbkvtpc', 'czyRwXcz9I', '2023-05-16', 'GCKembw7R6', '90760144444', '3G80329cjq', 'P9W21mfWDz', 'oWuTll6oMo', 'Wjccx8yMOU', '15:59:46', '0', '2023-07-22 03:59:46', '2023-07-22 03:59:46'),
-(3, 3, '7B05Yfjt1d', '7b05yfjt1d', 'QeuapzP21D', '2023-05-16', '4Ad2gyAeo5', '56898333333', 'fypUaJtQX4', 'd7Vn2sE4cU', 'oCRDlbmAeF', '9N3JjzRUy7', '16:00:01', '0', '2023-07-22 04:00:01', '2023-07-22 04:00:01'),
-(4, 2, 'মোঃ রনি হোসেন', 'mo_rni_hosen', 'ব্যবস্থাপনা পরিচালক', '17-07-2023', '৪৬৩৫০২৫৯৬০', '01738300022', 'মোঃ আব্দুল হক হাওলাদার', 'কাড়াপাড়া, বাগেরহাট', 'মাদারীপুর', 'N/A', '16:15:34', '0', '2023-07-22 04:15:34', '2023-07-22 04:15:34'),
-(5, 2, 'রাকিব হাসান বাধন', 'rakib_hasan_badhn', 'সভাপতি', '10-07-2023', '৭৮১৩২৭৬৮৬১৩৩১', '01515259074', 'অশোক কুমার বড়াল', 'কাড়াপাড়া, বাগেরহাট', 'টাঙ্গাইল', 'N/A', '16:15:59', '0', '2023-07-22 04:15:59', '2023-07-22 04:15:59');
+(8, 5, 'rIJGIUmfwI', 'rijgiumfwi', 'wBEgabBSOF', '31-07-2023', 'CEJ4dUAPtr', '86203733333', 'tBcFNAakqK', 'vqsf3bUSf4', '7M3FTl1J3v', '45oTYe1YNZ', '15:29:52', '0', '2023-07-24 03:29:52', '2023-07-24 03:29:52'),
+(9, 5, 'avbXWamT6k', 'avbxwamt6k', 'a47FZsX2hN', '31-07-2023', 's36HtdBSWb', '94087000000', 'dT94Z8mtJS', 'Y9EnC4SyPI', 'H6Kz4brINK', 'P9Ws2wzWX4', '15:30:15', '0', '2023-07-24 03:30:15', '2023-07-24 03:30:15'),
+(10, 5, '6zC19ngS0f', '6zc19ngs0f', '1G4lFWXfP8', '17-07-2023', '083NrSm7tG', '28705155555', 'L1Xc36BiJn', 'v8WZunT9x2', '6E2XYDVEyi', 'VorbNyIOLJ', '15:41:44', NULL, '2023-07-24 03:41:44', '2023-07-24 03:41:44');
 
 -- --------------------------------------------------------
 
@@ -958,11 +949,11 @@ INSERT INTO `ngo_member_lists` (`id`, `fd_one_form_id`, `member_name`, `member_n
 CREATE TABLE `ngo_member_nid_photos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `member_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_nid_copy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_nid_copy_size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `member_name` varchar(255) DEFAULT NULL,
+  `member_image` varchar(255) DEFAULT NULL,
+  `member_nid_copy` varchar(255) DEFAULT NULL,
+  `member_nid_copy_size` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -974,8 +965,9 @@ CREATE TABLE `ngo_member_nid_photos` (
 INSERT INTO `ngo_member_nid_photos` (`id`, `fd_one_form_id`, `member_name`, `member_image`, `member_nid_copy`, `member_nid_copy_size`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'dd', 'public/uploads/NgoMemberNidPhoto/16894108799676342335userFive.png', 'uploads/NgoMemberNidPhoto/16894108796075442757dummy.pdf', '0.01', '14:47:59', '2023-07-15 02:47:59', '2023-07-15 02:47:59'),
 (2, 1, 'ddddd', 'public/uploads/NgoMemberNidPhoto/16894108799651551206userTwo.png', 'uploads/NgoMemberNidPhoto/16894108791493239851sample.pdf', '0.00', '14:47:59', '2023-07-15 02:47:59', '2023-07-15 02:47:59'),
-(3, 3, '44', 'public/uploads/NgoMemberNidPhoto/16900216151793117986bKash.jpg', 'uploads/NgoMemberNidPhoto/16900216155335164195sample (1).pdf', '0.00', '16:26:55', '2023-07-22 04:26:55', '2023-07-22 04:26:55'),
-(4, 3, 'dd', 'public/uploads/NgoMemberNidPhoto/16900216159686861901222PNG.PNG', 'uploads/NgoMemberNidPhoto/16900216155678672925sample (1).pdf', '0.00', '16:26:55', '2023-07-22 04:26:55', '2023-07-22 04:26:55');
+(7, 5, '44', 'public/uploads/NgoMemberNidPhoto/16901910442773483219user3.png', 'uploads/NgoMemberNidPhoto/16901910441164131790sample.pdf', '0.00', '15:30:44', '2023-07-24 03:30:44', '2023-07-24 03:30:44'),
+(8, 5, '000', 'public/uploads/NgoMemberNidPhoto/16901910441203159804user2.jpg', 'uploads/NgoMemberNidPhoto/16901910448330784311sample.pdf', '0.00', '15:30:44', '2023-07-24 03:30:44', '2023-07-24 03:30:44'),
+(9, 5, 'p', 'public/uploads/NgoMemberNidPhoto/16901916248575263649user3.png', 'uploads/NgoMemberNidPhoto/16901916245313545458sample.pdf', '0.00', '15:40:24', '2023-07-24 03:40:24', '2023-07-24 03:40:24');
 
 -- --------------------------------------------------------
 
@@ -986,15 +978,22 @@ INSERT INTO `ngo_member_nid_photos` (`id`, `fd_one_form_id`, `member_name`, `mem
 CREATE TABLE `ngo_name_changes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `previous_name_eng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `previous_name_ban` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `present_name_eng` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `present_name_ban` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `previous_name_eng` varchar(255) DEFAULT NULL,
+  `previous_name_ban` varchar(255) DEFAULT NULL,
+  `present_name_eng` varchar(255) DEFAULT NULL,
+  `present_name_ban` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ngo_name_changes`
+--
+
+INSERT INTO `ngo_name_changes` (`id`, `fd_one_form_id`, `previous_name_eng`, `previous_name_ban`, `present_name_eng`, `present_name_ban`, `status`, `time_for_api`, `created_at`, `updated_at`) VALUES
+(5, 5, 'RdLRVPrcQO', 'RLWsojyR48', 'Test Ngo1', 'টেস্ট এনজিও1', 'Ongoing', '16:01:14 pm', '2023-07-24 04:01:14', '2023-07-24 04:01:14');
 
 -- --------------------------------------------------------
 
@@ -1005,9 +1004,9 @@ CREATE TABLE `ngo_name_changes` (
 CREATE TABLE `ngo_other_docs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `pdf_file_list` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `file_size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pdf_file_list` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
+  `file_size` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1022,7 +1021,13 @@ INSERT INTO `ngo_other_docs` (`id`, `fd_one_form_id`, `pdf_file_list`, `time_for
 (3, 1, 'uploads/NgoOtherDoc/16894109175890679226dummy.pdf', '14:48:36 pm', '0.01', '2023-07-15 02:48:37', '2023-07-15 02:48:37'),
 (4, 1, 'uploads/NgoOtherDoc/16894109178561127198dummy.pdf', '14:48:36 pm', '0.01', '2023-07-15 02:48:37', '2023-07-15 02:48:37'),
 (5, 1, 'uploads/NgoOtherDoc/16894109176075273135dummy.pdf', '14:48:36 pm', '0.01', '2023-07-15 02:48:37', '2023-07-15 02:48:37'),
-(6, 1, 'uploads/NgoOtherDoc/16894109173813912644dummy.pdf', '14:48:36 pm', '0.01', '2023-07-15 02:48:37', '2023-07-15 02:48:37');
+(6, 1, 'uploads/NgoOtherDoc/16894109173813912644dummy.pdf', '14:48:36 pm', '0.01', '2023-07-15 02:48:37', '2023-07-15 02:48:37'),
+(13, 5, 'uploads/NgoOtherDoc/16901910772646172696sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17'),
+(14, 5, 'uploads/NgoOtherDoc/16901910779163345607sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17'),
+(15, 5, 'uploads/NgoOtherDoc/16901910777632614185sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17'),
+(16, 5, 'uploads/NgoOtherDoc/16901910775343792046sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17'),
+(17, 5, 'uploads/NgoOtherDoc/16901910775398263564sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17'),
+(18, 5, 'uploads/NgoOtherDoc/16901910778357187864sample.pdf', '15:31:17 pm', '0.00', '2023-07-24 03:31:17', '2023-07-24 03:31:17');
 
 -- --------------------------------------------------------
 
@@ -1033,11 +1038,18 @@ INSERT INTO `ngo_other_docs` (`id`, `fd_one_form_id`, `pdf_file_list`, `time_for
 CREATE TABLE `ngo_renews` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ngo_renews`
+--
+
+INSERT INTO `ngo_renews` (`id`, `fd_one_form_id`, `status`, `time_for_api`, `created_at`, `updated_at`) VALUES
+(2, 5, 'Ongoing', '16:07:00 pm', '2023-07-24 04:07:00', '2023-07-24 04:07:00');
 
 -- --------------------------------------------------------
 
@@ -1048,45 +1060,52 @@ CREATE TABLE `ngo_renews` (
 CREATE TABLE `ngo_renew_infos` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `registration_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organization_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organization_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address_of_head_office` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `country_of_origin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_head_in_bd` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `job_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone_new` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `registration_number` varchar(255) DEFAULT NULL,
+  `organization_name` varchar(255) DEFAULT NULL,
+  `organization_address` varchar(255) DEFAULT NULL,
+  `address_of_head_office` varchar(255) DEFAULT NULL,
+  `country_of_origin` varchar(255) DEFAULT NULL,
+  `name_of_head_in_bd` varchar(255) DEFAULT NULL,
+  `job_type` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `phone_new` varchar(255) DEFAULT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email_new` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telephone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `telephone_number_new` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `citizenship` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profession` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `plan_of_operation` text COLLATE utf8mb4_unicode_ci,
-  `district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sub_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fee_paid_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `supporting_paper` text COLLATE utf8mb4_unicode_ci,
-  `foregin_pdf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `yearly_budget` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `copy_of_chalan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `due_vat_pdf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `change_ac_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `main_account_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `main_account_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `main_account_name_of_branch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name_of_bank` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bank_address_main` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `web_site_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile_new` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `email_new` varchar(255) DEFAULT NULL,
+  `telephone_number` varchar(255) DEFAULT NULL,
+  `telephone_number_new` varchar(255) DEFAULT NULL,
+  `citizenship` varchar(255) DEFAULT NULL,
+  `profession` varchar(255) DEFAULT NULL,
+  `plan_of_operation` text DEFAULT NULL,
+  `district` varchar(255) DEFAULT NULL,
+  `sub_district` varchar(255) DEFAULT NULL,
+  `fee_paid_status` varchar(255) DEFAULT NULL,
+  `supporting_paper` text DEFAULT NULL,
+  `foregin_pdf` varchar(255) DEFAULT NULL,
+  `yearly_budget` varchar(255) DEFAULT NULL,
+  `copy_of_chalan` varchar(255) DEFAULT NULL,
+  `due_vat_pdf` varchar(255) DEFAULT NULL,
+  `change_ac_number` varchar(255) DEFAULT NULL,
+  `main_account_number` varchar(255) DEFAULT NULL,
+  `main_account_type` varchar(255) DEFAULT NULL,
+  `main_account_name_of_branch` varchar(255) DEFAULT NULL,
+  `name_of_bank` varchar(255) DEFAULT NULL,
+  `bank_address_main` varchar(255) DEFAULT NULL,
+  `web_site_name` varchar(255) DEFAULT NULL,
+  `mobile_new` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ngo_renew_infos`
+--
+
+INSERT INTO `ngo_renew_infos` (`id`, `user_id`, `registration_number`, `organization_name`, `organization_address`, `address_of_head_office`, `country_of_origin`, `name_of_head_in_bd`, `job_type`, `address`, `phone`, `phone_new`, `fd_one_form_id`, `email`, `email_new`, `telephone_number`, `telephone_number_new`, `citizenship`, `profession`, `plan_of_operation`, `district`, `sub_district`, `fee_paid_status`, `supporting_paper`, `foregin_pdf`, `yearly_budget`, `copy_of_chalan`, `due_vat_pdf`, `change_ac_number`, `main_account_number`, `main_account_type`, `main_account_name_of_branch`, `name_of_bank`, `bank_address_main`, `web_site_name`, `mobile_new`, `mobile`, `time_for_api`, `created_at`, `updated_at`) VALUES
+(1, 3, '1122', 'RdLRVPrcQO', 'DfXLhdJBA1', 'r8gO4bawNh', NULL, 'lPge51yXCX', 'পূর্ণকালীন', 'hPIhbkAm6X', '06201155555', '55555555555', 5, 'q5pwh@o40t.com', 'kkajol55428@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'uploads/NgoRenewInfo/16901929596470801795sample.pdf', 'uploads/NgoRenewInfo/16901929591932717697sample.pdf', 'uploads/NgoRenewInfo/16901932208939456477sample.pdf', 'uploads/NgoRenewInfo/16901932201612304546sample.pdf', 'uploads/NgoRenewInfo/16901932205065923953sample.pdf', '55', '34534', 'bbb', '33', 'bbb', 'ww.ggg.com', '55555555555', '5555555555', NULL, '2023-07-24 04:02:39', '2023-07-24 04:07:00');
 
 -- --------------------------------------------------------
 
@@ -1097,12 +1116,12 @@ CREATE TABLE `ngo_renew_infos` (
 CREATE TABLE `ngo_statuses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reg_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reg_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `print_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `reg_type` varchar(255) DEFAULT NULL,
+  `reg_id` varchar(255) DEFAULT NULL,
+  `print_date` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1112,7 +1131,8 @@ CREATE TABLE `ngo_statuses` (
 --
 
 INSERT INTO `ngo_statuses` (`id`, `fd_one_form_id`, `email`, `reg_type`, `reg_id`, `print_date`, `status`, `time_for_api`, `created_at`, `updated_at`) VALUES
-(1, 1, 'kkajol428@gmail.com', 'NGO Registration', '0', NULL, 'Accepted', NULL, '2023-07-15 03:11:20', '2023-07-15 03:11:20');
+(1, 1, 'kkajol428@gmail.com', 'NGO Registration', '0', NULL, 'Accepted', NULL, '2023-07-15 03:11:20', '2023-07-15 03:11:20'),
+(2, 5, 'kajol1122018@gmail.com', 'NGO Registration', '0', NULL, 'Accepted', NULL, '2023-07-24 03:32:00', '2023-07-24 03:32:00');
 
 -- --------------------------------------------------------
 
@@ -1123,10 +1143,10 @@ INSERT INTO `ngo_statuses` (`id`, `fd_one_form_id`, `email`, `reg_type`, `reg_id
 CREATE TABLE `ngo_type_and_languages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `ngo_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ngo_language` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_one_form_check_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `time_for_api` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ngo_type` varchar(255) NOT NULL,
+  `ngo_language` varchar(255) NOT NULL,
+  `first_one_form_check_status` varchar(255) DEFAULT NULL,
+  `time_for_api` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1137,8 +1157,7 @@ CREATE TABLE `ngo_type_and_languages` (
 
 INSERT INTO `ngo_type_and_languages` (`id`, `user_id`, `ngo_type`, `ngo_language`, `first_one_form_check_status`, `time_for_api`, `created_at`, `updated_at`) VALUES
 (1, 1, 'দেশিও', 'en', '1', '14:42:40', '2023-07-15 02:42:41', '2023-07-15 02:42:41'),
-(2, 2, 'দেশিও', 'en', '1', '20:58:38', '2023-07-21 08:58:38', '2023-07-21 08:58:38'),
-(3, 3, 'দেশিও', 'en', '1', '15:15:08', '2023-07-22 03:15:08', '2023-07-22 03:15:08');
+(6, 3, 'দেশিও', 'en', '1', '14:55:41', '2023-07-24 02:55:41', '2023-07-24 02:55:41');
 
 -- --------------------------------------------------------
 
@@ -1149,18 +1168,18 @@ INSERT INTO `ngo_type_and_languages` (`id`, `user_id`, `ngo_type`, `ngo_language
 CREATE TABLE `n_visas` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `fd_one_form_id` bigint(20) UNSIGNED NOT NULL,
-  `period_validity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `permit_efct_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_ref_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_recomendation_letter_received_way` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_recomendation_letter_ref_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_in` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `applicant_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `forwarding_letter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `salary_remarks` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `other_benefit` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `period_validity` varchar(255) DEFAULT NULL,
+  `permit_efct_date` varchar(255) DEFAULT NULL,
+  `visa_ref_no` varchar(255) DEFAULT NULL,
+  `visa_recomendation_letter_received_way` varchar(255) DEFAULT NULL,
+  `visa_recomendation_letter_ref_no` varchar(255) DEFAULT NULL,
+  `department_in` varchar(255) DEFAULT NULL,
+  `visa_category` varchar(255) DEFAULT NULL,
+  `applicant_photo` varchar(255) DEFAULT NULL,
+  `forwarding_letter` varchar(255) DEFAULT NULL,
+  `salary_remarks` varchar(255) DEFAULT NULL,
+  `other_benefit` varchar(255) DEFAULT NULL,
+  `status` varchar(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1181,17 +1200,17 @@ INSERT INTO `n_visas` (`id`, `fd_one_form_id`, `period_validity`, `permit_efct_d
 CREATE TABLE `n_visa_authorized_personal_of_the_orgs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `auth_person_org_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_house_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_flat_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_road_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_post_office` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_mobile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_person_org_thana` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `submission_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expatriate_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `expatriate_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `auth_person_org_name` varchar(255) DEFAULT NULL,
+  `auth_person_org_house_no` varchar(255) DEFAULT NULL,
+  `auth_person_org_flat_no` varchar(255) DEFAULT NULL,
+  `auth_person_org_road_no` varchar(255) DEFAULT NULL,
+  `auth_person_org_post_office` varchar(255) DEFAULT NULL,
+  `auth_person_org_mobile` varchar(255) DEFAULT NULL,
+  `auth_person_org_district` varchar(255) DEFAULT NULL,
+  `auth_person_org_thana` varchar(255) DEFAULT NULL,
+  `submission_date` varchar(255) DEFAULT NULL,
+  `expatriate_name` varchar(255) DEFAULT NULL,
+  `expatriate_email` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1212,10 +1231,10 @@ INSERT INTO `n_visa_authorized_personal_of_the_orgs` (`id`, `n_visa_id`, `auth_p
 CREATE TABLE `n_visa_compensation_and_benifits` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `salary_category` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary_category` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `amount` varchar(255) DEFAULT NULL,
+  `currency` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1242,16 +1261,16 @@ INSERT INTO `n_visa_compensation_and_benifits` (`id`, `n_visa_id`, `salary_categ
 CREATE TABLE `n_visa_employment_information` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `employed_designation` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_arrival_in_bangladesh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `first_appoinment_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desired_effective_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `travel_visa_cate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `visa_validity` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `brief_job_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employee_justification` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `desired_end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `employed_designation` varchar(255) DEFAULT NULL,
+  `date_of_arrival_in_bangladesh` varchar(255) DEFAULT NULL,
+  `visa_type` varchar(255) DEFAULT NULL,
+  `first_appoinment_date` varchar(255) DEFAULT NULL,
+  `desired_effective_date` varchar(255) DEFAULT NULL,
+  `travel_visa_cate` varchar(255) DEFAULT NULL,
+  `visa_validity` varchar(255) DEFAULT NULL,
+  `brief_job_description` varchar(255) DEFAULT NULL,
+  `employee_justification` varchar(255) DEFAULT NULL,
+  `desired_end_date` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1272,15 +1291,15 @@ INSERT INTO `n_visa_employment_information` (`id`, `n_visa_id`, `employed_design
 CREATE TABLE `n_visa_manpower_of_the_offices` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `local_executive` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `local_supporting_staff` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `local_total` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreign_executive` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreign_supporting_staff` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreign_total` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `gand_total` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `local_ratio` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `foreign_ratio` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `local_executive` varchar(255) DEFAULT NULL,
+  `local_supporting_staff` varchar(255) DEFAULT NULL,
+  `local_total` varchar(255) DEFAULT NULL,
+  `foreign_executive` varchar(255) DEFAULT NULL,
+  `foreign_supporting_staff` varchar(255) DEFAULT NULL,
+  `foreign_total` varchar(255) DEFAULT NULL,
+  `gand_total` varchar(255) DEFAULT NULL,
+  `local_ratio` varchar(255) DEFAULT NULL,
+  `foreign_ratio` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1301,12 +1320,12 @@ INSERT INTO `n_visa_manpower_of_the_offices` (`id`, `n_visa_id`, `local_executiv
 CREATE TABLE `n_visa_necessary_document_for_work_permits` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `nomination_letter_of_buyer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `registration_letter_of_board_of_investment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `employee_contract_copy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `board_of_the_directors_sign_letter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `share_holder_copy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `passport_photocopy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nomination_letter_of_buyer` varchar(255) DEFAULT NULL,
+  `registration_letter_of_board_of_investment` varchar(255) DEFAULT NULL,
+  `employee_contract_copy` varchar(255) DEFAULT NULL,
+  `board_of_the_directors_sign_letter` varchar(255) DEFAULT NULL,
+  `share_holder_copy` varchar(255) DEFAULT NULL,
+  `passport_photocopy` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1327,24 +1346,24 @@ INSERT INTO `n_visa_necessary_document_for_work_permits` (`id`, `n_visa_id`, `no
 CREATE TABLE `n_visa_particulars_of_foreign_incumbnets` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `name_of_the_foreign_national` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nationality` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `passport_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `passport_issue_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `passport_issue_place` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `passport_expiry_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `home_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `house_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `flat_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `road_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `post_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fax_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `date_of_birth` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `martial_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name_of_the_foreign_national` varchar(255) DEFAULT NULL,
+  `nationality` varchar(255) DEFAULT NULL,
+  `passport_no` varchar(255) DEFAULT NULL,
+  `passport_issue_date` varchar(255) DEFAULT NULL,
+  `passport_issue_place` varchar(255) DEFAULT NULL,
+  `passport_expiry_date` varchar(255) DEFAULT NULL,
+  `home_country` varchar(255) DEFAULT NULL,
+  `house_no` varchar(255) DEFAULT NULL,
+  `flat_no` varchar(255) DEFAULT NULL,
+  `road_no` varchar(255) DEFAULT NULL,
+  `post_code` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `fax_no` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `date_of_birth` varchar(255) DEFAULT NULL,
+  `martial_status` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1365,25 +1384,25 @@ INSERT INTO `n_visa_particulars_of_foreign_incumbnets` (`id`, `n_visa_id`, `name
 CREATE TABLE `n_visa_particular_of_sponsor_or_employers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `org_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_house_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_flat_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_road_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_post_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_post_office` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_thana` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_fax_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `org_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nature_of_business` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `authorized_capital` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `paid_up_capital` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remittance_received` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `industry_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `recommendation_of_company_board` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_share` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `org_name` varchar(255) DEFAULT NULL,
+  `org_house_no` varchar(255) DEFAULT NULL,
+  `org_flat_no` varchar(255) DEFAULT NULL,
+  `org_road_no` varchar(255) DEFAULT NULL,
+  `org_post_code` varchar(255) DEFAULT NULL,
+  `org_post_office` varchar(255) DEFAULT NULL,
+  `org_phone` varchar(255) DEFAULT NULL,
+  `org_district` varchar(255) DEFAULT NULL,
+  `org_thana` varchar(255) DEFAULT NULL,
+  `org_fax_no` varchar(255) DEFAULT NULL,
+  `org_email` varchar(255) DEFAULT NULL,
+  `org_type` varchar(255) DEFAULT NULL,
+  `nature_of_business` varchar(255) DEFAULT NULL,
+  `authorized_capital` varchar(255) DEFAULT NULL,
+  `paid_up_capital` varchar(255) DEFAULT NULL,
+  `remittance_received` varchar(255) DEFAULT NULL,
+  `industry_type` varchar(255) DEFAULT NULL,
+  `recommendation_of_company_board` varchar(255) DEFAULT NULL,
+  `company_share` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1404,14 +1423,14 @@ INSERT INTO `n_visa_particular_of_sponsor_or_employers` (`id`, `n_visa_id`, `org
 CREATE TABLE `n_visa_work_place_addresses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `n_visa_id` bigint(20) UNSIGNED NOT NULL,
-  `work_house_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_flat_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_road_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_org_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_person_mobile_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_district` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_thana` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `work_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `work_house_no` varchar(255) DEFAULT NULL,
+  `work_flat_no` varchar(255) DEFAULT NULL,
+  `work_road_no` varchar(255) DEFAULT NULL,
+  `work_org_type` varchar(255) DEFAULT NULL,
+  `contact_person_mobile_number` varchar(255) DEFAULT NULL,
+  `work_district` varchar(255) DEFAULT NULL,
+  `work_thana` varchar(255) DEFAULT NULL,
+  `work_email` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1430,8 +1449,8 @@ INSERT INTO `n_visa_work_place_addresses` (`id`, `n_visa_id`, `work_house_no`, `
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1442,8 +1461,8 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1455,9 +1474,9 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `group_name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1534,11 +1553,11 @@ INSERT INTO `permissions` (`id`, `name`, `group_name`, `guard_name`, `created_at
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1552,8 +1571,8 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1585,7 +1604,13 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
 (2, 1),
+(2, 2),
+(2, 3),
+(2, 4),
 (3, 1),
 (4, 1),
 (5, 1),
@@ -1641,13 +1666,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (55, 1),
 (56, 1),
 (57, 1),
-(58, 1),
-(1, 2),
-(2, 2),
-(1, 3),
-(2, 3),
-(1, 4),
-(2, 4);
+(58, 1);
 
 -- --------------------------------------------------------
 
@@ -1657,13 +1676,13 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `system_information` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `system_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_url` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `system_icon` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `system_name` varchar(255) NOT NULL,
+  `system_phone` varchar(255) NOT NULL,
+  `system_email` varchar(255) NOT NULL,
+  `system_address` text NOT NULL,
+  `system_url` text NOT NULL,
+  `system_logo` varchar(255) NOT NULL,
+  `system_icon` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1683,17 +1702,17 @@ INSERT INTO `system_information` (`id`, `system_name`, `system_phone`, `system_e
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_address` text COLLATE utf8mb4_unicode_ci,
-  `user_image` text COLLATE utf8mb4_unicode_ci,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_phone` varchar(255) NOT NULL,
+  `user_address` text DEFAULT NULL,
+  `user_image` text DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
   `user_email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `is_email_verified` tinyint(1) NOT NULL DEFAULT '0'
+  `is_email_verified` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -1713,7 +1732,7 @@ INSERT INTO `users` (`id`, `user_name`, `user_phone`, `user_address`, `user_imag
 
 CREATE TABLE `users_verify` (
   `user_id` int(11) NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2127,49 +2146,49 @@ ALTER TABLE `fd9_one_forms`
 -- AUTO_INCREMENT for table `fd_one_adviser_lists`
 --
 ALTER TABLE `fd_one_adviser_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fd_one_bank_accounts`
 --
 ALTER TABLE `fd_one_bank_accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fd_one_forms`
 --
 ALTER TABLE `fd_one_forms`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fd_one_member_lists`
 --
 ALTER TABLE `fd_one_member_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `fd_one_other_pdf_lists`
 --
 ALTER TABLE `fd_one_other_pdf_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `fd_one_source_of_funds`
 --
 ALTER TABLE `fd_one_source_of_funds`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `form_complete_statuses`
 --
 ALTER TABLE `form_complete_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `form_eights`
 --
 ALTER TABLE `form_eights`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `forwarding_letters`
@@ -2193,55 +2212,55 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `ngo_durations`
 --
 ALTER TABLE `ngo_durations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `ngo_member_lists`
 --
 ALTER TABLE `ngo_member_lists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `ngo_member_nid_photos`
 --
 ALTER TABLE `ngo_member_nid_photos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `ngo_name_changes`
 --
 ALTER TABLE `ngo_name_changes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `ngo_other_docs`
 --
 ALTER TABLE `ngo_other_docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `ngo_renews`
 --
 ALTER TABLE `ngo_renews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ngo_renew_infos`
 --
 ALTER TABLE `ngo_renew_infos`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `ngo_statuses`
 --
 ALTER TABLE `ngo_statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ngo_type_and_languages`
 --
 ALTER TABLE `ngo_type_and_languages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `n_visas`

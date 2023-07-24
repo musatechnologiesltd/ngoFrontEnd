@@ -79,7 +79,7 @@
             '<input class="form-control" name="person_name[]" type="text" id="" required>' +
             '</td>' +
             '<td>' +
-            '<input class="form-control" name="person_image[]" type="file" id="" required>' +
+            '<input class="form-control" name="person_image[]" accept=".jpg,.jpeg,.png" type="file" id="" required>' +
             '</td>' +
             '<td>' +
             '<input class="form-control" name="person_nid_copy[]" accept=".pdf" type="file" id="" required>' +

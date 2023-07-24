@@ -348,22 +348,22 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
 
-        $start_date_one = date("d/m/Y", strtotime($request->form_date));
+        $start_date_one = date("Y-m-d", strtotime($request->form_date));
 
 
-        $end_date_one = date("d/m/Y", strtotime($request->to_date));
+        $end_date_one = date("Y-m-d", strtotime($request->to_date));
 
-        $startDate = Carbon::createFromFormat('d/m/Y', $start_date_one);
-        $endDate = Carbon::createFromFormat('d/m/Y', $end_date_one);
+        // $startDate = Carbon::createFromFormat('d/m/Y', $start_date_one);
+        // $endDate = Carbon::createFromFormat('d/m/Y', $end_date_one);
 
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
 
 
         $all_partiw = FormEight::where('fd_one_form_id',$fdOneFormId)
-        ->whereBetween(DB::raw('DATE(created_at)'), [$request->form_date, $request->to_date])
+        ->whereBetween(DB::raw('DATE(created_at)'), [$start_date_one,$end_date_one])
         ->get();
-
+        //dd($all_partiw);
 
                         if(count($all_partiw) > 0){
                             //dd(22);
