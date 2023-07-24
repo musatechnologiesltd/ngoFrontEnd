@@ -40,8 +40,10 @@
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">প্রতিষ্ঠানের মোবাইল: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id=""
-                   placeholder="প্রতিষ্ঠানের মোবাইল" data-parsley-required minlength="11" maxlength="11" data-parsley-trigger=“keyup” name="auth_person_org_mobile">
+            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type = "number"
+            maxlength = "11" class="form-control" id=""
+                   placeholder="প্রতিষ্ঠানের মোবাইল" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="auth_person_org_mobile">
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">জমা দেওয়ার তারিখ: <span class="text-danger">*</span></label>

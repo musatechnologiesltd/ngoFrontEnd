@@ -121,7 +121,9 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.mobile_no')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="number" data-parsley-required minlength="11" value="{{ $main_all_data_list->member_mobile }}"  maxlength="11" name="phone" class="form-control" id="">
+                                                                                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                                                type = "number"
+                                                                                                maxlength = "11" data-parsley-required minlength="11" value="{{ $main_all_data_list->member_mobile }}"   name="phone" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.fathers_name')}} <span class="text-danger">*</span> </label>

@@ -170,7 +170,9 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}} <span class="text-danger">*</span> :</label>
-                                                                                                <input type="number" data-parsley-required name="phone" value="{{ $main_all_data_list->phone }}" class="form-control" id="">
+                                                                                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                                                type = "number"
+                                                                                                maxlength = "11" minlength="11" data-parsley-required name="phone" value="{{ $main_all_data_list->phone }}" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}} <span class="text-danger">*</span> :</label>
@@ -322,7 +324,9 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}} <span class="text-danger">*</span> :</label>
-                                    <input type="number" data-parsley-required name="phone" class="form-control" id="">
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type = "number"
+                                    maxlength = "11" minlength="11" data-parsley-required name="phone" class="form-control" id="">
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}} <span class="text-danger">*</span> :</label>

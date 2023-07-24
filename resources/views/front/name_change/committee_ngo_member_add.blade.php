@@ -125,7 +125,9 @@
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('ngo_member.mobile_no')}}</label>
-                                <input type="text" data-parsley-required name="phone" class="form-control" id="">
+                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" data-parsley-required name="phone" class="form-control" id="">
                             </div>
                             <div class=" mb-3">
                                 <label for="" class="form-label">{{ trans('ngo_member.fathers_name')}}</label>
