@@ -310,7 +310,8 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
                                                     </div>
 
 
-@else
+                                                        @else
+                                                        
                                                       <div class="mb-3">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-sm-12">

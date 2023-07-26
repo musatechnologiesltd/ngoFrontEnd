@@ -206,8 +206,8 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.member_of_service_holder_of_Any_other_ngo')}} <span class="text-danger">*</span> :</label>
                                                                                                 <select class="form-control" data-parsley-required name="service_status" id="">
-                                                                                                    <option value="{{ trans('form 8_bn.yes') }}" {{ $main_all_data_list->profession == trans('form 8_bn.yes') ? 'selected':'' }}>{{ trans('form 8_bn.yes')}}</option>
-                                                                                                    <option value="{{ trans('form 8_bn.no') }}" {{ $main_all_data_list->profession == trans('form 8_bn.no') ? 'selected':'' }}>{{ trans('form 8_bn.no')}}</option>
+                                                                                                    <option value="{{ trans('form 8_bn.yes') }}" {{ $main_all_data_list->service_status == trans('form 8_bn.yes') ? 'selected':'' }}>{{ trans('form 8_bn.yes')}}</option>
+                                                                                                    <option value="{{ trans('form 8_bn.no') }}" {{ $main_all_data_list->service_status == trans('form 8_bn.no') ? 'selected':'' }}>{{ trans('form 8_bn.no')}}</option>
                                                                                                 </select>
                                                                                             </div>
 

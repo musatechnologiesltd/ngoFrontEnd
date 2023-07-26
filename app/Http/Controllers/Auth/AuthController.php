@@ -116,6 +116,9 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+
+            CommonController::checkNgotype();
+
             return redirect()->intended('dashboard')
                         ->with('success','You have Successfully logged in');
         }

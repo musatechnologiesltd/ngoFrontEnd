@@ -5,6 +5,9 @@ namespace App\Http\Controllers\NGO;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use File;
+use App;
+use Auth;
+use App\Models\NgoTypeAndLanguage;
 class CommonController extends Controller
 {
     public static  function imageUpload($request,$file,$filePath){
@@ -69,6 +72,18 @@ class CommonController extends Controller
         $finalResult = str_replace($engDATE,$bangDATE,$data);
 
         return $finalResult;
+    }
+
+
+   public static function checkNgotype(){
+
+    $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
+    App::setLocale($first_form_check);
+    session()->put('locale',$first_form_check);
+
+
+
+
     }
 
 

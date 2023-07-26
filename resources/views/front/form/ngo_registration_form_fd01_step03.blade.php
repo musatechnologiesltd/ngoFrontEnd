@@ -79,6 +79,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship1[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -135,6 +136,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship2[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -191,6 +193,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship3[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -247,6 +250,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship4[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -303,6 +307,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship5[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -378,7 +383,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship{{ $key+1 }}[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
-
+                                                <option value="">{{ trans('civil.select')}}</option>
 
                                             @foreach($getCityzenshipData as $allGetCityzenshipData)
                                             @if(session()->get('locale') == 'en')
