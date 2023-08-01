@@ -20,7 +20,7 @@
                     $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
                     $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 
             $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
 

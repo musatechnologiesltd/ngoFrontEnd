@@ -98,7 +98,7 @@ class OtherformController extends Controller
           }else{
           //e//
 
-          session()->forget('locale');
+          //session()->forget('locale');
 
           if($checkCompleteStatus == 0){
 

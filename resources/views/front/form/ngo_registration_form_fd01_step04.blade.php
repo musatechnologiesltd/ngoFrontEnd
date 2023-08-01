@@ -311,7 +311,7 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 
 
                                                         @else
-                                                        
+
                                                       <div class="mb-3">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-sm-12">
@@ -529,7 +529,7 @@ Update
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="file" required accept=".pdf"  name="information_type[]" class="form-control"/>
+                                            <input type="file"  accept=".pdf"  name="information_type[]" class="form-control"/>
                                         </td>
                                         <td></td>
                                     </tr>

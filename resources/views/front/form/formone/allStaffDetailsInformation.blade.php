@@ -41,7 +41,7 @@
 
 <?php
 $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 ?>
             <form action="{{ route('allStaffDetailsInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
                 @csrf

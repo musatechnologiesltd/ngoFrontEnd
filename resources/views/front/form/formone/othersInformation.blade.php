@@ -543,7 +543,7 @@ Update
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="file" required accept=".pdf"  name="information_type[]" class="form-control"/>
+                                            <input type="file"  accept=".pdf"  name="information_type[]" class="form-control"/>
                                         </td>
                                         <td></td>
                                     </tr>
