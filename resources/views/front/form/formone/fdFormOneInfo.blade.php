@@ -162,7 +162,17 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>(iii)</td>
                                     <td>{{ trans('fd_one_step_one.reg_num')}}</td>
-                                    <td>: {{ $allformOneData->registration_number }}</td>
+                                    <td>:
+
+                                        @if($allformOneData->registration_number == 0)
+
+                                        @else
+
+                                        {{ $allformOneData->registration_number }}
+                                        @endif
+
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -450,6 +460,11 @@ foreach ($data   as $a) {
                                     <td colspan="3">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
                                     </td>
                                 </tr>
+
+                                @if(!$get_all_data_adviser_bank)
+
+
+                                @else
                                 <tr>
                                     <td></td>
                                     <td>({{ trans('form 8_bn.a')}})</td>
@@ -480,6 +495,7 @@ foreach ($data   as $a) {
                                     <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
                                     <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.eight')}}.</td>
                                     <td colspan="2">{{ trans('fd_one_step_four.tt4')}}

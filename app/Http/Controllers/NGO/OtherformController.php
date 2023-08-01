@@ -356,7 +356,7 @@ return redirect('ngoAllRegistrationForm');
 
         $category_list = new NgoStatus();
         $category_list->fd_one_form_id = $get_reg_id->id;
-        $category_list->reg_id = $get_reg_id->registration_number;
+        $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
         $category_list->reg_type = $request->reg_type;
         $category_list->status = 'Ongoing';
         $category_list->email = Auth::user()->email;
@@ -364,7 +364,7 @@ return redirect('ngoAllRegistrationForm');
 
             $get_v_email = Auth::user()->email;
 
-        Mail::send('emails.reg_number_list', ['token' => $get_reg_id], function($message) use($get_v_email){
+        Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin], function($message) use($get_v_email){
             $message->to($get_v_email);
             $message->subject('Ngo Registration Mail');
         });
