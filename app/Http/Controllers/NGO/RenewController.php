@@ -30,16 +30,16 @@ class RenewController extends Controller
     public function renew(){
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->value('ngo_type');
-        if($checkNgoTypeForForeginNgo == 'Foreign'){
+        // if($checkNgoTypeForForeginNgo == 'Foreign'){
 
-            App::setLocale('sp');
-            session()->put('locale','sp');
+        //     App::setLocale('sp');
+        //     session()->put('locale','sp');
 
-        }else{
+        // }else{
 
-            App::setLocale('en');
-            session()->put('locale','en');
-        }
+        //     App::setLocale('en');
+        //     session()->put('locale','en');
+        // }
 
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();

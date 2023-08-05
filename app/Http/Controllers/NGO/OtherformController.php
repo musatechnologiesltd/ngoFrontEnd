@@ -26,6 +26,7 @@ use App\Models\FdOneAdviserList;
 use App\Models\FdOneSourceOfFund;
 use App\Models\FdOneMemberList;
 use Response;
+use Session;
 class OtherformController extends Controller
 {
 
@@ -47,7 +48,7 @@ class OtherformController extends Controller
             App::setLocale($lan);
             session()->put('locale',$lan);
 
-
+//dd(Session::get('locale'));
 
         return redirect()->back();
 

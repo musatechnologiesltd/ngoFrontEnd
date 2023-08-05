@@ -334,6 +334,7 @@
     <div class="container">
         <h1>{{ trans('first_info.user_dash')}}</h1>
         {{-- <h4>User History</h4> --}}
+        
     </div>
 </div>
 

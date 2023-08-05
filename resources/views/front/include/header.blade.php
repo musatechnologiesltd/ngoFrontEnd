@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="header_left_side">
-                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                      @if(Session::get('locale') == 'en' ||  empty(session()->get('locale')))
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
                         <h1>গণপ্রজাতন্ত্রী বাংলাদেশ<br>
                             সরকার </h1>
                     </a>
+                  
                     @else
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
                         <h1>Government of the <br>
