@@ -136,16 +136,33 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                 <div class="mt-2 mb-2">
+
+@if($get_country_type == 'Foreign')
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Part_Time')}}" {{ trans('fd_one_step_one.Part_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Part Time" {{ 'Part Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Full_Time')}}" {{  trans('fd_one_step_one.Full_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Full Time" {{  'Full Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                     </div>
+                    @else
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="খণ্ডকালীন" {{ 'খণ্ডকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="পূর্ণকালীন" {{  'পূর্ণকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                    </div>
+
+                    @endif
+
+
                 </div>
             </div>
             <div class="mb-3">
@@ -173,6 +190,10 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                     <?php
  $convert_new_ass_cat  = explode(",",$get_all_data_1->citizenship);
+//dd($convert_new_ass_cat);
+
+$ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
 
                     ?>
 
@@ -182,13 +203,14 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
                 <select   class="js-example-basic-multiple form-control"  name="citizenship[]"
-                multiple="multiple">
+                multiple="multiple" required>
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
-                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
+                @if($ngoType == 'Foreign')
+                <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+
                 @else
-            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
             @endif
             @endforeach
 
@@ -347,7 +369,8 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                     <?php
  $convert_new_ass_cat  = explode(",",$get_all_data_1->citizenship);
-
+$ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
                     ?>
 
 
@@ -356,13 +379,14 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
                 <select   class="js-example-basic-multiple form-control"  name="citizenship[]"
-                multiple="multiple">
+                multiple="multiple" required>
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
-                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
+                @if($ngoType == 'Foreign')
+                <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+
                 @else
-            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
             @endif
             @endforeach
 

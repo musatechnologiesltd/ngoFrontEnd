@@ -100,7 +100,7 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
     </div>
     <div class="mb-3">
         <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-        <input class="form-control" name="change_ac_number" data-parsley-required accept=".pdf"  type="file" id="">
+        <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
     </div>
     @else
 
@@ -138,11 +138,12 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
                                         </div>
                                     </div>
                                 </div>
-                                @endif
                                 <div class="mb-3">
                                     <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
                                     <input class="form-control" name="change_ac_number" data-parsley-required accept=".pdf"  type="file" id="">
                                 </div>
+                                @endif
+
 
 
                         </div>

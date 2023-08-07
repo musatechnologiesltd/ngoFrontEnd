@@ -193,6 +193,24 @@ return redirect('/allStaffInformationForRenew');
         return view('front.renew.other_information_for_renew');
     }
 
+    public function otherInformationForRenewNewPost(Request $request){
+       // dd($request->all());
+
+        $input = $request->all();
+
+
+        $condition_main_id = $input['id'];
+        foreach($condition_main_id as $key => $condition_main_id){
+              $form=FdOneMemberList::find($input['id'][$key]);
+                $form->mobile=$input['staff_mobile'][$key];
+                $form->email=$input['staff_email'][$key];
+
+                $form->save();
+        }
+
+        return redirect()->route('otherInformationForRenew');
+    }
+
 
     public function otherInformationForRenewGet(Request $request){
 //dd($request->copy_of_chalan);

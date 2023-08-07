@@ -17,6 +17,8 @@ class FdOneMemberList extends Model
         'address',
         'date_of_join',
         'citizenship',
+        'mobile',
+        'email',
         'salary_statement',
         'other_occupation',
         'now_working_at',

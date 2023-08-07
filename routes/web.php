@@ -94,6 +94,10 @@ Route::controller(RenewController::class)->group(function () {
     Route::get('allStaffInformationForRenew', 'allStaffInformationForRenew')->name('allStaffInformationForRenew');
     Route::post('allStaffInformationForRenewStore', 'allStaffInformationForRenewStore')->name('allStaffInformationForRenewStore');
     Route::get('otherInformationForRenew', 'otherInformationForRenew')->name('otherInformationForRenew');
+
+    Route::post('otherInformationForRenewNewPost', 'otherInformationForRenewNewPost')->name('otherInformationForRenewNewPost');
+
+
     Route::post('otherInformationForRenewGet', 'otherInformationForRenewGet')->name('otherInformationForRenewGet');
 });
 
