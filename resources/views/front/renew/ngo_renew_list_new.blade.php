@@ -332,16 +332,34 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                 <div class="mt-2 mb-2">
+
+
+                    @if($get_country_type == 'Foreign')
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Part_Time')}}" {{ trans('fd_one_step_one.Part_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Part Time" {{ 'Part Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Full_Time')}}" {{  trans('fd_one_step_one.Full_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Full Time" {{  'Full Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                     </div>
+                    @else
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="খণ্ডকালীন" {{ 'খণ্ডকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="পূর্ণকালীন" {{  'পূর্ণকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                    </div>
+
+                    @endif
+
+
                 </div>
             </div>
             <div class="mb-3">
