@@ -6,8 +6,7 @@ return [
     'tt1'=>'If registration fee has been paid (please enclouse supporting papers)',
     'tt'=>'Name & Details of Consultant (s) If Proposed to be employed',
     'o_info'=>'Other Information',
-    'other_info'=>'
-    Other Document',
+    'other_info'=>'Other Document',
     'treasury_number'=>'Treasury Number',
     'attach_the_supporting_papers'=>'Attach the Supporting Papers',
     'treasury_invoice_number_for_payment_of_vAT'=>'Treasury invoice number for payment of VAT',
@@ -22,11 +21,11 @@ return [
     'name_of_bank'=>'Name of Bank',
     'branch_name_of_bank'=>'Branch Name of Bank',
     'bank_address'=>'Bank Address',
-    'information_pdf'=>'Information PDF',
+    'information_pdf'=>'Any other information of significance which the applicant may like to furnish(Enclosure may be given)',
     'add_new_information'=>'Add New Information',
     'step_4'=>'Step 4',
     'step_5'=>'Step 5',
-    'Main_Account_Details'=>'Main Account Details',
+    'Main_Account_Details'=>'Mother Account Details',
     'Submit'=>'Submit',
     'fd_update'=>'Update FD01-From',
 ];

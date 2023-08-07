@@ -20,14 +20,9 @@
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
                         $ngoMemberLists = DB::table('ngo_member_lists')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
 
-                        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-        'May','June','July','August','September','October','November','December','Saturday','Sunday',
-        'Monday','Tuesday','Wednesday','Thursday','Friday');
-        $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-        'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-        বুধবার','বৃহস্পতিবার','শুক্রবার'
-        );
+
                         ?>
+                        @include('translate')
                     <div class="committee_container active">
                         <div class="d-flex justify-content-between mb-4">
                             <div class="p-2">
@@ -67,7 +62,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 @if(session()->get('locale') == 'en')
 
 
-{{ str_replace($engDATE, $bangDATE, $newDate12)}}
+{{ App\Http\Controllers\NGO\CommonController::englishToBangla($newDate12)}}
 
 
 @else
@@ -121,7 +116,9 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.mobile_no')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="number" data-parsley-required minlength="11" value="{{ $main_all_data_list->member_mobile }}"  maxlength="11" name="phone" class="form-control" id="">
+                                                                                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                                                type = "number"
+                                                                                                maxlength = "11" data-parsley-required minlength="11" value="{{ $main_all_data_list->member_mobile }}"   name="phone" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.fathers_name')}} <span class="text-danger">*</span> </label>

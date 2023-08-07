@@ -43,8 +43,10 @@
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">যোগাযোগ ব্যক্তির মোবাইল নম্বর: <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="" placeholder="যোগাযোগ ব্যক্তির মোবাইল নম্বর"
-                   name="contact_person_mobile_number" value="{{ $nVisaEdit->nVisaWorkPlaceAddress->contact_person_mobile_number }}" data-parsley-required minlength="11" maxlength="11" data-parsley-trigger=“keyup”>
+            <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            type = "number"
+            maxlength = "11" class="form-control" id="" placeholder="যোগাযোগ ব্যক্তির মোবাইল নম্বর"
+                   name="contact_person_mobile_number" value="{{ $nVisaEdit->nVisaWorkPlaceAddress->contact_person_mobile_number }}" data-parsley-required minlength="11"  data-parsley-trigger=“keyup”>
         </div>
     </div>
 </div>

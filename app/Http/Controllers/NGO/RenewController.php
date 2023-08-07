@@ -30,19 +30,20 @@ class RenewController extends Controller
     public function renew(){
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->value('ngo_type');
-        if($checkNgoTypeForForeginNgo == 'Foreign'){
+        // if($checkNgoTypeForForeginNgo == 'Foreign'){
 
-            App::setLocale('sp');
-            session()->put('locale','sp');
+        //     App::setLocale('sp');
+        //     session()->put('locale','sp');
 
-        }else{
+        // }else{
 
-            App::setLocale('en');
-            session()->put('locale','en');
-        }
+        //     App::setLocale('en');
+        //     session()->put('locale','en');
+        // }
 
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
         return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
     }
@@ -194,10 +195,11 @@ return redirect('/allStaffInformationForRenew');
 
 
     public function otherInformationForRenewGet(Request $request){
-
+//dd($request->copy_of_chalan);
         $time_dy = time().date("Ymd");
 
-       $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)->orderBy('id','desc')->value('id');
+       $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)
+       ->orderBy('id','desc')->value('id');
        $filePath="NgoRenewInfo";
 
         $ngoRenew = NgoRenewInfo::find($Ngorenewinfo_get_id);
@@ -237,9 +239,10 @@ return redirect('/allStaffInformationForRenew');
         $main_time = $dt->format('H:i:s a');
 
 
-
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
         $add_renew_request = new NgoRenew();
-        $add_renew_request->fd_one_form_id = $Ngorenewinfo_get_id;
+        $add_renew_request->fd_one_form_id = $ngo_list_all->id;
         $add_renew_request->time_for_api =$main_time;
         $add_renew_request->status = 'Ongoing';
         $add_renew_request->save();

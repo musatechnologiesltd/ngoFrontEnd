@@ -177,7 +177,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                     <div class="card">
                         <div class="card-body p-5">
                             <div class="d-flex justify-content-center">
-                                <i class="fa fa-check-circle confirmation_icon"></i>
+                                <i class="fa fa-check-circle confirmation_icon" style="font-size:105px !important;"></i>
                             </div>
                             <div class="text-center">
                                 <h1>Application Submitted!</h1>

@@ -9,17 +9,12 @@
         $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
         $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-       $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
+
 
 
 
               ?>
+
                     @include('flash_message')
                     <div class="user_dashboard_right">
                         <h4>{{ trans('fd_one_step_one.f_form')}} </h4>
@@ -42,7 +37,7 @@
                         </a>
                                     </td>
                                     <td>
-                                       
+
 
                         @if($allformOneData->verified_fd_one_form == 0)
                         <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -167,7 +162,17 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>(iii)</td>
                                     <td>{{ trans('fd_one_step_one.reg_num')}}</td>
-                                    <td>: {{ $allformOneData->registration_number }}</td>
+                                    <td>:
+
+                                        @if($allformOneData->registration_number == 0)
+
+                                        @else
+
+                                        {{ $allformOneData->registration_number }}
+                                        @endif
+
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -320,8 +325,8 @@ foreach ($data   as $a) {
 
                                     @if(session()->get('locale') == 'en')
                                     <td></td>
-                                    <td>{{ str_replace($engDATE, $bangDATE, $key+1 )}}.</td>
-                                    <td>কর্মকর্তা {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+                                    <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
+                                    <td>কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
                                     <td></td>
                                     @else
                                     <td></td>
@@ -426,8 +431,8 @@ foreach ($data   as $a) {
                                 <tr>
                                     @if(session()->get('locale') == 'en')
                                     <td></td>
-                                    <td>{{ str_replace($engDATE, $bangDATE, $key+1 )}}.</td>
-                                    <td>পরামর্শক {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+                                    <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
+                                    <td>পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla( $key+1 )}}</td>
                                     <td></td>
                                     @else
                                     <td></td>
@@ -455,6 +460,11 @@ foreach ($data   as $a) {
                                     <td colspan="3">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
                                     </td>
                                 </tr>
+
+                                @if(!$get_all_data_adviser_bank)
+
+
+                                @else
                                 <tr>
                                     <td></td>
                                     <td>({{ trans('form 8_bn.a')}})</td>
@@ -485,6 +495,7 @@ foreach ($data   as $a) {
                                     <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
                                     <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.eight')}}.</td>
                                     <td colspan="2">{{ trans('fd_one_step_four.tt4')}}

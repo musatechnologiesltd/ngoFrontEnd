@@ -10,25 +10,7 @@
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-?>
-<?php
-
-
-
-
-
-
-
-?>
 
 
 <section>
@@ -358,9 +340,76 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                         </div>
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
+                                                                        @if($key+1 == 1)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">এনজিও নথি {{ str_replace($engDATE, $bangDATE,$key+1) }}</a>
+                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                    <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
+                                                                                    @else
+
+                                                                                    <h6>Executive committee of primary registering authority and attested copy</h6>
+                                                                                    @endif
+                                                                                </a>
                                                                         </h6>
+                                                                        @elseif($key+1 == 2)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                    <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
+                    @else
+
+                    <h6>Attested copy of constitution</h6>
+                    @endif
+                                                                        </a>
+                                                                </h6>
+                                                                        @elseif($key+1 == 3)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
+                                                                            @else
+
+                                                                            <h6>Activity report of the organization</h6>
+                                                                            @endif
+                                                                        </a>
+                                                                </h6>
+                                                                        @elseif($key+1 == 4)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                            <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
+                                                                            @else
+
+                                                                            <h6>Donors Receipt</h6>
+                                                                            @endif
+                                                                        </a>
+                                                                </h6>
+                                                                        @elseif($key+1 == 5)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                            <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
+                                                                            @else
+
+                                                                            <h6>Attested copy of the minutes of the general meeting regarding</h6>
+                                                                            @endif
+                                                                        </a>
+                                                                </h6>
+
+                                                                        @elseif($key+1 == 6)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
+                                                                            @else
+
+                                                                            <h6>LIST OF NAMES OF GENERAL MEMBERS OF THE ORGANIZATION</h6>
+                                                                            @endif
+
+                                                                        </a>
+                                                                </h6>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -384,7 +433,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoMemberDocument',$all_get_all_source_of_fund_data->id ) }}">এনজিও কর্মকর্তাদের নথি  {{ str_replace($engDATE, $bangDATE,$key+1) }}</a>
+                                                                                    href="{{ route('ngoMemberDocument',$all_get_all_source_of_fund_data->id ) }}">সাধারণ সদস্যদের নথি  {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
@@ -408,7 +457,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('otherPdfFromFDOneForm',$all_get_all_source_of_fund_data->id ) }}">অন্যান্য পিডিএফ কপি {{ str_replace($engDATE, $bangDATE,$key+1) }}</a>
+                                                                                    href="{{ route('otherPdfFromFDOneForm',$all_get_all_source_of_fund_data->id ) }}">অন্যান্য পিডিএফ কপি {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>

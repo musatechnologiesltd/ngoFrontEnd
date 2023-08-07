@@ -10,16 +10,7 @@
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-?>
 <?php
 
 $getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
@@ -63,7 +54,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @else
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_lan_one->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_lan_one->format('d-m-Y')) }}
 
                                                 @else
 
@@ -93,7 +84,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @else
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_lan_one->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_lan_one->format('d-m-Y')) }}
 
                                                 @else
 
@@ -122,7 +113,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
                                                 @else
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_one->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_one->format('d-m-Y')) }}
 
                                                 @else
 
@@ -153,7 +144,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @else
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_one->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_one->format('d-m-Y')) }}
 
                                                 @else
 
@@ -184,7 +175,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @else
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_eight->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_eight->format('d-m-Y')) }}
 
                                                 @else
 
@@ -217,7 +208,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @else
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_ngomember->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngomember->format('d-m-Y')) }}
 
                                                 @else
 
@@ -256,7 +247,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_ngodoc->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngodoc->format('d-m-Y')) }}
 
                                                 @else
 
@@ -284,7 +275,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 @else
                                                 @if(session()->get('locale') == 'en')
-                                                {{ str_replace($engDATE, $bangDATE,$get_date_fd_ngodoc_mem->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngodoc_mem->format('d-m-Y')) }}
 
                                                 @else
 
@@ -342,7 +333,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                     <div class="card">
                         <div class="card-body p-5">
                             <div class="d-flex justify-content-center">
-                                <i class="fa fa-check-circle confirmation_icon"></i>
+                                <i class="fa fa-check-circle confirmation_icon" style="font-size:105px !important;"></i>
                             </div>
                             <div class="text-center">
                                 <h1>Application Submitted!</h1>

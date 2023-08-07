@@ -3,11 +3,12 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="header_left_side">
-                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                      @if(Session::get('locale') == 'en' ||  empty(session()->get('locale')))
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
                         <h1>গণপ্রজাতন্ত্রী বাংলাদেশ<br>
                             সরকার </h1>
                     </a>
+                  
                     @else
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
                         <h1>Government of the <br>
@@ -50,7 +51,7 @@
             <div class="p-2">
                 <button onclick="location.href = '{{ route('changeLanguage','sp') }}';" class="btn button-sign {{ session()->get('locale') == 'sp' ? 'lang_active_button' : '' }}" >English</button>
             </div>
-          
+
           @endif
            @if (Auth::check())
             <div class="p-2">
@@ -176,7 +177,7 @@
 
                     <div class="sidebar_content sidebar_foot">
                         <p>
-                              @if(session()->get('locale') == 'en')
+                              @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
             &copy; <strong><span>এনজিও অনলাইন নিবন্ধন পোর্টাল, v১.0.0</span></strong>. সর্বস্বত্ব সংরক্ষিত.
             @else
             &copy; <strong><span>NGO Online Registration Portal, v1.0.0</span></strong>. All Rights Reserved.

@@ -52,7 +52,23 @@ class NamechangeController extends Controller
 
         $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        return view('front.name_change.view_form_8_for_change',compact('ngo_list_all','form_eight_list'));
+
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+
+        $main_time = $dt->format('H:i:s a');
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+        $new_data_add = new NgoNameChange();
+        $new_data_add->fd_one_form_id = $fdOneFormId;
+        $new_data_add->previous_name_eng =  Session::get('previous_name');
+        $new_data_add->previous_name_ban = Session::get('previous_name_ban');
+        $new_data_add->present_name_eng = Session::get('new_name');
+        $new_data_add->present_name_ban = Session::get('new_name_ban');
+        $new_data_add->status = 'Ongoing';
+        $new_data_add->time_for_api = $main_time;
+        $new_data_add->save();
+
+        return redirect()->route('addOtherDoc');
 
     }
 
@@ -431,22 +447,22 @@ class NamechangeController extends Controller
     public function finalSubmitNameChange(Request $request){
 
 
-       // dd(Session::get('previous_name'));
+    //    dd(Session::get('previous_name'));
 
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+    //     $dt = new DateTime();
+    //     $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $main_time = $dt->format('H:i:s a');
-        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-        $new_data_add = new NgoNameChange();
-        $new_data_add->fd_one_form_id = $fdOneFormId;
-        $new_data_add->previous_name_eng =  Session::get('previous_name');
-        $new_data_add->previous_name_ban = Session::get('previous_name_ban');
-        $new_data_add->present_name_eng = Session::get('new_name');
-        $new_data_add->present_name_ban = Session::get('new_name_ban');
-        $new_data_add->status = 'Ongoing';
-        $new_data_add->time_for_api = $main_time;
-        $new_data_add->save();
+    //     $main_time = $dt->format('H:i:s a');
+    //     $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+    //     $new_data_add = new NgoNameChange();
+    //     $new_data_add->fd_one_form_id = $fdOneFormId;
+    //     $new_data_add->previous_name_eng =  Session::get('previous_name');
+    //     $new_data_add->previous_name_ban = Session::get('previous_name_ban');
+    //     $new_data_add->present_name_eng = Session::get('new_name');
+    //     $new_data_add->present_name_ban = Session::get('new_name_ban');
+    //     $new_data_add->status = 'Ongoing';
+    //     $new_data_add->time_for_api = $main_time;
+    //     $new_data_add->save();
 
 
         return redirect('/nameChange')->with('success','Request Send Successfully');

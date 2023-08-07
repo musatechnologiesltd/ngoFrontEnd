@@ -5,7 +5,7 @@ return [
   'add' => 'Add',
   'submit' => 'Submit',
   'update'=>'Update',
-
+  'select'=>'--Please Select--',
 
 
 ];

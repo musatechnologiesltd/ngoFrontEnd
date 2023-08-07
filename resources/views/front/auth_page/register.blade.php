@@ -40,7 +40,9 @@
 
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.phone_number')}} <span class="text-danger">*</span> </label>
-                        <input type="number" class="form-control" name="phone" id="phone" required data-parsley-minlength=“11” data-parsley-trigger=“keyup”>
+                        <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        type = "number"
+                        maxlength = "11" class="form-control" name="phone" id="phone" required data-parsley-minlength=“11” data-parsley-trigger=“keyup”>
                         {{-- <div id="" class="form-text">{{ trans('header.sm')}}</div> --}}
                     </div>
                     <div class="d-grid d-md-flex justify-content-md-end">

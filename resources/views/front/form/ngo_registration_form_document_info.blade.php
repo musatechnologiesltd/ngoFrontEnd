@@ -32,13 +32,7 @@
                         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
                         $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
 
-                                                $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-                                'May','June','July','August','September','October','November','December','Saturday','Sunday',
-                                'Monday','Tuesday','Wednesday','Thursday','Friday');
-                                $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-                                'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-                                বুধবার','বৃহস্পতিবার','শুক্রবার'
-                                );
+
                                                 ?>
 
 
@@ -47,15 +41,15 @@
                                 <div class="card-body file-manager">
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
-                                      
+
                                       @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                       <h2>তথ্য পাওয়া যায়নি</h2>
                                       @else
                                       <h2>Data Not Found</h2>
                                       @endif
-                                      
+
                                       @else
-                                      
+
                                         @foreach($ngoOtherDocLists as $key=>$all_ngo_list_all)
 
                                         <?php

@@ -20,13 +20,7 @@ class FormeightController extends Controller
 
     public function formEightNgoCommitteeMemberPdf(){
 
-        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
+
 
       $file_Name_Custome = 'form_eight';
       $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
@@ -53,9 +47,7 @@ class FormeightController extends Controller
         'all_partiw_form_date'=>$all_partiw_form_date,
         'all_partiw_to_date'=>$all_partiw_to_date,
         'all_partiw_total_year'=>$all_partiw_total_year,
-        'all_partiw'=>$all_partiw,
-        'engDATE'=>$engDATE,
-        'bangDATE'=>$bangDATE
+        'all_partiw'=>$all_partiw
 
 
     ],[],['format' => 'A4-L','orientation' => 'L']);
@@ -67,9 +59,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
             'all_partiw_form_date'=>$all_partiw_form_date,
             'all_partiw_to_date'=>$all_partiw_to_date,
             'all_partiw_total_year'=>$all_partiw_total_year,
-            'all_partiw'=>$all_partiw,
-            'engDATE'=>$engDATE,
-            'bangDATE'=>$bangDATE
+            'all_partiw'=>$all_partiw
 
 
         ],[],['format' => 'A4-L','orientation' => 'L']);
@@ -123,19 +113,13 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
 
-        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-        'May','June','July','August','September','October','November','December','Saturday','Sunday',
-        'Monday','Tuesday','Wednesday','Thursday','Friday');
-        $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-        'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-        বুধবার','বৃহস্পতিবার','শুক্রবার'
-        );
+
 
         $complete_status_fd_eight_id = FormEight::where('user_id',Auth::user()->id)->value('id');
         $complete_status_fd_eight = FormEight::where('user_id',Auth::user()->id)->value('complete_status');
         $complete_status_fd_eight_pdf = FormEight::where('user_id',Auth::user()->id)->value('verified_form_eight');
 
-        return view('front.form.form_eight.formEightNgoCommitteeMemberTotalView',compact('complete_status_fd_eight_id','complete_status_fd_eight','complete_status_fd_eight_pdf','all_partiw','engDATE','bangDATE'));
+        return view('front.form.form_eight.formEightNgoCommitteeMemberTotalView',compact('complete_status_fd_eight_id','complete_status_fd_eight','complete_status_fd_eight_pdf','all_partiw'));
     }
 
     public function formEightNgoCommitteeMemberTotalYear(Request $request){
@@ -364,22 +348,22 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
 
-        $start_date_one = date("d/m/Y", strtotime($request->form_date));
+        $start_date_one = date("Y-m-d", strtotime($request->form_date));
 
 
-        $end_date_one = date("d/m/Y", strtotime($request->to_date));
+        $end_date_one = date("Y-m-d", strtotime($request->to_date));
 
-        $startDate = Carbon::createFromFormat('d/m/Y', $start_date_one);
-        $endDate = Carbon::createFromFormat('d/m/Y', $end_date_one);
+        // $startDate = Carbon::createFromFormat('d/m/Y', $start_date_one);
+        // $endDate = Carbon::createFromFormat('d/m/Y', $end_date_one);
 
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
 
 
         $all_partiw = FormEight::where('fd_one_form_id',$fdOneFormId)
-        ->whereBetween(DB::raw('DATE(created_at)'), [$request->form_date, $request->to_date])
+        ->whereBetween(DB::raw('DATE(created_at)'), [$start_date_one,$end_date_one])
         ->get();
-
+        //dd($all_partiw);
 
                         if(count($all_partiw) > 0){
                             //dd(22);

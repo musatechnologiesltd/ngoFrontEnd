@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.nvisa')}}gg | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -21,18 +21,7 @@ color:white !important;
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-
-
-?>
 
 <section>
 
@@ -234,7 +223,7 @@ color:white !important;
                                                         </tr>
                                                         <tr>
                                                             <td>কার্যকর এর তারিখ</td>
-                                                            <td>:{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->permit_efct_date))) }}</td>
+                                                            <td>:{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->permit_efct_date))) }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>জারি করা ওয়ার্ক পারমিট এর রেফারেন্স নং</td>
@@ -814,8 +803,8 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
                                                     মহাপরিচালক <br>
                                                     এনজিও বিষয় ব্যুরো, ঢাকা <br>
                                                     জনাব,</p>
-                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{str_replace($engDATE,$bangDATE,$ngo_list_all->registration_number)}}
-                                                    তারিখঃ {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
+                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
+                                                    তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
                                                     অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                                                     এনডিসা প্রাপ্তির সুপারিশপত্র
                                                     পাওয়ার জন্য আবেদন করছিঃ</p>
@@ -848,12 +837,12 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
                                             <tr>
                                                 <td>৩.</td>
                                                 <td>জন্ম স্থান ও তারিখ</td>
-                                                <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
+                                                <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>৪.</td>
                                                 <td>পাসপোর্ট নম্বর, ইস্যু ও মেয়াদোর্ত্তীণ তারিখ</td>
-                                                <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
+                                                <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>৫.</td>
@@ -1016,7 +1005,7 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
                                             <tr>
                                                 <td>২১.</td>
                                                 <td>এক্সটেনশন হয়ে থাকলে তার সময়কাল</td>
-                                                <td>: {{ str_replace($engDATE,$bangDATE,date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
+                                                <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>২২.</td>

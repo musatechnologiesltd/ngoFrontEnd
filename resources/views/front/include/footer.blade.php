@@ -15,7 +15,7 @@
 
     <div class="container py-4">
         <div class="copyright">
-            @if(session()->get('locale') == 'en')
+            @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
             &copy; <strong><span>এনজিও অনলাইন নিবন্ধন পোর্টাল, v১.0.0</span></strong>. সর্বস্বত্ব সংরক্ষিত.
             @else
             &copy; <strong><span>NGO Online Registration Portal, v1.0.0</span></strong>. All Rights Reserved.

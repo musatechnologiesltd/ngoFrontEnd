@@ -20,7 +20,7 @@
                     $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
                     $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 
             $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
 
@@ -73,12 +73,13 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship1[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -129,12 +130,13 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required  type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required  type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship2[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -185,12 +187,13 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship3[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -241,12 +244,13 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship4[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -297,12 +301,13 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]" required type="text" class="form-control datepicker" id="">
                                     </div>
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship5[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
+                                                <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
                                                 @if(session()->get('locale') == 'en')
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
@@ -366,7 +371,7 @@
                                     </div>
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                        <input name="date_of_join[]"  value="{{ $allFormOneMemberList->date_of_join }}" required type="text" class="form-control" id="">
+                                        <input name="date_of_join[]"  value="{{ $allFormOneMemberList->date_of_join }}" required type="text" class="form-control datepicker" id="">
                                     </div>
 
                                     <?php
@@ -378,7 +383,7 @@
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                                         <select name="citizenship{{ $key+1 }}[]" required class="js-example-basic-multiple form-control" name="states[]"
                                                 multiple="multiple">
-
+                                                <option value="">{{ trans('civil.select')}}</option>
 
                                             @foreach($getCityzenshipData as $allGetCityzenshipData)
                                             @if(session()->get('locale') == 'en')

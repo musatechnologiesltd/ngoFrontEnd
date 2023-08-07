@@ -26,6 +26,7 @@ use App\Models\FdOneAdviserList;
 use App\Models\FdOneSourceOfFund;
 use App\Models\FdOneMemberList;
 use Response;
+use Session;
 class OtherformController extends Controller
 {
 
@@ -42,12 +43,12 @@ class OtherformController extends Controller
     }
 
     public function changeLanguage($lan){
-      
+
       //dd($lan);
             App::setLocale($lan);
             session()->put('locale',$lan);
 
-     
+//dd(Session::get('locale'));
 
         return redirect()->back();
 
@@ -83,7 +84,13 @@ class OtherformController extends Controller
         $first_form_check_account_info = DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$getFdOneFormId)->count();
         $first_form_check_sourceoffunds = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$getFdOneFormId)->count();
 
-        $get_final_result = $first_form_check_sourceoffunds+$first_form_check_account_info+$first_form_check_account+$first_form_check_staff+$first_form_check_adviser+$all_ngo_member_doc + $all_data_list + $ngo_list_all + $all_data_list + $all_parti + $first_form_check;
+
+        $checkCompleteStatus = DB::table('form_complete_statuses')
+          ->where('user_id',Auth::user()->id)->count();
+
+
+
+        $get_final_result = $checkCompleteStatus + $first_form_check_sourceoffunds+$first_form_check_account_info+$first_form_check_account+$first_form_check_staff+$first_form_check_adviser+$all_ngo_member_doc + $all_data_list + $ngo_list_all + $all_data_list + $all_parti + $first_form_check;
 
         if($get_final_result == 0){
 
@@ -92,7 +99,20 @@ class OtherformController extends Controller
           }else{
           //e//
 
-          session()->forget('locale');
+          //session()->forget('locale');
+
+          if($checkCompleteStatus == 0){
+
+
+
+          }else{
+              $checkCompleteStatus = DB::table('form_complete_statuses')
+              ->where('user_id',Auth::user()->id)
+      ->delete();
+
+          }
+
+
 
           if($first_form_check_adviser == 0){
 
@@ -200,7 +220,7 @@ class OtherformController extends Controller
 
             }else{
 
-                $all_parti = FdOneForm::where('fd_one_form_id',$getFdOneFormId)
+                $all_parti = FdOneForm::where('id',$getFdOneFormId)
                 ->delete();
             }
 
@@ -209,7 +229,7 @@ class OtherformController extends Controller
 
 
             }else{
-                $first_form_check = NgoTypeAndLanguage::where('fd_one_form_id',$getFdOneFormId)
+                $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)
                 ->delete();
 
             }
@@ -299,7 +319,7 @@ return redirect('ngoAllRegistrationForm');
         $ngoLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_language');
 
         if($first_form_check == 1){
-
+//dd(11);
             return view('front.firstTwoStep.ngoAllRegistrationForm');
 
         }elseif(!empty($ngoLanguage)){
@@ -337,7 +357,7 @@ return redirect('ngoAllRegistrationForm');
 
         $category_list = new NgoStatus();
         $category_list->fd_one_form_id = $get_reg_id->id;
-        $category_list->reg_id = $get_reg_id->registration_number;
+        $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
         $category_list->reg_type = $request->reg_type;
         $category_list->status = 'Ongoing';
         $category_list->email = Auth::user()->email;
@@ -345,7 +365,7 @@ return redirect('ngoAllRegistrationForm');
 
             $get_v_email = Auth::user()->email;
 
-        Mail::send('emails.reg_number_list', ['token' => $get_reg_id], function($message) use($get_v_email){
+        Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin], function($message) use($get_v_email){
             $message->to($get_v_email);
             $message->subject('Ngo Registration Mail');
         });
