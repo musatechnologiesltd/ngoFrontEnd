@@ -10,6 +10,7 @@ use App\Models\FormEight;
 use App\Models\FdOneForm;
 use App\Models\NgoMemberList;
 use App\Models\NgoOtherDoc;
+use App\Models\NameChangeDoc;
 use App\Models\NgoMemberNidPhoto;
 use Auth;
 use App;
@@ -392,19 +393,25 @@ class NamechangeController extends Controller
 
 
         $condition_main_image = $input['primary_portal'];
+
+
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+        $ngo_name_change_id = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)
+        ->where('status','Ongoing')->value('id');
+
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['primary_portal'][$key]->getSize() / 1048576,2);
 
-            $form= new NgoOtherDoc();
+            $form= new NameChangeDoc();
             $file=$input['primary_portal'][$key];
-            $filePath="NgoOtherDoc";
+            $filePath="NameChangeDoc";
             // $name=$time_dy.$file->getClientOriginalName();
             // $file->move('public/uploads/', $name);
             $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
             $form->time_for_api = $main_time;
-            $form->fd_one_form_id  = $fdOneFormId;
+            $form->ngo_name_change_id  = $ngo_name_change_id;
             $form->	file_size =$file_size;
             $form->save();
        }
@@ -412,7 +419,7 @@ class NamechangeController extends Controller
 
 
 
-         return redirect('/allNgoRelatedDocument')->with('success','Uploaded Successfully');
+       return redirect('/nameChange')->with('success','Request Send Successfully');
 
 
     }
@@ -437,7 +444,7 @@ class NamechangeController extends Controller
         $ngoOtherDoc->save();
 
 
-        return redirect('/allNgoRelatedDocument')->with('success','Created Successfully');
+        return redirect('/nameChange')->with('success','Request Send Successfully');
 
 
     }

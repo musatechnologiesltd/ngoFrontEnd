@@ -15,6 +15,13 @@
 
 <section>
 
+    <?php
+ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
+
+
+        ?>
+
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-12">
@@ -96,6 +103,116 @@
                             <form method="post" action="{{ route('storeOtherDoc') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                 @csrf
+                                @if($ngoType == 'Foreign')
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        গঠনতন্ত্র পরিবর্তন ফি বাবদ-১৩,০০০/ (তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির তালিকা ( সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নাম পরিবর্তন বিষয়ে সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির সিদ্ধান্তের কপি  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত মূলকপিসহ )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংস্থার পরিবর্তিত নামের সনদপত্র /ইনকর্পোরেটর সার্টিফিকেট (সংশ্লিষ্ট দেশের নোটারীকৃত মূলকপি )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @else
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
@@ -232,6 +349,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="d-grid d-md-flex justify-content-md-end">
                                     <button type="submit" class="btn btn-registration"
                                             >যুক্ত করুন
