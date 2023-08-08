@@ -12,6 +12,23 @@
 <section>
     <div class="container">
         <div class="card">
+            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+            <div class="card-body p-5">
+                <h5 class="text-center mb-4" style="color: #006A4E">যাচাই করা হয়েছে</h5>
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('/') }}public/front/assets/img/icon/handshake.png" alt="" width="150" height="150">
+                </div>
+                <div class="text-center">
+                    <h2>স্বাগতম!</h2>
+                    <p>আপনি শুরু করতে পারায় আমরা আনন্দিত । আপনার অ্যাকাউন্ট নিশ্চিত করা হয়েছে । <br> লগ ইন করার জন্য নীচের বোতাম টিপুন ।</p>
+                </div>
+                <div class="col-md-12 text-center">
+                    <a href="{{ route('login') }}" type="button" class="btn btn-registration">লগ ইন</a>
+                </div>
+            </div>
+
+            @else
             <div class="card-body p-5">
                 <h5 class="text-center mb-4" style="color: #006A4E">Verified</h5>
                 <div class="d-flex justify-content-center">
@@ -25,6 +42,7 @@
                     <a href="{{ route('login') }}" type="button" class="btn btn-registration">Log In</a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </section>

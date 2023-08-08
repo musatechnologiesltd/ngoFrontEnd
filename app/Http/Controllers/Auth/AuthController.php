@@ -85,7 +85,7 @@ class AuthController extends Controller
 
         Mail::send('emails.passwordResetEmail', ['id' => $id], function($message) use($request){
             $message->to($request->email);
-            $message->subject('Password Reset Email');
+            $message->subject('NGOAB Registration Service || Password Reset ');
         });
 
        return redirect('/login')->with('success','Email Sent Successfully!');
@@ -146,7 +146,7 @@ class AuthController extends Controller
 
         Mail::send('emails.emailVerificationEmail', ['token' => $token], function($message) use($request){
               $message->to($request->email);
-              $message->subject('Email Verification Mail');
+              $message->subject('NGOAB Registration Service || User Sign Up & Email Verification');
           });
 
 
@@ -221,7 +221,7 @@ class AuthController extends Controller
 
   Mail::send('emails.emailVerificationEmail', ['token' => $token], function($message) use($request){
         $message->to($request->email);
-        $message->subject('Email Verification Mail');
+        $message->subject('NGOAB Registration Service || User Sign Up & Email Verification');
     });
 
     Session::flush();
