@@ -92,7 +92,7 @@
                             <div class="row">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="others_inner_section">
-                                        <h1>এন-ভিসা আবেদন</h1>
+                                        <h1>N-Visa Application</h1>
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
 
                             <div class="card mt-3 ">
                                 <div class="card-header custom-color">
-                                    নিরাপত্তা ছাড়পত্রের জন্য আবেদন
+                                    Application for Security Clearance
                                 </div>
                                 <div class="card-body">
                                     @include('front.nVisa.basicInfo')

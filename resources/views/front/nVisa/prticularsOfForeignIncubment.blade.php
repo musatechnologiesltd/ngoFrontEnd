@@ -1,19 +1,19 @@
 <div class="card-header custom-color">
-    খ. বিদেশী দায়িত্বশীল এর বিশেষ বিবরণ
+    B. PARTICULARS OF FOREIGN INCUMBENT
 </div>
 <div class="card-body">
     <div class="row">
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">বিদেশী নাগরিকের নাম: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Name of the foreign national: <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id=""
                    placeholder="বিদেশী নাগরিকের নাম" name="name_of_the_foreign_national" required>
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">জাতীয়তা:<span
+            <label for="" class="form-label">Nationality:<span
                         class="text-danger">*</span></label>
                         <select class="js-example-basic-single form-control" data-parsley-required name="nationality"
                        >
-<option value="">--একটা নির্বাচন করুন--</option>
+<option value="">--Please Select--</option>
                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                         @if(session()->get('locale') == 'en')
                         <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>

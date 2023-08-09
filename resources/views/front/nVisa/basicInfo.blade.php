@@ -1,6 +1,6 @@
 <div class="card card-custom-color">
     <div class="card-header custom-color">
-        সাধারণ  তথ্য
+        Basic Information
     </div>
     <div class="card-body">
 
@@ -8,50 +8,51 @@
                 <div class="col-lg-9 col-sm-12">
                     <div class="row">
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">প্রস্তাবিত অনুমোদনের সময়কাল <span class="text-danger">*</span></label>
+                            <label for="" class="form-label">Approved permission
+                                period <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id=""
-                                   placeholder="এক (0১) বছর" name="period_validity" required>
+                                   placeholder="One (01) Year" name="period_validity" required>
                         </div>
                         <div class="mb-3 col-lg-6">
-                            <label for="" class="form-label">কার্যকর এর  তারিখ<span
+                            <label for="" class="form-label">Effective Date<span
                                         class="text-danger">*</span></label>
                             <input type="text" class="form-control datepicker"
-                                   placeholder="কার্যকর এর তারিখ" name="permit_efct_date" required>
+                                   placeholder="Effective Date" name="permit_efct_date" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-sm-6 col-form-label">জারি করা ওয়ার্ক পারমিট এর রেফারেন্স নং <span
+                        <label for="" class="col-sm-6 col-form-label">Ref no. of issued work permit <span
                                     class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <input type="text" name="visa_ref_no" class="form-control" id="" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-sm-6 col-form-label">ভিসার সুপারিশ পত্র <span class="text-danger">*</span></label>
+                        <label for="" class="col-sm-6 col-form-label">Received Visa Recommendation Letter <span class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_recomendation_letter_received_way"
                                 data-parsley-checkmin="1" data-parsley-required id="" value="Online">
                                 <label class="form-check-label"
-                                       for="">অনলাইন</label>
+                                       for="">Online</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_recomendation_letter_received_way"
                                 data-parsley-checkmin="1" data-parsley-required  id="" value="Manually">
                                 <label class="form-check-label"
-                                       for="">ম্যানুয়াল</label>
+                                       for="">Manually</label>
                             </div>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-sm-6 col-form-label">ভিসার সুপারিশ পত্রের রেফারেন্স নং  <span
+                        <label for="" class="col-sm-6 col-form-label">Ref no. of Visa Recommendation Letter  <span
                                     class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="" name="visa_recomendation_letter_ref_no" required>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-sm-6 col-form-label">ডিপার্টমেন্ট
+                        <label for="" class="col-sm-6 col-form-label">Department in
                             <span
                                     class="text-danger">*</span></label>
                         <div class="col-sm-6">
@@ -59,17 +60,17 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="" class="col-sm-6 col-form-label">ওয়ার্ক পারমিটের ধরন<span class="text-danger">*</span></label>
+                        <label for="" class="col-sm-6 col-form-label">Work Permit type<span class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_category"
                                        id="" data-parsley-checkmin="1" data-parsley-required  value="New Commercial">
-                                <label class="form-check-label" for="">নিউ কমার্শিয়াল</label>
+                                <label class="form-check-label" for="">New Commercial</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_category"
                                        id="" data-parsley-checkmin="1" data-parsley-required  value="New Industrial">
-                                <label class="form-check-label" for="">নিউ ইন্ডাস্ট্রিয়াল</label>
+                                <label class="form-check-label" for="">New Industrial</label>
                             </div>
                         </div>
                     </div>
