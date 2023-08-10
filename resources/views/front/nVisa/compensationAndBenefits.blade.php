@@ -1,28 +1,28 @@
 <div class="card-header custom-color">
-    ঙ. ক্ষতিপূরণ এবং বেনিফিট
+    E. COMPENSATION AND BENIFITS
 </div>
 <div class="card-body">
     <table class="table table-borderless">
         <tr>
-            <th>বেতন কাঠামো </th>
-            <th>স্থানীয়ভাবে প্রদেয় </th>
+            <th>Salary Structure</th>
+            <th>Payble Locally	</th>
             <th></th>
             <th></th>
         </tr>
         <tr>
             <td></td>
-            <td>পারিশ্রমিক</td>
-            <td>পরিমাণ</td>
-            <td>মুদ্রা</td>
+            <td>Payment</td>
+            <td>Amount</td>
+            <td>Currency</td>
         </tr>
         <tr>
-            <td>ক. মূল বেতন</td>
+            <td>a. Basic Salary</td>
             <td>
                 <select class="form-control" name="payment_type_basic" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -34,13 +34,13 @@
             </td>
         </tr>
         <tr>
-            <td>খ. বিদেশী ভাতা</td>
+            <td>b. Overseas allowance</td>
             <td>
                 <select class="form-control" name="payment_type_overseas" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -52,13 +52,13 @@
             </td>
         </tr>
         <tr>
-            <td>গ. বাড়ি ভাড়া/বাসস্থান</td>
+            <td>c. House rent/Accommodation</td>
             <td>
                 <select class="form-control" name="payment_type_home" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -70,13 +70,13 @@
             </td>
         </tr>
         <tr>
-            <td>ঘ. পরিবহন</td>
+            <td>d. Conveyance</td>
             <td>
                 <select class="form-control" name="payment_type_conveyance" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -88,13 +88,13 @@
             </td>
         </tr>
         <tr>
-            <td>ঙ. বিনোদন ভাতা </td>
+            <td>e. Entertainmemt allowance </td>
             <td>
                 <select class="form-control" name="payment_type_entertainment" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -106,13 +106,13 @@
             </td>
         </tr>
         <tr>
-            <td>চ. চিকিৎসা ভাতা</td>
+            <td>f. Medical allowance</td>
             <td>
                 <select class="form-control" name="payment_type_medical" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -124,13 +124,13 @@
             </td>
         </tr>
         <tr>
-            <td>ছ. বার্ষিক বোনাস</td>
+            <td>g. Annual Bonus</td>
             <td>
                 <select class="form-control" name="payment_type_annual" id="">
-                    <option value="">--একটা নির্বাচন করুন--</option>
-                    <option value="Monthly">মাসিক</option>
-                    <option value="Yearly">বার্ষিক</option>
-                    <option value="Not Applicable">প্রযোজ্য নয়</option>
+                    <option value="">--Please Select--</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Yearly">Yearly</option>
+                    <option value="Not Applicable">Not Applicable</option>
                 </select>
             </td>
             <td>
@@ -142,13 +142,13 @@
             </td>
         </tr>
         <tr>
-            <td>জ. অন্যান্য প্রান্তিক সুবিধা, যদি থাকে</td>
+            <td>h. Other fringe benefits, if any</td>
             <td colspan="3">
                 <input type="text" name="other_benefit" class="form-control" id="">
             </td>
         </tr>
         <tr>
-            <td>ঝ. কোনো বিশেষ মন্তব্য                                            </td>
+            <td>i. Any Particular Comments of remarks                                           </td>
             <td colspan="3">
                 <input type="text" class="form-control" name="salary_remarks" id="">
             </td>

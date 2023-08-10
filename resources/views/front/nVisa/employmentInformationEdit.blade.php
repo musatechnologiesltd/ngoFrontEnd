@@ -1,20 +1,20 @@
 <div class="card-header custom-color">
-    গ.কর্মসংস্থান এর  তথ্য
+    C. EMPLOYMENT INFORMATION
 </div>
 <div class="card-body">
     <div class="row">
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">নিয়োগকৃত পদের নাম (পদবী):<span class="text-danger">*</span></label>
+            <label for="" class="form-label">Name of the post employed for (Designation):<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id=""
-                   placeholder="নিয়োগকৃত পদের নাম (পদবী)" value="{{ $nVisaEdit->nVisaEmploymentInformation->employed_designation }}" required name="employed_designation">
+                   placeholder="Name of the post employed for (Designation)" value="{{ $nVisaEdit->nVisaEmploymentInformation->employed_designation }}" required name="employed_designation">
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">বাংলাদেশে আগমনের তারিখ: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Date of arrival in Bangladesh: <span class="text-danger">*</span></label>
             <input type="text" class="form-control datepicker" id=""
-                   placeholder="বাংলাদেশে আগমনের তারিখ" required name="date_of_arrival_in_bangladesh" value="{{ $nVisaEdit->nVisaEmploymentInformation->date_of_arrival_in_bangladesh }}">
+                   placeholder="Date of arrival in Bangladesh" required name="date_of_arrival_in_bangladesh" value="{{ $nVisaEdit->nVisaEmploymentInformation->date_of_arrival_in_bangladesh }}">
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">ভিসার ধরন:  <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Type of visa:  <span class="text-danger">*</span></label>
             <select name="visa_type" class="form-control" id="" required>
                 <option value="N-Visa">N-Visa</option>
             </select>
@@ -28,31 +28,31 @@
             </select>
         </div> --}}
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">প্রথম নিয়োগের তারিখ: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Date of first assignment: <span class="text-danger">*</span></label>
             <input type="text" class="form-control datepicker" id=""
-                   placeholder="প্রথম নিয়োগের তারিখ" required name="first_appoinment_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->first_appoinment_date }}">
+                   placeholder="Date of first assignment" required name="first_appoinment_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->first_appoinment_date }}">
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">কাঙ্খিত কার্যকরী তারিখ: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Desired Effective Date: <span class="text-danger">*</span></label>
             <input type="text" class="form-control datepicker" id=""
-                   placeholder="কাঙ্খিত কার্যকরী তারিখ" required name="desired_effective_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->desired_effective_date }}">
+                   placeholder="Desired Effective Date" required name="desired_effective_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->desired_effective_date }}">
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">শেষ তারিখ: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Desired End Date: <span class="text-danger">*</span></label>
             <input type="text" class="form-control datepicker" id=""
-                   placeholder="শেষ তারিখ" required name="desired_end_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->desired_end_date }}">
+                   placeholder="Desired End Date" required name="desired_end_date" value="{{ $nVisaEdit->nVisaEmploymentInformation->desired_end_date }}">
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">পছন্দসই সময়কাল: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Desired Duration: <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id=""
-                   placeholder="পছন্দসই সময়কাল" name="visa_validity" value="{{ $nVisaEdit->nVisaEmploymentInformation->visa_validity }}" required>
+                   placeholder="Desired Duration" name="visa_validity" value="{{ $nVisaEdit->nVisaEmploymentInformation->visa_validity }}" required>
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">সংক্ষিপ্ত কাজের বিবরণ: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Brief job description: <span class="text-danger">*</span></label>
             <textarea name="brief_job_description" class="form-control" id="" cols="30" rows="4" required>{{ $nVisaEdit->nVisaEmploymentInformation->brief_job_description }}</textarea>
         </div>
         <div class="mb-3 col-lg-4">
-            <label for="" class="form-label">কর্মচারী ন্যায্যতা: <span class="text-danger">*</span></label>
+            <label for="" class="form-label">Employee Justification: <span class="text-danger">*</span></label>
             <textarea name="employee_justification" class="form-control" id="" cols="30" rows="4" required>{{ $nVisaEdit->nVisaEmploymentInformation->employee_justification }}</textarea>
         </div>
     </div>

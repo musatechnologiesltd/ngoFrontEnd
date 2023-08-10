@@ -1,23 +1,23 @@
 <div class="card-header custom-color">
-    চ. অফিসের জনবল
+    F. Manpower of the office
 </div>
 <div class="card-body">
     <table class="table table-bordered">
         <tr>
-            <th colspan="3">স্থানীয় (ক)</th>                                            </th>
-            <th colspan="3">বিদেশী (খ)</th>
-            <th rowspan="2">সর্বমোট  <br>(ক+খ) </th>
-            <th colspan="2">অনুপাত</th>
+            <th colspan="3">Local (a)</th>                                            </th>
+            <th colspan="3">Foreign (b)</th>
+            <th rowspan="2">Grand Total  <br>(a+b) </th>
+            <th colspan="2">Ratio</th>
         </tr>
         <tr>
-            <td>এক্সিকিউটিভ </td>
-            <td>সাপোর্টিং স্টাফ </td>
-            <td>মোট</td>
-            <td>এক্সিকিউটিভ </td>
-            <td>সাপোর্টিং স্টাফ </td>
-            <td>মোট</td>
-            <td>স্থানীয় </td>
-            <td>বিদেশী</td>
+            <td>Executive</td>
+            <td>Supporting Staff </td>
+            <td>Total</td>
+            <td>Executive</td>
+            <td>Supporting Staff</td>
+            <td>Total</td>
+            <td>Local </td>
+            <td>Foreign</td>
         </tr>
         <tr>
             <td><input type="text" class="form-control" name="local_executive" id=""></td>
