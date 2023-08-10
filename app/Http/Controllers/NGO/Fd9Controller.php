@@ -170,18 +170,18 @@ return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_a
          $input = $request->all();
 
 
-        $family_member_name_list = $input['family_member_name'];
+    //     $family_member_name_list = $input['family_member_name'];
 
 
-        foreach($family_member_name_list as $key => $family_member_name_list){
+    //     foreach($family_member_name_list as $key => $family_member_name_list){
 
 
-            $form= new Fd9ForeignerEmployeeFamilyMemberList();
-            $form->fd9_form_id = $fd9FormId;
-            $form->family_member_name = $input['family_member_name'][$key];
-            $form->family_member_age = $input['family_member_age'][$key];
-            $form->save();
-       }
+    //         $form= new Fd9ForeignerEmployeeFamilyMemberList();
+    //         $form->fd9_form_id = $fd9FormId;
+    //         $form->family_member_name = $input['family_member_name'][$key];
+    //         $form->family_member_age = $input['family_member_age'][$key];
+    //         $form->save();
+    //    }
 
 
 
@@ -282,19 +282,19 @@ return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_a
         $input = $request->all();
 
 
-       $family_member_name_list = $input['family_member_name'];
+    //    $family_member_name_list = $input['family_member_name'];
 
-       Fd9ForeignerEmployeeFamilyMemberList::where('fd9_form_id',$fd9FormId)->delete();
+    //    Fd9ForeignerEmployeeFamilyMemberList::where('fd9_form_id',$fd9FormId)->delete();
 
-       foreach($family_member_name_list as $key => $family_member_name_list){
+    //    foreach($family_member_name_list as $key => $family_member_name_list){
 
 
-           $form= new Fd9ForeignerEmployeeFamilyMemberList();
-           $form->fd9_form_id = $fd9FormId;
-           $form->family_member_name = $input['family_member_name'][$key];
-           $form->family_member_age = $input['family_member_age'][$key];
-           $form->save();
-      }
+    //        $form= new Fd9ForeignerEmployeeFamilyMemberList();
+    //        $form->fd9_form_id = $fd9FormId;
+    //        $form->family_member_name = $input['family_member_name'][$key];
+    //        $form->family_member_age = $input['family_member_age'][$key];
+    //        $form->save();
+    //   }
 
 
 
@@ -328,7 +328,7 @@ $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 
 $file_Name_Custome = "Fd9_Form";
         $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
-           
+
             'nVisaEdit'=>$nVisaEdit,
             'getCityzenshipData'=>$getCityzenshipData,
             'countryList'=>$countryList,

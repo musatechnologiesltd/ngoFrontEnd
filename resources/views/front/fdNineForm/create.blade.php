@@ -124,6 +124,13 @@
                                             </h5>
                                         </div>
 
+                                        <?php
+
+                                  $foriugnerData = DB::table('n_visa_particulars_of_foreign_incumbnets')
+                                  ->where('n_visa_id',$nVisaId)->first();
+
+                                        ?>
+
 
                                         @if(!$fdNineData)
 
@@ -138,7 +145,7 @@
         <label for="" class="form-label">বিদেশি নাগরিকের নাম (ইংরেজীতে Capital Letter এ)<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control" id=""
-               placeholder="" name="fd9_foreigner_name" required>
+               placeholder="" name="fd9_foreigner_name" style="text-transform: uppercase" value="{{ $foriugnerData->name_of_the_foreign_national }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">পিতার নাম<span
@@ -162,30 +169,30 @@
         <label for="" class="form-label">জন্ম স্থান<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control" id=""
-               placeholder="" name="fd9_birth_place" required>
+               placeholder="" name="fd9_birth_place" value="{{ $foriugnerData->home_country }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">জন্ম তারিখ<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control datepicker"  id=""
-               placeholder="" name="fd9_dob" required>
+               placeholder="" name="fd9_dob" value="{{ $foriugnerData->date_of_birth }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">পাসপোর্ট নম্বর<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control" id=""
-               placeholder="" name="fd9_passport_number" required>
+               placeholder="" name="fd9_passport_number" value="{{ $foriugnerData->passport_no }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">ইস্যু তারিখ<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control datepicker" id=""
-               placeholder="" name="fd9_passport_issue_date" required>
+               placeholder="" name="fd9_passport_issue_date" value="{{ $foriugnerData->passport_issue_date }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">মেয়াদোর্ত্তীণ তারিখ<span
             class="text-danger">*</span></label>
-        <input type="text" class="form-control datepicker" name="fd9_passport_expiration_date" id=""
+        <input type="text" class="form-control datepicker" value="{{ $foriugnerData->passport_expiry_date }}" name="fd9_passport_expiration_date" id=""
                placeholder="" required>
     </div>
     <div class="mb-3 col-lg-4">
@@ -205,17 +212,22 @@
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">বৈবাহিক অবস্থা<span
             class="text-danger">*</span></label>
-        <select name="fd9_marital_status" class="form-control" id="" required>
+        {{-- <select name="fd9_marital_status" class="form-control" id="" required>
             <option value="বিবাহিত">বিবাহিত</option>
             <option value="অবিবাহিত">অবিবাহিত</option>
             <option value="ডিভোর্স">ডিভোর্স </option>
-        </select>
+        </select> --}}
+        <input type="text" class="form-control" id=""
+        placeholder="" name="fd9_marital_status" value="{{ $foriugnerData->martial_status }}" required>
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">জাতীয়তা / নাগরিকত্ব<span
             class="text-danger">*</span></label>
 
-        <select class="js-example-basic-single form-control" data-parsley-required name="fd9_nationality_or_citizenship"
+            <input type="text" class="form-control" id=""
+        placeholder="" name="fd9_nationality_or_citizenship" value="{{ $foriugnerData->nationality }}" required>
+
+        {{-- <select class="js-example-basic-single form-control" data-parsley-required name="fd9_nationality_or_citizenship"
         >
 <option value="">--একটা নির্বাচন করুন--</option>
          @foreach($getCityzenshipData as $allGetCityzenshipData)
@@ -226,7 +238,7 @@
      @endif
      @endforeach
 
- </select>
+ </select> --}}
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাধিক নাগরিকত্ব থাকলে বিবরণ<span
@@ -251,7 +263,7 @@
                placeholder="" name="fd9_number_of_family_members" required>
     </div>
 
-    <div class="mb-3 row">
+    {{-- <div class="mb-3 row">
         <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):<span
                     class="text-danger">*</span></label>
     </div>
@@ -279,7 +291,7 @@
         </table>
         <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
         </button>
-    </div>
+    </div> --}}
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
             class="text-danger">*</span></label>
@@ -458,17 +470,19 @@
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">বৈবাহিক অবস্থা<span
             class="text-danger">*</span></label>
-        <select name="fd9_marital_status" class="form-control" id="" required>
+            <input type="text" class="form-control" id=""
+        placeholder="" name="fd9_marital_status" value="{{ $foriugnerData->martial_status }}" required>
+        {{-- <select name="fd9_marital_status" class="form-control" id="" required>
             <option value="বিবাহিত" {{ $fdNineData->fd9_marital_status == 'বিবাহিত' ? 'selected': ''}}>বিবাহিত</option>
             <option value="অবিবাহিত" {{ $fdNineData->fd9_marital_status == 'অবিবাহিত' ? 'selected': ''}}>অবিবাহিত</option>
             <option value="ডিভোর্স" {{ $fdNineData->fd9_marital_status == 'ডিভোর্স' ? 'selected': ''}}>ডিভোর্স </option>
-        </select>
+        </select> --}}
     </div>
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">জাতীয়তা / নাগরিকত্ব<span
             class="text-danger">*</span></label>
 
-        <select class="js-example-basic-single form-control" data-parsley-required name="fd9_nationality_or_citizenship"
+        {{-- <select class="js-example-basic-single form-control" data-parsley-required name="fd9_nationality_or_citizenship"
         >
 <option value="">--একটা নির্বাচন করুন--</option>
          @foreach($getCityzenshipData as $allGetCityzenshipData)
@@ -479,7 +493,9 @@
      @endif
      @endforeach
 
- </select>
+ </select> --}}
+ <input type="text" class="form-control" id=""
+ placeholder="" name="fd9_nationality_or_citizenship" value="{{ $foriugnerData->nationality }}" required>
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাধিক নাগরিকত্ব থাকলে বিবরণ<span
@@ -504,10 +520,10 @@
                placeholder="" value="{{ $fdNineData->fd9_number_of_family_members }}" name="fd9_number_of_family_members" required>
     </div>
 
-    <div class="mb-3 row">
+    {{-- <div class="mb-3 row">
         <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):<span
                     class="text-danger">*</span></label>
-    </div>
+    </div> --}}
 
     <?php
    $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
@@ -515,7 +531,7 @@
    //dd($familyData);
     ?>
 
-    <div class="mb-3 col-lg-12">
+    {{-- <div class="mb-3 col-lg-12">
         <table class="table table-light" id="dynamicAddRemove">
             <tr>
                 <th>নাম<span
@@ -557,7 +573,7 @@
         </table>
         <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
         </button>
-    </div>
+    </div> --}}
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
             class="text-danger">*</span></label>
