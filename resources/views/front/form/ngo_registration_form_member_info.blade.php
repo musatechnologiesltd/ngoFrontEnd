@@ -59,7 +59,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                                             ?>
 
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
 {{ App\Http\Controllers\NGO\CommonController::englishToBangla($newDate12)}}

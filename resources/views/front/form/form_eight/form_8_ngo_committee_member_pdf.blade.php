@@ -34,7 +34,7 @@
 <h3>কার্যনির্বাহী কমিটির সদস্যদের তালিকা</h3>
 <h2 style="padding-top:10px;">কার্যনির্বাহী কমিটির সদস্য/অফিস হোল্ডারদের বিবরণ</h2>
    <p> নোট: 1) কলাম 10 এবং 11 এর জন্য অনুগ্রহ করে পেশার বিশদ বিবরণ যেমন: পদবী, অফিস/প্রতিষ্ঠানের নাম ইত্যাদি পূরণ করুন</p>
-<h4>সময়কাল: {{App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_form_date) }} হইতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla($bangDATE,$all_partiw_to_date) }} , {{ $all_partiw_total_year }} </h4>
+<h4>সময়কাল: {{App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_form_date) }} হইতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_to_date) }} , {{ $all_partiw_total_year }} </h4>
 
   <div class="upper_table">
     <table>

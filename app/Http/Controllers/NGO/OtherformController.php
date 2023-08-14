@@ -31,6 +31,36 @@ class OtherformController extends Controller
 {
 
 
+    public function allNoticeBoard(){
+        $url = DB::table('system_information')->first();
+
+        if(!$url){
+
+          $adminUrl = '';
+        }else{
+            $adminUrl = $url->system_admin_url;
+
+        }
+
+        $noticeList = DB::table('notices')->latest()->get();
+        return view('front.other.allNoticeBoard',compact('noticeList','adminUrl'));
+    }
+
+    public function viewNotice($id){
+        $url = DB::table('system_information')->first();
+
+        if(!$url){
+
+          $adminUrl = '';
+        }else{
+            $adminUrl = $url->system_admin_url;
+
+        }
+        $noticeList = DB::table('notices')->where('id',$id)->value('pdf');
+        return view('front.other.viewNotice',compact('noticeList','adminUrl'));
+    }
+
+
     public function frequentlyAskQuestion(){
 
         return view('front.other.frequently_ask_question');

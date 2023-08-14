@@ -295,16 +295,34 @@
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                     <div class="mt-2 mb-2">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                   value="Part-Time" {{ 'Part-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
-                            <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                        @if($ngoTypeInfo == 'দেশিও')
+
+                        <div class="mt-2 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                                       value="খণ্ডকালীন" {{ 'খণ্ডকালীন' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                                       value="পূর্ণকালীন" {{  'পূর্ণকালীন' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                   value="Full-Time" {{  'Full-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
-                            <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                        @else
+                        <div class="mt-2 mb-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                                       value="Part-Time" {{ 'Part-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                                       value="Full-Time" {{  'Full-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                            </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <div class="mb-3">
@@ -337,13 +355,23 @@
                     <select class="js-example-basic-multiple form-control" data-parsley-required name="citizenship[]"
                     multiple="multiple">
 
+                    @if($ngoTypeInfo == 'দেশিও')
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                        @if(session()->get('locale') == 'en')
-                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                    <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                    @else
+                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                @endif
+                @endforeach
+                    @else
+                    @foreach($getCityzenshipData as $allGetCityzenshipData)
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                        <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
                                     <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
+                                    @endif
 
             </select>
 

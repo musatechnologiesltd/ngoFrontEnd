@@ -75,7 +75,11 @@
             <td class="number_section">(i)</td>
             <td>{{ trans('fd_one_step_one.Organization_Name_Organization_address')}}</td>
             <td style="width:4px">:</td>
+            @if($getNgoTypeForPdf == 'দেশিও')
+            <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            @else
             <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            @endif
         </tr>
         <!-- <tr>
             <td></td>
@@ -134,12 +138,7 @@
                                   $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                   if($getngoForLanguage =='দেশিও'){
 
-                                    if($allformOneData->job_type == 'Full-Time'){
 
-                                      $getJobType = 'পূর্ণকালীন';
-                                    }else{
-                                    $getJobType = 'খণ্ডকালীন';
-                                    }
 
                                   }else{
                                    $getJobType =$allformOneData->job_type;
@@ -152,7 +151,7 @@
             <td></td>
             <td>{{ trans('form 8_bn.b')}}) {{ trans('fd_one_step_one.Whether_part_time_or_full_time')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $getJobType }}</td>
+            <td>{{ $allformOneData->job_type }}</td>
         </tr>
         <tr>
             <td></td>
@@ -327,7 +326,7 @@
 
             <td colspan="2" class="padding-left">({{ trans('form 8_bn.e')}}) {{ trans('fd_one_step_three.date_of_joining')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allFormOneMemberList->date_of_join }}</td>
+            <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($allFormOneMemberList->date_of_join))) }}</td>
         </tr>
         <tr>
             <td></td>

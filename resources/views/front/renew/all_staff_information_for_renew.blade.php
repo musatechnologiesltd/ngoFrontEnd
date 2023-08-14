@@ -38,7 +38,7 @@
 
 <?php
 $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 ?>
             <form action="{{ route('otherInformationForRenewNewPost') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
 @csrf
@@ -111,7 +111,7 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
-                                <select name="citizenship{{ $key+1 }}[]" disabled="disabled"  class="js-example-basic-multiple form-control" name="states[]"
+                                <select name="citizenship{{ $key+1 }}[]"   class="js-example-basic-multiple form-control" name="states[]"
                                         multiple="multiple">
                                         @foreach($get_cityzenship_data as $all_get_cityzenship_data)
                                         @if($get_country_type == 'Foreign')

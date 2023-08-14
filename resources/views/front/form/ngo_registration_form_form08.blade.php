@@ -109,7 +109,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
                                                 ?>
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
 {{ App\Http\Controllers\NGO\CommonController::englishToBangla($newDate12)}}

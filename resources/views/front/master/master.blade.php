@@ -320,6 +320,13 @@
 
 @elseif(Route::is('index'))
 @include('front.include.banner')
+@elseif(Route::is('allNoticeBoard') || Route::is('viewNotice'))
+<div class="faq_header_box">
+    <div class="container">
+        <h1> নোটিশ বোর্ড </h1>
+
+    </div>
+</div>
 @elseif(Route::is('frequentlyAskQuestion'))
 
 <div class="faq_header_box">
@@ -334,7 +341,7 @@
     <div class="container">
         <h1>{{ trans('first_info.user_dash')}}</h1>
         {{-- <h4>User History</h4> --}}
-        
+
     </div>
 </div>
 

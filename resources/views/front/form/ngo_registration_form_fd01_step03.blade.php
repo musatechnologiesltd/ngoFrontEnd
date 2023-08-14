@@ -81,7 +81,7 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                                 @else
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -89,7 +89,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 
@@ -138,7 +138,7 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                                 @else
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -146,7 +146,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 
@@ -195,7 +195,7 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                                 @else
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -203,7 +203,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 
@@ -252,7 +252,7 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                                 @else
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -260,7 +260,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 
@@ -309,7 +309,7 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                                 @else
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -317,7 +317,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 
@@ -386,7 +386,7 @@
                                                 <option value="">{{ trans('civil.select')}}</option>
 
                                             @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                            @if(session()->get('locale') == 'en')
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @else
                                         <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
@@ -395,7 +395,7 @@
                                         </select>
                                     </div>
 
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                     @else
 

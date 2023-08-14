@@ -102,27 +102,14 @@
                     <h1>{{ trans('main.Notice_Board')}}</h1>
                     <div class="notice_underline"></div>
                     <ul class="notice_ul">
-                        <li> এনজিও বিষয়ক ব্যুরোর অফিস সহকারী কাম কম্পিউটার মুদ্রাক্ষরিক জনাব মোাহাম্মদ আবদুর রশিদ এবং
-                            তাঁর স্ত্রী, কন্যা ও পুত্র-এর পাসপোর্ট করার নিমিত্ত NOC প্রদান।
+                        @foreach($noticeList as $allNoticeList)
+                        <li> <a href="{{ route('viewNotice',$allNoticeList->id) }}" target="_blank">{{ $allNoticeList->headline }}</a>
                         </li>
-                        <li> ‘সেন্টার ফর ডিজএ্যাবিলিটি ইন ডেভেলপমেন্ট (সিডিডি)’ সংস্থার দাতা সংস্থা কর্তৃক প্রেরিত ২,১০০
-                            টি WADI Device-এর আমদানী পারমিটসহ আরোপিতব্য সমূদয় শুল্ক ও ভ্যাট এবং যাবতীয় করাদি মওকুফের
-                            সুপারিশ।
-                        </li>
-                        <li> আন্তর্জাতিক দুর্নীতিবিরোধী দিবস ২০২২ মানববন্ধনে ব্যবহারের জন্য ব্যানারের নমূনা।</li>
-                        <li> এনজিও বিষয়ক ব্যুরো, প্রধানমন্ত্রীর কার্যালয়ের উচ্চমান সহকারী’ জনাব মোঃ আমজাদুল ইসলাম-এর
-                            স্ত্রী ও কন্যা-এর পাসপোর্ট করার নিমিত্ত NOC প্রদান।
-                        </li>
-                        <li> ICESCO Prize of Girls and Women's Literacy for the Benefit of Civil Society Organization
-                            and NGOs-এ বাংলাদেশ হতে অংশগ্রহণ সম্পর্কিত।
-                        </li>
-                        <li> মুজিব বর্ষ উপলক্ষ্যে বিভিন্ন সরকারি দপ্তর কর্তৃক প্রকাশিত যাবতীয় প্রকাশনা প্রেরণ।</li>
-                        <li> এনজিও বিষয়ক ব্যুরোর এসাইনমেন্ট অফিসার জনাব সিরাজুল ইসলাম খান-এর স্ত্রী, কন্যা এবং পুত্র-এর
-                            পাসপোর্ট করার নিমিত্ত NOC প্রদান।
-                        </li>
+                        @endforeach
+
                     </ul>
                     <div class="d-flex flex-row-reverse">
-                        <button class="noselect notice_button">All Notice</button>
+                        <button onclick="location.href='{{ route('allNoticeBoard') }}';"  h class="noselect notice_button">All Notice</button>
                     </div>
                 </div>
             </div>
@@ -138,7 +125,7 @@
 <!-- End Others (Notice & Emergency Number) -->
 
 <!-- Demo header-->
-<section>
+{{-- <section>
     <div class="container">
 
         <div class="row">
@@ -210,7 +197,7 @@
                 </div>
             </div>
         </div>
-</section>
+</section> --}}
 @endsection
 
 @section('script')

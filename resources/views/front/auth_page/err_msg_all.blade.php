@@ -20,7 +20,7 @@
                 <div class="d-flex justify-content-center">
                     <img src="{{ asset('/') }}public/front/assets/img/icon/email.webp" alt="" width="200" height="200">
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <h2>আপনার ইমেল যাচাই করুন</h2>
                     <p>যাচাইকরণের পর আপনি আপনার প্রোফাইলে প্রবেশ করতে পারবেন</p>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="d-flex justify-content-center">
                     <img src="{{ asset('/') }}public/front/assets/img/icon/email.webp" alt="" width="200" height="200">
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <h2>Please verify your email</h2>
                     <p>After verification you can enter your profile</p>
                 </div>

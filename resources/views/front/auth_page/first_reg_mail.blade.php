@@ -19,7 +19,7 @@
                 <div class="d-flex justify-content-center">
                     <img src="{{ asset('/') }}public/front/assets/img/icon/handshake.png" alt="" width="150" height="150">
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <h2>স্বাগতম!</h2>
                     <p>আপনি শুরু করতে পারায় আমরা আনন্দিত । আপনার অ্যাকাউন্ট নিশ্চিত করা হয়েছে । <br> লগ ইন করার জন্য নীচের বোতাম টিপুন ।</p>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="d-flex justify-content-center">
                     <img src="{{ asset('/') }}public/front/assets/img/icon/handshake.png" alt="" width="150" height="150">
                 </div>
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <h2>Welcome!</h2>
                     <p>We're excited to have you get started. Your Account has been confirmed. <br> Just press the button below for login.</p>
                 </div>

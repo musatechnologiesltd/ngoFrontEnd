@@ -336,9 +336,15 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                 <i class="fa fa-check-circle confirmation_icon" style="font-size:105px !important;"></i>
                             </div>
                             <div class="text-center">
+                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                <h1>আবেদন জমা দেওয়া হয়েছে!</h1>
+                                <p>আপনার এনজিও আবেদন এনজিও এবি-তে জমা দেওয়া হয়েছে</p>
+                                <p>আপনার আবেদন গৃহীত হলে আপনি নিশ্চিতকরণ বার্তা পাবেন</p>
+                                @else
                                 <h1>Application Submitted!</h1>
                                 <p>Your NGO Application Has Been Submitted Into NGOAB</p>
                                 <p>When your application will be accepted you will get confirmation message </p>
+                                @endif
                             </div>
                         </div>
                     </div>

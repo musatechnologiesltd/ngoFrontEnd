@@ -137,6 +137,8 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 
 Route::controller(OtherformController::class)->group(function () {
 
+    Route::get('allNoticeBoard', 'allNoticeBoard')->name('allNoticeBoard');
+    Route::get('viewNotice/{id}', 'viewNotice')->name('viewNotice');
 
     Route::get('informationResetPage', 'informationResetPage')->name('informationResetPage');
     Route::get('frequentlyAskQuestion', 'frequentlyAskQuestion')->name('frequentlyAskQuestion');
