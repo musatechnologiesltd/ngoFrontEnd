@@ -24,6 +24,7 @@ use App\Models\NgoMemberNidPhoto;
 use App\Models\NameChange;
 use App\Models\NgoRenew;
 use App\Models\NgoRenewInfo;
+use App\Models\FdOneBankAccount;
 use App\Http\Controllers\NGO\CommonController;
 class RenewController extends Controller
 {
@@ -189,7 +190,8 @@ return redirect('/allStaffInformationForRenew');
     }
 
     public function otherInformationForRenew(){
-
+        $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+        $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->get();
         return view('front.renew.other_information_for_renew');
     }
 

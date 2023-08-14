@@ -344,7 +344,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="">
                                             </div>
                                         </div>
                                     </div>

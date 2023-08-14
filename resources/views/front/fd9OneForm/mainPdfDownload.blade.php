@@ -122,21 +122,20 @@
 
         <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
-        <div class="row">
-            <div class="col-lg-6 col-sm-12"></div>
-            <div class="col-lg-6 col-sm-12">
-                <table class="table table-borderless">
+        <div >
+            <div>
+                <table style="width:100%">
                     <tr>
-                        <td>প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
+                        <td  style="text-align: right;">প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
                     </tr>
                     <tr>
-                        <td>নামঃ</td>
+                        <td  style="text-align: right;">নামঃ</td>
                     </tr>
                     <tr>
-                        <td>পদবীঃ</td>
+                        <td  style="text-align: right;">পদবীঃ</td>
                     </tr>
                     <tr>
-                        <td>তারিখঃ</td>
+                        <td  style="text-align: right;">তারিখঃ</td>
                     </tr>
                 </table>
             </div>
