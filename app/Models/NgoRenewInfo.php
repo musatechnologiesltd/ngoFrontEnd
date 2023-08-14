@@ -12,6 +12,7 @@ class NgoRenewInfo extends Model
     public $table = "ngo_renew_infos";
 
     protected $fillable = [
+        'nationality',
         'registration_number',
         'organization_name',
         'organization_address',

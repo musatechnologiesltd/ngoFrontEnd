@@ -171,6 +171,11 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             </div>
 
             <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                <input type="text"  data-parsley-required name="nationality" class="form-control" id="">
+            </div>
+
+            <div class="mb-3">
                 <label for="" class="form-label">Telephone Number (টেলিফোন নম্বর) <span class="text-danger">*</span> </label>
                 <input type="text"  data-parsley-required name="mobile" class="form-control" id="">
             </div>
@@ -365,6 +370,11 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                 <input type="text" readonly data-parsley-required name="address" value="{{ $get_all_data_1->address }}" class="form-control" id="">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                <input type="text"  data-parsley-required name="nationality" value="{{ $get_all_data_new_first->nationality }}" class="form-control" id="">
             </div>
 
             <div class="mb-3">

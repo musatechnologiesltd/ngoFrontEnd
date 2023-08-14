@@ -1,5 +1,6 @@
 <?php
 return [
+    'nn'=>'Nationality',
     'fd_one_form_title'=>'FD 01 Form',
     'form_eight_title'=>'Form 08',
     'member_title'=>'Member'.'s'.' Information',

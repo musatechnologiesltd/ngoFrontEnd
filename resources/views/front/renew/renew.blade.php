@@ -140,6 +140,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                         <th>তারিখ</th>
 
                                         <th>স্ট্যাটাস</th>
+                                        <th>কার্যকলাপ </th>
                                     </tr>
                                     @foreach($name_change_list_all as $key=>$all_name_change_list_all)
                                     <tr>
@@ -147,6 +148,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                         <td>{{ $all_name_change_list_all->created_at->format('d-M-Y')}}</td>
 
                                         <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
+                                        <td> <a  href="{{ route('renewInfo',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </table>

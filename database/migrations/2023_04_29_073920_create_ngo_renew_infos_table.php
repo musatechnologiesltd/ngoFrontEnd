@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('country_of_origin')->nullable();
             $table->string('name_of_head_in_bd')->nullable();
             $table->string('job_type')->nullable();
+            $table->string('nationality')->nullable();
+            $table->string('verified_form')->nullable();
+            $table->string('chief_name')->nullable();
+            $table->string('chief_desi')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('phone_new')->nullable();

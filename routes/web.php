@@ -87,6 +87,12 @@ Route::controller(NamechangeController::class)->group(function () {
 
 Route::controller(RenewController::class)->group(function () {
 
+    Route::post('verifiedFdEightDownload', 'verifiedFdEightDownload')->name('verifiedFdEightDownload');
+
+
+    Route::get('downloadRenewPdf/{id}', 'downloadRenewPdf')->name('downloadRenewPdf');
+    Route::get('renewChief', 'renewChief')->name('renewChief');
+    Route::get('renewInfo/{id}', 'renewInfo')->name('renewInfo');
     Route::get('renew', 'renew')->name('renew');
     Route::get('ngoRenewStepOne', 'ngoRenewStepOne')->name('ngoRenewStepOne');
     Route::post('storeRenewInformationList', 'storeRenewInformationList')->name('storeRenewInformationList');

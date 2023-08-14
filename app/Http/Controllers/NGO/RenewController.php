@@ -87,6 +87,7 @@ class RenewController extends Controller
         $ngoRenew->job_type = $request->job_type;
         $ngoRenew->address = $request->address;
         $ngoRenew->phone = $request->phone;
+        $ngoRenew->nationality = $request->nationality;
         $ngoRenew->email = $request->email;
         $ngoRenew->mobile = $request->mobile;
         $ngoRenew->web_site_name = $request->web_site_name;
@@ -145,6 +146,7 @@ return redirect('/allStaffInformationForRenew');
        $ngoRenew->address = $request->address;
        $ngoRenew->phone = $request->phone;
        $ngoRenew->email = $request->email;
+       $ngoRenew->nationality = $request->nationality;
        $ngoRenew->mobile = $request->mobile;
        $ngoRenew->web_site_name = $request->web_site_name;
        $ngoRenew->mobile_new = $request->mobile_new;
@@ -181,6 +183,84 @@ return redirect('/allStaffInformationForRenew');
     }
 
 
+    public function renewInfo($id){
+
+           $getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+           $all_partiw1 = FdOneForm::where('id',$getUserIdFrom->fd_one_form_id)->first();
+           $get_all_data_new = NgoRenewInfo::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+           $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
+           $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+        return view('front.renew.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
+    }
+
+
+    public function verifiedFdEightDownload(Request $request){
+
+        $fd9FormInfo = NgoRenewInfo::find($request->id);
+
+        if ($request->hasfile('verified_fd_eight_form')) {
+            $filePath="fd8FormInfo";
+            $file = $request->file('verified_fd_eight_form');
+
+            $fd9FormInfo->verified_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+        $fd9FormInfo->save();
+
+
+        return redirect()->back()->with('success','Update Successfully');
+
+    }
+
+
+    public function renewChief(Request $request){
+
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+
+        $formEightData =NgoRenewInfo::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('downloadRenewPdf/'.base64_encode($id));
+
+    }
+
+    public function downloadRenewPdf($id){
+
+        //dd(33);
+        $get_all_data_new = NgoRenewInfo::where('id',base64_decode($id))->first();
+
+        //$getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+        $all_partiw1 = FdOneForm::where('id',$get_all_data_new->fd_one_form_id)->first();
+
+        $all_partiw = FdOneMemberList::where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->get();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->first();
+
+
+        $file_Name_Custome = 'fd_eight_form';
+
+
+
+
+
+        $pdf=PDF::loadView('front.renew.downloadRenewPdf',[
+            'get_all_data_new'=>$get_all_data_new,
+
+            'all_partiw1'=>$all_partiw1,
+            'all_partiw'=>$all_partiw,
+            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+
+        ],[],['format' => 'A4']);
+    return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+    }
+
+
     public function allStaffInformationForRenew(){
 
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
@@ -192,7 +272,7 @@ return redirect('/allStaffInformationForRenew');
     public function otherInformationForRenew(){
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
         $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->get();
-        return view('front.renew.other_information_for_renew');
+        return view('front.renew.other_information_for_renew',compact('all_partiw'));
     }
 
     public function otherInformationForRenewNewPost(Request $request){
