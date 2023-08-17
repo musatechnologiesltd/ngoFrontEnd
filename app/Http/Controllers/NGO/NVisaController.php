@@ -16,6 +16,7 @@ use App\Models\NVisaParticularOfSponsorOrEmployer;
 use App\Models\NVisaParticularsOfForeignIncumbnet;
 use App\Models\NVisaWorkPlaceAddress;
 use Illuminate\Support\Facades\Crypt;
+use App\Models\Fd9Form;
 use DB;
 use PDF;
 use DateTime;
@@ -1205,6 +1206,56 @@ $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+
+    }
+
+
+    public function fd9FormExtraPdfDownload($cat,$id){
+
+
+        if($cat == 'academic'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_academic_qualification');
+        }elseif($cat == 'technical'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_technical_and_other_qualifications_if_any');
+
+        }elseif($cat == 'pastExperience'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_past_experience');
+
+        }elseif($cat == 'offeredPost'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_offered_post');
+
+        }elseif($cat == 'proposedProject'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_name_of_proposed_project');
+
+        }elseif($cat == 'passportCopy'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_copy_of_passport');
+
+        }
+
+
+
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
 
     }
 

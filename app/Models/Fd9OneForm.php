@@ -12,6 +12,8 @@ class Fd9OneForm extends Model
     public $table = "fd9_one_forms";
 
     protected $fillable = [
+        'chief_name',
+        'chief_desi',
         'fd_one_form_id',
         'foreigner_name_for_subject',
         'sarok_number',

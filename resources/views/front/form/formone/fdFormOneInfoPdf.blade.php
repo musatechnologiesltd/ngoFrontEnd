@@ -479,11 +479,11 @@ attached
     </tr>
     <tr>
         <td>{{ trans('fd_one_step_one.tt_5')}}</td>
-        <td style="width:35%">: ...................................................</td>
+        <td style="width:35%">: {{ $allformOneData->chief_name }}</td>
     </tr>
     <tr>
         <td>{{ trans('fd_one_step_one.tt_6')}}</td>
-        <td>: ...................................................</td>
+        <td>: {{ $allformOneData->chief_desi }}</td>
     </tr>
     @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
 
@@ -496,7 +496,7 @@ attached
     @endif
     <tr>
         <td>{{ trans('fd_one_step_one.tt_7')}}</td>
-        <td>: ...................................................</td>
+        <td>: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
     </tr>
 </table>
 

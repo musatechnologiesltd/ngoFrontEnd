@@ -311,7 +311,7 @@ return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_a
 
     public function mainFd9PdfDownload($id){
 
-
+            $id = base64_decode($id);
         $nVisaEdit = NVisa::where('id',$id)
        ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice','fd9Form'])->first();
 
@@ -356,5 +356,20 @@ $file_Name_Custome = "Fd9_Form";
 
 
         return redirect()->back()->with('success','Update Successfully');
+    }
+
+
+    public function fd9Chief(Request $request){
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+
+        $formEightData =Fd9Form::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('mainFd9PdfDownload/'.base64_encode($id));
+
     }
 }

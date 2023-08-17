@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forwarding Letter </title>
+    <title>Fd9 Form</title>
     <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet">
     <style>
          body,h5,h4,h3 {
@@ -283,7 +283,7 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
                 </tbody>
             </table>
 
-            <h5 class="text-center mt-3 mb-3">ঘোষণা</h5>
+            {{-- <h5 class="text-center mt-3 mb-3">ঘোষণা</h5>
             <p class="mt-3">আমি এই মর্মে ঘোষণা করছি যে, আমি সংশ্লিষ্ট সকল আইন-কানুন পড়েছি এবং উল্লেখিত
                 সকল তথ্য সত্য ও সঠিক। </p>
 
@@ -305,7 +305,33 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
                         </tr>
                     </table>
                 </div>
-            </div>
+            </div> --}}
+
+            <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
+<p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
+
+        <table style="text-align: right; margin-top: 100px;  width:100%">
+            <tr>
+                <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+            </tr>
+
+            <tr>
+                <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_5')}}</td>
+                <td style="width:35%; text-align: left; width: 20%">: {{ $nVisaEdit->fd9Form->chief_name }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_6')}}</td>
+                <td style="width:35%; text-align: left; width: 20%">: {{ $nVisaEdit->fd9Form->chief_desi }}</td>
+            </tr>
+
+            <tr>
+                <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
+                <td style="width:35%; text-align: left; width: 20%">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($nVisaEdit->fd9Form->created_at->format('d/m/Y')) }}</td>
+            </tr>
+        </table>
+
+
+
 
 </body>
 </html>

@@ -24,6 +24,35 @@ class FdoneformController extends Controller
 {
 
 
+    public function fromOneChief(Request $request){
+
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+        $place  = $request->place;
+
+
+        if($place == 0){
+
+
+        }else{
+
+            Session::put('place',$palce);
+        }
+
+
+
+        $formEightData =FdOneForm::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('fdFormOneInfoPdf');
+
+
+    }
+
+
     public function backFromStepTwo(){
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)
 
@@ -33,9 +62,56 @@ class FdoneformController extends Controller
 
     }
 
+    public function planOfOperation($id){
+
+        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('plan_of_operation');
+
+        //dd($get_file_data);
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
+
+    public function attachTheSupportingPaper($id){
+
+        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('attach_the__supporting_paper');
+
+        //dd($get_file_data);
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
     public function otherInfoFromOneDownload($id){
 
-        $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_type');
+        $get_file_data = FdOneOtherPdfList::where('id',base64_decode($id))->value('information_pdf');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -55,7 +131,7 @@ class FdoneformController extends Controller
 
     public function sourceOfFundDocDownload($id){
 
-        $get_file_data = FdOneSourceOfFund::where('id',$id)->value('letter_file');
+        $get_file_data = FdOneSourceOfFund::where('id',base64_decode($id))->value('letter_file');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -905,7 +981,7 @@ if(in_array(null, $input['name'])){
 
         $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
             'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-           
+
             'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
             'formOneMemberList'=>$formOneMemberList,
             'get_all_data_adviser'=>$get_all_data_adviser,

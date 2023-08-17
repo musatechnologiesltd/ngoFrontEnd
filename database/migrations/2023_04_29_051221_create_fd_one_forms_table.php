@@ -43,6 +43,8 @@ return new class extends Migration
             $table->string('time_for_api')->nullable();
             $table->text('complete_status')->nullable();
             $table->text('verified_fd_one_form')->nullable();
+            $table->string('chief_name')->nullable();
+            $table->string('chief_desi')->nullable();
             $table->timestamps();
         });
     }

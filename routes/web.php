@@ -87,6 +87,12 @@ Route::controller(NamechangeController::class)->group(function () {
 
 Route::controller(RenewController::class)->group(function () {
 
+
+    Route::get('changeAcNumberDownload/{id}', 'changeAcNumberDownload')->name('changeAcNumberDownload');
+    Route::get('dueVatPdfDownload/{id}', 'dueVatPdfDownload')->name('dueVatPdfDownload');
+    Route::get('copyOfChalanPdfDownload/{id}', 'copyOfChalanPdfDownload')->name('copyOfChalanPdfDownload');
+    Route::get('yearlyBudgetPdfDownload/{id}', 'yearlyBudgetPdfDownload')->name('yearlyBudgetPdfDownload');
+    Route::get('foreginPdfDownload/{id}', 'foreginPdfDownload')->name('foreginPdfDownload');
     Route::post('verifiedFdEightDownload', 'verifiedFdEightDownload')->name('verifiedFdEightDownload');
 
 
@@ -183,6 +189,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::controller(NVisaController::class)->group(function () {
 
         Route::get('/nVisaDocumentDownload/{cat}/{id}', 'nVisaDocumentDownload')->name('nVisaDocumentDownload');
+        Route::get('/fd9FormExtraPdfDownload/{cat}/{id}', 'fd9FormExtraPdfDownload')->name('fd9FormExtraPdfDownload');
     });
 
     Route::resource('fdNineForm',Fd9Controller::class);
@@ -190,12 +197,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::controller(Fd9Controller::class)->group(function () {
         Route::post('/mainFd9PdfUpload', 'mainFd9PdfUpload')->name('mainFd9PdfUpload');
 
+        Route::get('fd9Chief', 'fd9Chief')->name('fd9Chief');
         Route::get('/mainFd9PdfDownload/{id}', 'mainFd9PdfDownload')->name('mainFd9PdfDownload');
     });
     Route::resource('fdNineOneForm',Fd9OneController::class);
 
     Route::controller(Fd9OneController::class)->group(function () {
 
+        Route::get('/fd9OneFormExtraPdfDownload/{cat}/{id}', 'fd9OneFormExtraPdfDownload')->name('fd9OneFormExtraPdfDownload');
+
+        Route::get('fd9OneChief', 'fd9OneChief')->name('fd9OneChief');
         Route::post('/mainPdfUpload', 'mainPdfUpload')->name('mainPdfUpload');
 
         Route::get('/mainPdfDownload/{id}', 'mainPdfDownload')->name('mainPdfDownload');
@@ -206,6 +217,10 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
 Route::controller(FdoneformController::class)->group(function () {
+    Route::get('fromOneChief', 'fromOneChief')->name('fromOneChief');
+    Route::get('attachTheSupportingPaper/{id}', 'attachTheSupportingPaper')->name('attachTheSupportingPaper');
+    Route::get('planOfOperation/{id}', 'planOfOperation')->name('planOfOperation');
+
 
 
 

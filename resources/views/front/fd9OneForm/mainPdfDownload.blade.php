@@ -122,7 +122,7 @@
 
         <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
-        <div >
+        {{-- <div >
             <div>
                 <table style="width:100%">
                     <tr>
@@ -139,7 +139,31 @@
                     </tr>
                 </table>
             </div>
-        </div>
+        </div> --}}
+
+        {{-- <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
+        <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p> --}}
+
+                <table style="text-align: right; margin-top: 100px;  width:100%">
+                    <tr>
+                        <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_5')}}</td>
+                        <td style="width:35%; text-align: left; width: 20%">: {{ $fd9OneList->chief_name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_6')}}</td>
+                        <td style="width:35%; text-align: left; width: 20%">: {{ $fd9OneList->chief_desi }}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
+                        <td style="width:35%; text-align: left; width: 20%">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($fd9OneList->created_at->format('d/m/Y')) }}</td>
+                    </tr>
+                </table>
+
     </div>
 </body>
 </html>

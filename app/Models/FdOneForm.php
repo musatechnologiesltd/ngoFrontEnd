@@ -11,6 +11,8 @@ class FdOneForm extends Model
     public $table = "fd_one_forms";
 
     protected $fillable = [
+        'chief_name',
+        'chief_desi',
         'registration_number',
         'registration_number_given_by_admin',
         'organization_name',
@@ -116,7 +118,7 @@ class FdOneForm extends Model
         return $this->hasMany(NgoStatus::class,'fd_one_form_id');
     }
 
-   
+
 
 
     public function fd9OneForm()

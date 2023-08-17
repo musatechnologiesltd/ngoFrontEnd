@@ -96,9 +96,40 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainPdfDownload',$fd9OneList->id) }}">
+                                    {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainPdfDownload',$fd9OneList->id) }}">
                                         {{ trans('form 8_bn.download_pdf')}}
-                                    </a>
+                                    </a> --}}
+
+                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button>
+
+                                    <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
+                                                    <div class=" mt-3 mb-3">
+                                                        <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
+                                                        <input type="text" data-parsley-required  name="নাম" value="{{ $fd9OneList->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
+                                                        <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
+                                                        <input type="text" data-parsley-required  name="পদবি" value="{{ $fd9OneList->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
+                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $fd9OneList->id }}" class="form-control" id="mainId">
+                                                    </div>
+
+                                                    <button class="btn btn-sm btn-success" id="downloadButton">
+                                                        {{ trans('form 8_bn.download_pdf')}}
+                                                    </button>
+
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                      </div>
                                 </td>
                                 <td>
 
@@ -225,7 +256,13 @@
 
                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                      ?>
-সংযুক্ত
+      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+      <a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'appointment','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+      @else
+
+<a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'appointment','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+           @endif
                                      @endif
                                      {{-- <a href="{{ route('niyogPotroDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a> --}}
     </td>
@@ -244,7 +281,13 @@
 
                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                      ?>
-সংযুক্ত
+ @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+ <a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'form9Copy','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+ @else
+
+<a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'form9Copy','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+      @endif
                                      @endif
                                      {{-- <a href="{{ route('formNinePdfDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a> --}}
     </td>
@@ -270,7 +313,13 @@
 
                                 $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                 ?>
-সংযুক্ত,
+ @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+ <a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'copyNvisa','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+ @else
+
+<a target="_blank"  href="{{ route('fd9OneFormExtraPdfDownload',['cat'=>'copyNvisa','id'=>base64_encode($fd9OneList->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+      @endif,
                                 @endif
 {{-- <a href="{{ route('nVisaCopyDownload',$fd9OneList->id) }}" target="_blank">{{ $filename.'.'.$extension  }}</a>, --}}
                                 {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->arrival_date_in_nvisa))) }}</td>
@@ -304,4 +353,27 @@
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+$("#downloadButton").click(function(){
+      var name = $('#mainName').val();
+      var designation = $('#mainDesignation').val();
+      var id = $('#mainId').val();
+
+      $.ajax({
+        url: "{{ route('fd9OneChief') }}",
+        method: 'GET',
+        data: {name:name,designation:designation,id:id},
+        success: function(data) {
+
+
+
+            window.open(data);
+
+        }
+        });
+
+  });
+  </script>
 @endsection

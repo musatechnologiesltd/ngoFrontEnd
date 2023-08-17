@@ -356,7 +356,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(empty($get_all_data_new ->foregin_pdf))
 
                                                 @else
-                                                সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
+@else
+
+<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+@endif
                                                 @endif
 @endif
 
@@ -374,7 +384,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(empty($get_all_data_new ->yearly_budget))
 
                                                 @else
-                                                সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
+                                                @else
+
+                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+                                                @endif
                                                 @endif
 @endif</td>
                                         </tr>
@@ -467,7 +487,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(empty($get_all_data_new ->copy_of_chalan))
 
                                                 @else
-                                                সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
+                                                @else
+
+                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+                                                @endif
                                                 @endif
 @endif</td>
                                         </tr>
@@ -483,7 +513,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(empty($get_all_data_new ->due_vat_pdf))
 
                                                 @else
-                                                সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
+                                                @else
+
+                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+                                                @endif
                                                 @endif
 @endif</td>
                                         </tr>
@@ -540,7 +580,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(empty($get_all_data_new ->change_ac_number))
 
                                                 @else
-                                                সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
+                                                @else
+
+                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+                                                @endif
                                                 @endif
 @endif</td>
                                         </tr>

@@ -108,9 +108,42 @@ color:white !important;
                             </tr>
                             <tr>
                                 <td>
-                                    <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainFd9PdfDownload',$nVisaEdit->id) }}">
+                                    {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainFd9PdfDownload',$nVisaEdit->id) }}">
                                         {{ trans('form 8_bn.download_pdf')}}
-                                    </a>
+                                    </a> --}}
+
+
+                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button>
+
+                                    <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
+                                                    <div class=" mt-3 mb-3">
+                                                        <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
+                                                        <input type="text" data-parsley-required  name="নাম" value="{{ $nVisaEdit->fd9Form->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
+                                                        <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
+                                                        <input type="text" data-parsley-required  name="পদবি" value="{{ $nVisaEdit->fd9Form->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
+                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $nVisaEdit->fd9Form->id }}" class="form-control" id="mainId">
+                                                    </div>
+
+                                                    <button class="btn btn-sm btn-success" id="downloadButton">
+                                                        {{ trans('form 8_bn.download_pdf')}}
+                                                    </button>
+
+                                            </div>
+
+                                          </div>
+                                        </div>
+                                      </div>
+
                                 </td>
                                 <td>
 
@@ -913,7 +946,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                                     @endif
                                                      @endif
                                                     </td>
                                             </tr>
@@ -933,7 +972,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
                                                      @endif</td>
                                             </tr>
                                             <tr>
@@ -951,7 +996,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
                                                      @endif</td>
                                             </tr>
                                             <tr>
@@ -975,7 +1026,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
                                                      @endif</td>
                                             </tr>
                                             <tr>
@@ -994,7 +1051,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
                                                      @endif</td>
                                             </tr>
                                             <tr>
@@ -1053,7 +1116,13 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
 
                                                      $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                                                      ?>
-সংযুক্ত
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($nVisaEdit->fd9Form->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
                                                      @endif</td>
                                             </tr>
                                             </tbody>
@@ -1100,4 +1169,27 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
         </div>
     </div>
 </section>
+@endsection
+@section('script')
+<script>
+$("#downloadButton").click(function(){
+      var name = $('#mainName').val();
+      var designation = $('#mainDesignation').val();
+      var id = $('#mainId').val();
+
+      $.ajax({
+        url: "{{ route('fd9Chief') }}",
+        method: 'GET',
+        data: {name:name,designation:designation,id:id},
+        success: function(data) {
+
+
+
+            window.open(data);
+
+        }
+        });
+
+  });
+  </script>
 @endsection

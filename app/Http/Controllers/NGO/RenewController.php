@@ -350,4 +350,103 @@ return redirect('/allStaffInformationForRenew');
         return redirect('/renew')->with('success','Renew Request Send Successfully');
 
     }
-}
+
+    public function foreginPdfDownload($id){
+
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('foregin_pdf');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+
+    public function yearlyBudgetPdfDownload($id){
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('yearly_budget');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+
+    public function copyOfChalanPdfDownload($id){
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('copy_of_chalan');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
+    public function dueVatPdfDownload($id){
+
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('due_vat_pdf');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+        public function changeAcNumberDownload($id){
+            $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('change_ac_number');
+
+            $file_path = url('public/'.$get_file_data);
+                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+            $file= public_path('/'). $get_file_data;
+
+            $headers = array(
+                      'Content-Type: application/pdf',
+                    );
+
+            // return Response::download($file,$filename.'.pdf', $headers);
+
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
+
+        }
+    }
+

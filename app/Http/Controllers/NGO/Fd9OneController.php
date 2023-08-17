@@ -64,6 +64,20 @@ class Fd9OneController extends Controller
         return view('front.fd9OneForm.show',compact('ngo_list_all','fd9OneList'));
     }
 
+    public function fd9OneChief(Request $request){
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+
+        $formEightData =Fd9OneForm::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('mainPdfDownload/'.base64_encode($id));
+
+    }
+
     public function store(Request $request){
 
         //dd($request->all());
@@ -200,6 +214,39 @@ class Fd9OneController extends Controller
     }
 
 
+    public function fd9OneFormExtraPdfDownload($cat,$id){
+
+        if($cat == 'appointment'){
+
+            $get_file_data = Fd9OneForm::where('id',base64_decode($id))->value('attestation_of_appointment_letter');
+        }elseif($cat == 'form9Copy'){
+
+            $get_file_data = Fd9OneForm::where('id',base64_decode($id))->value('copy_of_form_nine');
+
+        }elseif($cat == 'copyNvisa'){
+
+            $get_file_data = Fd9OneForm::where('id',base64_decode($id))->value('copy_of_nvisa');
+
+        }
+
+        $file_path = url('public/'.$get_file_data);
+        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$file= public_path('/'). $get_file_data;
+
+$headers = array(
+'Content-Type: application/pdf',
+);
+
+// return Response::download($file,$filename.'.pdf', $headers);
+
+return Response::make(file_get_contents($file), 200, [
+'content-type'=>'application/pdf',
+]);
+
+    }
+
+
     public function niyogPotroDownload($id){
 
         $get_file_data = Fd9OneForm::where('id',$id)->value('attestation_of_appointment_letter');
@@ -263,6 +310,8 @@ class Fd9OneController extends Controller
 
 
     public function mainPdfDownload($id){
+
+        $id = base64_decode($id);
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();

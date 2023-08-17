@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('proposed_to_date')->nullable();
             $table->string('verified_fd_nine_one_form')->nullable();
             $table->string('status',11)->nullable();
+            $table->string('chief_name')->nullable();
+            $table->string('chief_desi')->nullable();
             $table->timestamps();
         });
     }
