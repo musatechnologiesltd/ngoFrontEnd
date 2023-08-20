@@ -5,13 +5,13 @@
                 <div class="header_left_side">
                       @if(Session::get('locale') == 'en' ||  empty(session()->get('locale')))
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
-                        <h1>গণপ্রজাতন্ত্রী বাংলাদেশ<br>
+                        <h1>গণপ্রজাতন্ত্রী বাংলাদেশ
                             সরকার </h1>
                     </a>
-                  
+
                     @else
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
-                        <h1>Government of the <br>
+                        <h1>Government of the
                             People’s Republic of Bangladesh</h1>
                     </a>
                     @endif
@@ -22,7 +22,7 @@
                 <div class="header_right_text">
                    @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                     <h1>এনজিও বিষয়ক ব্যুরো<br>
-                        প্রধানমন্ত্রীর অফিস
+                        প্রধানমন্ত্রীর কার্যালয়
                     </h1>
                     @else
                     <h1>NGO Affairs Bureau <br>
