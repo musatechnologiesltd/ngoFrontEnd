@@ -31,7 +31,8 @@
                     <?php
 
                     $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-
+                    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+                           ->value('ngo_type');
 
                                     ?>
                     @if(count($particularsOfOrganisationData) == 0)
@@ -375,7 +376,7 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                <input name="date_of_join[]"  value="{{ $allFormOneMemberList->date_of_join }}" required type="text" class="form-control" id="">
+                                <input name="date_of_join[]"  value="{{ date('d-m-Y', strtotime($allFormOneMemberList->date_of_join)) }}" required type="text" class="form-control datepicker" id="">
                             </div>
 
                             <?php
@@ -390,23 +391,23 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
 
 
                                     @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                    @if(session()->get('locale') == 'en')
-                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @else
-                                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                 @endif
                                 @endforeach
                                 </select>
                             </div>
 
-                            @if(session()->get('locale') == 'en')
-
-                            @else
-
+                            @if($checkNgoTypeForForeginNgo == 'Foreign')
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('news.nn')}}<span class="text-danger">*</span> </label>
                                 <input type="text" required name="now_working_at[]" value="{{ $allFormOneMemberList->now_working_at }}" class="form-control" id="">
                             </div>
+                            @else
+
+
                             @endif
 
                             <div class="col-lg-12 mb-3">

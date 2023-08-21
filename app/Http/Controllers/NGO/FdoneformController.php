@@ -707,12 +707,14 @@ if($request->submit_value == 'exit_from_step_one_edit'){
                     $arr_all = implode(",",$request->citizenship5);
                 }
 
+                $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
+
                 $form= new FdOneMemberList();
                 $form->name=$input['staff_name'][$key];
                 $form->position=$input['staff_position'][$key];
                 $form->now_working_at=$input['now_working_at'][$key];
                 $form->address=$input['staff_address'][$key];
-                $form->date_of_join=$input['date_of_join'][$key];
+                $form->date_of_join=$dateFormate;
                 $form->citizenship=$arr_all;
                 $form->salary_statement=$input['salary_statement'][$key];
                 $form->other_occupation	=$input['other_occupation'][$key];
@@ -740,12 +742,12 @@ if($request->submit_value == 'exit_from_step_one_edit'){
             }elseif($key == 4){
                 $arr_all = implode(",",$request->citizenship5);
             }
-
+            $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
             $form= new FdOneMemberList();
             $form->name=$input['staff_name'][$key];
             $form->position=$input['staff_position'][$key];
             $form->address=$input['staff_address'][$key];
-            $form->date_of_join=$input['date_of_join'][$key];
+            $form->date_of_join=$dateFormate;
             $form->citizenship=$arr_all;
             $form->salary_statement=$input['salary_statement'][$key];
             $form->other_occupation	=$input['other_occupation'][$key];

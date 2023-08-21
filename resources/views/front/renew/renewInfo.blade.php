@@ -40,7 +40,7 @@ color:white !important;
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $all_partiw1->organization_name_ban }}</h4>
                                     @else
 
@@ -158,7 +158,7 @@ color:white !important;
 
                                     ?>
                                     <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                         পুনরায় আপলোড করুন
                                         @else
                                         Re-upload
@@ -262,8 +262,13 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
 
                                               @else
 
-                                              {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->registration_number)}}
+                                              @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
+                                              {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->registration_number)}}
+                                              @else
+
+                                              {{ $all_partiw1->registration_number}}
+@endif
                                               @endif
 
 
@@ -289,7 +294,11 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 @if(!$get_all_data_new )
 
                                                 @else
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->phone_new) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile_new) }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
+                                                @else
+                                                {{ $get_all_data_new ->phone_new }},{{ $get_all_data_new ->mobile_new }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
+                                                @endif
                                                 @endif
                                             </td>
                                         </tr>
@@ -312,7 +321,13 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>:          @if(!$get_all_data_new )
 
                                                 @else
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
                                                 {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->nationality) }}
+
+                                                @else
+                                                {{ $get_all_data_new ->nationality}}
+                                                @endif
                                                 @endif
                                             </td>
                                         </tr>
@@ -326,7 +341,14 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td></td>
                                             <td>ঘ) ঠিকানা,টেলিফোন নম্বর ,মোবাইল নম্বর, ইমেইল</td>
-                                            <td>:{{ $all_partiw1->address }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile) }} {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->phone) }}, {{ $all_partiw1->email }}</td>
+                                            <td>:
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                {{ $all_partiw1->address }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile) }} {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->phone) }}, {{ $all_partiw1->email }}
+                                                @else
+                                                {{ $all_partiw1->address }},{{ $get_all_data_new ->mobile }} {{ $all_partiw1->phone}}, {{ $all_partiw1->email }}
+                                                @endif
+
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -409,10 +431,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                         </tr>
                                         @foreach($all_partiw as $key=>$all_all_parti)
                                         <tr>
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <td></td>
                                             <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
                                             <td>কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
                                             <td></td>
+                                            @else
+                                            <td></td>
+                                            <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
+                                            <td>কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
+                                            <td></td>
+                                            @endif
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -443,7 +472,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(ঙ)</td>
                                             <td>যোগদানের তারিখ</td>
-                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->date_of_join) }}</td>
+                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($all_all_parti->date_of_join))) }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -455,14 +484,24 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(ছ)</td>
                                             <td>মোবাইল নম্বর </td>
-                                            <td>: {{ $all_all_parti->salary_statement }}</td>
+                                            <td>:
+
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->mobile) }}
+
+                                                @else
+                                                {{ $all_all_parti->mobile }}
+                                                @endif
+
+                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td></td>
                                             <td>(জ)</td>
                                             <td>ইমেইল এড্রেস</td>
-                                            <td>: {{ $all_all_parti->salary_statement }}</td>
+                                            <td>: {{ $all_all_parti->email }}</td>
                                         </tr>
 
 

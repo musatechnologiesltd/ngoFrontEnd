@@ -240,7 +240,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
     public function store(Request $request){
 
 
-       // dd($request->all());
+       //dd($request->all());
         $time_dy = time().date("Ymd");
 
         $dt = new DateTime();

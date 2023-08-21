@@ -119,8 +119,11 @@
 
 
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-                                     $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',Auth::user()->id)->get();
 
+
+$renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->get();
+
+//dd($renew_list_all);
 
                                         ?>
 
@@ -134,7 +137,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                         <div class="profile-timeline">
                                                             <div class="d-flex">
 
-                                                                @if(count($name_change_list) == 0   && count($renew_list_all) == 0)
+                                                                @if(count($name_change_list) == 0   && count($name_change_list_r) == 0)
 
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h6 class="fs-14 mb-1">
@@ -149,7 +152,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                              নাম পরিবর্তনের অনুরোধ
                                                                     </h6>
                                                                     <small class="text-muted">তারিখ: {{ $all_name_change_list->created_at->format('d-M-Y')}} &
-                                                                        সময়: {{ $all_name_change_list->main_time }}</small>
+                                                                        সময়: {{ $all_name_change_list->time_for_api }}</small>
                                                                 </div>
                                                                 @endforeach
 
@@ -159,7 +162,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 রিনিউ রিকুয়েস্ট
                                                                     </h6>
                                                                     <small class="text-muted">তারিখ:{{ $all_name_change_list->created_at->format('d-M-Y')}} &
-                                                                        সময়:{{ $all_name_change_list->main_time }}</small>
+                                                                        সময়:{{ $all_name_change_list->time_for_api }}</small>
                                                                 </div>
                                                                 @endforeach
                                                                 @endif

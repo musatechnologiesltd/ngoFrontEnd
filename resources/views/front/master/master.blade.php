@@ -465,7 +465,7 @@ $("document").ready(function(){
 <script>
     $( function() {
      $( ".datepicker" ).datepicker({
-         dateFormat: "yy-mm-dd"
+         dateFormat: "dd-mm-yy"
          ,	duration: "fast"
      });
  } );

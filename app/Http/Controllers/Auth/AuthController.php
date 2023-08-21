@@ -265,8 +265,10 @@ class AuthController extends Controller
 
 
 $name_change_list_r = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->get();
-$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->get();
 
+//dd(count($name_change_list_r));
+$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->get();
+//dd(count($name_change_list));
 $ngo_list_all_form_eight = FormEight::where('fd_one_form_id',$ngo_list_all->id)->first();
 $form_member_data_doc = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
 $form_ngo_data_doc = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();

@@ -101,7 +101,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                         ?>
                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            @if(session()->get('locale') == 'en')
+                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                             পুনরায় আপলোড করুন
                             @else
                             Re-upload
@@ -212,7 +212,13 @@ foreach ($data   as $a) {
 
                                         @else
 
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->registration_number) }}
+                                        @else
+
                                         {{ $allformOneData->registration_number }}
+                                        @endif
                                         @endif
 
 
@@ -271,15 +277,23 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td></td>
                                     <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}</td>
-                                    <td>: {{ $allformOneData->address }}, {{ $allformOneData->phone }}, {{ $allformOneData->email }}</td>
+                                    <td>: {{ $allformOneData->address }},
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
+                                        @else
+                                        {{ $allformOneData->phone }},
+                                        @endif
+                                        {{ $allformOneData->email }}</td>
                                 </tr>
                                  <?php
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->where('country_people_english',$allformOneData->citizenship)->value('country_people_bangla');
+                                    $getCityzendata = $allformOneData->citizenship;
                                     }else{
 
                                     $getCityzendata = $allformOneData->citizenship;
                                     }
+
+
 
                                   ?>
                                 <tr>
@@ -361,7 +375,21 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.three')}}.</td>
                                     <td colspan="2">{{ trans('fd_one_step_two.money')}}</td>
-                                    <td>: {{ $allformOneData->annual_budget }}</td>
+                                    <td>:
+
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+
+                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->annual_budget) }}
+
+
+                                        @else
+
+                                        {{ $allformOneData->annual_budget }}
+
+                                        @endif
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.four')}}.</td>
@@ -371,7 +399,7 @@ foreach ($data   as $a) {
                                 @foreach($formOneMemberList as $key=>$allFormOneMemberList)
                                 <tr>
 
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <td></td>
                                     <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
                                     <td>কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
@@ -408,7 +436,7 @@ foreach ($data   as $a) {
 
 
                                     if($getngoForLanguage =='দেশিও'){
-                                    $getCityzendata = DB::table('countries')->whereIn('country_people_english',$convetArray)->get();
+                                    $getCityzendata = DB::table('countries')->whereIn('country_people_bangla',$convetArray)->get();
                                     }else{
 
                                     $getCityzendata = $allFormOneMemberList->citizenship;
@@ -434,7 +462,20 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>({{ trans('form 8_bn.e')}})</td>
                                     <td>{{ trans('fd_one_step_three.date_of_joining')}}</td>
-                                    <td>: {{ $allFormOneMemberList->date_of_join }}</td>
+                                    <td>:
+
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($allFormOneMemberList->date_of_join))) }}
+
+
+                                        @else
+                                        {{ date('d-m-Y', strtotime($allFormOneMemberList->date_of_join)) }}
+
+                                        @endif
+
+
+                                    </td>
                                 </tr>
 
 
@@ -479,7 +520,7 @@ foreach ($data   as $a) {
                                 </tr>
                                 @foreach($get_all_data_adviser as $key=>$all_get_all_data_adviser)
                                 <tr>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <td></td>
                                     <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
                                     <td>পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla( $key+1 )}}</td>
@@ -519,7 +560,14 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>({{ trans('form 8_bn.a')}})</td>
                                     <td>{{ trans('fd_one_step_four.account_number')}}</td>
-                                    <td>: {{ $get_all_data_adviser_bank->account_number }}</td>
+                                    <td>:
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                        {{App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number)}}
+                                        @else
+                                        {{ $get_all_data_adviser_bank->account_number }}
+                                        @endif
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
