@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>এফডি-০৮ ফরম</title>
+    <title>এফডি-৮ ফরম</title>
 
     <style>
 
@@ -47,7 +47,7 @@
 <body>
 <table class="first_table">
     <tr>
-        <td style="font-size:26px; font-weight: bold;">এফডি-০৮ ফরম</td>
+        <td style="font-size:26px; font-weight: bold;">এফডি-৮ ফরম</td>
     </tr>
   <!-- bangla dekhabe na and English dekhabe -->
   <tr>
@@ -266,7 +266,7 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
         <td></td>
         <td>(ঙ)</td>
         <td>যোগদানের তারিখ</td>
-        <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->date_of_join) }}</td>
+        <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($all_all_parti->date_of_join))) }}</td>
     </tr>
     <tr>
         <td></td>
@@ -278,14 +278,14 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
         <td></td>
         <td>(ছ)</td>
         <td>মোবাইল নম্বর </td>
-        <td>: {{ $all_all_parti->salary_statement }}</td>
+        <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->mobile) }}</td>
     </tr>
 
     <tr>
         <td></td>
         <td>(জ)</td>
         <td>ইমেইল এড্রেস</td>
-        <td>: {{ $all_all_parti->salary_statement }}</td>
+        <td>: {{ $all_all_parti->email }}</td>
     </tr>
 
 

@@ -24,6 +24,10 @@
 
             $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
 
+            $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+                           ->value('ngo_type');
+
+
                                     ?>
 
                     <div class="committee_container active">
@@ -81,22 +85,22 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                                  @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
@@ -138,22 +142,22 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                                @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
@@ -195,22 +199,22 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                                @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
@@ -252,22 +256,22 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                                @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
@@ -309,22 +313,22 @@
                                                 multiple="multiple">
                                                 <option value="">{{ trans('civil.select')}}</option>
                                                 @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                                @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                             @endforeach
                                         </select>
                                     </div>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
@@ -386,23 +390,23 @@
                                                 <option value="">{{ trans('civil.select')}}</option>
 
                                             @foreach($getCityzenshipData as $allGetCityzenshipData)
-                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
-                                            @else
-                                        <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
-                                        @endif
+                                            @if($checkNgoTypeForForeginNgo == 'Foreign')
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                                                @else
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                            @endif
                                         @endforeach
                                         </select>
                                     </div>
 
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-                                    @else
-
+                                    @if($checkNgoTypeForForeginNgo == 'Foreign')
                                     <div class="col-lg-12 mb-3">
                                         <label for="" class="form-label">{{ trans('news.nn')}}<span class="text-danger">*</span> </label>
                                         <input type="text" required name="now_working_at[]" value="{{ $allFormOneMemberList->now_working_at }}" class="form-control" id="">
                                     </div>
+                                    @else
+
+
                                     @endif
 
                                     <div class="col-lg-12 mb-3">

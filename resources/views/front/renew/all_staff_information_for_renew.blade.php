@@ -101,7 +101,7 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                <input name="date_of_join[]" readonly  value="{{ $all_all_parti->date_of_join }}" required type="text" class="form-control" id="">
+                                <input name="date_of_join[]" readonly  value="{{ date('d-m-Y', strtotime($all_all_parti->date_of_join)) }}" required type="text" class="form-control datepicker" id="">
                             </div>
 
                             <?php

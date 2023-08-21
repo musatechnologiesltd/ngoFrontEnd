@@ -37,8 +37,8 @@
 
                         if(empty($fromDateTo)){
 
-$newDate1 = date("Y-m-d");
-$newDate2 = date("Y-m-d");
+$newDate1 = date("d-m-Y");
+$newDate2 = date("d-m-Y");
 $to_total_year = '';
 }else{
 
@@ -46,7 +46,7 @@ $to_total_year = '';
 
 $from_date_to = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('form_date');
 
-$newDate1 = date("Y-m-d", strtotime($from_date_to));
+$newDate1 = date("d-m-Y", strtotime($from_date_to));
 
 
 
@@ -54,7 +54,7 @@ $to_date_to = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->va
 
 // $newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
 // ->format('Y-m-d');;
-$newDate2 = date("Y-m-d", strtotime($to_date_to));
+$newDate2 = date("d-m-Y", strtotime($to_date_to));
 //dd($newDate2);
 $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('total_year');
 }

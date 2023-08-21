@@ -57,7 +57,7 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
 
                         ?>
                         <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#formEightexampleModal">
-                            @if(session()->get('locale') == 'en')
+                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                             পুনরায় আপলোড করুন
                             @else
                             Re-upload
@@ -150,7 +150,7 @@ foreach ($data   as $a) {
                                 @foreach($all_partiw as $key=>$all_all_parti)
                                 <tr>
                                     <td></td>
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
                                     <td>{{ trans('form 8_bn.member')}} {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
                                     @else
@@ -177,7 +177,7 @@ foreach ($data   as $a) {
                                     <td>{{ trans('form 8_bn.date_of_birth')}}</td>
                                     <td>:
 
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                         <?php
 
@@ -218,7 +218,7 @@ foreach ($data   as $a) {
                                     <td>({{ trans('form 8_bn.f')}})</td>
                                     <td>{{ trans('form 8_bn.nid_no')}}</td>
                                     <td>:
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                         {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->nid_no) }}
                                         @else
                                         {{ $all_all_parti->nid_no }}
@@ -230,7 +230,11 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>({{ trans('form 8_bn.g')}})</td>
                                     <td>{{ trans('form 8_bn.mobile_no')}}</td>
-                                    <td>: {{ $all_all_parti->phone }}</td>
+                                    <td>:  @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->phone) }}
+                                        @else
+                                        {{ $all_all_parti->phone }}
+                                        @endif</td>
                                 </tr>
 
                                 <tr>
