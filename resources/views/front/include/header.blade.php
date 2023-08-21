@@ -5,7 +5,7 @@
                 <div class="header_left_side">
                       @if(Session::get('locale') == 'en' ||  empty(session()->get('locale')))
                     <a href="{{ route('index') }}"><img src="{{ asset('/') }}public/front/assets/img/logo/logo.png" class="logo_img" alt="">
-                        <h1>গণপ্রজাতন্ত্রী বাংলাদেশ
+                        <h1>গণপ্রজাতন্ত্রী <br>বাংলাদেশ
                             সরকার </h1>
                     </a>
 
