@@ -22,23 +22,21 @@
                 </div>
                 <div class="dashboard_right">
                     <div class="tofsil2_box mt-3">
-                        <h1>Date Reset Page</h1>
+                        <h1>{{ trans('reset.data')}}</h1>
                         <div class="tofsil2_list">
-                            <h3>Do you want to completely delete NGO registration information?</h3>
-                            <h3>আপনি কি এনজিও রেজিস্ট্রেশন তথ্যগুলো সম্পূর্ণ মুছে ফেলতে চাচ্ছেন?</h3>
-                            <p class="small">Once you delete the data you can not get back any of data that you previously input.</p>
-                            <p class="small">একবার আপনি ডেটা মুছে ফেললে আপনি পূর্বে ইনপুট করা কোনও ডেটা ফিরে পাবেন না।</p>
+                            <h3>{{ trans('reset.tone')}}</h3>
+                            <p class="small">{{ trans('reset.ttwo')}}</p>
                             <form action="">
                                 <div class="mb-4">
-                                    <label for="" class="form-label">Select (নির্বাচন করুন)</label>
+                                    <label for="" class="form-label">{{ trans('reset.select')}}</label>
                                     <br>
                                     <div class="form-check ms-3">
                                         <input class="form-check-input" type="radio" name="mm" id="mm1" value="" checked>
-                                        <label class="form-check-label"  for="mm1">হ্যা </label>
+                                        <label class="form-check-label"  for="mm1">{{ trans('reset.yes')}}</label>
                                     </div>
                                     <div class="form-check ms-3">
                                         <input class="form-check-input " type="radio" name="mm" id="mm2" value="">
-                                        <label class="form-check-label" for="mm2">না </label>
+                                        <label class="form-check-label" for="mm2">{{ trans('reset.no')}}</label>
                                     </div>
                                 </div>
                             </form>
@@ -46,7 +44,7 @@
                     </div>
 
                     <div class="d-grid d-md-flex justify-content-start mt-4">
-                        <button class="btn btn-registration" onclick="deleteTag(2)" >Delete Info
+                        <button class="btn btn-registration" onclick="deleteTag(2)" >{{ trans('reset.delete')}}
                         </button>
 
                         <form id="delete-form-2" action="{{ route('resetAllData') }}" method="POST" style="display: none;">

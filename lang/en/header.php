@@ -14,7 +14,7 @@ return [
     'home'=>'হোম',
     'passwordc'=>'পাসওয়ার্ড নিশ্চিত করুন',
     'apply_online'=>'অনলাইনে আবেদন করুন',
-    'renew_application'=>'আবেদন নবায়ণ করুন',
+    'renew_application'=>'আবেদন নবায়ন করুন',
     'name_change' =>'নাম পরিবর্তন করুন',
     'instruction'=>'নির্দেশনা',
     'registration_fee'=>'নিবন্ধন ফি',

@@ -1,5 +1,6 @@
 <?php
 return [
+    'nn'=>'জাতীয়তা',
     'fd_one_form_title'=>'এফডি ০১ ফরম',
     'form_eight_title'=>'ফরম ০৮',
     'member_title'=>'সদস্যের তথ্য',

@@ -9,17 +9,12 @@
         $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
         $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-       $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
+
 
 
 
               ?>
+
                     @include('flash_message')
                     <div class="user_dashboard_right">
                         <h4>{{ trans('fd_one_step_one.f_form')}} </h4>
@@ -37,12 +32,56 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                       <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
+                                       {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
                             {{ trans('form 8_bn.download_pdf')}}
-                        </a>
+                        </a> --}}
+
+                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                            {{ trans('form 8_bn.download_pdf')}}
+                        </button>
+
+                        <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
+                                        <div class=" mt-3 mb-3">
+                                            <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
+                                            <input type="text" data-parsley-required  name="নাম" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
+                                            <?php
+$ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+
+                                            ?>
+
+@if($ngoTypeInfo == 'দেশিও')
+<input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
+@else
+<label for="" class="form-label mt-3">স্থান:</label>
+<input type="text" data-parsley-required  name="স্থান" value="{{ Session::get('place')}}"  class="form-control" id="mainPlace" placeholder="স্থান">
+@endif
+                                            <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
+                                            <input type="text" data-parsley-required  name="পদবি" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
+                                            <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
+                                        </div>
+
+                                        <button class="btn btn-sm btn-success" id="downloadButton">
+                                            {{ trans('form 8_bn.download_pdf')}}
+                                        </button>
+
+                                </div>
+
+                              </div>
+                            </div>
+                          </div>
                                     </td>
                                     <td>
-                                       
+
 
                         @if($allformOneData->verified_fd_one_form == 0)
                         <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -167,7 +206,17 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>(iii)</td>
                                     <td>{{ trans('fd_one_step_one.reg_num')}}</td>
-                                    <td>: {{ $allformOneData->registration_number }}</td>
+                                    <td>:
+
+                                        @if($allformOneData->registration_number == 0)
+
+                                        @else
+
+                                        {{ $allformOneData->registration_number }}
+                                        @endif
+
+
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -259,11 +308,13 @@ foreach ($data   as $a) {
                                         @else
 
 
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                        সংযুক্ত
+                                        <a target="_blank"  href="{{ route('planOfOperation',base64_encode($allformOneData->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
                                         @else
-                                        attached
+
+                                        <a target="_blank"  href="{{ route('planOfOperation',base64_encode($allformOneData->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
                                         @endif
                                         @endif</td>
@@ -295,11 +346,13 @@ foreach ($data   as $a) {
 
                                         @else
 
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                        সংযুক্ত
+                                        <a target="_blank"  href="{{ route('sourceOfFundDocDownload',base64_encode($all_get_all_source_of_fund_data->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
                                         @else
-                                        attached
+
+                                        <a target="_blank"  href="{{ route('sourceOfFundDocDownload',base64_encode($all_get_all_source_of_fund_data->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
                                         @endif
                                         @endif</td>
@@ -320,8 +373,8 @@ foreach ($data   as $a) {
 
                                     @if(session()->get('locale') == 'en')
                                     <td></td>
-                                    <td>{{ str_replace($engDATE, $bangDATE, $key+1 )}}.</td>
-                                    <td>কর্মকর্তা {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+                                    <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
+                                    <td>কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
                                     <td></td>
                                     @else
                                     <td></td>
@@ -408,11 +461,13 @@ foreach ($data   as $a) {
 
                                         @else
 
-                                        @if(session()->get('locale') == 'en')
+                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                        সংযুক্ত
+                                        <a target="_blank"  href="{{ route('attachTheSupportingPaper',base64_encode($allformOneData->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
                                         @else
-                                        attached
+
+                                        <a target="_blank"  href="{{ route('attachTheSupportingPaper',base64_encode($allformOneData->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
                                         @endif
                                         @endif</td>
@@ -426,8 +481,8 @@ foreach ($data   as $a) {
                                 <tr>
                                     @if(session()->get('locale') == 'en')
                                     <td></td>
-                                    <td>{{ str_replace($engDATE, $bangDATE, $key+1 )}}.</td>
-                                    <td>পরামর্শক {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+                                    <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}.</td>
+                                    <td>পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla( $key+1 )}}</td>
                                     <td></td>
                                     @else
                                     <td></td>
@@ -455,6 +510,11 @@ foreach ($data   as $a) {
                                     <td colspan="3">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
                                     </td>
                                 </tr>
+
+                                @if(!$get_all_data_adviser_bank)
+
+
+                                @else
                                 <tr>
                                     <td></td>
                                     <td>({{ trans('form 8_bn.a')}})</td>
@@ -485,6 +545,7 @@ foreach ($data   as $a) {
                                     <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
                                     <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                                 </tr>
+                                @endif
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.eight')}}.</td>
                                     <td colspan="2">{{ trans('fd_one_step_four.tt4')}}
@@ -496,11 +557,15 @@ foreach ($data   as $a) {
 
 @else
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-সংযুক্ত
+<a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($all_get_all_data_other->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+
 @else
-attached
+
+<a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($all_get_all_data_other->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
 
 @endif
 @endif
@@ -515,5 +580,8 @@ attached
                             </table>
                         </div>
                     </div>
+
+
+
 
 

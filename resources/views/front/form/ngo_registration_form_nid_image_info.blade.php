@@ -34,20 +34,23 @@
                         $ngoMemberDocLists = DB::table('ngo_member_nid_photos')
                         ->where('fd_one_form_id',$fdOneFormId)->latest()->get();
 
-                                                $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-                                'May','June','July','August','September','October','November','December','Saturday','Sunday',
-                                'Monday','Tuesday','Wednesday','Thursday','Friday');
-                                $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-                                'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-                                বুধবার','বৃহস্পতিবার','শুক্রবার'
-                                );
+
                                                 ?>
 
-
+@include('translate')
                         <div class="file-content">
                             <div class="card">
                                 <div class="card-body file-manager">
                                     <div class="files">
+                                      @if(count($ngoMemberDocLists) == 0)
+
+                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                      <h2>তথ্য পাওয়া যায়নি</h2>
+                                      @else
+                                      <h2>Data Not Found</h2>
+                                      @endif
+
+                                      @else
                                         @foreach($ngoMemberDocLists as $all_all_ngo_member_doc)
 
 
@@ -113,13 +116,13 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="" class="form-label">{{ trans('ngo_member_doc.image')}} <span class="text-danger">*</span> </label>
-                                                                <input type="file" name="member_image" class="form-control" id="">
+                                                                <input type="file" name="member_image" accept=".jpg,.jpeg,.png" class="form-control" id="">
 
                                                                 <img src="{{ asset('/') }}{{ $all_all_ngo_member_doc->member_image  }}" height="30" />
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="" class="form-label">{{ trans('ngo_member_doc.nid_copy')}} <span class="text-danger">*</span> </label>
-                                                                <input type="file" name="member_nid_copy" class="form-control" id="">
+                                                                <input type="file" accept=".pdf" name="member_nid_copy" class="form-control" id="">
 
                                                                 <iframe src="{{ asset('/') }}{{'public/'. $all_all_ngo_member_doc->member_nid_copy  }}"
     style="width:300px; height:150px;" frameborder="0"></iframe>
@@ -134,6 +137,7 @@
                                             </div>
                                         </div>
                                         @endforeach
+                                      @endif
                                     </div>
                                 </div>
                             </div>
@@ -144,9 +148,18 @@
 
                             @if(count($ngoMemberDocLists) == 0)
 
+                          @if(count($ngoMemberDocLists) >= 2)
+
                             <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @else
+                                 <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @endif
                             @else
+                          @if(count($ngoMemberDocLists) >= 2)
                             <a class="btn btn-custom submit_button" href="{{ route('ngoMemberDocFinalUpdate') }}">{{ trans('fd_one_step_one.Next_Step')}}</a>
+                          @else
+                          <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @endif
                             @endif
 
                         </div>
@@ -218,7 +231,7 @@
             '<input class="form-control" name="member_name[]" type="text" id="" required>' +
             '</td>' +
             '<td>' +
-            '<input class="form-control" name="member_image[]" type="file" id="" required>' +
+            '<input class="form-control" name="member_image[]" accept=".jpg,.jpeg,.png" type="file" id="" required>' +
             '</td>' +
             '<td>' +
             '<input class="form-control" name="member_nid_copy[]" accept=".pdf" type="file" id="" required>' +

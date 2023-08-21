@@ -24,6 +24,35 @@ class FdoneformController extends Controller
 {
 
 
+    public function fromOneChief(Request $request){
+
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+        $place  = $request->place;
+
+
+        if($place == 0){
+
+
+        }else{
+
+            Session::put('place',$palce);
+        }
+
+
+
+        $formEightData =FdOneForm::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('fdFormOneInfoPdf');
+
+
+    }
+
+
     public function backFromStepTwo(){
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)
 
@@ -33,9 +62,56 @@ class FdoneformController extends Controller
 
     }
 
+    public function planOfOperation($id){
+
+        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('plan_of_operation');
+
+        //dd($get_file_data);
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
+
+    public function attachTheSupportingPaper($id){
+
+        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('attach_the__supporting_paper');
+
+        //dd($get_file_data);
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
     public function otherInfoFromOneDownload($id){
 
-        $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_type');
+        $get_file_data = FdOneOtherPdfList::where('id',base64_decode($id))->value('information_pdf');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -55,7 +131,7 @@ class FdoneformController extends Controller
 
     public function sourceOfFundDocDownload($id){
 
-        $get_file_data = FdOneSourceOfFund::where('id',$id)->value('letter_file');
+        $get_file_data = FdOneSourceOfFund::where('id',base64_decode($id))->value('letter_file');
 
         $file_path = url('public/'.$get_file_data);
                                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
@@ -183,15 +259,9 @@ if(empty($formCompleteStatus)){
         $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
         $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-       $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-        return view('front.form.formone.fdFormOneInfo',compact('bangDATE','engDATE','get_all_source_of_fund_data','formOneMemberList','get_all_data_adviser','get_all_data_other','get_all_data_adviser_bank','allformOneData'));
+
+        return view('front.form.formone.fdFormOneInfo',compact('get_all_source_of_fund_data','formOneMemberList','get_all_data_adviser','get_all_data_other','get_all_data_adviser_bank','allformOneData'));
 
 
     }
@@ -906,19 +976,12 @@ if(in_array(null, $input['name'])){
 
         $payment_detail = 11;
 
-        $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
+
 
 
         $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
             'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-            'engDATE'=>$engDATE,
-            'bangDATE'=>$bangDATE,
+
             'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
             'formOneMemberList'=>$formOneMemberList,
             'get_all_data_adviser'=>$get_all_data_adviser,

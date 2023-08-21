@@ -177,12 +177,19 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                     <div class="card">
                         <div class="card-body p-5">
                             <div class="d-flex justify-content-center">
-                                <i class="fa fa-check-circle confirmation_icon"></i>
+                                <i class="fa fa-check-circle confirmation_icon" style="font-size:105px !important;"></i>
                             </div>
                             <div class="text-center">
+                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                <h1>আবেদন জমা দেওয়া হয়েছে!</h1>
+                                <p>আপনার এনজিও আবেদন এনজিও এবি-তে জমা দেওয়া হয়েছে</p>
+                                <p>আপনার আবেদন গৃহীত হলে আপনি নিশ্চিতকরণ বার্তা পাবেন</p>
+                                @else
                                 <h1>Application Submitted!</h1>
                                 <p>Your NGO Application Has Been Submitted Into NGOAB</p>
                                 <p>When your application will be accepted you will get confirmation message </p>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -196,6 +203,28 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+<script>
+    $("#downloadButton").click(function(){
+          var name = $('#mainName').val();
+          var designation = $('#mainDesignation').val();
+          var id = $('#mainId').val();
+          var place = $('#mainPlace').val();
+
+          $.ajax({
+            url: "{{ route('fromOneChief') }}",
+            method: 'GET',
+            data: {name:name,designation:designation,id:id,place:place},
+            success: function(data) {
+
+
+
+                window.open(data);
+
+            }
+            });
+
+      });
+      </script>
 <script>
     $(document).ready(function(){
 

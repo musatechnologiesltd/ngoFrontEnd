@@ -10,19 +10,17 @@
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-?>
 
 
 <section>
+
+    <?php
+ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
+
+
+        ?>
 
     <div class="container">
         <div class="row">
@@ -59,43 +57,36 @@
                     <div class="card-body">
                         <div class="profile_link_box">
                             <a href="{{ route('dashboard') }}">
-                                <p class="{{ Route::is('dashboard')  ? 'active_link' : '' }}"><i class="fa fa-user pe-2"></i>ব্যবহারকারীর প্রোফাইল</p>
+                                <p class="{{ Route::is('dashboard')  ? 'active_link' : '' }}"><i class="fa fa-user pe-2"></i>{{ trans('fd9.m1')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nameChange') }}">
-                                <p class="{{ Route::is('addOtherDoc') ||  Route::is('ngoCommitteMember') || Route::is('formEightData') || Route::is('nameChange') || Route::is('sendNameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
+                                <p class="{{ Route::is('addOtherDoc') ||  Route::is('ngoCommitteMember') || Route::is('formEightData') || Route::is('nameChange') || Route::is('sendNameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.m2')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
                             <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>আবেদন পুনর্নবীকরণ</p>
+                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.m3')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
-                            </a>
-                        </div>
-
-
-                        <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09form')}}</p>
+                            <a href="{{ route('nVisa.index') }}">
+                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                            <a href="{{ route('fdNineOneForm.index') }}">
+                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
-                                <p class=""><i class="fa fa-cog pe-2"></i>লগ আউট</p>
+                                <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
                             </a>
                         </div>
 
@@ -112,6 +103,116 @@
                             <form method="post" action="{{ route('storeOtherDoc') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                 @csrf
+                                @if($ngoType == 'Foreign')
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        গঠনতন্ত্র পরিবর্তন ফি বাবদ-১৩,০০০/ (তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির তালিকা ( সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নাম পরিবর্তন বিষয়ে সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির সিদ্ধান্তের কপি  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত মূলকপিসহ )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংস্থার পরিবর্তিত নামের সনদপত্র /ইনকর্পোরেটর সার্টিফিকেট (সংশ্লিষ্ট দেশের নোটারীকৃত মূলকপি )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                @else
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
@@ -243,11 +344,12 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                                 <div class="d-grid d-md-flex justify-content-md-end">
                                     <button type="submit" class="btn btn-registration"
                                             >যুক্ত করুন

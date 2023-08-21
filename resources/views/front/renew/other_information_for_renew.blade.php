@@ -100,49 +100,52 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
     </div>
     <div class="mb-3">
         <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-        <input class="form-control" name="change_ac_number" data-parsley-required accept=".pdf"  type="file" id="">
+        <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
     </div>
     @else
+    @foreach($all_partiw as $mainAccount)
 
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Account Number (হিসাব নম্বর) <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required name="main_account_number" class="form-control" id="">
+                                                <input type="text" data-parsley-required name="main_account_number" value="{{ $mainAccount->account_number }}" class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Account Type (ধরণ) <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required name="main_account_type" class="form-control" id="">
+                                                <input type="text" data-parsley-required name="main_account_type" value="{{ $mainAccount->account_type }}" class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Name of Bank (ব্যাংকের নাম) <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required name="name_of_bank" class="form-control" id="">
+                                                <input type="text" data-parsley-required name="name_of_bank"  value="{{ $mainAccount->name_of_bank }}" class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Branch Name of Bank(ব্যাংকের শাখা) <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required name="main_account_name_of_branch" class="form-control" id="">
+                                                <input type="text" data-parsley-required name="main_account_name_of_branch"  value="{{ $mainAccount->branch_name_of_bank }}" class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="mb-3">
                                                 <label for="" class="form-label">Bank Address (ব্যাংকের ঠিকানা) <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required name="bank_address_main" class="form-control" id="">
+                                                <input type="text" data-parsley-required name="bank_address_main"  value="{{ $mainAccount->bank_address }}" class="form-control" id="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                @endif
+                                @endforeach
                                 <div class="mb-3">
                                     <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="change_ac_number" data-parsley-required accept=".pdf"  type="file" id="">
+                                    <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="">
                                 </div>
+                                @endif
+
 
 
                         </div>

@@ -38,11 +38,11 @@
 
 <?php
 $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 ?>
-            <form action="{{ route('otherInformationForRenew') }}" method="get" enctype="multipart/form-data" id="form"  data-parsley-validate="">
-
-                <input type="hidden" class="form-control" value="{{ $get_all_data_1->id }}" name="id"  id="">
+            <form action="{{ route('otherInformationForRenewNewPost') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
+@csrf
+                <input type="hidden" class="form-control" value="{{ $get_all_data_1->id }}" name="fd_one_id"  id="">
             <div class="main active">
                 <div class="text">
                     <h2>{{ trans('fd_one_step_three.All_staff_details_information')}} </h2>
@@ -58,6 +58,7 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
                         </div>
 
 @foreach($all_partiw as $key=>$all_all_parti)
+<input type="hidden" class="form-control" value="{{ $all_all_parti->id }}" name="id[]"  id="">
                         <div class="mb-3">
 
                             <h5 class="form_middle_text">
@@ -89,36 +90,47 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
                                 <input name="staff_address[]" readonly value="{{ $all_all_parti->address }}" required type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"  value="{{ $all_all_parti->mobile }}" required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" data-parsley-required class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"  value="{{ $all_all_parti->email }}" required type="email" class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]" readonly  value="{{ $all_all_parti->date_of_join }}" required type="text" class="form-control" id="">
                             </div>
 
                             <?php
                             $convert_new_ass_cat  = explode(",",$all_all_parti->citizenship);
-
+                            $get_country_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                                ?>
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
-                                <select name="citizenship{{ $key+1 }}[]" disabled="disabled"  class="js-example-basic-multiple form-control" name="states[]"
+                                <select name="citizenship{{ $key+1 }}[]"   class="js-example-basic-multiple form-control" name="states[]"
                                         multiple="multiple">
                                         @foreach($get_cityzenship_data as $all_get_cityzenship_data)
-                                        @if(session()->get('locale') == 'en')
-                                        <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
+                                        @if($get_country_type == 'Foreign')
+                                        <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+
                                         @else
-                                    <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+                                        <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
                                     @endif
                                     @endforeach
                                 </select>
                             </div>
-                            @if(session()->get('locale') == 'en')
-
-                            @else
-
+                            @if($get_country_type == 'Foreign')
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">Now Working At <span class="text-danger">*</span> </label>
                                 <input type="text" readonly required name="now_working_at[]" value="{{ $all_all_parti->now_working_at }}" class="form-control" id="">
                             </div>
+                            @else
+
+
                             @endif
 
                             <div class="col-lg-12 mb-3">
@@ -145,7 +157,7 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
                 <div class="buttons d-flex justify-content-end mt-4">
                     <a href="{{ route('ngoRenewStepOne') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
 
-                    <a href="{{ route('otherInformationForRenew') }}" class="btn btn-custom next_button" name="submit_value" >{{ trans('fd_one_step_one.Next_Step')}}</a>
+                    <button type="submit" class="btn btn-custom next_button" name="submit_value" >{{ trans('fd_one_step_one.Next_Step')}}</button>
 
                 </div>
             </div>

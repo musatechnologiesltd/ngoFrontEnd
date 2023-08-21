@@ -12,6 +12,9 @@ use App\Http\Controllers\NGO\FdoneformController;
 use App\Http\Controllers\NGO\RegsubmitController;
 use App\Http\Controllers\NGO\NamechangeController;
 use App\Http\Controllers\NGO\RenewController;
+use App\Http\Controllers\NGO\NVisaController;
+use App\Http\Controllers\NGO\Fd9Controller;
+use App\Http\Controllers\NGO\Fd9OneController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -84,6 +87,18 @@ Route::controller(NamechangeController::class)->group(function () {
 
 Route::controller(RenewController::class)->group(function () {
 
+
+    Route::get('changeAcNumberDownload/{id}', 'changeAcNumberDownload')->name('changeAcNumberDownload');
+    Route::get('dueVatPdfDownload/{id}', 'dueVatPdfDownload')->name('dueVatPdfDownload');
+    Route::get('copyOfChalanPdfDownload/{id}', 'copyOfChalanPdfDownload')->name('copyOfChalanPdfDownload');
+    Route::get('yearlyBudgetPdfDownload/{id}', 'yearlyBudgetPdfDownload')->name('yearlyBudgetPdfDownload');
+    Route::get('foreginPdfDownload/{id}', 'foreginPdfDownload')->name('foreginPdfDownload');
+    Route::post('verifiedFdEightDownload', 'verifiedFdEightDownload')->name('verifiedFdEightDownload');
+
+
+    Route::get('downloadRenewPdf/{id}', 'downloadRenewPdf')->name('downloadRenewPdf');
+    Route::get('renewChief', 'renewChief')->name('renewChief');
+    Route::get('renewInfo/{id}', 'renewInfo')->name('renewInfo');
     Route::get('renew', 'renew')->name('renew');
     Route::get('ngoRenewStepOne', 'ngoRenewStepOne')->name('ngoRenewStepOne');
     Route::post('storeRenewInformationList', 'storeRenewInformationList')->name('storeRenewInformationList');
@@ -91,6 +106,10 @@ Route::controller(RenewController::class)->group(function () {
     Route::get('allStaffInformationForRenew', 'allStaffInformationForRenew')->name('allStaffInformationForRenew');
     Route::post('allStaffInformationForRenewStore', 'allStaffInformationForRenewStore')->name('allStaffInformationForRenewStore');
     Route::get('otherInformationForRenew', 'otherInformationForRenew')->name('otherInformationForRenew');
+
+    Route::post('otherInformationForRenewNewPost', 'otherInformationForRenewNewPost')->name('otherInformationForRenewNewPost');
+
+
     Route::post('otherInformationForRenewGet', 'otherInformationForRenewGet')->name('otherInformationForRenewGet');
 });
 
@@ -130,6 +149,8 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 
 Route::controller(OtherformController::class)->group(function () {
 
+    Route::get('allNoticeBoard', 'allNoticeBoard')->name('allNoticeBoard');
+    Route::get('viewNotice/{id}', 'viewNotice')->name('viewNotice');
 
     Route::get('informationResetPage', 'informationResetPage')->name('informationResetPage');
     Route::get('frequentlyAskQuestion', 'frequentlyAskQuestion')->name('frequentlyAskQuestion');
@@ -141,7 +162,7 @@ Route::controller(OtherformController::class)->group(function () {
     Route::get('ngoInstructionPage', 'ngoInstructionPage')->name('ngoInstructionPage');
     Route::get('ngoRegistrationFeeList', 'ngoRegistrationFeeList')->name('ngoRegistrationFeeList');
     Route::get('lang/change', 'change')->name('changeLang');
-    Route::get('changeLanguage', 'changeLanguage')->name('changeLanguage');
+    Route::get('changeLanguage/{lan}', 'changeLanguage')->name('changeLanguage');
 
     Route::group(['middleware' => ['auth']], function() {
     Route::post('finalSubmitRegForm', 'finalSubmitRegForm')->name('finalSubmitRegForm');
@@ -163,7 +184,43 @@ Route::controller(OtherformController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::resource('nVisa',NVisaController::class);
+
+    Route::controller(NVisaController::class)->group(function () {
+
+        Route::get('/nVisaDocumentDownload/{cat}/{id}', 'nVisaDocumentDownload')->name('nVisaDocumentDownload');
+        Route::get('/fd9FormExtraPdfDownload/{cat}/{id}', 'fd9FormExtraPdfDownload')->name('fd9FormExtraPdfDownload');
+    });
+
+    Route::resource('fdNineForm',Fd9Controller::class);
+
+    Route::controller(Fd9Controller::class)->group(function () {
+        Route::post('/mainFd9PdfUpload', 'mainFd9PdfUpload')->name('mainFd9PdfUpload');
+
+        Route::get('fd9Chief', 'fd9Chief')->name('fd9Chief');
+        Route::get('/mainFd9PdfDownload/{id}', 'mainFd9PdfDownload')->name('mainFd9PdfDownload');
+    });
+    Route::resource('fdNineOneForm',Fd9OneController::class);
+
+    Route::controller(Fd9OneController::class)->group(function () {
+
+        Route::get('/fd9OneFormExtraPdfDownload/{cat}/{id}', 'fd9OneFormExtraPdfDownload')->name('fd9OneFormExtraPdfDownload');
+
+        Route::get('fd9OneChief', 'fd9OneChief')->name('fd9OneChief');
+        Route::post('/mainPdfUpload', 'mainPdfUpload')->name('mainPdfUpload');
+
+        Route::get('/mainPdfDownload/{id}', 'mainPdfDownload')->name('mainPdfDownload');
+
+        Route::get('/niyogPotroDownload/{id}', 'niyogPotroDownload')->name('niyogPotroDownload');
+        Route::get('/formNinePdfDownload/{id}', 'formNinePdfDownload')->name('formNinePdfDownload');
+        Route::get('/nVisaCopyDownload/{id}', 'nVisaCopyDownload')->name('nVisaCopyDownload');
+    });
+
 Route::controller(FdoneformController::class)->group(function () {
+    Route::get('fromOneChief', 'fromOneChief')->name('fromOneChief');
+    Route::get('attachTheSupportingPaper/{id}', 'attachTheSupportingPaper')->name('attachTheSupportingPaper');
+    Route::get('planOfOperation/{id}', 'planOfOperation')->name('planOfOperation');
+
 
 
 

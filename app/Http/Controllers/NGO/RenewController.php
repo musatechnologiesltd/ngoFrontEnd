@@ -24,25 +24,27 @@ use App\Models\NgoMemberNidPhoto;
 use App\Models\NameChange;
 use App\Models\NgoRenew;
 use App\Models\NgoRenewInfo;
+use App\Models\FdOneBankAccount;
 use App\Http\Controllers\NGO\CommonController;
 class RenewController extends Controller
 {
     public function renew(){
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->value('ngo_type');
-        if($checkNgoTypeForForeginNgo == 'Foreign'){
+        // if($checkNgoTypeForForeginNgo == 'Foreign'){
 
-            App::setLocale('sp');
-            session()->put('locale','sp');
+        //     App::setLocale('sp');
+        //     session()->put('locale','sp');
 
-        }else{
+        // }else{
 
-            App::setLocale('en');
-            session()->put('locale','en');
-        }
+        //     App::setLocale('en');
+        //     session()->put('locale','en');
+        // }
 
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
         return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
     }
@@ -85,6 +87,7 @@ class RenewController extends Controller
         $ngoRenew->job_type = $request->job_type;
         $ngoRenew->address = $request->address;
         $ngoRenew->phone = $request->phone;
+        $ngoRenew->nationality = $request->nationality;
         $ngoRenew->email = $request->email;
         $ngoRenew->mobile = $request->mobile;
         $ngoRenew->web_site_name = $request->web_site_name;
@@ -143,6 +146,7 @@ return redirect('/allStaffInformationForRenew');
        $ngoRenew->address = $request->address;
        $ngoRenew->phone = $request->phone;
        $ngoRenew->email = $request->email;
+       $ngoRenew->nationality = $request->nationality;
        $ngoRenew->mobile = $request->mobile;
        $ngoRenew->web_site_name = $request->web_site_name;
        $ngoRenew->mobile_new = $request->mobile_new;
@@ -179,6 +183,84 @@ return redirect('/allStaffInformationForRenew');
     }
 
 
+    public function renewInfo($id){
+
+           $getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+           $all_partiw1 = FdOneForm::where('id',$getUserIdFrom->fd_one_form_id)->first();
+           $get_all_data_new = NgoRenewInfo::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+           $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
+           $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+        return view('front.renew.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
+    }
+
+
+    public function verifiedFdEightDownload(Request $request){
+
+        $fd9FormInfo = NgoRenewInfo::find($request->id);
+
+        if ($request->hasfile('verified_fd_eight_form')) {
+            $filePath="fd8FormInfo";
+            $file = $request->file('verified_fd_eight_form');
+
+            $fd9FormInfo->verified_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+        $fd9FormInfo->save();
+
+
+        return redirect()->back()->with('success','Update Successfully');
+
+    }
+
+
+    public function renewChief(Request $request){
+
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+
+        $formEightData =NgoRenewInfo::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('downloadRenewPdf/'.base64_encode($id));
+
+    }
+
+    public function downloadRenewPdf($id){
+
+        //dd(33);
+        $get_all_data_new = NgoRenewInfo::where('id',base64_decode($id))->first();
+
+        //$getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+        $all_partiw1 = FdOneForm::where('id',$get_all_data_new->fd_one_form_id)->first();
+
+        $all_partiw = FdOneMemberList::where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->get();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->first();
+
+
+        $file_Name_Custome = 'fd_eight_form';
+
+
+
+
+
+        $pdf=PDF::loadView('front.renew.downloadRenewPdf',[
+            'get_all_data_new'=>$get_all_data_new,
+
+            'all_partiw1'=>$all_partiw1,
+            'all_partiw'=>$all_partiw,
+            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+
+        ],[],['format' => 'A4']);
+    return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+    }
+
+
     public function allStaffInformationForRenew(){
 
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
@@ -188,16 +270,36 @@ return redirect('/allStaffInformationForRenew');
     }
 
     public function otherInformationForRenew(){
+        $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+        $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->get();
+        return view('front.renew.other_information_for_renew',compact('all_partiw'));
+    }
 
-        return view('front.renew.other_information_for_renew');
+    public function otherInformationForRenewNewPost(Request $request){
+       // dd($request->all());
+
+        $input = $request->all();
+
+
+        $condition_main_id = $input['id'];
+        foreach($condition_main_id as $key => $condition_main_id){
+              $form=FdOneMemberList::find($input['id'][$key]);
+                $form->mobile=$input['staff_mobile'][$key];
+                $form->email=$input['staff_email'][$key];
+
+                $form->save();
+        }
+
+        return redirect()->route('otherInformationForRenew');
     }
 
 
     public function otherInformationForRenewGet(Request $request){
-
+//dd($request->copy_of_chalan);
         $time_dy = time().date("Ymd");
 
-       $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)->orderBy('id','desc')->value('id');
+       $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)
+       ->orderBy('id','desc')->value('id');
        $filePath="NgoRenewInfo";
 
         $ngoRenew = NgoRenewInfo::find($Ngorenewinfo_get_id);
@@ -237,9 +339,10 @@ return redirect('/allStaffInformationForRenew');
         $main_time = $dt->format('H:i:s a');
 
 
-
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
         $add_renew_request = new NgoRenew();
-        $add_renew_request->fd_one_form_id = $Ngorenewinfo_get_id;
+        $add_renew_request->fd_one_form_id = $ngo_list_all->id;
         $add_renew_request->time_for_api =$main_time;
         $add_renew_request->status = 'Ongoing';
         $add_renew_request->save();
@@ -247,4 +350,103 @@ return redirect('/allStaffInformationForRenew');
         return redirect('/renew')->with('success','Renew Request Send Successfully');
 
     }
-}
+
+    public function foreginPdfDownload($id){
+
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('foregin_pdf');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+
+    public function yearlyBudgetPdfDownload($id){
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('yearly_budget');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+
+    public function copyOfChalanPdfDownload($id){
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('copy_of_chalan');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+    }
+
+    public function dueVatPdfDownload($id){
+
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('due_vat_pdf');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
+        public function changeAcNumberDownload($id){
+            $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('change_ac_number');
+
+            $file_path = url('public/'.$get_file_data);
+                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+            $file= public_path('/'). $get_file_data;
+
+            $headers = array(
+                      'Content-Type: application/pdf',
+                    );
+
+            // return Response::download($file,$filename.'.pdf', $headers);
+
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
+
+        }
+    }
+

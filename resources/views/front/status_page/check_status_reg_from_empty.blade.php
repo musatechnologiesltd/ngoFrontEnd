@@ -16,7 +16,7 @@
             <div class="card-body p-5">
                 <div class="others_inner_section pb-4">
                     <h1>
-                        @if(session()->get('locale') == 'en')
+                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 							আবেদনের অবস্থানের ফলাফল
 						@else
         					Application Status Result
@@ -29,19 +29,19 @@
                 </div>
                 <div class="text-center">
                     <h3>
-                      	@if(session()->get('locale') == 'en')
+                      	@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 							কোন ফলাফল পাওয়া যায় নি
 						@else
         					No Result Found
 						@endif
                     </h3>
                     <p>
-                      @if(session()->get('locale') == 'en')
+                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 							আপনি যা খুঁজছেন তা আমরা খুঁজে পাইনি <br> অনুগ্রহ করে আবার চেষ্টা করুন
 						@else
-        					We couldn't find what you are searching for <br> Please try again 
+        					We couldn't find what you are searching for <br> Please try again
 						@endif
-                      
+
                   	</p>
                 </div>
 

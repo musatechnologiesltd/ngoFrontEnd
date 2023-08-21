@@ -10,6 +10,7 @@ use App\Models\FormEight;
 use App\Models\FdOneForm;
 use App\Models\NgoMemberList;
 use App\Models\NgoOtherDoc;
+use App\Models\NameChangeDoc;
 use App\Models\NgoMemberNidPhoto;
 use Auth;
 use App;
@@ -52,7 +53,23 @@ class NamechangeController extends Controller
 
         $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        return view('front.name_change.view_form_8_for_change',compact('ngo_list_all','form_eight_list'));
+
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+
+        $main_time = $dt->format('H:i:s a');
+        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+        $new_data_add = new NgoNameChange();
+        $new_data_add->fd_one_form_id = $fdOneFormId;
+        $new_data_add->previous_name_eng =  Session::get('previous_name');
+        $new_data_add->previous_name_ban = Session::get('previous_name_ban');
+        $new_data_add->present_name_eng = Session::get('new_name');
+        $new_data_add->present_name_ban = Session::get('new_name_ban');
+        $new_data_add->status = 'Ongoing';
+        $new_data_add->time_for_api = $main_time;
+        $new_data_add->save();
+
+        return redirect()->route('addOtherDoc');
 
     }
 
@@ -376,19 +393,25 @@ class NamechangeController extends Controller
 
 
         $condition_main_image = $input['primary_portal'];
+
+
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+        $ngo_name_change_id = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)
+        ->where('status','Ongoing')->value('id');
+
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['primary_portal'][$key]->getSize() / 1048576,2);
 
-            $form= new NgoOtherDoc();
+            $form= new NameChangeDoc();
             $file=$input['primary_portal'][$key];
-            $filePath="NgoOtherDoc";
+            $filePath="NameChangeDoc";
             // $name=$time_dy.$file->getClientOriginalName();
             // $file->move('public/uploads/', $name);
             $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
             $form->time_for_api = $main_time;
-            $form->fd_one_form_id  = $fdOneFormId;
+            $form->ngo_name_change_id  = $ngo_name_change_id;
             $form->	file_size =$file_size;
             $form->save();
        }
@@ -396,7 +419,7 @@ class NamechangeController extends Controller
 
 
 
-         return redirect('/allNgoRelatedDocument')->with('success','Uploaded Successfully');
+       return redirect('/nameChange')->with('success','Request Send Successfully');
 
 
     }
@@ -421,7 +444,7 @@ class NamechangeController extends Controller
         $ngoOtherDoc->save();
 
 
-        return redirect('/allNgoRelatedDocument')->with('success','Created Successfully');
+        return redirect('/nameChange')->with('success','Request Send Successfully');
 
 
     }
@@ -431,22 +454,22 @@ class NamechangeController extends Controller
     public function finalSubmitNameChange(Request $request){
 
 
-       // dd(Session::get('previous_name'));
+    //    dd(Session::get('previous_name'));
 
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+    //     $dt = new DateTime();
+    //     $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $main_time = $dt->format('H:i:s a');
-        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-        $new_data_add = new NgoNameChange();
-        $new_data_add->fd_one_form_id = $fdOneFormId;
-        $new_data_add->previous_name_eng =  Session::get('previous_name');
-        $new_data_add->previous_name_ban = Session::get('previous_name_ban');
-        $new_data_add->present_name_eng = Session::get('new_name');
-        $new_data_add->present_name_ban = Session::get('new_name_ban');
-        $new_data_add->status = 'Ongoing';
-        $new_data_add->time_for_api = $main_time;
-        $new_data_add->save();
+    //     $main_time = $dt->format('H:i:s a');
+    //     $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+    //     $new_data_add = new NgoNameChange();
+    //     $new_data_add->fd_one_form_id = $fdOneFormId;
+    //     $new_data_add->previous_name_eng =  Session::get('previous_name');
+    //     $new_data_add->previous_name_ban = Session::get('previous_name_ban');
+    //     $new_data_add->present_name_eng = Session::get('new_name');
+    //     $new_data_add->present_name_ban = Session::get('new_name_ban');
+    //     $new_data_add->status = 'Ongoing';
+    //     $new_data_add->time_for_api = $main_time;
+    //     $new_data_add->save();
 
 
         return redirect('/nameChange')->with('success','Request Send Successfully');

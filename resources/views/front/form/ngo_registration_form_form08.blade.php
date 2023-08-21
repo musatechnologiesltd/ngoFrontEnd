@@ -52,22 +52,17 @@ $newDate1 = date("Y-m-d", strtotime($from_date_to));
 
 $to_date_to = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('to_date');
 
-$newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
-->format('Y-m-d');;
-
+// $newDate2 = \Carbon\Carbon::createFromFormat('d/m/Y', $to_date_to)
+// ->format('Y-m-d');;
+$newDate2 = date("Y-m-d", strtotime($to_date_to));
 //dd($newDate2);
 $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('total_year');
 }
 
-$engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-        'May','June','July','August','September','October','November','December','Saturday','Sunday',
-        'Monday','Tuesday','Wednesday','Thursday','Friday');
-        $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-        'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-        বুধবার','বৃহস্পতিবার','শুক্রবার'
-        );
+
 
                         ?>
+                        @include('translate')
                         <div class="row">
                             <div class="col-lg-12 col-sm-12">
                                 <div class="card">
@@ -114,10 +109,10 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
                                                 ?>
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
-{{ str_replace($engDATE, $bangDATE, $newDate12)}}
+{{ App\Http\Controllers\NGO\CommonController::englishToBangla($newDate12)}}
 
 
 @else
@@ -170,7 +165,9 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}} <span class="text-danger">*</span> :</label>
-                                                                                                <input type="number" data-parsley-required name="phone" value="{{ $main_all_data_list->phone }}" class="form-control" id="">
+                                                                                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                                                type = "number"
+                                                                                                maxlength = "11" minlength="11" data-parsley-required name="phone" value="{{ $main_all_data_list->phone }}" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}} <span class="text-danger">*</span> :</label>
@@ -209,8 +206,8 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('form 8_bn.member_of_service_holder_of_Any_other_ngo')}} <span class="text-danger">*</span> :</label>
                                                                                                 <select class="form-control" data-parsley-required name="service_status" id="">
-                                                                                                    <option value="{{ trans('form 8_bn.yes') }}" {{ $main_all_data_list->profession == trans('form 8_bn.yes') ? 'selected':'' }}>{{ trans('form 8_bn.yes')}}</option>
-                                                                                                    <option value="{{ trans('form 8_bn.no') }}" {{ $main_all_data_list->profession == trans('form 8_bn.no') ? 'selected':'' }}>{{ trans('form 8_bn.no')}}</option>
+                                                                                                    <option value="{{ trans('form 8_bn.yes') }}" {{ $main_all_data_list->service_status == trans('form 8_bn.yes') ? 'selected':'' }}>{{ trans('form 8_bn.yes')}}</option>
+                                                                                                    <option value="{{ trans('form 8_bn.no') }}" {{ $main_all_data_list->service_status == trans('form 8_bn.no') ? 'selected':'' }}>{{ trans('form 8_bn.no')}}</option>
                                                                                                 </select>
                                                                                             </div>
 
@@ -256,7 +253,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                         <div class="buttons d-flex justify-content-end mt-4">
                         {{-- <a href="{{ route('ngoAllRegistrationForm') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a> --}}
 
-                        <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.back')}}</button>
+                        <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">আপডেট করুন </button>
 
                         </div>
                         @else
@@ -266,10 +263,21 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_form_eight" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             @if(count($formEightData) == 0)
 
-                            <button class="btn btn-custom " name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
 
+  @if(count($formEightData) >= 2)
+
+                           <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @else
+                            <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+
+@endif
                             @else
-                            <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                            @if(count($formEightData) >= 2)
+
+                           <button class="btn btn-custom submit_button" name="submit_value" value="form_eight_complete" type="button">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @else
+  <button class="btn btn-custom submit_button"  type="button" disabled>{{ trans('fd_one_step_one.Next_Step')}}</button>
+                          @endif
                             @endif
                         </div>
                         @endif
@@ -313,7 +321,9 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}} <span class="text-danger">*</span> :</label>
-                                    <input type="number" data-parsley-required name="phone" class="form-control" id="">
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type = "number"
+                                    maxlength = "11" minlength="11" data-parsley-required name="phone" class="form-control" id="">
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}} <span class="text-danger">*</span> :</label>
@@ -389,7 +399,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
 
     $(".submit_button").click(function () {
-
+//alert(33);
         var to_date = $('#to_date').val();
         var form_date = $('#form_date').val();
         var total_year = $('#total_year').val();
@@ -428,7 +438,7 @@ if(total_year.length == 0){
 
 
     $(".submit_button").click(function () {
-
+        //alert(33);
         var to_date = $('#to_date').val();
         var form_date = $('#form_date').val();
         var total_year = $('#total_year').val();

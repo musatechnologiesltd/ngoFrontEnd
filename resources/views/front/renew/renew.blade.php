@@ -10,16 +10,7 @@
 
 @section('body')
 
-<?php
- $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
-      'May','June','July','August','September','October','November','December','Saturday','Sunday',
-      'Monday','Tuesday','Wednesday','Thursday','Friday');
-      $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
-      'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
-      বুধবার','বৃহস্পতিবার','শুক্রবার'
-      );
 
-?>
 
 
 <section>
@@ -59,41 +50,34 @@
                     <div class="card-body">
                         <div class="profile_link_box">
                             <a href="{{ route('dashboard') }}">
-                                <p class="{{ Route::is('dashboard')  ? 'active_link' : '' }}"><i class="fa fa-user pe-2"></i>ব্যবহারকারীর প্রোফাইল</p>
+                                <p class="{{ Route::is('dashboard')  ? 'active_link' : '' }}"><i class="fa fa-user pe-2"></i>{{ trans('fd9.m1')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nameChange') }}">
-                                <p class="{{ Route::is('nameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>এনজিওর নাম পরিবর্তন</p>
+                                <p class="{{ Route::is('nameChange')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.m2')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
                             <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>আবেদন পুনর্নবীকরণ</p>
+                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.m3')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
-                            </a>
-                        </div>
-
-
-                        <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09form')}}</p>
+                            <a href="{{ route('nVisa.index') }}">
+                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
-                            <a href="{{ route('renew') }}">
-                                <p class="{{ Route::is('renew')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                            <a href="{{ route('fdNineOneForm.index') }}">
+                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
-                                <p class=""><i class="fa fa-cog pe-2"></i>লগ আউট</p>
+                                <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
                             </a>
                         </div>
 
@@ -118,7 +102,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                             <div class="row">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="others_inner_section">
-                                        <h1>আবেদন পুনর্নবীকরণ </h1>
+                                        <h1>{{ trans('fd9.m3')}}</h1>
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>
@@ -126,13 +110,13 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                     @if($name_change_list == 'Ongoing')
                                     <div class="d-grid d-md-flex justify-content-end">
                                         <button type="button" disabled  class="btn btn-registration"
-                                                onclick="location.href = '{{ route('ngoRenewStepOne') }}';">আবেদন পুনর্নবীকরণ করুন
+                                                onclick="location.href = '{{ route('ngoRenewStepOne') }}';">{{ trans('fd9.ar')}}
                                         </button>
                                     </div>
                                     @else
                                     <div class="d-grid d-md-flex justify-content-end">
                                         <button type="button"  class="btn btn-registration"
-                                                onclick="location.href = '{{ route('ngoRenewStepOne') }}';">আবেদন পুনর্নবীকরণ করুন
+                                                onclick="location.href = '{{ route('ngoRenewStepOne') }}';">{{ trans('fd9.ar')}}
                                         </button>
                                     </div>
                                     @endif
@@ -156,6 +140,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                         <th>তারিখ</th>
 
                                         <th>স্ট্যাটাস</th>
+                                        <th>কার্যকলাপ </th>
                                     </tr>
                                     @foreach($name_change_list_all as $key=>$all_name_change_list_all)
                                     <tr>
@@ -163,6 +148,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                         <td>{{ $all_name_change_list_all->created_at->format('d-M-Y')}}</td>
 
                                         <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
+                                        <td> <a  href="{{ route('renewInfo',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </table>

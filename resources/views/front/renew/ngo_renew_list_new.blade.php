@@ -110,7 +110,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required  name="mobile_new" class="form-control" id="">
+                                                <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                type = "number"
+                                                maxlength = "11" minlength="11" data-parsley-required  name="mobile_new" class="form-control" id="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">ইমেইল এড্রেস <span class="text-danger">*</span> </label>
@@ -134,21 +136,43 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                 <div class="mt-2 mb-2">
+
+@if($get_country_type == 'Foreign')
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Part_Time')}}" {{ trans('fd_one_step_one.Part_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Part Time" {{ 'Part Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Full_Time')}}" {{  trans('fd_one_step_one.Full_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Full Time" {{  'Full Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                     </div>
+                    @else
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="খণ্ডকালীন" {{ 'খণ্ডকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="পূর্ণকালীন" {{  'পূর্ণকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                    </div>
+
+                    @endif
+
+
                 </div>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                 <input type="text" readonly data-parsley-required name="address" value="{{ $get_all_data_1->address }}" class="form-control" id="">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                <input type="text"  data-parsley-required name="nationality" class="form-control" id="">
             </div>
 
             <div class="mb-3">
@@ -158,7 +182,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
-                <input type="number" readonly data-parsley-required minlength="11" name="phone" value="{{ $get_all_data_1->phone }}"  class="form-control" id="">
+                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type = "number"
+                maxlength = "11" readonly data-parsley-required minlength="11" name="phone" value="{{ $get_all_data_1->phone }}"  class="form-control" id="">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
@@ -169,6 +195,10 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                     <?php
  $convert_new_ass_cat  = explode(",",$get_all_data_1->citizenship);
+//dd($convert_new_ass_cat);
+
+$ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
 
                     ?>
 
@@ -178,13 +208,14 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
                 <select   class="js-example-basic-multiple form-control"  name="citizenship[]"
-                multiple="multiple">
+                multiple="multiple" required>
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
-                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
+                @if($ngoType == 'Foreign')
+                <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+
                 @else
-            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
             @endif
             @endforeach
 
@@ -217,7 +248,7 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
 ?>
-<form action="{{ route('update_renew_information_list') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+<form action="{{ route('updateRenewInformationList') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
     @csrf
 <div class="main active">
     <div class="text">
@@ -280,7 +311,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required value="{{ $get_all_data_new_first->mobile_new }}"  name="mobile_new" class="form-control" id="">
+                                                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                type = "number"
+                                                maxlength = "11" minlength="11" data-parsley-required value="{{ $get_all_data_new_first->mobile_new }}"  name="mobile_new" class="form-control" id="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">ইমেইল এড্রেস <span class="text-danger">*</span> </label>
@@ -304,21 +337,44 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                 <div class="mt-2 mb-2">
+
+
+                    @if($get_country_type == 'Foreign')
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Part_Time')}}" {{ trans('fd_one_step_one.Part_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Part Time" {{ 'Part Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                               value="{{ trans('fd_one_step_one.Full_Time')}}" {{  trans('fd_one_step_one.Full_Time') == $get_all_data_1->job_type ? 'checked':'' }}>
+                               value="Full Time" {{  'Full Time' == $get_all_data_1->job_type ? 'checked':'' }}>
                         <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                     </div>
+                    @else
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="খণ্ডকালীন" {{ 'খণ্ডকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input"   data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
+                               value="পূর্ণকালীন" {{  'পূর্ণকালীন' == $get_all_data_1->job_type ? 'checked':'' }}>
+                        <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
+                    </div>
+
+                    @endif
+
+
                 </div>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                 <input type="text" readonly data-parsley-required name="address" value="{{ $get_all_data_1->address }}" class="form-control" id="">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                <input type="text"  data-parsley-required name="nationality" value="{{ $get_all_data_new_first->nationality }}" class="form-control" id="">
             </div>
 
             <div class="mb-3">
@@ -328,7 +384,9 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
-                <input type="number" readonly data-parsley-required minlength="11" name="phone" value="{{ $get_all_data_1->phone }}"  class="form-control" id="">
+                <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type = "number"
+                maxlength = "11" readonly data-parsley-required minlength="11" name="phone" value="{{ $get_all_data_1->phone }}"  class="form-control" id="">
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
@@ -339,7 +397,8 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
                     <?php
  $convert_new_ass_cat  = explode(",",$get_all_data_1->citizenship);
-
+$ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+ ->value('ngo_type');
                     ?>
 
 
@@ -348,13 +407,14 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
                 <select   class="js-example-basic-multiple form-control"  name="citizenship[]"
-                multiple="multiple">
+                multiple="multiple" required>
 
                 @foreach($get_cityzenship_data as $all_get_cityzenship_data)
-                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
+                @if($ngoType == 'Foreign')
+                <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+
                 @else
-            <option value="{{ $all_get_cityzenship_data->country_people_english }}" {{ (in_array($all_get_cityzenship_data->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_english }}</option>
+                <option value="{{ $all_get_cityzenship_data->country_people_bangla }}" {{ (in_array($all_get_cityzenship_data->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $all_get_cityzenship_data->country_people_bangla }}</option>
             @endif
             @endforeach
 

@@ -55,7 +55,9 @@
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.mobile_no')}} <span class="text-danger">*</span> </label>
-                                    <input type="number" name="phone" value="{{ $all_data_list->phone }}" class="form-control" id="">
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type = "number"
+                                    maxlength = "11" minlength="11" name="phone" value="{{ $all_data_list->phone }}" class="form-control" id="">
                                 </div>
                                 <div class=" mb-3">
                                     <label for="" class="form-label">{{ trans('form 8_bn.fathers_name')}} <span class="text-danger">*</span> </label>

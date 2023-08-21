@@ -75,7 +75,11 @@
             <td class="number_section">(i)</td>
             <td>{{ trans('fd_one_step_one.Organization_Name_Organization_address')}}</td>
             <td style="width:4px">:</td>
+            @if($getNgoTypeForPdf == 'দেশিও')
+            <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            @else
             <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            @endif
         </tr>
         <!-- <tr>
             <td></td>
@@ -89,7 +93,17 @@
             <td class="number_section">(iii)</td>
             <td>{{ trans('fd_one_step_one.reg_num')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->registration_number }}</td>
+            <td>
+
+                @if($allformOneData->registration_number == 0)
+
+                @else
+
+                {{ $allformOneData->registration_number }}
+                @endif
+
+
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -124,12 +138,7 @@
                                   $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                   if($getngoForLanguage =='দেশিও'){
 
-                                    if($allformOneData->job_type == 'Full-Time'){
 
-                                      $getJobType = 'পূর্ণকালীন';
-                                    }else{
-                                    $getJobType = 'খণ্ডকালীন';
-                                    }
 
                                   }else{
                                    $getJobType =$allformOneData->job_type;
@@ -142,7 +151,7 @@
             <td></td>
             <td>{{ trans('form 8_bn.b')}}) {{ trans('fd_one_step_one.Whether_part_time_or_full_time')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $getJobType }}</td>
+            <td>{{ $allformOneData->job_type }}</td>
         </tr>
         <tr>
             <td></td>
@@ -256,7 +265,7 @@
             @if(session()->get('locale') == 'en')
             <td></td>
 
-            <td colspan="4">{{ str_replace($engDATE, $bangDATE, $key+1 )}}. কর্মকর্তা {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+            <td colspan="4">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. কর্মকর্তা {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
 
             @else
             <td></td>
@@ -317,7 +326,7 @@
 
             <td colspan="2" class="padding-left">({{ trans('form 8_bn.e')}}) {{ trans('fd_one_step_three.date_of_joining')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allFormOneMemberList->date_of_join }}</td>
+            <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($allFormOneMemberList->date_of_join))) }}</td>
         </tr>
         <tr>
             <td></td>
@@ -364,7 +373,7 @@
             @if(session()->get('locale') == 'en')
             <td></td>
 
-            <td colspan="3">{{ str_replace($engDATE, $bangDATE, $key+1 )}}. পরামর্শক {{ str_replace($engDATE, $bangDATE, $key+1 )}}</td>
+            <td colspan="3">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
             <td></td>
             @else
             <td></td>
@@ -394,6 +403,9 @@
             <td colspan="4">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
             </td>
         </tr>
+        @if(!$get_all_data_adviser_bank)
+
+        @else
         <tr>
             <td></td>
             <td>({{ trans('form 8_bn.a')}})</td>
@@ -429,6 +441,7 @@
             <td style="width:4px">:</td>
             <td>{{ $get_all_data_adviser_bank->bank_address }}</td>
         </tr>
+        @endif
         <tr>
             <td>{{ trans('fd_one_step_one.eight')}}.</td>
             <td colspan="2">{{ trans('fd_one_step_four.tt4')}}
@@ -466,11 +479,11 @@ attached
     </tr>
     <tr>
         <td>{{ trans('fd_one_step_one.tt_5')}}</td>
-        <td style="width:35%">: ...................................................</td>
+        <td style="width:35%">: {{ $allformOneData->chief_name }}</td>
     </tr>
     <tr>
         <td>{{ trans('fd_one_step_one.tt_6')}}</td>
-        <td>: ...................................................</td>
+        <td>: {{ $allformOneData->chief_desi }}</td>
     </tr>
     @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
 
@@ -483,7 +496,7 @@ attached
     @endif
     <tr>
         <td>{{ trans('fd_one_step_one.tt_7')}}</td>
-        <td>: ...................................................</td>
+        <td>: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
     </tr>
 </table>
 
