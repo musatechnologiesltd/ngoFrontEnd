@@ -1,8 +1,8 @@
 <?php
 return [
-    'ngo_member_list'=>'এনজিও সদস্যদের তালিকা',
-    'ngo_member'=>'এনজিও সদস্য',
-    'ngo_member_registration'=>'এনজিও সদস্য নিবন্ধন',
+    'ngo_member_list'=>'সাধারণ সদস্যদের তালিকা',
+    'ngo_member'=>'সাধারণ সদস্য',
+    'ngo_member_registration'=>'সাধারণ সদস্য নিবন্ধন',
     'name'=>'নাম',
     'designation'=>'উপাধি',
     'date_of_birth'=>'জন্ম তারিখ',

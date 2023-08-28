@@ -14,9 +14,16 @@
         <div class="card">
             <div class="card-body p-5">
                 <div class="others_inner_section pb-4">
+                    @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                    <h1 >এনজিও নিবন্ধন ফি</h1>
+                    @else
                     <h1 >NGO Registration Fee's</h1>
+                    @endif
                     <div class="notice_underline"></div>
                 </div>
+                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+
+
                 <table class="table table-bordered">
                     <tr>
                         <th>ক্রমিক নং</th>
@@ -57,6 +64,48 @@
                         </td>
                     </tr>
                 </table>
+                @else
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Subject </th>
+                        <th>Fee Amount (in BDT)</th>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>Registration fee of NGO</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>a)Local- 50,000/-(fifty thousand) BDT</li>
+                                <li>b) Foreign - 9,000 (nine thousand) US dollars equivalent of BDT</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>02</td>
+                        <td>Registration Renewal fee of NGOs</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>a) Local-30,000/-(thirty thousand) BDT</li>
+                                <li>b) Foreign - 6,000 (six thousand) US dollars equivalent of BDT</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>03</td>
+                        <td>NGO Name Change/ Duplicate Registration Certificate/ Constitution Change Fee</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>a) Name Change-26,000/-(twenty six thousand) BDT</li>
+                                <li>b) Duplicate Registration Certificate Fee- 13,000/- (thirteen thousand) BDT</li>
+                                <li>c)Constitution Alteration/Amendment/Addition/Detachment Fee-
+                                    13,000/-(thirteen thousand) BDT</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+
+                @endif
             </div>
         </div>
     </div>
