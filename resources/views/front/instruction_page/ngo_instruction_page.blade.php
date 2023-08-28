@@ -113,53 +113,53 @@
                         <p>Foreign Donations (Voluntary Activities) Regulations :Act, 2016</p>
                         <table class="table table-borderless pt-4 instruction_table">
                             <tr>
-                                <td>01</td>
+                                <td>(01)</td>
                                 <td>FD-1 Form (Signed by Chief Executive in Bangladesh)</td>
                             </tr>
                             <tr>
-                                <td>02</td>
+                                <td>(02)</td>
                                 <td>Certificate of Incorporation in the Country of Origin</td>
                             </tr>
                             <tr>
-                                <td>03</td>
+                                <td>(03)</td>
                                 <td>Constitution</td>
                             </tr>
                             <tr>
-                                <td>04</td>
+                                <td>(04)</td>
                                 <td>Activities Report</td>
                             </tr>
                             <tr>
-                                <td>05</td>
+                                <td>(05)</td>
                                 <td>Plan of Operation (Work/Organogram)</td>
                             </tr>
                             <tr>
-                                <td>06</td>
+                                <td>(06)</td>
                                 <td>Decision of the Committee/ Board to open office in
                                     Bangladesh
                                 </td>
                             </tr>
                             <tr>
-                                <td>07</td>
+                                <td>(07)</td>
                                 <td>Letter of Appointment of the Country Representative</td>
                             </tr>
                             <tr>
-                                <td>08</td>
+                                <td>(08)</td>
                                 <td>Copy ofTreasury Chalan in support of depositing US$ 9,000 or Equivalent TK amount in
                                     the Code 1-0323-0000-1836 and 15% Vat Code No (1-1133-0035-0311)
                                 </td>
                             </tr>
                             <tr>
-                                <td>09</td>
+                                <td>(09)</td>
                                 <td>Deed of agreement Stamp of TK.300/-with the landlord in Support of opening the
                                     office in Banladesh
                                 </td>
                             </tr>
                             <tr>
-                                <td>10</td>
+                                <td>(10)</td>
                                 <td>List ofExecutive Committee (foreign)</td>
                             </tr>
                             <tr>
-                                <td>11</td>
+                                <td>(11)</td>
                                 <td>Letter of Intent</td>
                             </tr>
 
@@ -496,38 +496,38 @@
                                     নিম্নবর্তীত বিষয়সমূহ অবশ্যই প্রতিপালন করতে হবেঃ
                                     <table class="table table-borderless">
                                         <tr>
-                                            <td>০১</td>
+                                            <td>(০১)</td>
                                             <td>উপজাতীয় ও অ-উপজাতীয় বাসিন্দাদের মধ্যে সম্প্রীতির বিঘ্ন ঘটায় এমন কোন
                                                 কার্যক্রম গ্রহণ করা যাবে না
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>০২</td>
+                                            <td>(০২)</td>
                                             <td>ধর্মীয় অনুভূতি বিরোধী কর্মকান্ড পরিচালনা এবং ধর্মান্তরিত করা যাবে না।
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>০৩</td>
+                                            <td>(০৩)</td>
                                             <td>সাম্প্রদায়িক কাজে উস্কানি প্রদান করে এমন কোন কাজ করা যাবে না।</td>
                                         </tr>
                                         <tr>
-                                            <td>০৪</td>
+                                            <td>(০৪)</td>
                                             <td>জাতীয় বা আঞ্চলিক নিরাপত্তা বিস্নিত করে এমন কোন কাজ করা যাবে না।</td>
                                         </tr>
                                         <tr>
-                                            <td>০৫</td>
+                                            <td>(০৫)</td>
                                             <td>প্রত্যক্ষ বা পরোক্ষভাবে এমন কোন কার্মকান্ড করা যাবে না ঐ এলাকার
                                                 অধিবাসীদের বিচ্ছিনতাবাদ বা গোষ্ঠীগত
                                                 আন্দোলনে উৎসাহিত করে।
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>০৬</td>
+                                            <td>(০৬)</td>
                                             <td>প্রত্যক্ষ বা পরোক্ষভাবে কোন রাজনৈতিক কর্মকান্ডে সম্পৃক্ত হতে পারবে না।
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>০৭</td>
+                                            <td>(০৭)</td>
                                             <td>দেশী/বিদেশি বিচ্ছিন্নতাবাদী আন্দোলনরত কোন ব্যাক্তি/সংগঠন বা রাজনৈতিক
                                                 দলের সাথে সংশ্লিষ্ট থেকে কোন
                                                 উস্কানিমূলক কর্মকান্ড পরিচালনা করা যাবে না।
@@ -689,8 +689,8 @@
                                     ১৫% বকেয়া ভ্যাট (যদি ইতোমধ্যে প্রদান না করা হয়ে থাকে) সংশ্লিষ্ট কোডে জমাপূর্বক চালানের মূলকপিসহ</td>
                             </tr>
                         </table>
-                        <h5 class="pt-3">৫.৩ “ডুপ্লিকেট' সনদপত্রের জন্য প্রয়োজনীয় কাগজপত্রাদিঃ</h5>
-                        <table>
+                        <h5 class="pt-3">৫.৩ ডুপ্লিকেট সনদপত্রের জন্য প্রয়োজনীয় কাগজপত্রাদিঃ</h5>
+                        <table class="table table-borderless instruction_table">
                             <tr>
                                 <td>ক)</td>
                                 <td>'নিবদ্ধন/নবায়নের 'ডুপ্লিকেট' সনদ প্রাপ্তির জন্য আবেদন ফি বাবদ-১৩,০০০/-(তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০-১৮৩৬) চালানের কপি এবং ১৫%

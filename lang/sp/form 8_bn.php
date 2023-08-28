@@ -34,7 +34,7 @@ return [
     'from' => 'From',
     'sl' => 'Sl',
     'Educational_Qualification'=>'Educational Qualification',
-    'list'=>'NGO Committee Member',
+    'list'=>'Particulars of the Members/Office Holders of the Executive Committee',
     'update'=>'Update',
     'add'=>'Add New Member',
     'ngo_committee_member_registration'=>'NGO Committee Member Registration',

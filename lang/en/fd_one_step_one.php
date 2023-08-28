@@ -1,9 +1,9 @@
 <?php
 return [
     'nn'=>'জাতীয়তা',
-    'fd_one_form_title'=>'এফডি ০১ ফরম',
-    'form_eight_title'=>'ফরম ০৮',
-    'member_title'=>'সদস্যের তথ্য',
+    'fd_one_form_title'=>'এফডি-১ ফরম',
+    'form_eight_title'=>'ফরম নং-৮',
+    'member_title'=>'সাধারণ সদস্যদের তালিকা',
     'image_nid_title'=>'ইমেজ এবং এনআইডি ',
     'other_doc_title'=>'অন্যান্য নথি',
     'tt_1'=>'ঘোষণা',
