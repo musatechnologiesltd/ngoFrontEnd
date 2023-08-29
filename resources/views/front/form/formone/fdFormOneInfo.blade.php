@@ -89,7 +89,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                         @else
 
                                         <button class="btn btn-sm btn-success" id="downloadButton345">
-                                            {{ trans('form 8_bn.download_pdf')}}ee
+                                            {{ trans('form 8_bn.download_pdf')}}
                                         </button>
                                         @endif
 

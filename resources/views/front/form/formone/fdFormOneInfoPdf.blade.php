@@ -94,7 +94,7 @@
             @if($getNgoTypeForPdf == 'দেশিও')
             <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
             @else
-            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address_ban }}</td>
             @endif
         </tr>
         <!-- <tr>
@@ -539,12 +539,16 @@ attached
 
     <tr>
         <td style="text-align: right;">Place</td>
-        <td style="width:35%; text-align: left;">: ...................................................</td>
+        <td style="width:35%; text-align: left;">:{{ Session::get('place')}}</td>
     </tr>
     @endif
     <tr>
         <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
+        @if($getNgoTypeForPdf == 'দেশিও')
         <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
+        @else
+        <td style="width:35%; text-align: left;">: {{  $allformOneData->created_at->format('d/m/Y') }}</td>
+        @endif
     </tr>
 </table>
 
