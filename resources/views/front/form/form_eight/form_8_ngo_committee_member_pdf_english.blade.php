@@ -27,6 +27,11 @@
             border-collapse: collapse;
         }
 
+        table tr td
+        {
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
@@ -62,7 +67,7 @@
     @foreach($all_partiw as $key=>$all_all_parti)
     <tr>
         <td>{{  $key+1 }}</td>
-        <td><b>{{ $all_all_parti->name }}</b>, <br> {{ $all_all_parti->desi }}</td>
+        <td><span style="font-weight: bold">{{ $all_all_parti->name }}</span> , <br> {{ $all_all_parti->desi }}</td>
         <td>
 
          <?php   $start_date_one = date("d/m/Y", strtotime($all_all_parti->dob)); ?>
