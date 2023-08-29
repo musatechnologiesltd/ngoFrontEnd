@@ -12,15 +12,49 @@
             font-size: 14px;
 
         }
+
+        .pdf_header
+        {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pdf_header h5
+        {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pdf_header p
+        {
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 0;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
     <div class="card-body">
+
+
+        <div class="pdf_header">
+            <h5 style="font-family: 'bangla', sans-serif;">এফডি-৯(১) ফরম</h5>
+            <p>
+                বিদেশি বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবী এর ওয়ার্ক পারমিটের (কার্যানুমতি)
+                আবেদন ফরম<br>
+                [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
+            </p>
+        </div>
+
         <div class="form9_upper_box">
-            <h3 style="font-family: 'bangla', sans-serif;">এফডি-৯(১) ফরম</h3>
+            {{-- <h3 style="font-family: 'bangla', sans-serif;">এফডি-৯(১) ফরম</h3>
             <h4 style="font-family: 'bangla', sans-serif;">বিদেশি বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবী এর ওয়ার্ক পারমিটের (কার্যানুমতি)
                 আবেদন ফরম</h4>
-            <h5 style="font-family: 'bangla', sans-serif;">(আবশ্যকাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে)</h5>
+            <h5 style="font-family: 'bangla', sans-serif;">(আবশ্যকাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে)</h5> --}}
 
             <div>
                 <p>বরাবর <br>
@@ -35,20 +69,20 @@
         <table class="table table-borderless">
             <tr>
                 <td>বিষয়:</td>
-                <td>{{ $ngo_list_all->organization_name }} সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী "<span>{{ $fd9OneList->foreigner_name_for_subject }}</span>" এর
+                <td>{{ $ngo_list_all->organization_name }} সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী {{ $fd9OneList->foreigner_name_for_subject }}  এর
                     ওয়ার্ক পারমিট প্রসঙ্গে।
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর <span>{{ $fd9OneList->sarok_number }}</span> তারিখ <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->application_date))) }}</span>
+                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর {{ $fd9OneList->sarok_number }} তারিখ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->application_date))) }}
                 </td>
             </tr>
         </table>
 
         <p class="mt-3 mb-2">
-            উপর্যুক্ত বিষয় ও সূত্রের বরাতে "<span>{{ $fd9OneList->institute_name }}</span>" সংস্থার "<span>{{ $fd9OneList->prokolpo_name }}</span>" প্রকল্পের আওতায় "<span>{{ $fd9OneList->designation_name }}</span>" হিসেবে বিদেশী বিশেষজ্ঞ/
-            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <span>{{ $fd9OneList->foreigner_name_for_body }}</span> কে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }}</span> খ্রি: হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }}</span> পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
+            উপর্যুক্ত বিষয় ও সূত্রের বরাতে {{ $fd9OneList->institute_name }} সংস্থার {{ $fd9OneList->prokolpo_name }} প্রকল্পের আওতায় {{ $fd9OneList->designation_name }} হিসেবে বিদেশী বিশেষজ্ঞ/
+            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী {{ $fd9OneList->foreigner_name_for_body }} কে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }} খ্রি: হতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }} পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
             উক্ত ব্যাক্তির অনুমোদিত সময়ের জন্য ওয়ার্ক পারমিট ইস্যু করার জন্য ওয়ার্ক পারমিট ইস্যু করার
             জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
         </p>
@@ -120,7 +154,7 @@
             </tr>
         </table>
 
-        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
+        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} হতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
         {{-- <div >
             <div>
@@ -144,7 +178,7 @@
         {{-- <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
         <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p> --}}
 
-                <table style="text-align: right; margin-top: 100px;  width:100%">
+                {{-- <table style="text-align: right; margin-top: 100px;  width:100%">
                     <tr>
                         <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
                     </tr>
@@ -161,6 +195,25 @@
                     <tr>
                         <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
                         <td style="width:35%; text-align: left; width: 20%">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($fd9OneList->created_at->format('d/m/Y')) }}</td>
+                    </tr>
+                </table> --}}
+
+                <table style="width:100%; margin-top: 100px">
+                    <tr>
+                        <td style="text-align: right; padding-right: 17%" colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_5')}}</td>
+                        <td style="width:35%; text-align: left;">: {{ $fd9OneList->chief_name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_6')}}</td>
+                        <td style="width:35%; text-align: left;">: {{ $fd9OneList->chief_desi }}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
+                        <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($fd9OneList->created_at->format('d/m/Y')) }}</td>
                     </tr>
                 </table>
 

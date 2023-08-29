@@ -475,16 +475,16 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                             <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
 
-
-
-
                                             @elseif($key+1 == 5)
+
+                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                            @elseif($key+1 == 6)
 
 
 
                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
 
-                                            @elseif($key+1 == 6)
+                                            @elseif($key+1 == 7)
 
 
                                             <h6>Letter Of Intent</h6>
@@ -540,11 +540,14 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                                             @elseif($key+1 == 5)
 
+                                                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                                            @elseif($key+1 == 6)
+
 
 
                                                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
 
-                                                                            @elseif($key+1 == 6)
+                                                                            @elseif($key+1 == 7)
 
 
                                                                             <h6>Letter Of Intent</h6>
@@ -669,6 +672,19 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             <div class="card mb-3">
                                 <div class="card-header">
                                     Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

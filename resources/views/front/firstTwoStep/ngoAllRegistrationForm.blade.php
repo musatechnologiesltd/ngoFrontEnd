@@ -187,6 +187,33 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+
+<script>
+    $("#downloadButton345").click(function(){
+          var name = $('#mainName').val();
+          var designation = $('#mainDesignation').val();
+          var id = $('#mainId').val();
+          var place = $('#mainPlace').val();
+
+          alert(22);
+
+          $.ajax({
+            url: "{{ route('fromOneChief') }}",
+            method: 'GET',
+            data: {name:name,designation:designation,id:id,place:place},
+            success: function(data) {
+
+
+
+                window.open(data);
+
+            }
+            });
+
+      });
+      </script>
+
+
 <script>
     $("#downloadButton").click(function(){
           var name = $('#mainName').val();

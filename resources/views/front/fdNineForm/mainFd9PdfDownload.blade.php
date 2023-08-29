@@ -12,15 +12,46 @@
             font-size: 14px;
 
         }
+
+        .pdf_header
+        {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pdf_header h5
+        {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pdf_header p
+        {
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 0;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
 
         <div class="card-body">
+
+            <div class="pdf_header">
+                <h5>এফডি-৯ ফরম</h5>
+                <p>
+                    বিদেশি নাগরিক নিয়োগপত্র সত্যায়ন ফরম<br>
+                    [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
+                </p>
+            </div>
+
             <div class="form9_upper_box">
-                <h3>এফডি-৯ ফরম</h3>
-                <h4>বিদেশি নাগরিক নিয়োগপত্র সত্যায়ন ফরম</h4>
-                <h5>(আবশ্যকাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে)</h5>
+
+                {{-- <h5></h5> --}}
 
                 <div>
                     <p>বরাবর <br>
@@ -310,7 +341,7 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
             <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 
-        <table style="text-align: right; margin-top: 100px;  width:100%">
+        {{-- <table style="text-align: right; margin-top: 100px;  width:100%">
             <tr>
                 <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
             </tr>
@@ -327,6 +358,25 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
             <tr>
                 <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
                 <td style="width:35%; text-align: left; width: 20%">:  {{  App\Http\Controllers\NGO\CommonController::englishToBangla($nVisaEdit->fd9Form->created_at->format('d/m/Y')) }}</td>
+            </tr>
+        </table> --}}
+
+        <table style="width:100%; margin-top: 100px">
+            <tr>
+                <td style="text-align: right; padding-right: 17%" colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">{{ trans('fd_one_step_one.tt_5')}}</td>
+                <td style="width:35%; text-align: left;">: {{ $nVisaEdit->fd9Form->chief_name }}</td>
+            </tr>
+            <tr>
+                <td style="text-align: right;">{{ trans('fd_one_step_one.tt_6')}}</td>
+                <td style="width:35%; text-align: left;">: {{ $nVisaEdit->fd9Form->chief_desi }}</td>
+            </tr>
+
+            <tr>
+                <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
+                <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($nVisaEdit->fd9Form->created_at->format('d/m/Y')) }}</td>
             </tr>
         </table>
 

@@ -32,12 +32,14 @@ class FdoneformController extends Controller
         $place  = $request->place;
 
 
+
+
         if($place == 0){
 
 
         }else{
 
-            Session::put('place',$palce);
+            Session::put('place',$place);
         }
 
 
@@ -48,6 +50,9 @@ class FdoneformController extends Controller
         $formEightData->save();
 
          return $data = url('fdFormOneInfoPdf');
+
+
+         dd($data);
 
 
     }

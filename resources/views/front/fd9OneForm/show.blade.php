@@ -220,20 +220,20 @@
                         <table class="table table-borderless">
                             <tr>
                                 <td>বিষয়:</td>
-                                <td>{{ $ngo_list_all->organization_name }} সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী "<span>{{ $fd9OneList->foreigner_name_for_subject }}</span>" এর
+                                <td>"{{ $fd9OneList->institute_name }}" সংস্থার বিদেশি বিশেষজ্ঞউপদেষ্টা/কর্মকর্ত/সেচ্ছাসেবী "{{ $fd9OneList->foreigner_name_for_subject }}" এর
                                     ওয়ার্ক পারমিট প্রসঙ্গে।
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর <span>{{ $fd9OneList->sarok_number }}</span> তারিখ <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->application_date))) }}</span>
+                                <td>সূত্র: এনজিও বিষয়ক ব্যুরোর স্মারক নম্বর {{ $fd9OneList->sarok_number }} তারিখ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->application_date))) }}
                                 </td>
                             </tr>
                         </table>
 
                         <p class="mt-3 mb-2">
-                            উপর্যুক্ত বিষয় ও সূত্রের বরাতে "<span>{{ $fd9OneList->institute_name }}</span>" সংস্থার "<span>{{ $fd9OneList->prokolpo_name }}</span>" প্রকল্পের আওতায় "<span>{{ $fd9OneList->designation_name }}</span>" হিসেবে বিদেশী বিশেষজ্ঞ/
-                            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী <span>{{ $fd9OneList->foreigner_name_for_body }}</span> কে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }}</span> খ্রি: হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }}</span> পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
+                            উপর্যুক্ত বিষয় ও সূত্রের বরাতে "{{ $fd9OneList->institute_name }}" সংস্থার "{{ $fd9OneList->prokolpo_name }}" প্রকল্পের আওতায় "{{ $fd9OneList->designation_name }}" হিসেবে বিদেশী বিশেষজ্ঞ/
+                            উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী {{ $fd9OneList->foreigner_name_for_body }} কে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_from_date))) }} খ্রি: হতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->expire_to_date))) }} পর্যন্ত সময়ের জন্য নিয়োগ করা হয়েছে। সংস্থার অনুকূলে
                             উক্ত ব্যাক্তির অনুমোদিত সময়ের জন্য ওয়ার্ক পারমিট ইস্যু করার জন্য ওয়ার্ক পারমিট ইস্যু করার
                             জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
                         </p>
@@ -323,7 +323,7 @@
                             </tr>
                         </table>
 
-                        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> হতে <span>{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }}</span> মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
+                        <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} হতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
                         <div class="row">
                             <div class="col-lg-6 col-sm-12"></div>
