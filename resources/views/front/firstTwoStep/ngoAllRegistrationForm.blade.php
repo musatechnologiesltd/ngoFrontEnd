@@ -195,7 +195,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
           var id = $('#mainId').val();
           var place = $('#mainPlace').val();
 
-          alert(22);
+          //alert(22);
 
           $.ajax({
             url: "{{ route('fromOneChief') }}",
