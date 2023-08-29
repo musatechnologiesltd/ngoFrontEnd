@@ -397,7 +397,7 @@ return redirect('ngoAllRegistrationForm');
 
         Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
             $message->to($get_v_email);
-            $message->subject('NGOAB Registration Service || Token Number');
+            $message->subject('NGOAB Registration Service || Tracking Number');
         });
 
 

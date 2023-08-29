@@ -398,31 +398,41 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
 <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 
-        <table style="text-align: right; margin-top: 100px;  width:100%">
-            <tr>
-                <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
-            </tr>
+     
 
+
+        <table style=" margin-top: 150px;width:100%">
             <tr>
-                <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_5')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{ $get_all_data_new->chief_name }}</td>
+                <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
             </tr>
             <tr>
-                <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_6')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{ $get_all_data_new->chief_desi }}</td>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
+                <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_name }}</td>
+            </tr>
+            <tr>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_6')}}</td>
+                <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_desi }}</td>
             </tr>
             @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
 
             @else
 
             <tr>
-                <td style="text-align: right; width: 80%">Place</td>
-                <td style="width:35%; text-align: left; width: 20%">: ...................................................</td>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width: 5%;">Place</td>
+                <td style="width:30%; text-align: left;">: {{ Session::get('place')}}</td>
             </tr>
             @endif
             <tr>
-                <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new->created_at->format('d/m/Y')) }}</td>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_7')}}</td>
+                @if($getNgoTypeForPdf == 'দেশিও')
+                <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new->created_at->format('d/m/Y')) }}</td>
+                @else
+                <td style="width:30%; text-align: left;">: {{  $get_all_data_new->created_at->format('d/m/Y') }}</td>
+                @endif
             </tr>
         </table>
 

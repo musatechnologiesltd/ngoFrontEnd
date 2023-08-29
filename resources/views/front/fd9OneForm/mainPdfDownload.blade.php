@@ -198,22 +198,30 @@
                     </tr>
                 </table> --}}
 
-                <table style="width:100%; margin-top: 100px">
+            
+
+
+                <table style=" margin-top: 150px;width:100%">
                     <tr>
-                        <td style="text-align: right; padding-right: 17%" colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+                        <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_5')}}</td>
-                        <td style="width:35%; text-align: left;">: {{ $fd9OneList->chief_name }}</td>
+                        <td style="width: 65%"></td>
+                        <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
+                        <td style="width:30%; text-align: left;">: {{ $fd9OneList->chief_name }}</td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_6')}}</td>
-                        <td style="width:35%; text-align: left;">: {{ $fd9OneList->chief_desi }}</td>
+                        <td style="width: 65%"></td>
+                        <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_6')}}</td>
+                        <td style="width:30%; text-align: left;">: {{ $fd9OneList->chief_desi }}</td>
                     </tr>
 
                     <tr>
-                        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
-                        <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($fd9OneList->created_at->format('d/m/Y')) }}</td>
+                        <td style="width: 65%"></td>
+                        <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_7')}}</td>
+
+                        <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($fd9OneList->created_at->format('d/m/Y')) }}</td>
+
                     </tr>
                 </table>
 

@@ -118,7 +118,7 @@
                                                                         <select name="country_of_origin" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
 
                                                                             @foreach($countryList as $allCountryList)
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en')u
                                                                             <option value="{{ $allCountryList->country_name_english }}">{{ $allCountryList->country_name_bangla }}</option>
                                                                             @else
                                                                             <option value="{{ $allCountryList->country_name_english }}">{{ $allCountryList->country_name_english }}</option>
