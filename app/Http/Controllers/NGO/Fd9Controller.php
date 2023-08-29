@@ -35,8 +35,12 @@ $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
 $fdNineData =Fd9Form::where('n_visa_id',$nVisaId)->first();
 
+$fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
+
+$fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
+$ngoStatus = NgoStatus::where('fd_one_form_id',$fdOneFormData->id)->first();
 //dd($fdNineData);
-return view('front.fdNineForm.create',compact('fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
 
     }
 

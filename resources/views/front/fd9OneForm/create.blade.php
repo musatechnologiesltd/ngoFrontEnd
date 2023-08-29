@@ -36,12 +36,9 @@
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-
-
-
                                     <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
                                     <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
@@ -127,8 +124,17 @@
                                             </p>
 
                                             <p class="mt-3">
-                                                উপর্যুক্ত বিষয় ও সূত্রের বরাতে <span style="color:red;">*</span><input type="text" name="institute_name" required class="form-control custom-form"
-                                                                                      id="" placeholder=""> সংস্থার
+                                                উপর্যুক্ত বিষয় ও সূত্রের বরাতে <span style="color:red;">*</span>
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                <input type="text" value="{{ $ngo_list_all->organization_name_ban }}" name="institute_name" required class="form-control custom-form"
+                                                                                      id="" placeholder="">
+                                                                                      @else
+                                                                                      <input type="text" value="{{ $ngo_list_all->organization_name }}" name="institute_name" required class="form-control custom-form"
+                                                                                      id="" placeholder="">
+                                                                                      @endif
+
+
+                                                                                      সংস্থার
                                                 <span style="color:red;">*</span><input type="text" name="prokolpo_name" required class="form-control custom-form" id="" placeholder=""> প্রকল্পের
                                                 আওতায় <span style="color:red;">*</span><input type="text" class="form-control custom-form" required name="designation_name" id="" placeholder="">
                                                 হিসেবে বিদেশী বিশেষজ্ঞ/ উপদেষ্টা/কর্মকর্তা/স্বেচ্ছাসেবী<span style="color:red;">*</span> <input

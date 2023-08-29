@@ -29,12 +29,9 @@
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-
-
-
                                     <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
                                     <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>

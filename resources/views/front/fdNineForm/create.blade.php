@@ -29,12 +29,9 @@
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-
-
-
                                     <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
                                     <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
@@ -112,8 +109,10 @@
                                                 মহাপরিচালক <br>
                                                 এনজিও বিষয় ব্যুরো, ঢাকা <br>
                                                 জনাব,</p>
-                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ ... তারিখঃ ...) বৈদেশিক
-                                                    অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও এনডিসা প্রাপ্তির সুপারিশপত্র
+                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
+                                                    তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
+                                                    অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
+                                                    এনডিসা প্রাপ্তির সুপারিশপত্র
                                                     পাওয়ার জন্য আবেদন করছিঃ</p>
                                             </div>
                                         </div>
@@ -295,19 +294,19 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"  class="form-control" id=""
+        <input type="file" accept=".pdf"  class="form-control" id=""
                placeholder="" required name="fd9_academic_qualification">
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"  class="form-control" id=""
+        <input type="file" accept=".pdf"  class="form-control" id=""
                placeholder="" required name="fd9_technical_and_other_qualifications_if_any">
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)<span
             class="text-danger">*</span>:</label>
-        <input type="file" accept="pdf/*"  required class="form-control" id=""
+        <input type="file" accept=".pdf"  required class="form-control" id=""
                placeholder="" name="fd9_past_experience">
     </div>
     <div class="mb-3 col-lg-6">
@@ -319,13 +318,13 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত করতে হবে),<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"  required class="form-control" id=""
+        <input type="file" accept=".pdf"  required class="form-control" id=""
                placeholder="" name="fd9_offered_post">
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন পত্র সংযুক্ত করতে হবে)<span
             class="text-danger">*</span>:</label>
-        <input type="file" accept="pdf/*"  required class="form-control" id=""
+        <input type="file" accept=".pdf"  required class="form-control" id=""
                placeholder="" name="fd9_name_of_proposed_project">
     </div>
     <div class="mb-3 col-lg-6">
@@ -377,7 +376,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">পাসপোর্টের কপি সংযুক্ত<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*" class="form-control" id=""
+        <input type="file" accept=".pdf" class="form-control" id=""
                placeholder=""  name="fd9_copy_of_passport" required>
     </div>
 
@@ -577,7 +576,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"  class="form-control" id=""
+        <input type="file" accept=".pdf"  class="form-control" id=""
                placeholder=""  name="fd9_academic_qualification">
 
 
@@ -602,7 +601,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"  class="form-control" id=""
+        <input type="file" accept=".pdf"  class="form-control" id=""
                placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
 
                @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
@@ -625,7 +624,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)<span
             class="text-danger">*</span>:</label>
-        <input type="file" accept="pdf/*"   class="form-control" id=""
+        <input type="file" accept=".pdf"   class="form-control" id=""
                placeholder="" name="fd9_past_experience">
 
                @if(!$fdNineData->fd9_past_experience)
@@ -654,7 +653,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত করতে হবে),<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*"   class="form-control" id=""
+        <input type="file" accept=".pdf"   class="form-control" id=""
                placeholder="" name="fd9_offered_post">
 
                @if(!$fdNineData->fd9_offered_post)
@@ -677,7 +676,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন পত্র সংযুক্ত করতে হবে)<span
             class="text-danger">*</span>:</label>
-        <input type="file" accept="pdf/*"   class="form-control" id=""
+        <input type="file" accept=".pdf"   class="form-control" id=""
                placeholder="" name="fd9_name_of_proposed_project">
 
                @if(!$fdNineData->fd9_name_of_proposed_project)
@@ -751,7 +750,7 @@
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">পাসপোর্টের কপি সংযুক্ত<span
             class="text-danger">*</span></label>
-        <input type="file" accept="pdf/*" class="form-control" id=""
+        <input type="file" accept=".pdf" class="form-control" id=""
                placeholder=""  name="fd9_copy_of_passport" >
 
                @if(!$fdNineData->fd9_copy_of_passport)

@@ -17,13 +17,13 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
 
                     @include('flash_message')
                     <div class="user_dashboard_right">
-                        <h4>{{ trans('first_info.form_eight')}} </h4>
+                        <h4>{{ trans('fd_one_step_one.form_eight_title')}} </h4>
                     </div>
 
                   <div class="card-body mt-3 mb-3">
                         <div class="card-body">
-                            <p>Download Form-08 PDF, upload with seal, signature of Chief Executive</p>
-                            <p>{{ trans('first_info.form_eight')}} পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            <p>Download Form No-8 PDF, upload with seal, signature of Chief Executive</p>
+                            <p>ফরম নং-৮ পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
                             <table class="table table-bordered">
                                 <tr>
                                     <td>PDF Download (পিডিএফ ডাউনলোড )</td>

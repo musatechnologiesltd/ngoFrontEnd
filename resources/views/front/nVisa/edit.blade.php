@@ -29,12 +29,9 @@
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-
-
-
                                     <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
                                     <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
@@ -65,7 +62,7 @@
                         </div>
                         <div class="profile_link_box">
                             <a href="{{ route('nVisa.index') }}">
-                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                                <p class="{{ Route::is('nVisa.edit') || Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 

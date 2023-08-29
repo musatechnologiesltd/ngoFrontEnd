@@ -22,8 +22,8 @@
 
                   <div class="card-body mt-3 mb-3">
                         <div class="card-body">
-                            <p>Download FD-01 PDF, upload with seal, signature of Chief Executive</p>
-                            <p>এফডি-০১ পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            <p>Download FD-1 Form PDF, upload with seal, signature of Chief Executive</p>
+                            <p>এফডি-১ ফরম পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
                             <table class="table table-bordered">
                                 <tr>
                                     <td>PDF Download (পিডিএফ ডাউনলোড )</td>

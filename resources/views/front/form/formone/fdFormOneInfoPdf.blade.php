@@ -209,7 +209,7 @@
                 @else
 
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -248,7 +248,7 @@
 
                 @else
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -382,7 +382,7 @@
 
                 @else
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -398,7 +398,7 @@
         </tr>
         @foreach($get_all_data_adviser as $key=>$all_get_all_data_adviser)
         <tr>
-            @if(session()->get('locale') == 'en')
+            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
             <td></td>
 
             <td colspan="3">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
@@ -486,7 +486,7 @@
 
 @else
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 সংযুক্ত
 @else

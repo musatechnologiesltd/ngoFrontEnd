@@ -1,11 +1,11 @@
 <?php
 return [
     'nn'=>'Nationality',
-    'fd_one_form_title'=>'FD 01 Form',
-    'form_eight_title'=>'Form 08',
-    'member_title'=>'Member'.'s'.' Information',
+    'fd_one_form_title'=>'FD-1 Form',
+    'form_eight_title'=>'Form No-8',
+    'member_title'=>'General Members',
     'image_nid_title'=>'Image & NID',
-    'other_doc_title'=>'Other'.'s'.' Document',
+    'other_doc_title'=>'Other'.'s'.' Information',
     'tt_1'=>'DECLARATION',
     'tt_2'=>'I hereby declare that ',
     'tt_3'=>'I have read the relevant Rules and Regulations and that the above particulars furnished by me are true and correct.',

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fd9 Form</title>
+    <title>এফডি-৯ ফরম</title>
     <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet">
     <style>
          body,h5,h4,h3 {
@@ -46,32 +46,32 @@
                 <tr>
                     <td>২.</td>
                     <td>(ক) পিতার নাম</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_father_name }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_father_name }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>(খ) স্বামী/স্ত্রীর নাম</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_husband_or_wife_name }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_husband_or_wife_name }}</td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>(গ) মাতার নাম</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_mother_name }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_mother_name }}</td>
                 </tr>
                 <tr>
                     <td>৩.</td>
                     <td>জন্ম স্থান ও তারিখ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_birth_place }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
                 </tr>
                 <tr>
                     <td>৪.</td>
                     <td>পাসপোর্ট নম্বর, ইস্যু ও মেয়াদোর্ত্তীণ তারিখ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_passport_number }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
                 </tr>
                 <tr>
                     <td>৫.</td>
                     <td>পাসপোর্টে প্রদত্ত সনাক্তকারী চিহ্ন</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_identification_mark_given_in_passport }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_identification_mark_given_in_passport }}</td>
                 </tr>
                 <tr>
                     <td>৬.</td>
@@ -81,32 +81,32 @@
                 <tr>
                     <td>৭.</td>
                     <td>বৈবাহিক অবস্থা</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_marital_status }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_marital_status }}</td>
                 </tr>
                 <tr>
                     <td>৮.</td>
                     <td>জাতীয়তা / নাগরিকত্ব</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_nationality_or_citizenship }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_nationality_or_citizenship }}</td>
                 </tr>
                 <tr>
                     <td>৯.</td>
                     <td>একাধিক নাগরিকত্ব থাকলে বিবরণ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_details_if_multiple_citizenships }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_details_if_multiple_citizenships }}</td>
                 </tr>
                 <tr>
                     <td>১০.</td>
                     <td>পূর্বের নাগরিকত্ব থাকলে তা বহাল না থাকার কারণ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_previous_citizenship_is_grounds_for_non_retention }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_previous_citizenship_is_grounds_for_non_retention }}</td>
                 </tr>
                 <tr>
                     <td>১১.</td>
                     <td>বর্তমান ঠিকানা</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_current_address }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_current_address }}</td>
                 </tr>
                 <tr>
                     <td>১২.</td>
                     <td>পরিবারের সদস্য সংখ্যা</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_number_of_family_members }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_number_of_family_members }}</td>
                 </tr>
 
                 <?php
@@ -119,7 +119,7 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
                     <td>১৩.</td>
                     <td>পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন)</td>
                     <td>: @foreach($familyData as $key=>$allFamilyData)
-                        {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
+                          {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
                         @endforeach
                     </td>
                 </tr>
@@ -137,7 +137,7 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
 
                          $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                          ?>
-সংযুক্ত
+    সংযুক্ত
                          @endif
                         </td>
                 </tr>
@@ -224,32 +224,32 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২০.</td>
                     <td>নিয়োগের যে তারিখ নির্ধারণ করা হয়েছে</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_date_of_appointment }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_date_of_appointment }}</td>
                 </tr>
                 <tr>
                     <td>২১.</td>
                     <td>এক্সটেনশন হয়ে থাকলে তার সময়কাল</td>
-                    <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
+                    <td>:  {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_extension_date))) }}</td>
                 </tr>
                 <tr>
                     <td>২২.</td>
                     <td>এ প্রকল্পে কতজন বিদেশির পদের সংস্থান রয়েছে এবং কর্মরত কতজন</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_post_available_for_foreigner_and_working }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_post_available_for_foreigner_and_working }}</td>
                 </tr>
                 <tr>
                     <td>২৩.</td>
                     <td>বাংলাদেশের ইতঃপূর্বে অন্যকোন সংস্থায় কাজ করেছিলেন কিনা তার বিবরণ</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_previous_work_experience_in_bangladesh }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_previous_work_experience_in_bangladesh }}</td>
                 </tr>
                 <tr>
                     <td>২৪.</td>
                     <td>সংস্থায় বর্তমানে কতজন বিদেশি নাগরিক কর্মরত আছেন</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_total_foreigner_working }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_total_foreigner_working }}</td>
                 </tr>
                 <tr>
                     <td>২৫.</td>
                     <td>অন্য কোন তথ্য (যদি থাকে)</td>
-                    <td>: {{ $nVisaEdit->fd9Form->fd9_other_information }}</td>
+                    <td>:  {{ $nVisaEdit->fd9Form->fd9_other_information }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -317,16 +317,16 @@ $familyData = $nVisaEdit->fd9Form->fd9ForeignerEmployeeFamilyMemberList;
 
             <tr>
                 <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_5')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{ $nVisaEdit->fd9Form->chief_name }}</td>
+                <td style="width:35%; text-align: left; width: 20%">:  {{ $nVisaEdit->fd9Form->chief_name }}</td>
             </tr>
             <tr>
                 <td style="text-align: right; width: 80%"> {{ trans('fd_one_step_one.tt_6')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{ $nVisaEdit->fd9Form->chief_desi }}</td>
+                <td style="width:35%; text-align: left; width: 20%">:  {{ $nVisaEdit->fd9Form->chief_desi }}</td>
             </tr>
 
             <tr>
                 <td style="text-align: right; width: 80%">{{ trans('fd_one_step_one.tt_7')}}</td>
-                <td style="width:35%; text-align: left; width: 20%">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($nVisaEdit->fd9Form->created_at->format('d/m/Y')) }}</td>
+                <td style="width:35%; text-align: left; width: 20%">:  {{  App\Http\Controllers\NGO\CommonController::englishToBangla($nVisaEdit->fd9Form->created_at->format('d/m/Y')) }}</td>
             </tr>
         </table>
 

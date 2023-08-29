@@ -111,12 +111,19 @@ class FdoneformController extends Controller
 
     public function otherInfoFromOneDownload($id){
 
-        $get_file_data = FdOneOtherPdfList::where('id',base64_decode($id))->value('information_pdf');
+        $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_pdf');
+
+
 
         $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-        $file= public_path('/'). $get_file_data;
+
+
+                                //$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/').$get_file_data;
+
+        //dd($file);
 
         $headers = array(
                   'Content-Type: application/pdf',

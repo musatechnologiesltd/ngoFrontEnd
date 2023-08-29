@@ -40,12 +40,9 @@ color:white !important;
                                      class="rounded-circle" width="100">
                                      @endif
                                 <div class="mt-3">
-                                    @if(session()->get('locale') == 'en')
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-
-
-
                                     <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
                                     <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
@@ -899,12 +896,12 @@ $mainDatac =DB::table('n_visa_compensation_and_benifits')
                                             <tr>
                                                 <td>৩.</td>
                                                 <td>জন্ম স্থান ও তারিখ</td>
-                                                <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }} ও {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
+                                                <td>: {{ $nVisaEdit->fd9Form->fd9_birth_place }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_dob))) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>৪.</td>
                                                 <td>পাসপোর্ট নম্বর, ইস্যু ও মেয়াদোর্ত্তীণ তারিখ</td>
-                                                <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
+                                                <td>: {{ $nVisaEdit->fd9Form->fd9_passport_number }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_issue_date))) }}, {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($nVisaEdit->fd9Form->fd9_passport_expiration_date))) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>৫.</td>

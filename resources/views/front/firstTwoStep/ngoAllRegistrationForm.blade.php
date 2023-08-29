@@ -85,44 +85,28 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                             <ul class="nav nav-tabs custom_tab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">{{ trans('first_info.fd_one')}}</a>
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">{{ trans('fd_one_step_one.fd_one_form_title')}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">{{ trans('first_info.form_eight')}}</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">{{ trans('fd_one_step_one.form_eight_title')}}</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen1"> @if(session()->get('locale') == 'en')
-                                       সদস্যের তথ্য
-
-                                        @else
-                                   Member's Info
-
-                                        @endif</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen1">{{ trans('fd_one_step_one.member_title')}}</a>
                                 </li>
 
 
+
+
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen2">      @if(session()->get('locale') == 'en')
-                                        অন্যান্য নথি
-
-
-                                        @else
-                                        Other's Document
-
-                                        @endif</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.image_nid_title')}}</a>
                                 </li>
 
 
                                 <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">   @if(session()->get('locale') == 'en')
-                                   ছবি ও এনআইডি
-
-                                        @else
-                                     Image & NID
-
-                                            @endif</a>
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen2">{{ trans('fd_one_step_one.other_doc_title')}}</a>
                                 </li>
+
                             </ul>
 
                             <!-- Tab panes -->

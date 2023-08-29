@@ -11,6 +11,10 @@
             height: 8.5in;
             text-align: center;
         }
+        .bt{
+
+font-family: 'banglabold', sans-serif;
+}
       h2,
       h3,
       p
@@ -25,6 +29,7 @@
         .upper_table table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
+            text-align: center;
         }
     </style>
 </head>
@@ -34,7 +39,7 @@
 <h3>কার্যনির্বাহী কমিটির সদস্যদের তালিকা</h3>
 <h2 style="padding-top:10px;">কার্যনির্বাহী কমিটির সদস্য/অফিস হোল্ডারদের বিবরণ</h2>
    <p> নোট: ১) কলাম ১০ এবং ১১ এর জন্য অনুগ্রহ করে পেশার বিশদ বিবরণ যেমন: পদবী, অফিস/প্রতিষ্ঠানের নাম ইত্যাদি পূরণ করুন</p>
-<h4>সময়কাল: {{App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_form_date) }} হইতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_to_date) }} , {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_total_year) }} </h4>
+<h4>সময়কাল: {{App\Http\Controllers\NGO\CommonController::englishToBangla(date("d/m/Y", strtotime($all_partiw_form_date))) }} হইতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date("d/m/Y", strtotime($all_partiw_to_date))) }} , {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw_total_year) }} </h4>
 
   <div class="upper_table">
     <table>
@@ -62,7 +67,7 @@
     @foreach($all_partiw as $key=>$all_all_parti)
     <tr>
         <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
-        <td>{{ $all_all_parti->name }}, <br> {{ $all_all_parti->desi }}</td>
+        <td><span class="bt">{{ $all_all_parti->name }}<span>, <br> {{ $all_all_parti->desi }}</td>
         <td>
 
          <?php   $start_date_one = date("d/m/Y", strtotime($all_all_parti->dob)); ?>
