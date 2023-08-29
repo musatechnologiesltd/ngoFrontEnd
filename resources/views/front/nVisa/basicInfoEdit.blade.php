@@ -64,14 +64,14 @@
                         <div class="col-sm-6">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_category"
-                                       id="" data-parsley-checkmin="1" data-parsley-required  value="New Commercial" {{ $nVisaEdit->visa_category == 'New Commercial' ? 'checked':''  }}>
-                                <label class="form-check-label" for="">New Commercial</label>
+                                       id="" data-parsley-checkmin="1" data-parsley-required  value="N-Visa" {{ $nVisaEdit->visa_category == 'N-Visa' ? 'checked':''  }}>
+                                <label class="form-check-label" for="">N-Visa</label>
                             </div>
-                            <div class="form-check form-check-inline">
+                            {{-- <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_category"
                                        id="" data-parsley-checkmin="1" data-parsley-required  value="New Industrial" {{ $nVisaEdit->visa_category == 'New Industrial' ? 'checked':''  }}>
                                 <label class="form-check-label" for="">New Industrial</label>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     {{-- <div class="mb-3 row">
@@ -93,7 +93,7 @@
                     </div>
                     <input type="file" accept="image/*"
                     onchange="loadFile(event)" name="applicant_photo"  id="upload" hidden/>
-             <label class="login_upload_button" for="upload">Choose
+             <label class="login_upload_button btn btn-registration"  for="upload">Choose
                  Image</label>
                 </div>
             </div>

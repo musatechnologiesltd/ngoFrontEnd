@@ -34,7 +34,7 @@
   	<h3 >List of Executive Committee Members</h3>
     <h2 style="padding-top:10px;">Particulars of the Members/Office Holders of the Executive Committee</h2>
 	<p>NOTES: 1) For column 10 & 11 please details of the profession, i,e. designation, name of the office/organization etc. </p>
- 	<p> Period: {{$all_partiw_form_date}} To {{ $all_partiw_to_date }} , AD {{ $all_partiw_total_year }}  </p>
+ 	<p> Period: {{date("d/m/Y", strtotime($all_partiw_form_date))}} To {{ date("d/m/Y", strtotime($all_partiw_to_date)) }} , AD {{ $all_partiw_total_year }}  </p>
 
   <div class="upper_table">
     <table style="margin-top: 20px;">
@@ -62,7 +62,7 @@
     @foreach($all_partiw as $key=>$all_all_parti)
     <tr>
         <td>{{  $key+1 }}</td>
-        <td>{{ $all_all_parti->name }}, <br> {{ $all_all_parti->desi }}</td>
+        <td><b>{{ $all_all_parti->name }}</b>, <br> {{ $all_all_parti->desi }}</td>
         <td>
 
          <?php   $start_date_one = date("d/m/Y", strtotime($all_all_parti->dob)); ?>

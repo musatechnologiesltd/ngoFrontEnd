@@ -5,9 +5,6 @@
 
     <style>
 
-
-
-
         body {
             font-family: 'bangla', sans-serif;
             font-size: 14px;
@@ -19,6 +16,28 @@
             width: 100%;
         }
 
+        .pdf_header
+        {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .pdf_header h5
+        {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pdf_header p
+        {
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 0;
+            margin: 0;
+        }
       table td
       {
         vertical-align: top;
@@ -45,24 +64,21 @@
     </style>
 </head>
 <body>
-<table class="first_table">
-    <tr>
-        <td style="font-size:26px; font-weight: bold;">{{ trans('fd_one_step_one.f_form')}}</td>
-    </tr>
-  <!-- bangla dekhabe na and English dekhabe -->
-  <tr>
-    <td>
-        @if($getNgoTypeForPdf == 'দেশিও')
-
-        @else
-        [Under act 4(1) of the Foreign Donations (Voluntary Activities) Regulation Act, 2016]
-@endif
-    </td>
-  </tr>
-    <tr>
-        <td>{{ trans('fd_one_step_one.n_r')}}</td>
-    </tr>
-</table>
+    @if($getNgoTypeForPdf == 'দেশিও')
+    <div class="pdf_header">
+        <h5>{{ trans('fd_one_step_one.f_form')}}</h5>
+        <p>{{ trans('fd_one_step_one.n_r')}}</p>
+    </div>
+    @else
+    <div class="pdf_header">
+        <h5>{{ trans('fd_one_step_one.f_form')}}</h5>
+        <p>
+            [Under act 4(1) of the Foreign Donations (Voluntary Activities) Regulation Act, 2016]
+             <br>
+    {{ trans('fd_one_step_one.n_r')}}
+</p>
+    </div>
+    @endif
 <table>
     <tbody>
         <tr>
@@ -209,7 +225,7 @@
                 @else
 
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -248,7 +264,7 @@
 
                 @else
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -382,7 +398,7 @@
 
                 @else
 
-                @if(session()->get('locale') == 'en')
+                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                 সংযুক্ত
                 @else
@@ -398,7 +414,7 @@
         </tr>
         @foreach($get_all_data_adviser as $key=>$all_get_all_data_adviser)
         <tr>
-            @if(session()->get('locale') == 'en')
+            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
             <td></td>
 
             <td colspan="3">{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}. পরামর্শক {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1 )}}</td>
@@ -486,7 +502,7 @@
 
 @else
 
-@if(session()->get('locale') == 'en')
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 সংযুক্ত
 @else
@@ -505,30 +521,30 @@ attached
     </table>
 <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
-<table style="text-align: right; margin-top: 100px">
+<table style=" margin-top: 100px">
     <tr>
-        <td colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+        <td style="text-align: right; padding-right: 17%" colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
     </tr>
     <tr>
-        <td>{{ trans('fd_one_step_one.tt_5')}}</td>
-        <td style="width:35%">: {{ $allformOneData->chief_name }}</td>
+        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_5')}}</td>
+        <td style="width:35%; text-align: left;">: {{ $allformOneData->chief_name }}</td>
     </tr>
     <tr>
-        <td>{{ trans('fd_one_step_one.tt_6')}}</td>
-        <td>: {{ $allformOneData->chief_desi }}</td>
+        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_6')}}</td>
+        <td style="width:35%; text-align: left;">: {{ $allformOneData->chief_desi }}</td>
     </tr>
     @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
 
     @else
 
     <tr>
-        <td>Place</td>
-        <td>: ...................................................</td>
+        <td style="text-align: right;">Place</td>
+        <td style="width:35%; text-align: left;">: ...................................................</td>
     </tr>
     @endif
     <tr>
-        <td>{{ trans('fd_one_step_one.tt_7')}}</td>
-        <td>: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
+        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
+        <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
     </tr>
 </table>
 

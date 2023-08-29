@@ -40,7 +40,7 @@ class FormeightController extends Controller
 
       ->value('total_year');
 
-      if(session()->get('locale') == 'en'){
+      if(session()->get('locale') == 'en' || empty(session()->get('locale')) ){
 
 
       $pdf=PDF::loadView('front.form.form_eight.form_8_ngo_committee_member_pdf',[
@@ -138,7 +138,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         বুধবার','বৃহস্পতিবার','শুক্রবার'
         );
 
-        if(session()->get('locale') == 'en'){
+        if(session()->get('locale') == 'en' || empty(session()->get('locale'))){
 
             $data = $difference->y.' বছর '.$vv.' মাস ';
         }else{
@@ -152,7 +152,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         ->where('fd_one_form_id',$fdOneFormId)->value('id');
 
         if(empty($formEightData)){
-            if(session()->get('locale') == 'en'){
+            if(session()->get('locale') == 'en' || empty(session()->get('locale'))){
               $msg ="এনজিও কমিটি সদস্য যুক্ত করুন ";
             }else{
               $msg ="Add NGO committee members";

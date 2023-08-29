@@ -18,7 +18,28 @@
         {
             width: 100%;
         }
+        .pdf_header
+        {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
+        .pdf_header h5
+        {
+            font-size: 20px;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pdf_header p
+        {
+            font-size: 14px;
+            line-height: 1.3;
+            padding: 0;
+            margin: 0;
+        }
       table td
       {
         vertical-align: top;
@@ -45,28 +66,12 @@
     </style>
 </head>
 <body>
-<table class="first_table">
-    <tr>
-        <td style="font-size:26px; font-weight: bold;">এফডি-৮ ফরম</td>
-    </tr>
-  <!-- bangla dekhabe na and English dekhabe -->
-  <tr>
-    <td>
-        <?php
-
-$getNgoTypeForPdf =  DB::table('ngo_type_and_languages')->where('user_id',$all_partiw1->user_id)->value('ngo_type');
-            ?>
-        @if($getNgoTypeForPdf == 'দেশিও')
-
-        @else
-        [Under act 4(1) of the Foreign Donations (Voluntary Activities) Regulation Act, 2016]
-@endif
-    </td>
-  </tr>
-    <tr>
-        <td>{{ trans('fd_one_step_one.n_r')}}</td>
-    </tr>
-</table>
+    <div class="pdf_header">
+        <h5 style="font-family: 'bangla', sans-serif;">এফডি -৮ ফরম </h5>
+        <p>নিবন্ধন নবায়নের আবেদন ফরম <br>
+            [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
+        </p>
+    </div>
 <table class="table table-bordered">
     <tbody>
     <tr>

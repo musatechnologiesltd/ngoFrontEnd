@@ -22,13 +22,23 @@
 
                   <div class="card-body mt-3 mb-3">
                         <div class="card-body">
-                            <p>Download FD-01 PDF, upload with seal, signature of Chief Executive</p>
-                            <p>এফডি-০১ পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                            <p>এফডি-১ ফরম পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            @else
+                            <p>Download FD-1 Form PDF, upload with seal, signature of Chief Executive</p>
+                            @endif
                             <table class="table table-bordered">
                                 <tr>
-                                    <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                    <td>PDF Upload (পিডিএফ আপলোড)</td>
-                                    <td>Update Information (তথ্য সংশোধন করুন)</td>
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                    <td>পিডিএফ ডাউনলোড</td>
+                                    <td>পিডিএফ আপলোড</td>
+                                    <td>তথ্য সংশোধন করুন</td>
+                                    @else
+                                    <td>PDF Download</td>
+                                    <td>PDF Upload</td>
+                                    <td>Update Information</td>
+                                    @endif
                                 </tr>
                                 <tr>
                                     <td>
@@ -48,10 +58,10 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
+                                    <h5>{{ trans('mview.ttOne')}}</h5>
                                         <div class=" mt-3 mb-3">
-                                            <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
-                                            <input type="text" data-parsley-required  name="নাম" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
+                                            <label for="" class="form-label">{{ trans('mview.ttTwo')}}:</label>
+                                            <input type="text" data-parsley-required  name="{{ trans('mview.ttTwo')}}" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
                                             <?php
 $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
@@ -62,17 +72,26 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 @if($ngoTypeInfo == 'দেশিও')
 <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
 @else
-<label for="" class="form-label mt-3">স্থান:</label>
-<input type="text" data-parsley-required  name="স্থান" value="{{ Session::get('place')}}"  class="form-control" id="mainPlace" placeholder="স্থান">
+<label for="" class="form-label mt-3">{{ trans('mview.place')}}:</label>
+<input type="text" data-parsley-required  name="{{ trans('mview.place')}}" value="{{ Session::get('place')}}"  class="form-control" id="mainPlace" placeholder="{{ trans('mview.place')}}">
 @endif
-                                            <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
-                                            <input type="text" data-parsley-required  name="পদবি" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
+                                            <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}:</label>
+                                            <input type="text" data-parsley-required  name="{{ trans('mview.ttThree')}}" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="{{ trans('mview.ttThree')}}">
                                             <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
                                         </div>
+
+                                        @if($ngoTypeInfo == 'দেশিও')
 
                                         <button class="btn btn-sm btn-success" id="downloadButton">
                                             {{ trans('form 8_bn.download_pdf')}}
                                         </button>
+
+                                        @else
+
+                                        <button class="btn btn-sm btn-success" id="downloadButton345">
+                                            {{ trans('form 8_bn.download_pdf')}}ee
+                                        </button>
+                                        @endif
 
                                 </div>
 

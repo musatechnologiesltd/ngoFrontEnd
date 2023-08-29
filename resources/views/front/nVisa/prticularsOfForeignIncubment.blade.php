@@ -116,7 +116,7 @@
             <select name="martial_status" class="form-control" id="" required>
                 <option value="">--Please Select--</option>
                 <option value="Married">Married</option>
-                <option value="UnMarried">UnMarried</option>
+                <option value="Unmarried">Unmarried</option>
             </select>
         </div>
     </div>

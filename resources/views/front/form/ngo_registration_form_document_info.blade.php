@@ -78,7 +78,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                 @if($key+1 == 1)
 
-                                                    @if(session()->get('locale') == 'en')
+                                                    @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                     <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                     @else
 
@@ -87,7 +87,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                 @elseif($key+1 == 2)
 
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
                                                 @else
 
@@ -96,7 +96,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                 @elseif($key+1 == 3)
 
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
                                                 @else
 
@@ -106,7 +106,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                 @elseif($key+1 == 4)
 
 
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                 @else
 
@@ -117,7 +117,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                 @elseif($key+1 == 5)
 
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                 @else
 
@@ -125,7 +125,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                 @endif
                                                 @elseif($key+1 == 6)
 
-                                                @if(session()->get('locale') == 'en')
+                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                 @else
 
@@ -151,7 +151,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title" id="exampleModalLabel"> @if($key+1 == 1)
 
-                                                                                @if(session()->get('locale') == 'en')
+                                                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                                 <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                                                 @else
 
@@ -160,7 +160,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                                             @elseif($key+1 == 2)
 
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
                                                                             @else
 
@@ -169,7 +169,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                                             @elseif($key+1 == 3)
 
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
                                                                             @else
 
@@ -179,7 +179,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                                             @elseif($key+1 == 4)
 
 
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                                             @else
 
@@ -190,7 +190,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                                             @elseif($key+1 == 5)
 
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                                             @else
 
@@ -198,7 +198,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                                             @endif
                                                                             @elseif($key+1 == 6)
 
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                                             @else
 
@@ -475,16 +475,16 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                             <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
 
-
-
-
                                             @elseif($key+1 == 5)
+
+                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                            @elseif($key+1 == 6)
 
 
 
                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
 
-                                            @elseif($key+1 == 6)
+                                            @elseif($key+1 == 7)
 
 
                                             <h6>Letter Of Intent</h6>
@@ -540,11 +540,14 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                                                             @elseif($key+1 == 5)
 
+                                                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                                            @elseif($key+1 == 6)
+
 
 
                                                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
 
-                                                                            @elseif($key+1 == 6)
+                                                                            @elseif($key+1 == 7)
 
 
                                                                             <h6>Letter Of Intent</h6>
@@ -669,6 +672,19 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             <div class="card mb-3">
                                 <div class="card-header">
                                     Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

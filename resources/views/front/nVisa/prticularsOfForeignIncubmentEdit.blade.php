@@ -116,7 +116,7 @@
             <select name="martial_status" class="form-control" id="" required>
                 <option value="">--Please Select--</option>
                 <option value="Married" {{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->martial_status == 'Married' ? 'selected':''}}>Married</option>
-                <option value="UnMarried" {{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->martial_status == 'UnMarried' ? 'selected':''}}>UnMarried</option>
+                <option value="Unmarried" {{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->martial_status == 'Unmarried' ? 'selected':''}}>Unmarried</option>
             </select>
         </div>
     </div>
