@@ -94,7 +94,7 @@
             @if($getNgoTypeForPdf == 'দেশিও')
             <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
             @else
-            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address_ban }}</td>
+            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address}}</td>
             @endif
         </tr>
         <!-- <tr>
@@ -139,7 +139,17 @@
             <td class="number_section">(v)</td>
             <td>{{ trans('fd_one_step_one.Address_of_the_Head_Office')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->address_of_head_office }}</td>
+            <td>
+                @if($getNgoTypeForPdf == 'দেশিও')
+
+                {{ $allformOneData->address_of_head_office }}
+
+                @else
+                {{ $allformOneData->address_of_head_office_eng  }}
+
+                @endif
+
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -519,7 +529,7 @@ attached
 
         </tbody>
     </table>
-<h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
+<h4 style="text-align:center; font-weight:bold; font-size:20px;margin-top: 100px">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 <table style=" margin-top: 100px">
     <tr>
@@ -539,7 +549,7 @@ attached
 
     <tr>
         <td style="text-align: right;">Place</td>
-        <td style="width:35%; text-align: left;">:{{ Session::get('place')}}</td>
+        <td style="width:35%; text-align: left;">: {{ Session::get('place')}}</td>
     </tr>
     @endif
     <tr>

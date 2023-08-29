@@ -23,9 +23,10 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
                   <div class="card-body mt-3 mb-3">
                         <div class="card-body">
                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                            <p>Download Form No-8 PDF, upload with seal, signature of Chief Executive</p>
-                            @else
                             <p>ফরম নং-৮ পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            @else
+
+                            <p>Download Form No-8 PDF, upload with seal, signature of Chief Executive</p>
                             @endif
                             <table class="table table-bordered">
                                 <tr>
