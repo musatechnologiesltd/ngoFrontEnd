@@ -28,6 +28,27 @@ use App\Models\FdOneBankAccount;
 use App\Http\Controllers\NGO\CommonController;
 class RenewController extends Controller
 {
+
+    public function foreignNgoType(Request $request){
+
+        $structureStatus = $request->structureStatus;
+
+        if($structureStatus == 'Yes'){
+
+        $data = view('front.renew.structureStatusYes')->render();
+        return response()->json($data);
+
+
+        }elseif($structureStatus == 'No'){
+
+        $data = view('front.renew.structureStatusNo')->render();
+        return response()->json($data);
+
+
+        }
+
+
+    }
     public function renew(){
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->value('ngo_type');

@@ -122,7 +122,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @endif
 @endif
                                             </td>
-                                            <td>{{ trans('reg_sub.f_fd')}}</td>
+                                            <td>{{ trans('reg_sub.f_fd')}}88</td>
                                             <td style="position:relative">
 
                                                 @if($complete_status_fd_one == 'save_and_exit_from_three')
@@ -327,6 +327,8 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                 <div class="dashboard_left">
                     <ul>
                         @include('front.include.sidebar_dash')
+
+
                     </ul>
                 </div>
                 <div class="dashboard_right">

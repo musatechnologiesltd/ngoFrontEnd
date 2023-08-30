@@ -249,12 +249,27 @@ foreach ($data   as $a) {
                                     <td>{{ trans('fd_one_step_one.Country_of_Origin')}}</td>
                                     <td>: {{ $allformOneData->country_of_origin }}</td>
                                 </tr>
+
+                                <?php
+                                $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+                                 ?>
+                                 @if($getngoForLanguage =='দেশিও')
                                 <tr>
                                     <td></td>
                                     <td>(v)</td>
                                     <td>{{ trans('fd_one_step_one.Address_of_the_Head_Office')}}</td>
                                     <td>: {{ $allformOneData->address_of_head_office }}</td>
                                 </tr>
+                                @else
+                                <tr>
+                                    <td></td>
+                                    <td>(v)</td>
+                                    <td>{{ trans('fd_one_step_one.Address_of_the_Head_Office')}}</td>
+                                    <td>: {{ $allformOneData->address_of_head_office_eng }}</td>
+                                </tr>
+
+                                @endif
+
                                 <tr>
                                     <td></td>
                                     <td>(vi)</td>

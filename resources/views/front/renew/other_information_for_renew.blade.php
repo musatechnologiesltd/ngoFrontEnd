@@ -28,6 +28,15 @@
                 </div>
                 <div class="right-side">
 
+                    <?php
+
+                    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+                                               ->value('ngo_type');
+
+                                                    ?>
+
+@if($checkNgoTypeForForeginNgo == 'Foreign')
+
                     <form action="{{ route('otherInformationForRenewGet') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                         @csrf
 
@@ -39,14 +48,86 @@
 
                         <div class="mt-3">
 
+                            <div class="mb-3">
+                                <label for="" class="form-label">সংস্থার গঠনতন্ত্রের পরিবর্তন হয়েছে কি না ? <span class="text-danger">*</span> </label>
+                                <div class="mt-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                                           value="Yes" >
+                                    <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                                           value="No" >
+                                    <label class="form-check-label" for="inlineRadio2">না</label>
+                                </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="mb-3" id="mResult">
+                            </div>
+                            <b>অন্যান্য তথ্য: </b>
                                 <div class="mb-3">
+
+
+
+
                                     <label class="form-label" for="">
-                                        Whether registration fee and VAT have been paid (copy of invoice to be attached)(নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
                                     <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
                                 </div>
+
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): (তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                                        বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি <span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি<span class="text-danger">*</span> </label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="">
+                                        তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
                                     <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
                                 </div>
 
@@ -57,12 +138,7 @@
                                 </div>
 
 
-                                <?php
 
-$checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-                           ->value('ngo_type');
-
-                                ?>
     @if($checkNgoTypeForForeginNgo == 'Foreign')
     <div class="mb-3">
         <div class="row">
@@ -157,6 +233,140 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
                     </div>
                 </form>
 
+@else
+<!--local Ngo-->
+<form action="{{ route('otherInformationForRenewGet') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+    @csrf
+
+<div class="main active">
+    <div class="text">
+        <h2>অন্যান্য তথ্য </h2>
+        <p>নিবন্ধনের কাছাকাছি যেতে  আপনার তথ্য লিখুন.</p>
+    </div>
+
+    <div class="mt-3">
+
+        <b>অন্যান্য তথ্য: </b>
+
+            <div class="mb-3">
+
+
+
+                <label class="form-label" for="">
+                    Whether registration fee and VAT have been paid (copy of invoice to be attached)(নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): (তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <h5 class="form_middle_text">
+                    Main Account Details (মাদার একাউন্ট এর বিস্তারিত বিবরণ)
+                </h5>
+            </div>
+
+
+
+@if($checkNgoTypeForForeginNgo == 'Foreign')
+<div class="mb-3">
+<div class="row">
+<div class="col-lg-6 col-sm-12">
+<div class="mb-3">
+<label for="" class="form-label">Account Number (হিসাব নম্বর) <span class="text-danger">*</span> </label>
+<input type="text"  name="main_account_number" class="form-control" id="">
+</div>
+</div>
+<div class="col-lg-6 col-sm-12">
+<div class="mb-3">
+<label for="" class="form-label">Account Type (ধরণ) <span class="text-danger">*</span> </label>
+<input type="text"  name="main_account_type" class="form-control" id="">
+</div>
+</div>
+<div class="col-lg-6 col-sm-12">
+<div class="mb-3">
+<label for="" class="form-label">Name of Bank (ব্যাংকের নাম) <span class="text-danger">*</span> </label>
+<input type="text"  name="name_of_bank" class="form-control" id="">
+</div>
+</div>
+<div class="col-lg-6 col-sm-12">
+<div class="mb-3">
+<label for="" class="form-label">Branch Name of Bank(ব্যাংকের শাখা) <span class="text-danger">*</span> </label>
+<input type="text"  name="main_account_name_of_branch" class="form-control" id="">
+</div>
+</div>
+<div class="col-12">
+<div class="mb-3">
+<label for="" class="form-label">Bank Address (ব্যাংকের ঠিকানা) <span class="text-danger">*</span> </label>
+<input type="text"  name="bank_address_main" class="form-control" id="">
+</div>
+</div>
+</div>
+</div>
+<div class="mb-3">
+<label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+<input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+</div>
+@else
+@foreach($all_partiw as $mainAccount)
+
+            <div class="mb-3">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Account Number (হিসাব নম্বর) <span class="text-danger">*</span> </label>
+                            <input type="text" data-parsley-required name="main_account_number" value="{{ $mainAccount->account_number }}" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Account Type (ধরণ) <span class="text-danger">*</span> </label>
+                            <input type="text" data-parsley-required name="main_account_type" value="{{ $mainAccount->account_type }}" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Name of Bank (ব্যাংকের নাম) <span class="text-danger">*</span> </label>
+                            <input type="text" data-parsley-required name="name_of_bank"  value="{{ $mainAccount->name_of_bank }}" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Branch Name of Bank(ব্যাংকের শাখা) <span class="text-danger">*</span> </label>
+                            <input type="text" data-parsley-required name="main_account_name_of_branch"  value="{{ $mainAccount->branch_name_of_bank }}" class="form-control" id="">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Bank Address (ব্যাংকের ঠিকানা) <span class="text-danger">*</span> </label>
+                            <input type="text" data-parsley-required name="bank_address_main"  value="{{ $mainAccount->bank_address }}" class="form-control" id="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <div class="mb-3">
+                <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="">
+            </div>
+            @endif
+
+
+
+    </div>
+
+    <div class="buttons d-flex justify-content-end mt-4">
+        <button class="btn btn-dark back_button me-2" onclick="location.href = '{{ route('allStaffInformationForRenew') }}';">Back</button>
+        <button class="btn btn-custom submit_button" type="submit" >Submit</button>
+    </div>
+</div>
+</form>
+
+<!--end local ngo -->
+@endif
+
 
                 </div>
             </div>
@@ -166,6 +376,30 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
 @endsection
 
 @section('script')
+
+<script>
+    $(document).on('click', '.organizational_structure', function () {
+
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('foreignNgoType') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
+
+
+
 
 
 <script>

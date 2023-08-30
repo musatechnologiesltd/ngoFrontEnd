@@ -239,12 +239,12 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ২০১০-২০১১ অর্থবছর হতে হালনাগাদ পর্যন্ত সংস্থার নিবন্ধন/নিবন্ধন নবায়ন /নাম পরিবর্তন /গঠনতন্ত্রের যে কোনো ধারা পরিবর্তনের বিষয়ের দাখিলকৃত ফি এর ১৫% বকেয়া ভ্যাট (যদি ইতিমধ্যে প্রদান করা হয়ে না থাকে ) সংশ্লিষ্ট কোডে
-জমাপূর্বক চালানের মুলকপিসহ 
+জমাপূর্বক চালানের মুলকপিসহ
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="">
                                             </div>
                                         </div>
                                     </div>
@@ -252,6 +252,8 @@
 
 
                                 @else
+
+                               
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি

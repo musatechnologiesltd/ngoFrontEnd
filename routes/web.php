@@ -88,6 +88,9 @@ Route::controller(NamechangeController::class)->group(function () {
 Route::controller(RenewController::class)->group(function () {
 
 
+    Route::get('foreignNgoType', 'foreignNgoType')->name('foreignNgoType');
+
+
     Route::get('changeAcNumberDownload/{id}', 'changeAcNumberDownload')->name('changeAcNumberDownload');
     Route::get('dueVatPdfDownload/{id}', 'dueVatPdfDownload')->name('dueVatPdfDownload');
     Route::get('copyOfChalanPdfDownload/{id}', 'copyOfChalanPdfDownload')->name('copyOfChalanPdfDownload');

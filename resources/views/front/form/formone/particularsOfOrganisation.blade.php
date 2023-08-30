@@ -197,6 +197,7 @@
                             </form>
 
         @else
+
         <form action="{{ route('particularsOfOrganisationUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
             @csrf
             <input required="" name="id" value="{{ $allParticularsOfOrganisation->id }}" type="hidden" class="form-control" id="">
@@ -313,12 +314,12 @@
                         <div class="mt-2 mb-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                       value="Part-Time" {{ 'Part-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                       value="Part Time" {{ 'Part Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
                                 <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                       value="Full-Time" {{  'Full-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                       value="Full Time" {{  'Full Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
                                 <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                             </div>
                         </div>
