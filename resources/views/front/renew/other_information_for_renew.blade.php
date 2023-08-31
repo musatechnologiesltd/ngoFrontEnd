@@ -244,6 +244,30 @@
         <p>নিবন্ধনের কাছাকাছি যেতে  আপনার তথ্য লিখুন.</p>
     </div>
 
+
+    <div class="mt-3">
+
+        <div class="mb-3">
+            <label for="" class="form-label">সংস্থার গঠনতন্ত্রের পরিবর্তন হয়েছে কি না ? <span class="text-danger">*</span> </label>
+            <div class="mt-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                       value="Yes" >
+                <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                       value="No" >
+                <label class="form-check-label" for="inlineRadio2">না</label>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="mb-3" id="mResult">
+        </div>
+
     <div class="mt-3">
 
         <b>অন্যান্য তথ্য: </b>
