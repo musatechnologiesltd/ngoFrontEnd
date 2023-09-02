@@ -11,9 +11,10 @@
 @section('body')
 
 <?php
+use App\Http\Controllers\NGO\CommonController;
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
-
+$mainNgoType = CommonController::changeView();
 
 ?>
 
@@ -41,6 +42,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 @if(empty($checkCompleteStatus))
 
+@if($mainNgoType== 'দেশিও')
+
 @if(!$checkCompleteStatusData)
 @include('front.form.ngo_registration_form_fd01_step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
@@ -60,6 +63,33 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
 @include('front.form.ngo_registration_form_document_info')
+@endif
+
+@else
+
+
+@if(!$checkCompleteStatusData)
+@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@elseif($checkCompleteStatusData->fd_one_form_step_two_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step02')
+@elseif($checkCompleteStatusData->fd_one_form_step_three_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step03')
+@elseif($checkCompleteStatusData->fd_one_form_step_four_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step04')
+@elseif($checkCompleteStatusData->form_eight_status == 0)
+@include('front.form.foreign.ngo_registration_form_form08')
+@elseif($checkCompleteStatusData->ngo_member_status == 0)
+@include('front.form.foreign.ngo_registration_form_member_info')
+@elseif($checkCompleteStatusData->ngo_member_nid_photo_status == 0)
+@include('front.form.foreign.ngo_registration_form_nid_image_info')
+
+@elseif($checkCompleteStatusData->ngo_other_document_status == 0)
+@include('front.form.foreign.ngo_registration_form_document_info')
+@endif
+
+
 @endif
 <!-- end ngo member other form -->
 
@@ -110,6 +140,37 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                             </ul>
 
                             <!-- Tab panes -->
+                            @if($mainNgoType== 'Foreign')
+                            <div class="tab-content custom_tab_content">
+                                <div class="tab-pane container active" id="tofban">
+                                   @include('front.form.foreign.formone.fdFormOneInfo')
+
+                                </div>
+                                <div class="tab-pane container" id="tofen">
+                                  @include('front.form.foreign.form_eight.formEightNgoCommitteeMemberTotalView')
+
+                                </div>
+
+                                <div class="tab-pane container" id="tofen1">
+                                  @include('front.foreign.ngomember.finalView')
+
+                                </div>
+
+                                <div class="tab-pane container" id="tofen2">
+                                    @include('front.foreign.ngo_doc.finalView')
+
+                                </div>
+
+                                <div class="tab-pane container" id="tofen3">
+                                @include('front.foreign.ngo_member_doc.finalView')
+
+                                </div>
+
+
+                            </div>
+                            @else
+
+
                             <div class="tab-content custom_tab_content">
                                 <div class="tab-pane container active" id="tofban">
                                    @include('front.form.formone.fdFormOneInfo')
@@ -137,6 +198,9 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 
                             </div>
+
+
+                            @endif
 
                         </div>
                     </div>

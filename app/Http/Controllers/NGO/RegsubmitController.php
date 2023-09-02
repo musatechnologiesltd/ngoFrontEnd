@@ -49,7 +49,14 @@ class RegsubmitController extends Controller
         $complete_status_fd_eight = FormEight::where('fd_one_form_id', $getFormOneId)->value('complete_status');
         $complete_status_fd_eight_pdf = FormEight::where('fd_one_form_id', $getFormOneId)->value('verified_form_eight');
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
 
         return view('front.other.reg_submit_list',compact('complete_status_fd_eight_pdf','complete_status_fd_eight','complete_status_fd_one_pdf','complete_status_fd_one','get_value_fd_one_one','get_date_lan_one','get_date_fd_eight','get_date_fd_one','get_date_fd_ngodoc_mem','get_date_fd_ngodoc','get_date_fd_ngomember'));
+        }else{
+            return view('front.other.foreign.reg_submit_list',compact('complete_status_fd_eight_pdf','complete_status_fd_eight','complete_status_fd_one_pdf','complete_status_fd_one','get_value_fd_one_one','get_date_lan_one','get_date_fd_eight','get_date_fd_one','get_date_fd_ngodoc_mem','get_date_fd_ngodoc','get_date_fd_ngomember'));
+        }
     }
 }

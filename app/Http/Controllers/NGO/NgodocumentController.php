@@ -18,8 +18,16 @@ class NgodocumentController extends Controller
     public function index(){
 
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
 
-        return view('front.ngo_doc.index');
+        if($mainNgoType== 'দেশিও'){
+            return view('front.ngo_doc.index');
+        }else{
+            return view('front.foreign.ngo_doc.index');
+        }
+
+
 
     }
 

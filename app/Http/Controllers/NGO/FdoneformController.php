@@ -52,7 +52,7 @@ class FdoneformController extends Controller
          return $data = url('fdFormOneInfoPdf');
 
 
-         dd($data);
+         //dd($data);
 
 
     }
@@ -63,8 +63,18 @@ class FdoneformController extends Controller
 
         ->get();
 
-        return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+        CommonController::checkNgotype();
 
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
+        return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+        }else{
+        return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+
+        }
     }
 
     public function planOfOperation($id){
@@ -233,32 +243,60 @@ if(empty($formCompleteStatus)){
 
     public function fieldOfProposedActivities(){
 
-
+        CommonController::checkNgotype();
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)
 
         ->get();
 
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
         return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+        }else{
+
+            return view('front.form.foreign.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+        }
 
     }
 
     public function allStaffDetailsInformation(){
+
+        CommonController::checkNgotype();
 
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
 
 
         $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
 
-        return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+        $mainNgoType = CommonController::changeView();
 
+
+        if($mainNgoType== 'দেশিও'){
+
+
+        return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+        }else{
+
+            return view('front.form.foreign.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+
+        }
     }
 
     public function othersInformation(){
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
 
+        if($mainNgoType== 'দেশিও'){
         return view('front.form.formone.othersInformation',compact('particularsOfOrganisationData'));
+        }else{
+            return view('front.form.foreign.formone.othersInformation',compact('particularsOfOrganisationData'));
 
+        }
     }
 
 
@@ -433,9 +471,12 @@ if(!$checkCompleteStatusData){
 if($request->submit_value == 'exit_from_step_one_edit'){
 
     return redirect('/ngoAllRegistrationForm');
+
+
 }elseif($request->submit_value == 'go_to_step_two'){
     Session::put('fdOneFormEdit','fdOneFormEdit');
     return redirect('/fieldOfProposedActivities');
+
 }else{
 
        return redirect('/ngoAllRegistrationForm');
@@ -653,9 +694,14 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         if($request->submit_value == 'exit_from_step_two_edit'){
 
             return redirect('/ngoAllRegistrationForm');
+
+
         }elseif($request->submit_value == 'go_to_step_three'){
+
             Session::put('fdOneFormEditThree','go_to_step_three');
             return redirect('/allStaffDetailsInformation');
+
+
         }else{
 
                return redirect('/ngoAllRegistrationForm');
@@ -801,8 +847,12 @@ if($request->submit_value == 'exit_from_step_one_edit'){
     if($request->submit_value == 'exit_from_step_three_edit'){
 
         return redirect('/ngoAllRegistrationForm');
+
+
     }elseif($request->submit_value == 'go_to_step_four'){
+
         Session::put('fdOneFormEditFour','go_to_step_four');
+
         return redirect('/othersInformation');
     }else{
 

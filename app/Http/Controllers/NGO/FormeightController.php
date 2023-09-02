@@ -191,10 +191,15 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
     public function index(){
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
 
+        if($mainNgoType== 'দেশিও'){
 
             return view('front.form.form_eight.formEightNgoCommitteeMember');
-
+        }else{
+            return view('front.form.foreign.form_eight.formEightNgoCommitteeMember');
+        }
 
 
     }

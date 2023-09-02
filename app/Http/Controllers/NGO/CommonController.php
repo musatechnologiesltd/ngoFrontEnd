@@ -81,12 +81,20 @@ class CommonController extends Controller
     App::setLocale($first_form_check);
     session()->put('locale',$first_form_check);
 
-
+return session()->put('locale',$first_form_check);
 
 
     }
 
-    
+    public static function changeView(){
+
+        $mainNgoType = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type');
+
+        return $mainNgoType;
+
+    }
+
+
 
 
 

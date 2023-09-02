@@ -17,14 +17,21 @@ class NgomemberdocController extends Controller
 {
     public function index(){
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+            return view('front.ngo_member_doc.index');
+        }else{
+            return view('front.foreign.ngo_member_doc.index');
+        }
 
 
-        return view('front.ngo_member_doc.index');
 
     }
 
     public function ngoMemberDocFinalUpdate(){
-
+//dd(1);
         $checkCompleteStatusData = DB::table('form_complete_statuses')
    ->where('user_id',Auth::user()->id)
    ->first();

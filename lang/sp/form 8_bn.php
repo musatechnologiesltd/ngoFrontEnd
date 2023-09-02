@@ -37,7 +37,7 @@ return [
     'list'=>'Particulars of the Members/Office Holders of the Executive Committee',
     'update'=>'Update',
     'add'=>'Add New Member',
-    'ngo_committee_member_registration'=>'NGO Committee Member Registration',
+    'ngo_committee_member_registration'=>'Particulars of the Members/Office Holders of the Executive Committee Members Registration',
     'name'=>'Name',
     'designation'=>'Designation',
     'date_of_birth'=>'Date of Birth',

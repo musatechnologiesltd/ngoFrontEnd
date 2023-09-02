@@ -19,7 +19,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                         <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li >{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li >{{ trans('fd_one_step_one.image_nid_title')}} 88</li>
+                        <li >{{ trans('fd_one_step_one.image_nid_title')}}56</li>
                         <li class="active">{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>

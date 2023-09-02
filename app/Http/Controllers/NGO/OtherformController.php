@@ -339,7 +339,7 @@ return redirect('ngoAllRegistrationForm');
     public function ngoAllRegistrationForm(){
 
 
-
+        CommonController::checkNgotype();
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 
@@ -348,8 +348,13 @@ return redirect('ngoAllRegistrationForm');
 
         $ngoLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_language');
 
+
+        $mainNgoType = CommonController::changeView();
+        
+
+
         if($first_form_check == 1){
-//dd(11);
+
             return view('front.firstTwoStep.ngoAllRegistrationForm');
 
         }elseif(!empty($ngoLanguage)){

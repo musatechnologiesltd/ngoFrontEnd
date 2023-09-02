@@ -33,11 +33,11 @@
                                     <label for="" class="form-label">{{ trans('main.origin')}} <span class="text-danger">*</span> </label>
                                     <br>
                                     <div class="form-check ms-3">
-                                        <input class="form-check-input" data-parsley-checkmin="1" required type="radio" name="ngo_origin"  checked id="ngo_origin1" value="দেশিও" >
+                                        <input class="form-check-input ngoType" data-parsley-checkmin="1" required type="radio" name="ngo_origin"  checked id="ngo_origin1" value="দেশিও" >
                                         <label class="form-check-label" for="ngo_origin1">{{ trans('main.ll')}} </label>
                                     </div>
                                     <div class="form-check ms-3">
-                                        <input class="form-check-input "data-parsley-checkmin="1" required type="radio" name="ngo_origin" id="ngo_origin2" value="Foreign" >
+                                        <input class="form-check-input ngoType" data-parsley-checkmin="1" required type="radio" name="ngo_origin" id="ngo_origin2" value="Foreign" >
                                         <label class="form-check-label" for="ngo_origin2">{{ trans('main.ff')}}</label>
                                     </div>
                                 </div>
@@ -71,6 +71,25 @@
 
 @section('script')
 <script>
+
+$(document).on('click', '.ngoType', function(){
+
+    var radioValue = $("input[name='ngo_origin']:checked").val();
+
+    //alert(radioValue);
+
+
+    if(radioValue == 'Foreign'){
+        $("#input_language1").prop('checked', false);
+        $("#input_language2").prop('checked', true);
+    }else{
+        $("#input_language1").prop('checked', true);
+        $("#input_language2").prop('checked', false);
+
+    }
+});
+
+///end new code
     $(document).ready(function () {
     $('#form').validate({ // initialize the plugin
         rules: {
