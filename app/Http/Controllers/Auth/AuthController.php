@@ -255,7 +255,22 @@ class AuthController extends Controller
             if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing'){
 
                 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
-            return view('front.dashboard.dashboard',compact('get_reg_id'));
+
+
+                CommonController::checkNgotype();
+
+                $mainNgoType = CommonController::changeView();
+
+                if($mainNgoType== 'দেশিও'){
+
+
+
+                return view('front.dashboard.dashboard',compact('get_reg_id'));
+
+                }else{
+                    return view('front.dashboard.foreign.dashboard',compact('get_reg_id'));
+
+                }
 
             }else{
 
@@ -276,7 +291,17 @@ $all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all->i
 $get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id)
             ->get();
 
+            CommonController::checkNgotype();
+
+            $mainNgoType = CommonController::changeView();
+
+            if($mainNgoType== 'দেশিও'){
+
                 return view('front.dashboard.accept_dashboard',compact('name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+            }else{
+
+                return view('front.dashboard.foreign.accept_dashboard',compact('name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+            }
             }
         }
 

@@ -67,7 +67,18 @@ class RenewController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         //dd($ngo_list_all->id);
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
         return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
+        }else{
+            return view('front.renew.foreign.renew',compact('ngo_list_all','name_change_list_all'));
+        }
     }
 
 
@@ -80,10 +91,15 @@ class RenewController extends Controller
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
 
+        CommonController::checkNgotype();
 
+        $mainNgoType = CommonController::changeView();
 
+  if($mainNgoType== 'দেশিও'){
         return view('front.renew.ngo_renew_list_new',compact('get_all_data_new','ngo_list_all','name_change_list_all','all_parti'));
-
+  }else{
+    return view('front.renew.foreign.ngo_renew_list_new',compact('get_all_data_new','ngo_list_all','name_change_list_all','all_parti'));
+  }
     }
 
 
@@ -211,7 +227,19 @@ return redirect('/allStaffInformationForRenew');
            $get_all_data_new = NgoRenewInfo::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
            $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
            $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+
+           CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
+
         return view('front.renew.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
+        }else{
+            return view('front.renew.foreign.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
+
+        }
     }
 
 
@@ -287,13 +315,37 @@ return redirect('/allStaffInformationForRenew');
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
         $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
         return view('front.renew.all_staff_information_for_renew',compact('all_partiw'));
+        }else{
+
+            return view('front.renew.foreign.all_staff_information_for_renew',compact('all_partiw'));
+
+        }
     }
 
     public function otherInformationForRenew(){
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
         $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->get();
+
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
         return view('front.renew.other_information_for_renew',compact('all_partiw'));
+        }else{
+
+            return view('front.renew.foreign.other_information_for_renew',compact('all_partiw'));
+
+        }
     }
 
     public function otherInformationForRenewNewPost(Request $request){

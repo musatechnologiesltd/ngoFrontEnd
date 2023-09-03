@@ -29,14 +29,33 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $name_change_list_all =  NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
         return view('front.name_change.name_change',compact('ngo_list_all','name_change_list_all'));
+        }else{
+            return view('front.name_change.foreign.name_change',compact('ngo_list_all','name_change_list_all'));
+        }
     }
 
 
     public function sendNameChange(){
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
+
         return view('front.name_change.send_name_change_page',compact('ngo_list_all'));
+        }else{
+            return view('front.name_change.foreign.send_name_change_page',compact('ngo_list_all'));
+        }
     }
 
 
@@ -78,8 +97,17 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
-        return view('front.name_change.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
+}else{
+
+    return view('front.name_change.foreign.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
+}
 
     }
 
@@ -88,8 +116,16 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
-        return view('front.name_change.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
+}else{
+    return view('front.name_change.foreign.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
+}
 
     }
 
@@ -97,8 +133,16 @@ class NamechangeController extends Controller
     public function ngoCommitteMemberEdit($id){
         $all_data_list = NgoMemberList::where('member_name_slug',$id)->first();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        return view('front.name_change.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
+}else{
+    return view('front.name_change.foreign.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
+}
     }
 
 
@@ -225,7 +269,17 @@ class NamechangeController extends Controller
 
  $all_data_list = FormEight::where('name_slug',$id)->first();
  $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+ CommonController::checkNgotype();
+
+ $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.name_change.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
+}else{
+
+    return view('front.name_change.foreign.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
+}
     }
 
 
@@ -262,8 +316,15 @@ class NamechangeController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
 
+        CommonController::checkNgotype();
 
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.name_change.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
+}else{
+    return view('front.name_change.foreign.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
+}
     }
 
 
@@ -272,7 +333,16 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.name_change.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
+}else{
+    return view('front.name_change.foreign.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
+}
     }
 
 
@@ -280,8 +350,16 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
-        return view('front.name_change.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
+}else{
+
+} return view('front.name_change.foreign.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
     }
 
 
@@ -364,8 +442,16 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
-        return view('front.name_change.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
+}else{
+    return view('front.name_change.foreign.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
+}
     }
 
 
@@ -373,8 +459,16 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
-        return view('front.name_change.add_other_doc',compact('ngo_list_all','form_eight_list'));
 
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+        return view('front.name_change.add_other_doc',compact('ngo_list_all','form_eight_list'));
+}else{
+    return view('front.name_change.foreign.add_other_doc',compact('ngo_list_all','form_eight_list'));
+}
     }
 
 

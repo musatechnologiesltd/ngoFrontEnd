@@ -47,7 +47,16 @@ class NVisaController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $nVisaList = NVisa::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+if($mainNgoType== 'দেশিও'){
+
         return view('front.nVisa.index',compact('ngo_list_all','nVisaList'));
+}else{
+    return view('front.nVisa.foreign.index',compact('ngo_list_all','nVisaList'));
+}
     }
 
     public function create(){
@@ -57,7 +66,18 @@ class NVisaController extends Controller
 
         $countryList = Country::orderBy('id','asc')->get();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+
+
         return view('front.nVisa.create',compact('ngo_list_all','countryList','getCityzenshipData'));
+}else{
+    return view('front.nVisa.foreign.create',compact('ngo_list_all','countryList','getCityzenshipData'));
+}
     }
 
 
@@ -73,8 +93,16 @@ class NVisaController extends Controller
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+CommonController::checkNgotype();
 
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+
+return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+}else{
+    return view('front.nVisa.foreign.edit',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+}
     }
 
 
@@ -1205,8 +1233,19 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
-return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
 
+CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
+if($mainNgoType== 'দেশিও'){
+
+
+return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+}else{
+    return view('front.nVisa.foreign.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
+}
     }
 
 

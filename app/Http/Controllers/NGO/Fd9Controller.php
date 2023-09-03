@@ -40,8 +40,17 @@ $fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
 $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$fdOneFormData->id)->first();
 //dd($fdNineData);
-return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
 
+CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+
+return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+}else{
+    return view('front.fdNineForm.foreign.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+}
     }
 
 

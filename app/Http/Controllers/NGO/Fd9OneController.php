@@ -40,20 +40,47 @@ class Fd9OneController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.fd9OneForm.index',compact('ngo_list_all','fd9OneList'));
+}else{
+    return view('front.fd9OneForm.foreign.index',compact('ngo_list_all','fd9OneList'));
+}
     }
 
 
     public function create(){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.fd9OneForm.create',compact('ngo_list_all'));
+}else{
+    return view('front.fd9OneForm.foreign.create',compact('ngo_list_all'));
+}
     }
 
 
     public function edit($id){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
         return view('front.fd9OneForm.edit',compact('ngo_list_all','fd9OneList'));
+}else{
+    return view('front.fd9OneForm.foreign.edit',compact('ngo_list_all','fd9OneList'));
+}
 
     }
 
@@ -61,7 +88,18 @@ class Fd9OneController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',base64_decode($id))->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+
         return view('front.fd9OneForm.show',compact('ngo_list_all','fd9OneList'));
+}else{
+
+    return view('front.fd9OneForm.foreign.show',compact('ngo_list_all','fd9OneList'));
+}
     }
 
     public function fd9OneChief(Request $request){
