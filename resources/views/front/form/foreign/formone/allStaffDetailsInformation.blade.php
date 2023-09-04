@@ -19,10 +19,14 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($foreignNgoType == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
@@ -183,23 +187,23 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.name')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_name[]" required type="text" class="form-control" id="">
+                                <input name="staff_name[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.desi')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_position[]" required type="text" class="form-control" id="">
+                                <input name="staff_position[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_address[]" required type="text" class="form-control" id="">
+                                <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                <input name="date_of_join[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
-                                <select name="citizenship3[]" required class="js-example-basic-multiple form-control" name="states[]"
+                                <select name="citizenship3[]"  class="js-example-basic-multiple form-control" name="states[]"
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
@@ -216,16 +220,16 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
-                                <input type="text" required name="now_working_at[]" class="form-control" id="">
+                                <input type="text"  name="now_working_at[]" class="form-control" id="">
                             </div>
                             @endif
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="salary_statement[]" required class="form-control" id="">
+                                <input type="text" name="salary_statement[]"  class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.detail')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="other_occupation[]" required class="form-control" id=""
+                                <input type="text" name="other_occupation[]"  class="form-control" id=""
                                 placeholder="Detail Description (বিস্তারিত বিবরণ)">
                             </div>
                         </div>
@@ -239,23 +243,23 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.name')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_name[]" required type="text" class="form-control" id="">
+                                <input name="staff_name[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.desi')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_position[]" required type="text" class="form-control" id="">
+                                <input name="staff_position[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_address[]" required type="text" class="form-control" id="">
+                                <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                <input name="date_of_join[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
-                                <select name="citizenship4[]" required class="js-example-basic-multiple form-control" name="states[]"
+                                <select name="citizenship4[]"  class="js-example-basic-multiple form-control" name="states[]"
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
@@ -272,16 +276,16 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
-                                <input type="text" required name="now_working_at[]" class="form-control" id="">
+                                <input type="text"  name="now_working_at[]" class="form-control" id="">
                             </div>
                             @endif
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
-                                <input type="text" required name="salary_statement[]" class="form-control" id="">
+                                <input type="text"  name="salary_statement[]" class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.detail')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="other_occupation[]" required class="form-control" id=""
+                                <input type="text" name="other_occupation[]"  class="form-control" id=""
                                 placeholder="Detail Description (বিস্তারিত বিবরণ)">
                             </div>
                         </div>
@@ -295,23 +299,23 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.name')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_name[]" required type="text" class="form-control" id="">
+                                <input name="staff_name[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.desi')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_position[]" required  type="text" class="form-control" id="">
+                                <input name="staff_position[]"   type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
-                                <input name="staff_address[]" required type="text" class="form-control" id="">
+                                <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
-                                <input name="date_of_join[]" required type="text" class="form-control" id="">
+                                <input name="date_of_join[]"  type="text" class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
-                                <select name="citizenship5[]" required class="js-example-basic-multiple form-control" name="states[]"
+                                <select name="citizenship5[]"  class="js-example-basic-multiple form-control" name="states[]"
                                         multiple="multiple">
                                         @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en')
@@ -328,16 +332,16 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('news.nn')}} <span class="text-danger">*</span> </label>
-                                <input type="text" required name="now_working_at[]" class="form-control" id="">
+                                <input type="text"  name="now_working_at[]" class="form-control" id="">
                             </div>
                             @endif
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="salary_statement[]" required class="form-control" id="">
+                                <input type="text" name="salary_statement[]"  class="form-control" id="">
                             </div>
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.detail')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="other_occupation[]" required class="form-control" id=""
+                                <input type="text" name="other_occupation[]"  class="form-control" id=""
                                 placeholder="Detail Description (বিস্তারিত বিবরণ)">
                             </div>
                         </div>
@@ -360,6 +364,8 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 @endif
                             </h5>
                         </div>
+
+
 
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
@@ -423,7 +429,106 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
 
                             </div>
                         </div>
+
+
                         @endforeach
+
+                        <?php
+
+                        $countNew = count($formOneMemberList);
+
+//dd($countNew);
+
+$finalData = 5 - $countNew ;
+$cityzenValue = 0;
+?>
+
+@for ($i = 0; $i < $finalData; $i++)
+        {{-- <p>The current value is {{ $i }}.</p> --}}
+       <?php $cityzenValue = $cityzenValue+1 ?>
+
+        <div class="mb-3">
+
+            <h5 class="form_middle_text">
+                @if(($countNew+$cityzenValue) == 1)
+                {{ trans('fd_one_step_three.staff_one')}}
+                @elseif(($countNew+$cityzenValue) == 2)
+                {{ trans('fd_one_step_three.staff_two')}}
+                @elseif(($countNew+$cityzenValue) == 3)
+                {{ trans('fd_one_step_three.staff_three')}}
+                @elseif(($countNew+$cityzenValue) == 4)
+                {{ trans('fd_one_step_three.staff_four')}}
+                @elseif(($countNew+$cityzenValue) == 5)
+                {{ trans('fd_one_step_three.staff_five')}}
+                @endif
+            </h5>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">  {{ trans('fd_one_step_three.name')}} <span class="text-danger">*</span> </label>
+                <input name="staff_name[]"   type="text" class="form-control" id="">
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.desi')}} <span class="text-danger">*</span> </label>
+                <input name="staff_position[]" "  type="text" class="form-control" id="">
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
+                <input name="staff_address[]"   type="text" class="form-control" id="">
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
+                <input name="date_of_join[]"   type="text" class="form-control datepicker" id="">
+            </div>
+
+            <?php
+            $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+
+                               ?>
+
+            <div class="col-lg-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
+                <select name="citizenship{{ $countNew+$cityzenValue }}[]"  class="js-example-basic-multiple form-control" name="states[]"
+                        multiple="multiple">
+
+
+                    @foreach($getCityzenshipData as $allGetCityzenshipData)
+                    @if($checkNgoTypeForForeginNgo == 'Foreign')
+                    <option value="{{ $allGetCityzenshipData->country_people_english }}" >{{ $allGetCityzenshipData->country_people_english }}</option>
+                    @else
+                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                @endif
+                @endforeach
+                </select>
+            </div>
+
+            @if($checkNgoTypeForForeginNgo == 'Foreign')
+            <div class="col-lg-12 mb-3">
+                <label for="" class="form-label">{{ trans('news.nn')}}<span class="text-danger">*</span> </label>
+                <input type="text"  name="now_working_at[]" value="" class="form-control" id="">
+            </div>
+            @else
+
+
+            @endif
+
+            <div class="col-lg-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.s_statement')}} <span class="text-danger">*</span> </label>
+                <input type="text"  value="" name="salary_statement[]" class="form-control" id="">
+            </div>
+            <div class="col-lg-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_three.detail')}} <span class="text-danger">*</span> </label>
+
+                <input type="text" name="other_occupation[]"  class="form-control" id=""
+                placeholder="Detail Description (বিস্তারিত বিবরণ)">
+
+
+            </div>
+        </div>
+    @endfor
 
                         @endif
 

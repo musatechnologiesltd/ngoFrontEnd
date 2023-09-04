@@ -20,9 +20,9 @@
                     </div>
                     <ul class="progress-bar">
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -336,6 +336,12 @@
                     type = "number"
                     maxlength = "11" data-parsley-required   minlength="11"   name="phone" value="{{ $allParticularsOfOrganisation->phone }}"  class="form-control" id="">
                 </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label">{{ trans('fd_one_step_one.tele')}}</label>
+                    <input type="text"   name="tele_phone_number" value="{{ $allParticularsOfOrganisation->tele_phone_number }}"  class="form-control" id="">
+                </div>
+
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required name="email" value="{{ $allParticularsOfOrganisation->email }}" class="form-control" id="">

@@ -16,6 +16,11 @@
                 <h1>{{ trans('header.step')}}: {{ trans('header.tt_one')}}</h1>
                 <form method="post" action="{{ route('register.post') }}" id="form" data-parsley-validate="">
                     @csrf
+
+
+
+                  
+
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.person_name')}} <span class="text-danger">*</span> </label>
                         <input type="text" class="form-control" required  data-parsley-length=“[3,60]” maxlength="60"   data-parsley-pattern=“[a-zA-Z]+$” data-parsley-trigger=“keyup” name="name" id="name">

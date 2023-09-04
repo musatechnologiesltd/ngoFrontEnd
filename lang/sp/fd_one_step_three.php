@@ -2,6 +2,7 @@
 return [
     'All_staff_details_information'=>'All staff details information',
     'staff_position'=>'Staff position (Particulars to be submitted in respect of 5 top executives in the following proforma in separate sheets)',
+    'staff_position1'=>'Please Add Minimum Two Member',
     'Step_3'=>'Step 3',
     'staff_one' => 'Staff 01',
     'staff_two' => 'Staff 02',

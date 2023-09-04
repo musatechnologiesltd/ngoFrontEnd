@@ -7,10 +7,15 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+
+                        @if($foreignNgoType == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -143,6 +148,13 @@
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                                     <input type="text" required name="address" value="{{ Session::get('address') }}" class="form-control" id="">
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">{{ trans('fd_one_step_one.tele')}}</label>
+                                    <input type="text"   name="tele_phone_number" class="form-control" id="">
+                                </div>
+
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
                                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

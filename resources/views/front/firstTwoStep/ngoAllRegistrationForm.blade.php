@@ -251,7 +251,26 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+<script>
+    $(document).on('click', '.organizational_structure', function () {
 
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('foreignNgoType') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
 <script>
     $("#downloadButton345").click(function(){
           var name = $('#mainName').val();
@@ -662,7 +681,10 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
         ++i;
         $("#dynamicAddRemoveInformation").append('<tr>' +
             '<td>' +
-            '<input type="file" accept=".pdf" name="" placeholder="" class="form-control" />' +
+            '<input type="text"  name="information_title[]" placeholder="" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="file" accept=".pdf" name="information_type[]" placeholder="" class="form-control" />' +
             '</td>' +
             '<td>' +
             '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +

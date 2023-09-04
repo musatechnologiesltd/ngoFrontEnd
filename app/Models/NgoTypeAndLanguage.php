@@ -12,6 +12,10 @@ class NgoTypeAndLanguage extends Model
     public $table = "ngo_type_and_languages";
 
     protected $fillable = [
+
+        'ngo_type_new_old',
+        'registration',
+        'last_renew_date',
         'ngo_type',
         'ngo_language',
         'first_form_check_status',

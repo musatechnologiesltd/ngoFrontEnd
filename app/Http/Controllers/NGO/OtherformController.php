@@ -283,6 +283,8 @@ class OtherformController extends Controller
 
 
     public function ngoTypeAndLanguagePost(Request $request){
+
+        //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
@@ -290,13 +292,36 @@ class OtherformController extends Controller
 
         $category_list = new NgoTypeAndLanguage();
         $category_list->ngo_type = $request->ngo_origin;
-        $category_list->ngo_language = $request->input_language;
+
+        if($request->ngo_origin == 'দেশিও'){
+        $category_list->ngo_language ='en';
+        }else{
+            $category_list->ngo_language ='sp';
+        }
+
+        $category_list->ngo_type_new_old = $request->ngo_type;
+        if(empty($request->reg_number)){
+        $category_list->registration =0;
+        }else{
+            $category_list->registration = $request->reg_number;
+        }
+        if(empty($request->last_renew_date)){
+        $category_list->last_renew_date = 0;
+    }else{
+        $category_list->last_renew_date = $request->last_renew_date;
+    }
         $category_list->user_id =Auth::user()->id;
         $category_list->time_for_api =$main_time;
         $category_list->save();
 
-        App::setLocale($request->input_language);
-        session()->put('locale', $request->input_language);
+        if($request->ngo_origin == 'দেশিও'){
+
+        App::setLocale('en');
+        session()->put('locale','en');
+    }else{
+        App::setLocale('sp');
+        session()->put('locale','sp');
+    }
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 
@@ -350,7 +375,7 @@ return redirect('ngoAllRegistrationForm');
 
 
         $mainNgoType = CommonController::changeView();
-        
+
 
 
         if($first_form_check == 1){

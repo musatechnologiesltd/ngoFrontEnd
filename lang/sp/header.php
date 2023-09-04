@@ -1,5 +1,11 @@
 <?php
 return [
+
+    'old'=>'Old',
+    'new'=>'New',
+    'ngo_type'=>'Type of NGO',
+    'reg_number'=>'Registration Number',
+    'last_renew_date'=>'Date of last registration/renewal',
     'in1'=>'This field is required',
     'reg1'=>'Registration',
     'sm'=>'Must be use valid email for varification',

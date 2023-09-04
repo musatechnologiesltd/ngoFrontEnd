@@ -30,6 +30,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('district')->nullable();
             $table->string('phone')->nullable();
+            $table->string('tele_phone_number')->nullable();
+
+
+            $table->string('copy_of_chalan')->nullable();
+            $table->string('due_vat_pdf')->nullable();
+            $table->string('change_ac_number')->nullable();
+
             $table->string('email')->nullable();
             $table->string('citizenship')->nullable();
             $table->string('profession')->nullable();

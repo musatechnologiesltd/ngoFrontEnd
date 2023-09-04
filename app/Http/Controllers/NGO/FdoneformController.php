@@ -318,7 +318,7 @@ if(empty($formCompleteStatus)){
 
 
     public function particularsOfOrganisationPost(Request $request){
-// dd($request->all());
+ //dd($request->all());
 
          $r_number = mt_rand(1000000000000000, 9999999999999999);
 
@@ -365,6 +365,7 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->job_type = $request->job_type;
         $uploadFormOneData->address = $request->address;
         $uploadFormOneData->phone = $request->phone;
+        $uploadFormOneData->tele_phone_number = $request->tele_phone_number;
         $uploadFormOneData->email = $request->email;
         $uploadFormOneData->profession = $request->profession;
         $uploadFormOneData->citizenship = $arr_all;
@@ -430,6 +431,8 @@ if(!$checkCompleteStatusData){
        $uploadFormOneData->job_type = $request->job_type;
        $uploadFormOneData->address = $request->address;
        $uploadFormOneData->phone = $request->phone;
+
+       $uploadFormOneData->tele_phone_number = $request->tele_phone_number;
        $uploadFormOneData->email = $request->email;
        $uploadFormOneData->profession = $request->profession;
        $uploadFormOneData->citizenship = $arr_all;
@@ -603,12 +606,23 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $cutomeFileName = time().date("Ymd");
 
 
+        if($request->oldOrNew == 'Old'){
+            $request->validate([
 
-        $request->validate([
-            'district' => 'required|string',
-            'annual_budget' => 'required|string',
-            'submit_value' => 'required|string',
-        ]);
+                'annual_budget' => 'required|string',
+                'submit_value' => 'required|string',
+            ]);
+
+        }else{
+            $request->validate([
+                'district' => 'required|string',
+                'annual_budget' => 'required|string',
+                'submit_value' => 'required|string',
+            ]);
+
+        }
+
+
 
 
 
@@ -617,6 +631,15 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $updateDataStepTwo->district = $request->district;
 
         $updateDataStepTwo->annual_budget = $request->annual_budget;
+
+        if ($request->hasfile('foregin_pdf')) {
+            $filePath="FdOneForm";
+            $file = $request->file('foregin_pdf');
+
+            $updateDataStepTwo->foregin_pdf =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
         if ($request->hasfile('plan_of_operation')) {
             $filePath="FdOneForm";
             $file = $request->file('plan_of_operation');
@@ -631,13 +654,20 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $stepTwoId = $updateDataStepTwo->id;
         $input = $request->all();
 
-        $personName = $input['name'];
 
 
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $main_time = $dt->format('H:i:s');
+        if($request->oldOrNew == 'Old'){
+
+        }else{
+
+            $personName = $input['name'];
+
+
+            $dt = new DateTime();
+            $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+
+            $main_time = $dt->format('H:i:s');
 
      if (array_key_exists("letter_file", $input)){
 
@@ -660,7 +690,7 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 }
         }
 
-
+    }
         Session::put('mm_id',$stepTwoId);
 
 
@@ -716,16 +746,16 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
     public function allStaffDetailsInformationUpdate(Request $request){
 
-        $request->validate([
-            'staff_name.*' => 'required|string',
-            'staff_position.*' => 'required|string',
-            'staff_address.*' => 'required|string',
-            'date_of_join.*' => 'required|string',
-            'address.*' => 'required|string',
-            'salary_statement.*' => 'required|string',
-            'other_occupation.*' => 'required|string',
-            'submit_value' => 'required|string',
-        ]);
+        // $request->validate([
+        //     'staff_name.*' => 'required|string',
+        //     'staff_position.*' => 'required|string',
+        //     'staff_address.*' => 'required|string',
+        //     'date_of_join.*' => 'required|string',
+        //     'address.*' => 'required|string',
+        //     'salary_statement.*' => 'required|string',
+        //     'other_occupation.*' => 'required|string',
+        //     'submit_value' => 'required|string',
+        // ]);
         //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
@@ -747,26 +777,58 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         if (array_key_exists("now_working_at", $input)){
 
-
+//dd(1);
             foreach($new_cat_dec as $key => $new_cat_dec){
 
                 if($key == 0){
+                    if(empty($request->citizenship1)){
+
+                        $arr_all = 0 ;
+                    }else{
                     $arr_all = implode(",",$request->citizenship1);
+                    }
                 }elseif($key == 1){
 
-                    $arr_all = implode(",",$request->citizenship2);
+                    if(empty($request->citizenship2)){
 
+                        $arr_all = 0 ;
+                    }else{
+
+                    $arr_all = implode(",",$request->citizenship2);
+                    }
                 }elseif($key == 2){
+
+                    if(empty($request->citizenship3)){
+
+                        $arr_all = 0 ;
+                    }else{
                     $arr_all = implode(",",$request->citizenship3);
+                    }
                 }
                 elseif($key == 3){
+
+                    if(empty($request->citizenship4)){
+
+                        $arr_all = 0 ;
+                    }else{
                     $arr_all = implode(",",$request->citizenship4);
+                    }
                 }elseif($key == 4){
+
+                    if(empty($request->citizenship5)){
+
+                        $arr_all = 0 ;
+                    }else{
                     $arr_all = implode(",",$request->citizenship5);
+                    }
                 }
 
                 $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
 
+
+                if(empty($input['staff_name'][$key])){
+
+                }else{
                 $form= new FdOneMemberList();
                 $form->name=$input['staff_name'][$key];
                 $form->position=$input['staff_position'][$key];
@@ -779,28 +841,61 @@ if($request->submit_value == 'exit_from_step_one_edit'){
                 $form->time_for_api =  $main_time;
                 $form->fd_one_form_id = $request->id;
                 $form->save();
+                }
             }
 
 
         }else{
-
+           // dd(22);
         foreach($new_cat_dec as $key => $new_cat_dec){
 
             if($key == 0){
+                if(empty($request->citizenship1)){
+
+                    $arr_all = 0 ;
+                }else{
                 $arr_all = implode(",",$request->citizenship1);
+                }
             }elseif($key == 1){
 
-                $arr_all = implode(",",$request->citizenship2);
+                if(empty($request->citizenship2)){
 
+                    $arr_all = 0 ;
+                }else{
+
+                $arr_all = implode(",",$request->citizenship2);
+                }
             }elseif($key == 2){
+
+                if(empty($request->citizenship3)){
+
+                    $arr_all = 0 ;
+                }else{
                 $arr_all = implode(",",$request->citizenship3);
+                }
             }
             elseif($key == 3){
+
+                if(empty($request->citizenship4)){
+
+                    $arr_all = 0 ;
+                }else{
                 $arr_all = implode(",",$request->citizenship4);
+                }
             }elseif($key == 4){
+
+                if(empty($request->citizenship5)){
+
+                    $arr_all = 0 ;
+                }else{
                 $arr_all = implode(",",$request->citizenship5);
+                }
             }
             $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
+
+            if(empty($input['staff_name'][$key])){
+
+            }else{
             $form= new FdOneMemberList();
             $form->name=$input['staff_name'][$key];
             $form->position=$input['staff_position'][$key];
@@ -812,6 +907,7 @@ if($request->submit_value == 'exit_from_step_one_edit'){
             $form->time_for_api =  $main_time;
             $form->fd_one_form_id = $request->id;
             $form->save();
+            }
         }
 
     }
@@ -895,6 +991,31 @@ if($request->submit_value == 'exit_from_step_one_edit'){
     $stepFourData->treasury_number = $request->treasury_number;
     $stepFourData->vat_invoice_number = $request->vat_invoice_number;
 
+    if ($request->hasfile('copy_of_chalan')) {
+        $filePath="copy_of_chalan";
+        $file = $request->file('copy_of_chalan');
+        $stepFourData->copy_of_chalan =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+    if ($request->hasfile('due_vat_pdf')) {
+        $filePath="due_vat_pdf";
+        $file = $request->file('due_vat_pdf');
+        $stepFourData->due_vat_pdf =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+    if ($request->hasfile('change_ac_number')) {
+        $filePath="change_ac_number";
+        $file = $request->file('change_ac_number');
+        $stepFourData->change_ac_number =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+
+
+
+
     if ($request->hasfile('attach_the__supporting_papers')) {
         $filePath="attach_the_supporting_papers";
         $file = $request->file('attach_the__supporting_papers');
@@ -915,8 +1036,104 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
 
     $mm_id = $stepFourData->id;
+    $input = $request->all();
+
+    if($request->oldOrNew == 'Old'){
+
+
+        if(empty($request->bank_id)){
+            //dd(112);
+            $form= new FdOneBankAccount();
+            $form->account_number=$request->account_number;
+            $form->account_type=$request->account_type;
+            $form->name_of_bank=$request->name_of_bank;
+            $form->branch_name_of_bank=$request->branch_name_of_bank;
+            $form->bank_address=$request->bank_address;
+            $form->fd_one_form_id = $request->id;
+            $form->time_for_api = $main_time;
+            $form->save();
+
+        }else{
+           // dd(114);
+
+        $form= FdOneBankAccount::find($request->bank_id);
+        $form->account_number=$request->account_number;
+        $form->account_type=$request->account_type;
+        $form->name_of_bank=$request->name_of_bank;
+        $form->branch_name_of_bank=$request->branch_name_of_bank;
+        $form->bank_address=$request->bank_address;
+        $form->fd_one_form_id = $request->id;
+        $form->time_for_api = $main_time;
+        $form->save();
+    }
+
+    ///
+
+
+    if (array_key_exists("information_type", $input)){
+
+        $new_cat_dec_new = $input['information_type'];
+
+
+     foreach($new_cat_dec_new as $key => $new_cat_dec_new){
+
+
+        $form2= new FdOneOtherPdfList();
+        $filePath="FdOneOtherPdfList";
+        $file=$input['information_type'][$key];
+        $form2->information_title =$input['information_title'][$key];
+        $form2->information_pdf=CommonController::pdfUpload($request,$file,$filePath);
+        $form2->fd_one_form_id = $request->id;
+        $form2->time_for_api = $main_time;
+        $form2->save();
+
+     }
+
+    }
+
+    $checkCompleteStatusData = DB::table('form_complete_statuses')
+    ->where('user_id',Auth::user()->id)
+    ->first();
+
+    if(!$checkCompleteStatusData){
+
+        $newStatusData = new FormCompleteStatus();
+        $newStatusData->user_id = Auth::user()->id;
+        $newStatusData->fd_one_form_step_one_status = 1;
+        $newStatusData->fd_one_form_step_two_status = 1;
+        $newStatusData->fd_one_form_step_three_status = 1;
+        $newStatusData->fd_one_form_step_four_status = 1;
+        $newStatusData->form_eight_status = 1;
+        $newStatusData->ngo_member_status = 1;
+        $newStatusData->ngo_member_nid_photo_status = 1;
+        $newStatusData->ngo_other_document_status = 0;
+        $newStatusData->save();
+    }else{
+
+        FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+        ->update([
+            'fd_one_form_step_four_status' => 1,
+            'form_eight_status' => 1,
+            'ngo_member_status' => 1,
+            'ngo_member_nid_photo_status' => 1
+         ]);
+
+
+    }
+
+
+
+
+    ///
+
+
+    }else{
+
+
 
     if(empty($request->account_number)){
+
+
 
 
     }else{
@@ -1020,6 +1237,8 @@ if(in_array(null, $input['name'])){
 
 
    }
+
+}
    return redirect('/ngoAllRegistrationForm');
 
 }

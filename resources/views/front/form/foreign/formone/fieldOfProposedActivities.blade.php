@@ -19,10 +19,14 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($foreignNgoType == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
@@ -44,12 +48,40 @@
 
                 <form action="{{ route('fieldOfProposedActivitiesUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
+                    <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
                     <input type="hidden" class="form-control" value="{{ $allFormOneData->id }}" name="mid"  id="">
                 <div class="main active">
                     <div class="text">
                         <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
+
+                    @if($foreignNgoType == 'Old')
+                    @if(empty($allFormOneData->foregin_pdf))
+                    <div class="mb-3">
+                        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
+                        <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                    </div>
+                    @else
+                    <?php
+
+                    $file_path = url($allFormOneData->foregin_pdf);
+                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                    ?>
+ <div class="mb-3">
+    <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
+    <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="">
+</div>
+<b>{{ $filename.'.'.$extension }}</b>
+                    @endif
+
+                    @else
 
                     <div class="mt-3">
 
@@ -244,7 +276,7 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     </button>
 </div>
 @endif
-
+@endif
 
 
                             <div class="mb-3">

@@ -13,6 +13,7 @@ class FdOneOtherPdfList extends Model
 
 
     protected $fillable = [
+        'information_title',
         'fd_one_form_id',
         'information_pdf',
         'time_for_api',

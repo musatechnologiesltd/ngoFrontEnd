@@ -7,10 +7,14 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($foreignNgoType == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
@@ -25,6 +29,9 @@
                 $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
                            ->value('ngo_type');
 
+                           $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
+                                   ->first();
+
 
                     ?>
 
@@ -37,7 +44,7 @@
 
                 <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form" id="form"  data-parsley-validate="">
                     @csrf
-
+                    <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
                     <input type="hidden" class="form-control" value="{{ $getFormOneData->id }}" name="id"  id="">
 
                 <div class="main active">
@@ -47,6 +54,114 @@
                     </div>
 
                     <div class="mt-3">
+
+                        @if($foreignNgoType == 'Old')
+
+                        <div class="mb-3">
+
+
+
+                            <label class="form-label" for="">
+                                Whether registration renewal fee and VAT have been paid (copy of invoice to be attached)</label>
+                            <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="">
+                                Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): </label>
+                            <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                        </div>
+
+                        <div class="mb-3">
+                            <h5 class="form_middle_text">
+                                Main Account Details
+                            </h5>
+                        </div>
+
+                        @if(!$get_all_data_adviser_bank)
+                        <div class="mb-3">
+                            <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                            <div class="mb-3">
+                            <label for="" class="form-label">Account Number <span class="text-danger">*</span> </label>
+                            <input type="text" required  name="main_account_number" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                            <div class="mb-3">
+                            <label for="" class="form-label">Account Type <span class="text-danger">*</span> </label>
+                            <input type="text" required name="main_account_type" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                            <div class="mb-3">
+                            <label for="" class="form-label">Name of Bank <span class="text-danger">*</span> </label>
+                            <input type="text" required name="name_of_bank" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                            <div class="mb-3">
+                            <label for="" class="form-label">Branch Name of Bank<span class="text-danger">*</span> </label>
+                            <input type="text" required name="main_account_name_of_branch" class="form-control" id="">
+                            </div>
+                            </div>
+                            <div class="col-12">
+                            <div class="mb-3">
+                            <label for="" class="form-label">Bank Address<span class="text-danger">*</span> </label>
+                            <input type="text" required  name="bank_address_main" class="form-control" id="">
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            @else
+
+
+                            <div class="mb-3">
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">{{ trans('fd_one_step_four.account_number')}} <span class="text-danger">*</span> </label>
+                                            <input type="text" value="{{ $get_all_data_adviser_bank->account_number }}" required name="account_number" class="form-control" id="">
+
+                                            <input type="hidden" value="{{ $get_all_data_adviser_bank->id }}" required name="bank_id" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">{{ trans('fd_one_step_four.account_type')}} <span class="text-danger">*</span> </label>
+                                            <input type="text" required name="account_type" value="{{ $get_all_data_adviser_bank->account_type }}" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">{{ trans('fd_one_step_four.name_of_bank')}} <span class="text-danger">*</span> </label>
+                                            <input type="text"  required name="name_of_bank" value="{{ $get_all_data_adviser_bank->name_of_bank }}" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">{{ trans('fd_one_step_four.branch_name_of_bank')}} <span class="text-danger">*</span> </label>
+                                            <input type="text" required  name="branch_name_of_bank" value="{{ $get_all_data_adviser_bank->branch_name_of_bank }}" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">{{ trans('fd_one_step_four.bank_address')}} <span class="text-danger">*</span> </label>
+                                            <input type="text" required  name="bank_address" value="{{ $get_all_data_adviser_bank->bank_address }}" class="form-control" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @endif
+
+
+                        <div class="mb-3">
+                            <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached:</label>
+                            <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+                            </div>
+
+                        @else
 
                             <div class="mb-3">
                                 <label class="form-label" for="">{{ trans('fd_one_step_four.treasury_number')}} <span class="text-danger">*</span> </label>
@@ -442,6 +557,9 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
                             @endif
 
 
+                            @endif
+
+
              <?php
 
 
@@ -452,6 +570,14 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
                  ?>
 
 <div class="row">
+
+    <div class="mb-3">
+        <h5 class="form_middle_text">
+            {{ trans('fd_one_step_four.information_pdf')}}
+        </h5>
+    </div>
+
+
     @foreach($get_all_data_other as $key=>$all_get_all_data_other)
     <div class="col-md-3 mt-2">
 
@@ -524,10 +650,14 @@ Update
                             <div class="mb-3">
                                 <table class="table table-light" id="dynamicAddRemoveInformation">
                                     <tr>
-                                        <th>{{ trans('fd_one_step_four.information_pdf')}}</th>
+                                        <th>File Title</th>
+                                        <th>File</th>
                                         <th></th>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <input type="text"  name="information_title[]" class="form-control"/>
+                                        </td>
                                         <td>
                                             <input type="file"  accept=".pdf"  name="information_type[]" class="form-control"/>
                                         </td>
@@ -542,10 +672,14 @@ Update
                             <div class="mb-3">
                                 <table class="table table-light" id="dynamicAddRemoveInformation">
                                     <tr>
-                                        <th>{{ trans('fd_one_step_four.information_pdf')}} <span class="text-danger">*</span> </th>
+                                        <th>File Title</th>
+                                        <th>File</th>
                                         <th></th>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <input type="text"  name="information_title[]" class="form-control"/>
+                                        </td>
                                         <td>
                                             <input type="file"  accept=".pdf"  name="information_type[]" class="form-control"/>
                                         </td>

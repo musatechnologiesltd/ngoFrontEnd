@@ -11,6 +11,11 @@ class FdOneForm extends Model
     public $table = "fd_one_forms";
 
     protected $fillable = [
+       'copy_of_chalan',
+          'due_vat_pdf',
+           'change_ac_number',
+        'foregin_pdf',
+        'tele_phone_number',
         'chief_name',
         'chief_desi',
         'registration_number',
