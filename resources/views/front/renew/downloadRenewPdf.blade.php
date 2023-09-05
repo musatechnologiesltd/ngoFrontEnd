@@ -398,7 +398,7 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
 <h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 
-     
+
 
 
         <table style=" margin-top: 150px;width:100%">

@@ -282,7 +282,30 @@
 
 
 
+                                                @if($foreignNgoType == 'Old')
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Telephone Number <span class="text-danger">*</span> </label>
+                                                    <input type="text" data-parsley-required  name="org_phone" value="{{ $allParticularsOfOrganisation->org_phone }}" class="form-control" id="">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Mobile Number<span class="text-danger">*</span> </label>
+                                                    <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                    type = "number"
+                                                    maxlength = "11" minlength="11" data-parsley-required  name="org_mobile" value="{{ $allParticularsOfOrganisation->org_mobile }}" class="form-control" id="">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="" class="form-label">Email Address<span class="text-danger">*</span> </label>
+                                                    <input type="email" data-parsley-required  name="org_email" value="{{ $allParticularsOfOrganisation->org_email }}" class="form-control" id="">
+                                                </div>
 
+                                                <div class="mb-3">
+                                                    <label for=""  class="form-label">Website <span class="text-danger">*</span> </label>
+                                                    <input type="text" data-parsley-required  name="web_site_name" value="{{ $allParticularsOfOrganisation->web_site_name }}" class="form-control" id="">
+                                                </div>
+
+                                                @else
+
+                                                @endif
 
                 <div class="mb-3">
                     <h5 class="form_middle_text">
@@ -330,6 +353,18 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required name="address" value="{{ $allParticularsOfOrganisation->address }}" class="form-control" id="">
                 </div>
+
+
+                @if($foreignNgoType == 'Old')
+                <div class="mb-3">
+                    <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                    <input type="text"  data-parsley-required name="nationality" value="{{ $allParticularsOfOrganisation->nationality }}" class="form-control" id="">
+                </div>
+                @else
+
+                @endif
+
+
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

@@ -120,6 +120,31 @@
                                                                         </select>
                                                                     </div>
                                                                     @endif
+
+                                                                    @if($foreignNgoType == 'Old')
+                                                                    <div class="mb-3">
+                                                                        <label for="" class="form-label">Telephone Number<span class="text-danger">*</span> </label>
+                                                                        <input type="text" data-parsley-required  name="org_phone" class="form-control" id="">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="" class="form-label">Mobile Number<span class="text-danger">*</span> </label>
+                                                                        <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                        type = "number"
+                                                                        maxlength = "11" minlength="11" data-parsley-required  name="org_mobile" class="form-control" id="">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="" class="form-label">Email Address<span class="text-danger">*</span> </label>
+                                                                        <input type="email" data-parsley-required  name="org_email" class="form-control" id="">
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label for=""  class="form-label">Website <span class="text-danger">*</span> </label>
+                                                                        <input type="text" data-parsley-required  name="web_site_name" class="form-control" id="">
+                                                                    </div>
+
+                                                                    @else
+
+                                                                    @endif
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
                                         {{ trans('fd_one_step_one.Particulars_of_Head_of_the_Organization_in_Bangladesh')}}
@@ -148,6 +173,17 @@
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                                     <input type="text" required name="address" value="{{ Session::get('address') }}" class="form-control" id="">
                                 </div>
+
+                                @if($foreignNgoType == 'Old')
+
+                                
+                                <div class="mb-3">
+                                    <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                                    <input type="text"  data-parsley-required name="nationality" class="form-control" id="">
+                                </div>
+                                @else
+
+                                @endif
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.tele')}}</label>
@@ -197,6 +233,8 @@
                             </form>
 
         @else
+
+
         <form action="{{ route('particularsOfOrganisationUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
             @csrf
             <input required="" name="id" value="{{ $allParticularsOfOrganisation->id }}" type="hidden" class="form-control" id="">

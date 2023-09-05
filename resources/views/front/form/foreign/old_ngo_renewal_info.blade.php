@@ -10,38 +10,13 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
 
 <section>
-    <div class="container">
-        <div class="form-card">
-            <div class="form">
-                <div class="left-side">
-                    <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
-                    </div>
-                    <ul class="progress-bar">
-                        @if($foreignNgoType == 'Old')
-                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
-                        @else
-                        <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        @endif
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
-                        {{-- <li>{{ trans('fd_one_step_one.other_doc_title')}}</li> --}}
-                        <li class="active">{{ trans('fd_one_step_one.other_doc_title')}}</li>
-                    </ul>
-                </div>
-                <div class="right-side">
+ 
                     <div class="committee_container active">
                         <div class="d-flex justify-content-between mb-4">
                             <div class="p-2">
                                 <h5>{{ trans('other_doc.all_doc')}}</h5>
                             </div>
-                            <div class="p-2">
-                                <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        {{ trans('other_doc.add_new_document')}}
-                                </button>
-                            </div>
+
                         </div>
 
                         <?php

@@ -282,7 +282,11 @@ Route::resource('ngoDocument',NgodocumentController::class);
 Route::controller(NgodocumentController::class)->group(function () {
     Route::get('/ngoDocumentFinal', 'ngoDocumentFinal')->name('ngoDocumentFinal');
     Route::get('/ngoDocumentDownload/{id}', 'ngoDocumentDownload')->name('ngoDocumentDownload');
-    Route::get('/ngoDocumentView', 'ngoDocumentView')->name('ngoDocumentView');
+
+   Route::get('/ngoDocumentView', 'ngoDocumentView')->name('ngoDocumentView');
+
+   Route::get('/deleteRenewalFileDownload/{title}/{id}', 'deleteRenewalFileDownload')->name('deleteRenewalFileDownload');
+   Route::get('/deleteRenewalFile/{title}/{id}', 'deleteRenewalFile')->name('deleteRenewalFile');
 
 });
 

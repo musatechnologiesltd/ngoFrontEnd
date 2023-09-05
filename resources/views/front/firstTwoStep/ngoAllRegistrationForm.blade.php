@@ -115,22 +115,17 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                             <ul class="nav nav-tabs custom_tab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">{{ trans('fd_one_step_one.fd_one_form_title')}}</a>
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">
+
+                                          @if($foreignNgoType == 'Old')
+{{ trans('fd_one_step_one.fd8')}}
+                        @else
+                     {{ trans('fd_one_step_one.fd_one_form_title')}}
+                        @endif
+
+                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">{{ trans('fd_one_step_one.form_eight_title')}}</a>
-                                </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen1">{{ trans('fd_one_step_one.member_title')}}</a>
-                                </li>
-
-
-
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.image_nid_title')}}</a>
-                                </li>
 
 
                                 <li class="nav-item">
@@ -143,26 +138,17 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                             @if($mainNgoType== 'Foreign')
                             <div class="tab-content custom_tab_content">
                                 <div class="tab-pane container active" id="tofban">
-                                   @include('front.form.foreign.formone.fdFormOneInfo')
 
+                                    @if($foreignNgoType == 'Old')
+                                    @include('front.form.foreign.formone.fdFormOneInfoOld')
+                                    @else
+                                    @include('front.form.foreign.formone.fdFormOneInfo')
+                                    @endif
                                 </div>
-                                <div class="tab-pane container" id="tofen">
-                                  @include('front.form.foreign.form_eight.formEightNgoCommitteeMemberTotalView')
 
-                                </div>
-
-                                <div class="tab-pane container" id="tofen1">
-                                  @include('front.foreign.ngomember.finalView')
-
-                                </div>
 
                                 <div class="tab-pane container" id="tofen2">
-                                    @include('front.foreign.ngo_doc.finalView')
-
-                                </div>
-
-                                <div class="tab-pane container" id="tofen3">
-                                @include('front.foreign.ngo_member_doc.finalView')
+                                    @include('front.ngo_doc.foreign.finalViewOne')
 
                                 </div>
 

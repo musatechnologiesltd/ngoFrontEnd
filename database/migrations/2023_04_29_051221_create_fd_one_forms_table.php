@@ -37,6 +37,12 @@ return new class extends Migration
             $table->string('due_vat_pdf')->nullable();
             $table->string('change_ac_number')->nullable();
 
+            $table->string('org_phone')->nullable();
+            $table->string('org_mobile')->nullable();
+            $table->string('org_email')->nullable();
+            $table->string('web_site_name')->nullable();
+            $table->string('nationality')->nullable();
+
             $table->string('email')->nullable();
             $table->string('citizenship')->nullable();
             $table->string('profession')->nullable();

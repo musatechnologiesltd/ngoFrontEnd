@@ -22,7 +22,7 @@ return [
     'tt_12'=>'Application must be submitted by Chief Executive of organizations.',
     'n_r'=>'Registration Application Form',
     'hh'=>'Information of head of organization in Bangladesh',
-    'reg_num'=>'Reg Number',
+    'reg_num'=>'Registration Number',
     'zero'=>'0',
     'one'=>'1',
     'two'=>'2',

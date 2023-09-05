@@ -174,9 +174,16 @@ class FdoneformController extends Controller
     public function fdOneFormEdit(){
 
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+        CommonController::checkNgotype();
 
+
+        $mainNgoType = CommonController::changeView();
+
+        if($mainNgoType== 'দেশিও'){
             return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
-
+        }else{
+            return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+        }
     }
 
     public function particularsOfOrganisation(){
@@ -331,21 +338,21 @@ if(empty($formCompleteStatus)){
 
 
 
-         $request->validate([
-            'organization_name' => 'required|string',
-            'organization_name_ban' => 'required|string',
-            'address_of_head_office_eng' => 'required|string',
-            'organization_address' => 'required|string',
-            'address_of_head_office' => 'required|string',
-            'country_of_origin' => 'required|string',
-            'name_of_head_in_bd' => 'required|string',
-            'job_type' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|string',
-            'email' => 'required|string',
-            'profession' => 'required|string',
-            'submit_value' => 'required|string',
-        ]);
+        //  $request->validate([
+        //     'organization_name' => 'required|string',
+        //     'organization_name_ban' => 'required|string',
+        //     'address_of_head_office_eng' => 'required|string',
+        //     'organization_address' => 'required|string',
+        //     'address_of_head_office' => 'required|string',
+        //     'country_of_origin' => 'required|string',
+        //     'name_of_head_in_bd' => 'required|string',
+        //     'job_type' => 'required|string',
+        //     'address' => 'required|string',
+        //     'phone' => 'required|string',
+        //     'email' => 'required|string',
+        //     'profession' => 'required|string',
+        //     'submit_value' => 'required|string',
+        // ]);
 
 
 
@@ -366,6 +373,11 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->address = $request->address;
         $uploadFormOneData->phone = $request->phone;
         $uploadFormOneData->tele_phone_number = $request->tele_phone_number;
+        $uploadFormOneData->org_phone = $request->org_phone;
+        $uploadFormOneData->org_mobile = $request->org_mobile;
+        $uploadFormOneData->org_email = $request->org_email;
+        $uploadFormOneData->web_site_name = $request->web_site_name;
+        $uploadFormOneData->nationality = $request->nationality;
         $uploadFormOneData->email = $request->email;
         $uploadFormOneData->profession = $request->profession;
         $uploadFormOneData->citizenship = $arr_all;
@@ -431,7 +443,11 @@ if(!$checkCompleteStatusData){
        $uploadFormOneData->job_type = $request->job_type;
        $uploadFormOneData->address = $request->address;
        $uploadFormOneData->phone = $request->phone;
-
+       $uploadFormOneData->org_phone = $request->org_phone;
+       $uploadFormOneData->org_mobile = $request->org_mobile;
+       $uploadFormOneData->org_email = $request->org_email;
+       $uploadFormOneData->web_site_name = $request->web_site_name;
+       $uploadFormOneData->nationality = $request->nationality;
        $uploadFormOneData->tele_phone_number = $request->tele_phone_number;
        $uploadFormOneData->email = $request->email;
        $uploadFormOneData->profession = $request->profession;
