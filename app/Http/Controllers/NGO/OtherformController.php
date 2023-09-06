@@ -436,6 +436,33 @@ return redirect('ngoAllRegistrationForm');
 
     }
 
+    public function renewalSubmitForOld(Request $request){
+
+        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        $category_list = new NgoStatus();
+        $category_list->fd_one_form_id = $get_reg_id->id;
+        $category_list->status = 'Old Ngo Renew';
+        $category_list->email = Auth::user()->email;
+        $category_list->save();
+
+
+        // $category_list = new NgoRenew();
+        // $category_list->fd_one_form_id = $get_reg_id->id;
+        // $category_list->status = 'Ongoing';
+        // $category_list->save();
+
+            $get_v_email = Auth::user()->email;
+
+            $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+        Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+            $message->to($get_v_email);
+            $message->subject('Old NGOAB Renew Service');
+        });
+        return redirect()->back();
+    }
+
 
     public function statusPage(){
 

@@ -13,6 +13,7 @@ use App\Models\FormCompleteStatus;
 use DateTime;
 use DateTimezone;
 use App\Models\RenewalFile;
+use App\Models\FdOneForm;
 use App\Http\Controllers\NGO\CommonController;
 class NgodocumentController extends Controller
 {
@@ -284,6 +285,38 @@ return Response::make(file_get_contents($file), 200, [
 'content-type'=>'application/pdf',
 ]);
 
+
+    }
+
+
+    public function renewFileDownloadFromView($title, $id){
+
+
+        if($title == 'foregin_pdf'){
+            $get_file_data = FdOneForm::where('id',$id)->value('foregin_pdf');
+
+        }elseif($title == 'copy_of_chalan'){
+            $get_file_data = FdOneForm::where('id',$id)->value('copy_of_chalan');
+        }elseif($title == 'due_vat_pdf'){
+            $get_file_data = FdOneForm::where('id',$id)->value('due_vat_pdf');
+        }elseif($title == 'change_ac_number'){
+            $get_file_data = FdOneForm::where('id',$id)->value('change_ac_number');
+        }
+
+        $file_path = url('public/'.$get_file_data);
+        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$file= public_path('/'). $get_file_data;
+
+$headers = array(
+'Content-Type: application/pdf',
+);
+
+// return Response::download($file,$filename.'.pdf', $headers);
+
+return Response::make(file_get_contents($file), 200, [
+'content-type'=>'application/pdf',
+]);
 
     }
 

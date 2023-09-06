@@ -89,142 +89,65 @@
                         </div>
                         <div class="col-xl-6 col-md-6 col-sm-12">
                             <div class="card">
+                                @if($foreignNgoType == 'Old')
+                                <div class="card-header"> NGO Renew Status</div>
+                                @else
                                 <div class="card-header">{{ trans('first_info.ngo_status')}}</div>
+                                @endif
                                 <div class="card-body">
 
                                     <?php
 
 
 $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->get();
+                                           ->value('verified_fd_eight_form_old');
 
-                                        if(count($data_m_one) == 0){
-$count = 11;
 
-                                        }else{
-
-                                    $data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->first();
-
-                                           $count = 0;
-                foreach ($data   as $a) {
-                    if (is_null($a)) {
-                        $count++;
-                  }
-                }
-
-            }
 
             $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                            ->value('id');
-            $data1_m_one = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
+
+
+
+
+
+
+
+            $data3_m_one = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)
                                            ->get();
 
 
-                                           if(count($data1_m_one) == 0){
-$count1 = 11;
-
-                                        }else{
-
-
-
-
-                                            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->value('id');
-                                           $data1 = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-                                           $count1 = 0;
-                foreach ($data1   as $a1) {
-                    if (is_null($a1)) {
-                        $count1++;
-                  }
-                }
-
-                                        }
-
-                                        $data2_m_one = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
-
-                                           if(count($data2_m_one) == 0){
-$count2 = 11;
-
-                                        }else{
-
-
-                                           $data2 = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-                                           $count2 = 0;
-                foreach ($data2   as $a2) {
-                    if (is_null($a2)) {
-                        $count2++;
-                  }
-                }
-            }
-
-            $data3_m_one = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
-
-                                           if(count($data3_m_one) == 0){
-$count3 = 11;
-
-                                        }else{
-
-
-
-                    $data3 = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-
-                $count3 = 0;
-                foreach ($data3   as $a3) {
-                    if (is_null($a3)) {
-                        $count3++;
-                  }
-                }
-            }
 
                                     ?>
 
 
                                    <table class="table table-borderless">
 
-                                    @if($count == 0)
-                                    <tr>
-                                        <td>{{ trans('first_info.fd_one')}}</td>
-                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
-                                    </tr>
-                                    @else
-                                       <tr>
-                                           <td>{{ trans('first_info.fd_one')}}</td>
-                                           <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
-                                       </tr>
-                                       @endif
-                                       @if($count1 == 0)
-                                       <tr>
-                                        <td>{{ trans('first_info.form_eight')}}</td>
-                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
-                                    </tr>
-                                       @else
-                                       <tr>
-                                           <td>{{ trans('first_info.form_eight')}}</td>
-                                           <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
-                                       </tr>
-                                       @endif
-                                       @if($count2 == 0)
-                                       <tr>
-                                        <td>{{ trans('first_info.member_info')}}</td>
-                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
-                                       </tr>
+                                    @if($data_m_one == 0)
 
-                                       @else
-                                       <tr>
-                                        <td>{{ trans('first_info.member_info')}}</td>
+                                    <tr>
+                                        @if($foreignNgoType == 'Old')
+<td>FD-8 Form</td>
+                                        @else
+                                        <td>{{ trans('first_info.fd_one')}}</td>
+                                        @endif
                                         <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                     </tr>
+
+
+
+                                    @else
+                                    <tr>
+                                        @if($foreignNgoType == 'Old')
+                                        <td>FD-8 Form</td>
+                                                                                @else
+                                                                                <td>{{ trans('first_info.fd_one')}}</td>
+                                                                                @endif
+                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
+                                    </tr>
                                        @endif
-                                       @if($count3 == 0)
+
+                                       @if(count($data3_m_one) > 0)
                                        <tr>
                                         <td>{{ trans('first_info.other_info')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>

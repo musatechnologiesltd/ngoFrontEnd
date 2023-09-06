@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
              //compose all the views....
     view()->composer('*', function ($view)
     {
+        if (Auth::check()) {
         $localNgoTypem = NgoTypeAndLanguage::where('user_id',Auth::user()->id)
             ->where('ngo_type','দেশিও')->value('ngo_type_new_old');
 
@@ -42,6 +43,12 @@ class AppServiceProvider extends ServiceProvider
 
         $view->with('localNgoTypem', $localNgoTypem );
         $view->with('foreignNgoType', $foreignNgoType );
+
+        }else{
+            $view->with('localNgoTypem', '1');
+            $view->with('foreignNgoType','2');
+
+        }
     });
 
 

@@ -168,7 +168,10 @@ Route::controller(OtherformController::class)->group(function () {
     Route::get('changeLanguage/{lan}', 'changeLanguage')->name('changeLanguage');
 
     Route::group(['middleware' => ['auth']], function() {
+
     Route::post('finalSubmitRegForm', 'finalSubmitRegForm')->name('finalSubmitRegForm');
+    Route::post('renewalSubmitForOld', 'renewalSubmitForOld')->name('renewalSubmitForOld');
+
     Route::post('updateUser','updateUser')->name('updateUser');
     Route::post('resetAllData','resetAllData')->name('resetAllData');
     Route::post('ngoTypeAndLanguagePost','ngoTypeAndLanguagePost')->name('ngoTypeAndLanguagePost');
@@ -220,6 +223,11 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
 Route::controller(FdoneformController::class)->group(function () {
+
+
+    Route::get('fromEightChiefForOldNgo', 'fromEightChiefForOldNgo')->name('fromEightChiefForOldNgo');
+
+
     Route::get('fromOneChief', 'fromOneChief')->name('fromOneChief');
     Route::get('attachTheSupportingPaper/{id}', 'attachTheSupportingPaper')->name('attachTheSupportingPaper');
     Route::get('planOfOperation/{id}', 'planOfOperation')->name('planOfOperation');
@@ -228,6 +236,10 @@ Route::controller(FdoneformController::class)->group(function () {
 
 
     Route::post('/uploadFromOnePdf', 'uploadFromOnePdf')->name('uploadFromOnePdf');
+
+    Route::post('/uploadFromEightPdfOld', 'uploadFromEightPdfOld')->name('uploadFromEightPdfOld');
+
+
     Route::get('/backFromStepTwo', 'backFromStepTwo')->name('backFromStepTwo');
     Route::get('/sourceOfFundDocDownload/{id}', 'sourceOfFundDocDownload')->name('sourceOfFundDocDownload');
     Route::get('/otherInfoFromOneDownload/{id}', 'otherInfoFromOneDownload')->name('otherInfoFromOneDownload');
@@ -239,6 +251,10 @@ Route::controller(FdoneformController::class)->group(function () {
     Route::post('/sourceOfFundUpdate', 'sourceOfFundUpdate')->name('sourceOfFundUpdate');
     Route::get('/fdOneFormEdit', 'fdOneFormEdit')->name('fdOneFormEdit');
     Route::get('/fdFormOneInfoPdf', 'fdFormOneInfoPdf')->name('fdFormOneInfoPdf');
+
+    Route::get('/fdFormEightInfoPdfOld', 'fdFormEightInfoPdfOld')->name('fdFormEightInfoPdfOld');
+
+
     Route::get('/fdFormOneInfo', 'fdFormOneInfo')->name('fdFormOneInfo');
     Route::get('/particularsOfOrganisation', 'particularsOfOrganisation')->name('particularsOfOrganisation');
     Route::post('/particularsOfOrganisationPost', 'particularsOfOrganisationPost')->name('particularsOfOrganisationPost');
@@ -284,6 +300,10 @@ Route::controller(NgodocumentController::class)->group(function () {
     Route::get('/ngoDocumentDownload/{id}', 'ngoDocumentDownload')->name('ngoDocumentDownload');
 
    Route::get('/ngoDocumentView', 'ngoDocumentView')->name('ngoDocumentView');
+
+
+   Route::get('/renewFileDownloadFromView/{title}/{id}', 'renewFileDownloadFromView')->name('renewFileDownloadFromView');
+
 
    Route::get('/deleteRenewalFileDownload/{title}/{id}', 'deleteRenewalFileDownload')->name('deleteRenewalFileDownload');
    Route::get('/deleteRenewalFile/{title}/{id}', 'deleteRenewalFile')->name('deleteRenewalFile');

@@ -24,6 +24,39 @@ class FdoneformController extends Controller
 {
 
 
+    public function fromEightChiefForOldNgo(Request $request){
+
+
+
+        $name = $request->name;
+        $designation = $request->designation;
+        $id = $request->id;
+        $place  = $request->place;
+
+
+
+
+        if($place == 0){
+
+
+        }else{
+
+            Session::put('place',$place);
+        }
+
+
+
+        $formEightData =FdOneForm::find($id);
+        $formEightData->chief_name = $name;
+        $formEightData->chief_desi = $designation;
+        $formEightData->save();
+
+         return $data = url('fdFormEightInfoPdfOld');
+
+
+    }
+
+
     public function fromOneChief(Request $request){
 
         $name = $request->name;
@@ -518,7 +551,27 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         }
         $uploadVerifiedPdf->save();
 
-        return redirect()->back()->with('success','Uploaded successfully!');;
+        return redirect()->back()->with('success','Uploaded successfully!');
+    }
+
+
+    public function uploadFromEightPdfOld(Request $request){
+
+
+        $cutomeFileName = time().date("Ymd");
+
+        $uploadVerifiedPdf = FdOneForm::find($request->id);
+        if ($request->hasfile('verified_fd_eight_form_old')) {
+            $filePath="verifiedFdOneForm";
+            $file = $request->file('verified_fd_eight_form_old');
+   $uploadVerifiedPdf->verified_fd_eight_form_old =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+        $uploadVerifiedPdf->save();
+
+        return redirect()->back()->with('success','Uploaded successfully!');
+
+
     }
 
 
@@ -1256,6 +1309,43 @@ if(in_array(null, $input['name'])){
 
 }
    return redirect('/ngoAllRegistrationForm');
+
+}
+
+
+
+public function fdFormEightInfoPdfOld(){
+
+    //dd(11);
+
+    $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
+    $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+    $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+    $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+    $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+    $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+    $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+
+
+    $file_Name_Custome = 'fd_eight_form';
+
+    $payment_detail = 11;
+
+
+
+
+    $pdf=PDF::loadView('front.form.foreign.formone.fdFormEightInfoPdfOld',[
+        'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+
+        'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+        'formOneMemberList'=>$formOneMemberList,
+        'get_all_data_adviser'=>$get_all_data_adviser,
+        'get_all_data_other'=>$get_all_data_other,
+        'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+        'allformOneData'=>$allformOneData
+
+    ],[],['format' => 'A4']);
+return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 }
 

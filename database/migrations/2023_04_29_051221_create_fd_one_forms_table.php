@@ -36,6 +36,7 @@ return new class extends Migration
             $table->string('copy_of_chalan')->nullable();
             $table->string('due_vat_pdf')->nullable();
             $table->string('change_ac_number')->nullable();
+            $table->string('verified_fd_eight_form_old')->nullable();
 
             $table->string('org_phone')->nullable();
             $table->string('org_mobile')->nullable();

@@ -85,12 +85,9 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                      ?>
 
-@if($ngoTypeInfo == 'দেশিও')
+
 <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
-@else
-<label for="" class="form-label mt-3">{{ trans('mview.place')}}:</label>
-<input type="text" data-parsley-required  name="{{ trans('mview.place')}}" value="{{ Session::get('place')}}"  class="form-control" id="mainPlace" placeholder="{{ trans('mview.place')}}">
-@endif
+
                                      <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}:</label>
                                      <input type="text" data-parsley-required  name="{{ trans('mview.ttThree')}}" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="{{ trans('mview.ttThree')}}">
                                      <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
@@ -104,7 +101,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                  @else
 
-                                 <button class="btn btn-sm btn-success" id="downloadButton345">
+                                 <button class="btn btn-sm btn-success" id="downloadButtonNew">
                                      {{ trans('form 8_bn.download_pdf')}}
                                  </button>
                                  @endif
@@ -118,7 +115,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              <td>
 
 
-                 @if($allformOneData->verified_fd_one_form == 0)
+                 @if($allformOneData->verified_fd_eight_form_old == 0)
                  <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                      {{ trans('form 8_bn.upload_pdf')}}
                  </button>
@@ -126,7 +123,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                  <?php
 
-                 $file_path = url($allformOneData->verified_fd_one_form);
+                 $file_path = url($allformOneData->verified_fd_eight_form_old);
                  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                  $extension = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -153,13 +150,13 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
  </div>
  <div class="modal-body">
-     <form method="post" action="{{ route('uploadFromOnePdf') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+     <form method="post" action="{{ route('uploadFromEightPdfOld') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
          @csrf
 
          <div class=" mb-3">
              <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-             <input type="file" data-parsley-required accept=".pdf" name="verified_fd_one_form"  class="form-control" id="">
+             <input type="file" data-parsley-required accept=".pdf" name="verified_fd_eight_form_old"  class="form-control" id="">
              <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="">
          </div>
 
@@ -369,7 +366,7 @@ if (is_null($a)) {
                                 @if(empty($allformOneData ->foregin_pdf))
 
                                 @else
-                                <a target="_blank"  href="{{ route('sourceOfFundDocDownload',base64_encode($allformOneData->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                <a target="_blank"  href="{{ route('renewFileDownloadFromView', ['title' =>'foregin_pdf', 'id' =>$allformOneData->id] )}}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
                             </td>
                          </tr>
@@ -505,7 +502,7 @@ if (is_null($a)) {
                                 @if(empty($allformOneData->copy_of_chalan))
 
                                 @else
-                                <a target="_blank"  href=""
+                                <a target="_blank"  href="{{ route('renewFileDownloadFromView', ['title' =>'copy_of_chalan', 'id' =>$allformOneData->id] )}}"
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
                                 </td>
@@ -518,7 +515,7 @@ if (is_null($a)) {
                                 @if(empty($allformOneData->due_vat_pdf))
 
                                 @else
-                                <a target="_blank"  href=""
+                                <a target="_blank"  href="{{ route('renewFileDownloadFromView', ['title' =>'due_vat_pdf', 'id' =>$allformOneData->id] )}}"
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
 
@@ -582,7 +579,7 @@ if (is_null($a)) {
                                 @if(empty($allformOneData->change_ac_number))
 
                                 @else
-                                <a target="_blank"  href=""
+                                <a target="_blank"  href="{{ route('renewFileDownloadFromView', ['title' =>'change_ac_number', 'id' =>$allformOneData->id] )}}"
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
 

@@ -1,7 +1,11 @@
 @extends('front.master.master')
 
 @section('title')
+@if($foreignNgoType == 'Old')
+Renew Submit | {{ trans('header.ngo_ab')}}
+@else
 {{ trans('reg_sub.reg_sub')}} | {{ trans('header.ngo_ab')}}
+@endif
 @endsection
 
 @section('css')
@@ -33,7 +37,12 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                 </div>
                 <div class="dashboard_right">
                     <div class="user_dashboard_right">
+
+                        @if($foreignNgoType == 'Old')
+                        <h4>NGO Renew Final Submission</h4>
+                        @else
                         <h4>{{ trans('reg_sub.ff')}}</h4>
+                        @endif
                     </div>
                     <div class="row mt-4">
                         <div class="col-12">
@@ -46,6 +55,9 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             <th>{{ trans('reg_sub.status')}}</th>
 
                                         </tr>
+
+
+
                                         <tr>
                                             <td>
 
@@ -77,6 +89,9 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
 
                                         </tr>
+
+
+
                                         <tr>
                                             <td>
                                                 @if(empty($get_date_lan_one))
@@ -107,6 +122,10 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
 
                                         </tr>
+
+
+
+
                                         <tr>
                                             <td>
                                                 @if(empty($get_date_fd_one))
@@ -122,7 +141,17 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @endif
 @endif
                                             </td>
-                                            <td>{{ trans('reg_sub.f_fd')}}</td>
+                                            <td>
+
+
+                                                @if($foreignNgoType == 'Old')
+                                                FD-8  Form Fill up
+                                                @else
+
+                                                {{ trans('reg_sub.f_fd')}}
+@endif
+
+                                            </td>
                                             <td style="position:relative">
 
                                                 @if($complete_status_fd_one == 'save_and_exit_from_three')
@@ -135,6 +164,11 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
 
                                         </tr>
+
+
+
+<!--new-->
+
                                         <tr>
                                             <td>
 
@@ -154,89 +188,49 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @endif
 
                                             </td>
-                                            <td>{{ trans('reg_sub.f_fd_s')}}</td>
+                                            <td>
+                                                @if($foreignNgoType == 'Old')
+                                                FD-8 Form Submit
+                                                @else
+
+                                               {{ trans('reg_sub.f_fd_s')}}
+                                                @endif
+
+
+                                            </td>
                                             <td style="position:relative">
+
+                                                @if($foreignNgoType == 'Old')
+
+
+                                                @if($complete_status_fd_one_pdf_old == 0)
+                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+                                                @else
+                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
+                                                @endif
+
+
+                                                @else
 
                                                 @if($complete_status_fd_one_pdf == 0)
                                                 <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
                                                 @else
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                 @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-
-                                                @if(empty($get_date_fd_eight))
 
 
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_eight->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_eight->format('d-m-Y') }}
-
-                                                @endif
-
-                                                @endif
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.fd_eight')}}</td>
-                                            <td style="position:relative">
-                                                @if($complete_status_fd_eight == 'complete' && $complete_status_fd_eight_pdf != 0 )
-                                                <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
-
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>
 
                                         </tr>
+
+
                                         <tr>
                                             <td>
 
 
-                                                @if(empty($get_date_fd_ngomember))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngomember->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_ngomember->format('d-m-Y') }}
-
-                                                @endif
-@endif
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.member_info')}}</td>
-                                            <td style="position:relative">
-
-@if(empty($get_date_fd_ngomember))
-<input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
-@else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
-                                                @endif
-
-
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>
-
-
-                                                @if(empty($get_date_fd_ngodoc))
+                                                @if(!$all_renewal_data)
 
 
 
@@ -247,11 +241,11 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
                                                 @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngodoc->format('d-m-Y')) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_renewal_data->created_at->format('d-m-Y')) }}
 
                                                 @else
 
-                                                {{ $get_date_fd_ngodoc->format('d-m-Y') }}
+                                                {{ $all_renewal_data->created_at->format('d-m-Y') }}
 
                                                 @endif
 @endif
@@ -259,7 +253,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
                                             <td>{{ trans('reg_sub.doc')}}</td>
                                             <td style="position:relative">
-                                                @if(empty($get_date_fd_ngodoc))
+                                                @if(!$all_renewal_data)
                                                 <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
                                                 @else
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
@@ -268,39 +262,32 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
 
                                         </tr>
-                                        <tr>
-                                            <td>
 
-                                                @if(empty($get_date_fd_ngodoc_mem))
-
-@else
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngodoc_mem->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_ngodoc_mem->format('d-m-Y') }}
-
-                                                @endif
-                                                @endif
-
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.nid_image')}}</td>
-                                            <td style="position:relative">
-                                                @if(empty($get_date_fd_ngodoc_mem))
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
                                     </table>
+
+                                    @if($foreignNgoType == 'Old')
+                                    <p class="fst-italic text-danger">
+                                        Once you complete all the steps. You will submit the ngo renew form
+                                    </p>
+                                    @else
                                     <p class="fst-italic text-danger">
                                         {{ trans('reg_sub.last')}}
                                     </p>
+@endif
+
+                                    @if($foreignNgoType == 'Old')
+
+
+                                    <form action="{{ route('renewalSubmitForOld') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="NGO Renew" name="reg_type" />
+                                    <div class="d-grid d-md-flex justify-content-md-end">
+                                        <button type="submit"  id="bb3" class="btn btn-registration" disabled>NGO Renew Final Submit</button>
+                                    </div>
+                                    </form>
+
+
+                                    @else
                                     <form action="{{ route('finalSubmitRegForm') }}" method="post">
                                         @csrf
                                         <input type="hidden" value="NGO Registration" name="reg_type" />
@@ -308,6 +295,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                         <button type="submit"  id="bb3" class="btn btn-registration" disabled>{{ trans('reg_sub.submit')}}</button>
                                     </div>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -369,7 +357,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 8){
+    if(all < 5){
         $('#bb3').attr('disabled',true);
 
     }else{

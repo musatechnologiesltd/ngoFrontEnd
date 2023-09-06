@@ -284,6 +284,32 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 
 <script>
+    $("#downloadButtonNew").click(function(){
+          var name = $('#mainName').val();
+          var designation = $('#mainDesignation').val();
+          var id = $('#mainId').val();
+          var place = $('#mainPlace').val();
+
+          //alert(22);
+
+          $.ajax({
+            url: "{{ route('fromEightChiefForOldNgo') }}",
+            method: 'GET',
+            data: {name:name,designation:designation,id:id,place:place},
+            success: function(data) {
+
+
+
+                window.open(data);
+
+            }
+            });
+
+      });
+      </script>
+
+
+<script>
     $("#downloadButton").click(function(){
           var name = $('#mainName').val();
           var designation = $('#mainDesignation').val();
