@@ -225,7 +225,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
                                         </tr>
 
-
+                                        @if($foreignNgoType == 'Old')
                                         <tr>
                                             <td>
 
@@ -262,6 +262,46 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
 
                                         </tr>
+
+                                        @else
+                                        <tr>
+                                            <td>
+
+
+                                                @if(!$get_date_fd_ngodoc)
+
+
+
+
+
+
+                                                @else
+
+
+                                                @if(session()->get('locale') == 'en')
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_ngodoc->format('d-m-Y')) }}
+
+                                                @else
+
+                                                {{ $get_date_fd_ngodoc->format('d-m-Y') }}
+
+                                                @endif
+@endif
+
+                                            </td>
+                                            <td>{{ trans('reg_sub.doc')}}</td>
+                                            <td style="position:relative">
+                                                @if(!$get_date_fd_ngodoc)
+                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+                                                @else
+                                                <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
+                                                @endif
+                                                <label for="chk"></label>
+                                            </td>
+
+                                        </tr>
+
+                                        @endif
 
                                     </table>
 

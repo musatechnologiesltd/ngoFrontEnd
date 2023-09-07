@@ -136,6 +136,19 @@
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.name')}} <span class="text-danger">*</span> </label>
                                     <input type="text" required name="name_of_head_in_bd" value="{{ Session::get('name_of_head_in_bd') }}" class="form-control" id="">
                                 </div>
+
+                                             <!--new code for ngo-->
+                                             <div class="mb-3">
+                                                <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
+                                                <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
+                                                <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                                            </div>
+                                            <!-- end new code -->
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                                     <div class="mt-2 mb-2">
@@ -316,6 +329,27 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.name')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required name="name_of_head_in_bd" value="{{ $allParticularsOfOrganisation->name_of_head_in_bd }}" class="form-control" id="">
                 </div>
+
+
+                             <!--new code for ngo-->
+                             <div class="mb-3">
+                                <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
+                                <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+                                <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
+                                <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+                                <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
+
+                            </div>
+                            <!-- end new code -->
+
+
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
                     <div class="mt-2 mb-2">

@@ -83,13 +83,13 @@
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Account Number <span class="text-danger">*</span> </label>
-                            <input type="text" required  name="main_account_number" class="form-control" id="">
+                            <input type="text" required  name="account_number" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Account Type <span class="text-danger">*</span> </label>
-                            <input type="text" required name="main_account_type" class="form-control" id="">
+                            <input type="text" required name="account_type" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
@@ -101,13 +101,13 @@
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Branch Name of Bank<span class="text-danger">*</span> </label>
-                            <input type="text" required name="main_account_name_of_branch" class="form-control" id="">
+                            <input type="text" required name="branch_name_of_bank" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Bank Address<span class="text-danger">*</span> </label>
-                            <input type="text" required  name="bank_address_main" class="form-control" id="">
+                            <input type="text" required  name="bank_address" class="form-control" id="">
                             </div>
                             </div>
                             </div>

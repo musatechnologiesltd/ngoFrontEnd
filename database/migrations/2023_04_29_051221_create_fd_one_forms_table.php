@@ -44,6 +44,11 @@ return new class extends Migration
             $table->string('web_site_name')->nullable();
             $table->string('nationality')->nullable();
 
+            $table->string('digital_signature')->nullable();
+            $table->string('digital_seal')->nullable();
+
+            $table->string('foregin_pdf')->nullable();
+
             $table->string('email')->nullable();
             $table->string('citizenship')->nullable();
             $table->string('profession')->nullable();

@@ -479,14 +479,30 @@ if (is_null($a)) {
 
 
                          <tr>
+                            <td></td>
+                            <td>({{ trans('form 8_bn.f')}})</td>
+                            <td>{{ trans('fd_one_step_three.s_statement')}}</td>
+                            <td>: {{ $allFormOneMemberList->salary_statement }}</td>
+                        </tr>
+
+
+                        <tr>
+                            <td></td>
+                            <td>({{ trans('form 8_bn.g')}})</td>
+                            <td>Mobile Number</td>
+                            <td>: {{ $allFormOneMemberList->mobile }}</td>
+                        </tr>
+
+
+                         <tr>
                              <td></td>
-                             <td>({{ trans('form 8_bn.f')}})</td>
-                             <td>{{ trans('fd_one_step_three.s_statement')}}</td>
-                             <td>: {{ $allFormOneMemberList->salary_statement }}</td>
+                             <td>({{ trans('form 8_bn.h')}})</td>
+                             <td>Email</td>
+                             <td>: {{ $allFormOneMemberList->email }}</td>
                          </tr>
                          <tr>
                              <td></td>
-                             <td>({{ trans('form 8_bn.g')}})</td>
+                             <td>({{ trans('form 8_bn.i')}})</td>
                              <td>{{ trans('fd_one_step_three.detail')}}</td>
                              <td>: {{ $allFormOneMemberList->other_occupation }}</td>
                          </tr>

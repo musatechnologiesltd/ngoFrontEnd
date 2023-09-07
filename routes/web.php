@@ -296,6 +296,7 @@ Route::controller(NgomemberController::class)->group(function () {
 Route::resource('ngoDocument',NgodocumentController::class);
 
 Route::controller(NgodocumentController::class)->group(function () {
+    
     Route::get('/ngoDocumentFinal', 'ngoDocumentFinal')->name('ngoDocumentFinal');
     Route::get('/ngoDocumentDownload/{id}', 'ngoDocumentDownload')->name('ngoDocumentDownload');
 

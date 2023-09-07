@@ -85,6 +85,18 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]" required type="text" class="form-control" id="">
                             </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"   required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" data-parsley-required class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"   required type="email" class="form-control" id="">
+                            </div>
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]" required type="text" class="form-control" id="">
@@ -141,6 +153,19 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]" required type="text" class="form-control" id="">
                             </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"   required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" data-parsley-required class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"   required type="email" class="form-control" id="">
+                            </div>
+
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]" required  type="text" class="form-control" id="">
@@ -197,6 +222,19 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11"  class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"    type="email" class="form-control" id="">
+                            </div>
+
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]"  type="text" class="form-control" id="">
@@ -253,6 +291,19 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11"  class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"    type="email" class="form-control" id="">
+                            </div>
+
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]"  type="text" class="form-control" id="">
@@ -309,6 +360,19 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]"  type="text" class="form-control" id="">
                             </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]"    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]"    type="email" class="form-control" id="">
+                            </div>
+
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]"  type="text" class="form-control" id="">
@@ -380,6 +444,21 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                                 <input name="staff_address[]" value="{{ $allFormOneMemberList->address }}" required type="text" class="form-control" id="">
                             </div>
+
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_mobile[]" value="{{ $allFormOneMemberList->mobile }}"  required oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                type = "number"
+                                maxlength = "11" minlength="11" data-parsley-required class="form-control" id="">
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                                <input name="staff_email[]" value="{{ $allFormOneMemberList->email }}"   required type="email" class="form-control" id="">
+                            </div>
+
+
+
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                                 <input name="date_of_join[]"  value="{{ date('d-m-Y', strtotime($allFormOneMemberList->date_of_join)) }}" required type="text" class="form-control datepicker" id="">
@@ -473,12 +552,27 @@ $cityzenValue = 0;
             </div>
             <div class="col-lg-6 col-sm-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.desi')}} <span class="text-danger">*</span> </label>
-                <input name="staff_position[]" "  type="text" class="form-control" id="">
+                <input name="staff_position[]"  type="text" class="form-control" id="">
             </div>
             <div class="col-lg-6 col-sm-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                 <input name="staff_address[]"   type="text" class="form-control" id="">
+
+
+
             </div>
+
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
+                <input name="staff_mobile[]"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                type = "number"
+                maxlength = "11" minlength="11" class="form-control" id="">
+            </div>
+            <div class="col-lg-6 col-sm-12 mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.Email')}} <span class="text-danger">*</span> </label>
+                <input name="staff_email[]"    type="email" class="form-control" id="">
+            </div>
+
             <div class="col-lg-6 col-sm-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.date_of_joining')}} <span class="text-danger">*</span> </label>
                 <input name="date_of_join[]"   type="text" class="form-control datepicker" id="">

@@ -131,13 +131,13 @@
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Account Number <span class="text-danger">*</span> </label>
-                            <input type="text" required  name="main_account_number" class="form-control" id="">
+                            <input type="text" required  name="account_number" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Account Type <span class="text-danger">*</span> </label>
-                            <input type="text" required name="main_account_type" class="form-control" id="">
+                            <input type="text" required name="account_type" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">
@@ -149,13 +149,13 @@
                             <div class="col-lg-6 col-sm-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Branch Name of Bank<span class="text-danger">*</span> </label>
-                            <input type="text" required name="main_account_name_of_branch" class="form-control" id="">
+                            <input type="text" required name="branch_name_of_bank" class="form-control" id="">
                             </div>
                             </div>
                             <div class="col-12">
                             <div class="mb-3">
                             <label for="" class="form-label">Bank Address<span class="text-danger">*</span> </label>
-                            <input type="text" required  name="bank_address_main" class="form-control" id="">
+                            <input type="text" required  name="bank_address" class="form-control" id="">
                             </div>
                             </div>
                             </div>
@@ -761,14 +761,7 @@ Update
 
                     </div>
 
-                    @if(Session::get('fdOneFormEditFour') == 'go_to_step_four')
-                    <div class="buttons d-flex justify-content-end mt-4">
-                        <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
-                        <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
 
-
-                    </div>
-                    @else
 
                     <div class="buttons d-flex justify-content-end mt-4">
                         <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
@@ -776,7 +769,7 @@ Update
                         <button class="btn btn-custom next_button" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
 
                     </div>
-                    @endif
+                    
                 </div>
             </form>
 

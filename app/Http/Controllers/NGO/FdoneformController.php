@@ -371,21 +371,21 @@ if(empty($formCompleteStatus)){
 
 
 
-        //  $request->validate([
-        //     'organization_name' => 'required|string',
-        //     'organization_name_ban' => 'required|string',
-        //     'address_of_head_office_eng' => 'required|string',
-        //     'organization_address' => 'required|string',
-        //     'address_of_head_office' => 'required|string',
-        //     'country_of_origin' => 'required|string',
-        //     'name_of_head_in_bd' => 'required|string',
-        //     'job_type' => 'required|string',
-        //     'address' => 'required|string',
-        //     'phone' => 'required|string',
-        //     'email' => 'required|string',
-        //     'profession' => 'required|string',
-        //     'submit_value' => 'required|string',
-        // ]);
+         $request->validate([
+            'organization_name' => 'required|string',
+            'organization_name_ban' => 'required|string',
+            'address_of_head_office_eng' => 'required|string',
+            'organization_address' => 'required|string',
+            'address_of_head_office' => 'required|string',
+            'country_of_origin' => 'required|string',
+            'name_of_head_in_bd' => 'required|string',
+            'job_type' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|string',
+            'profession' => 'required|string',
+            'submit_value' => 'required|string',
+        ]);
 
 
 
@@ -416,6 +416,23 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->citizenship = $arr_all;
         $uploadFormOneData->complete_status = $request->submit_value;
         $uploadFormOneData->time_for_api = $main_time;
+
+        if ($request->hasfile('digital_signature')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_signature');
+            $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('digital_seal')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_seal');
+            $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
         $uploadFormOneData->save();
 
 
@@ -486,6 +503,23 @@ if(!$checkCompleteStatusData){
        $uploadFormOneData->profession = $request->profession;
        $uploadFormOneData->citizenship = $arr_all;
        $uploadFormOneData->complete_status = $request->submit_value;
+
+       if ($request->hasfile('digital_signature')) {
+        $filePath="ngoHead";
+        $file = $request->file('digital_signature');
+        $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+    }
+
+
+    if ($request->hasfile('digital_seal')) {
+        $filePath="ngoHead";
+        $file = $request->file('digital_seal');
+        $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+    }
+
+
        $uploadFormOneData->save();
 
 
@@ -903,6 +937,11 @@ if($request->submit_value == 'exit_from_step_one_edit'){
                 $form->position=$input['staff_position'][$key];
                 $form->now_working_at=$input['now_working_at'][$key];
                 $form->address=$input['staff_address'][$key];
+
+                $form->email=$input['staff_email'][$key];
+                $form->mobile=$input['staff_mobile'][$key];
+
+
                 $form->date_of_join=$dateFormate;
                 $form->citizenship=$arr_all;
                 $form->salary_statement=$input['salary_statement'][$key];
@@ -969,6 +1008,10 @@ if($request->submit_value == 'exit_from_step_one_edit'){
             $form->name=$input['staff_name'][$key];
             $form->position=$input['staff_position'][$key];
             $form->address=$input['staff_address'][$key];
+
+            $form->email=$input['staff_email'][$key];
+                $form->mobile=$input['staff_mobile'][$key];
+
             $form->date_of_join=$dateFormate;
             $form->citizenship=$arr_all;
             $form->salary_statement=$input['salary_statement'][$key];
@@ -1107,7 +1150,7 @@ if($request->submit_value == 'exit_from_step_one_edit'){
     $mm_id = $stepFourData->id;
     $input = $request->all();
 
-    if($request->oldOrNew == 'Old'){
+    if($request->oldOrNew == 'Old' || $request->oldOrNew == 'New'){
 
 
         if(empty($request->bank_id)){
@@ -1143,7 +1186,10 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         $new_cat_dec_new = $input['information_type'];
 
+if(empty($new_cat_dec_new)){
 
+
+}else{
      foreach($new_cat_dec_new as $key => $new_cat_dec_new){
 
 
@@ -1157,7 +1203,7 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $form2->save();
 
      }
-
+    }
     }
 
     $checkCompleteStatusData = DB::table('form_complete_statuses')
@@ -1366,7 +1412,13 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $payment_detail = 11;
 
 
+        CommonController::checkNgotype();
 
+        $mainNgoType = CommonController::changeView();
+
+
+
+        if($mainNgoType== 'দেশিও'){
 
         $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
             'getNgoTypeForPdf'=>$getNgoTypeForPdf,
@@ -1380,7 +1432,24 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
         ],[],['format' => 'A4']);
     return $pdf->stream($file_Name_Custome.''.'.pdf');
+    }else{
 
+
+        $pdf=PDF::loadView('front.form.foreign.formone.fdFormOneInfoPdf',[
+            'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+
+            'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+            'formOneMemberList'=>$formOneMemberList,
+            'get_all_data_adviser'=>$get_all_data_adviser,
+            'get_all_data_other'=>$get_all_data_other,
+            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+            'allformOneData'=>$allformOneData
+
+        ],[],['format' => 'A4']);
+    return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+    }
 
     }
 

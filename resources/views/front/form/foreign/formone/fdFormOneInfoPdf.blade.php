@@ -188,13 +188,13 @@
         <tr>
             <td></td>
             <td></td>
-            <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
+            <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}},Telephone Number</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->address }}, @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
+            <td> {{ $allformOneData->address }}, {{ $allformOneData->tele_phone_number }}, @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }}
                 @else
                 {{ $allformOneData->phone }},
-                @endif, {{ $allformOneData->email }}</td>
+                @endif, {{ $allformOneData->email }} </td>
         </tr>
 
        <?php

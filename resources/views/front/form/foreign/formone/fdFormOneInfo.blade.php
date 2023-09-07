@@ -186,7 +186,7 @@ foreach ($data   as $a) {
 
                     ?>
 
-                    @if($count == 0)
+                    @if(!empty($data->verified_fd_one_form))
                     <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p>
 
                             @else
@@ -310,14 +310,14 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}</td>
+                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}, Telephone Number</td>
                                     <td>: {{ $allformOneData->address }},
                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                         {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
                                         @else
                                         {{ $allformOneData->phone }},
                                         @endif
-                                        {{ $allformOneData->email }}</td>
+                                        {{ $allformOneData->email }}, {{ $allformOneData->tele_phone_number }}</td>
                                 </tr>
                                  <?php
                                     if($getngoForLanguage =='দেশিও'){

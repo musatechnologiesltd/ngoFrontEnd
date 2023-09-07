@@ -36,6 +36,10 @@ class RegsubmitController extends Controller
 
         $get_date_fd_ngodoc_mem = NgoMemberNidPhoto::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_ngodoc = NgoOtherDoc::where('fd_one_form_id', $getFormOneId)->value('updated_at');
+
+
+//dd($get_date_fd_ngodoc);
+
         $get_date_fd_ngomember = NgoMemberList::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_eight = FormEight::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_one = FdOneForm::where('user_id',Auth::user()->id)->value('updated_at');
