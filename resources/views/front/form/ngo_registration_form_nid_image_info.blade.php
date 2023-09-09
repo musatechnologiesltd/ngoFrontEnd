@@ -7,9 +7,17 @@
                         <h3>{{ trans('fd_one_step_four.step_4')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($localNgoTypem == 'Old')
+                        <li> {{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        @endif
                         <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li >{{ trans('fd_one_step_one.member_title')}}</li>
+                        @if($localNgoTypem == 'Old')
+
+                        @else
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        @endif
                         <li class="active">{{ trans('fd_one_step_one.image_nid_title')}}</li>
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>

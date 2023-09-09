@@ -80,7 +80,33 @@
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
                     @endif
+                    <div class="mb-3">
+                        <label for="" class="form-label">Probable / expected annual budget of the organization<span class="text-danger">*</span> </label>
+                        <input type="text" name="annual_budget"  data-parsley-required class="form-control" id="">
+                    </div>
+                    @if(empty($allFormOneData->annual_budget_file))
+                    <div class="mb-3">
+                        <label for="" class="form-label">Probable / expected annual budget source of the organization<span class="text-danger">*</span> </label>
+                        <input type="file" name="annual_budget_file"  data-parsley-required class="form-control" id="">
+                    </div>
+                    @else
+                    <?php
 
+                    $file_path = url($allFormOneData->foregin_pdf);
+                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                    ?>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Probable / expected annual budget source of the organization<span class="text-danger">*</span> </label>
+                        <input type="file" name="annual_budget_file"   class="form-control" id="">
+                    </div>
+                    <b>{{ $filename.'.'.$extension }}</b>
+                    @endif
                     @else
 
                     <div class="mt-3">
@@ -276,13 +302,14 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     </button>
 </div>
 @endif
+<div class="mb-3">
+    <label for="" class="form-label">{{ trans('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-danger">*</span> </label>
+    <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
+</div>
 @endif
 
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
-                            </div>
+
 
 
                     </div>

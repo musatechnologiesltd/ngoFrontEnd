@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('name_slug')->nullable();
             $table->string('desi')->nullable();
             $table->string('dob')->nullable();
+            $table->string('job_picture')->nullable();
+            $table->string('job_sign')->nullable();
             $table->string('nid_no')->nullable();
             $table->string('phone')->nullable();
             $table->string('father_name')->nullable();
@@ -37,6 +39,7 @@ return new class extends Migration
             $table->text('time_for_api')->nullable();
             $table->string('complete_status')->nullable();
             $table->string('verified_form_eight')->nullable();
+            $table->string('employee_add_status')->nullable();
             $table->timestamps();
         });
     }

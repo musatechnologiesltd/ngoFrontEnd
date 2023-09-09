@@ -7,10 +7,13 @@
                         <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($localNgoTypem == 'Old')
+                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        @endif
                         <li class="active">{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -31,7 +34,16 @@
                         <?php
                         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
                         $formEightData = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
+                        $formEightDataForSign = DB::table('form_eights')
+                        ->where('fd_one_form_id',$fdOneFormId)
+                        ->value('employee_add_status');
 
+//dd($formEightDataForSign);
+                        $formEightDataForSignMain = DB::table('form_eights')
+                        ->where('fd_one_form_id',$fdOneFormId)
+                        ->first();
+
+                        //dd($formEightDataForSign);
                         $fromDateTo = DB::table('form_eights')
                         ->where('fd_one_form_id',$fdOneFormId)->value('form_date');
 
@@ -86,6 +98,232 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
 
                                     </div>
                                 </div>
+@if(count($formEightData) > 1)
+                                <div class="card mt-2">
+                                    <div class="card-body">
+
+<p class="text-danger">দুই জন এর নাম ,পদবী ,স্বাক্ষর ,সীল অবশ্যই আপলোড করতে হবে </p>
+
+@if(empty($formEightDataForSign))
+                                        <form action="{{ route('formEightNewData') }}" enctype="multipart/form-data" method="post" id="form" >
+@csrf
+
+
+<input type="hidden"  data-parsley-required class="form-control" value="{{ $formEightDataForSignMain->fd_one_form_id }}" name="fd_one_form_id" id="fd_one_form_id">
+
+
+                                            <div class="row">
+                                                <div class="mb-3 col-xl-3 col-sm-12">
+                                                    <label for="" class="form-label">নাম: </label>
+                                                    <input type="text"  data-parsley-required class="form-control" name="name_one" id="name_one" required>
+                                                </div>
+                                                <div class="mb-3 col-xl-3 col-sm-12">
+                                                    <label for="" class="form-label">পদবী: </label>
+                                                    <input type="text"   data-parsley-required class="form-control" required name="designation_one" id="designation_one">
+                                                </div>
+                                                <div class="mb-3 col-xl-3 col-sm-12">
+                                                    <label for="" class="form-label">স্বাক্ষর : </label>
+                                                    <input type="file" data-parsley-required accept="image/*" class="form-control" required name="signature_one" id="signature_one">
+
+                                                </div>
+
+                                                <div class="mb-3 col-xl-3 col-sm-12">
+                                                    <label for="" class="form-label">সীল  : </label>
+                                                    <input type="file" data-parsley-required  accept="image/*" class="form-control" required name="seal_one" id="seal_one">
+
+                                                </div>
+                                            </div>
+
+                                            <div class="buttons d-flex justify-content-end mt-1">
+
+                                                <button class="btn btn-primary btn-custom" name="submit_value" value="সেভ করুন" type="submit">সেভ করুন </button>
+                                            </div>
+                                        </form>
+
+                                        @else
+
+                                        @endif
+
+                                   @if(empty($formEightDataForSignMain->name_one))
+
+
+                                   @else
+                                        <table class="table table-bordered mt-2 custom_table">
+                                            <tr>
+                                                <th>নাম</th>
+                                                <th>পদবী</th>
+                                                <th>স্বাক্ষর</th>
+                                                <th>সীল</th>
+                                                <th></th>
+                                            </tr>
+
+                                            <tr>
+                                                <td>{{ $formEightDataForSignMain->name_one }}</td>
+                                                <td>{{ $formEightDataForSignMain->designation_one }}</td>
+                                                <td><img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_one }}"  style="height:40px;"/></td>
+                                                <td><img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_one }}"  style="height:40px;"/></td>
+                                                <td>
+
+<!--first persion edit modal -->
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#eexampleModal"><i
+    class="bi bi-pencil-fill"></i></button>
+
+
+    <div class="modal modal-xl fade" id="eexampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> আপডেট করুন </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" action="{{ route('formEightNewDataUpdate') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                                @csrf
+
+
+                                <form action="{{ route('formEightNewData') }}" enctype="multipart/form-data" method="post" id="form" >
+                                    @csrf
+
+
+                                    <input type="hidden"  data-parsley-required class="form-control" value="{{ $formEightDataForSignMain->fd_one_form_id }}" name="fd_one_form_id" id="fd_one_form_id">
+
+
+                                                                                <div class="row">
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">নাম: </label>
+                                                                                        <input type="text"  data-parsley-required value="{{ $formEightDataForSignMain->name_one }}" class="form-control" name="name_one" id="name_one" required>
+                                                                                    </div>
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">পদবী: </label>
+                                                                                        <input type="text"   data-parsley-required class="form-control" required  value="{{ $formEightDataForSignMain->designation_one }}" name="designation_one" id="designation_one">
+                                                                                    </div>
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">স্বাক্ষর : </label>
+                                                                                        <input type="file"  accept="image/*" class="form-control"  name="signature_one"  id="signature_one">
+                                                                                        <img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_one }}"  style="height:40px;"/>
+                                                                                    </div>
+
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">সীল  : </label>
+                                                                                        <input type="file"   accept="image/*" class="form-control"  name="seal_one" id="seal_one">
+                                                                                        <img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_one }}"  style="height:40px;"/>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+                                <button type="submit" class="btn btn-registration">{{ trans('form 8_bn.update')}}</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- end first person edit modal -->
+
+
+
+
+
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>{{ $formEightDataForSignMain->name_two }}</td>
+                                                <td>{{ $formEightDataForSignMain->designation_two}}</td>
+                                                <td><img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_two }}"  style="height:40px;"/></td>
+                                                <td><img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_two }}"  style="height:40px;"/></td>
+                                                <td>
+
+
+                                                    <!--first persion edit modal -->
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#eeeexampleModal"><i
+    class="bi bi-pencil-fill"></i></button>
+
+
+    <div class="modal modal-xl fade" id="eeeexampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> আপডেট করুন </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post" action="{{ route('formEightNewDataUpdate') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                                @csrf
+
+
+                                <form action="{{ route('formEightNewData') }}" enctype="multipart/form-data" method="post" id="form" >
+                                    @csrf
+
+
+                                    <input type="hidden"  data-parsley-required class="form-control" value="{{ $formEightDataForSignMain->fd_one_form_id }}" name="fd_one_form_id" id="fd_one_form_id">
+
+
+                                                                                <div class="row">
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">নাম: </label>
+                                                                                        <input type="text"  data-parsley-required value="{{ $formEightDataForSignMain->name_two }}" class="form-control" name="name_two" id="name_one" required>
+                                                                                    </div>
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">পদবী: </label>
+                                                                                        <input type="text"   data-parsley-required class="form-control" required  value="{{ $formEightDataForSignMain->designation_two }}" name="designation_two" id="designation_one">
+                                                                                    </div>
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">স্বাক্ষর : </label>
+                                                                                        <input type="file"  accept="image/*" class="form-control"  name="signature_two"  id="signature_one">
+                                                                                        <img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_two }}"  style="height:40px;"/>
+                                                                                    </div>
+
+                                                                                    <div class="mb-3 col-xl-3 col-sm-12">
+                                                                                        <label for="" class="form-label">সীল  : </label>
+                                                                                        <input type="file"   accept="image/*" class="form-control"  name="seal_two" id="seal_one">
+                                                                                        <img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_two }}"  style="height:40px;"/>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+
+                                <button type="submit" class="btn btn-registration">{{ trans('form 8_bn.update')}}</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- end first person edit modal -->
+                                                </td>
+                                            </tr>
+
+
+                                        </table>
+                                        @endif
+                                    </div>
+                                </div>
+
+
+                                @else
+
+                                @endif
+
+
                                 <table class="table table-bordered mt-4 custom_table">
                                     <tr>
                                         <th>{{ trans('form 8_bn.sl')}}</th>
@@ -211,6 +449,22 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                                                                                 </select>
                                                                                             </div>
 
+                                                                                            <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                                                                                <label for="" class="form-label">ছবি  <span class="text-danger">*</span> :</label>
+                                                                                                <input type="file" accept="image/*" data-parsley-required name="job_picture" class="form-control" id="">
+
+
+                                                                                                <img src="{{ $main_all_data_list->job_picture }}" style="height: 50px"/>
+                                                                                            </div>
+
+
+                                                                                            <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                                                                                                <label for="" class="form-label">স্বাক্ষর <span class="text-danger">*</span> :</label>
+                                                                                                <input type="file" accept="image/*" data-parsley-required name="job_sign" class="form-control" id="">
+
+                                                                                                <img src="{{ $main_all_data_list->job_sign }}" style="height: 50px"/>
+                                                                                            </div>
+
                                                                                         </div>
                                                                                         <button type="submit" class="btn btn-registration">{{ trans('form 8_bn.update')}}</button>
                                                                                     </form>
@@ -293,7 +547,13 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"> {{ trans('form 8_bn.ngo_committee_member_registration')}}</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+
+                    {{-- {{ trans('form 8_bn.ngo_committee_member_registration')}} --}}
+
+                    কার্যনির্বাহী কমিটির সদস্য যোগ করুন
+
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -366,6 +626,20 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
                                         <option value="{{ trans('form 8_bn.no')}}">{{ trans('form 8_bn.no')}}</option>
                                     </select>
                                 </div>
+
+
+                                <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+                                    <label for="" class="form-label">ছবি  <span class="text-danger">*</span> :</label>
+                                    <input type="file" accept="image/*" data-parsley-required name="job_picture" class="form-control" id="">
+                                </div>
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
+                                    <label for="" class="form-label">স্বাক্ষর <span class="text-danger">*</span> :</label>
+                                    <input type="file" accept="image/*" data-parsley-required name="job_sign" class="form-control" id="">
+                                </div>
+
+
 
                             </div>
                             <button type="submit" class="btn btn-registration">{{ trans('form 8_bn.add')}}</button>

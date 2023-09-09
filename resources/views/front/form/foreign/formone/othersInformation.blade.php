@@ -57,6 +57,7 @@
 
                 <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form" id="form"  data-parsley-validate="">
                     @csrf
+                    <input type="hidden" class="form-control" value="Foreign" name="ngoOrigin"  id="">
                     <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
                     <input type="hidden" class="form-control" value="{{ $getFormOneData->id }}" name="id"  id="">
 
@@ -769,7 +770,7 @@ Update
                         <button class="btn btn-custom next_button" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
 
                     </div>
-                    
+
                 </div>
             </form>
 

@@ -13,7 +13,11 @@
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
                         <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        @if($localNgoTypem == 'Old')
+
+                        @else
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        @endif
                         <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
@@ -81,6 +85,34 @@
                                             </label>
                                         <input type="text" class="form-control" value="" name="address_of_head_office_eng" data-parsley-required  id="">
                                     </div>
+
+
+                                    @if($localNgoTypem == 'Old')
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">সংস্থার টেলিফোন নম্বর<span class="text-danger">*</span> </label>
+                                        <input type="text" data-parsley-required  name="org_phone" class="form-control" id="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">সংস্থার মোবাইল নম্বর<span class="text-danger">*</span> </label>
+                                        <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        type = "number"
+                                        maxlength = "11" minlength="11" data-parsley-required  name="org_mobile" class="form-control" id="">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="" class="form-label">সংস্থার ইমেইল<span class="text-danger">*</span> </label>
+                                        <input type="email" data-parsley-required  name="org_email" class="form-control" id="">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for=""  class="form-label">সংস্থার ওয়েবসাইট <span class="text-danger">*</span> </label>
+                                        <input type="text" data-parsley-required  name="web_site_name" class="form-control" id="">
+                                    </div>
+
+                                    @else
+
+                                    @endif
+
+
                                     <?php
 
                                     $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
@@ -147,6 +179,37 @@
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                                     <input type="text" required name="address" value="{{ Session::get('address') }}" class="form-control" id="">
                                 </div>
+
+
+                                 <!--new code for ngo-->
+                                 <div class="mb-3">
+                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর  <span class="text-danger">*</span> </label>
+                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">ডিজিটাল সিল  <span class="text-danger">*</span> </label>
+                                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                                </div>
+                                <!-- end new code -->
+
+                                @if($localNgoTypem == 'Old')
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                                    <input type="text"  data-parsley-required name="nationality" class="form-control" id="">
+                                </div>
+                                @else
+
+                                @endif
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">{{ trans('fd_one_step_one.tele')}}</label>
+                                    <input type="text"   name="tele_phone_number" class="form-control" id="">
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
                                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

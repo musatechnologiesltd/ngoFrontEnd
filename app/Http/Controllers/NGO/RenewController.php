@@ -49,6 +49,28 @@ class RenewController extends Controller
 
 
     }
+
+
+    public function localNgoType(Request $request){
+
+        $structureStatus = $request->structureStatus;
+
+        if($structureStatus == 'Yes'){
+
+        $data = view('front.renew.local.structureStatusYes')->render();
+        return response()->json($data);
+
+
+        }elseif($structureStatus == 'No'){
+
+        $data = view('front.renew.local.structureStatusNo')->render();
+        return response()->json($data);
+
+
+        }
+
+
+    }
     public function renew(){
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->value('ngo_type');

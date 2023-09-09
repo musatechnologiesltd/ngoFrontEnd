@@ -257,6 +257,30 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
         });
     });
 </script>
+
+
+<script>
+    $(document).on('click', '.organizational_structurel', function () {
+
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('localNgoType') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
+
+
 <script>
     $("#downloadButton345").click(function(){
           var name = $('#mainName').val();

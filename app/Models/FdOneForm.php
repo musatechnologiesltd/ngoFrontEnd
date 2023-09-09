@@ -19,6 +19,7 @@ class FdOneForm extends Model
         'org_email',
         'web_site_name',
         'nationality',
+        'annual_budget_file',
        'copy_of_chalan',
           'due_vat_pdf',
            'change_ac_number',

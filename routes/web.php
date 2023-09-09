@@ -89,7 +89,7 @@ Route::controller(RenewController::class)->group(function () {
 
 
     Route::get('foreignNgoType', 'foreignNgoType')->name('foreignNgoType');
-
+    Route::get('localNgoType', 'localNgoType')->name('localNgoType');
 
     Route::get('changeAcNumberDownload/{id}', 'changeAcNumberDownload')->name('changeAcNumberDownload');
     Route::get('dueVatPdfDownload/{id}', 'dueVatPdfDownload')->name('dueVatPdfDownload');
@@ -296,7 +296,7 @@ Route::controller(NgomemberController::class)->group(function () {
 Route::resource('ngoDocument',NgodocumentController::class);
 
 Route::controller(NgodocumentController::class)->group(function () {
-    
+
     Route::get('/ngoDocumentFinal', 'ngoDocumentFinal')->name('ngoDocumentFinal');
     Route::get('/ngoDocumentDownload/{id}', 'ngoDocumentDownload')->name('ngoDocumentDownload');
 
@@ -315,6 +315,10 @@ Route::controller(NgodocumentController::class)->group(function () {
 
 Route::resource('formEightNgoCommitteMember',FormeightController::class);
 Route::controller(FormeightController::class)->group(function () {
+
+
+    Route::post('/formEightNewDataUpdate', 'formEightNewDataUpdate')->name('formEightNewDataUpdate');
+    Route::post('/formEightNewData', 'formEightNewData')->name('formEightNewData');
 
     Route::get('/updateDateData', 'updateDateData')->name('updateDateData');
 

@@ -743,6 +743,15 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         }
 
+
+        if ($request->hasfile('annual_budget_file')) {
+            $filePath="FdOneForm";
+            $file = $request->file('annual_budget_file');
+
+            $updateDataStepTwo->annual_budget_file =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
         if ($request->hasfile('plan_of_operation')) {
             $filePath="FdOneForm";
             $file = $request->file('plan_of_operation');
@@ -1210,6 +1219,35 @@ if(empty($new_cat_dec_new)){
     ->where('user_id',Auth::user()->id)
     ->first();
 
+
+    if($request->ngoOrigin == 'local'){
+        if(!$checkCompleteStatusData){
+
+            $newStatusData = new FormCompleteStatus();
+            $newStatusData->user_id = Auth::user()->id;
+            $newStatusData->fd_one_form_step_one_status = 1;
+            $newStatusData->fd_one_form_step_two_status = 1;
+            $newStatusData->fd_one_form_step_three_status = 1;
+            $newStatusData->fd_one_form_step_four_status = 1;
+            $newStatusData->form_eight_status = 0;
+            $newStatusData->ngo_member_status = 1;
+            $newStatusData->ngo_member_nid_photo_status = 1;
+            $newStatusData->ngo_other_document_status = 0;
+            $newStatusData->save();
+        }else{
+
+            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+            ->update([
+                'fd_one_form_step_four_status' => 1,
+                'ngo_member_status' => 1,
+                'ngo_member_nid_photo_status' => 1
+             ]);
+
+
+        }
+
+    }else{
+
     if(!$checkCompleteStatusData){
 
         $newStatusData = new FormCompleteStatus();
@@ -1237,7 +1275,7 @@ if(empty($new_cat_dec_new)){
     }
 
 
-
+}
 
     ///
 
@@ -1330,28 +1368,62 @@ if(in_array(null, $input['name'])){
    ->where('user_id',Auth::user()->id)
    ->first();
 
-   if(!$checkCompleteStatusData){
+   if($request->ngoOrigin == 'local'){
+    if(!$checkCompleteStatusData){
 
-       $newStatusData = new FormCompleteStatus();
-       $newStatusData->user_id = Auth::user()->id;
-       $newStatusData->fd_one_form_step_one_status = 1;
-       $newStatusData->fd_one_form_step_two_status = 1;
-       $newStatusData->fd_one_form_step_three_status = 1;
-       $newStatusData->fd_one_form_step_four_status = 1;
-       $newStatusData->form_eight_status = 0;
-       $newStatusData->ngo_member_status = 0;
-       $newStatusData->ngo_member_nid_photo_status = 0;
-       $newStatusData->ngo_other_document_status = 0;
-       $newStatusData->save();
-   }else{
+        $newStatusData = new FormCompleteStatus();
+        $newStatusData->user_id = Auth::user()->id;
+        $newStatusData->fd_one_form_step_one_status = 1;
+        $newStatusData->fd_one_form_step_two_status = 1;
+        $newStatusData->fd_one_form_step_three_status = 1;
+        $newStatusData->fd_one_form_step_four_status = 1;
+        $newStatusData->form_eight_status = 0;
+        $newStatusData->ngo_member_status = 1;
+        $newStatusData->ngo_member_nid_photo_status = 1;
+        $newStatusData->ngo_other_document_status = 0;
+        $newStatusData->save();
+    }else{
 
-       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
-       ->update([
-           'fd_one_form_step_four_status' => 1
-        ]);
+        FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+        ->update([
+            'fd_one_form_step_four_status' => 1,
+            'ngo_member_status' => 1,
+            'ngo_member_nid_photo_status' => 1
+         ]);
 
 
-   }
+    }
+
+}else{
+
+if(!$checkCompleteStatusData){
+
+    $newStatusData = new FormCompleteStatus();
+    $newStatusData->user_id = Auth::user()->id;
+    $newStatusData->fd_one_form_step_one_status = 1;
+    $newStatusData->fd_one_form_step_two_status = 1;
+    $newStatusData->fd_one_form_step_three_status = 1;
+    $newStatusData->fd_one_form_step_four_status = 1;
+    $newStatusData->form_eight_status = 1;
+    $newStatusData->ngo_member_status = 1;
+    $newStatusData->ngo_member_nid_photo_status = 1;
+    $newStatusData->ngo_other_document_status = 0;
+    $newStatusData->save();
+}else{
+
+    FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+    ->update([
+        'fd_one_form_step_four_status' => 1,
+        'form_eight_status' => 1,
+        'ngo_member_status' => 1,
+        'ngo_member_nid_photo_status' => 1
+     ]);
+
+
+}
+
+
+}
 
 }
    return redirect('/ngoAllRegistrationForm');

@@ -21,12 +21,14 @@
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
                         <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        @endif
                         <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
+                        {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
@@ -48,6 +50,7 @@
 
                 <form action="{{ route('fieldOfProposedActivitiesUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
+                    <input type="hidden" class="form-control" value="{{ $localNgoTypem }}" name="oldOrNew"  id="">
                     <input type="hidden" class="form-control" value="{{ $allFormOneData->id }}" name="mid"  id="">
                 <div class="main active">
                     <div class="text">
@@ -56,6 +59,61 @@
                     </div>
 
                     <div class="mt-3">
+                        @if($localNgoTypem == 'Old')
+
+                        @if(empty($allFormOneData->foregin_pdf))
+                        <div class="mb-3">
+                            <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
+                            <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                        </div>
+                        @else
+                        <?php
+
+                        $file_path = url($allFormOneData->foregin_pdf);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                        ?>
+     <div class="mb-3">
+        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
+        <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="">
+    </div>
+    <b>{{ $filename.'.'.$extension }}</b>
+                        @endif
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেট<span class="text-danger">*</span> </label>
+                            <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
+                        </div>
+
+                        @if(empty($allFormOneData->annual_budget_file))
+                        <div class="mb-3">
+                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> </label>
+                            <input type="file" name="annual_budget_file"  data-parsley-required class="form-control" id="">
+                        </div>
+                        @else
+                        <?php
+
+                        $file_path = url($allFormOneData->foregin_pdf);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                        ?>
+                        <div class="mb-3">
+                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> </label>
+                            <input type="file" name="annual_budget_file"   class="form-control" id="">
+                        </div>
+                        <b>{{ $filename.'.'.$extension }}</b>
+                        @endif
+                        @else
 
                         @if(empty($allFormOneData->plan_of_operation))
 
@@ -248,13 +306,16 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     </button>
 </div>
 @endif
+<div class="mb-3">
+    <label for="" class="form-label">{{ trans('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-danger">*</span> </label>
+    <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
+</div>
+
+@endif
 
 
 
-                            <div class="mb-3">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-danger">*</span> </label>
-                                <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
-                            </div>
+
 
 
                     </div>

@@ -44,6 +44,8 @@ return new class extends Migration
             $table->string('web_site_name')->nullable();
             $table->string('nationality')->nullable();
 
+            $table->string('annual_budget_file')->nullable();
+
             $table->string('digital_signature')->nullable();
             $table->string('digital_seal')->nullable();
 
