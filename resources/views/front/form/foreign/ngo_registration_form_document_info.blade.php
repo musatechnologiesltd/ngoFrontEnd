@@ -268,7 +268,7 @@ if($foreignNgoType == 'Old'){
                          <div class="mt-2">
                              <h6>{{ $filename }}</h6>
                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                     data-bs-target="#exampleModal3"><i class="fa fa-pencil"></i></button>
+                                     data-bs-target="#exampleModal3222"><i class="fa fa-pencil"></i></button>
 
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -280,7 +280,7 @@ if($foreignNgoType == 'Old'){
 
 
                                        <!--modal -->
-                                       <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal fade" id="exampleModal3222" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
                                              <div class="modal-content">
                                                  <div class="modal-header">
@@ -433,7 +433,7 @@ if($foreignNgoType == 'Old'){
                          <div class="mt-2">
                              <h6>{{ $filename }}</h6>
                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                     data-bs-target="#exampleModal4222"><i class="fa fa-pencil"></i></button>
 
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -445,7 +445,7 @@ if($foreignNgoType == 'Old'){
 
 
                                        <!--modal -->
-                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal fade" id="exampleModal4222" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
                                              <div class="modal-content">
                                                  <div class="modal-header">
@@ -515,7 +515,7 @@ if($foreignNgoType == 'Old'){
                          <div class="mt-2">
                              <h6>{{ $filename }}</h6>
                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                     data-bs-target="#exampleModal41212"><i class="fa fa-pencil"></i></button>
 
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -527,7 +527,7 @@ if($foreignNgoType == 'Old'){
 
 
                                        <!--modal -->
-                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal fade" id="exampleModal41212" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
                                              <div class="modal-content">
                                                  <div class="modal-header">
@@ -597,7 +597,7 @@ if($foreignNgoType == 'Old'){
                          <div class="mt-2">
                              <h6>{{ $filename }}</h6>
                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                     data-bs-target="#exampleModal455555"><i class="fa fa-pencil"></i></button>
 
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -609,7 +609,7 @@ if($foreignNgoType == 'Old'){
 
 
                                        <!--modal -->
-                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal fade" id="exampleModal455555" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
                                              <div class="modal-content">
                                                  <div class="modal-header">
@@ -682,7 +682,7 @@ if($foreignNgoType == 'Old'){
                                                 <div class="mt-2">
                                                     <h6>{{ $filename }}</h6>
                                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                                            data-bs-target="#exampleModal4888"><i class="fa fa-pencil"></i></button>
 
 
                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -694,7 +694,7 @@ if($foreignNgoType == 'Old'){
 
 
                                                               <!--modal -->
-                                                              <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                              <div class="modal fade" id="exampleModal4888" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -763,7 +763,7 @@ if($foreignNgoType == 'Old'){
               <div class="mt-2">
                   <h6>{{ $filename }}</h6>
                   <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                          data-bs-target="#exampleModal46767"><i class="fa fa-pencil"></i></button>
 
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -775,7 +775,7 @@ if($foreignNgoType == 'Old'){
 
 
                             <!--modal -->
-                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal46767" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                   <div class="modal-content">
                                       <div class="modal-header">
@@ -844,7 +844,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
               <div class="mt-2">
                   <h6>{{ $filename }}</h6>
                   <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                          data-bs-target="#exampleModal4rr"><i class="fa fa-pencil"></i></button>
 
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -856,7 +856,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                             <!--modal -->
-                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal4rr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                   <div class="modal-content">
                                       <div class="modal-header">
@@ -925,7 +925,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
               <div class="mt-2">
                   <h6>{{ $filename }}</h6>
                   <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                          data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                          data-bs-target="#exampleModal4ff"><i class="fa fa-pencil"></i></button>
 
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -937,7 +937,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                             <!--modal -->
-                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal4ff" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                   <div class="modal-content">
                                       <div class="modal-header">
@@ -1005,7 +1005,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                              <div class="mt-2">
                                  <h6>{{ $filename }}</h6>
                                  <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                         data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                         data-bs-target="#exampleModal4ee"><i class="fa fa-pencil"></i></button>
 
 
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -1017,7 +1017,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                            <!--modal -->
-                                           <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                           <div class="modal fade" id="exampleModal4ee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                              <div class="modal-dialog">
                                                  <div class="modal-content">
                                                      <div class="modal-header">
@@ -1084,7 +1084,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                              <div class="mt-2">
                                  <h6>{{ $filename }}</h6>
                                  <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                         data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                         data-bs-target="#exampleModal4dd"><i class="fa fa-pencil"></i></button>
 
 
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -1096,7 +1096,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                            <!--modal -->
-                                           <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                           <div class="modal fade" id="exampleModal4dd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                              <div class="modal-dialog">
                                                  <div class="modal-content">
                                                      <div class="modal-header">
@@ -1166,7 +1166,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                        <div class="mt-2">
                            <h6>{{ $filename }}</h6>
                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                   data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                   data-bs-target="#exampleModal4bb"><i class="fa fa-pencil"></i></button>
 
 
                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -1178,7 +1178,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                      <!--modal -->
-                                     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                     <div class="modal fade" id="exampleModal4bb" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">

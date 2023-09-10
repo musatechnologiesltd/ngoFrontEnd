@@ -1201,7 +1201,10 @@ if(empty($new_cat_dec_new)){
 //dd(11);
     if($request->ngoOrigin == 'local'){
 
+if($request->oldOrNew == 'Old'){
 
+
+}else{
         if(in_array(null, $input['name'])){
 
         }else{
@@ -1223,7 +1226,7 @@ if(empty($new_cat_dec_new)){
            }
 
         }
-
+    }
 
         if(!$checkCompleteStatusData){
 
@@ -1252,6 +1255,32 @@ if(empty($new_cat_dec_new)){
 
     }else{
 
+        if($request->oldOrNew == 'Old'){
+
+
+        }else{
+        if(in_array(null, $input['name'])){
+
+        }else{
+//dd(23);
+            if (array_key_exists("name", $input)){
+
+               $new_cat_dec = $input['name'];
+               foreach($new_cat_dec as $key => $new_cat_dec){
+
+               $form1= new FdOneAdviserList();
+               $form1->name=$input['name'][$key];
+               $form1->information=$input['information'][$key];
+               $form1->fd_one_form_id = $request->id;
+               $form1->time_for_api = $main_time;
+               $form1->save();
+
+            }
+
+           }
+
+        }
+    }
     if(!$checkCompleteStatusData){
 
         $newStatusData = new FormCompleteStatus();

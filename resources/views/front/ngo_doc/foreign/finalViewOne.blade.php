@@ -240,7 +240,7 @@ Work Procedure of the Board of Directors / Board of Trustees meeting of the orga
  <div class="mt-2">
      <h6>{{ $filename }}</h6>
      <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal3"><i class="fa fa-pencil"></i></button>
+             data-bs-target="#exampleModal3rr"><i class="fa fa-pencil"></i></button>
 
 
              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -252,7 +252,7 @@ Work Procedure of the Board of Directors / Board of Trustees meeting of the orga
 
 
                <!--modal -->
-               <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal fade" id="exampleModal3rr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header">
@@ -405,7 +405,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
  <div class="mt-2">
      <h6>{{ $filename }}</h6>
      <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+             data-bs-target="#exampleModal4r"><i class="fa fa-pencil"></i></button>
 
 
              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -417,7 +417,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
 
 
                <!--modal -->
-               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal fade" id="exampleModal4r" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header">
@@ -487,7 +487,7 @@ Attested copy of latest registration/renewal certificate
  <div class="mt-2">
      <h6>{{ $filename }}</h6>
      <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+             data-bs-target="#exampleModal4rr"><i class="fa fa-pencil"></i></button>
 
 
              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -499,7 +499,7 @@ Attested copy of latest registration/renewal certificate
 
 
                <!--modal -->
-               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal fade" id="exampleModal4rr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header">
@@ -569,7 +569,7 @@ Under Right To Information Act - 2009 - Focal Point appointed: Copy of notificat
  <div class="mt-2">
      <h6>{{ $filename }}</h6>
      <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+             data-bs-target="#exampleModal4rrr"><i class="fa fa-pencil"></i></button>
 
 
              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -581,7 +581,7 @@ Under Right To Information Act - 2009 - Focal Point appointed: Copy of notificat
 
 
                <!--modal -->
-               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal fade" id="exampleModal4rrr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header">
@@ -654,7 +654,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <div class="mt-2">
                             <h6>{{ $filename }}</h6>
                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                                    data-bs-target="#exampleModal4rrrr"><i class="fa fa-pencil"></i></button>
 
 
                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -666,7 +666,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                       <!--modal -->
-                                      <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal fade" id="exampleModal4rrrr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -735,7 +735,7 @@ Attested copy of constitution approved by primary registering authority
 <div class="mt-2">
 <h6>{{ $filename }}</h6>
 <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-  data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+  data-bs-target="#exampleModal4eeee"><i class="fa fa-pencil"></i></button>
 
 
   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -747,7 +747,7 @@ Attested copy of constitution approved by primary registering authority
 
 
     <!--modal -->
-    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal4eeee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -816,7 +816,7 @@ Clean copy of the constitution jointly signed by the chairman and secretary of t
 <div class="mt-2">
 <h6>{{ $filename }}</h6>
 <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-  data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+  data-bs-target="#exampleModal4hhhh"><i class="fa fa-pencil"></i></button>
 
 
   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -828,7 +828,7 @@ Clean copy of the constitution jointly signed by the chairman and secretary of t
 
 
     <!--modal -->
-    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal4hhhh" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -897,7 +897,7 @@ Original copy of invoice for payment of change fee in any section, sub-section o
 <div class="mt-2">
 <h6>{{ $filename }}</h6>
 <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-  data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+  data-bs-target="#exampleModal4jj"><i class="fa fa-pencil"></i></button>
 
 
   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -909,7 +909,7 @@ Original copy of invoice for payment of change fee in any section, sub-section o
 
 
     <!--modal -->
-    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal4jj" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
@@ -977,7 +977,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
      <div class="mt-2">
          <h6>{{ $filename }}</h6>
          <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                 data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                 data-bs-target="#exampleModal4kk"><i class="fa fa-pencil"></i></button>
 
 
                  <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -989,7 +989,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                    <!--modal -->
-                   <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   <div class="modal fade" id="exampleModal4kk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
                          <div class="modal-content">
                              <div class="modal-header">
@@ -1056,7 +1056,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
      <div class="mt-2">
          <h6>{{ $filename }}</h6>
          <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                 data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+                 data-bs-target="#exampleModal4kkk"><i class="fa fa-pencil"></i></button>
 
 
                  <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -1068,7 +1068,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                    <!--modal -->
-                   <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                   <div class="modal fade" id="exampleModal4kkk" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
                          <div class="modal-content">
                              <div class="modal-header">
@@ -1138,7 +1138,7 @@ Copy of 'Unchanged' certificate (notarized/attested by the Peace of Justice Depa
 <div class="mt-2">
    <h6>{{ $filename }}</h6>
    <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-           data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+           data-bs-target="#exampleModal4rrr5"><i class="fa fa-pencil"></i></button>
 
 
            <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
@@ -1150,7 +1150,7 @@ Copy of 'Unchanged' certificate (notarized/attested by the Peace of Justice Depa
 
 
              <!--modal -->
-             <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+             <div class="modal fade" id="exampleModal4rrr5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog">
                    <div class="modal-content">
                        <div class="modal-header">
