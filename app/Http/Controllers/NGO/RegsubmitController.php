@@ -61,7 +61,7 @@ class RegsubmitController extends Controller
 
         if($mainNgoType== 'দেশিও'){
 
-        return view('front.other.reg_submit_list',compact('complete_status_fd_one_pdf_old','complete_status_fd_eight_pdf','complete_status_fd_eight','complete_status_fd_one_pdf','complete_status_fd_one','get_value_fd_one_one','get_date_lan_one','get_date_fd_eight','get_date_fd_one','get_date_fd_ngodoc_mem','get_date_fd_ngodoc','get_date_fd_ngomember'));
+        return view('front.other.reg_submit_list',compact('all_renewal_data','complete_status_fd_one_pdf_old','complete_status_fd_eight_pdf','complete_status_fd_eight','complete_status_fd_one_pdf','complete_status_fd_one','get_value_fd_one_one','get_date_lan_one','get_date_fd_eight','get_date_fd_one','get_date_fd_ngodoc_mem','get_date_fd_ngodoc','get_date_fd_ngomember'));
         }else{
             return view('front.other.foreign.reg_submit_list',compact('all_renewal_data','complete_status_fd_one_pdf_old','complete_status_fd_eight_pdf','complete_status_fd_eight','complete_status_fd_one_pdf','complete_status_fd_one','get_value_fd_one_one','get_date_lan_one','get_date_fd_eight','get_date_fd_one','get_date_fd_ngodoc_mem','get_date_fd_ngodoc','get_date_fd_ngomember'));
         }

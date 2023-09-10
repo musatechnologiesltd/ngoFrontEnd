@@ -116,6 +116,24 @@ font-family: 'banglabold', sans-serif;
     </tr>
     @endforeach
 </table>
+<table style="margin-top: 60px; border:none !important;">
+    <tr>
+        <td style="text-align: center; border:none !important;">
+            <img src="{{ asset('/') }}{{ $all_all_parti->signature_one}}" alt="" style="height:30px;"> <br>
+            Date: <?php   echo date("d/m/Y", strtotime($all_all_parti->updated_at)); ?> <br>
+            <img src="{{ asset('/') }}{{ $all_all_parti->seal_one}}" alt="" style="height:30px;"> <br>
+            ({{ $all_all_parti->name_one }}) <br>
+            {{ $all_all_parti->designation_one}}
+        </td>
+        <td style="text-align: center; border:none !important;">
+            <img src="{{ asset('/') }}{{ $all_all_parti->signature_two}}" alt="" style="height:30px;"> <br>
+            Date: <?php   echo date("d/m/Y", strtotime($all_all_parti->updated_at)); ?> <br>
+            <img src="{{ asset('/') }}{{ $all_all_parti->seal_two}}" alt="" style="height:30px;"> <br>
+            ({{ $all_all_parti->name_two}}) <br>
+            {{ $all_all_parti->designation_two}}
+        </td>
+    </tr>
+</table>
   </div>
 
 </body>

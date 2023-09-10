@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('list_of_board_of_directors_or_board_of_trustees')->nullable();
             $table->string('organization_by_laws_or_constitution')->nullable();
             $table->string('work_procedure_of_organization')->nullable();
+            $table->string('nid_and_image_of_executive_committee_members')->nullable();
+            $table->string('approval_of_executive_committee')->nullable();
+            $table->string('committee_members_list')->nullable();
+            $table->string('registration_renewal_fee')->nullable();
             $table->string('last_ten_years_audit_report_and_annual_report_of_the_company')->nullable();
             $table->string('registration_certificate')->nullable();
             $table->string('attested_copy_of_latest_registration_or_renewal_certificate')->nullable();

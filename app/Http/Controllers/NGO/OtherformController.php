@@ -410,25 +410,61 @@ return redirect('ngoAllRegistrationForm');
 
     public function finalSubmitRegForm(Request $request){
 
+//dd(11);
 
 
-        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+$mainNgoTypeOld = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
 
 
-        $category_list = new NgoStatus();
-        $category_list->fd_one_form_id = $get_reg_id->id;
-        $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
-        $category_list->reg_type = $request->reg_type;
-        $category_list->status = 'Ongoing';
-        $category_list->email = Auth::user()->email;
-        $category_list->save();
 
-            $get_v_email = Auth::user()->email;
+if($mainNgoTypeOld == 'Old'){
 
-        Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
-            $message->to($get_v_email);
-            $message->subject('NGOAB Registration Service || Tracking Number');
-        });
+    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+    $category_list = new NgoStatus();
+    $category_list->fd_one_form_id = $get_reg_id->id;
+    $category_list->status = 'Old Ngo Renew';
+    $category_list->email = Auth::user()->email;
+    $category_list->save();
+
+
+    // $category_list = new NgoRenew();
+    // $category_list->fd_one_form_id = $get_reg_id->id;
+    // $category_list->status = 'Ongoing';
+    // $category_list->save();
+
+        $get_v_email = Auth::user()->email;
+
+        $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+    Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+        $message->to($get_v_email);
+        $message->subject('Old NGOAB Renew Service');
+    });
+
+}else{
+
+    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+
+    $category_list = new NgoStatus();
+    $category_list->fd_one_form_id = $get_reg_id->id;
+    $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
+    $category_list->reg_type = $request->reg_type;
+    $category_list->status = 'Ongoing';
+    $category_list->email = Auth::user()->email;
+    $category_list->save();
+
+        $get_v_email = Auth::user()->email;
+
+    Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+        $message->to($get_v_email);
+        $message->subject('NGOAB Registration Service || Tracking Number');
+    });
+
+}
+
 
 
         return redirect()->back();

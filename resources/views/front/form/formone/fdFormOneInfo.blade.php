@@ -186,7 +186,7 @@ foreach ($data   as $a) {
 
                     ?>
 
-                    @if($count == 0)
+                    @if(!empty($data->verified_fd_one_form))
                     <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p>
 
                             @else

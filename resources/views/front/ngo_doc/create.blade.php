@@ -37,7 +37,21 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             @csrf
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    {{ trans('other_doc.list_of_authorized_executive_committee')}} <span class="text-danger">*</span>
+                                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -49,7 +63,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             </div>
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    {{ trans('other_doc.attested_copy_of_constitution')}} <span class="text-danger">*</span>
+                                    গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -62,7 +76,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    {{ trans('other_doc.activity_report_of_the_organization')}} <span class="text-danger">*</span>
+                                    সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -75,7 +89,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    {{ trans('other_doc.donors_receipt_attested_by_head_of_institution')}} <span class="text-danger">*</span>
+                                    দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -89,7 +103,34 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    {{ trans('other_doc.general_meeting_regarding')}} <span class="text-danger">*</span>
+                                    কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ  <span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row">

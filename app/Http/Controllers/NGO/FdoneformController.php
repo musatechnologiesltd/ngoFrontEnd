@@ -1088,24 +1088,8 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
         $main_time = $dt->format('H:i:s a');
-
-
-    $cutomeFileName = time().date("Ymd");
-
-    // $request->validate([
-
-    //     'information_type.*' => 'required',
-    //     'name.*' => 'required',
-    //     'information.*' => 'required',
-    //     'complete_status' => 'required|string',
-    //     'treasury_number' => 'required|string',
-    //     'vat_invoice_number' => 'required|string',
-    //     'attach_the__supporting_papers' => 'required',
-    //     'board_of_revenue_on_fees' => 'required',
-
-    // ]);
+        $cutomeFileName = time().date("Ymd");
 
     $stepFourData = FdOneForm::find($request->id);
     $stepFourData->user_id = Auth::user()->id;
@@ -1132,20 +1116,13 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $stepFourData->change_ac_number =CommonController::pdfUpload($request,$file,$filePath);
 
     }
-
-
-
-
-
-    if ($request->hasfile('attach_the__supporting_papers')) {
+if ($request->hasfile('attach_the__supporting_papers')) {
         $filePath="attach_the_supporting_papers";
         $file = $request->file('attach_the__supporting_papers');
         $stepFourData->attach_the__supporting_paper =CommonController::pdfUpload($request,$file,$filePath);
 
     }
-
-
-    if ($request->hasfile('board_of_revenue_on_fees')) {
+if ($request->hasfile('board_of_revenue_on_fees')) {
        $file = $request->file('board_of_revenue_on_fees');
        $filePath="board_of_revenue_on_fees";
        $stepFourData->board_of_revenue_on_fees =CommonController::pdfUpload($request,$file,$filePath);
@@ -1158,6 +1135,8 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
     $mm_id = $stepFourData->id;
     $input = $request->all();
+
+
 
     if($request->oldOrNew == 'Old' || $request->oldOrNew == 'New'){
 
@@ -1219,8 +1198,33 @@ if(empty($new_cat_dec_new)){
     ->where('user_id',Auth::user()->id)
     ->first();
 
-
+//dd(11);
     if($request->ngoOrigin == 'local'){
+
+
+        if(in_array(null, $input['name'])){
+
+        }else{
+//dd(23);
+            if (array_key_exists("name", $input)){
+
+               $new_cat_dec = $input['name'];
+               foreach($new_cat_dec as $key => $new_cat_dec){
+
+               $form1= new FdOneAdviserList();
+               $form1->name=$input['name'][$key];
+               $form1->information=$input['information'][$key];
+               $form1->fd_one_form_id = $request->id;
+               $form1->time_for_api = $main_time;
+               $form1->save();
+
+            }
+
+           }
+
+        }
+
+
         if(!$checkCompleteStatusData){
 
             $newStatusData = new FormCompleteStatus();

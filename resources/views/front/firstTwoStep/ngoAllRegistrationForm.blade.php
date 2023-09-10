@@ -114,13 +114,28 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                         <div class="card-body">
 
                             <ul class="nav nav-tabs custom_tab">
+                                @if($mainNgoType== 'Foreign')
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#tofban">
 
+
+                                        @if($mainNgoType== 'Foreign')
                                           @if($foreignNgoType == 'Old')
 {{ trans('fd_one_step_one.fd8')}}
                         @else
                      {{ trans('fd_one_step_one.fd_one_form_title')}}
+                        @endif
+
+                        @else
+
+
+                        @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif
+
+
                         @endif
 
                                     </a>
@@ -131,6 +146,44 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#tofen2">{{ trans('fd_one_step_one.other_doc_title')}}</a>
                                 </li>
+                                @else
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">
+
+
+                                        @if($mainNgoType== 'Foreign')
+                                          @if($foreignNgoType == 'Old')
+{{ trans('fd_one_step_one.fd8')}}
+                        @else
+                     {{ trans('fd_one_step_one.fd_one_form_title')}}
+                        @endif
+
+                        @else
+
+
+                        @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif
+
+
+                        @endif
+
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">ফরম নং -০৮</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.other_doc_title')}}</a>
+                                </li>
+
+                                @endif
 
                             </ul>
 
@@ -159,7 +212,12 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                             <div class="tab-content custom_tab_content">
                                 <div class="tab-pane container active" id="tofban">
+
+                                    @if($localNgoTypem == 'Old')
+                                    @include('front.form.formone.fdFormOneInfoOld')
+                                    @else
                                    @include('front.form.formone.fdFormOneInfo')
+                                   @endif
 
                                 </div>
                                 <div class="tab-pane container" id="tofen">
@@ -167,7 +225,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                 </div>
 
-                                <div class="tab-pane container" id="tofen1">
+                                {{-- <div class="tab-pane container" id="tofen1">
                                   @include('front.ngomember.finalView')
 
                                 </div>
@@ -175,10 +233,15 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                 <div class="tab-pane container" id="tofen2">
                                     @include('front.ngo_doc.finalView')
 
-                                </div>
+                                </div> --}}
 
                                 <div class="tab-pane container" id="tofen3">
-                                @include('front.ngo_member_doc.finalView')
+
+                                    @if($localNgoTypem == 'Old')
+                                    @include('front.ngo_doc.finalViewOne')
+                                    @else
+                                    @include('front.ngo_doc.finalView')
+                                @endif
 
                                 </div>
 

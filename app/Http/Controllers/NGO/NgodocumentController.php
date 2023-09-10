@@ -65,6 +65,39 @@ class NgodocumentController extends Controller
 
        }
 
+
+       if ($request->hasfile('nid_and_image_of_executive_committee_members')) {
+        $filePath="RenewalFile";
+       $file = $request->file('nid_and_image_of_executive_committee_members');
+$newDataAll->nid_and_image_of_executive_committee_members =CommonController::pdfUpload($request,$file,$filePath);
+
+   }
+
+
+
+   if ($request->hasfile('approval_of_executive_committee')) {
+    $filePath="RenewalFile";
+   $file = $request->file('approval_of_executive_committee');
+$newDataAll->approval_of_executive_committee =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+
+if ($request->hasfile('committee_members_list')) {
+    $filePath="RenewalFile";
+   $file = $request->file('committee_members_list');
+$newDataAll->committee_members_list =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('registration_renewal_fee')) {
+    $filePath="RenewalFile";
+   $file = $request->file('registration_renewal_fee');
+$newDataAll->registration_renewal_fee =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
        if ($request->hasfile('list_of_board_of_directors_or_board_of_trustees')) {
         $filePath="RenewalFile";
        $file = $request->file('list_of_board_of_directors_or_board_of_trustees');
@@ -268,6 +301,14 @@ $newDataAll->save();
             $get_file_data = RenewalFile::where('id',$id)->value('previous_constitution_and_current_constitution_compare');
         }elseif($title == 'organization_if_unchanged'){
             $get_file_data = RenewalFile::where('id',$id)->value('constitution_of_the_organization_if_unchanged');
+        }elseif($title == 'nid_and_image_of_executive_committee_members'){
+            $get_file_data = RenewalFile::where('id',$id)->value('nid_and_image_of_executive_committee_members');
+        }elseif($title == 'approval_of_executive_committee'){
+            $get_file_data = RenewalFile::where('id',$id)->value('approval_of_executive_committee');
+        }elseif($title == 'committee_members_list'){
+            $get_file_data = RenewalFile::where('id',$id)->value('committee_members_list');
+        }elseif($title == 'registration_renewal_fee'){
+            $get_file_data = RenewalFile::where('id',$id)->value('registration_renewal_fee');
         }
 
         $file_path = url('public/'.$get_file_data);
@@ -352,6 +393,14 @@ return Response::make(file_get_contents($file), 200, [
             $newDataAll->previous_constitution_and_current_constitution_compare = null;
         }elseif($title == 'organization_if_unchanged'){
             $newDataAll->constitution_of_the_organization_if_unchanged = null;
+        }elseif($title == 'nid_and_image_of_executive_committee_members'){
+            $newDataAll->nid_and_image_of_executive_committee_members = null;
+        }elseif($title == 'approval_of_executive_committee'){
+            $newDataAll->approval_of_executive_committee = null;
+        }elseif($title == 'committee_members_list'){
+            $newDataAll->committee_members_list = null;
+        }elseif($title == 'registration_renewal_fee'){
+            $newDataAll->registration_renewal_fee = null;
         }
         $newDataAll->save();
 
@@ -410,6 +459,39 @@ return Response::make(file_get_contents($file), 200, [
       $newDataAll->constitution_of_the_organization_if_unchanged =CommonController::pdfUpload($request,$file,$filePath);
 
            }
+
+
+           if ($request->hasfile('nid_and_image_of_executive_committee_members')) {
+            $filePath="RenewalFile";
+           $file = $request->file('nid_and_image_of_executive_committee_members');
+    $newDataAll->nid_and_image_of_executive_committee_members =CommonController::pdfUpload($request,$file,$filePath);
+
+       }
+
+
+
+       if ($request->hasfile('approval_of_executive_committee')) {
+        $filePath="RenewalFile";
+       $file = $request->file('approval_of_executive_committee');
+    $newDataAll->approval_of_executive_committee =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+
+
+    if ($request->hasfile('committee_members_list')) {
+        $filePath="RenewalFile";
+       $file = $request->file('committee_members_list');
+    $newDataAll->committee_members_list =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+    if ($request->hasfile('registration_renewal_fee')) {
+        $filePath="RenewalFile";
+       $file = $request->file('registration_renewal_fee');
+    $newDataAll->registration_renewal_fee =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
 
            if ($request->hasfile('list_of_board_of_directors_or_board_of_trustees')) {
             $filePath="RenewalFile";

@@ -38,7 +38,7 @@
                         ->where('fd_one_form_id',$fdOneFormId)
                         ->value('employee_add_status');
 
-//dd($formEightDataForSign);
+//dd(count($formEightData));
                         $formEightDataForSignMain = DB::table('form_eights')
                         ->where('fd_one_form_id',$fdOneFormId)
                         ->first();
@@ -98,7 +98,7 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
 
                                     </div>
                                 </div>
-@if(count($formEightData) > 1)
+@if(count($formEightData) >= 1)
                                 <div class="card mt-2">
                                     <div class="card-body">
 
@@ -236,7 +236,9 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                 </td>
                                             </tr>
 
+@if($formEightDataForSignMain->name_two == 0)
 
+@else
                                             <tr>
                                                 <td>{{ $formEightDataForSignMain->name_two }}</td>
                                                 <td>{{ $formEightDataForSignMain->designation_two}}</td>
@@ -312,7 +314,7 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                 </td>
                                             </tr>
 
-
+@endif
                                         </table>
                                         @endif
                                     </div>
