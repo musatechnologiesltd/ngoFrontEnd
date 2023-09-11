@@ -338,6 +338,8 @@ return Response::make(file_get_contents($file), 200, [
 
         }elseif($title == 'copy_of_chalan'){
             $get_file_data = FdOneForm::where('id',$id)->value('copy_of_chalan');
+        }elseif($title == 'annual_file'){
+            $get_file_data = FdOneForm::where('id',$id)->value('annual_budget_file');
         }elseif($title == 'due_vat_pdf'){
             $get_file_data = FdOneForm::where('id',$id)->value('due_vat_pdf');
         }elseif($title == 'change_ac_number'){

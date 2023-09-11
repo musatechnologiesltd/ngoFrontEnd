@@ -86,7 +86,17 @@
                                                     <table class="table table-bordered">
                                                         <tr>
                                                             <td>নিবন্ধন নম্বর</td>
-                                                            <td>{{ $ngo_list_all->registration_number }}</td>
+                                                            <td>
+
+
+                                                                @if($oldOrNewStatus->ngo_type_new_old == 'Old')
+{{ $oldOrNewStatus->registration }}
+                                                                @else
+                                                                {{ $ngo_list_all->registration_number }}
+                                                                @endif
+
+
+                                                            </td>
                                                         </tr>
 
                                                       <?php
@@ -196,6 +206,563 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                         </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @if($oldOrNewStatus->ngo_type_new_old == 'Old')
+
+
+                                                            <tr>
+
+
+                                                               <td>
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar-sm">
+                                                                        <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                                                                            <i class="ri-file-zip-fill"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="ms-3 flex-grow-1">
+                                                                        <h6 class="fs-15 mb-0">
+                                                                            <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'foregin_pdf', 'id' =>$ngo_list_all->id] )}}" >বিগত ১০ (দশ) বছরে বিদেশী অনুদান ব্যবস্থাপনা কার্যক্রমের বিশদ বিবরণ (প্রকল্প অনুযায়ী সারসংক্ষেপ সংযুক্ত করা হবে)</a>
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+
+
+
+                                                               <td>Pdf File</td>
+
+                                                               <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                            </tr>
+
+
+
+                                                            <tr>
+
+
+                                                                <td>
+                                                                 <div class="d-flex align-items-center">
+                                                                     <div class="avatar-sm">
+                                                                         <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                                                                             <i class="ri-file-zip-fill"></i>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="ms-3 flex-grow-1">
+                                                                         <h6 class="fs-15 mb-0">
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'annual_file', 'id' =>$ngo_list_all->id] )}}" >সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ)</a>
+                                                                         </h6>
+                                                                     </div>
+                                                                 </div>
+                                                             </td>
+
+
+
+                                                                <td>Pdf File</td>
+
+                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                             </tr>
+
+
+
+                                                             <tr>
+
+
+                                                                <td>
+                                                                 <div class="d-flex align-items-center">
+                                                                     <div class="avatar-sm">
+                                                                         <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                                                                             <i class="ri-file-zip-fill"></i>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="ms-3 flex-grow-1">
+                                                                         <h6 class="fs-15 mb-0">
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'copy_of_chalan', 'id' =>$ngo_list_all->id] )}}" >নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে
+                                                                    কিনা (চালানের কপি সংযুক্ত করতে
+                                                                    হবে)</a>
+                                                                         </h6>
+                                                                     </div>
+                                                                 </div>
+                                                             </td>
+
+
+
+                                                                <td>Pdf File</td>
+
+                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                             </tr>
+
+
+
+                                                             <tr>
+
+
+                                                                <td>
+                                                                 <div class="d-flex align-items-center">
+                                                                     <div class="avatar-sm">
+                                                                         <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                                                                             <i class="ri-file-zip-fill"></i>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="ms-3 flex-grow-1">
+                                                                         <h6 class="fs-15 mb-0">
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'due_vat_pdf', 'id' =>$ngo_list_all->id] )}}" >তফসিল -১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে)</a>
+                                                                         </h6>
+                                                                     </div>
+                                                                 </div>
+                                                             </td>
+
+
+
+                                                                <td>Pdf File</td>
+
+                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                             </tr>
+
+
+
+                                                             @if(empty($ngo_list_all->change_ac_number))
+
+
+                                                             @else
+                                                             <tr>
+
+
+                                                                <td>
+                                                                 <div class="d-flex align-items-center">
+                                                                     <div class="avatar-sm">
+                                                                         <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                                                                             <i class="ri-file-zip-fill"></i>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="ms-3 flex-grow-1">
+                                                                         <h6 class="fs-15 mb-0">
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'change_ac_number', 'id' =>$ngo_list_all->id] )}}" >ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমোদনপত্রের কপি </a>
+                                                                         </h6>
+                                                                     </div>
+                                                                 </div>
+                                                             </td>
+
+
+
+                                                                <td>Pdf File</td>
+
+                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                             </tr>
+
+@endif
+
+
+
+
+<?php
+$ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+?>
+
+
+@foreach($ngoOtherDocLists as $ngoOtherDocListsFirst)
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees))
+
+@else
+<?php
+
+  $file_path = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
+  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+  ?>
+
+
+
+<tr>
+   <td>বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+      @endif
+
+      <!--end if -->
+
+
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->organization_by_laws_or_constitution))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td> সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+@endif
+
+<!--end if -->
+
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->work_procedure_of_organization))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->work_procedure_of_organization);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+<tr>
+   <td> সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+<tr>
+   <td>সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি </td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+@endif
+
+<!--end if -->
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->registration_certificate))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->registration_certificate);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td> সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+
+    <!--new start -->
+@if(empty($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td> সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+
+              <!--new start -->
+@if(empty($ngoOtherDocListsFirst->right_to_information_act))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->right_to_information_act);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+<tr>
+   <td>  Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+@if($ngoOtherDocListsFirst->constitution_of_the_organization_has_changed == 'Yes')
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed))
+
+@else
+<?php
+
+  $file_path = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
+  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+  ?>
+
+
+<tr>
+   <td>সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফি সহ তার সত্যায়িত অনুলিপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+
+      @endif
+
+      <!--end if -->
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিতো গঠনতন্ত্রের সত্যায়িত কপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->clean_copy_of_the_constitution))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>সংস্থার চেয়ারম্যান ও সেক্রেটারি কর্তৃক যৌথ স্বাক্ষরিত গঠনতন্ত্র পরিচ্ছন্ন কপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+
+@endif
+
+<!--end if -->
+
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->payment_of_change_fee))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->payment_of_change_fee);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>  গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ফি জমা প্রদানের চালানের মূলকপি </td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->section_sub_section_of_the_constitution))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>পূর্ব গঠনতন্ত্র ও বর্তমান গঠনতন্ত্রের তুলনামূলক বিবরণী (প্রতি পাতায় সভাপতি ও সম্পাদকের যৌথ স্বাক্ষরসহ)</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+@endif
+
+<!--end if -->
+
+
+@else
+
+<!--new start -->
+@if(empty($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged))
+
+@else
+<?php
+
+$file_path = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+?>
+
+
+<tr>
+   <td>সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে 'পরিবর্তন হয়নি' মর্মে  প্রত্যয়ন কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
+   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+       <i class="fa fa-eye"></i>
+   </a></td>
+</tr>
+
+
+
+
+@endif
+
+<!--end if -->
+@endif
+
+@endforeach
+
+
+
+
+
+
+
+                                                            @else
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
@@ -283,26 +850,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                         </tr>
 
 
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                            <i class="ri-file-zip-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('formEightPdf',['main_id'=>$ngo_list_all->user_id]) }}">কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম - ০৮ এর ফাইনাল কপি</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all_form_eight->updated_at->format('d-M-Y')}}</td>
-
-                                                        </tr>
 
                                                         @foreach($all_source_of_fund as $all_get_all_source_of_fund_data)
                                                         <tr>
@@ -468,6 +1016,8 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                         </tr>
                                                         @endforeach
+
+                                                        @endif
 
                                                         </tbody>
                                                     </table>
