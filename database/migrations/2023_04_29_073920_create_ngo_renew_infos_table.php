@@ -57,6 +57,12 @@ return new class extends Migration
             $table->string('web_site_name')->nullable();
             $table->string('mobile_new')->nullable();
             $table->string('mobile')->nullable();
+
+            $table->string('digital_signature')->nullable();
+            $table->string('digital_seal')->nullable();
+            $table->string('yearly_budget_file')->nullable();
+
+        
             $table->string('time_for_api')->nullable();
             $table->timestamps();
         });

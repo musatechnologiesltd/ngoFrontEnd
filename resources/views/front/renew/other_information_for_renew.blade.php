@@ -16,13 +16,15 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_three.Step_3')}}</h3>
+                        <h3>ধাপ ২</h3>
                     </div>
                     <ul class="progress-bar">
-
-                        <li >{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</li>
+                        <li >এফডি -৮ ফরম </li>
+                        {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
+                        <li class="active">{{ trans('fd_one_step_four.o_info')}}</li>
+                        {{-- <li >{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</li>
                         <li >{{ trans('fd_one_step_three.All_staff_details_information')}} </li>
-                        <li  class="active">{{ trans('fd_one_step_four.o_info')}}</li>
+                        <li  class="active">{{ trans('fd_one_step_four.o_info')}}</li> --}}
                     </ul>
 
                 </div>
@@ -69,67 +71,72 @@
                             <div class="mb-3" id="mResult">
                             </div>
                             <b>অন্যান্য তথ্য: </b>
-                                <div class="mb-3">
+                            <label class="form-label" for="">
+                                (নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                                                <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                (তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                                                <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                            </div>
 
 
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+                                            </div>
 
 
-                                    <label class="form-label" for="">
-                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+                                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি </label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                            </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                            </div>
 
 
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                            </div>
 
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
-                                </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span> </label>
+                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
+                                            </div>
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
@@ -277,13 +284,70 @@
 
 
                 <label class="form-label" for="">
-                    Whether registration fee and VAT have been paid (copy of invoice to be attached)(নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+(নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
                 <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="">
-                    Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): (তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+(তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
                 <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি </label>
+                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="">
+                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span> </label>
+                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
             </div>
 
             <div class="mb-3">
@@ -330,7 +394,7 @@
 </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+<label class="form-label" for="">(ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
 <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
 </div>
 @else
@@ -411,7 +475,7 @@
 
 
         $.ajax({
-        url: "{{ route('foreignNgoType') }}",
+        url: "{{ route('localNgoType') }}",
         method: 'GET',
         data: {structureStatus:structureStatus},
         success: function(data) {

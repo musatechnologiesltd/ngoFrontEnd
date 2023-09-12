@@ -73,6 +73,11 @@ Route::controller(NamechangeController::class)->group(function () {
 
 
 
+    Route::get('nameChangeDocDownload/{id}', 'nameChangeDocDownload')->name('nameChangeDocDownload');
+
+
+
+    Route::get('nameChange/{id}', 'nameChangeView')->name('nameChange.view');
     Route::get('sendNameChange', 'sendNameChange')->name('sendNameChange');
     Route::get('nameChange', 'nameChange')->name('nameChange');
     Route::get('/formOnePdf/{main_id}/{id}',  'formOnePdf')->name('formOnePdf');
@@ -87,7 +92,7 @@ Route::controller(NamechangeController::class)->group(function () {
 
 Route::controller(RenewController::class)->group(function () {
 
-
+    Route::get('fileListForNameChange', 'fileListForNameChange')->name('fileListForNameChange');
     Route::get('foreignNgoType', 'foreignNgoType')->name('foreignNgoType');
     Route::get('localNgoType', 'localNgoType')->name('localNgoType');
 

@@ -104,15 +104,35 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
         <td>(iii)</td>
         <td>নিবন্ধন নম্বর</td>
         <td>:
+            <?php
+$getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+            $mainNgoTypeRenew = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+
+            $registrationNumberForOld = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+?>
+
+@if($mainNgoTypeRenew == 'Old')
+{{ App\Http\Controllers\NGO\CommonController::englishToBangla($registrationNumberForOld)}}
+
+@else
+
 
           @if($all_partiw1->registration_number == 0)
 
 
           @else
 
-          {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->registration_number)}}
+          @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
+          {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->registration_number)}}
+          @else
+
+          {{ $all_partiw1->registration_number}}
+@endif
           @endif
+
+@endif
 
 
       </td>

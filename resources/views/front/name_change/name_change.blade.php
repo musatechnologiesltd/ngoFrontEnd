@@ -144,6 +144,7 @@ $fdOneFormid = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->fir
                                         <th>নতুন নাম (বাংলা)</th>
                                         <th>নতুন নাম (ইংরেজি)</th>
                                         <th>স্ট্যাটাস</th>
+                                        <th>কার্যকলাপ </th>
                                     </tr>
                                     @foreach($name_change_list_all as $key=>$all_name_change_list_all)
                                     <tr>
@@ -154,6 +155,7 @@ $fdOneFormid = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->fir
                                         <td>{{ $all_name_change_list_all->present_name_ban }}</td>
                                         <td>{{ $all_name_change_list_all->present_name_eng }}</td>
                                         <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
+                                        <td> <a  href="{{ route('nameChange.view',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </table>

@@ -19,8 +19,8 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
-                        <li class="active">{{ trans('fd_one_step_one.Particulars_of_Organisation')}} </li>
-                        <li>{{ trans('fd_one_step_three.All_staff_details_information')}} </li>
+                        <li class="active">FD-8 Form </li>
+                        {{-- <li>{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
                         <li>{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>
 
@@ -62,6 +62,25 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             <input required="" name="registration_number" value="{{ Session::get('registration_number') }}" type="text" class="form-control" id="">
         </div> --}}
 
+
+        <?php
+
+        $query_to_get_data = DB::table('countries')->where('id','!=',18)->orderBy('id','desc')->get();
+
+
+        $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
+        ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
+
+        $get_country_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+        $mainNgoTypeRenew = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+
+        $registrationNumberForOld = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+                                        ?>
+
+
+
+
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.Organization_Name_Organization_address')}} <span class="text-danger">*</span> </label>
                 <input type="text" class="form-control" readonly value="{{ $get_all_data_1->organization_name }}" name="organization_name" data-parsley-required  id="">
@@ -74,12 +93,18 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             </div>
 
 
+            @if($mainNgoTypeRenew == 'Old')
 
+            <div class="mb-3">
+                <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span> </label>
+                <input type="text" class="form-control" readonly value="{{ $registrationNumberForOld }}" name="reg_no_get_from_admin" data-parsley-required  id="">
+            </div>
+            @else
             <div class="mb-3">
                 <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span> </label>
                 <input type="text" class="form-control" readonly value="{{ $get_all_data_1->registration_number }}" name="reg_no_get_from_admin" data-parsley-required  id="">
             </div>
-
+@endif
 
 
             <div class="mb-3">
@@ -90,38 +115,29 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
 
 
-            <?php
 
-            $query_to_get_data = DB::table('countries')->where('id','!=',18)->orderBy('id','desc')->get();
-
-
-            $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','desc')->get();
-
-            $get_country_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-                                            ?>
 
 
 
 
                                             <div class="mb-3">
                                                 <label for="" class="form-label">টেলিফোন নম্বর <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required  name="phone_new" class="form-control" id="">
+                                                <input type="text" data-parsley-required value="{{ $get_all_data_1->org_phone }}"  name="phone_new" class="form-control" id="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span> </label>
-                                                <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                <input type="text" value="{{ $get_all_data_1->org_mobile }}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                 type = "number"
                                                 maxlength = "11" minlength="11" data-parsley-required  name="mobile_new" class="form-control" id="">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="" class="form-label">ইমেইল এড্রেস <span class="text-danger">*</span> </label>
-                                                <input type="email" data-parsley-required  name="email_new" class="form-control" id="">
+                                                <input type="email" value="{{ $get_all_data_1->org_email }}" data-parsley-required  name="email_new" class="form-control" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for=""  class="form-label">ওয়েবসাইট <span class="text-danger">*</span> </label>
-                                                <input type="text" data-parsley-required  name="web_site_name" class="form-control" id="">
+                                                <input type="text" data-parsley-required value="{{ $get_all_data_1->web_site_name }}"  name="web_site_name" class="form-control" id="">
                                             </div>
 
             <div class="mb-3">
@@ -172,12 +188,33 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
 
             <div class="mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
-                <input type="text"  data-parsley-required name="nationality" class="form-control" id="">
+                <input type="text"  data-parsley-required name="nationality" value="{{ $get_all_data_1->nationality }}" class="form-control" id="">
             </div>
+
+
+                  <!--new code for ngo-->
+                  <div class="mb-3">
+                    <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
+                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+                    <img src="{{asset('/')}}{{ $get_all_data_1->digital_signature }}" style="height:40px;"/>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
+                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+                    <img src="{{asset('/')}}{{ $get_all_data_1->digital_seal }}" style="height:40px;"/>
+
+                </div>
+                <!-- end new code -->
+
+
 
             <div class="mb-3">
                 <label for="" class="form-label">Telephone Number (টেলিফোন নম্বর) <span class="text-danger">*</span> </label>
-                <input type="text"  data-parsley-required name="mobile" class="form-control" id="">
+                <input type="text"  data-parsley-required name="mobile" value="{{ $get_all_data_1->tele_phone_number }}"  class="form-control" id="">
             </div>
 
             <div class="mb-3">
@@ -227,9 +264,17 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
                                     <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
                                 </div>
 
+
+
                                 <div class="mb-3">
+                                    <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেট<span class="text-danger">*</span> </label>
+                                    <input type="text" name="yearly_budget" value="{{ $get_all_data_1->annual_budget }}" data-parsley-required class="form-control" id="">
+                                </div>
+
+
+                          <div class="mb-3">
                                     <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-                                    <input type="file" name="yearly_budget" data-parsley-required accept=".pdf" class="form-control" id="">
+                                    <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
                                 </div>
 
     </div>
@@ -244,8 +289,8 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 <?php
    $get_all_data_new_first =DB::table('ngo_renew_infos')->where('user_id',Auth::user()->id)->latest()->first();
-
-
+   $mainNgoTypeRenew = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+   $registrationNumberForOld = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
 
 ?>
 <form action="{{ route('updateRenewInformationList') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
@@ -276,10 +321,18 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 
 
+            @if($mainNgoTypeRenew == 'Old')
+
             <div class="mb-3">
-                <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span>  </label>
-                <input type="text" class="form-control" readonly value="{{ $get_all_data_1->registration_number }}" name="registration_number" data-parsley-required  id="">
+                <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span> </label>
+                <input type="text" class="form-control" readonly value="{{ $registrationNumberForOld }}" name="reg_no_get_from_admin" data-parsley-required  id="">
             </div>
+            @else
+            <div class="mb-3">
+                <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span> </label>
+                <input type="text" class="form-control" readonly value="{{ $get_all_data_1->registration_number }}" name="reg_no_get_from_admin" data-parsley-required  id="">
+            </div>
+@endif
 
 
 
@@ -449,18 +502,21 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
         @endif
 
 
-
-        @if(empty($get_all_data_new_first->yearly_budget))
+        <div class="mb-3">
+            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেট<span class="text-danger">*</span> </label>
+            <input type="text" name="yearly_budget" value="{{ $get_all_data_1->annual_budget }}" data-parsley-required class="form-control" id="">
+        </div>
+        @if(empty($get_all_data_new_first->yearly_budget_file))
 
         <div class="mb-3">
             <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-            <input type="file" name="yearly_budget" data-parsley-required accept=".pdf" class="form-control" id="">
+            <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
         </div>
 @else
 
 <?php
 
-$file_path = url($get_all_data_new_first->yearly_budget);
+$file_path = url($get_all_data_new_first->yearly_budget_file);
 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 $extension = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -471,7 +527,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 ?>
 <div class="mb-3">
 <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-<input type="file" name="yearly_budget"  accept=".pdf" class="form-control" id="">
+<input type="file" name="yearly_budget_file"  accept=".pdf" class="form-control" id="">
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
     @endif

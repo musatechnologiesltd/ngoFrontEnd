@@ -353,10 +353,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
 
 
-<?php
-$ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
-?>
 
 
 @foreach($ngoOtherDocLists as $ngoOtherDocListsFirst)
@@ -375,10 +372,27 @@ $ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$ngo_list
 
 
 <tr>
-   <td>বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="d-flex align-items-center">
+        <div class="avatar-sm">
+            <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
+                <i class="ri-file-zip-fill"></i>
+            </div>
+        </div>
+        <div class="ms-3 flex-grow-1">
+            <h6 class="fs-15 mb-0">
+    <a target="_blank" href="{{ route('deleteRenewalFileDownload', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )
+   </a>
+</h6>
+</div>
+</div>
+
+</td>
+<td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -404,10 +418,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td> সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )
+   </a>
+        </h6>
+    </div>
+</td>
+
+<td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
+
 </tr>
 
 
@@ -431,10 +456,25 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 ?>
 
 <tr>
-   <td> সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )
+   </a>
+
+</h6>
+</div>
+</td>
+
+
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -459,10 +499,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 ?>
 
 <tr>
-   <td>সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি </td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -486,10 +536,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td> সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -514,10 +574,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td> সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -541,10 +611,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 ?>
 
 <tr>
-   <td>  Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -572,10 +652,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফি সহ তার সত্যায়িত অনুলিপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফি সহ তার সত্যায়িত অনুলিপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -601,10 +692,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিতো গঠনতন্ত্রের সত্যায়িত কপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিতো গঠনতন্ত্রের সত্যায়িত কপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -629,10 +731,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>সংস্থার চেয়ারম্যান ও সেক্রেটারি কর্তৃক যৌথ স্বাক্ষরিত গঠনতন্ত্র পরিচ্ছন্ন কপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার চেয়ারম্যান ও সেক্রেটারি কর্তৃক যৌথ স্বাক্ষরিত গঠনতন্ত্র পরিচ্ছন্ন কপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -658,10 +770,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>  গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ফি জমা প্রদানের চালানের মূলকপি </td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ফি জমা প্রদানের চালানের মূলকপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -685,10 +808,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    গঠনতন্ত্রের কোন ধারা, উপধারা পরিবর্তন ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -711,10 +845,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>পূর্ব গঠনতন্ত্র ও বর্তমান গঠনতন্ত্রের তুলনামূলক বিবরণী (প্রতি পাতায় সভাপতি ও সম্পাদকের যৌথ স্বাক্ষরসহ)</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank"  href="{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    পূর্ব গঠনতন্ত্র ও বর্তমান গঠনতন্ত্রের তুলনামূলক বিবরণী (প্রতি পাতায় সভাপতি ও সম্পাদকের যৌথ স্বাক্ষরসহ)
+   </a>
+</h6>
+</div>
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 
@@ -740,10 +884,22 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 <tr>
-   <td>সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে 'পরিবর্তন হয়নি' মর্মে  প্রত্যয়ন কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )</td>
-   <td><a target="_blank" class="btn btn-sm btn-success" href="{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
-       <i class="fa fa-eye"></i>
-   </a></td>
+
+   <td>
+
+    <div class="ms-3 flex-grow-1">
+        <h6 class="fs-15 mb-0">
+    <a target="_blank" href="{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}" >
+    সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে 'পরিবর্তন হয়নি' মর্মে  প্রত্যয়ন কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )
+   </a>
+        </h6>
+    </div>
+
+</td>
+
+   <td>Pdf File</td>
+
+<td>{{ $ngoOtherDocListsFirst->created_at->format('d-M-Y')}}</td>
 </tr>
 
 

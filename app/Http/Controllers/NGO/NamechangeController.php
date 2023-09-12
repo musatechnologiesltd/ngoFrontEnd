@@ -129,6 +129,32 @@ if($mainNgoType== 'দেশিও'){
 
     }
 
+    public function nameChangeView($id){
+
+        $fdOneFormInfo = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+
+        $nameChangeInfo = NgoNameChange::where('id',base64_decode($id))->first();
+
+
+        $nameChangeInfoDoc = NameChangeDoc::where('ngo_name_change_id',base64_decode($id))->get();
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+if($mainNgoType== 'দেশিও'){
+    return view('front.name_change.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
+}else{
+    return view('front.name_change.foreign.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
+
+}
+
+
+
+
+    }
+
 
     public function ngoCommitteMemberEdit($id){
         $all_data_list = NgoMemberList::where('member_name_slug',$id)->first();
@@ -606,6 +632,28 @@ return Response::make(file_get_contents($file), 200, [
 ]);
     }
 
+
+
+    public function nameChangeDocDownload($id){
+
+        $form_one_data = DB::table('name_change_docs')->where('id',$id)->value('pdf_file_list');
+
+        $file_path = url('public/'.$form_one_data);
+        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$file= public_path('/'). $form_one_data;
+
+$headers = array(
+'Content-Type: application/pdf',
+);
+
+// return Response::download($file,$filename.'.pdf', $headers);
+
+return Response::make(file_get_contents($file), 200, [
+'content-type'=>'application/pdf',
+]);
+
+    }
 
     public function formEightPdf($main_id){
 

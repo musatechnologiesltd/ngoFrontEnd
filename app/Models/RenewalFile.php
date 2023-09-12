@@ -10,7 +10,7 @@ class RenewalFile extends Model
     use HasFactory;
 
     protected $fillable = [
-
+       
         'fd_one_form_id',
         'constitution_of_the_organization_has_changed',
         'list_of_board_of_directors_or_board_of_trustees',

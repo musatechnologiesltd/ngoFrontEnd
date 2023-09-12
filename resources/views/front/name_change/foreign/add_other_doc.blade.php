@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপি এবং ১৫% ভ্যাট (কোড নং - ১-১১৩৩ -০০৩৫ - ০৩১১) প্রদানপূর্বক চালানের মূলকপিসহ
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -126,18 +126,7 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="card mb-3">
-                                    <div class="card-header">
-                                        গঠনতন্ত্র পরিবর্তন ফি বাবদ-১৩,০০০/ (তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
+                               
 
 
                                 <div class="card mb-3">
@@ -251,9 +240,40 @@
                                 </div>
 
 
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংগঠনের গঠনতন্ত্রে পরিবর্তন হয়েছে কি না ?<span class="text-danger">*</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="mt-2">
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                               value="Yes" >
+                                                        <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                               value="No" >
+                                                        <label class="form-check-label" for="inlineRadio2">না</label>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="mb-3" id="mResult">
+                                </div>
+
+
+
                                 @else
 
-                               
+
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
@@ -410,5 +430,24 @@
 @endsection
 
 @section('script')
+<script>
+    $(document).on('click', '.organizational_structurel', function () {
 
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('fileListForNameChange') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
 @endsection

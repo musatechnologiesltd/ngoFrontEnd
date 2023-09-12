@@ -16,13 +16,13 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_three.Step_3')}}</h3>
+                        <h3>Step 2</h3>
                     </div>
                     <ul class="progress-bar">
 
-                        <li >{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</li>
-                        <li >{{ trans('fd_one_step_three.All_staff_details_information')}} </li>
-                        <li  class="active">{{ trans('fd_one_step_four.o_info')}}</li>
+                        <li >FD-08</li>
+                        {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
+                        <li class="active">{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>
 
                 </div>
@@ -52,12 +52,12 @@
                                 <label for="" class="form-label">সংস্থার গঠনতন্ত্রের পরিবর্তন হয়েছে কি না ? <span class="text-danger">*</span> </label>
                                 <div class="mt-2">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
                                            value="Yes" >
                                     <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="organizational_structure_type" id=""
+                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
                                            value="No" >
                                     <label class="form-check-label" for="inlineRadio2">না</label>
                                 </div>
@@ -82,45 +82,45 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="registration_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                    <input class="form-control" name="right_to_information_act"  accept=".pdf" type="file" id="">
                                 </div>
 
 

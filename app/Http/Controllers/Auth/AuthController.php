@@ -15,6 +15,7 @@ use DB;
 use App\Models\NgoTypeAndLanguage;
 use App\Models\NgoNameChange;
 use App\Models\NgoRenew;
+use App\Models\RenewalFile;
 use App\Models\FormEight;
 use App\Models\FdOneForm;
 use App\Models\FdOneOtherPdfList;
@@ -299,12 +300,17 @@ $get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id
 
             $mainNgoType = CommonController::changeView();
 
+
+$ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
+
             if($mainNgoType== 'দেশিও'){
 
-                return view('front.dashboard.accept_dashboard',compact('oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+                return view('front.dashboard.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
             }else{
 
-                return view('front.dashboard.foreign.accept_dashboard',compact('oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+                return view('front.dashboard.foreign.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
             }
             }
         }
