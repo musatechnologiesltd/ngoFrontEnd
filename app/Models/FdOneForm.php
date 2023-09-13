@@ -134,7 +134,12 @@ class FdOneForm extends Model
 
 
 
+    public function fd9Form()
+    {
+        return $this->hasMany(Fd9Form::class,'fd_one_form_id');
+    }
 
+    
     public function fd9OneForm()
     {
         return $this->hasMany(Fd9OneForm::class,'fd_one_form_id');

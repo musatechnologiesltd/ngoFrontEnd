@@ -40,4 +40,11 @@ public function fdOneForm()
     {
         return $this->belongsTo(FdOneForm::class,'fd_one_form_id');
     }
+
+
+
+    public function nVisa()
+    {
+        return $this->hasMany(NVisa::class,'fd_one_form_id');
+    }
 }

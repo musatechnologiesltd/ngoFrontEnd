@@ -23,34 +23,66 @@ use App\Models\FdOneForm;
 use Illuminate\Support\Facades\App;
 class Fd9Controller extends Controller
 {
+
+
+
+    public function index(){
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+        ->value('ngo_type');
+
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $fd9List = Fd9Form::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+        CommonController::checkNgotype();
+
+        $mainNgoType = CommonController::changeView();
+
+
+    return view('front.fdNineForm.index',compact('ngo_list_all','fd9List'));
+
+    }
+
+
+
+    public function create(){
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+        ->first();
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+        return view('front.fdNineForm.create',compact('ngo_list_all','ngoStatus','checkNgoTypeForForeginNgo'));
+
+    }
+
+
+
     public function edit($id){
 //dd($id);
         $nVisaId = base64_decode($id);
         $getCityzenshipData = Country::whereNotNull('country_people_english')
         ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+        ->first();
 
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-$fdNineData =Fd9Form::where('n_visa_id',$nVisaId)->first();
+$fdNineData =Fd9Form::where('id',$nVisaId)->first();
 
 $fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
 
 $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
-$ngoStatus = NgoStatus::where('fd_one_form_id',$fdOneFormData->id)->first();
+$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 //dd($fdNineData);
 
 CommonController::checkNgotype();
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
 
-return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
-}else{
-    return view('front.fdNineForm.foreign.create',compact('ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
-}
+
+return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+
     }
 
 
@@ -93,9 +125,10 @@ return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNin
 
       //dd($request->passport_photocopy);
 
-
+         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
          $fd9FormInfo = new Fd9Form();
-         $fd9FormInfo->n_visa_id = $request->nVisaId;
+         $fd9FormInfo->status = 'Ongoing';
+         $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
          $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
          $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
          $fd9FormInfo->fd9_husband_or_wife_name = $request->fd9_husband_or_wife_name;
@@ -198,7 +231,7 @@ return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNin
 
 
 
-       return redirect()->route('nVisa.index')->with('success','Created Successfully');
+       return redirect()->route('fdNineForm.index')->with('success','Created Successfully');
 
 
     }
@@ -311,13 +344,41 @@ return view('front.fdNineForm.create',compact('ngoStatus','fdOneFormData','fdNin
 
 
 
-      return redirect()->route('nVisa.index')->with('success','Updated Successfully');
+      return redirect()->route('fdNineForm.index')->with('success','Updated Successfully');
 
 
     }
 
     public function show($id){
 
+        $nVisaId = base64_decode($id);
+
+
+        //dd($nVisaId);
+        $getCityzenshipData = Country::whereNotNull('country_people_english')
+        ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+        ->first();
+
+$countryList = Country::orderBy('id','asc')->get();
+$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+$fdNineData =Fd9Form::where('id',$nVisaId)->first();
+
+$fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
+
+$fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
+$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+//dd($fdNineData);
+
+CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
+
+return view('front.fdNineForm.show',compact('checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
 
     }
 
@@ -337,11 +398,16 @@ $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 
 
+$checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+->first();
 
+
+$fdNineData =Fd9Form::where('id',$id)->first();
 
 $file_Name_Custome = "Fd9_Form";
         $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
-
+            'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
+            'fdNineData'=>$fdNineData,
             'nVisaEdit'=>$nVisaEdit,
             'getCityzenshipData'=>$getCityzenshipData,
             'countryList'=>$countryList,

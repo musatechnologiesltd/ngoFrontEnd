@@ -12,6 +12,7 @@ class NVisa extends Model
 
     protected $fillable = [
         'fd_one_form_id',
+        'fd9_one_form_id',
         'period_validity',
         'permit_efct_date',
         'visa_ref_no',
@@ -30,6 +31,12 @@ class NVisa extends Model
   public function fdOneForm()
     {
         return $this->belongsTo(FdOneForm::class,'fd_one_form_id');
+    }
+
+
+    public function fd9OneForm()
+    {
+        return $this->belongsTo(FdOneForm::class,'fd9_one_form_id');
     }
 
     public function nVisaParticularOfSponsorOrEmployer()

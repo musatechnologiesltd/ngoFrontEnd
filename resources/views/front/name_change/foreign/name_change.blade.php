@@ -63,8 +63,8 @@
                         </div>
 
                         <div class="profile_link_box">
-                            <a href="{{ route('nVisa.index') }}">
-                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                            <a href="{{ route('fdNineForm.index') }}">
+                                <p class="{{ Route::is('fdNineForm.index') || Route::is('fdNineForm.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 
@@ -156,7 +156,7 @@ $fdOneFormid = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->fir
                                         <td>{{ $all_name_change_list_all->present_name_eng }}</td>
                                         <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
                                 <td> <a  href="{{ route('nameChange.view',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
-                               
+
                                     </tr>
                                     @endforeach
                                 </table>

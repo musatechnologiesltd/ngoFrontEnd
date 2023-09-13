@@ -17,6 +17,13 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
+
+
+            $table->bigInteger('fd9_one_form_id')->unsigned();
+            $table->foreign('fd9_one_form_id')->references('id')->on('fd9_one_forms')->onDelete('cascade');
+
+
+
             $table->string('period_validity')->nullable();
             $table->string('permit_efct_date')->nullable();
             $table->string('visa_ref_no')->nullable();
