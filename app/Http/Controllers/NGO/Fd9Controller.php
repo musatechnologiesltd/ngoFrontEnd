@@ -385,9 +385,8 @@ return view('front.fdNineForm.show',compact('checkNgoTypeForForeginNgo','ngoStat
 
     public function mainFd9PdfDownload($id){
 
-            $id = base64_decode($id);
-        $nVisaEdit = NVisa::where('id',$id)
-       ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice','fd9Form'])->first();
+            $nVisaId = base64_decode($id);
+            $fdNineData =Fd9Form::where('id',$nVisaId)->first();
 
        $getCityzenshipData = Country::whereNotNull('country_people_english')
        ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
@@ -402,13 +401,13 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
 ->first();
 
 
-$fdNineData =Fd9Form::where('id',$id)->first();
+//$fdNineData =Fd9Form::where('id',$id)->first();
 
 $file_Name_Custome = "Fd9_Form";
         $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
             'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
             'fdNineData'=>$fdNineData,
-            'nVisaEdit'=>$nVisaEdit,
+            'fdNineData'=>$fdNineData,
             'getCityzenshipData'=>$getCityzenshipData,
             'countryList'=>$countryList,
             'ngo_list_all'=>$ngo_list_all,
@@ -450,5 +449,16 @@ $file_Name_Custome = "Fd9_Form";
 
          return $data = url('mainFd9PdfDownload/'.base64_encode($id));
 
+    }
+
+
+
+    public function destroy($id){
+
+        $admins = Fd9Form::find($id);
+        if (!is_null($admins)) {
+            $admins->delete();
+        }
+        return back()->with('error','Deleted successfully!');
     }
 }

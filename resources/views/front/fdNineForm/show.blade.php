@@ -142,7 +142,7 @@ color:white !important;
                                 </td>
                                 <td>
 
-                                    @if(empty($fdNineData->fd9Form->verified_fd_nine_form))
+                                    @if(empty($fdNineData->verified_fd_nine_form))
                                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         {{ trans('form 8_bn.upload_pdf')}}
                                     </button>
@@ -150,7 +150,7 @@ color:white !important;
 
                                     <?php
 
-                                    $file_path = url($fdNineData->fd9Form->verified_fd_nine_form);
+                                    $file_path = url($fdNineData->verified_fd_nine_form);
                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);

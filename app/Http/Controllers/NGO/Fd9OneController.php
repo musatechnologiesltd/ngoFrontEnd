@@ -45,11 +45,9 @@ class Fd9OneController extends Controller
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
+
         return view('front.fd9OneForm.index',compact('ngo_list_all','fd9OneList'));
-}else{
-    return view('front.fd9OneForm.foreign.index',compact('ngo_list_all','fd9OneList'));
-}
+
     }
 
 
@@ -60,11 +58,9 @@ if($mainNgoType== 'দেশিও'){
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
+
         return view('front.fd9OneForm.create',compact('ngo_list_all'));
-}else{
-    return view('front.fd9OneForm.foreign.create',compact('ngo_list_all'));
-}
+
     }
 
 
@@ -76,11 +72,9 @@ if($mainNgoType== 'দেশিও'){
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
+
         return view('front.fd9OneForm.edit',compact('ngo_list_all','fd9OneList'));
-}else{
-    return view('front.fd9OneForm.foreign.edit',compact('ngo_list_all','fd9OneList'));
-}
+
 
     }
 
@@ -93,13 +87,11 @@ if($mainNgoType== 'দেশিও'){
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
+$nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
+->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice'])->first();
 
-        return view('front.fd9OneForm.show',compact('ngo_list_all','fd9OneList'));
-}else{
+        return view('front.fd9OneForm.show',compact('nVisaEdit','ngo_list_all','fd9OneList'));
 
-    return view('front.fd9OneForm.foreign.show',compact('ngo_list_all','fd9OneList'));
-}
     }
 
     public function fd9OneChief(Request $request){
@@ -187,11 +179,19 @@ if($mainNgoType== 'দেশিও'){
 
         $fd9OneFormInfo->save();
 
-        return redirect()->route('fdNineOneForm.index')->with('success','Addedd Successfully');
+        $id = $fd9OneFormInfo->id;
+
+        return redirect()->route('addnVisaDetail',$id)->with('success','Addedd Successfully');
     }
 
 
     public function update(Request $request,$id){
+
+
+       $nVisaId = NVisa::where('fd9_one_form_id',$id)->value('id');
+
+
+
         $fd9OneFormInfo =Fd9OneForm::find($id);
         $fd9OneFormInfo->foreigner_name_for_subject = $request->foreigner_name_for_subject;
         $fd9OneFormInfo->sarok_number = $request->sarok_number;
@@ -238,7 +238,7 @@ if($mainNgoType== 'দেশিও'){
 
         $fd9OneFormInfo->save();
 
-        return redirect()->route('fdNineOneForm.index')->with('success','Update Successfully');
+        return redirect()->route('nVisa.edit',$nVisaId)->with('success','Update Successfully');
 
     }
 

@@ -199,6 +199,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(NVisaController::class)->group(function () {
 
+        Route::get('addnVisaDetail/{id}', 'addnVisaDetail')->name('addnVisaDetail');
+
         Route::get('/nVisaDocumentDownload/{cat}/{id}', 'nVisaDocumentDownload')->name('nVisaDocumentDownload');
         Route::get('/fd9FormExtraPdfDownload/{cat}/{id}', 'fd9FormExtraPdfDownload')->name('fd9FormExtraPdfDownload');
     });

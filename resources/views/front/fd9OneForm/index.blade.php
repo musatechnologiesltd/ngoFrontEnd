@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.fd09formone')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')

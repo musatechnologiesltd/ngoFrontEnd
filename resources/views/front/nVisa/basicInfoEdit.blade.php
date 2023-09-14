@@ -27,7 +27,7 @@
                             <input type="text" name="visa_ref_no" value="{{ $nVisaEdit->visa_ref_no }}" class="form-control" id="" required>
                         </div>
                     </div>
-                    <div class="mb-3 row">
+                    {{-- <div class="mb-3 row">
                         <label for="" class="col-sm-6 col-form-label">Received Visa Recommendation Letter <span class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <div class="form-check form-check-inline">
@@ -43,7 +43,7 @@
                                        for="">Manually</label>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="mb-3 row">
                         <label for="" class="col-sm-6 col-form-label">Ref no. of Visa Recommendation Letter  <span
                                     class="text-danger">*</span></label>
@@ -51,15 +51,22 @@
                             <input type="text" class="form-control" id="" value="{{ $nVisaEdit->visa_recomendation_letter_ref_no }}" name="visa_recomendation_letter_ref_no" required>
                         </div>
                     </div>
-                    <div class="mb-3 row">
+
+                    <input type="hidden" name="visa_recomendation_letter_received_way" class="form-control" value="Online" required>
+                    <input type="hidden" value="NGO" class="form-control" name="department_in" id="" required>
+
+                    <input type="hidden" value="N-Visa" class="form-control" name="visa_category" id="" required>
+
+
+                    {{-- <div class="mb-3 row">
                         <label for="" class="col-sm-6 col-form-label">Department in
                             <span
                                     class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" value="{{ $nVisaEdit->department_in }}" name="department_in" id="" required>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
+                    </div> --}}
+                    {{-- <div class="mb-3 row">
                         <label for="" class="col-sm-6 col-form-label">Work Permit type<span class="text-danger">*</span></label>
                         <div class="col-sm-6">
                             <div class="form-check form-check-inline">
@@ -67,13 +74,13 @@
                                        id="" data-parsley-checkmin="1" data-parsley-required  value="N-Visa" {{ $nVisaEdit->visa_category == 'N-Visa' ? 'checked':''  }}>
                                 <label class="form-check-label" for="">N-Visa</label>
                             </div>
-                            {{-- <div class="form-check form-check-inline">
+                            <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="visa_category"
                                        id="" data-parsley-checkmin="1" data-parsley-required  value="New Industrial" {{ $nVisaEdit->visa_category == 'New Industrial' ? 'checked':''  }}>
                                 <label class="form-check-label" for="">New Industrial</label>
-                            </div> --}}
+                            </div>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- <div class="mb-3 row">
                         <label for="" class="col-sm-6 col-form-label">ফরওয়ার্ডিং লেটার<span
                                     class="text-danger">*</span></label>

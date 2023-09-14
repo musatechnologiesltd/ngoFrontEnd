@@ -59,6 +59,31 @@ if($mainNgoType== 'দেশিও'){
 }
     }
 
+
+    public function addnVisaDetail($id){
+
+
+        $fd9Id = $id;
+        $getCityzenshipData = Country::whereNotNull('country_people_english')
+        ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+
+
+$countryList = Country::orderBy('id','asc')->get();
+$ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
+
+
+return view('front.nVisa.create',compact('fd9Id','ngo_list_all','countryList','getCityzenshipData'));
+
+
+
+    }
+
     public function create(){
         $getCityzenshipData = Country::whereNotNull('country_people_english')
                                                 ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
@@ -97,12 +122,10 @@ CommonController::checkNgotype();
 
 $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
+
 
 return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
-}else{
-    return view('front.nVisa.foreign.edit',compact('nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
-}
+
     }
 
 
@@ -179,7 +202,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
             'expatriate_email' => 'required|string',
         ]);
 
-      //dd($request->passport_photocopy);
+      //dd($request->all());
 
 
 
@@ -194,6 +217,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
          $nVisaBasicInfo = new NVisa();
          $nVisaBasicInfo->fd_one_form_id = $fdOneFormId->id;
+         $nVisaBasicInfo->fd9_one_form_id = $request->fd9OneId;
          $nVisaBasicInfo->period_validity = $request->period_validity;
          $nVisaBasicInfo->permit_efct_date = $request->permit_efct_date;
          $nVisaBasicInfo->visa_ref_no = $request->visa_ref_no;
@@ -676,7 +700,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
 
         ->delete();
-        return redirect()->route('fdNineForm.edit',base64_encode($nVisaId))->with('success','Created Successfully');
+        return redirect()->route('fdNineOneForm.index')->with('success','Created Successfully');
 
 
     }
@@ -1205,7 +1229,10 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
  }
 
 
- return redirect()->route('fdNineForm.edit',base64_encode($nVisaId))->with('success','Created Successfully');
+//  return redirect()->route('fdNineForm.edit',base64_encode($nVisaId))->with('success','Created Successfully');
+
+
+return redirect()->route('fdNineOneForm.index')->with('success','Updated Successfully');
 
     }
 
@@ -1224,7 +1251,7 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
          $id =base64_decode($id);
 
          $nVisaEdit = NVisa::where('id',$id)
-       ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice','fd9Form'])->first();
+       ->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice'])->first();
 
        $getCityzenshipData = Country::whereNotNull('country_people_english')
        ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
@@ -1238,14 +1265,12 @@ CommonController::checkNgotype();
 
 $mainNgoType = CommonController::changeView();
 
+$getAllNVisaId = Fd9OneForm::where('id',$nVisaEdit->fd9_one_form_id)->first();
 
-if($mainNgoType== 'দেশিও'){
 
 
 return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
-}else{
-    return view('front.nVisa.foreign.show',compact('ngoStatus','nVisaEdit','ngo_list_all','countryList','getCityzenshipData'));
-}
+
     }
 
 

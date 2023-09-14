@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.fd09formone')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -68,7 +68,7 @@
 
                         <div class="profile_link_box">
                             <a href="{{ route('fdNineOneForm.index') }}">
-                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                                <p class="{{ Route::is('addnVisaDetail') || Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">

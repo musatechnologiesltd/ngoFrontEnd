@@ -34,12 +34,17 @@
             <input type="text" class="form-control" id=""
                    placeholder="Email" required name="work_email">
         </div>
-        <div class="mb-3 col-lg-4">
+        {{-- <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Type of Organization:<span class="text-danger">*</span></label>
             <select name="work_org_type" class="form-control" id="" required>
                 <option value="NGO">NGO</option>
             </select>
-        </div>
+        </div> --}}
+
+
+        <input type="hidden" value="NGO" class="form-control" name="work_org_type" id="" required>
+
+
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Contact Person Mobile Number: <span class="text-danger">*</span></label>
             <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

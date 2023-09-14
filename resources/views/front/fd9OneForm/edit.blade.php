@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.fd09formone')}}| {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -226,7 +226,7 @@
 
                                     <div class="d-grid d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-registration"
-                                                >তথ্য জমা দিন
+                                                >পরবর্তী ধাপ
                                         </button>
                                     </div>
                                 </form>
