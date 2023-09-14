@@ -11,9 +11,10 @@
 @section('body')
 
 <?php
+use App\Http\Controllers\NGO\CommonController;
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
-
+$mainNgoType = CommonController::changeView();
 
 ?>
 
@@ -41,6 +42,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 @if(empty($checkCompleteStatus))
 
+@if($mainNgoType== 'দেশিও')
+
 @if(!$checkCompleteStatusData)
 @include('front.form.ngo_registration_form_fd01_step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
@@ -60,6 +63,33 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
 @include('front.form.ngo_registration_form_document_info')
+@endif
+
+@else
+
+
+@if(!$checkCompleteStatusData)
+@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@elseif($checkCompleteStatusData->fd_one_form_step_two_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step02')
+@elseif($checkCompleteStatusData->fd_one_form_step_three_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step03')
+@elseif($checkCompleteStatusData->fd_one_form_step_four_status == 0)
+@include('front.form.foreign.ngo_registration_form_fd01_step04')
+@elseif($checkCompleteStatusData->form_eight_status == 0)
+@include('front.form.foreign.ngo_registration_form_form08')
+@elseif($checkCompleteStatusData->ngo_member_status == 0)
+@include('front.form.foreign.ngo_registration_form_member_info')
+@elseif($checkCompleteStatusData->ngo_member_nid_photo_status == 0)
+@include('front.form.foreign.ngo_registration_form_nid_image_info')
+
+@elseif($checkCompleteStatusData->ngo_other_document_status == 0)
+@include('front.form.foreign.ngo_registration_form_document_info')
+@endif
+
+
 @endif
 <!-- end ngo member other form -->
 
@@ -84,35 +114,110 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                         <div class="card-body">
 
                             <ul class="nav nav-tabs custom_tab">
+                                @if($mainNgoType== 'Foreign')
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">{{ trans('fd_one_step_one.fd_one_form_title')}}</a>
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">
+
+
+                                        @if($mainNgoType== 'Foreign')
+                                          @if($foreignNgoType == 'Old')
+{{ trans('fd_one_step_one.fd8')}}
+                        @else
+                     {{ trans('fd_one_step_one.fd_one_form_title')}}
+                        @endif
+
+                        @else
+
+
+                        @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif
+
+
+                        @endif
+
+                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">{{ trans('fd_one_step_one.form_eight_title')}}</a>
-                                </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen1">{{ trans('fd_one_step_one.member_title')}}</a>
-                                </li>
-
-
-
-
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.image_nid_title')}}</a>
-                                </li>
 
 
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#tofen2">{{ trans('fd_one_step_one.other_doc_title')}}</a>
                                 </li>
+                                @else
+
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#tofban">
+
+
+                                        @if($mainNgoType== 'Foreign')
+                                          @if($foreignNgoType == 'Old')
+{{ trans('fd_one_step_one.fd8')}}
+                        @else
+                     {{ trans('fd_one_step_one.fd_one_form_title')}}
+                        @endif
+
+                        @else
+
+
+                        @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif
+
+
+                        @endif
+
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">ফরম নং -০৮</a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.other_doc_title')}}</a>
+                                </li>
+
+                                @endif
 
                             </ul>
 
                             <!-- Tab panes -->
+                            @if($mainNgoType== 'Foreign')
                             <div class="tab-content custom_tab_content">
                                 <div class="tab-pane container active" id="tofban">
+
+                                    @if($foreignNgoType == 'Old')
+                                    @include('front.form.foreign.formone.fdFormOneInfoOld')
+                                    @else
+                                    @include('front.form.foreign.formone.fdFormOneInfo')
+                                    @endif
+                                </div>
+
+
+                                <div class="tab-pane container" id="tofen2">
+                                    @include('front.ngo_doc.foreign.finalViewOne')
+
+                                </div>
+
+
+                            </div>
+                            @else
+
+
+                            <div class="tab-content custom_tab_content">
+                                <div class="tab-pane container active" id="tofban">
+
+                                    @if($localNgoTypem == 'Old')
+                                    @include('front.form.formone.fdFormOneInfoOld')
+                                    @else
                                    @include('front.form.formone.fdFormOneInfo')
+                                   @endif
 
                                 </div>
                                 <div class="tab-pane container" id="tofen">
@@ -120,7 +225,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                 </div>
 
-                                <div class="tab-pane container" id="tofen1">
+                                {{-- <div class="tab-pane container" id="tofen1">
                                   @include('front.ngomember.finalView')
 
                                 </div>
@@ -128,15 +233,23 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                 <div class="tab-pane container" id="tofen2">
                                     @include('front.ngo_doc.finalView')
 
-                                </div>
+                                </div> --}}
 
                                 <div class="tab-pane container" id="tofen3">
-                                @include('front.ngo_member_doc.finalView')
+
+                                    @if($localNgoTypem == 'Old')
+                                    @include('front.ngo_doc.finalViewOne')
+                                    @else
+                                    @include('front.ngo_doc.finalView')
+                                @endif
 
                                 </div>
 
 
                             </div>
+
+
+                            @endif
 
                         </div>
                     </div>
@@ -187,6 +300,49 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+<script>
+    $(document).on('click', '.organizational_structure', function () {
+
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('foreignNgoType') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).on('click', '.organizational_structurel', function () {
+
+        var structureStatus = $(this).val();
+
+
+        //alert(structureStatus);
+
+
+        $.ajax({
+        url: "{{ route('localNgoType') }}",
+        method: 'GET',
+        data: {structureStatus:structureStatus},
+        success: function(data) {
+           $("#mResult").html('');
+           $("#mResult").html(data);
+        }
+        });
+    });
+</script>
+
 
 <script>
     $("#downloadButton345").click(function(){
@@ -195,10 +351,36 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
           var id = $('#mainId').val();
           var place = $('#mainPlace').val();
 
-          alert(22);
+          //alert(22);
 
           $.ajax({
             url: "{{ route('fromOneChief') }}",
+            method: 'GET',
+            data: {name:name,designation:designation,id:id,place:place},
+            success: function(data) {
+
+
+
+                window.open(data);
+
+            }
+            });
+
+      });
+      </script>
+
+
+<script>
+    $("#downloadButtonNew").click(function(){
+          var name = $('#mainName').val();
+          var designation = $('#mainDesignation').val();
+          var id = $('#mainId').val();
+          var place = $('#mainPlace').val();
+
+          //alert(22);
+
+          $.ajax({
+            url: "{{ route('fromEightChiefForOldNgo') }}",
             method: 'GET',
             data: {name:name,designation:designation,id:id,place:place},
             success: function(data) {
@@ -598,7 +780,10 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
         ++i;
         $("#dynamicAddRemoveInformation").append('<tr>' +
             '<td>' +
-            '<input type="file" accept=".pdf" name="" placeholder="" class="form-control" />' +
+            '<input type="text"  name="information_title[]" placeholder="" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="file" accept=".pdf" name="information_type[]" placeholder="" class="form-control" />' +
             '</td>' +
             '<td>' +
             '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +

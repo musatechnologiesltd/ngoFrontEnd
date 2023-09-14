@@ -1,7 +1,7 @@
 <div class="hero-container">
     <div class="slideshow">
         <div class="slide">
-            <img src="{{ asset('/') }}public/front/assets/img/slider/slider_01.jpg"
+            <img src="{{ asset('/') }}public/newSlider.avif"
                  alt=""/>
         </div>
         <div class="slide">

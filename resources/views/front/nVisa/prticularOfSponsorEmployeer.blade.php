@@ -70,13 +70,15 @@
             <input type="email" name="org_email" class="form-control"
                    placeholder="Email" required>
         </div>
-        <div class="mb-3 col-lg-4">
+        {{-- <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Type of the Organization:<span
                         class="text-danger">*</span></label>
             <select name="org_type" id="" class="form-control" required>
                 <option value="NGO">NGO</option>
             </select>
-        </div>
+        </div> --}}
+
+        <input type="hidden" value="NGO" class="form-control" name="org_type" id="" required>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Nature of buisness:</label>
             <input type="text" name="nature_of_business" class="form-control"
@@ -97,13 +99,17 @@
             <input type="text" name="remittance_received" class="form-control"
                    placeholder="Remittance received during last 12 months">
         </div>
-        <div class="mb-3 col-lg-4">
+        {{-- <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Type of Industry:</label>
             <select name="industry_type" id="" class="form-control">
                 <option value="NGO">NGO</option>
 
             </select>
-        </div>
+        </div> --}}
+
+        <input type="hidden" value="NGO" class="form-control" name="industry_type" id="" required>
+
+
         <div class="mb-3 col-lg-8">
             <label for="" class="form-label">Recommendation of Company Boards:</label>
             <input type="text" name="recommendation_of_company_board" class="form-control"

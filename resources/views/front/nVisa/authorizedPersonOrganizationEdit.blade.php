@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="d-grid d-md-flex justify-content-md-end">
-        <button type="submit" class="btn btn-registration">Next
+        <button type="submit" class="btn btn-registration">submit
         </button>
     </div>
 </div>

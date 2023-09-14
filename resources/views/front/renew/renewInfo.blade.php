@@ -257,6 +257,20 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>নিবন্ধন নম্বর</td>
                                             <td>:
 
+                                                <?php
+
+                                                $mainNgoTypeRenew = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+
+                                                $registrationNumberForOld = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+?>
+
+@if($mainNgoTypeRenew == 'Old')
+{{ App\Http\Controllers\NGO\CommonController::englishToBangla($registrationNumberForOld)}}
+
+@else
+
+
                                               @if($all_partiw1->registration_number == 0)
 
 
@@ -271,7 +285,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
 @endif
                                               @endif
 
-
+@endif
                                           </td>
                                         </tr>
                                         <tr>

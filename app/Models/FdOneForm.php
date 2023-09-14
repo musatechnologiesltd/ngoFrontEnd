@@ -11,6 +11,20 @@ class FdOneForm extends Model
     public $table = "fd_one_forms";
 
     protected $fillable = [
+      'digital_signature',
+         'digital_seal',
+        'verified_fd_eight_form_old',
+       'org_phone',
+       'org_mobile',
+        'org_email',
+        'web_site_name',
+        'nationality',
+        'annual_budget_file',
+       'copy_of_chalan',
+          'due_vat_pdf',
+           'change_ac_number',
+        'foregin_pdf',
+        'tele_phone_number',
         'chief_name',
         'chief_desi',
         'registration_number',
@@ -120,7 +134,12 @@ class FdOneForm extends Model
 
 
 
+    public function fd9Form()
+    {
+        return $this->hasMany(Fd9Form::class,'fd_one_form_id');
+    }
 
+    
     public function fd9OneForm()
     {
         return $this->hasMany(Fd9OneForm::class,'fd_one_form_id');

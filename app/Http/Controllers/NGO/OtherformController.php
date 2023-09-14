@@ -283,6 +283,8 @@ class OtherformController extends Controller
 
 
     public function ngoTypeAndLanguagePost(Request $request){
+
+        //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
@@ -290,13 +292,36 @@ class OtherformController extends Controller
 
         $category_list = new NgoTypeAndLanguage();
         $category_list->ngo_type = $request->ngo_origin;
-        $category_list->ngo_language = $request->input_language;
+
+        if($request->ngo_origin == 'দেশিও'){
+        $category_list->ngo_language ='en';
+        }else{
+            $category_list->ngo_language ='sp';
+        }
+
+        $category_list->ngo_type_new_old = $request->ngo_type;
+        if(empty($request->reg_number)){
+        $category_list->registration =0;
+        }else{
+            $category_list->registration = $request->reg_number;
+        }
+        if(empty($request->last_renew_date)){
+        $category_list->last_renew_date = 0;
+    }else{
+        $category_list->last_renew_date = $request->last_renew_date;
+    }
         $category_list->user_id =Auth::user()->id;
         $category_list->time_for_api =$main_time;
         $category_list->save();
 
-        App::setLocale($request->input_language);
-        session()->put('locale', $request->input_language);
+        if($request->ngo_origin == 'দেশিও'){
+
+        App::setLocale('en');
+        session()->put('locale','en');
+    }else{
+        App::setLocale('sp');
+        session()->put('locale','sp');
+    }
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 
@@ -339,7 +364,7 @@ return redirect('ngoAllRegistrationForm');
     public function ngoAllRegistrationForm(){
 
 
-
+        CommonController::checkNgotype();
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 
@@ -348,8 +373,13 @@ return redirect('ngoAllRegistrationForm');
 
         $ngoLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_language');
 
+
+        $mainNgoType = CommonController::changeView();
+
+
+
         if($first_form_check == 1){
-//dd(11);
+
             return view('front.firstTwoStep.ngoAllRegistrationForm');
 
         }elseif(!empty($ngoLanguage)){
@@ -380,30 +410,93 @@ return redirect('ngoAllRegistrationForm');
 
     public function finalSubmitRegForm(Request $request){
 
+//dd(11);
 
 
-        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+$mainNgoTypeOld = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
 
 
-        $category_list = new NgoStatus();
-        $category_list->fd_one_form_id = $get_reg_id->id;
-        $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
-        $category_list->reg_type = $request->reg_type;
-        $category_list->status = 'Ongoing';
-        $category_list->email = Auth::user()->email;
-        $category_list->save();
 
-            $get_v_email = Auth::user()->email;
+if($mainNgoTypeOld == 'Old'){
 
-        Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
-            $message->to($get_v_email);
-            $message->subject('NGOAB Registration Service || Token Number');
-        });
+    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+    $category_list = new NgoStatus();
+    $category_list->fd_one_form_id = $get_reg_id->id;
+    $category_list->status = 'Old Ngo Renew';
+    $category_list->email = Auth::user()->email;
+    $category_list->save();
+
+
+    // $category_list = new NgoRenew();
+    // $category_list->fd_one_form_id = $get_reg_id->id;
+    // $category_list->status = 'Ongoing';
+    // $category_list->save();
+
+        $get_v_email = Auth::user()->email;
+
+        $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+    Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+        $message->to($get_v_email);
+        $message->subject('Old NGOAB Renew Service');
+    });
+
+}else{
+
+    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+
+    $category_list = new NgoStatus();
+    $category_list->fd_one_form_id = $get_reg_id->id;
+    $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
+    $category_list->reg_type = $request->reg_type;
+    $category_list->status = 'Ongoing';
+    $category_list->email = Auth::user()->email;
+    $category_list->save();
+
+        $get_v_email = Auth::user()->email;
+
+    Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+        $message->to($get_v_email);
+        $message->subject('NGOAB Registration Service || Tracking Number');
+    });
+
+}
+
 
 
         return redirect()->back();
 
 
+    }
+
+    public function renewalSubmitForOld(Request $request){
+
+        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        $category_list = new NgoStatus();
+        $category_list->fd_one_form_id = $get_reg_id->id;
+        $category_list->status = 'Old Ngo Renew';
+        $category_list->email = Auth::user()->email;
+        $category_list->save();
+
+
+        // $category_list = new NgoRenew();
+        // $category_list->fd_one_form_id = $get_reg_id->id;
+        // $category_list->status = 'Ongoing';
+        // $category_list->save();
+
+            $get_v_email = Auth::user()->email;
+
+            $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+        Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+            $message->to($get_v_email);
+            $message->subject('Old NGOAB Renew Service');
+        });
+        return redirect()->back();
     }
 
 

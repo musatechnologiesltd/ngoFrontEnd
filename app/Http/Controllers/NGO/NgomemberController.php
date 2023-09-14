@@ -17,9 +17,14 @@ class NgomemberController extends Controller
     public function index(){
 
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
 
+        if($mainNgoType== 'দেশিও'){
         return view('front.ngomember.index');
-
+        }else{
+            return view('front.foreign.ngomember.index');
+        }
     }
 
     public function create(){

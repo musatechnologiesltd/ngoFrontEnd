@@ -19,10 +19,18 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($localNgoTypem == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        @endif
                         <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- @if($localNgoTypem == 'Old')
+
+                        @else
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li>
+                        @endif
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -89,6 +97,10 @@
                                             </label>
                                         <input type="text" class="form-control" value="" name="address_of_head_office_eng" data-parsley-required  id="">
                                     </div>
+
+
+
+
                                     <?php
 
                                     $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
@@ -118,7 +130,7 @@
                                                                         <select name="country_of_origin" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
 
                                                                             @foreach($countryList as $allCountryList)
-                                                                            @if(session()->get('locale') == 'en')
+                                                                            @if(session()->get('locale') == 'en')u
                                                                             <option value="{{ $allCountryList->country_name_english }}">{{ $allCountryList->country_name_bangla }}</option>
                                                                             @else
                                                                             <option value="{{ $allCountryList->country_name_english }}">{{ $allCountryList->country_name_english }}</option>
@@ -155,6 +167,10 @@
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                                     <input type="text" required name="address" value="{{ Session::get('address') }}" class="form-control" id="">
                                 </div>
+
+
+
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
                                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
@@ -197,6 +213,7 @@
                             </form>
 
         @else
+
         <form action="{{ route('particularsOfOrganisationUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
             @csrf
             <input required="" name="id" value="{{ $allParticularsOfOrganisation->id }}" type="hidden" class="form-control" id="">
@@ -238,7 +255,30 @@
                     <input type="text" class="form-control" value="{{ $allParticularsOfOrganisation->address_of_head_office_eng }}" name="address_of_head_office_eng" data-parsley-required  id="">
                 </div>
 
+                @if($localNgoTypem == 'Old')
+                <div class="mb-3">
+                    <label for="" class="form-label">সংস্থার টেলিফোন নম্বর<span class="text-danger">*</span> </label>
+                    <input type="text" data-parsley-required  name="org_phone" value="{{ $allParticularsOfOrganisation->org_phone }}" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">সংস্থার মোবাইল নম্বর<span class="text-danger">*</span> </label>
+                    <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    type = "number"
+                    maxlength = "11" minlength="11" data-parsley-required  name="org_mobile" value="{{ $allParticularsOfOrganisation->org_mobile }}" class="form-control" id="">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">সংস্থার ইমেইল<span class="text-danger">*</span> </label>
+                    <input type="email" data-parsley-required  name="org_email" value="{{ $allParticularsOfOrganisation->org_email }}" class="form-control" id="">
+                </div>
 
+                <div class="mb-3">
+                    <label for=""  class="form-label">সংস্থার ওয়েবসাইট  <span class="text-danger">*</span> </label>
+                    <input type="text" data-parsley-required  name="web_site_name" value="{{ $allParticularsOfOrganisation->web_site_name }}" class="form-control" id="">
+                </div>
+
+                @else
+
+                @endif
 
                 <?php
 
@@ -313,12 +353,12 @@
                         <div class="mt-2 mb-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                       value="Part-Time" {{ 'Part-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                       value="Part Time" {{ 'Part Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
                                 <label class="form-check-label" for="inlineRadio1">{{ trans('fd_one_step_one.Part_Time')}}</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" data-parsley-checkmin="1" data-parsley-required type="radio" name="job_type" id=""
-                                       value="Full-Time" {{  'Full-Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
+                                       value="Full Time" {{  'Full Time' == $allParticularsOfOrganisation->job_type ? 'checked':'' }}>
                                 <label class="form-check-label" for="inlineRadio2">{{ trans('fd_one_step_one.Full_Time')}}</label>
                             </div>
                         </div>
@@ -329,6 +369,38 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Address')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required name="address" value="{{ $allParticularsOfOrganisation->address }}" class="form-control" id="">
                 </div>
+
+                      <!--new code for ngo-->
+                      <div class="mb-3">
+                        <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
+                        <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+                        <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
+                        <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+                        <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
+
+                    </div>
+                    <!-- end new code -->
+
+                    @if($localNgoTypem == 'Old')
+                    <div class="mb-3">
+                        <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
+                        <input type="text"  data-parsley-required name="nationality" value="{{ $allParticularsOfOrganisation->nationality }}" class="form-control" id="">
+                    </div>
+                    @else
+
+                    @endif
+
+                    <div class="mb-3">
+                        <label for="" class="form-label">{{ trans('fd_one_step_one.tele')}}</label>
+                        <input type="text"   name="tele_phone_number" value="{{ $allParticularsOfOrganisation->tele_phone_number }}"  class="form-control" id="">
+                    </div>
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
                     <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"

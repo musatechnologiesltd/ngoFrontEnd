@@ -1,5 +1,6 @@
 <?php
 return [
+    '10y'=>'Details of foreign grant management activities in the last 10 (ten) years (project wise summary to be attached)',
     'money'=>'What is your expected Annual Budget (Foreign Currency Or Bangladesh taka)',
     'copy'=>'If there is/are letter(s) of commitment from prospective donor(s) (copies) thereof',
     'dd'=>'Please give names of organization (s) with address',

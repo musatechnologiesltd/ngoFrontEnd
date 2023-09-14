@@ -12,6 +12,8 @@ class FormEight extends Model
     public $table = "form_eights";
 
     protected $fillable = [
+        'job_picture',
+        'job_sign',
         'name',
         'name_slug',
         'desi',
@@ -34,6 +36,15 @@ class FormEight extends Model
         'time_for_api',
         'complete_status',
         'verified_form_eight',
+        'name_one',
+        'name_two',
+        'designation_one',
+        'designation_two',
+        'signature_one',
+        'signature_two',
+        'seal_one',
+        'seal_two',
+'employee_add_status'
 
         ];
 

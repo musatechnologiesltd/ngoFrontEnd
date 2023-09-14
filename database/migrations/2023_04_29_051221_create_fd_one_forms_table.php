@@ -30,6 +30,27 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('district')->nullable();
             $table->string('phone')->nullable();
+            $table->string('tele_phone_number')->nullable();
+
+
+            $table->string('copy_of_chalan')->nullable();
+            $table->string('due_vat_pdf')->nullable();
+            $table->string('change_ac_number')->nullable();
+            $table->string('verified_fd_eight_form_old')->nullable();
+
+            $table->string('org_phone')->nullable();
+            $table->string('org_mobile')->nullable();
+            $table->string('org_email')->nullable();
+            $table->string('web_site_name')->nullable();
+            $table->string('nationality')->nullable();
+
+            $table->string('annual_budget_file')->nullable();
+
+            $table->string('digital_signature')->nullable();
+            $table->string('digital_seal')->nullable();
+
+            $table->string('foregin_pdf')->nullable();
+
             $table->string('email')->nullable();
             $table->string('citizenship')->nullable();
             $table->string('profession')->nullable();

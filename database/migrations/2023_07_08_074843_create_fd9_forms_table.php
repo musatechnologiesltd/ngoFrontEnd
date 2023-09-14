@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('fd9_forms', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('n_visa_id')->unsigned();
-            $table->foreign('n_visa_id')->references('id')->on('n_visas')->onDelete('cascade');
+            $table->bigInteger('fd_one_form_id')->unsigned();
+            $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
+            // $table->bigInteger('n_visa_id')->unsigned();
+            // $table->foreign('n_visa_id')->references('id')->on('n_visas')->onDelete('cascade');
             $table->string('fd9_foreigner_name')->nullable();
             $table->string('fd9_father_name')->nullable();
             $table->string('fd9_husband_or_wife_name')->nullable();

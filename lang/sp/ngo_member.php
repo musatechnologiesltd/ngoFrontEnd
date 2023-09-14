@@ -1,8 +1,8 @@
 <?php
 return [
-    'ngo_member_list'=>'NGO Members List',
-    'ngo_member'=>'NGO Member',
-    'ngo_member_registration'=>'NGO Member Registration',
+    'ngo_member_list'=>'NGO General Members List',
+    'ngo_member'=>'NGO General Member',
+    'ngo_member_registration'=>'NGO General Member Registration',
     'name'=>'Name',
     'designation'=>'Designation',
     'date_of_birth'=>'Date of Birth',

@@ -12,8 +12,10 @@ use Hash;
 use Illuminate\Support\Str;
 use Mail;
 use DB;
+use App\Models\NgoTypeAndLanguage;
 use App\Models\NgoNameChange;
 use App\Models\NgoRenew;
+use App\Models\RenewalFile;
 use App\Models\FormEight;
 use App\Models\FdOneForm;
 use App\Models\FdOneOtherPdfList;
@@ -252,10 +254,25 @@ class AuthController extends Controller
             $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
             $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
 
-            if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing'){
+            if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing' || $ngo_status_list == 'Old Ngo Renew'){
 
                 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
-            return view('front.dashboard.dashboard',compact('get_reg_id'));
+
+
+                CommonController::checkNgotype();
+
+                $mainNgoType = CommonController::changeView();
+
+                if($mainNgoType== 'দেশিও'){
+
+
+
+                return view('front.dashboard.dashboard',compact('get_reg_id'));
+
+                }else{
+                    return view('front.dashboard.foreign.dashboard',compact('get_reg_id'));
+
+                }
 
             }else{
 
@@ -276,7 +293,25 @@ $all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all->i
 $get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id)
             ->get();
 
-                return view('front.dashboard.accept_dashboard',compact('name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+
+            $oldOrNewStatus = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
+
+            CommonController::checkNgotype();
+
+            $mainNgoType = CommonController::changeView();
+
+
+$ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
+
+            if($mainNgoType== 'দেশিও'){
+
+                return view('front.dashboard.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+            }else{
+
+                return view('front.dashboard.foreign.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
+            }
             }
         }
 

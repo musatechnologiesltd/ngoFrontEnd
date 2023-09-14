@@ -70,8 +70,8 @@
                         </div>
 
                         <div class="profile_link_box">
-                            <a href="{{ route('nVisa.index') }}">
-                                <p class="{{ Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                            <a href="{{ route('fdNineForm.index') }}">
+                                <p class="{{ Route::is('fdNineForm.index') || Route::is('fdNineForm.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
 
-                                <div class="card mb-3">
+                                {{-- <div class="card mb-3">
                                     <div class="card-header">
                                         গঠনতন্ত্র পরিবর্তন ফি বাবদ-১৩,০০০/ (তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ
                                     </div>
@@ -137,7 +137,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
 
                                 <div class="card mb-3">
@@ -209,7 +209,51 @@
                                 </div>
 
 
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংস্থার পরিবর্তিত নামের বাই লজ (By Laws)/গঠনতন্ত্রের কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত মূলকপিসহ )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংস্থার পূর্ববর্তী নামের সকল দায় -দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অঙ্গীকার নামা (সংস্থার প্রধান কতৃক স্বাক্ষরিত )
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ২০১০-২০১১ অর্থবছর হতে হালনাগাদ পর্যন্ত সংস্থার নিবন্ধন/নিবন্ধন নবায়ন /নাম পরিবর্তন /গঠনতন্ত্রের যে কোনো ধারা পরিবর্তনের বিষয়ের দাখিলকৃত ফি এর ১৫% বকেয়া ভ্যাট (যদি ইতিমধ্যে প্রদান করা হয়ে না থাকে ) সংশ্লিষ্ট কোডে
+জমাপূর্বক চালানের মুলকপিসহ
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 @else
+
+
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
@@ -224,7 +268,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপি এবং ১৫% ভ্যাট (কোড নং - ১-১১৩৩ -০০৩৫ - ০৩১১) প্রদানপূর্বক চালানের মূলকপিসহ
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -237,7 +281,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        গঠনতন্ত্র পরিবর্তন ফি বাবদ-১৩,০০০/ (তের হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ
+                                        ফরম -৮ মোতাবেক নির্বাহী কমিটির তালিকা
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -247,6 +291,23 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নির্বাহী কমিটির সদস্যদের ভোটার আইডি কার্ডের ফটোকপিসহ সত্যায়িত পাসপোর্ট সাইজের ছবি
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="card mb-3">
                                     <div class="card-header">
@@ -298,6 +359,22 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সর্বশেষ সাধারণ সদস্যদের তালিকা
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         নাম পরিবর্তন সংক্রান্ত বিষয়ে সাধারণ সভার কা্যবিবরণীর (উপস্থিত সদস্যদের তালিকাসহ) সত্যায়িত কপি

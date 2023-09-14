@@ -1,5 +1,7 @@
 <?php
 return [
+    'fd8'=>'এফডি-৮ ফরম',
+    'tele'=>'টেলিফোন নম্বর',
     'nn'=>'জাতীয়তা',
     'fd_one_form_title'=>'এফডি-১ ফরম',
     'form_eight_title'=>'ফরম নং-৮',

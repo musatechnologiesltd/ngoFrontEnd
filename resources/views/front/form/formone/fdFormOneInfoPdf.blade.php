@@ -94,7 +94,7 @@
             @if($getNgoTypeForPdf == 'দেশিও')
             <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
             @else
-            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
+            <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address}}</td>
             @endif
         </tr>
         <!-- <tr>
@@ -139,7 +139,17 @@
             <td class="number_section">(v)</td>
             <td>{{ trans('fd_one_step_one.Address_of_the_Head_Office')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->address_of_head_office }}</td>
+            <td>
+                @if($getNgoTypeForPdf == 'দেশিও')
+
+                {{ $allformOneData->address_of_head_office }}
+
+                @else
+                {{ $allformOneData->address_of_head_office_eng  }}
+
+                @endif
+
+            </td>
         </tr>
         <tr>
             <td></td>
@@ -519,32 +529,40 @@ attached
 
         </tbody>
     </table>
-<h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
+<h4 style="text-align:center; font-weight:bold; font-size:20px;margin-top: 100px">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
-<table style=" margin-top: 100px">
+<table style=" margin-top: 150px">
     <tr>
-        <td style="text-align: right; padding-right: 17%" colspan="2">{{ trans('fd_one_step_one.tt_4')}}</td>
+        <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
     </tr>
     <tr>
-        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_5')}}</td>
-        <td style="width:35%; text-align: left;">: {{ $allformOneData->chief_name }}</td>
+        <td style="width: 65%"></td>
+        <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
+        <td style="width:30%; text-align: left;">: {{ $allformOneData->chief_name }}</td>
     </tr>
     <tr>
-        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_6')}}</td>
-        <td style="width:35%; text-align: left;">: {{ $allformOneData->chief_desi }}</td>
+        <td style="width: 65%"></td>
+        <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_6')}}</td>
+        <td style="width:30%; text-align: left;">: {{ $allformOneData->chief_desi }}</td>
     </tr>
     @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
 
     @else
 
     <tr>
-        <td style="text-align: right;">Place</td>
-        <td style="width:35%; text-align: left;">: ...................................................</td>
+        <td style="width: 65%"></td>
+        <td style="text-align: left; width: 5%;">Place</td>
+        <td style="width:30%; text-align: left;">: {{ Session::get('place')}}</td>
     </tr>
     @endif
     <tr>
-        <td style="text-align: right;">{{ trans('fd_one_step_one.tt_7')}}</td>
-        <td style="width:35%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
+        <td style="width: 65%"></td>
+        <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_7')}}</td>
+        @if($getNgoTypeForPdf == 'দেশিও')
+        <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
+        @else
+        <td style="width:30%; text-align: left;">: {{  $allformOneData->created_at->format('d/m/Y') }}</td>
+        @endif
     </tr>
 </table>
 

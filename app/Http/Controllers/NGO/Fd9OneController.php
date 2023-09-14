@@ -40,20 +40,41 @@ class Fd9OneController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
         return view('front.fd9OneForm.index',compact('ngo_list_all','fd9OneList'));
+
     }
 
 
     public function create(){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
         return view('front.fd9OneForm.create',compact('ngo_list_all'));
+
     }
 
 
     public function edit($id){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+
         return view('front.fd9OneForm.edit',compact('ngo_list_all','fd9OneList'));
+
 
     }
 
@@ -61,7 +82,16 @@ class Fd9OneController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',base64_decode($id))->first();
-        return view('front.fd9OneForm.show',compact('ngo_list_all','fd9OneList'));
+
+        CommonController::checkNgotype();
+
+$mainNgoType = CommonController::changeView();
+
+$nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
+->with(['nVisaParticularOfSponsorOrEmployer','nVisaParticularsOfForeignIncumbnet','nVisaEmploymentInformation','nVisaWorkPlaceAddress','nVisaAuthorizedPersonalOfTheOrg','nVisaNecessaryDocumentForWorkPermit','nVisaManpowerOfTheOffice'])->first();
+
+        return view('front.fd9OneForm.show',compact('nVisaEdit','ngo_list_all','fd9OneList'));
+
     }
 
     public function fd9OneChief(Request $request){
@@ -149,11 +179,19 @@ class Fd9OneController extends Controller
 
         $fd9OneFormInfo->save();
 
-        return redirect()->route('fdNineOneForm.index')->with('success','Addedd Successfully');
+        $id = $fd9OneFormInfo->id;
+
+        return redirect()->route('addnVisaDetail',$id)->with('success','Addedd Successfully');
     }
 
 
     public function update(Request $request,$id){
+
+
+       $nVisaId = NVisa::where('fd9_one_form_id',$id)->value('id');
+
+
+
         $fd9OneFormInfo =Fd9OneForm::find($id);
         $fd9OneFormInfo->foreigner_name_for_subject = $request->foreigner_name_for_subject;
         $fd9OneFormInfo->sarok_number = $request->sarok_number;
@@ -200,7 +238,7 @@ class Fd9OneController extends Controller
 
         $fd9OneFormInfo->save();
 
-        return redirect()->route('fdNineOneForm.index')->with('success','Update Successfully');
+        return redirect()->route('nVisa.edit',$nVisaId)->with('success','Update Successfully');
 
     }
 

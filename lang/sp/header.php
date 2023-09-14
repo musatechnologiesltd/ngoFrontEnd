@@ -1,12 +1,18 @@
 <?php
 return [
+
+    'old'=>'Old',
+    'new'=>'New',
+    'ngo_type'=>'Type of NGO',
+    'reg_number'=>'Registration Number',
+    'last_renew_date'=>'Date of last registration/renewal',
     'in1'=>'This field is required',
     'reg1'=>'Registration',
     'sm'=>'Must be use valid email for varification',
     'reg'=>'Register',
     'step'=>'Step 01',
-    'tt_one'=>' Registration for new User',
-    'person_name'=>'Registration Person Name',
+    'tt_one'=>' Registration for NGO',
+    'person_name'=>'NGO Name',
     'phone_number'=>'Mobile Number',
 
 

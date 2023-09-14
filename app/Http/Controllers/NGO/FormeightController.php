@@ -191,10 +191,15 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
     public function index(){
 
+        CommonController::checkNgotype();
+        $mainNgoType = CommonController::changeView();
 
+        if($mainNgoType== 'দেশিও'){
 
             return view('front.form.form_eight.formEightNgoCommitteeMember');
-
+        }else{
+            return view('front.form.foreign.form_eight.formEightNgoCommitteeMember');
+        }
 
 
     }
@@ -283,6 +288,24 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $formEightData->job_des = $request->job_des;
         $formEightData->service_status = $request->service_status;
         $formEightData->fd_one_form_id = $fdOneFormId;
+
+
+        if ($request->hasfile('job_picture')) {
+            $filePath="FormEight";
+            $file = $request->file('job_picture');
+            $formEightData->job_picture =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('job_sign')) {
+            $filePath="FormEight";
+            $file = $request->file('job_sign');
+            $formEightData->job_sign =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
         $formEightData->save();
 
 
@@ -310,6 +333,23 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $formEightData->profession = $request->profession;
         $formEightData->job_des = $request->job_des;
         $formEightData->service_status = $request->service_status;
+
+        if ($request->hasfile('job_picture')) {
+            $filePath="FormEight";
+            $file = $request->file('job_picture');
+            $formEightData->job_picture =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('job_sign')) {
+            $filePath="FormEight";
+            $file = $request->file('job_sign');
+            $formEightData->job_sign =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
         $formEightData->save();
 
 
@@ -393,8 +433,8 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
        $newStatusData->fd_one_form_step_three_status = 1;
        $newStatusData->fd_one_form_step_four_status = 1;
        $newStatusData->form_eight_status = 1;
-       $newStatusData->ngo_member_status = 0;
-       $newStatusData->ngo_member_nid_photo_status = 0;
+       $newStatusData->ngo_member_status = 1;
+       $newStatusData->ngo_member_nid_photo_status = 1;
        $newStatusData->ngo_other_document_status = 0;
        $newStatusData->save();
    }else{
@@ -410,6 +450,148 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
         $data = url('/ngoAllRegistrationForm');
         return $data;
+
+    }
+
+
+
+
+    public function formEightNewData(Request $request){
+
+        //dd($request->all());
+
+
+        $checkValueFirst = FormEight::where('fd_one_form_id',$request->fd_one_form_id)
+        ->value('name_one');
+
+
+
+        if ($request->hasfile('signature_one')) {
+            $filePath="FormEight";
+            $file = $request->file('signature_one');
+            $signature_one =CommonController::imageUpload($request,$file,$filePath);
+
+        }else{
+            $signature_one = 0;
+        }
+
+
+        if ($request->hasfile('seal_one')) {
+            $filePath="seal_one";
+            $file = $request->file('seal_one');
+            $seal_one =CommonController::imageUpload($request,$file,$filePath);
+
+        }else{
+
+            $seal_one = 0;
+        }
+
+
+
+
+
+        if($checkValueFirst == 0){
+
+
+            FormEight::where('fd_one_form_id',$request->fd_one_form_id)
+            ->update([
+                'name_one' => $request->name_one,
+                'designation_one' => $request->designation_one,
+                'signature_one' => $signature_one,
+                'seal_one' => $seal_one,
+             ]);
+
+        }else{
+
+            FormEight::where('fd_one_form_id',$request->fd_one_form_id)
+            ->update([
+                'name_two' => $request->name_one,
+                'designation_two' => $request->designation_one,
+                'signature_two' => $signature_one,
+                'seal_two' => $seal_one,
+                'employee_add_status'=>'yes'
+             ]);
+
+        }
+        return redirect()->back()->with('info','Added Successfully');
+    }
+
+
+
+    public function formEightNewDataUpdate (Request $request){
+
+        //dd($request->all());
+        if(empty($request->name_two)){
+
+//dd(11);
+            if ($request->hasfile('signature_one')) {
+                $filePath="FormEight";
+                $file = $request->file('signature_one');
+                $signature_one =CommonController::imageUpload($request,$file,$filePath);
+
+            }else{
+                $signature_one =FormEight::where('fd_one_form_id',$request->fd_one_form_id)->value('signature_one');
+            }
+
+
+            if ($request->hasfile('seal_one')) {
+                $filePath="seal_one";
+                $file = $request->file('seal_one');
+                $seal_one =CommonController::imageUpload($request,$file,$filePath);
+
+            }else{
+
+                $seal_one = FormEight::where('fd_one_form_id',$request->fd_one_form_id)->value('seal_one');
+            }
+
+
+            FormEight::where('fd_one_form_id',$request->fd_one_form_id)
+            ->update([
+                'name_one' => $request->name_one,
+                'designation_one' => $request->designation_one,
+                'signature_one' => $signature_one,
+                'seal_one' => $seal_one,
+             ]);
+
+        }else{
+
+            //dd(111);
+
+
+            if ($request->hasfile('signature_two')) {
+                $filePath="FormEight";
+                $file = $request->file('signature_two');
+                $signature_one =CommonController::imageUpload($request,$file,$filePath);
+
+            }else{
+                $signature_one =FormEight::where('fd_one_form_id',$request->fd_one_form_id)->value('signature_two');
+            }
+
+
+            if ($request->hasfile('seal_two')) {
+                $filePath="seal_two";
+                $file = $request->file('seal_two');
+                $seal_one =CommonController::imageUpload($request,$file,$filePath);
+
+            }else{
+
+                $seal_one = FormEight::where('fd_one_form_id',$request->fd_one_form_id)->value('seal_two');
+            }
+
+            FormEight::where('fd_one_form_id',$request->fd_one_form_id)
+            ->update([
+                'name_two' => $request->name_two,
+                'designation_two' => $request->designation_two,
+                'signature_two' => $signature_one,
+                'seal_two' => $seal_one,
+                'employee_add_status'=>'yes'
+             ]);
+
+
+
+
+        }
+        return redirect()->back()->with('info','Added Successfully');
 
     }
 }

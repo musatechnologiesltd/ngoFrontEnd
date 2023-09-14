@@ -1,5 +1,7 @@
 <?php
 return [
+    'fd8'=>'FD-8 Form',
+    'tele'=>'Telephone Number',
     'nn'=>'Nationality',
     'fd_one_form_title'=>'FD-1 Form',
     'form_eight_title'=>'Form No-8',
@@ -20,7 +22,7 @@ return [
     'tt_12'=>'Application must be submitted by Chief Executive of organizations.',
     'n_r'=>'Registration Application Form',
     'hh'=>'Information of head of organization in Bangladesh',
-    'reg_num'=>'Reg Number',
+    'reg_num'=>'Registration Number',
     'zero'=>'0',
     'one'=>'1',
     'two'=>'2',

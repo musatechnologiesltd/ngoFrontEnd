@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.fd09formone')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -61,14 +61,14 @@
                             </a>
                         </div>
                         <div class="profile_link_box">
-                            <a href="{{ route('nVisa.index') }}">
-                                <p class="{{ Route::is('nVisa.edit') || Route::is('nVisa.index') || Route::is('nVisa.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
+                            <a href="{{ route('fdNineForm.index') }}">
+                                <p class="{{ Route::is('fdNineForm.edit') || Route::is('fdNineForm.index') || Route::is('fdNineForm.create') || Route::is('fdNineForm.create')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.nvisa')}}</p>
                             </a>
                         </div>
 
                         <div class="profile_link_box">
                             <a href="{{ route('fdNineOneForm.index') }}">
-                                <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+                                <p class="{{ Route::is('addnVisaDetail') || Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">

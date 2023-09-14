@@ -64,9 +64,29 @@ $ngo_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 
 @if(empty($get_reg_id))
-<li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('reg_sub.reg_sub')}}</a></li>
+<li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i>
+
+    @if($foreignNgoType == 'Old')
+Renew Submit
+    @else
+    {{ trans('reg_sub.reg_sub')}}
+
+    @endif
+
+
+</a></li>
 @else
-<li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('reg_sub.reg_sub')}}</a></li>
+<li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i>
+
+
+    @if($foreignNgoType == 'Old')
+Renew Submit
+    @else
+    {{ trans('reg_sub.reg_sub')}}
+
+    @endif
+
+</a></li>
 
 @endif
 <li class="{{ Route::is('informationResetPage')  ? 'active_link' : '' }}"> <a href="{{ route('informationResetPage') }}"> <i class="fa fa-cog pe-1 dashboard_icon" aria-hidden="true"></i>{{ trans('first_info.reset')}}</a></li>
