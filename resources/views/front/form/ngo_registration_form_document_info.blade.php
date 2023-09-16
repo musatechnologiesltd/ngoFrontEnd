@@ -35,6 +35,109 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                         <div class="d-flex justify-content-between mb-4">
                             <div class="p-2">
                                 <h5>{{ trans('other_doc.all_doc')}}</h5>
+
+                                @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
+
+        @if ($errors->has('registration_certificate'))
+        <span class="text-danger">{{ $errors->first('registration_certificate') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('last_ten_years_audit_report_and_annual_report_of_the_company'))
+        <span class="text-danger">{{ $errors->first('last_ten_years_audit_report_and_annual_report_of_the_company') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('work_procedure_of_organization'))
+        <span class="text-danger">{{ $errors->first('work_procedure_of_organization') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('organization_by_laws_or_constitution'))
+        <span class="text-danger">{{ $errors->first('organization_by_laws_or_constitution') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('list_of_board_of_directors_or_board_of_trustees'))
+        <span class="text-danger">{{ $errors->first('list_of_board_of_directors_or_board_of_trustees') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('section_sub_section_of_the_constitution'))
+        <span class="text-danger">{{ $errors->first('section_sub_section_of_the_constitution') }}</span><br>
+        @endif
+
+
+        @if ($errors->has('payment_of_change_fee'))
+        <span class="text-danger">{{ $errors->first('payment_of_change_fee') }}</span><br>
+        @endif
+
+
+
+        @if ($errors->has('constitution_approved_by_primary_registering_authority'))
+        <span class="text-danger">{{ $errors->first('constitution_approved_by_primary_registering_authority') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('the_constitution_of_the_company_along_with_fee_if_changed'))
+        <span class="text-danger">{{ $errors->first('the_constitution_of_the_company_along_with_fee_if_changed') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('constitution_of_the_organization_has_changed'))
+        <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('constitution_of_the_organization_if_unchanged'))
+        <span class="text-danger">{{ $errors->first('constitution_of_the_organization_if_unchanged') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('attested_copy_of_latest_registration_or_renewal_certificate'))
+        <span class="text-danger">{{ $errors->first('attested_copy_of_latest_registration_or_renewal_certificate') }}</span><br>
+        @endif
+
+
+
+
+
+                @if ($errors->has('constitution_of_the_organization_has_changed'))
+                <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
+            @endif
+
+
+            @if ($errors->has('right_to_information_act'))
+            <span class="text-danger">{{ $errors->first('right_to_information_act') }}</span><br>
+        @endif
                             </div>
                             <div class="p-2">
                                 <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
@@ -63,6 +166,8 @@ if($localNgoTypem == 'Old'){
                         <div class="file-content">
                             <div class="card">
                                 <div class="card-body file-manager">
+
+
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
@@ -1854,6 +1959,10 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
+
+
+
+
                         <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                             @csrf
@@ -1886,58 +1995,67 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                        নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                    <br><span class="text-danger">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span> </label>
+                                        নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                        উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি </label>
+                                        বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
+                                        অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span> </label>
+                                        সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span> </label>
+                                        Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span> </label>
+                                        নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span>
+                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
                                 </div>
 
