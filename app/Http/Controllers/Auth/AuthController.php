@@ -259,7 +259,7 @@ class AuthController extends Controller
                 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
 
 
-                CommonController::checkNgotype();
+                //CommonController::checkNgotype();
 
                 $mainNgoType = CommonController::changeView();
 

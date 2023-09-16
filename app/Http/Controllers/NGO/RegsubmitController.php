@@ -56,7 +56,7 @@ class RegsubmitController extends Controller
 
 
         $all_renewal_data = RenewalFile::where('fd_one_form_id', $getFormOneId)->first();
-        CommonController::checkNgotype();
+        //CommonController::checkNgotype();
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
