@@ -88,18 +88,25 @@
                         <table class="table table-bordered">
                             <tr>
                                 <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                <td>PDF Upload (পিডিএফ আপলোড)</td>
+                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
                                 <td>Update Information (তথ্য সংশোধন করুন)</td>
                             </tr>
                             <tr>
                                 <td>
+
+
+                                    <button class="btn btn-sm btn-success" id="downloadButton">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button>
+
+                                    
                                     {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainPdfDownload',$fd9OneList->id) }}">
                                         {{ trans('form 8_bn.download_pdf')}}
                                     </a> --}}
 
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
                                         {{ trans('form 8_bn.download_pdf')}}
-                                    </button>
+                                    </button> --}}
 
                                     <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -118,9 +125,7 @@
                                                         <input type="hidden" data-parsley-required  name="id"  value="{{ $fd9OneList->id }}" class="form-control" id="mainId">
                                                     </div>
 
-                                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                                        {{ trans('form 8_bn.download_pdf')}}
-                                                    </button>
+
 
                                             </div>
 
@@ -128,7 +133,7 @@
                                         </div>
                                       </div>
                                 </td>
-                                <td>
+                                {{-- <td>
 
                                     @if(empty($fd9OneList->verified_fd_nine_one_form))
                                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -185,7 +190,7 @@
                 </div>
               </div>
 
-                                </td>
+                                </td> --}}
                             <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdNineOneForm.edit',$fd9OneList->id) }}';">
                                     আপডেট করুন

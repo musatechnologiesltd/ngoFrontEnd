@@ -99,10 +99,10 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $designation = $request->designation;
         $id = $request->id;
 
-        $formEightData =Fd9OneForm::find($id);
-        $formEightData->chief_name = $name;
-        $formEightData->chief_desi = $designation;
-        $formEightData->save();
+        // $formEightData =Fd9OneForm::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
 
          return $data = url('mainPdfDownload/'.base64_encode($id));
 
@@ -113,6 +113,11 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         //dd($request->all());
 
         $request->validate([
+
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+
+
             'foreigner_name_for_subject' => 'required|string',
             'sarok_number' => 'required|string',
             'application_date' => 'required|string',
@@ -134,6 +139,14 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneFormInfo = new Fd9OneForm();
         $fd9OneFormInfo->fd_one_form_id = $fdOneFormId->id;
+
+
+
+       $fd9OneFormInfo->chief_name = $request->chief_name;
+       $fd9OneFormInfo->chief_desi = $request->chief_desi;
+
+
+
         $fd9OneFormInfo->foreigner_name_for_subject = $request->foreigner_name_for_subject;
         $fd9OneFormInfo->sarok_number = $request->sarok_number;
         $fd9OneFormInfo->application_date = $request->application_date;
@@ -146,6 +159,22 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+
+        if ($request->hasfile('digital_signature')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_signature');
+            $fd9OneFormInfo->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('digital_seal')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_seal');
+            $fd9OneFormInfo->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('attestation_of_appointment_letter')) {
@@ -188,6 +217,17 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
     public function update(Request $request,$id){
 
 
+
+        $request->validate([
+
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
+
+
+
+
+
        $nVisaId = NVisa::where('fd9_one_form_id',$id)->value('id');
 
 
@@ -195,6 +235,11 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo =Fd9OneForm::find($id);
         $fd9OneFormInfo->foreigner_name_for_subject = $request->foreigner_name_for_subject;
         $fd9OneFormInfo->sarok_number = $request->sarok_number;
+
+        $fd9OneFormInfo->chief_name = $request->chief_name;
+       $fd9OneFormInfo->chief_desi = $request->chief_desi;
+
+
         $fd9OneFormInfo->application_date = $request->application_date;
         $fd9OneFormInfo->institute_name = $request->institute_name;
         $fd9OneFormInfo->prokolpo_name = $request->prokolpo_name;
@@ -205,6 +250,22 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+
+        if ($request->hasfile('digital_signature')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_signature');
+            $fd9OneFormInfo->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('digital_seal')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_seal');
+            $fd9OneFormInfo->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('attestation_of_appointment_letter')) {

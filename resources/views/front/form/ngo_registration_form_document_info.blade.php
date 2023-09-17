@@ -1996,14 +1996,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                    <br><span class="text-danger">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                    <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                 </div>
 
@@ -2011,7 +2011,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
                                 </div>
 
@@ -2019,28 +2019,28 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
@@ -2048,14 +2048,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                     <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span>
-                                        <br><span class="text-danger">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                        নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
+                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
                                     <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
                                 </div>
 

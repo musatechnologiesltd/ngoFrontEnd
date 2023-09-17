@@ -90,6 +90,13 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
 
 
         $request->validate([
+
+
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+
+
+
             'fd9_foreigner_name' => 'required|string',
             'fd9_father_name' => 'required|string',
             'fd9_husband_or_wife_name' => 'required|string',
@@ -128,6 +135,11 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
          $fd9FormInfo = new Fd9Form();
          $fd9FormInfo->status = 'Ongoing';
+
+         $fd9FormInfo->chief_name = $request->chief_name;
+         $fd9FormInfo->chief_desi = $request->chief_desi;
+
+         
          $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
          $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
          $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
@@ -146,6 +158,23 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $fd9FormInfo->fd9_previous_citizenship_is_grounds_for_non_retention = $request->fd9_previous_citizenship_is_grounds_for_non_retention;
          $fd9FormInfo->fd9_current_address = $request->fd9_current_address;
          $fd9FormInfo->fd9_number_of_family_members = $request->fd9_number_of_family_members;
+
+         if ($request->hasfile('digital_signature')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_signature');
+            $fd9FormInfo->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('digital_seal')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_seal');
+            $fd9FormInfo->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
 
          if ($request->hasfile('fd9_academic_qualification')) {
             $filePath="fd9FormInfo";
@@ -240,7 +269,19 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
     public function update(Request $request,$id){
 
 
+        $request->validate([
+
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
+
+
         $fd9FormInfo = Fd9Form::find($id);
+
+        $fd9FormInfo->chief_name = $request->chief_name;
+       $fd9FormInfo->chief_desi = $request->chief_desi;
+
+
         $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
         $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
         $fd9FormInfo->fd9_husband_or_wife_name = $request->fd9_husband_or_wife_name;
@@ -258,6 +299,25 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         $fd9FormInfo->fd9_previous_citizenship_is_grounds_for_non_retention = $request->fd9_previous_citizenship_is_grounds_for_non_retention;
         $fd9FormInfo->fd9_current_address = $request->fd9_current_address;
         $fd9FormInfo->fd9_number_of_family_members = $request->fd9_number_of_family_members;
+
+
+        if ($request->hasfile('digital_signature')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_signature');
+            $fd9FormInfo->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('digital_seal')) {
+            $filePath="ngoHead";
+            $file = $request->file('digital_seal');
+            $fd9FormInfo->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+
 
         if ($request->hasfile('fd9_academic_qualification')) {
            $filePath="fd9FormInfo";
@@ -442,10 +502,10 @@ $file_Name_Custome = "Fd9_Form";
         $designation = $request->designation;
         $id = $request->id;
 
-        $formEightData =Fd9Form::find($id);
-        $formEightData->chief_name = $name;
-        $formEightData->chief_desi = $designation;
-        $formEightData->save();
+        // $formEightData =Fd9Form::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
 
          return $data = url('mainFd9PdfDownload/'.base64_encode($id));
 
