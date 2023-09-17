@@ -462,7 +462,7 @@
 
                 <div class="mb-3">
                     <h5 class="form_middle_text">
-                        প্রধান নির্বাহীর তথ্যাদি
+                        Chief Executive Information
                     </h5>
                 </div>
 

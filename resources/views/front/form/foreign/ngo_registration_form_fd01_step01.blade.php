@@ -249,7 +249,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        প্রধান নির্বাহীর তথ্যাদি
+                                        Chief Executive Information
                                     </h5>
                                 </div>
 
@@ -268,14 +268,14 @@
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
                                     <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
                                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                                 </div>
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
                                     <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
                                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                                 </div>

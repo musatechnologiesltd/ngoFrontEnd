@@ -137,7 +137,17 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-        $createUser = $this->create($data);
+
+        //dd($data);
+        //$createUser = $this->create($data);
+
+        $createUser = new User;
+        $createUser->user_name = $request->name;
+        $createUser->non_verified_email = $request->email;
+        $createUser->password = Hash::make($request->password);
+        $createUser->user_phone = $request->phone;
+        $createUser->save();
+
 
         $token = Str::random(10);
 
@@ -328,6 +338,8 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
 
     public function verifyAccount($token)
     {
+
+        //dd(11);
         $verifyUser = UserVerify::where('token', $token)->first();
 
         $message = 'Sorry your email cannot be identified.';
@@ -336,6 +348,7 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
             $user = $verifyUser->user;
 
             if(!$user->is_email_verified) {
+                $verifyUser->user->email = $verifyUser->user->non_verified_email;
                 $verifyUser->user->is_email_verified = 1;
                 $verifyUser->user->save();
                 $message = "Your e-mail is verified. You can now login.";

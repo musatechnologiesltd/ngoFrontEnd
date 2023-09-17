@@ -32,7 +32,7 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
                                 <tr>
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <td>পিডিএফ ডাউনলোড</td>
-                                    <td>পিডিএফ আপলোড</td>
+                                    {{-- <td>পিডিএফ আপলোড</td> --}}
                                     <td>তথ্য সংশোধন করুন</td>
                                     @else
                                     <td>PDF Download</td>
@@ -46,7 +46,7 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
                             {{ trans('form 8_bn.download_pdf')}}
                         </a>
                                     </td>
-                                    <td>
+                                    {{-- <td>
                                        @if($complete_status_fd_eight == 'complete')
 
                         @if($complete_status_fd_eight_pdf == 0)
@@ -109,7 +109,7 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
 
 
                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td>
                                          <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('formEightNgoCommitteeMemberViewFormEdit') }}';">
                             {{ trans('form 8_bn.update_eight')}}
@@ -137,7 +137,7 @@ foreach ($data   as $a) {
 
                     ?>
 
-                    @if(!empty($data->verified_form_eight))
+                    @if(!empty($data->total_year))
                     <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p>
 
                             @else

@@ -210,7 +210,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             <td>এফডি -৮ ফরম জমা দিন</td>
                                             <td style="position:relative">
 
-                                                @if($complete_status_fd_one_pdf_old == 0)
+                                                @if(empty($complete_status_fd_one_pdf_old))
                                                 <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
                                                 @else
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
@@ -277,7 +277,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                             </td>
                                             <td>{{ trans('reg_sub.fd_eight')}}</td>
                                             <td style="position:relative">
-                                                @if($complete_status_fd_eight == 'complete' && $complete_status_fd_eight_pdf != 0 )
+                                                @if($complete_status_fd_eight == 'complete')
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
 
                                                 @else
@@ -331,7 +331,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                         @else
 
 
-                                       
+
                                         <tr>
                                             <td>
 
