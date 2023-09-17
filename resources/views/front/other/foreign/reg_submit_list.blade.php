@@ -203,7 +203,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @if($foreignNgoType == 'Old')
 
 
-                                                @if($complete_status_fd_one_pdf_old == 0)
+                                                @if(empty($complete_status_fd_one_pdf_old))
                                                 <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
                                                 @else
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />

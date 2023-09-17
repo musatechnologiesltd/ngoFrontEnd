@@ -100,7 +100,7 @@
 
 
 $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->value('verified_fd_eight_form_old');
+                                           ->value('chief_name');
 
 
 
@@ -123,7 +123,7 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
 
                                    <table class="table table-borderless">
 
-                                    @if($data_m_one == 0)
+                                    @if(empty($data_m_one))
 
                                     <tr>
                                         @if($foreignNgoType == 'Old')

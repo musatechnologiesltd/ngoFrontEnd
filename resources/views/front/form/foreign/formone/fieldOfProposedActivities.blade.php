@@ -46,9 +46,13 @@
 
                 @else
 
-                <form action="{{ route('fieldOfProposedActivitiesUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                <form action="{{ route('fieldOfProposedActivitiesUpdate') }}" method="post"
+
+enctype="multipart/form-data" id="form" data-parsley-validate="">
                     @csrf
-                    <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
+                    <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"
+
+id="">
                     <input type="hidden" class="form-control" value="{{ $allFormOneData->id }}" name="mid"  id="">
                 <div class="main active">
                     <div class="text">
@@ -59,8 +63,12 @@
                     @if($foreignNgoType == 'Old')
                     @if(empty($allFormOneData->foregin_pdf))
                     <div class="mb-3">
-                        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
-                        <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-
+
+danger">*</span> </label>
+                        <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-
+
+control" id="">
                     </div>
                     @else
                     <?php
@@ -81,18 +89,26 @@
 <b>{{ $filename.'.'.$extension }}</b>
                     @endif
                     <div class="mb-3">
-                        <label for="" class="form-label">Probable / expected annual budget of the organization<span class="text-danger">*</span> </label>
-                        <input type="text" name="annual_budget"  data-parsley-required class="form-control" id="">
+                        <label for="" class="form-label">Probable / expected annual budget of the
+
+organization<span class="text-danger">*</span> </label>
+                        <input type="text" name="annual_budget" value="{{$allFormOneData->annual_budget}}"  data-
+
+parsley-required class="form-control" id="">
                     </div>
                     @if(empty($allFormOneData->annual_budget_file))
                     <div class="mb-3">
-                        <label for="" class="form-label">Probable / expected annual budget source of the organization<span class="text-danger">*</span> </label>
-                        <input type="file" name="annual_budget_file"  data-parsley-required class="form-control" id="">
+                        <label for="" class="form-label">Probable / expected annual budget source of the
+
+organization<span class="text-danger">*</span> </label>
+                        <input type="file" name="annual_budget_file"  data-parsley-required class="form-control"
+
+id="">
                     </div>
                     @else
                     <?php
 
-                    $file_path = url($allFormOneData->foregin_pdf);
+                    $file_path = url($allFormOneData->annual_budget_file);
                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -102,7 +118,9 @@
 
                     ?>
                     <div class="mb-3">
-                        <label for="" class="form-label">Probable / expected annual budget source of the organization<span class="text-danger">*</span> </label>
+                        <label for="" class="form-label">Probable / expected annual budget source of the
+
+organization<span class="text-danger">*</span> </label>
                         <input type="file" name="annual_budget_file"   class="form-control" id="">
                     </div>
                     <b>{{ $filename.'.'.$extension }}</b>
@@ -114,8 +132,12 @@
                         @if(empty($allFormOneData->plan_of_operation))
 
                             <div class="mb-3">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> </label>
-                                <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation" class="form-control" id="">
+                                <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}}
+
+<span class="text-danger">*</span> </label>
+                                <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation"
+
+class="form-control" id="">
                             </div>
 @else
 
@@ -131,7 +153,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 ?>
 <div class="mb-3">
-    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> </label>
+    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-
+
+danger">*</span> </label>
     <input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="">
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
@@ -140,10 +164,14 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
                             <div class="mb-3 mt-4">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.Project_District')}}, {{ trans('fd_one_step_two.Project_Sub_District')}}<span class="text-danger">*</span> </label>
+                                <label for="" class="form-label">{{ trans('fd_one_step_two.Project_District')}},
+
+{{ trans('fd_one_step_two.Project_Sub_District')}}<span class="text-danger">*</span> </label>
 
 
-                                <input type="text"  name="district" value="{{ $allFormOneData->district }}" data-parsley-required class="form-control" id="">
+                                <input type="text"  name="district" value="{{ $allFormOneData->district }}" data-
+
+parsley-required class="form-control" id="">
 
                             </div>
 
@@ -170,20 +198,32 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
                         <div class="card">
 
                             <div class="card-body">
-                                <p><b>{{ trans('fd_one_step_two.Name_of_donor_organization')}}:</b> {{ $allGetAllSourceOfFundData->name }}</p>
-                                <p><b>{{ trans('fd_one_step_two.Address_of_donor_organization')}}:</b> {{ $allGetAllSourceOfFundData->address }}</p>
+                                <p><b>{{ trans('fd_one_step_two.Name_of_donor_organization')}}:</b> {{
 
-                                <p><b>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}}:</b> <a target="_blank" href="{{ route('sourceOfFundDocDownload',$allGetAllSourceOfFundData->id) }}" class="btn btn-custom next_button btn-sm" >
+$allGetAllSourceOfFundData->name }}</p>
+                                <p><b>{{ trans('fd_one_step_two.Address_of_donor_organization')}}:</b> {{
+
+$allGetAllSourceOfFundData->address }}</p>
+
+                                <p><b>{{ trans
+
+('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}}:</b> <a target="_blank" href="{{ route
+
+('sourceOfFundDocDownload',$allGetAllSourceOfFundData->id) }}" class="btn btn-custom next_button btn-sm" >
                                     <i class="fa fa-download" aria-hidden="true"></i>
                                 </a></p>
                             </div>
                             <div class="card-footer">
-                                <button type="button" class="btn btn-custom next_button btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
+                                <button type="button" class="btn btn-custom next_button btn-sm" data-bs-
+
+toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
 
                                   </button>
 
-                                  <button id="deleteRecord{{ $allGetAllSourceOfFundData->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllSourceOfFundData->id }}" type="button" name="deleting">
+                                  <button id="deleteRecord{{ $allGetAllSourceOfFundData->id }}" class="btn btn-
+
+danger btn-sm" data-id="{{ $allGetAllSourceOfFundData->id }}" type="button" name="deleting">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </button>
 
@@ -192,7 +232,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 
 
                                   <!-- Modal -->
-<div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-
+
+hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -203,20 +245,34 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
             <form method="post" action="{{ route('sourceOfFundUpdate') }}">
                 @csrf
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">{{ trans('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </label>
-                <input type="text" name="name_sour" value="{{ $allGetAllSourceOfFundData->name }}" class="form-control" id="exampleFormControlInput1" >
+                <label for="exampleFormControlInput1" class="form-label">{{ trans
 
-                <input type="hidden" name="id" value="{{ $allGetAllSourceOfFundData->id }}" class="form-control" id="exampleFormControlInput1" >
+('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </label>
+                <input type="text" name="name_sour" value="{{ $allGetAllSourceOfFundData->name }}" class="form-
+
+control" id="exampleFormControlInput1" >
+
+                <input type="hidden" name="id" value="{{ $allGetAllSourceOfFundData->id }}" class="form-control"
+
+id="exampleFormControlInput1" >
               </div>
 
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span> </label>
-                <input type="text" name="address" value="{{ $allGetAllSourceOfFundData->address }}" class="form-control" id="exampleFormControlInput1" >
+                <label for="exampleFormControlInput1" class="form-label">{{ trans
+
+('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span> </label>
+                <input type="text" name="address" value="{{ $allGetAllSourceOfFundData->address }}" class="form-
+
+control" id="exampleFormControlInput1" >
               </div>
 
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-danger">*</span> </label>
-                <input type="file" name="letter_file" accept=".pdf" class="form-control" id="exampleFormControlInput1">
+                <label for="exampleFormControlInput1" class="form-label">{{ trans
+
+('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-danger">*</span> </label>
+                <input type="file" name="letter_file" accept=".pdf" class="form-control"
+
+id="exampleFormControlInput1">
               </div>
 
               <button type="submit" class="btn btn-custom next_button btn-sm">
@@ -246,8 +302,12 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     <table class="table table-light" id="dynamicAddRemove">
         <tr>
             <th>{{ trans('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-danger">*</span> </th>
+            <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span>
+
+</th>
+            <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-
+
+danger">*</span> </th>
             <th></th>
         </tr>
 
@@ -267,7 +327,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
         </tr>
 
     </table>
-    <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">{{ trans('fd_one_step_two.Add_New_Donor_Information')}}
+    <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">{{ trans
+
+('fd_one_step_two.Add_New_Donor_Information')}}
     </button>
 </div>
 
@@ -276,8 +338,12 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     <table class="table table-light" id="dynamicAddRemove">
         <tr>
             <th>{{ trans('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-danger">*</span> </th>
+            <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span>
+
+</th>
+            <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-
+
+danger">*</span> </th>
             <th></th>
         </tr>
 
@@ -303,8 +369,14 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 </div>
 @endif
 <div class="mb-3">
-    <label for="" class="form-label">{{ trans('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-danger">*</span> </label>
-    <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
+    <label for="" class="form-label">{{ trans
+
+('fd_one_step_two.What_is_Your_Expected_Annual_Budget_Foreign_Currency_or_Bangladeshi_Taka')}} <span class="text-
+
+danger">*</span> </label>
+    <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required
+
+class="form-control" id="">
 </div>
 @endif
 
@@ -316,17 +388,29 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 @if(Session::get('fdOneFormEdit') == 'fdOneFormEdit')
 
 <div class="buttons d-flex justify-content-end mt-4">
-    <a href="{{ route('fdOneFormEdit') }}"  class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
-    <button class="btn btn-danger me-2" name="submit_value" value="exit_from_step_two_edit" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
-    <button class="btn btn-custom next_button" name="submit_value" value="go_to_step_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+    <a href="{{ route('fdOneFormEdit') }}"  class="btn btn-dark back_button me-2">{{ trans
+
+('fd_one_step_one.back')}}</a>
+    <button class="btn btn-danger me-2" name="submit_value" value="exit_from_step_two_edit" type="submit">{{
+
+trans('fd_one_step_one.Save_&_Exit')}}</button>
+    <button class="btn btn-custom next_button" name="submit_value" value="go_to_step_three" type="submit">{{
+
+trans('fd_one_step_one.Next_Step')}}</button>
 </div>
 
 
 @else
                     <div class="buttons d-flex justify-content-end mt-4">
-                        <a href="{{ route('backFromStepTwo') }}"  class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
-                        <button class="btn btn-danger me-2" name="submit_value" value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
-                        <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                        <a href="{{ route('backFromStepTwo') }}"  class="btn btn-dark back_button me-2">{{ trans
+
+('fd_one_step_one.back')}}</a>
+                        <button class="btn btn-danger me-2" name="submit_value" value="next_step_from_three"
+
+type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
+                        <button class="btn btn-custom next_button" name="submit_value"
+
+value="next_step_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
                     </div>
                     @endif
 
@@ -526,7 +610,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
             '<input class="form-control" accept=".pdf" required name="letter_file[]" type="file" id="">' +
             '</td>' +
             '<td>' +
-            '<button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-
+
+earmark-x-fill"></i></button>' +
             '</td>' +
             '</tr>'
         );
@@ -549,7 +635,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
             '<input type="text" name="" placeholder="পরামর্শকের ঠিকানা" class="form-control" />' +
             '</td>' +
             '<td>' +
-            '<button type="button" class="btn btn-outline-danger remove-input-field-advisor"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field-advisor"><i class="bi bi-
+
+file-earmark-x-fill"></i></button>' +
             '</td>' +
             '</tr>'
         );
@@ -569,7 +657,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
             '<input type="file" accept=".pdf" name="" placeholder="" class="form-control" />' +
             '</td>' +
             '<td>' +
-            '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-
+
+file-earmark-x-fill"></i></button>' +
             '</td>' +
             '</tr>'
         );

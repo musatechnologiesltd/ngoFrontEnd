@@ -35,6 +35,111 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                         <div class="d-flex justify-content-between mb-4">
                             <div class="p-2">
                                 <h5>{{ trans('other_doc.all_doc')}}</h5>
+
+                                @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
+
+
+
+        @if ($errors->has('registration_certificate'))
+        <span class="text-danger">{{ $errors->first('registration_certificate') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('last_ten_years_audit_report_and_annual_report_of_the_company'))
+        <span class="text-danger">{{ $errors->first('last_ten_years_audit_report_and_annual_report_of_the_company') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('work_procedure_of_organization'))
+        <span class="text-danger">{{ $errors->first('work_procedure_of_organization') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('organization_by_laws_or_constitution'))
+        <span class="text-danger">{{ $errors->first('organization_by_laws_or_constitution') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('list_of_board_of_directors_or_board_of_trustees'))
+        <span class="text-danger">{{ $errors->first('list_of_board_of_directors_or_board_of_trustees') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('section_sub_section_of_the_constitution'))
+        <span class="text-danger">{{ $errors->first('section_sub_section_of_the_constitution') }}</span><br>
+        @endif
+
+
+        @if ($errors->has('payment_of_change_fee'))
+        <span class="text-danger">{{ $errors->first('payment_of_change_fee') }}</span><br>
+        @endif
+
+
+
+        @if ($errors->has('constitution_approved_by_primary_registering_authority'))
+        <span class="text-danger">{{ $errors->first('constitution_approved_by_primary_registering_authority') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('the_constitution_of_the_company_along_with_fee_if_changed'))
+        <span class="text-danger">{{ $errors->first('the_constitution_of_the_company_along_with_fee_if_changed') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('constitution_of_the_organization_has_changed'))
+        <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
+        @endif
+
+
+
+
+        @if ($errors->has('constitution_of_the_organization_if_unchanged'))
+        <span class="text-danger">{{ $errors->first('constitution_of_the_organization_if_unchanged') }}</span><br>
+        @endif
+
+
+
+
+
+        @if ($errors->has('attested_copy_of_latest_registration_or_renewal_certificate'))
+        <span class="text-danger">{{ $errors->first('attested_copy_of_latest_registration_or_renewal_certificate') }}</span><br>
+        @endif
+
+
+
+
+
+                @if ($errors->has('constitution_of_the_organization_has_changed'))
+                <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
+            @endif
+
+
+            @if ($errors->has('right_to_information_act'))
+            <span class="text-danger">{{ $errors->first('right_to_information_act') }}</span><br>
+        @endif
                             </div>
                             <div class="p-2">
                                 <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
@@ -1504,6 +1609,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
+
                         <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                             @csrf
@@ -1543,45 +1649,70 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span> </label>
+
+
+
+                                        List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
+
+                                        <br><span class="text-danger">PDF Should not exceed 500 KB in size</span>
+
+
+
+                                    </label>
                                     <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span> </label>
+                                        By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger">PDF Should not exceed 500 KB in size</span></label>
+
                                     <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+
+
+
+
+
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span> </label>
+Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
+
+<br><span class="text-danger">PDF Should not exceed 1MB in size</span>
+</label>
+
+
                                     <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Attested copy of last 10 (ten) years audit report and annual report of the organization </label>
+                                        Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-danger">PDF Should not exceed 5 MB in size</span></label>
                                     <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span> </label>
+                                        Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
+                                        <br><span class="text-danger">PDF Should not exceed 500 KB in size</span>
+                                    </label>
                                     <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Attested copy of latest registration/renewal certificate <span class="text-danger">*</span> </label>
+                                        Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
+                                        <br><span class="text-danger">PDF Should not exceed 500 KB in size</span>
+                                    </label>
                                     <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span> </label>
+                                        Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
+                                        <br><span class="text-danger">PDF Should not exceed 500 KB in size</span> </label>
                                     <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                 </div>
 

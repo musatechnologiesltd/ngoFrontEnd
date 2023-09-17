@@ -107,11 +107,7 @@ $count = 11;
                                            ->first();
 
                                            $count = 0;
-                foreach ($data   as $a) {
-                    if (is_null($a)) {
-                        $count++;
-                  }
-                }
+
 
             }
 
@@ -185,12 +181,23 @@ $count3 = 11;
                 }
             }
 
+
+
+
+            $renewal_files_doc = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)
+                                           ->get();
+
+
+                                        //    dd(count($renewal_files_doc));
                                     ?>
 
 
                                    <table class="table table-borderless">
 
-                                    @if($count == 0)
+
+                                    @if($localNgoTypem == 'Old')
+
+                                    @if(!empty($data->chief_name))
                                     <tr>
                                         <td>{{ trans('first_info.fd_one')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
@@ -201,29 +208,61 @@ $count3 = 11;
                                            <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                        </tr>
                                        @endif
-                                       @if($count1 == 0)
-                                       <tr>
-                                        <td>{{ trans('first_info.form_eight')}}</td>
+
+                                    @else
+
+                                    @if(!empty($data->chief_name))
+                                    <tr>
+                                        <td>{{ trans('first_info.fd_one')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
                                     </tr>
-                                       @else
+                                    @else
                                        <tr>
-                                           <td>{{ trans('first_info.form_eight')}}</td>
+                                           <td>{{ trans('first_info.fd_one')}}</td>
                                            <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                        </tr>
                                        @endif
-                                       @if($count2 == 0)
-                                       <tr>
-                                        <td>{{ trans('first_info.member_info')}}</td>
-                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
-                                       </tr>
 
+                                       @endif
+
+
+
+
+
+                                       @if(!empty($data1->total_year))
+                                       <tr>
+                                        <td>ফরম নং -৮</td>
+                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
+                                    </tr>
                                        @else
                                        <tr>
-                                        <td>{{ trans('first_info.member_info')}}</td>
-                                        <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
-                                    </tr>
+                                           <td>ফরম নং -৮</td>
+                                           <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
+                                       </tr>
                                        @endif
+
+
+
+                                       @if($localNgoTypem == 'Old')
+
+
+
+                                       @if(count($renewal_files_doc) == 1)
+                                       <tr>
+                                        <td>{{ trans('first_info.other_info')}}</td>
+                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
+                                    </tr>
+                                       @else
+                                       <tr>
+                                           <td>{{ trans('first_info.other_info')}}</td>
+                                           <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
+                                       </tr>
+                                       @endif
+
+
+                                       @else
+
+
                                        @if($count3 == 0)
                                        <tr>
                                         <td>{{ trans('first_info.other_info')}}</td>
@@ -234,6 +273,8 @@ $count3 = 11;
                                            <td>{{ trans('first_info.other_info')}}</td>
                                            <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                        </tr>
+                                       @endif
+
                                        @endif
                                    </table>
                                 </div>

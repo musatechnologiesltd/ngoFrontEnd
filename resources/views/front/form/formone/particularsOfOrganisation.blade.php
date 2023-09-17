@@ -213,7 +213,23 @@
                             </form>
 
         @else
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+            @php
+                Session::forget('success');
+            @endphp
+        </div>
+        @endif
 
+        @if ($errors->has('digital_signature'))
+        <span class="text-danger">{{ $errors->first('digital_signature') }}</span>
+    @endif
+
+<br>
+    @if ($errors->has('digital_seal'))
+    <span class="text-danger">{{ $errors->first('digital_seal') }}</span>
+@endif
         <form action="{{ route('particularsOfOrganisationUpdate') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
             @csrf
             <input required="" name="id" value="{{ $allParticularsOfOrganisation->id }}" type="hidden" class="form-control" id="">
@@ -370,23 +386,7 @@
                     <input type="text" data-parsley-required name="address" value="{{ $allParticularsOfOrganisation->address }}" class="form-control" id="">
                 </div>
 
-                      <!--new code for ngo-->
-                      <div class="mb-3">
-                        <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
-                        <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
 
-                        <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
-                        <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
-
-                        <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
-
-                    </div>
-                    <!-- end new code -->
 
                     @if($localNgoTypem == 'Old')
                     <div class="mb-3">
@@ -452,6 +452,45 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Profession')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->profession }}" name="profession" class="form-control" id="">
                 </div>
+
+
+                <div class="mb-3">
+                    <h5 class="form_middle_text">
+                        প্রধান নির্বাহীর তথ্যাদি
+                    </h5>
+                </div>
+
+
+                <!--new code for ngo-->
+                <div class="mb-3">
+                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->chief_name }}"  name="chief_name"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+                    <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->chief_desi }}"   name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
+                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
+                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
+                </div>
+                <!-- end new code -->
 
 
                 @if(Route::is('fdOneFormEdit') )

@@ -385,9 +385,17 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$allformOneData->user_id)
 <p>আমি এই মর্মে ঘোষণা করছি যে, আমি সংশ্লিষ্ট সকল আইন-কানুন পড়িয়াছি এবং উল্লিখিত সকল তথ্য সত্য ও সঠিক।</p>
 
 
+<table style=" margin-top: 15px;width:100%">
 
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $allformOneData->digital_signature}}"/></td>
+    </tr>
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $allformOneData->digital_seal}}"/></td>
+    </tr>
+</table>
 
-        <table style=" margin-top: 150px;width:100%">
+        <table style=" margin-top: 10px;width:100%">
             <tr>
                 <td style="text-align: right; padding-right: 14%" colspan="3">প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
             </tr>
@@ -406,7 +414,7 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$allformOneData->user_id)
                 <td style="width: 65%"></td>
                 <td style="text-align: left; width: 5%;">তারিখ</td>
 
-                <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->updated_at->format('d/m/Y')) }}</td>
+                <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->created_at->format('d/m/Y')) }}</td>
 
             </tr>
         </table>

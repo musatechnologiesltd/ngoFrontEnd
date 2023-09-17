@@ -385,12 +385,20 @@ if(empty($formCompleteStatus)){
             'email' => 'required|string',
             'profession' => 'required|string',
             'submit_value' => 'required|string',
+            'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
         ]);
 
 
 
 
         $uploadFormOneData = new FdOneForm();
+
+
+        $uploadFormOneData->chief_name = $request->chief_name;
+        $uploadFormOneData->chief_desi = $request->chief_desi;
+
+
         $uploadFormOneData->user_id = Auth::user()->id;
         $uploadFormOneData->registration_number = 0;
         $uploadFormOneData->local_address = 0 ;
@@ -479,10 +487,22 @@ if(!$checkCompleteStatusData){
 
     public function particularsOfOrganisationUpdate(Request $request){
 
+
+
+        $request->validate([
+
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
+
        $arr_all = implode(",",$request->citizenship);
 
        $uploadFormOneData = FdOneForm::find($request->id);
        $uploadFormOneData->user_id = Auth::user()->id;
+
+       $uploadFormOneData->chief_name = $request->chief_name;
+       $uploadFormOneData->chief_desi = $request->chief_desi;
+
        $uploadFormOneData->organization_name_ban = $request->organization_name_ban;
        $uploadFormOneData->organization_name = $request->organization_name;
        $uploadFormOneData->organization_address = $request->organization_address;
