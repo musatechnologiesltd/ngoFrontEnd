@@ -398,6 +398,7 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->chief_name = $request->chief_name;
         $uploadFormOneData->chief_desi = $request->chief_desi;
 
+        $uploadFormOneData->place = $request->place;
 
         $uploadFormOneData->user_id = Auth::user()->id;
         $uploadFormOneData->registration_number = 0;
@@ -499,6 +500,9 @@ if(!$checkCompleteStatusData){
 
        $uploadFormOneData = FdOneForm::find($request->id);
        $uploadFormOneData->user_id = Auth::user()->id;
+
+
+       $uploadFormOneData->place = $request->place;
 
        $uploadFormOneData->chief_name = $request->chief_name;
        $uploadFormOneData->chief_desi = $request->chief_desi;
@@ -1176,15 +1180,40 @@ if ($request->hasfile('board_of_revenue_on_fees')) {
         }else{
            // dd(114);
 
-        $form= FdOneBankAccount::find($request->bank_id);
-        $form->account_number=$request->account_number;
-        $form->account_type=$request->account_type;
-        $form->name_of_bank=$request->name_of_bank;
-        $form->branch_name_of_bank=$request->branch_name_of_bank;
-        $form->bank_address=$request->bank_address;
-        $form->fd_one_form_id = $request->id;
-        $form->time_for_api = $main_time;
-        $form->save();
+           $formBank = FdOneBankAccount::where('id',$request->bank_id)->value('id');
+
+
+           if(empty($formBank)){
+
+
+            $form= new FdOneBankAccount();
+            $form->account_number=$request->account_number;
+            $form->account_type=$request->account_type;
+            $form->name_of_bank=$request->name_of_bank;
+            $form->branch_name_of_bank=$request->branch_name_of_bank;
+            $form->bank_address=$request->bank_address;
+            $form->fd_one_form_id = $request->id;
+            $form->time_for_api = $main_time;
+            $form->save();
+
+
+           }else{
+
+
+            $form= FdOneBankAccount::find($request->bank_id);
+            $form->account_number=$request->account_number;
+            $form->account_type=$request->account_type;
+            $form->name_of_bank=$request->name_of_bank;
+            $form->branch_name_of_bank=$request->branch_name_of_bank;
+            $form->bank_address=$request->bank_address;
+            $form->fd_one_form_id = $request->id;
+            $form->time_for_api = $main_time;
+            $form->save();
+
+
+           }
+
+
     }
 
     ///

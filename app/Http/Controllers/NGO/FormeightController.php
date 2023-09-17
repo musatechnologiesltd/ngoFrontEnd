@@ -20,13 +20,20 @@ class FormeightController extends Controller
 
     public function formEightNgoCommitteeMemberPdf(){
 
-
+//dd(1);
 
       $file_Name_Custome = 'form_eight';
       $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
       $all_partiw = FormEight::where('fd_one_form_id',$fdOneFormId)
 
       ->get();
+
+
+      $signDataNew = FormEight::where('fd_one_form_id',$fdOneFormId)
+
+      ->first();
+
+
 
       $all_partiw_form_date = FormEight::where('fd_one_form_id',$fdOneFormId)
 
@@ -47,7 +54,8 @@ class FormeightController extends Controller
         'all_partiw_form_date'=>$all_partiw_form_date,
         'all_partiw_to_date'=>$all_partiw_to_date,
         'all_partiw_total_year'=>$all_partiw_total_year,
-        'all_partiw'=>$all_partiw
+        'all_partiw'=>$all_partiw,
+        'signDataNew'=>$signDataNew,
 
 
     ],[],['format' => 'A4-L','orientation' => 'L']);
@@ -59,7 +67,8 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
             'all_partiw_form_date'=>$all_partiw_form_date,
             'all_partiw_to_date'=>$all_partiw_to_date,
             'all_partiw_total_year'=>$all_partiw_total_year,
-            'all_partiw'=>$all_partiw
+            'all_partiw'=>$all_partiw,
+            'signDataNew'=>$signDataNew,
 
 
         ],[],['format' => 'A4-L','orientation' => 'L']);
@@ -268,7 +277,13 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
             'profession' => 'required|string',
             'job_des' => 'required|string',
             'service_status' => 'required|string',
+            'job_sign' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
         ]);
+
+
+
+
+
 
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $formEightData = new FormEight();
@@ -315,6 +330,13 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
 
     public function update(Request $request,$id){
+
+
+        $request->validate([
+
+            'job_sign' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+
+        ]);
 
         $time_dy = time().date("Ymd");
 
@@ -460,6 +482,12 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
         //dd($request->all());
 
+        $request->validate([
+
+            'signature_one' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'seal_one' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
+
 
         $checkValueFirst = FormEight::where('fd_one_form_id',$request->fd_one_form_id)
         ->value('name_one');
@@ -520,8 +548,21 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
     public function formEightNewDataUpdate (Request $request){
 
+
+        $request->validate([
+
+            'signature_one' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'seal_one' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+
+            'signature_two' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'seal_two' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
+
+
         //dd($request->all());
         if(empty($request->name_two)){
+
+
 
 //dd(11);
             if ($request->hasfile('signature_one')) {

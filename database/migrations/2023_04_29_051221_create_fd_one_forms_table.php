@@ -33,6 +33,9 @@ return new class extends Migration
             $table->string('tele_phone_number')->nullable();
 
 
+            $table->string('place')->nullable();
+
+
             $table->string('copy_of_chalan')->nullable();
             $table->string('due_vat_pdf')->nullable();
             $table->string('change_ac_number')->nullable();

@@ -49,7 +49,7 @@ class RegsubmitController extends Controller
         $complete_status_fd_one_pdf_old = FdOneForm::where('user_id',Auth::user()->id)->value('chief_name');
 
         $complete_status_fd_one = FdOneForm::where('user_id',Auth::user()->id)->value('complete_status');
-        $complete_status_fd_one_pdf = FdOneForm::where('user_id',Auth::user()->id)->value('verified_fd_one_form');
+        $complete_status_fd_one_pdf = FdOneForm::where('user_id',Auth::user()->id)->value('chief_name');
 
         $complete_status_fd_eight = FormEight::where('fd_one_form_id', $getFormOneId)->value('complete_status');
         $complete_status_fd_eight_pdf = FormEight::where('fd_one_form_id', $getFormOneId)->value('verified_form_eight');

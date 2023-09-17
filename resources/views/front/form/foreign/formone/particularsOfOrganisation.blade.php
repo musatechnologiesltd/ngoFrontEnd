@@ -482,17 +482,30 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
-                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                   <span class="text-danger">Dimension:(300*80) & Size: Max 60 KB</span>
+                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
                 </div>
 
 
+                @if($foreignNgoType == 'Old')
+
+                @else
+
+                <div class="mb-3">
+                    <label for="" class="form-label mt-3">Place:<span class="text-danger">*</span></label>
+                    <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->place }}"   name="place"  class="form-control"  placeholder="Place">
+                </div>
+
+
+                @endif
+
+
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
-                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                    <span class="text-danger">Dimension:(300*100) & Size: Max 80 KB</span>
+                    <input type="file" value="" name="digital_seal" accept="image/*" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>

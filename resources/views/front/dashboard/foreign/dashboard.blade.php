@@ -147,6 +147,8 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                     </tr>
                                        @endif
 
+                                       @if($foreignNgoType == 'Old')
+
                                        @if(count($data3_m_one) > 0)
                                        <tr>
                                         <td>{{ trans('first_info.other_info')}}</td>
@@ -157,6 +159,26 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                            <td>{{ trans('first_info.other_info')}}</td>
                                            <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                        </tr>
+                                       @endif
+
+                                       @else
+
+                                       <?php
+$ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)->latest()->get();
+
+                                       ?>
+
+@if(count($ngoOtherDocLists) > 0)
+<tr>
+ <td>{{ trans('first_info.other_info')}}</td>
+ <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
+</tr>
+@else
+<tr>
+    <td>{{ trans('first_info.other_info')}}</td>
+    <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
+</tr>
+@endif
                                        @endif
                                    </table>
                                 </div>

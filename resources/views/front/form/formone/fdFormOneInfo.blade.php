@@ -24,7 +24,7 @@
                         <div class="card-body">
                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                            <p>এফডি-১ ফরম পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                            <p>এফডি-১ ফরম পিডিএফ ডাউনলোড </p>
                             @else
                             <p>Download FD-1 Form PDF, upload with seal, signature of Chief Executive</p>
                             @endif
@@ -32,11 +32,11 @@
                                 <tr>
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                     <td>পিডিএফ ডাউনলোড</td>
-                                    <td>পিডিএফ আপলোড</td>
+                                    {{-- <td>পিডিএফ আপলোড</td> --}}
                                     <td>তথ্য সংশোধন করুন</td>
                                     @else
                                     <td>PDF Download</td>
-                                    <td>PDF Upload</td>
+                                    {{-- <td>PDF Upload</td> --}}
                                     <td>Update Information</td>
                                     @endif
                                 </tr>
@@ -45,10 +45,31 @@
                                        {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
                             {{ trans('form 8_bn.download_pdf')}}
                         </a> --}}
+                        <?php
+                        $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
-                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+
+
+                                                                    ?>
+
+                        @if($ngoTypeInfo == 'দেশিও')
+
+                        <button class="btn btn-sm btn-success" id="downloadButton">
                             {{ trans('form 8_bn.download_pdf')}}
                         </button>
+
+                        @else
+
+                        <button class="btn btn-sm btn-success" id="downloadButton345">
+                            {{ trans('form 8_bn.download_pdf')}}
+                        </button>
+                        @endif
+
+
+
+                        {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                            {{ trans('form 8_bn.download_pdf')}}
+                        </button> --}}
 
                         <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -62,12 +83,7 @@
                                         <div class=" mt-3 mb-3">
                                             <label for="" class="form-label">{{ trans('mview.ttTwo')}}:</label>
                                             <input type="text" data-parsley-required  name="{{ trans('mview.ttTwo')}}" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                                            <?php
-$ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
-
-
-                                            ?>
 
 @if($ngoTypeInfo == 'দেশিও')
 <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
@@ -80,18 +96,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
                                         </div>
 
-                                        @if($ngoTypeInfo == 'দেশিও')
 
-                                        <button class="btn btn-sm btn-success" id="downloadButton">
-                                            {{ trans('form 8_bn.download_pdf')}}
-                                        </button>
-
-                                        @else
-
-                                        <button class="btn btn-sm btn-success" id="downloadButton345">
-                                            {{ trans('form 8_bn.download_pdf')}}
-                                        </button>
-                                        @endif
 
                                 </div>
 
@@ -99,7 +104,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             </div>
                           </div>
                                     </td>
-                                    <td>
+                                    {{-- <td>
 
 
                         @if($allformOneData->verified_fd_one_form == 0)
@@ -159,7 +164,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
 
 
-                                    </td>
+                                    </td> --}}
                                     <td>
                                        <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
                             {{ trans('fd_one_step_four.fd_update')}}
@@ -186,7 +191,8 @@ foreach ($data   as $a) {
 
                     ?>
 
-                    @if(!empty($data->verified_fd_one_form))
+                    @if(!empty($data->chief_name))
+
                     <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p>
 
                             @else

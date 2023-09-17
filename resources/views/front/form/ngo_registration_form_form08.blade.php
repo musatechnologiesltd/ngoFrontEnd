@@ -122,13 +122,13 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                     <input type="text"   data-parsley-required class="form-control" required name="designation_one" id="designation_one">
                                                 </div>
                                                 <div class="mb-3 col-xl-3 col-sm-12">
-                                                    <label for="" class="form-label">স্বাক্ষর : </label>
+                                                    <label for="" class="form-label">স্বাক্ষর :  <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span> </label>
                                                     <input type="file" data-parsley-required accept="image/*" class="form-control" required name="signature_one" id="signature_one">
 
                                                 </div>
 
                                                 <div class="mb-3 col-xl-3 col-sm-12">
-                                                    <label for="" class="form-label">সীল  : </label>
+                                                    <label for="" class="form-label">সীল  :  <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span></label>
                                                     <input type="file" data-parsley-required  accept="image/*" class="form-control" required name="seal_one" id="seal_one">
 
                                                 </div>
@@ -184,8 +184,7 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                 @csrf
 
 
-                                <form action="{{ route('formEightNewData') }}" enctype="multipart/form-data" method="post" id="form" >
-                                    @csrf
+
 
 
                                     <input type="hidden"  data-parsley-required class="form-control" value="{{ $formEightDataForSignMain->fd_one_form_id }}" name="fd_one_form_id" id="fd_one_form_id">
@@ -201,13 +200,13 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                                                         <input type="text"   data-parsley-required class="form-control" required  value="{{ $formEightDataForSignMain->designation_one }}" name="designation_one" id="designation_one">
                                                                                     </div>
                                                                                     <div class="mb-3 col-xl-3 col-sm-12">
-                                                                                        <label for="" class="form-label">স্বাক্ষর : </label>
+                                                                                        <label for="" class="form-label">স্বাক্ষর :  <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span></label>
                                                                                         <input type="file"  accept="image/*" class="form-control"  name="signature_one"  id="signature_one">
                                                                                         <img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_one }}"  style="height:40px;"/>
                                                                                     </div>
 
                                                                                     <div class="mb-3 col-xl-3 col-sm-12">
-                                                                                        <label for="" class="form-label">সীল  : </label>
+                                                                                        <label for="" class="form-label">সীল  :  <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span></label>
                                                                                         <input type="file"   accept="image/*" class="form-control"  name="seal_one" id="seal_one">
                                                                                         <img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_one }}"  style="height:40px;"/>
                                                                                     </div>
@@ -267,8 +266,7 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                 @csrf
 
 
-                                <form action="{{ route('formEightNewData') }}" enctype="multipart/form-data" method="post" id="form" >
-                                    @csrf
+
 
 
                                     <input type="hidden"  data-parsley-required class="form-control" value="{{ $formEightDataForSignMain->fd_one_form_id }}" name="fd_one_form_id" id="fd_one_form_id">
@@ -284,13 +282,13 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                                                         <input type="text"   data-parsley-required class="form-control" required  value="{{ $formEightDataForSignMain->designation_two }}" name="designation_two" id="designation_one">
                                                                                     </div>
                                                                                     <div class="mb-3 col-xl-3 col-sm-12">
-                                                                                        <label for="" class="form-label">স্বাক্ষর : </label>
+                                                                                        <label for="" class="form-label">স্বাক্ষর :  <span class="text-success"><b>Dimension:(300*80) & Size: Max: 60 KB</b></span></label>
                                                                                         <input type="file"  accept="image/*" class="form-control"  name="signature_two"  id="signature_one">
                                                                                         <img src="{{ asset('/') }}{{ $formEightDataForSignMain->signature_two }}"  style="height:40px;"/>
                                                                                     </div>
 
                                                                                     <div class="mb-3 col-xl-3 col-sm-12">
-                                                                                        <label for="" class="form-label">সীল  : </label>
+                                                                                        <label for="" class="form-label">সীল  :  <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span></label>
                                                                                         <input type="file"   accept="image/*" class="form-control"  name="seal_two" id="seal_one">
                                                                                         <img src="{{ asset('/') }}{{ $formEightDataForSignMain->seal_two }}"  style="height:40px;"/>
                                                                                     </div>
@@ -453,7 +451,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
                                                                                             <div class="col-lg-6 col-md-12 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">ছবি  <span class="text-danger">*</span> :</label>
-                                                                                                <input type="file" accept="image/*" data-parsley-required name="job_picture" class="form-control" id="">
+                                                                                                <input type="file" accept="image/*" name="job_picture" class="form-control" id="">
 
 
                                                                                                 <img src="{{ $main_all_data_list->job_picture }}" style="height: 50px"/>
@@ -461,8 +459,8 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
 
                                                                                             <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
-                                                                                                <label for="" class="form-label">স্বাক্ষর <span class="text-danger">*</span> :</label>
-                                                                                                <input type="file" accept="image/*" data-parsley-required name="job_sign" class="form-control" id="">
+                                                                                                <label for="" class="form-label">স্বাক্ষর <span class="text-danger">*</span> : <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span></label>
+                                                                                                <input type="file" accept="image/*" name="job_sign" class="form-control" id="">
 
                                                                                                 <img src="{{ $main_all_data_list->job_sign }}" style="height: 50px"/>
                                                                                             </div>
@@ -638,6 +636,7 @@ $newDate12 = date("d-m-Y", strtotime($main_all_data_list->dob ));
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 mb-3">
                                     <label for="" class="form-label">স্বাক্ষর <span class="text-danger">*</span> :</label>
+                                    <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
                                     <input type="file" accept="image/*" data-parsley-required name="job_sign" class="form-control" id="">
                                 </div>
 

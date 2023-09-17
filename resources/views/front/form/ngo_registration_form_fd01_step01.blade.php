@@ -251,7 +251,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        প্রধান নির্বাহীর তথ্যাদি
+                                        <b>প্রধান নির্বাহীর তথ্যাদি</b>
                                     </h5>
                                 </div>
 
@@ -270,14 +270,14 @@
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
+                                    <span class="text-success"><b>Dimension:(300*80) & Max Size:60 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
+                                   <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                                 </div>
                                 <!-- end new code -->
@@ -497,14 +497,14 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
+                 <span class="text-danger">Dimension:(300*80) & Size:Max 60 KB</span>
                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                 </div>
 
 
                 <div class="mb-3">
                     <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
+                 <span class="text-danger">Dimension:(300*100) & Size:Max 80 KB</span>
                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                 </div>
                 <!-- end new code -->

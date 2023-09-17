@@ -11,6 +11,7 @@ class FdOneForm extends Model
     public $table = "fd_one_forms";
 
     protected $fillable = [
+        'place',
       'digital_signature',
          'digital_seal',
         'verified_fd_eight_form_old',
@@ -139,7 +140,7 @@ class FdOneForm extends Model
         return $this->hasMany(Fd9Form::class,'fd_one_form_id');
     }
 
-    
+
     public function fd9OneForm()
     {
         return $this->hasMany(Fd9OneForm::class,'fd_one_form_id');
