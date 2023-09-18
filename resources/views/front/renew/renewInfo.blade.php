@@ -103,13 +103,18 @@ color:white !important;
                         <table class="table table-bordered">
                             <tr>
                                 <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                <td>PDF Upload (পিডিএফ আপলোড)</td>
+                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
                             </tr>
                             <tr>
                                 <td>
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+
+                                    <button class="btn btn-sm btn-success" id="downloadButton">
                                         {{ trans('form 8_bn.download_pdf')}}
                                     </button>
+                                    
+                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button> --}}
 
                                     <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -128,9 +133,7 @@ color:white !important;
                                                         <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
                                                     </div>
 
-                                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                                        {{ trans('form 8_bn.download_pdf')}}
-                                                    </button>
+
 
                                             </div>
 
@@ -138,7 +141,7 @@ color:white !important;
                                         </div>
                                       </div>
                                 </td>
-                                <td>
+                                {{-- <td>
 
                                     @if(empty($get_all_data_new->verified_form))
                                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -195,7 +198,7 @@ color:white !important;
                 </div>
               </div>
 
-                                </td>
+                                </td> --}}
 
                          </tr>
 

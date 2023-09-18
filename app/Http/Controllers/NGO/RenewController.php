@@ -149,7 +149,11 @@ class RenewController extends Controller
 
     public function updateRenewInformationList(Request $request){
 
+        $request->validate([
 
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
 
         $time_dy = time().date("Ymd");
 
@@ -166,6 +170,10 @@ class RenewController extends Controller
         $ngoRenew->name_of_head_in_bd = $request->name_of_head_in_bd;
         $ngoRenew->job_type = $request->job_type;
         $ngoRenew->address = $request->address;
+
+        $ngoRenew->chief_name = $request->chief_name;
+       $ngoRenew->chief_desi = $request->chief_desi;
+
         $ngoRenew->phone = $request->phone;
         $ngoRenew->nationality = $request->nationality;
         $ngoRenew->email = $request->email;
@@ -223,7 +231,11 @@ return redirect('/allStaffInformationForRenew');
 
 //dd($request->all());
 
+$request->validate([
 
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+        ]);
         $time_dy = time().date("Ymd");
 
         $filePath="NgoRenewInfo";
@@ -241,6 +253,12 @@ return redirect('/allStaffInformationForRenew');
        $ngoRenew->address = $request->address;
        $ngoRenew->phone = $request->phone;
        $ngoRenew->email = $request->email;
+
+
+       $ngoRenew->chief_name = $request->chief_name;
+       $ngoRenew->chief_desi = $request->chief_desi;
+
+
        $ngoRenew->nationality = $request->nationality;
        $ngoRenew->mobile = $request->mobile;
        $ngoRenew->web_site_name = $request->web_site_name;
