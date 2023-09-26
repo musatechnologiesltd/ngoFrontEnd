@@ -65,6 +65,8 @@ $mainNgoType = CommonController::changeView();
 
 
     public function edit($id){
+
+       // dd($id);
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();
 
@@ -299,8 +301,18 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $fd9OneFormInfo->save();
 
+        $id = $fd9OneFormInfo->id;
+
+        if(empty($nVisaId)){
+            
+            return redirect()->route('addnVisaDetail',$id);
+
+        }else{
+
         return redirect()->route('nVisa.edit',$nVisaId)->with('success','Update Successfully');
 
+
+    }
     }
 
     public function destroy($id){
