@@ -201,7 +201,7 @@ if($localNgoTypem == 'Old'){
                                                 নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি
 
                                                   <div class="file-top">
-                                                      <i class="fa fa-file-image-o txt-primary"></i>
+                                                      <i class="fa fa-file-pdf-o txt-primary"></i>
                                                   </div>
 
                                                   <div class="mt-2">
@@ -286,7 +286,7 @@ if($localNgoTypem == 'Old'){
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা
 
                                                     <div class="file-top">
-                                                        <i class="fa fa-file-image-o txt-primary"></i>
+                                                        <i class="fa fa-file-pdf-o txt-primary"></i>
                                                     </div>
 
                                                     <div class="mt-2">
@@ -370,7 +370,7 @@ if($localNgoTypem == 'Old'){
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি
 
                                                       <div class="file-top">
-                                                          <i class="fa fa-file-image-o txt-primary"></i>
+                                                          <i class="fa fa-file-pdf-o txt-primary"></i>
                                                       </div>
 
                                                       <div class="mt-2">
@@ -452,7 +452,7 @@ if($localNgoTypem == 'Old'){
                                                 নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি
 
                                                    <div class="file-top">
-                                                       <i class="fa fa-file-image-o txt-primary"></i>
+                                                       <i class="fa fa-file-pdf-o txt-primary"></i>
                                                    </div>
 
                                                    <div class="mt-2">
@@ -536,7 +536,7 @@ if($localNgoTypem == 'Old'){
                                                 List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
 
                                                 <div class="mt-2">
@@ -619,7 +619,7 @@ if($localNgoTypem == 'Old'){
                                     অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
                                       <div class="file-top">
-                                          <i class="fa fa-file-image-o txt-primary"></i>
+                                          <i class="fa fa-file-pdf-o txt-primary"></i>
                                       </div>
 
                                       <div class="mt-2">
@@ -702,7 +702,7 @@ if($localNgoTypem == 'Old'){
                         প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -785,7 +785,7 @@ if($localNgoTypem == 'Old'){
                         বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -867,7 +867,7 @@ if($localNgoTypem == 'Old'){
                         Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -949,7 +949,7 @@ if($localNgoTypem == 'Old'){
                         সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -1030,7 +1030,7 @@ if($localNgoTypem == 'Old'){
                         Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -1115,7 +1115,7 @@ if($localNgoTypem == 'Old'){
                                                 সংস্থার  গঠনতন্ত্র  পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ  তার সত্যায়িত অনুলিপি
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
 
                                                 <div class="mt-2">
@@ -1196,7 +1196,7 @@ if($localNgoTypem == 'Old'){
             প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -1277,7 +1277,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             সংস্থার চেয়ারম্যান ও সেক্রেটারী কতৃক যৌথ স্বাক্ষরিত গঠনতন্ত্রের পরিচ্ছন্ন কপি
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -1358,7 +1358,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ফি  জমা প্রদানের চালানের মূলকপিসহ
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -1438,7 +1438,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি
 
                              <div class="file-top">
-                                 <i class="fa fa-file-image-o txt-primary"></i>
+                                 <i class="fa fa-file-pdf-o txt-primary"></i>
                              </div>
 
                              <div class="mt-2">
@@ -1517,7 +1517,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             পূর্ববর্তী সংবিধান এবং বর্তমান সংবিধানের তুলনামূলক বিবরণী (প্রতি পাতায় সভাপতি ও সম্পাদকের যৌথ স্বাক্ষর সহ)
 
                              <div class="file-top">
-                                 <i class="fa fa-file-image-o txt-primary"></i>
+                                 <i class="fa fa-file-pdf-o txt-primary"></i>
                              </div>
 
                              <div class="mt-2">
@@ -1599,7 +1599,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                      'অপরিবর্তিত' প্রশংসাপত্রের অনুলিপি (সংশ্লিষ্ট দেশের পিস অফ জাস্টিস ডিপার্টমেন্ট দ্বারা নোটারাইজড/প্রত্যয়িত) যদি সংস্থার গঠনতন্ত্র পরিবর্তিত না হয়
 
                        <div class="file-top">
-                           <i class="fa fa-file-image-o txt-primary"></i>
+                           <i class="fa fa-file-pdf-o txt-primary"></i>
                        </div>
 
                        <div class="mt-2">
@@ -1778,7 +1778,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
                                                 <div class="mt-2">
                                                     <h6>{{ $filename }}</h6>

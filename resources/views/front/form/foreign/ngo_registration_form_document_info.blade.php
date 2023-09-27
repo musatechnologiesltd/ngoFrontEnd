@@ -200,7 +200,7 @@ if($foreignNgoType == 'Old'){
                                                 List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
 
                                                 <div class="mt-2">
@@ -284,7 +284,7 @@ if($foreignNgoType == 'Old'){
                                     By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)
 
                                       <div class="file-top">
-                                          <i class="fa fa-file-image-o txt-primary"></i>
+                                          <i class="fa fa-file-pdf-o txt-primary"></i>
                                       </div>
 
                                       <div class="mt-2">
@@ -367,7 +367,7 @@ if($foreignNgoType == 'Old'){
                         Work Procedure of the Board of Directors / Board of Trustees meeting of the organization
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -450,7 +450,7 @@ if($foreignNgoType == 'Old'){
                         Attested copy of last 10 (ten) years audit report and annual report of the organization
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -532,7 +532,7 @@ if($foreignNgoType == 'Old'){
                         Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -614,7 +614,7 @@ if($foreignNgoType == 'Old'){
                         Attested copy of latest registration/renewal certificate
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -696,7 +696,7 @@ if($foreignNgoType == 'Old'){
                         Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau
 
                          <div class="file-top">
-                             <i class="fa fa-file-image-o txt-primary"></i>
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
                          </div>
 
                          <div class="mt-2">
@@ -781,7 +781,7 @@ if($foreignNgoType == 'Old'){
                                                 Attested copy of the constitution of the company along with the prescribed fee in case of change
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
 
                                                 <div class="mt-2">
@@ -862,7 +862,7 @@ if($foreignNgoType == 'Old'){
             Attested copy of constitution approved by primary registering authority
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -943,7 +943,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             Clean copy of the constitution jointly signed by the chairman and secretary of the organization
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -1024,7 +1024,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             Original copy of invoice for payment of change fee in any section, sub-section of the constitution
 
               <div class="file-top">
-                  <i class="fa fa-file-image-o txt-primary"></i>
+                  <i class="fa fa-file-pdf-o txt-primary"></i>
               </div>
 
               <div class="mt-2">
@@ -1104,7 +1104,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             A certified copy of the minutes of the general meeting regarding the amendment and addition of any section, sub-section of the constitution
 
                              <div class="file-top">
-                                 <i class="fa fa-file-image-o txt-primary"></i>
+                                 <i class="fa fa-file-pdf-o txt-primary"></i>
                              </div>
 
                              <div class="mt-2">
@@ -1183,7 +1183,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             Comparative statement of previous constitution and current constitution (with joint signature of president and editor on each page)
 
                              <div class="file-top">
-                                 <i class="fa fa-file-image-o txt-primary"></i>
+                                 <i class="fa fa-file-pdf-o txt-primary"></i>
                              </div>
 
                              <div class="mt-2">
@@ -1265,7 +1265,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                     Copy of 'Unchanged' certificate (notarized/attested by the Peace of Justice Department of the concerned country) if the constitution of the organization has not changed
 
                        <div class="file-top">
-                           <i class="fa fa-file-image-o txt-primary"></i>
+                           <i class="fa fa-file-pdf-o txt-primary"></i>
                        </div>
 
                        <div class="mt-2">
@@ -1436,7 +1436,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                                                 <div class="file-top">
-                                                    <i class="fa fa-file-image-o txt-primary"></i>
+                                                    <i class="fa fa-file-pdf-o txt-primary"></i>
                                                 </div>
                                                 <div class="mt-2">
                                                     <h6>{{ $filename }}</h6>

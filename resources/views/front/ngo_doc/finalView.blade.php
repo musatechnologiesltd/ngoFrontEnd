@@ -126,7 +126,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
 
                     <div class="file-top">
-                        <i class="fa fa-file-image-o txt-primary"></i>
+                        <i class="fa fa-file-pdf-o txt-primary"></i>
                     </div>
                     <div class="mt-2">
                         <h6>{{ $filename }}</h6>
@@ -344,7 +344,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                     <div class="file-top">
-                        <i class="fa fa-file-image-o txt-primary"></i>
+                        <i class="fa fa-file-pdf-o txt-primary"></i>
                     </div>
                     <div class="mt-2">
                         <h6>{{ $filename }}</h6>

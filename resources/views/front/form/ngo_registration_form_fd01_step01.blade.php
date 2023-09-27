@@ -281,7 +281,7 @@
                                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                                 </div>
                                 <!-- end new code -->
-                        </div>
+                      
                         <div class="buttons d-flex justify-content-end mt-4">
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_one" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_one" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
