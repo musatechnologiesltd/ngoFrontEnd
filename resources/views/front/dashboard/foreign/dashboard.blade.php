@@ -35,10 +35,12 @@
                             @csrf
 
                         </form> --}}
+
+                        <button class="btn btn-sm btn-registration" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ trans('first_info.edit')}}</button>
                         @else
 
                         @endif
-                        <button class="btn btn-sm btn-registration" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ trans('first_info.edit')}}</button>
+
 
                     </div>
 
