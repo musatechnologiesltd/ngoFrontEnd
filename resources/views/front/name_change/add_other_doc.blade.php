@@ -93,10 +93,40 @@
 
 
             <div class="col-lg-9 col-md-6 col-sm-12">
+
+
+
+
                 <div class="card">
+
+
+
+
+
+
+
+
                     <div class="card-body">
+
+                        <div class="step_box">
+                            <ul class="process-model more-icon-preocess">
+                                <li >
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <p>নতুন নাম</p>
+
+                                </li>
+
+                                <li class="active visited">
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                    <p>নথিপত্র</p>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        
                         <div class="committee_container">
-                            <h5 class="mb-4">এনজিও নথি নিবন্ধন</h5>
+                            <h5 class="mb-4">এনজিও নথি </h5>
                             <form method="post" action="{{ route('storeOtherDoc') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                 @csrf
@@ -239,7 +269,7 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ২০১০-২০১১ অর্থবছর হতে হালনাগাদ পর্যন্ত সংস্থার নিবন্ধন/নিবন্ধন নবায়ন /নাম পরিবর্তন /গঠনতন্ত্রের যে কোনো ধারা পরিবর্তনের বিষয়ের দাখিলকৃত ফি এর ১৫% বকেয়া ভ্যাট (যদি ইতিমধ্যে প্রদান করা হয়ে না থাকে ) সংশ্লিষ্ট কোডে
-জমাপূর্বক চালানের মুলকপিসহ 
+জমাপূর্বক চালানের মুলকপিসহ
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
