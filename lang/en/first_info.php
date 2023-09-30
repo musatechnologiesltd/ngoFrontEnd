@@ -6,6 +6,7 @@ return [
     'other_info'=>'অন্যান্য নথি',
     'member_info'=>'সদস্যের তথ্য',
     'fd_one'=>'এফডি -০১',
+    'fd_eight'=>'এফডি -৮ ফরম',
     'form_eight'=>'ফর্ম-0৮',
     'complete'=>'সম্পূর্ণ',
     'incomplete'=>'অসম্পূর্ণ',

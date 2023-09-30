@@ -127,7 +127,7 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
 
                                     <tr>
                                         @if($foreignNgoType == 'Old')
-<td>FD-8 Form</td>
+<td>{{ trans('first_info.fd_eight')}}</td>
                                         @else
                                         <td>{{ trans('first_info.fd_one')}}</td>
                                         @endif
@@ -139,7 +139,7 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                     @else
                                     <tr>
                                         @if($foreignNgoType == 'Old')
-                                        <td>FD-8 Form</td>
+                                        <td>{{ trans('first_info.fd_eight')}}</td>
                                                                                 @else
                                                                                 <td>{{ trans('first_info.fd_one')}}</td>
                                                                                 @endif

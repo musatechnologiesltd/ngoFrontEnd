@@ -105,22 +105,22 @@
 
                                     @if($localNgoTypem == 'Old')
                                     <div class="mb-3">
-                                        <label for="" class="form-label">সংস্থার টেলিফোন নম্বর<span class="text-danger">*</span> </label>
+                                        <label for="" class="form-label">{{ trans('oldorg.telephone')}}<span class="text-danger">*</span> </label>
                                         <input type="text" data-parsley-required  name="org_phone" class="form-control" id="">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label">সংস্থার মোবাইল নম্বর<span class="text-danger">*</span> </label>
+                                        <label for="" class="form-label">{{ trans('oldorg.mobilenumber')}}:<span class="text-danger">*</span> </label>
                                         <input type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                         type = "number"
                                         maxlength = "11" minlength="11" data-parsley-required  name="org_mobile" class="form-control" id="">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="" class="form-label">সংস্থার ইমেইল<span class="text-danger">*</span> </label>
+                                        <label for="" class="form-label">{{ trans('oldorg.email')}}<span class="text-danger">*</span> </label>
                                         <input type="email" data-parsley-required  name="org_email" class="form-control" id="">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for=""  class="form-label">সংস্থার ওয়েবসাইট <span class="text-danger">*</span> </label>
+                                        <label for=""  class="form-label">{{ trans('oldorg.website')}} <span class="text-danger">*</span> </label>
                                         <input type="text" data-parsley-required  name="web_site_name" class="form-control" id="">
                                     </div>
 
@@ -251,7 +251,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        <b>প্রধান নির্বাহীর তথ্যাদি</b>
+                                        <b>{{ trans('oldorg.ceo')}}</b>
                                     </h5>
                                 </div>
 
@@ -269,19 +269,19 @@
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                                    <label for="" class="form-label">{{ trans('oldorg.digiSign')}}: <span class="text-danger">*</span> </label>
                                     <span class="text-success"><b>Dimension:(300*80) & Max Size:60 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                                 </div>
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                                    <label for="" class="form-label">{{ trans('oldorg.digiSeal')}}: <span class="text-danger">*</span> </label>
                                    <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                                 </div>
                                 <!-- end new code -->
-                      
+
                         <div class="buttons d-flex justify-content-end mt-4">
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_one" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_one" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
@@ -477,7 +477,7 @@
 
                 <div class="mb-3">
                     <h5 class="form_middle_text">
-                        প্রধান নির্বাহীর তথ্যাদি
+                        {{ trans('oldorg.ceo')}}
                     </h5>
                 </div>
 
@@ -496,14 +496,14 @@
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                    <label for="" class="form-label">{{ trans('oldorg.digiSign')}}: <span class="text-danger">*</span> </label>
                  <span class="text-danger">Dimension:(300*80) & Size:Max 60 KB</span>
                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                 </div>
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                    <label for="" class="form-label">{{ trans('oldorg.digiSeal')}}: <span class="text-danger">*</span> </label>
                  <span class="text-danger">Dimension:(300*100) & Size:Max 80 KB</span>
                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                 </div>

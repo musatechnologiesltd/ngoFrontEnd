@@ -113,8 +113,13 @@
                                                             <td>Name: {{ $ngo_list_all->name_of_head_in_bd }} <br> Address: {{ $ngo_list_all->address_of_head_office }} <br> Phone Number: {{ $ngo_list_all->phone }} </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>প্রস্তাবিত এলাকা</td>
-                                                            <td>{{ $ngo_list_all->district }}</td>
+                                                            <td>মোবাইল নম্বর</td>
+                                                            <td>{{ $ngo_list_all->tele_phone_number }}</td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td>ইমেইল </td>
+                                                            <td>{{ $ngo_list_all->email }}</td>
                                                         </tr>
                                                     </table>
                                                 </div>

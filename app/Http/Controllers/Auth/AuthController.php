@@ -119,7 +119,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
 
-            //CommonController::checkNgotype();
+            //CommonController::checkNgotype(1);
 
             return redirect()->intended('dashboard')
                         ->with('success','You have Successfully logged in');
@@ -269,7 +269,7 @@ class AuthController extends Controller
                 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
 
 
-                //CommonController::checkNgotype();
+                //CommonController::checkNgotype(1);
 
                 $mainNgoType = CommonController::changeView();
 
@@ -305,13 +305,18 @@ $get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id
 
 
             $oldOrNewStatus = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
+//dd(1);
+            CommonController::checkNgotype(1);
 
-            CommonController::checkNgotype();
+
 
             $mainNgoType = CommonController::changeView();
 
 
 $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
+//dd($mainNgoType);
 
 
 

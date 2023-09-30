@@ -33,7 +33,7 @@ class Fd9Controller extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9List = Fd9Form::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -75,7 +75,7 @@ $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 //dd($fdNineData);
 
-CommonController::checkNgotype();
+CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -139,7 +139,7 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $fd9FormInfo->chief_name = $request->chief_name;
          $fd9FormInfo->chief_desi = $request->chief_desi;
 
-         
+
          $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
          $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
          $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
@@ -432,7 +432,7 @@ $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 //dd($fdNineData);
 
-CommonController::checkNgotype();
+CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 

@@ -30,7 +30,7 @@ class NamechangeController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $name_change_list_all =  NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -46,7 +46,7 @@ class NamechangeController extends Controller
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -98,7 +98,7 @@ class NamechangeController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -117,7 +117,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -139,7 +139,7 @@ if($mainNgoType== 'দেশিও'){
 
         $nameChangeInfoDoc = NameChangeDoc::where('ngo_name_change_id',base64_decode($id))->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -160,7 +160,7 @@ if($mainNgoType== 'দেশিও'){
         $all_data_list = NgoMemberList::where('member_name_slug',$id)->first();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -296,7 +296,7 @@ if($mainNgoType== 'দেশিও'){
  $all_data_list = FormEight::where('name_slug',$id)->first();
  $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
- CommonController::checkNgotype();
+ CommonController::checkNgotype(1);
 
  $mainNgoType = CommonController::changeView();
 
@@ -342,7 +342,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberList::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -360,7 +360,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -377,7 +377,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -469,7 +469,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -486,7 +486,7 @@ if($mainNgoType== 'দেশিও'){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $form_eight_list = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 

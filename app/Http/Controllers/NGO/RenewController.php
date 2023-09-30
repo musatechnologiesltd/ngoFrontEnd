@@ -112,7 +112,7 @@ class RenewController extends Controller
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -134,7 +134,7 @@ class RenewController extends Controller
         $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -320,7 +320,7 @@ return redirect('/allStaffInformationForRenew');
            $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
            $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
 
-           CommonController::checkNgotype();
+           CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -407,7 +407,7 @@ return redirect('/allStaffInformationForRenew');
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
         $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -426,7 +426,7 @@ return redirect('/allStaffInformationForRenew');
         $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->latest()->limit(1)->get();
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 

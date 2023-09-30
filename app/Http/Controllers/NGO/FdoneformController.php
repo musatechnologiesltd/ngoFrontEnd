@@ -96,7 +96,7 @@ class FdoneformController extends Controller
 
         ->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 
         $mainNgoType = CommonController::changeView();
@@ -207,7 +207,7 @@ class FdoneformController extends Controller
     public function fdOneFormEdit(){
 
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 
         $mainNgoType = CommonController::changeView();
@@ -283,7 +283,7 @@ if(empty($formCompleteStatus)){
 
     public function fieldOfProposedActivities(){
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)
 
         ->get();
@@ -302,7 +302,7 @@ if(empty($formCompleteStatus)){
 
     public function allStaffDetailsInformation(){
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
 
@@ -325,7 +325,7 @@ if(empty($formCompleteStatus)){
 
     public function othersInformation(){
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
@@ -1566,7 +1566,7 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $payment_detail = 11;
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 

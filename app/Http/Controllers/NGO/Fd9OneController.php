@@ -41,7 +41,7 @@ class Fd9OneController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -54,7 +54,7 @@ $mainNgoType = CommonController::changeView();
     public function create(){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -70,7 +70,7 @@ $mainNgoType = CommonController::changeView();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',$id)->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -85,7 +85,7 @@ $mainNgoType = CommonController::changeView();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneList = Fd9OneForm::where('id',base64_decode($id))->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -304,7 +304,7 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $id = $fd9OneFormInfo->id;
 
         if(empty($nVisaId)){
-            
+
             return redirect()->route('addnVisaDetail',$id);
 
         }else{

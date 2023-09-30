@@ -75,14 +75,77 @@ class CommonController extends Controller
     }
 
 
-   public static function checkNgotype(){
+   public static function checkNgotype($status){
+
+
+
+
+    $mainSession = session()->get('locale');
+
+//dd($mainSession);
+
+
+if(!empty($mainSession)){
+
+
+//dd(11);
+
+    App::setLocale($mainSession);
+    session()->put('locale',$mainSession);
+
+return session()->put('locale',$mainSession);
+
+
+
+
+}else{
+
+
+//dd(111);
+
+
+
+    if($status == 1){
+
+        //dd($status);
+
 
     $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
-    App::setLocale($first_form_check);
-    session()->put('locale',$first_form_check);
 
-return session()->put('locale',$first_form_check);
 
+
+
+
+    if(empty($first_form_check)){
+        App::setLocale('en');
+        session()->put('locale','en');
+
+    return session()->put('locale','en');
+
+    }else{
+
+       // dd($first_form_check);
+        App::setLocale($first_form_check);
+        session()->put('locale',$first_form_check);
+
+    return session()->put('locale',$first_form_check);
+
+    }
+
+}else{
+
+
+
+    App::setLocale($status);
+    session()->put('locale',$status);
+
+return session()->put('locale',$status);
+
+
+
+}
+
+}
 
     }
 
