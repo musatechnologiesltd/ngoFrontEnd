@@ -168,7 +168,6 @@ return [
          * Package Service Providers...
          */
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,8 +193,6 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
-        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
     ])->toArray(),
 
 ];
