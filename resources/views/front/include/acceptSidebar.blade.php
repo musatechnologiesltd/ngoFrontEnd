@@ -38,7 +38,11 @@ $mainNgoType = CommonController::changeView();
     </div>
 
 
-
+    <div class="profile_link_box">
+        <a href="{{ route('fd6Form.index') }}">
+            <p class="{{ Route::is('fd6Form.index') ||  Route::is('fd6Form.create') || Route::is('fd6Form.view') || Route::is('fd2Form.create') || Route::is('fd2Form.index') || Route::is('fd6Form.edit') || Route::is('fd2Form.view') || Route::is('fd2Form.edit')? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd6')}}</p>
+        </a>
+    </div>
 
     <div class="profile_link_box">
         <a href="{{ route('logout') }}">
@@ -75,6 +79,13 @@ $mainNgoType = CommonController::changeView();
     <div class="profile_link_box">
         <a href="{{ route('fdNineOneForm.index') }}">
             <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
+        </a>
+    </div>
+
+
+    <div class="profile_link_box">
+        <a href="{{ route('fd6Form.index') }}">
+            <p class="{{ Route::is('fd6Form.index') ||  Route::is('fd6Form.create') || Route::is('fd6Form.view') || Route::is('fd2Form.create') || Route::is('fd2Form.index') || Route::is('fd6Form.edit') || Route::is('fd2Form.view') || Route::is('fd2Form.edit')? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd6')}}</p>
         </a>
     </div>
 

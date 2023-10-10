@@ -15,6 +15,8 @@ use App\Http\Controllers\NGO\RenewController;
 use App\Http\Controllers\NGO\NVisaController;
 use App\Http\Controllers\NGO\Fd9Controller;
 use App\Http\Controllers\NGO\Fd9OneController;
+use App\Http\Controllers\NGO\Fd2FormController;
+use App\Http\Controllers\NGO\Fd6FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -194,6 +196,9 @@ Route::controller(OtherformController::class)->group(function () {
 
 
 Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('fd2Form',Fd2FormController::class);
+    Route::resource('fd6Form',Fd6FormController::class);
 
     Route::resource('nVisa',NVisaController::class);
 
