@@ -379,7 +379,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         var all = $('input[type="checkbox"]:checked').length;
 
-        if(all < 6){
+        if(all < 5){
             $('#bb3').attr('disabled',true);
 
         }else{
@@ -401,7 +401,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 6){
+    if(all < 5){
         $('#bb3').attr('disabled',true);
 
     }else{
