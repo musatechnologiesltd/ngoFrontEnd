@@ -17,6 +17,7 @@ class NgoStatus extends Model
         'reg_id',
         'print_date',
         'status',
+        'comment',
         'fd_one_form_id',
 
     ];

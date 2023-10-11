@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('present_name_eng')->nullable();
             $table->string('present_name_ban')->nullable();
             $table->string('status')->nullable();
+            $table->text('comment')->nullable();
             $table->string('time_for_api')->nullable();
             $table->timestamps();
         });

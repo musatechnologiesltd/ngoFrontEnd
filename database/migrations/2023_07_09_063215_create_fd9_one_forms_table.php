@@ -39,6 +39,7 @@ return new class extends Migration
             $table->string('chief_desi')->nullable();
             $table->string('digital_signature')->nullable();
             $table->string('digital_seal')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

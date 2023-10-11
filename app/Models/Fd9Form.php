@@ -50,6 +50,7 @@ class Fd9Form extends Model
         'fd9_copy_of_passport',
         'verified_fd_nine_form',
         'status',
+        'comment',
 
 ];
 
