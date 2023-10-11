@@ -12,9 +12,10 @@ class NgoRenew extends Model
     public $table = "ngo_renews";
 
     protected $fillable = [
-       
+
         'fd_one_form_id',
         'status',
+        'comment',
         'time_for_api',
 
     ];

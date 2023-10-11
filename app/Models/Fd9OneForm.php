@@ -34,6 +34,7 @@ class Fd9OneForm extends Model
         'arrival_date_in_nvisa',
         'copy_of_nvisa',
         'verified_fd_nine_one_form',
+        'comment',
         'status',
 
 ];
