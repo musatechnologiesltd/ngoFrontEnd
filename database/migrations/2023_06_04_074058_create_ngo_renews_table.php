@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
             $table->string('status')->nullable();
-            $table->text('comment')->nullable();
+
             $table->string('time_for_api')->nullable();
             $table->timestamps();
         });

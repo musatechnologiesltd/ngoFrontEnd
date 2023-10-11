@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('reg_id')->nullable();
             $table->string('print_date')->nullable();
             $table->string('status')->nullable();
-            $table->text('comment')->nullable();
+
             $table->string('time_for_api')->nullable();
             $table->timestamps();
         });
