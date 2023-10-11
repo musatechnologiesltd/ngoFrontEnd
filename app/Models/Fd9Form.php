@@ -12,6 +12,8 @@ class Fd9Form extends Model
     public $table = "fd9_forms";
 
     protected $fillable = [
+    'digital_signature',
+       'digital_seal',
         'chief_name',
         'chief_desi',
         'fd_one_form_id',
@@ -48,6 +50,7 @@ class Fd9Form extends Model
         'fd9_copy_of_passport',
         'verified_fd_nine_form',
         'status',
+        'comment',
 
 ];
 
@@ -62,7 +65,7 @@ public function fdOneForm()
         return $this->belongsTo(FdOneForm::class,'fd_one_form_id');
     }
 
-    
+
     public function fd9ForeignerEmployeeFamilyMemberList()
     {
         return $this->hasMany(Fd9ForeignerEmployeeFamilyMemberList::class,'fd9_form_id');

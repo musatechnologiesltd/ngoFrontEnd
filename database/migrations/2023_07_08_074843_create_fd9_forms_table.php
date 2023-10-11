@@ -53,7 +53,10 @@ return new class extends Migration
             $table->string('verified_fd_nine_form')->nullable();
             $table->string('chief_name')->nullable();
             $table->string('chief_desi')->nullable();
+            $table->string('digital_signature')->nullable();
+            $table->string('digital_seal')->nullable();
             $table->string('status',11)->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

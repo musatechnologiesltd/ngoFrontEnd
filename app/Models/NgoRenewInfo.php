@@ -17,6 +17,7 @@ class NgoRenewInfo extends Model
          'digital_seal',
          'yearly_budget_file',
          'chief_desi',
+         'chief_name',
         'nationality',
         'registration_number',
         'organization_name',

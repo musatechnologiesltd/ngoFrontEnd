@@ -109,8 +109,8 @@ font-family: 'banglabold', sans-serif;
         <td>{{ $all_all_parti->service_status }}</td>
         <td>{{ $all_all_parti->remarks }}</td>
         <td>
-
-
+            <img src="{{ asset('/') }}{{ $all_all_parti->job_sign}}" alt="" style="height:30px;"> <br>
+            <?php   echo date("d/m/Y", strtotime($all_all_parti->created_at)); ?>
         </td>
 
     </tr>
@@ -119,18 +119,18 @@ font-family: 'banglabold', sans-serif;
 <table style="margin-top: 60px; border:none !important;">
     <tr>
         <td style="text-align: center; border:none !important;">
-            <img src="{{ asset('/') }}{{ $all_all_parti->signature_one}}" alt="" style="height:30px;"> <br>
-           <?php   echo date("d/m/Y", strtotime($all_all_parti->updated_at)); ?> <br>
-            <img src="{{ asset('/') }}{{ $all_all_parti->seal_one}}" alt="" style="height:30px;"> <br>
-            <span class="bt">({{ $all_all_parti->name_one }})</span> <br>
-            {{ $all_all_parti->designation_one}}
+            <img src="{{ asset('/') }}{{ $signDataNew->signature_one}}" alt="" style="height:30px;"> <br>
+           <?php   echo date("d/m/Y", strtotime($signDataNew->updated_at)); ?> <br>
+            <img src="{{ asset('/') }}{{ $signDataNew->seal_one}}" alt="" style="height:30px;"> <br>
+            <span class="bt">({{ $signDataNew->name_one }})</span> <br>
+            {{ $signDataNew->designation_one}}
         </td>
         <td style="text-align: center; border:none !important;">
-            <img src="{{ asset('/') }}{{ $all_all_parti->signature_two}}" alt="" style="height:30px;"> <br>
-         <?php   echo date("d/m/Y", strtotime($all_all_parti->updated_at)); ?> <br>
-            <img src="{{ asset('/') }}{{ $all_all_parti->seal_two}}" alt="" style="height:30px;"> <br>
-            <span class="bt">({{ $all_all_parti->name_two}})</span> <br>
-            {{ $all_all_parti->designation_two}}
+            <img src="{{ asset('/') }}{{ $signDataNew->signature_two}}" alt="" style="height:30px;"> <br>
+         <?php   echo date("d/m/Y", strtotime($signDataNew->updated_at)); ?> <br>
+            <img src="{{ asset('/') }}{{ $signDataNew->seal_two}}" alt="" style="height:30px;"> <br>
+            <span class="bt">({{ $signDataNew->name_two}})</span> <br>
+            {{ $signDataNew->designation_two}}
         </td>
     </tr>
 </table>

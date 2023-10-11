@@ -12,6 +12,8 @@ class Fd9OneForm extends Model
     public $table = "fd9_one_forms";
 
     protected $fillable = [
+        'digital_signature',
+        'digital_seal',
         'chief_name',
         'chief_desi',
         'fd_one_form_id',
@@ -32,6 +34,7 @@ class Fd9OneForm extends Model
         'arrival_date_in_nvisa',
         'copy_of_nvisa',
         'verified_fd_nine_one_form',
+        'comment',
         'status',
 
 ];

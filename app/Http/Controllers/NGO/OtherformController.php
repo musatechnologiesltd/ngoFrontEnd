@@ -75,12 +75,15 @@ class OtherformController extends Controller
     public function changeLanguage($lan){
 
       //dd($lan);
-            App::setLocale($lan);
-            session()->put('locale',$lan);
+            // App::setLocale($lan);
+             session()->put('locale',$lan);
 
 //dd(Session::get('locale'));
 
-        return redirect()->back();
+
+CommonController::checkNgotype($lan);
+
+return redirect()->back();
 
     }
 
@@ -364,7 +367,7 @@ return redirect('ngoAllRegistrationForm');
     public function ngoAllRegistrationForm(){
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 

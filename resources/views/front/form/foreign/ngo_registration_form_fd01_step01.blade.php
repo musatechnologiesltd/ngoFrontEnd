@@ -269,14 +269,26 @@
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
+                                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                                 </div>
+
+                                @if($foreignNgoType == 'Old')
+
+                                @else
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label mt-3">Place: <span class="text-danger">*</span></label>
+                                    <input type="text" data-parsley-required  name="place"  class="form-control"  placeholder="Place">
+                                </div>
+
+
+                                @endif
 
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
+                                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
                                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                                 </div>
                                 <!-- end new code -->
@@ -284,8 +296,8 @@
 
 
 
-                        </div>
-                        <div class="buttons d-flex justify-content-end mt-4">
+                    
+                        <div class="buttons d-flex justify-content-end ">
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_one" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_one" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
                         </div>
@@ -501,14 +513,26 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*80) & Size:60 KB</span>
+                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
                     <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
                 </div>
+
+                @if($foreignNgoType == 'Old')
+
+                @else
+
+                <div class="mb-3">
+                    <label for="" class="form-label mt-3">Place: <span class="text-danger">*</span></label>
+                    <input type="text" data-parsley-required  name="place"  class="form-control"  placeholder="Place">
+                </div>
+
+
+                @endif
 
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                    <br><span class="text-danger">Dimension:(300*100) & Size:80 KB</span>
+                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
                     <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
                 </div>
                 <!-- end new code -->
@@ -527,4 +551,5 @@
             </div>
         </div>
     </div>
+
 </section>

@@ -35,10 +35,12 @@
                             @csrf
 
                         </form> --}}
+
+                        <button class="btn btn-sm btn-registration" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ trans('first_info.edit')}}</button>
                         @else
 
                         @endif
-                        <button class="btn btn-sm btn-registration" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ trans('first_info.edit')}}</button>
+
 
                     </div>
 
@@ -127,7 +129,7 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
 
                                     <tr>
                                         @if($foreignNgoType == 'Old')
-<td>FD-8 Form</td>
+<td>{{ trans('first_info.fd_eight')}}</td>
                                         @else
                                         <td>{{ trans('first_info.fd_one')}}</td>
                                         @endif
@@ -139,13 +141,15 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                     @else
                                     <tr>
                                         @if($foreignNgoType == 'Old')
-                                        <td>FD-8 Form</td>
+                                        <td>{{ trans('first_info.fd_eight')}}</td>
                                                                                 @else
                                                                                 <td>{{ trans('first_info.fd_one')}}</td>
                                                                                 @endif
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
                                     </tr>
                                        @endif
+
+                                       @if($foreignNgoType == 'Old')
 
                                        @if(count($data3_m_one) > 0)
                                        <tr>
@@ -157,6 +161,26 @@ $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                            <td>{{ trans('first_info.other_info')}}</td>
                                            <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
                                        </tr>
+                                       @endif
+
+                                       @else
+
+                                       <?php
+$ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)->latest()->get();
+
+                                       ?>
+
+@if(count($ngoOtherDocLists) > 0)
+<tr>
+ <td>{{ trans('first_info.other_info')}}</td>
+ <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
+</tr>
+@else
+<tr>
+    <td>{{ trans('first_info.other_info')}}</td>
+    <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
+</tr>
+@endif
                                        @endif
                                    </table>
                                 </div>

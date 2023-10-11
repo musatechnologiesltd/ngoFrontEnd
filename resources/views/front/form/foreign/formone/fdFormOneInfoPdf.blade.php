@@ -552,7 +552,7 @@ attached
     <tr>
         <td style="width: 65%"></td>
         <td style="text-align: left; width: 5%;">Place</td>
-        <td style="width:30%; text-align: left;">: {{ Session::get('place')}}</td>
+        <td style="width:30%; text-align: left;">: {{ $allformOneData->place }}</td>
     </tr>
     @endif
     <tr>

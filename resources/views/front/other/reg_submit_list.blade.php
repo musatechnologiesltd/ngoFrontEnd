@@ -186,72 +186,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
 
-                                        @if($localNgoTypem == 'Old')
 
-                                        <tr>
-                                            <td>
-
-                                                @if(empty($get_date_fd_one))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_one->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_one->format('d-m-Y') }}
-
-                                                @endif
-                                                @endif
-
-                                            </td>
-                                            <td>এফডি -৮ ফরম জমা দিন</td>
-                                            <td style="position:relative">
-
-                                                @if(empty($complete_status_fd_one_pdf_old))
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
-                                        @else
-                                        <tr>
-                                            <td>
-
-                                                @if(empty($get_date_fd_one))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_one->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_one->format('d-m-Y') }}
-
-                                                @endif
-                                                @endif
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.f_fd_s')}}</td>
-                                            <td style="position:relative">
-
-                                                @if($complete_status_fd_one_pdf == 0)
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
-                                        @endif
 
 
 
@@ -444,7 +379,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         var all = $('input[type="checkbox"]:checked').length;
 
-        if(all < 6){
+        if(all < 5){
             $('#bb3').attr('disabled',true);
 
         }else{
@@ -466,7 +401,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 6){
+    if(all < 5){
         $('#bb3').attr('disabled',true);
 
     }else{

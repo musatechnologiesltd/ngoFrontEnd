@@ -48,7 +48,7 @@ class NVisaController extends Controller
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $nVisaList = NVisa::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 if($mainNgoType== 'দেশিও'){
@@ -71,7 +71,7 @@ if($mainNgoType== 'দেশিও'){
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-CommonController::checkNgotype();
+CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -92,7 +92,7 @@ return view('front.nVisa.create',compact('fd9Id','ngo_list_all','countryList','g
         $countryList = Country::orderBy('id','asc')->get();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -118,7 +118,7 @@ if($mainNgoType== 'দেশিও'){
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-CommonController::checkNgotype();
+CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
@@ -1261,7 +1261,7 @@ $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
 
-CommonController::checkNgotype();
+CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 

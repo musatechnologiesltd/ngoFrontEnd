@@ -68,7 +68,7 @@ $ngo_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 <li class="{{ Route::is('regSubmitList')  ? 'active_link' : '' }}"> <a href="{{ route('regSubmitList') }}"> <i class="fa fa-file-excel-o pe-1 dashboard_icon" aria-hidden="true"></i>
 
     @if($foreignNgoType == 'Old')
-Renew Submit
+    {{ trans('reg_sub.reg_sub1')}}
     @else
     {{ trans('reg_sub.reg_sub')}}
 
@@ -81,7 +81,7 @@ Renew Submit
 
 
     @if($foreignNgoType == 'Old')
-Renew Submit
+    {{ trans('reg_sub.reg_sub1')}}
     @else
     {{ trans('reg_sub.reg_sub')}}
 

@@ -157,7 +157,7 @@
 
 
                                             <div class="file-top">
-                                                <i class="fa fa-file-image-o txt-primary"></i>
+                                                <i class="fa fa-file-pdf-o txt-primary"></i>
                                             </div>
                                             <div class="mt-2">
                                                 <h6>{{ $filename }}</h6>

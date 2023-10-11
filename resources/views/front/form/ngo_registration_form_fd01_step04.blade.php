@@ -315,17 +315,17 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 <div class="mb-3">
     <table class="table table-light" id="dynamicAddRemoveAdvisor">
         <tr>
-            <th>{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> </th>
+            <th>{{ trans('fd_one_step_four.advisor_name')}} </th>
+            <th>{{ trans('fd_one_step_four.advisor_information')}}</th>
             <th></th>
         </tr>
         <tr>
             <td>
-                <input type="text" required  name="name[]" placeholder="পরামর্শকের নাম"
+                <input type="text"   name="name[]" placeholder="পরামর্শকের নাম"
                        class="form-control"/>
             </td>
             <td>
-                <input type="text"  required name="information[]" placeholder="পরামর্শকের ঠিকানা"
+                <input type="text"   name="information[]" placeholder="পরামর্শকের ঠিকানা"
                        class="form-control"/>
             </td>
             <td></td>
@@ -341,8 +341,8 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
                             <div class="mb-3">
                                 <table class="table table-light" id="dynamicAddRemoveAdvisor">
                                     <tr>
-                                        <th>{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> </th>
-                                        <th>{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> </th>
+                                        <th>{{ trans('fd_one_step_four.advisor_name')}} </th>
+                                        <th>{{ trans('fd_one_step_four.advisor_information')}}</th>
                                         <th></th>
                                     </tr>
                                     <tr>

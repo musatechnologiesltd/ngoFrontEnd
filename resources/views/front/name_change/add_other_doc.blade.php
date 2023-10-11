@@ -93,17 +93,47 @@
 
 
             <div class="col-lg-9 col-md-6 col-sm-12">
+
+
+
+
                 <div class="card">
+
+
+
+
+
+
+
+
                     <div class="card-body">
+
+                        <div class="step_box">
+                            <ul class="process-model more-icon-preocess">
+                                <li >
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <p>নতুন নাম</p>
+
+                                </li>
+
+                                <li class="active visited">
+                                    <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                                    <p>নথিপত্র</p>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                        
                         <div class="committee_container">
-                            <h5 class="mb-4">এনজিও নথি নিবন্ধন</h5>
+                            <h5 class="mb-4">এনজিও নথি </h5>
                             <form method="post" action="{{ route('storeOtherDoc') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                 @csrf
                                 @if($ngoType == 'Foreign')
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
+                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -115,7 +145,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপিসহ অনুলিপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -142,7 +172,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির তালিকা ( সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত )
+                                        সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির তালিকা ( সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত ) <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -156,7 +186,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন বিষয়ে সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির সিদ্ধান্তের কপি  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত মূলকপিসহ )
+                                        নাম পরিবর্তন বিষয়ে সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির সিদ্ধান্তের কপি  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত মূলকপিসহ ) <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -169,21 +199,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র
+                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -197,7 +213,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        সংস্থার পরিবর্তিত নামের সনদপত্র /ইনকর্পোরেটর সার্টিফিকেট (সংশ্লিষ্ট দেশের নোটারীকৃত মূলকপি )
+                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -211,7 +227,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        সংস্থার পরিবর্তিত নামের বাই লজ (By Laws)/গঠনতন্ত্রের কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত মূলকপিসহ )
+                                        সংস্থার পরিবর্তিত নামের সনদপত্র /ইনকর্পোরেটর সার্টিফিকেট (সংশ্লিষ্ট দেশের নোটারীকৃত মূলকপি ) <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -225,7 +241,21 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        সংস্থার পূর্ববর্তী নামের সকল দায় -দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অঙ্গীকার নামা (সংস্থার প্রধান কতৃক স্বাক্ষরিত )
+                                        সংস্থার পরিবর্তিত নামের বাই লজ (By Laws)/গঠনতন্ত্রের কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত মূলকপিসহ ) <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        সংস্থার পূর্ববর্তী নামের সকল দায় -দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অঙ্গীকার নামা (সংস্থার প্রধান কতৃক স্বাক্ষরিত ) <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -256,7 +286,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি
+                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -268,7 +298,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপি এবং ১৫% ভ্যাট (কোড নং - ১-১১৩৩ -০০৩৫ - ০৩১১) প্রদানপূর্বক চালানের মূলকপিসহ
+                                        নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপি এবং ১৫% ভ্যাট (কোড নং - ১-১১৩৩ -০০৩৫ - ০৩১১) প্রদানপূর্বক চালানের মূলকপিসহ <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -281,22 +311,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ফরম -৮ মোতাবেক নির্বাহী কমিটির তালিকা
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        নির্বাহী কমিটির সদস্যদের ভোটার আইডি কার্ডের ফটোকপিসহ সত্যায়িত পাসপোর্ট সাইজের ছবি
+                                        ফরম -৮ মোতাবেক নির্বাহী কমিটির তালিকা <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -311,7 +326,22 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি
+                                        নির্বাহী কমিটির সদস্যদের ভোটার আইডি কার্ডের ফটোকপিসহ সত্যায়িত পাসপোর্ট সাইজের ছবি <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -325,7 +355,7 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র
+                                        এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -337,7 +367,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        পরিবর্তিত নামে প্রাথমিক নিবন্ধন প্রদানকারী কর্তৃপক্ষের সত্যায়িত সনদপত্রের কপি
+                                        পরিবর্তিত নামে প্রাথমিক নিবন্ধন প্রদানকারী কর্তৃপক্ষের সত্যায়িত সনদপত্রের কপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -349,21 +379,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        প্রাথমিক নিবন্ধন প্রদানকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত কপি
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        সর্বশেষ সাধারণ সদস্যদের তালিকা
+                                        প্রাথমিক নিবন্ধন প্রদানকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত কপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -377,7 +393,21 @@
 
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        নাম পরিবর্তন সংক্রান্ত বিষয়ে সাধারণ সভার কা্যবিবরণীর (উপস্থিত সদস্যদের তালিকাসহ) সত্যায়িত কপি
+                                        সর্বশেষ সাধারণ সদস্যদের তালিকা <span class="text-danger">*</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        নাম পরিবর্তন সংক্রান্ত বিষয়ে সাধারণ সভার কা্যবিবরণীর (উপস্থিত সদস্যদের তালিকাসহ) সত্যায়িত কপি <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -389,7 +419,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        পূর্ববর্তী নামের সকল দায়-দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অংগীকার নামা (সভাপতি ও সাধারণ সম্পাদক কর্তৃক স্বাক্ষরিত)।
+                                        পূর্ববর্তী নামের সকল দায়-দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অংগীকার নামা (সভাপতি ও সাধারণ সম্পাদক কর্তৃক স্বাক্ষরিত)। <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -401,7 +431,7 @@
                                 </div>
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        দাখিলকৃত চালানের ডপর ১৫% ভ্যাট নির্ধারিত কোডে জমাপূর্বক চালানের মূলকলিসহ (কোড নং-১-১১৩৩-০০৩৫-০৩১১)
+                                        দাখিলকৃত চালানের ডপর ১৫% ভ্যাট নির্ধারিত কোডে জমাপূর্বক চালানের মূলকলিসহ (কোড নং-১-১১৩৩-০০৩৫-০৩১১) <span class="text-danger">*</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">

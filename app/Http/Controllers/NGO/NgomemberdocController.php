@@ -17,7 +17,7 @@ class NgomemberdocController extends Controller
 {
     public function index(){
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){

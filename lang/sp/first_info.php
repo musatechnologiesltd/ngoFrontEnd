@@ -6,6 +6,7 @@ return [
     'other_info'=>'Other Document',
     'member_info'=>'Member Info',
     'fd_one'=>'FD-01',
+    'fd_eight'=>'FD -8 Form',
     'form_eight'=>'Form-08',
     'complete'=>'Complete',
     'incomplete'=>'Incomplete',

@@ -516,6 +516,43 @@
 
 </div>
  <!--end empty data -->
+
+
+                                                                          <!--new code for ngo-->
+                                                                          <div class="mb-3">
+                                                                            <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+                                                                                 <input type="text" data-parsley-required  name="chief_name" value="{{ $fdNineData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+                                                                            </div>
+
+                                                                            <div class="mb-3">
+                                                                                <label for="" class="form-label">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+                                                                                <input type="text" data-parsley-required  name="chief_desi" value="{{ $fdNineData->chief_desi }}"   class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+                                                                            </div>
+
+
+
+                                                                            <div class="mb-3">
+                                                                                <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                                                                             <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
+
+                                                                                <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+                                                                                <img src="{{asset('/')}}{{ $fdNineData->digital_signature }}" style="height:40px;"/>
+                                                                            </div>
+
+
+                                                                            <div class="mb-3">
+                                                                                <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                                                                             <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
+                                                                                <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+
+                                                                                <img src="{{asset('/')}}{{ $fdNineData->digital_seal }}" style="height:40px;"/>
+                                                                            </div>
+                                                                            <!-- end new code -->
+
+
+
  <div class="buttons d-flex justify-content-end mt-4">
 
     <button class="btn btn-danger me-2" name="submit_value" value="next_step_from_three" type="submit">তথ্য জমা দিন</button>

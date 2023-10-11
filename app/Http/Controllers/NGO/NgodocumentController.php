@@ -20,7 +20,7 @@ class NgodocumentController extends Controller
     public function index(){
 
 
-        CommonController::checkNgotype();
+        CommonController::checkNgotype(1);
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
@@ -53,7 +53,7 @@ class NgodocumentController extends Controller
             'committee_members_list'=>'nullable|file|mimes:pdf|max:500',
             'registration_renewal_fee'=>'nullable|file|mimes:pdf|max:500',
 
-'constitution_of_the_organization_has_changed'=>'required',
+'constitution_of_the_organization_has_changed'=>'nullable',
 'right_to_information_act' => 'nullable|file|mimes:pdf|max:500',
 'attested_copy_of_latest_registration_or_renewal_certificate' => 'nullable|file|mimes:pdf|max:500',
 

@@ -65,7 +65,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        {{ trans('fd_one_step_three.staff_one')}}
+                                        <b>{{ trans('fd_one_step_three.staff_one')}}</b>
                                     </h5>
                                 </div>
 
@@ -135,7 +135,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        {{ trans('fd_one_step_three.staff_two')}}
+                                      <b>  {{ trans('fd_one_step_three.staff_two')}} </b>
                                     </h5>
                                 </div>
 
@@ -206,7 +206,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        {{ trans('fd_one_step_three.staff_three')}}
+                                      <b>  {{ trans('fd_one_step_three.staff_three')}} </b>
                                     </h5>
                                 </div>
 
@@ -276,7 +276,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        {{ trans('fd_one_step_three.staff_four')}}
+                                      <b>  {{ trans('fd_one_step_three.staff_four')}} </b>
                                     </h5>
                                 </div>
 
@@ -346,7 +346,7 @@
 
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
-                                        {{ trans('fd_one_step_three.staff_five')}}
+                                     <b>   {{ trans('fd_one_step_three.staff_five')}} </b>
                                     </h5>
                                 </div>
 
@@ -420,15 +420,15 @@
 
                                     <h5 class="form_middle_text">
                                         @if(($key+1) == 1)
-                                        {{ trans('fd_one_step_three.staff_one')}}
+                                       <b> {{ trans('fd_one_step_three.staff_one')}}</b>
                                         @elseif(($key+1) == 2)
-                                        {{ trans('fd_one_step_three.staff_two')}}
+                                       <b> {{ trans('fd_one_step_three.staff_two')}}</b>
                                         @elseif(($key+1) == 3)
-                                        {{ trans('fd_one_step_three.staff_three')}}
+                                        <b> {{ trans('fd_one_step_three.staff_three')}} </b>
                                         @elseif(($key+1) == 4)
-                                        {{ trans('fd_one_step_three.staff_four')}}
+                                        <b> {{ trans('fd_one_step_three.staff_four')}} </b>
                                         @elseif(($key+1) == 5)
-                                        {{ trans('fd_one_step_three.staff_five')}}
+                                        <b>  {{ trans('fd_one_step_three.staff_five')}} </b>
                                         @endif
                                     </h5>
                                 </div>
@@ -531,15 +531,15 @@
 
                     <h5 class="form_middle_text">
                         @if(($countNew+$cityzenValue) == 1)
-                        {{ trans('fd_one_step_three.staff_one')}}
+                        <b> {{ trans('fd_one_step_three.staff_one')}} </b>
                         @elseif(($countNew+$cityzenValue) == 2)
-                        {{ trans('fd_one_step_three.staff_two')}}
+                        <b> {{ trans('fd_one_step_three.staff_two')}} </b>
                         @elseif(($countNew+$cityzenValue) == 3)
-                        {{ trans('fd_one_step_three.staff_three')}}
+                        <b>  {{ trans('fd_one_step_three.staff_three')}} </b>
                         @elseif(($countNew+$cityzenValue) == 4)
-                        {{ trans('fd_one_step_three.staff_four')}}
+                        <b> {{ trans('fd_one_step_three.staff_four')}} </b>
                         @elseif(($countNew+$cityzenValue) == 5)
-                        {{ trans('fd_one_step_three.staff_five')}}
+                        <b>  {{ trans('fd_one_step_three.staff_five')}} </b>
                         @endif
                     </h5>
                 </div>

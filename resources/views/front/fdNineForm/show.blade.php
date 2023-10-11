@@ -100,17 +100,20 @@ color:white !important;
                         <table class="table table-bordered">
                             <tr>
                                 <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                <td>PDF Upload (পিডিএফ আপলোড)</td>
+                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
                                 <td>Update Information (তথ্য সংশোধন করুন)</td>
                             </tr>
                             <tr>
                                 <td>
 
-
-
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                    <button class="btn btn-sm btn-success" id="downloadButton">
                                         {{ trans('form 8_bn.download_pdf')}}
                                     </button>
+                                    
+
+                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button> --}}
 
                                     <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -129,9 +132,7 @@ color:white !important;
                                                         <input type="hidden" data-parsley-required  name="id"  value="{{ $fdNineData->id }}" class="form-control" id="mainId">
                                                     </div>
 
-                                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                                        {{ trans('form 8_bn.download_pdf')}}
-                                                    </button>
+
 
                                             </div>
 
@@ -140,7 +141,7 @@ color:white !important;
                                       </div>
 
                                 </td>
-                                <td>
+                                {{-- <td>
 
                                     @if(empty($fdNineData->verified_fd_nine_form))
                                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -197,7 +198,7 @@ color:white !important;
                 </div>
               </div>
 
-                                </td>
+                                </td> --}}
                             <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdNineForm.edit',base64_encode($fdNineData->id)) }}';">
                                     আপডেট করুন

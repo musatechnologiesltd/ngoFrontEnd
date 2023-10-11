@@ -244,23 +244,23 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 <div class="mb-3 mt-2">
 <table class="table table-light" id="dynamicAddRemove">
 <tr>
-    <th>{{ trans('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </th>
-    <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} <span class="text-danger">*</span> </th>
-    <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}} <span class="text-danger">*</span> </th>
+    <th>{{ trans('fd_one_step_two.Name_of_donor_organization')}} </th>
+    <th>{{ trans('fd_one_step_two.Address_of_donor_organization')}} </th>
+    <th>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}}</th>
     <th></th>
 </tr>
 
 <tr>
     <td>
-        <input type="text" required  name="name[]" placeholder="দাতা সংস্থার নাম"
+        <input type="text"   name="name[]" placeholder="দাতা সংস্থার নাম"
                class="form-control"/>
     </td>
     <td>
-        <input type="text" required  name="address[]" placeholder="দাতা সংস্থার ঠিকানা"
+        <input type="text"   name="address[]" placeholder="দাতা সংস্থার ঠিকানা"
                class="form-control"/>
     </td>
     <td>
-        <input class="form-control" required accept=".pdf"  name="letter_file[]" type="file" id="">
+        <input class="form-control"  accept=".pdf"  name="letter_file[]" type="file" id="">
     </td>
     <td></td>
 </tr>

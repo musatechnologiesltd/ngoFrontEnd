@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\NGO\CommonController;
- CommonController::checkNgotype();
+ //CommonController::checkNgotype();
 
 $mainNgoType = CommonController::changeView();
 

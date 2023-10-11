@@ -419,9 +419,17 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 
 
+<table style=" margin-top: 15px;width:100%">
 
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $get_all_data_new->digital_signature}}"/></td>
+    </tr>
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $get_all_data_new->digital_seal}}"/></td>
+    </tr>
+</table>
 
-        <table style=" margin-top: 150px;width:100%">
+        <table style=" margin-top: 15px;width:100%">
             <tr>
                 <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
             </tr>
