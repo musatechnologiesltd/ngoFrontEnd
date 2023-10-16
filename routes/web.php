@@ -200,6 +200,23 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fd2Form',Fd2FormController::class);
     Route::resource('fd6Form',Fd6FormController::class);
 
+    Route::controller(Fd2FormController::class)->group(function () {
+
+        Route::post('fd2PdfUpdate', 'fd2PdfUpdate')->name('fd2PdfUpdate');
+        Route::get('fd2PdfDownload/{id}', 'fd2PdfDownload')->name('fd2PdfDownload');
+        Route::get('fd2PdfDestroy/{id}', 'fd2PdfDestroy')->name('fd2PdfDestroy');
+        Route::get('addFd2Detail/{id}', 'addFd2Detail')->name('addFd2Detail');
+
+    });
+
+    Route::controller(Fd6FormController::class)->group(function () {
+
+
+        Route::get('getDistrictList', 'getDistrictList')->name('getDistrictList');
+        Route::get('getCityCorporationList', 'getCityCorporationList')->name('getCityCorporationList');
+
+    });
+
     Route::resource('nVisa',NVisaController::class);
 
     Route::controller(NVisaController::class)->group(function () {

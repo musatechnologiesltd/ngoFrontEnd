@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
+            $table->string('fd_six_form_id')->nullable();
             $table->string('ngo_name')->nullable();
             $table->string('ngo_address')->nullable();
             $table->string('ngo_prokolpo_name')->nullable();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->string('proposed_rebate_amount_bangladeshi_taka')->nullable();
             $table->string('proposed_rebate_amount_in_foreign_currency')->nullable();
             $table->string('fd_2_form_pdf')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

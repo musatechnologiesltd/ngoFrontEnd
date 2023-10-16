@@ -9,7 +9,7 @@ class NgoStatus extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_statuses";
+    protected $table = "ngo_statuses";
 
     protected $fillable = [
         'email',

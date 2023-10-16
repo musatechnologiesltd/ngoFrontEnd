@@ -9,7 +9,7 @@ class Country extends Model
 {
     use HasFactory;
 
-    public $table = "countries";
+    protected $table = "countries";
 
     protected $fillable = [
         'country_iso_code',

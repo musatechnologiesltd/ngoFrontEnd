@@ -9,7 +9,7 @@ class NgoOtherDoc extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_other_docs";
+    protected $table = "ngo_other_docs";
 
     protected $fillable = [
         'pdf_file_list',

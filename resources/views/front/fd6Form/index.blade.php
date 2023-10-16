@@ -95,6 +95,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="others_inner_section">
                                         <h1>প্রকল্প প্রস্তাব ফরম </h1>
+                                        @include('flash_message')
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>
@@ -121,23 +122,39 @@
                                 <h5 class="pb-3">প্রকল্প প্রস্তাবের জন্য আবেদনপত্র</h5>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>SL. No.</th>
-                                        <th>Name of Organization</th>
-                                        <th>Project Name</th>
-                                        <th>Project Timeline</th>
-                                        <th>Project Timeline</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>ক্র : নং :</th>
+                                        <th>সংস্থার নাম</th>
+                                        <th>প্রকল্পের নাম</th>
+                                        <th>প্রকল্পের মেয়াদ</th>
+                                        <th>প্রকল্পের সময়রেখা</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>কর্ম পরিকল্পনা</th>
                                     </tr>
+                                    @foreach($fd6FormList as $key=>$fd6FormListAll)
                                     <tr>
-                                        <td>01</td>
-                                        <td>X</td>
-                                        <td>Y</td>
-                                        <td>2 Years</td>
-                                        <td>Amount of proposed exemption</td>
-                                        <td><span class="text-success">Ongoing</span></td>
-                                        <td><button class="btn btn-outline-success"> <i class="fa fa-eye"></i> </button></td>
+                                        <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</td>
+                                        <td>{{ $fd6FormListAll->ngo_name }}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_name}}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_duration}}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_start_date }} <b>-</b> {{ $fd6FormListAll->ngo_prokolpo_end_date }}</td>
+                                        <td><span class="text-success">{{ $fd6FormListAll->status }}</span></td>
+                                        <td>
+
+                                            <a  href="{{ route('fd6Form.edit',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
+                                            <a  href="{{ route('fd6Form.show',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <button type="button" onclick="deleteTag({{ $fd6FormListAll->id}})" class="btn btn-sm btn-outline-danger"><i
+                                                class="bi bi-trash"></i></button>
+
+                                                <form id="delete-form-{{ $fd6FormListAll->id }}" action="{{ route('fd6Form.destroy',$fd6FormListAll->id) }}" method="POST" style="display: none;">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                </form>
+
+                                        </td>
                                     </tr>
+                                    @endforeach
                                 </table>
                             </div>
                             @endif

@@ -9,7 +9,7 @@ class NgoMemberNidPhoto extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_member_nid_photos";
+    protected $table = "ngo_member_nid_photos";
 
     protected $fillable = [
         'member_name',

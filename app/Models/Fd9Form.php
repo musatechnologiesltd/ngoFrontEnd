@@ -9,7 +9,7 @@ class Fd9Form extends Model
 {
     use HasFactory;
 
-    public $table = "fd9_forms";
+    protected $table = "fd9_forms";
 
     protected $fillable = [
     'digital_signature',

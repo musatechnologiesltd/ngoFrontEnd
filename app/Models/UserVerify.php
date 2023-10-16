@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserVerify extends Model
 {
     use HasFactory;
-    public $table = "users_verify";
+    protected $table = "users_verify";
 
     protected $fillable = [
         'user_id',

@@ -9,7 +9,7 @@ class NVisaParticularOfSponsorOrEmployer extends Model
 {
     use HasFactory;
 
-    public $table = "n_visa_particular_of_sponsor_or_employers";
+    protected $table = "n_visa_particular_of_sponsor_or_employers";
 
     protected $fillable = [
         'n_visa_id',

@@ -9,7 +9,7 @@ class NgoDuration extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_durations";
+    protected $table = "ngo_durations";
 
     protected $fillable = [
         'fd_one_form_id',

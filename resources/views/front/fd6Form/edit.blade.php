@@ -118,104 +118,93 @@
                                         <h4>প্রকল্প প্রস্তাব ফরম</h4>
                                     </div>
 
-                                    <form action="{{ route('fd6Form.store') }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                                    <form action="{{ route('fd6Form.update',$fd6FormList->id) }}" method="post" enctype="multipart/form-data" id="form" data-parsley-validate="">
                                         @csrf
+                                        @method('PUT')
                                     <div class="row">
 
 
-    @csrf
+
                                         <div class="mb-3 col-lg-12">
                                             <label for="" class="form-label">এনজিও'র নাম</label>
 
 
-                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
-                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name_ban }}" class="form-control" id=""
-                                    placeholder="">
 
-                                    @else
-
-
-                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name }}" class="form-control" id=""
+                                    <input type="text" required name="ngo_name" value="{{ $fd6FormList->ngo_name }}" class="form-control" id=""
                                     placeholder="">
 
 
-                                    @endif
+
 
 
 
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ব্যুরোর নিবন্ধন তারিখ </label>
-                                            <input type="text" required name="ngo_registration_date" value="{{ date("d-m-Y", strtotime($ngoDurationReg)) }}" class="form-control datepicker" id=""
+                                            <input type="text" required name="ngo_registration_date" value="{{ $fd6FormList->ngo_registration_date }}" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">সর্বশেষ নবায়ন</label>
-                                            <input type="text" required name="ngo_last_renew_date" value="{{ date("d-m-Y", strtotime($ngoDurationLastEx->created_at)) }}" class="form-control datepicker" id=""
+                                            <input type="text" required name="ngo_last_renew_date" value="{{ $fd6FormList->ngo_last_renew_date }}" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">মেয়াদ উত্তীর্ণের তারিখ</label>
-                                            <input type="text" required name="ngo_expiration_date" value="{{ date("d-m-Y", strtotime($ngoDurationLastEx->ngo_duration_end_date)) }}" class="form-control datepicker" id=""
+                                            <input type="text" required name="ngo_expiration_date" value="{{ $fd6FormList->ngo_expiration_date }}" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ঠিকানা</label>
-                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $ngo_list_all->organization_address }}" id=""
+                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $fd6FormList->ngo_address }}"" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">টেলিফোন </label>
-                                            <input type="text" required name="ngo_telephone_number" value="{{ $ngo_list_all->tele_phone_number }}" class="form-control" id=""
+                                            <input type="text" required name="ngo_telephone_number" value="{{ $fd6FormList->ngo_telephone_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">মোবাইল নম্বর</label>
                                             <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                             type = "number" required
-                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngo_list_all->phone }}" class="form-control" id=""
+                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $fd6FormList->ngo_mobile_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ইমেইল ঠিকানা</label>
                                             <input type="text" required name="ngo_email_address" class="form-control" id=""
-                                                   placeholder="" value="{{ $ngo_list_all->email }}">
+                                                   placeholder="" value="{{ $fd6FormList->ngo_email_address }}">
                                         </div>
 
-                                        @if(empty($ngo_list_all->web_site_name))
+
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট</label>
-                                            <input type="text" required value="{{ $renewWebsiteName }}" name="ngo_website" class="form-control" id=""
-                                                   placeholder="">
-                                        </div>
-                                        @else
-                                        <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ওয়েবসাইট</label>
-                                            <input type="text" required value="{{ $ngo_list_all->web_site_name }}" name="ngo_website" class="form-control" id=""
+                                            <input type="text" required value="{{ $fd6FormList->ngo_website }}" name="ngo_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
 
-                                        @endif
+
                                         <div class="mb-3 col-lg-12">
                                             <label for="" class="form-label">প্রকল্প নাম</label>
-                                            <input name="ngo_prokolpo_name" type="text" class="form-control" id="ngo_prokolpo_name"
+                                            <input name="ngo_prokolpo_name" value="{{ $fd6FormList->ngo_prokolpo_name }}" type="text" class="form-control" id="ngo_prokolpo_name"
                                                    placeholder="" required>
                                         </div>
                                         <div class="mb-3 col-lg-12">
                                             <label for="" class="form-label">প্রকল্প মেয়াদ </label>
-                                            <input type="text" name="ngo_prokolpo_duration" class="form-control" id="ngo_prokolpo_duration"
+                                            <input type="text" name="ngo_prokolpo_duration" value="{{ $fd6FormList->ngo_prokolpo_duration }}" class="form-control" id="ngo_prokolpo_duration"
                                                    placeholder="" required>
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">আরম্ভের তারিখ </label>
-                                            <input type="text" name="ngo_prokolpo_start_date" class="form-control datepicker" id="ngo_prokolpo_start_date"
+                                            <input type="text" name="ngo_prokolpo_start_date" value="{{ $fd6FormList->ngo_prokolpo_start_date }}" class="form-control datepicker" id="ngo_prokolpo_start_date"
                                                    placeholder="" required>
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">সমাপ্তির তারিখ </label>
-                                            <input type="text" name="ngo_prokolpo_end_date" class="form-control datepicker" id="ngo_prokolpo_end_date"
+                                            <input type="text" name="ngo_prokolpo_end_date" value="{{ $fd6FormList->ngo_prokolpo_end_date }}" class="form-control datepicker" id="ngo_prokolpo_end_date"
                                                    placeholder="" required>
                                         </div>
                                     </div>
@@ -231,6 +220,7 @@
                                                     <th>উপজেলা/থানা/পৌরসভা/ওয়ার্ড</th>
                                                     <th></th>
                                                 </tr>
+                                                @foreach($prokolpoAreaList as $key=>$prokolpoAreaListAll)
                                                 <tr>
                                                     <td style="width: 20%">
                                                         <label for="" class="form-label">বিভাগ</label>
@@ -239,11 +229,11 @@
 
 
 
-                                                        <select required name="division_name[]" class="form-control division_name" id="division_name0">
+                                                        <select required name="division_name[]" class="form-control division_name" id="division_name{{ $key+60000 }}">
                                                             <option value="">--- অনুগ্রহ করে নির্বাচন করুন ---</option>
                                                             @foreach($divisionList as $districtListAll)
 
-                                                            <option value="{{ $districtListAll->division_bn }}">{{ $districtListAll->division_bn }}</option>
+                                                            <option value="{{ $districtListAll->division_bn }}" {{ $districtListAll->division_bn == $prokolpoAreaListAll->division_name ? 'selected':'' }}>{{ $districtListAll->division_bn }}</option>
                                                             @endforeach
 
                                                         </select>
@@ -255,10 +245,12 @@
                                                                 {{-- <input type="text" required name="district_name[]" class="form-control" id=""
                                                                 placeholder=""> --}}
 
-                                                                <select required name="district_name[]" class="form-control district_name" id="district_name0">
+                                                                <select required name="district_name[]" class="form-control district_name" id="district_name{{ $key+60000 }}">
                                                                     <option value="">--- অনুগ্রহ করে নির্বাচন করুন ---</option>
 
-
+                                                                    @foreach($districtList as $districtListAll)
+                                                                    <option value="{{ $districtListAll->district_bn }}" {{ $districtListAll->district_bn == $prokolpoAreaListAll->district_name ? 'selected':'' }}>{{ $districtListAll->district_bn }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-lg-6 mb-3">
@@ -269,7 +261,9 @@
 
                                                                 <select required name="city_corparation_name[]" class="form-control city_corparation_name" id="city_corparation_name0">
                                                                     <option value="অনুগ্রহ করে নির্বাচন করুন">--- অনুগ্রহ করে নির্বাচন করুন ---</option>
-
+                                                                    @foreach($cityCorporationList as $districtListAll)
+                                                                    <option value="{{ $districtListAll->city_orporation }}" {{ $districtListAll->city_orporation == $prokolpoAreaListAll->city_corparation_name ? 'selected':'' }}>{{ $districtListAll->city_orporation }}</option>
+                                                                    @endforeach
 
                                                                 </select>
                                                             </div>
@@ -279,30 +273,36 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 mb-3">
                                                                 <label for="" class="form-label">উপজেলা</label>
-                                                                <input type="text" name="upozila_name[]" class="form-control" id=""
+                                                                <input type="text" value="{{ $prokolpoAreaListAll->upozila_name }}" name="upozila_name[]" class="form-control" id=""
                                                                 placeholder="">
                                                             </div>
                                                             <div class="col-lg-6 mb-3">
                                                                 <label for="" class="form-label">থানা</label>
-                                                                <input type="text" name="thana_name[]" class="form-control" id=""
+                                                                <input type="text" value="{{ $prokolpoAreaListAll->thana_name }}" name="thana_name[]" class="form-control" id=""
                                                                 placeholder="" required>
                                                             </div>
                                                             <div class="col-lg-6 mb-3">
                                                                 <label for="" class="form-label">পৌরসভা</label>
-                                                                <input type="text" name="municipality_name[]" class="form-control" id=""
+                                                                <input type="text" value="{{ $prokolpoAreaListAll->municipality_name }}" name="municipality_name[]" class="form-control" id=""
                                                                 placeholder="">
                                                             </div>
                                                             <div class="col-lg-6 mb-3">
                                                                 <label for="" class="form-label">ওয়ার্ড</label>
-                                                                <input type="text" name="ward_name[]" class="form-control" id=""
+                                                                <input type="text" value="{{ $prokolpoAreaListAll->ward_name }}" name="ward_name[]" class="form-control" id=""
                                                                 placeholder="">
                                                             </div>
                                                         </div>
                                                     </td>
+                                                    @if($key == 0)
                                                     <td>
                                                         <a class="btn btn-primary btn-sm" id="dynamic-ar"><i class="fa fa-plus"></i></a>
                                                     </td>
+                                                    @else
+
+<td><button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-earmark-x-fill"></i></button></td>
+                                                    @endif
                                                 </tr>
+                                                @endforeach
                                             </table>
                                         </div>
                                     </div>
@@ -329,97 +329,97 @@
                                                 </tr>
                                                 <tr>
                                                     <td>১.বিদেশ থেকে প্রাপ্ত অনুদান (বাংলাদেশি তাকে পরিবর্তিত)</td>
-                                                    <td><input type="text" name="grants_received_from_abroad_first_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_first_year }}" name="grants_received_from_abroad_first_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_second_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_second_year }}" name="grants_received_from_abroad_second_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_third_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_third_year }}" name="grants_received_from_abroad_third_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_fourth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_fourth_year }}" name="grants_received_from_abroad_fourth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_fifth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_fifth_year }}" name="grants_received_from_abroad_fifth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_total" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_total }}" name="grants_received_from_abroad_total" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="grants_received_from_abroad_comment" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->grants_received_from_abroad_comment }}" name="grants_received_from_abroad_comment" class="form-control" id=""
                                                                placeholder=""></td>
                                                 </tr>
                                                 <tr>
                                                     <td>২.দেশে অবস্থানরত বিদেশি দাতার প্রদত্ত অনুদান </td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_first_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_first_year }}" name="donations_made_by_foreign_donors_first_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_second_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_second_year }}" name="donations_made_by_foreign_donors_second_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_third_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_third_year }}" name="donations_made_by_foreign_donors_third_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_fourth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_fourth_year }}" name="donations_made_by_foreign_donors_fourth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_fifth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_fifth_year }}" name="donations_made_by_foreign_donors_fifth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_total" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_total }}" name="donations_made_by_foreign_donors_total" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="donations_made_by_foreign_donors_comment" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->donations_made_by_foreign_donors_comment }}" name="donations_made_by_foreign_donors_comment" class="form-control" id=""
                                                                placeholder=""></td>
                                                 </tr>
                                                 <tr>
                                                     <td>৩.স্থানীয় অনুদান  (উৎসের বিস্তারিত বিবরণ ও প্রমাণকসহ)</td>
-                                                    <td><input type="text" name="local_grants_first_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_first_year }}" name="local_grants_first_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="local_grants_second_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_second_year }}" name="local_grants_second_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="local_grants_third_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_third_year }}" name="local_grants_third_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="local_grants_fourth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_fourth_year }}" name="local_grants_fourth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="local_grants_fifth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_fifth_year }}" name="local_grants_fifth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="local_grants_donors_total" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->local_grants_donors_total }}" name="local_grants_donors_total" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text"  name="local_grants_donors_comment" class="form-control" id=""
+                                                    <td><input type="text"  value="{{ $fd6FormList->local_grants_donors_comment }}"  name="local_grants_donors_comment" class="form-control" id=""
                                                                placeholder=""></td>
                                                 </tr>
                                                 <tr>
                                                     <td>মোট </td>
-                                                    <td><input type="text" name="total_first_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_first_year }}" name="total_first_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="total_second_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_second_year }}" name="total_second_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="total_third_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_third_year }}" name="total_third_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="total_fourth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_fourth_year }}" name="total_fourth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text"  name="total_fifth_year" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_fifth_year }}"  name="total_fifth_year" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="total_donors_total" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_donors_total }}" name="total_donors_total" class="form-control" id=""
                                                                placeholder=""></td>
-                                                    <td><input type="text" name="total_donors_comment" class="form-control" id=""
+                                                    <td><input type="text" value="{{ $fd6FormList->total_donors_comment }}" name="total_donors_comment" class="form-control" id=""
                                                                placeholder=""></td>
                                                 </tr>
                                             </table>
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">দাতা সংস্থার নাম</label>
-                                            <input type="text" required name="donor_organization_name" class="form-control" id="donor_organization_name"
+                                            <input type="text" required value="{{ $fd6FormList->donor_organization_name }}" name="donor_organization_name" class="form-control" id="donor_organization_name"
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">দাতা সংস্থার ঠিকানা </label>
-                                            <input type="text" required name="donor_organization_address" class="form-control" id=""
+                                            <input type="text" required value="{{ $fd6FormList->donor_organization_address }}" name="donor_organization_address" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ফোন/মোবাইল/ইমেইল নম্বর  </label>
-                                            <input type="text" required name="donor_organization_phone_mobile_email" class="form-control" id=""
+                                            <input type="text" required value="{{ $fd6FormList->donor_organization_phone_mobile_email }}" name="donor_organization_phone_mobile_email" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট  </label>
-                                            <input type="text" required name="donor_organization_website" class="form-control" id=""
+                                            <input type="text" required value="{{ $fd6FormList->donor_organization_website }}" name="donor_organization_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-12">
                                             <label for="" class="form-label"> মানিলন্ডারিং এবং সন্ত্রাসে অর্থায়ন প্রতিরোধের নিমিত্ত</label>
-                                            <input type="text" required name="money_laundering_and_terrorist_financing" class="form-control" id=""
+                                            <input type="text" required  value="{{ $fd6FormList->money_laundering_and_terrorist_financing }}" name="money_laundering_and_terrorist_financing" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                     </div>
@@ -437,33 +437,33 @@
                                                 <tr>
                                                     <td>প্রকল্প ব্যয়</td>
                                                     <td>
-                                                        <input type="text" required name="project_cost" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->project_cost }}" name="project_cost" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                     <td>
-                                                        <input type="text" required name="project_cost_ratio" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->project_cost_ratio }}" name="project_cost_ratio" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>প্রশাসনিক ব্যয়</td>
                                                     <td>
-                                                        <input type="text" required name="administrative_cost" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->administrative_cost }}" name="administrative_cost" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                     <td>
-                                                        <input type="text" required name="administrative_ratio" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->administrative_ratio }}" name="administrative_ratio" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>মোট</td>
                                                     <td>
-                                                        <input type="text" required name="project_and_administrative_cost" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->project_and_administrative_cost }}" name="project_and_administrative_cost" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                     <td>
-                                                        <input type="text" required name="project_and_administrative_cost_ratio" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->project_and_administrative_cost_ratio }}" name="project_and_administrative_cost_ratio" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                 </tr>
@@ -477,49 +477,49 @@
                                                 <tr>
                                                     <td>প্রকল্পের নাম  </td>
                                                     <td>
-                                                        <input type="text" required  name="project_name" class="form-control" id="project_name"
+                                                        <input type="text" required value="{{ $fd6FormList->project_name }}"  name="project_name" class="form-control" id="project_name"
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>প্রকল্পের মেয়াদকাল </td>
                                                     <td>
-                                                        <input type="text" required name="duration_of_project" class="form-control" id="duration_of_project"
+                                                        <input type="text" required value="{{ $fd6FormList->duration_of_project }}" name="duration_of_project" class="form-control" id="duration_of_project"
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>প্রকল্পের মোট বরাদ্দ </td>
                                                     <td>
-                                                        <input type="text" required name="total_allocation_of_project" class="form-control" id="total_allocation_of_project"
+                                                        <input type="text" required value="{{ $fd6FormList->total_allocation_of_project }}" name="total_allocation_of_project" class="form-control" id="total_allocation_of_project"
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>প্রকল্প এলাকায় মোট বরাদ্দ </td>
                                                     <td>
-                                                        <input type="text" required name="total_allocation_in_project_area"  class="form-control" id="total_allocation_in_project_area"
+                                                        <input type="text" required value="{{ $fd6FormList->total_allocation_in_project_area }}" name="total_allocation_in_project_area"  class="form-control" id="total_allocation_in_project_area"
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td> মোট উপকারভোগীর সংখ্যা </td>
                                                     <td>
-                                                        <input type="text" required name="total_beneficiaries" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->total_beneficiaries }}" name="total_beneficiaries" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>প্রকল্প এলাকায় মোট জনসংখ্যা </td>
                                                     <td>
-                                                        <input type="text" required name="total_population_in_project_area" class="form-control" id=""
+                                                        <input type="text" required value="{{ $fd6FormList->total_population_in_project_area }}" name="total_population_in_project_area" class="form-control" id=""
                                                                placeholder="">
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>দাতা সংস্থার নাম</td>
                                                     <td>
-                                                        <input type="text" required name="donor_organization_name_two" class="form-control" id="donor_organization_name_two"
+                                                        <input type="text" required value="{{ $fd6FormList->donor_organization_name_two }}" name="donor_organization_name_two" class="form-control" id="donor_organization_name_two"
                                                                placeholder="">
                                                     </td>
                                                 </tr>
@@ -530,12 +530,25 @@
                                         <div class="card-header">
                                             প্রকল্প প্রস্তাব ফরম পিডিফ
                                         </div>
+
+                                        <?php
+
+                                        $file_path = url($fd6FormList->project_proposal_form);
+                                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                                        ?>
                                         <div class="card-body">
                                             <div class="mb-3 col-lg-12">
                                                 <label for="" class="form-label">প্রকল্প প্রস্তাব ফরম পিডিফ আপলোড করুন</label>
-                                                <input type="file" accept=".pdf" required name="project_proposal_form" class="form-control" id=""
+                                                <input type="file" accept=".pdf"  name="project_proposal_form" class="form-control" id=""
                                                        placeholder="">
                                             </div>
+                                            <b>{{ $filename.'.'.$extension }}</b>
                                         </div>
                                     </div>
                                     <div class="d-grid d-md-flex justify-content-md-end">

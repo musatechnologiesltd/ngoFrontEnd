@@ -9,7 +9,7 @@ class FdOneAdviserList extends Model
 {
     use HasFactory;
 
-    public $table = "fd_one_adviser_lists";
+    protected $table = "fd_one_adviser_lists";
 
     protected $fillable = [
         'fd_one_form_id',

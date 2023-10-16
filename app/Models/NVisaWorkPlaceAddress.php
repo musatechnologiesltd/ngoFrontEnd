@@ -9,7 +9,7 @@ class NVisaWorkPlaceAddress extends Model
 {
     use HasFactory;
 
-    public $table = "n_visa_work_place_addresses";
+    protected $table = "n_visa_work_place_addresses";
 
     protected $fillable = [
         'n_visa_id',

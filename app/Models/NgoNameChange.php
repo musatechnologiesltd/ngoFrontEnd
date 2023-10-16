@@ -9,7 +9,7 @@ class NgoNameChange extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_name_changes";
+    protected $table = "ngo_name_changes";
 
     protected $fillable = [
         'fd_one_form_id',

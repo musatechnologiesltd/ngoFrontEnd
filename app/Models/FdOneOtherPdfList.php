@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FdOneOtherPdfList extends Model
 {
     use HasFactory;
-    public $table = "fd_one_other_pdf_lists";
+    protected $table = "fd_one_other_pdf_lists";
 
 
 
