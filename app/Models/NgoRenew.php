@@ -15,6 +15,7 @@ class NgoRenew extends Model
 
         'fd_one_form_id',
         'status',
+        'comment',
         'time_for_api',
 
     ];

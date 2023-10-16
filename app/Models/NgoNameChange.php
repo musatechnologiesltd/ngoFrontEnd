@@ -18,6 +18,7 @@ class NgoNameChange extends Model
         'present_name_eng',
         'present_name_ban',
         'status',
+        'comment',
         'time_for_api',
 
     ];

@@ -56,6 +56,7 @@ return new class extends Migration
             $table->string('digital_signature')->nullable();
             $table->string('digital_seal')->nullable();
             $table->string('status',11)->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }
