@@ -88,6 +88,7 @@ return new class extends Migration
             $table->string('donor_organization_name_two')->nullable();
             $table->string('project_proposal_form')->nullable();
             $table->string('status')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }

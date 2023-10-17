@@ -80,6 +80,7 @@ class Fd6Form extends Model
         'project_proposal_form',
 
         'status',
+        'comment',
 
 
 ];
