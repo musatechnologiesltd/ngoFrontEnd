@@ -8,6 +8,7 @@ use App\Models\Fd6Form;
 use App\Models\Fd6FormProkolpoArea;
 use App\Models\NVisa;
 use App\Models\Fd2Form;
+use App\Models\Fd2FormOtherInfo;
 use App\Models\NgoStatus;
 use App\Models\Country;
 use App\Models\Fd9Form;
@@ -506,6 +507,8 @@ class Fd6FormController extends Controller
         $fd2FormList = Fd2Form::where('fd_one_form_id',$ngo_list_all->id)
         ->where('fd_six_form_id',$id)->latest()->first();
 
+        $fd2OtherInfo = Fd2FormOtherInfo::where('fd2_form_id',$fd2FormList->id)->latest()->get();
+
         $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
                                ->orderBy('id','desc')->first();
 
@@ -528,7 +531,10 @@ class Fd6FormController extends Controller
             ->where('id',$fd6Id)->latest()->first();
 
             $prokolpoAreaList = Fd6FormProkolpoArea::where('fd6_form_id',$fd6Id)->latest()->get();
-        return view('front.fd6Form.view',compact('fd2FormList','cityCorporationList','districtList','prokolpoAreaList','fd6FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
+
+
+
+        return view('front.fd6Form.view',compact('fd2OtherInfo','fd2FormList','cityCorporationList','districtList','prokolpoAreaList','fd6FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
 
     }
 
@@ -540,5 +546,27 @@ class Fd6FormController extends Controller
             $admins->delete();
         }
         return back()->with('error','Deleted successfully!');
+    }
+
+
+    public function ProjectProposalFormPdfDownload($id){
+
+        $get_file_data = Fd6Form::where('id',$id)->value('project_proposal_form');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
     }
 }

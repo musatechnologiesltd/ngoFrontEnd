@@ -129,6 +129,28 @@ class Fd2FormController extends Controller
     }
 
 
+    public function fd2MainPdfDownload($id){
+        $get_file_data = Fd2Form::where('id',$id)->value('fd_2_form_pdf');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+
+    }
+
+
 
     public function create(){
 

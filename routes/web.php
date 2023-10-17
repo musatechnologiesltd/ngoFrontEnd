@@ -203,13 +203,21 @@ Route::group(['middleware' => ['auth']], function() {
     Route::controller(Fd2FormController::class)->group(function () {
 
         Route::post('fd2PdfUpdate', 'fd2PdfUpdate')->name('fd2PdfUpdate');
+
+        Route::get('fd2MainPdfDownload/{id}', 'fd2MainPdfDownload')->name('fd2MainPdfDownload');
+
         Route::get('fd2PdfDownload/{id}', 'fd2PdfDownload')->name('fd2PdfDownload');
+
+
         Route::get('fd2PdfDestroy/{id}', 'fd2PdfDestroy')->name('fd2PdfDestroy');
         Route::get('addFd2Detail/{id}', 'addFd2Detail')->name('addFd2Detail');
 
     });
 
     Route::controller(Fd6FormController::class)->group(function () {
+
+
+        Route::get('ProjectProposalFormPdfDownload/{id}', 'ProjectProposalFormPdfDownload')->name('ProjectProposalFormPdfDownload');
 
 
         Route::get('getDistrictList', 'getDistrictList')->name('getDistrictList');
