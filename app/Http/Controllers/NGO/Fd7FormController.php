@@ -33,7 +33,7 @@ class Fd7FormController extends Controller
 {
     public function index(){
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $fd6FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
 
 
@@ -44,7 +44,7 @@ class Fd7FormController extends Controller
         $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
                                ->orderBy('id','desc')->first();
 
-        return view('front.fd7Form.index',compact('ngoDurationLastEx','ngoDurationReg','ngo_list_all','fd6FormList'));
+        return view('front.fd7Form.index',compact('ngoDurationLastEx','ngoDurationReg','ngo_list_all','fd7FormList'));
     }
 
 
@@ -74,6 +74,8 @@ class Fd7FormController extends Controller
 
     public function store(Request $request){
 
+        //dd($request->all());
+
 
         $request->validate([
 
@@ -95,7 +97,6 @@ class Fd7FormController extends Controller
             'total_prokolpo_cost' => 'required|string',
             'date_of_bureau_approval' => 'required|string',
             'percentage_of_the_original_project' => 'required|string',
-            'money_laundering_and_terrorist_financing' => 'required|string',
             'adverse_impact_on_the_ongoing_project' => 'required|string',
             'ngo_prokolpo_start_date' => 'required|string',
             'ngo_prokolpo_end_date' => 'required|string',
@@ -104,6 +105,9 @@ class Fd7FormController extends Controller
             'relief_assistance_project_proposal_pdf' => 'required|file',
 
         ]);
+
+
+       // dd(12);
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd7FormInfo = new Fd7Form();
@@ -134,7 +138,7 @@ class Fd7FormController extends Controller
         $fd7FormInfo->status ='Ongoing';
 
         $filePath="FdSevenForm";
-        
+
         if ($request->hasfile('bureau_approval_pdf')) {
 
             $file = $request->file('bureau_approval_pdf');

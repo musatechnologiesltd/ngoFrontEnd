@@ -11,7 +11,12 @@
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Nationality:<span
                         class="text-danger">*</span></label>
-                        <select class="js-example-basic-single form-control" data-parsley-required name="nationality"
+
+                        <input type="text" class="form-control" id=""
+                        placeholder="Nationality" name="nationality" required>
+
+
+                        {{-- <select class="js-example-basic-single form-control" data-parsley-required name="nationality"
                        >
 <option value="">--Please Select--</option>
                         @foreach($getCityzenshipData as $allGetCityzenshipData)
@@ -22,7 +27,7 @@
                     @endif
                     @endforeach
 
-                </select>
+                </select> --}}
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Passport Number:<span
@@ -50,7 +55,7 @@
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Country: <span class="text-danger">*</span></label>
-            <select name="home_country" class="js-example-basic-single form-control custom-form-control" data-parsley-required  >
+            {{-- <select name="home_country" class="js-example-basic-single form-control custom-form-control" data-parsley-required  >
                 <option value="">--Please Select One--</option>
                 @foreach($countryList as $allCountryList)
                 @if(session()->get('locale') == 'en')
@@ -59,7 +64,10 @@
                 <option value="{{ $allCountryList->country_name_english }}">{{ $allCountryList->country_name_english }}</option>
                 @endif
 @endforeach
-            </select>
+            </select> --}}
+
+            <input type="text" class="form-control" id=""
+                        placeholder="Country" name="home_country" required>
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">House/Plot/Holding Number: <span class="text-danger">*</span></label>

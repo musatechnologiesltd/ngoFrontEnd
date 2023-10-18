@@ -115,7 +115,7 @@
                                 </div>
                             </div>
 
-                            @if(count($fd6FormList) == 0)
+                            @if(count($fd7FormList) == 0)
                             <div class="no_name_change">
                                 <div class="d-flex justify-content-center pt-5">
                                     <img src="{{ asset('/') }}public/front/assets/img/icon/no-results%20(1).png" alt="" width="120" height="120">
@@ -132,7 +132,7 @@
                                         <th>ক্র : নং :</th>
                                         <th>সংস্থার নাম</th>
                                         <th>প্রকল্পের নাম</th>
-                                        <th>প্রকল্পের মেয়াদ</th>
+
                                         <th>প্রকল্পের সময়রেখা</th>
                                         <th>স্ট্যাটাস</th>
                                         <th>কর্ম পরিকল্পনা</th>
@@ -142,7 +142,7 @@
                                         <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</td>
                                         <td>{{ $fd6FormListAll->ngo_name }}</td>
                                         <td>{{ $fd6FormListAll->ngo_prokolpo_name}}</td>
-                                        <td>{{ $fd6FormListAll->ngo_prokolpo_duration}}</td>
+                                     
                                         <td>{{ $fd6FormListAll->ngo_prokolpo_start_date }} <b>-</b> {{ $fd6FormListAll->ngo_prokolpo_end_date }}</td>
                                         <td><span class="text-success">{{ $fd6FormListAll->status }}</span></td>
                                         <td>

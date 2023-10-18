@@ -11,6 +11,9 @@ use App\Models\NgoStatus;
 use App\Models\Country;
 use App\Models\Fd9Form;
 use App\Models\Fd6Form;
+use App\Models\Fd7Form;
+use App\Models\Fd2FormForFd7Form;
+use App\Models\Fd2Fd7OtherInfo;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
 use Illuminate\Support\Facades\Crypt;
 use DB;
@@ -68,7 +71,7 @@ class Fd2FormController extends Controller
        ->where('id',$fd7Id)->latest()->first();
 
 
-        return view('front.fd2Form.addFd2DetailForFd7',compact('fd6Id','ngo_list_all','divisionList','fd7FormList'));
+        return view('front.fd2Form.addFd2DetailForFd7',compact('fd7Id','ngo_list_all','divisionList','fd7FormList'));
 
 
     }
@@ -179,7 +182,87 @@ class Fd2FormController extends Controller
 
 
     public function storeFd2DetailForFd7(Request $request){
-        
+
+
+        $request->validate([
+            'ngo_name' => 'required|string',
+            'ngo_address' => 'required|string',
+            'ngo_prokolpo_name' => 'required|string',
+            'ngo_prokolpo_duration' => 'required|string',
+            'ngo_prokolpo_start_date' => 'required|string',
+            'ngo_prokolpo_end_date' => 'required|string',
+            'proposed_rebate_amount_bangladeshi_taka' => 'required|string',
+            'proposed_rebate_amount_in_foreign_currency' => 'required|string',
+            'fd_2_form_pdf' => 'required|file',
+
+        ]);
+
+
+
+
+        $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $fd2FormInfo = new Fd2FormForFd7Form();
+        $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
+        $fd2FormInfo->fd7_form_id =base64_decode($request->fd7_form_id);
+        $fd2FormInfo->ngo_name =$request->ngo_name;
+        $fd2FormInfo->status ='Ongoing';
+        $fd2FormInfo->ngo_address =$request->ngo_address;
+        $fd2FormInfo->ngo_prokolpo_name =$request->ngo_prokolpo_name;
+        $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
+        $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
+        $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
+
+        $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
+        $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
+
+        if ($request->hasfile('fd_2_form_pdf')) {
+            $filePath="FdTwoForm";
+            $file = $request->file('fd_2_form_pdf');
+
+            $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+
+          $fd2FormInfo->save();
+
+          $input = $request->all();
+
+
+
+
+          $fd2FormInfoId = $fd2FormInfo->id;
+
+          if (array_key_exists("file", $input)){
+            $fileData = $input['file'];
+            foreach($fileData as $key=>$fileData){
+
+
+                $form= new Fd2Fd7OtherInfo();
+                if(empty($input['file_name'][$key])){
+
+
+                }else{
+
+                    $form->file_name=$input['file_name'][$key];
+                }
+                $file=$input['file'][$key];
+               $filePath="Fd2FormOtherInfo";
+               $form->file =CommonController::pdfUpload($request,$file,$filePath);
+               $form->fd2_form_for_fd7_form_id  = $fd2FormInfoId;
+                $form->save();
+
+
+            }
+
+
+
+          }
+
+          return redirect()->route('fd7Form.index')->with('success','Added Successfuly');
+
+
+
     }
 
 
@@ -236,7 +319,7 @@ class Fd2FormController extends Controller
 
           if (array_key_exists("file", $input)){
             $fileData = $input['file'];
-            foreach($fileData as $fileData){
+            foreach($fileData as $key=>$fileData){
 
 
                 $form= new Fd2FormOtherInfo();
