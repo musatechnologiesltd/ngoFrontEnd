@@ -17,6 +17,7 @@ use App\Http\Controllers\NGO\Fd9Controller;
 use App\Http\Controllers\NGO\Fd9OneController;
 use App\Http\Controllers\NGO\Fd2FormController;
 use App\Http\Controllers\NGO\Fd6FormController;
+use App\Http\Controllers\NGO\Fd7FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -200,7 +201,27 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fd2Form',Fd2FormController::class);
     Route::resource('fd6Form',Fd6FormController::class);
 
+    Route::resource('fd7Form',Fd7FormController::class);
+
+    Route::controller(Fd7FormController::class)->group(function () {
+
+
+        Route::get('reliefAssistanceProjectProposalPdf/{id}', 'reliefAssistanceProjectProposalPdf')->name('reliefAssistanceProjectProposalPdf');
+
+
+
+
+    });
+
+
+
     Route::controller(Fd2FormController::class)->group(function () {
+
+
+        Route::get('addFd2DetailForFd7/{id}', 'addFd2DetailForFd7')->name('addFd2DetailForFd7');
+        Route::get('editFd2DetailForFd7/{id}', 'editFd2DetailForFd7')->name('editFd2DetailForFd7');
+        Route::put('updateFd2DetailForFd7/{id}', 'updateFd2DetailForFd7')->name('updateFd2DetailForFd7');
+        Route::post('storeFd2DetailForFd7', 'storeFd2DetailForFd7')->name('storeFd2DetailForFd7');
 
         Route::post('fd2PdfUpdate', 'fd2PdfUpdate')->name('fd2PdfUpdate');
 

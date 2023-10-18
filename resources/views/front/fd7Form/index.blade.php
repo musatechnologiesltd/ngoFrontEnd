@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-{{ trans('fd9.nvisa')}} | {{ trans('header.ngo_ab')}}
+{{ trans('fd9.fd7')}} | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -9,7 +9,6 @@
 @endsection
 
 @section('body')
-
 <section>
 
     <div class="container">
@@ -92,67 +91,68 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-9 col-md-6 col-sm-12">
+
                 <div class="card">
                     <div class="card-body">
                         <div class="name_change_box">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="others_inner_section">
-                                        <h1>বিদেশী বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবকের ওয়ার্ক পারমিটের (পারমিট) জন্য আবেদনপত্র</h1>
+                                        <h1>দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম
+                                        </h1>
+                                        @include('flash_message')
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="d-grid d-md-flex justify-content-end">
                                         <button type="button" class="btn btn-registration"
-                                                onclick="location.href = '{{ route('fdNineOneForm.create') }}';">নতুন অ্যাপ্লিকেশন যোগ করুন
+                                                onclick="location.href = '{{ route('fd7Form.create') }}';">নতুন ফরম যোগ করুন
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            @if(count($fd9OneList) == 0)
+
+                            @if(count($fd6FormList) == 0)
                             <div class="no_name_change">
                                 <div class="d-flex justify-content-center pt-5">
-                                    <img src="{{ asset('/') }}public/noresult.png" alt="" width="120" height="120">
+                                    <img src="{{ asset('/') }}public/front/assets/img/icon/no-results%20(1).png" alt="" width="120" height="120">
                                 </div>
                                 <div class="text-center">
-                                    <h5>কোনো ওয়ার্ক পারমিটের  তালিকা নেই</h5>
+                                    <h5>কোন আবেদন ফর্ম তালিকা নেই</h5>
                                 </div>
                             </div>
                             @else
                             <div class="no_name_change pt-4">
-                                <h5 class="pb-3"> ওয়ার্ক পারমিটের  তালিকা</h5>
+                                <h5 class="pb-3">প্রকল্প প্রস্তাবের জন্য আবেদনপত্র</h5>
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>SL. No.</th>
-                                        <th>Date</th>
-                                        <th>Name</th>
-                                        <th>Project</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
+                                        <th>ক্র : নং :</th>
+                                        <th>সংস্থার নাম</th>
+                                        <th>প্রকল্পের নাম</th>
+                                        <th>প্রকল্পের মেয়াদ</th>
+                                        <th>প্রকল্পের সময়রেখা</th>
+                                        <th>স্ট্যাটাস</th>
+                                        <th>কর্ম পরিকল্পনা</th>
                                     </tr>
-                                    @foreach($fd9OneList as $key=>$allFd9OneList)
+                                    @foreach($fd7FormList as $key=>$fd6FormListAll)
                                     <tr>
-                                        <td>{{ $key+1 }}</td>
-                                        <td>{{App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($allFd9OneList->application_date))) }}</td>
-                                        <td>{{ $allFd9OneList->sarok_number }}</td>
-                                        <td>{{ $allFd9OneList->prokolpo_name }}</td>
-                                        <td>
-                                           @if(empty($allFd9OneList->status))
-                                            <span class="text-success">Ongoing</span>
-@else
-<span class="text-success">Accepted</span>
-@endif
-                                        </td>
+                                        <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</td>
+                                        <td>{{ $fd6FormListAll->ngo_name }}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_name}}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_duration}}</td>
+                                        <td>{{ $fd6FormListAll->ngo_prokolpo_start_date }} <b>-</b> {{ $fd6FormListAll->ngo_prokolpo_end_date }}</td>
+                                        <td><span class="text-success">{{ $fd6FormListAll->status }}</span></td>
                                         <td>
 
-                                            <a  href="{{ route('fdNineOneForm.edit',$allFd9OneList->id) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
-                                            <a  href="{{ route('fdNineOneForm.show',base64_encode($allFd9OneList->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
-                                            <button type="button" onclick="deleteTag({{ $allFd9OneList->id}})" class="btn btn-sm btn-outline-danger"><i
+                                            <a  href="{{ route('fd6Form.edit',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
+                                            <a  href="{{ route('fd6Form.show',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <button type="button" onclick="deleteTag({{ $fd6FormListAll->id}})" class="btn btn-sm btn-outline-danger"><i
                                                 class="bi bi-trash"></i></button>
 
-                                                <form id="delete-form-{{ $allFd9OneList->id }}" action="{{ route('fdNineOneForm.destroy',$allFd9OneList->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $fd6FormListAll->id }}" action="{{ route('fd6Form.destroy',$fd6FormListAll->id) }}" method="POST" style="display: none;">
 
                                                     @csrf
                                                     @method('DELETE')
@@ -168,8 +168,13 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
+
 </section>
+
+
 @endsection

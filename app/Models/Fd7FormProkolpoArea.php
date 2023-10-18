@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fd6FormProkolpoArea extends Model
+class Fd7FormProkolpoArea extends Model
 {
     use HasFactory;
 
-    protected $table = "fd6_form_prokolpo_areas";
+    protected $table = "fd7_form_prokolpo_areas";
 
     protected $fillable = [
         'fd6_form_id',
@@ -20,6 +20,8 @@ class Fd6FormProkolpoArea extends Model
         'thana_name',
         'municipality_name',
         'ward_name',
+        'allocated_budget',
+        'number_of_beneficiaries',
 
     ];
 }

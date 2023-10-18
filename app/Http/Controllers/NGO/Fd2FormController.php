@@ -54,6 +54,26 @@ class Fd2FormController extends Controller
     }
 
 
+    public function addFd2DetailForFd7($id){
+
+
+        $fd7Id = base64_decode($id);
+       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
+       ->select('division_bn')->get();
+
+
+
+       $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
+       ->where('id',$fd7Id)->latest()->first();
+
+
+        return view('front.fd2Form.addFd2DetailForFd7',compact('fd6Id','ngo_list_all','divisionList','fd7FormList'));
+
+
+    }
+
+
     public function edit($id){
 
         $fd6Id = base64_decode($id);
@@ -155,6 +175,11 @@ class Fd2FormController extends Controller
     public function create(){
 
         return view('front.fd2Form.create');
+    }
+
+
+    public function storeFd2DetailForFd7(Request $request){
+        
     }
 
 
