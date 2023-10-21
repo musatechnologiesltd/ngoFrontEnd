@@ -208,6 +208,9 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('reliefAssistanceProjectProposalPdf/{id}', 'reliefAssistanceProjectProposalPdf')->name('reliefAssistanceProjectProposalPdf');
 
+        Route::get('authorizationLetter/{id}', 'authorizationLetter')->name('authorizationLetter');
+
+        Route::get('letterFromDonorAgency/{id}', 'letterFromDonorAgency')->name('letterFromDonorAgency');
 
 
 
@@ -217,10 +220,18 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(Fd2FormController::class)->group(function () {
 
+        Route::get('downloadFd2DetailForFd7Other/{id}', 'downloadFd2DetailForFd7Other')->name('downloadFd2DetailForFd7Other');
+
+
+
+        Route::get('downloadFd2DetailForFd7/{id}', 'downloadFd2DetailForFd7')->name('downloadFd2DetailForFd7');
+        Route::get('deleteFd2DetailForFd7/{id}', 'deleteFd2DetailForFd7')->name('deleteFd2DetailForFd7');
+        Route::post('fd2ForFd7PdfUpdate', 'fd2ForFd7PdfUpdate')->name('fd2ForFd7PdfUpdate');
+
 
         Route::get('addFd2DetailForFd7/{id}', 'addFd2DetailForFd7')->name('addFd2DetailForFd7');
         Route::get('editFd2DetailForFd7/{id}', 'editFd2DetailForFd7')->name('editFd2DetailForFd7');
-        Route::put('updateFd2DetailForFd7/{id}', 'updateFd2DetailForFd7')->name('updateFd2DetailForFd7');
+        Route::post('updateFd2DetailForFd7', 'updateFd2DetailForFd7')->name('updateFd2DetailForFd7');
         Route::post('storeFd2DetailForFd7', 'storeFd2DetailForFd7')->name('storeFd2DetailForFd7');
 
         Route::post('fd2PdfUpdate', 'fd2PdfUpdate')->name('fd2PdfUpdate');

@@ -207,7 +207,7 @@
                                     </div>
                                     <div class="d-grid d-md-flex justify-content-md-end">
                                         <button type="button" class="btn btn-dark me-2"
-                                                onclick="location.href = '{{ route('fd6Form.edit',base64_encode($fd7Id)) }}';">আগের পৃষ্ঠায় যান
+                                                onclick="location.href = '{{ route('fd7Form.edit',base64_encode($fd7Id)) }}';">আগের পৃষ্ঠায় যান
                                         </button>
                                         <button type="submit" class="btn btn-registration"
                                                 >তথ্য জমা দিন

@@ -142,17 +142,17 @@
                                         <td>{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</td>
                                         <td>{{ $fd6FormListAll->ngo_name }}</td>
                                         <td>{{ $fd6FormListAll->ngo_prokolpo_name}}</td>
-                                     
+
                                         <td>{{ $fd6FormListAll->ngo_prokolpo_start_date }} <b>-</b> {{ $fd6FormListAll->ngo_prokolpo_end_date }}</td>
                                         <td><span class="text-success">{{ $fd6FormListAll->status }}</span></td>
                                         <td>
 
-                                            <a  href="{{ route('fd6Form.edit',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
-                                            <a  href="{{ route('fd6Form.show',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
+                                            <a  href="{{ route('fd7Form.edit',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
+                                            <a  href="{{ route('fd7Form.show',base64_encode($fd6FormListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
                                             <button type="button" onclick="deleteTag({{ $fd6FormListAll->id}})" class="btn btn-sm btn-outline-danger"><i
                                                 class="bi bi-trash"></i></button>
 
-                                                <form id="delete-form-{{ $fd6FormListAll->id }}" action="{{ route('fd6Form.destroy',$fd6FormListAll->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $fd6FormListAll->id }}" action="{{ route('fd7Form.destroy',$fd6FormListAll->id) }}" method="POST" style="display: none;">
 
                                                     @csrf
                                                     @method('DELETE')
