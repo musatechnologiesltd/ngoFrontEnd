@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fd2FormForFc2Form extends Model
+class Fd2FormForFc1Form extends Model
 {
     use HasFactory;
 
-    public $table = "fd2_form_for_fc2_forms";
+    public $table = "fd2_form_for_fc1_forms";
 
     protected $fillable = [
         'fd_one_form_id',
-        'fc2_form_id',
+        'fc1_form_id',
         'ngo_name',
         'ngo_address',
         'ngo_prokolpo_name',
@@ -24,6 +24,6 @@ class Fd2FormForFc2Form extends Model
         'proposed_rebate_amount_in_foreign_currency',
         'fd_2_form_pdf',
         'status',
-        
+
     ];
 }

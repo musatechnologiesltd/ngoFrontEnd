@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fd2_form_for_fc2_forms', function (Blueprint $table) {
+        Schema::create('fd2_form_for_fc1_forms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
-            $table->bigInteger('fc2_form_id')->unsigned();
-            $table->foreign('fc2_form_id')->references('id')->on('fc2_forms')->onDelete('cascade');
+            $table->bigInteger('fc1_form_id')->unsigned();
+            $table->foreign('fc1_form_id')->references('id')->on('fc1_forms')->onDelete('cascade');
             $table->string('ngo_name')->nullable();
             $table->string('ngo_address')->nullable();
             $table->string('ngo_prokolpo_name')->nullable();
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fd2_form_for_fc2_forms');
+        Schema::dropIfExists('fd2_form_for_fc1_forms');
     }
 };

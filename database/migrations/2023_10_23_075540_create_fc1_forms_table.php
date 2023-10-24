@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fc2_forms', function (Blueprint $table) {
+        Schema::create('fc1_forms', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
@@ -52,6 +52,10 @@ return new class extends Migration
 
             $table->string('organization_name_of_executive_responsible_for_bd_designation')->nullable();
             $table->string('objectives_of_the_organization')->nullable();
+
+            $table->string('relation_with_donor')->nullable();
+            $table->string('organization_fax')->nullable();
+
             $table->string('organization_letter_of_commitment')->nullable();
             $table->string('organization_name_of_the_job_amount_of_money_and_duration_pdf')->nullable();
             $table->string('organization_amount_of_foreign_currency')->nullable();
@@ -79,6 +83,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fc2_forms');
+        Schema::dropIfExists('fc1_forms');
     }
 };

@@ -18,7 +18,7 @@ use App\Http\Controllers\NGO\Fd9OneController;
 use App\Http\Controllers\NGO\Fd2FormController;
 use App\Http\Controllers\NGO\Fd6FormController;
 use App\Http\Controllers\NGO\Fd7FormController;
-use App\Http\Controllers\NGO\Fc2Controller;
+use App\Http\Controllers\NGO\Fc1FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -199,14 +199,14 @@ Route::controller(OtherformController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::resource('fc2Form',Fc2FormController::class);
+    Route::resource('fc1Form',Fc1FormController::class);
 
     Route::controller(Fd2FormController::class)->group(function () {
 
-    Route::get('addFd2DetailForFc2/{id}', 'addFd2DetailForFc2')->name('addFd2DetailForFc2');
-    Route::get('editFd2DetailForFc2/{id}', 'editFd2DetailForFc2')->name('editFd2DetailForFc2');
-    Route::post('updateFd2DetailForFc2', 'updateFd2DetailForFc2')->name('updateFd2DetailForFc2');
-    Route::post('storeFd2DetailForFc2', 'storeFd2DetailForFc2')->name('storeFd2DetailForFc2');
+    Route::get('addFd2DetailForFc1/{id}', 'addFd2DetailForFc1')->name('addFd2DetailForFc1');
+    Route::get('editFd2DetailForFc1/{id}', 'editFd2DetailForFc1')->name('editFd2DetailForFc1');
+    Route::post('updateFd2DetailForFc1', 'updateFd2DetailForFc1')->name('updateFd2DetailForFc1');
+    Route::post('storeFd2DetailForFc1', 'storeFd2DetailForFc1')->name('storeFd2DetailForFc1');
 
 });
 

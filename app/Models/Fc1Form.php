@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fc2Form extends Model
+class Fc1Form extends Model
 {
     use HasFactory;
 
-    protected $table = "fc2_forms";
+    protected $table = "fc1_forms";
 
     protected $fillable = [
         'fd_one_form_id',
