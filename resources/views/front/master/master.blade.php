@@ -456,7 +456,7 @@ $("document").ready(function(){
 <script>
    $( function() {
 	$( "#datepicker" ).datepicker({
-		dateFormat: "dd-mm-yy"
+		dateFormat: "yy-mm-dd"
 		,	duration: "fast"
 	});
 } );
@@ -465,7 +465,7 @@ $("document").ready(function(){
 <script>
     $( function() {
      $( ".datepicker" ).datepicker({
-         dateFormat: "dd-mm-yy"
+         dateFormat: "yy-mm-dd"
          ,	duration: "fast"
      });
  } );
@@ -474,7 +474,7 @@ $("document").ready(function(){
 <script>
     $( function() {
      $( "#datepicker1" ).datepicker({
-         dateFormat: "dd-mm-yy"
+         dateFormat: "yy-mm-dd"
          ,	duration: "fast"
      });
  } );
