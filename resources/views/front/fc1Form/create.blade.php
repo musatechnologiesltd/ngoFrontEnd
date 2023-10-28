@@ -87,6 +87,12 @@
                             </a>
                         </div>
 
+                        <div class="profile_link_box">
+                            <a href="{{ route('fc2Form.index') }}">
+                                <p class="{{ Route::is('fc2Form.index') ||  Route::is('fc2Form.create') || Route::is('fc2Form.view') || Route::is('addFd2DetailForFc2') || Route::is('editFd2DetailForFc2') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fc2')}}</p>
+                            </a>
+                        </div>
+
 
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
@@ -178,7 +184,7 @@
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ইমেইল ঠিকানা</label>
-                                            <input type="text" required name="ngo_email_address" class="form-control" id=""
+                                            <input type="text" required name="ngo_email" class="form-control" id=""
                                                    placeholder="" value="{{ $ngo_list_all->email }}">
                                         </div>
 
@@ -240,7 +246,7 @@
                                                     <input type="text" name="ngo_sub_district" class="form-control" id=""
                                                     placeholder="">
                                                 </div>
-                                                <div class="mb-3 col-lg-6">
+                                                <div class="mb-3 col-lg-12">
                                                     <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা</label>
                                                     <input type="number" name="total_number_of_beneficiaries" class="form-control" id=""
                                                            placeholder="">
@@ -274,7 +280,7 @@
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">টেলিফোন</label>
-                                                    <input type="text" name="oreigner_donor_telephone_number" class="form-control" id=""
+                                                    <input type="text" name="foreigner_donor_telephone_number" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
@@ -287,7 +293,7 @@
                                                     <input type="text" name="foreigner_donor_email" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
-                                                <div class="mb-3 col-lg-6">
+                                                <div class="mb-3 col-lg-12">
                                                     <label for="" class="form-label">জাতীয়তা/নাগরিকত্ব</label>
                                                     <input type="text" name="foreigner_donor_nationality" class="form-control" id=""
                                                            placeholder="">
@@ -325,7 +331,7 @@
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">ফ্যাক্স নম্বর</label>
-                                                    <input type="text" name="organization_email" class="form-control" id=""
+                                                    <input type="text" name="organization_fax" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
@@ -379,7 +385,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 col-lg-6">
+                                    <div class="mb-3 col-lg-12">
                                         <label for="" class="form-label">প্রতিশ্রুতিপত্র আছে কিনা
                                         </label>
                                         <select name="organization_letter_of_commitment" id="" class="form-control">
@@ -387,7 +393,7 @@
                                             <option value="না">না</option>
                                         </select>
                                     </div>
-                                    <div class="mb-3 col-lg-6">
+                                    <div class="mb-3 col-lg-12">
                                         <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে</label>
                                         <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id=""
                                                placeholder="">
@@ -408,7 +414,7 @@
                                                     <input type="number" name="equivalent_amount_of_bd_taka" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
-                                                <div class="mb-3 col-lg-6">
+                                                <div class="mb-3 col-lg-12">
                                                     <label for="" class="form-label">পণ্যসামগ্রী (বাংলাদেশী মুদ্রায় আনুমানিক মূল্য)</label>
                                                     <input type="number" name="commodities_value_in_bangladeshi_currency" class="form-control" id=""
                                                            placeholder="">
@@ -424,22 +430,22 @@
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">যে ব্যাংকের মাধ্যমে বৈদেশিক অনুদান গ্রহণ করতে ইচ্ছুক তার নাম</label>
-                                                    <input type="number" name="bank_name" class="form-control" id=""
+                                                    <input type="text" name="bank_name" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label"> ঠিকানা</label>
-                                                    <input type="number" name="bank_address" class="form-control" id=""
+                                                    <input type="text" name="bank_address" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">ব্যাংক হিসাবের নাম	</label>
-                                                    <input type="number" name="bank_account_name" class="form-control" id=""
+                                                    <input type="text" name="bank_account_name" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">ব্যাংক হিসাব নম্বর</label>
-                                                    <input type="number" name="bank_account_number" class="form-control" id=""
+                                                    <input type="text" name="bank_account_number" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>

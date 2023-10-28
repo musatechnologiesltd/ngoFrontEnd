@@ -6,6 +6,7 @@ return [
     'fd6'=>'FD-6 Form',
     'fd7'=>'FD-7 Form',
     'fc1'=>'FC-1 Form',
+    'fc2'=>'FC-2 Form',
     'fd09form'=>'FD 09 Form',
     'fd09formone'=>'FD-9.1 (Work Permit)',
     'nvisa'=>'FD-9 Form',

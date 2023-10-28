@@ -19,6 +19,7 @@ use App\Http\Controllers\NGO\Fd2FormController;
 use App\Http\Controllers\NGO\Fd6FormController;
 use App\Http\Controllers\NGO\Fd7FormController;
 use App\Http\Controllers\NGO\Fc1FormController;
+use App\Http\Controllers\NGO\Fc2FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -201,7 +202,23 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('fc1Form',Fc1FormController::class);
 
+    Route::controller(Fc1FormController::class)->group(function () {
+        Route::get('fc1PdfDownload/{id}', 'fc1PdfDownload')->name('fc1PdfDownload');
+    });
+
+
+    Route::resource('fc2Form',Fc2FormController::class);
+
+    Route::controller(Fc2FormController::class)->group(function () {
+        Route::get('fc2PdfDownload/{id}', 'fc2PdfDownload')->name('fc2PdfDownload');
+    });
+
     Route::controller(Fd2FormController::class)->group(function () {
+
+        Route::get('addFd2DetailForFc2/{id}', 'addFd2DetailForFc2')->name('addFd2DetailForFc2');
+        Route::get('editFd2DetailForFc2/{id}', 'editFd2DetailForFc2')->name('editFd2DetailForFc2');
+        Route::post('updateFd2DetailForFc2', 'updateFd2DetailForFc2')->name('updateFd2DetailForFc2');
+        Route::post('storeFd2DetailForFc2', 'storeFd2DetailForFc2')->name('storeFd2DetailForFc2');
 
     Route::get('addFd2DetailForFc1/{id}', 'addFd2DetailForFc1')->name('addFd2DetailForFc1');
     Route::get('editFd2DetailForFc1/{id}', 'editFd2DetailForFc1')->name('editFd2DetailForFc1');
@@ -233,6 +250,26 @@ Route::group(['middleware' => ['auth']], function() {
 
 
     Route::controller(Fd2FormController::class)->group(function () {
+
+
+        Route::get('downloadFd2DetailForFc2Other/{id}', 'downloadFd2DetailForFc2Other')->name('downloadFd2DetailForFc2Other');
+
+
+
+        Route::get('downloadFd2DetailForFc2/{id}', 'downloadFd2DetailForFc2')->name('downloadFd2DetailForFc2');
+        Route::get('deleteFd2DetailForFc2/{id}', 'deleteFd2DetailForFc2')->name('deleteFd2DetailForFc2');
+        Route::post('fd2ForFc2PdfUpdate', 'fd2ForFc2PdfUpdate')->name('fd2ForFc2PdfUpdate');
+
+
+        Route::get('downloadFd2DetailForFc1Other/{id}', 'downloadFd2DetailForFc1Other')->name('downloadFd2DetailForFc1Other');
+
+
+
+        Route::get('downloadFd2DetailForFc1/{id}', 'downloadFd2DetailForFc1')->name('downloadFd2DetailForFc1');
+        Route::get('deleteFd2DetailForFc1/{id}', 'deleteFd2DetailForFc1')->name('deleteFd2DetailForFc1');
+        Route::post('fd2ForFc1PdfUpdate', 'fd2ForFc1PdfUpdate')->name('fd2ForFc1PdfUpdate');
+
+
 
         Route::get('downloadFd2DetailForFd7Other/{id}', 'downloadFd2DetailForFd7Other')->name('downloadFd2DetailForFd7Other');
 
