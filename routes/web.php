@@ -20,6 +20,7 @@ use App\Http\Controllers\NGO\Fd6FormController;
 use App\Http\Controllers\NGO\Fd7FormController;
 use App\Http\Controllers\NGO\Fc1FormController;
 use App\Http\Controllers\NGO\Fc2FormController;
+use App\Http\Controllers\NGO\Fd3FormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -200,6 +201,15 @@ Route::controller(OtherformController::class)->group(function () {
 
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::resource('fd3Form',Fd3FormController::class);
+
+    Route::controller(Fd3FormController::class)->group(function () {
+        Route::get('fd3PdfDownload/{id}', 'fd3PdfDownload')->name('fd3PdfDownload');
+    });
+
+
+
+
     Route::resource('fc1Form',Fc1FormController::class);
 
     Route::controller(Fc1FormController::class)->group(function () {
@@ -214,6 +224,12 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
     Route::controller(Fd2FormController::class)->group(function () {
+
+
+        Route::get('addFd2DetailForFd3/{id}', 'addFd2DetailForFd3')->name('addFd2DetailForFd3');
+    Route::get('editFd2DetailForFd3/{id}', 'editFd2DetailForFd3')->name('editFd2DetailForFd3');
+    Route::post('updateFd2DetailForFd3', 'updateFd2DetailForFd3')->name('updateFd2DetailForFd3');
+    Route::post('storeFd2DetailForFd3', 'storeFd2DetailForFd3')->name('storeFd2DetailForFd3');
 
         Route::get('addFd2DetailForFc2/{id}', 'addFd2DetailForFc2')->name('addFd2DetailForFc2');
         Route::get('editFd2DetailForFc2/{id}', 'editFd2DetailForFc2')->name('editFd2DetailForFc2');
