@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('date_of_payment')->nullable();
             $table->string('type_of_foreign_grant')->nullable();
             $table->string('foreign_grant_amount')->nullable();
+            $table->string('local_grant_amount')->nullable();
+            $table->string('relation_with_donor')->nullable();
+
             $table->string('description_and_price_of_goods')->nullable();
 
 

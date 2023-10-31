@@ -268,9 +268,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::controller(Fd2FormController::class)->group(function () {
 
 
+
+        Route::get('downloadFd2DetailForFd3/{id}', 'downloadFd2DetailForFd3')->name('downloadFd2DetailForFd3');
+
         Route::get('downloadFd2DetailForFc2Other/{id}', 'downloadFd2DetailForFc2Other')->name('downloadFd2DetailForFc2Other');
 
-
+        Route::get('downloadFd2DetailForFd3Other/{id}', 'downloadFd2DetailForFd3Other')->name('downloadFd2DetailForFd3Other');
 
         Route::get('downloadFd2DetailForFc2/{id}', 'downloadFd2DetailForFc2')->name('downloadFd2DetailForFc2');
         Route::get('deleteFd2DetailForFc2/{id}', 'deleteFd2DetailForFc2')->name('deleteFd2DetailForFc2');
@@ -279,13 +282,13 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::get('downloadFd2DetailForFc1Other/{id}', 'downloadFd2DetailForFc1Other')->name('downloadFd2DetailForFc1Other');
 
-
+        Route::get('deleteFd2DetailForFd3/{id}', 'deleteFd2DetailForFd3')->name('deleteFd2DetailForFd3');
 
         Route::get('downloadFd2DetailForFc1/{id}', 'downloadFd2DetailForFc1')->name('downloadFd2DetailForFc1');
         Route::get('deleteFd2DetailForFc1/{id}', 'deleteFd2DetailForFc1')->name('deleteFd2DetailForFc1');
         Route::post('fd2ForFc1PdfUpdate', 'fd2ForFc1PdfUpdate')->name('fd2ForFc1PdfUpdate');
 
-
+        Route::post('fd2ForFd3PdfUpdate', 'fd2ForFd3PdfUpdate')->name('fd2ForFd3PdfUpdate');
 
         Route::get('downloadFd2DetailForFd7Other/{id}', 'downloadFd2DetailForFd7Other')->name('downloadFd2DetailForFd7Other');
 

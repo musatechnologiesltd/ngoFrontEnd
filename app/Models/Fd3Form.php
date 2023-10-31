@@ -27,7 +27,9 @@ class Fd3Form extends Model
         'date_of_payment',
         'type_of_foreign_grant',
         'foreign_grant_amount',
+        'local_grant_amount',
         'description_and_price_of_goods',
+        'relation_with_donor',
 
 
         'foreigner_donor_full_name',
