@@ -174,9 +174,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                     </a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">ফরম নং -০৮</a>
-                                </li>
+                               
 
 
                                 <li class="nav-item">
@@ -221,7 +219,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                 </div>
                                 <div class="tab-pane container" id="tofen">
-                                  @include('front.form.form_eight.formEightNgoCommitteeMemberTotalView')
+
 
                                 </div>
 

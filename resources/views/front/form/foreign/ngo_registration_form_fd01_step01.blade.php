@@ -30,7 +30,7 @@
                         <div class="fd01_tablist">
                             <div class="fd01_tab fd01_checked"></div>
                             <div class="fd01_tab"></div>
-                            <div class="fd01_tab"></div>
+                         
                             <div class="fd01_tab"></div>
                         </div>
 
@@ -247,56 +247,15 @@
                                 </div>
 
 
-                                <div class="mb-3">
-                                    <h5 class="form_middle_text">
-                                        Chief Executive Information
-                                    </h5>
-                                </div>
-
-
-                                <!--new code for ngo-->
-                                <div class="mb-3">
-                                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-                                     <input type="text" data-parsley-required  name="chief_name"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-                                    <input type="text" data-parsley-required  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-                                </div>
-
-
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
-                                </div>
-
-                                @if($foreignNgoType == 'Old')
-
-                                @else
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label mt-3">Place: <span class="text-danger">*</span></label>
-                                    <input type="text" data-parsley-required  name="place"  class="form-control"  placeholder="Place">
-                                </div>
-
-
-                                @endif
-
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
-                                </div>
-                                <!-- end new code -->
 
 
 
 
-                    
+
+
+
+
+
                         <div class="buttons d-flex justify-content-end ">
                             <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_one" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                             <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_one" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
@@ -491,51 +450,10 @@
                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->profession }}" name="profession" class="form-control" id="">
                 </div>
 
-                <div class="mb-3">
-                    <h5 class="form_middle_text">
-                        প্রধান নির্বাহীর তথ্যাদি
-                    </h5>
-                </div>
-
-
-                <!--new code for ngo-->
-                <div class="mb-3">
-                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-                     <input type="text" data-parsley-required  name="chief_name"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-                    <input type="text" data-parsley-required  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-                </div>
 
 
 
-                <div class="mb-3">
-                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
-                </div>
 
-                @if($foreignNgoType == 'Old')
-
-                @else
-
-                <div class="mb-3">
-                    <label for="" class="form-label mt-3">Place: <span class="text-danger">*</span></label>
-                    <input type="text" data-parsley-required  name="place"  class="form-control"  placeholder="Place">
-                </div>
-
-
-                @endif
-
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
-                </div>
-                <!-- end new code -->
 
 
             <div class="buttons d-flex justify-content-end mt-4">

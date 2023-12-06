@@ -385,8 +385,7 @@ if(empty($formCompleteStatus)){
             'email' => 'required|string',
             'profession' => 'required|string',
             'submit_value' => 'required|string',
-            'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+
         ]);
 
 
@@ -840,7 +839,7 @@ if($request->submit_value == 'exit_from_step_one_edit'){
             $newStatusData->user_id = Auth::user()->id;
             $newStatusData->fd_one_form_step_one_status = 1;
             $newStatusData->fd_one_form_step_two_status = 1;
-            $newStatusData->fd_one_form_step_three_status = 0;
+            $newStatusData->fd_one_form_step_three_status = 1;
             $newStatusData->fd_one_form_step_four_status = 0;
             $newStatusData->form_eight_status = 0;
             $newStatusData->ngo_member_status = 0;
@@ -851,7 +850,8 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
             FormCompleteStatus::where('id', $checkCompleteStatusData->id)
             ->update([
-                'fd_one_form_step_two_status' => 1
+                'fd_one_form_step_two_status' => 1,
+                'fd_one_form_step_three_status' => 1
              ]);
 
 
@@ -1285,7 +1285,7 @@ if($request->oldOrNew == 'Old'){
             $newStatusData->fd_one_form_step_two_status = 1;
             $newStatusData->fd_one_form_step_three_status = 1;
             $newStatusData->fd_one_form_step_four_status = 1;
-            $newStatusData->form_eight_status = 0;
+            $newStatusData->form_eight_status = 1;
             $newStatusData->ngo_member_status = 1;
             $newStatusData->ngo_member_nid_photo_status = 1;
             $newStatusData->ngo_other_document_status = 0;
@@ -1296,6 +1296,7 @@ if($request->oldOrNew == 'Old'){
             ->update([
                 'fd_one_form_step_four_status' => 1,
                 'ngo_member_status' => 1,
+                'form_eight_status' => 1,
                 'ngo_member_nid_photo_status' => 1
              ]);
 
@@ -1459,7 +1460,7 @@ if(in_array(null, $input['name'])){
         $newStatusData->fd_one_form_step_two_status = 1;
         $newStatusData->fd_one_form_step_three_status = 1;
         $newStatusData->fd_one_form_step_four_status = 1;
-        $newStatusData->form_eight_status = 0;
+        $newStatusData->form_eight_status = 1;
         $newStatusData->ngo_member_status = 1;
         $newStatusData->ngo_member_nid_photo_status = 1;
         $newStatusData->ngo_other_document_status = 0;
@@ -1470,6 +1471,7 @@ if(in_array(null, $input['name'])){
         ->update([
             'fd_one_form_step_four_status' => 1,
             'ngo_member_status' => 1,
+            'form_eight_status' => 1,
             'ngo_member_nid_photo_status' => 1
          ]);
 

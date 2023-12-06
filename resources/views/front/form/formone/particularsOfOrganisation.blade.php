@@ -24,7 +24,7 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         {{-- @if($localNgoTypem == 'Old')
 
                         @else
@@ -45,7 +45,7 @@
                         <div class="fd01_tablist">
                             <div class="fd01_tab fd01_checked"></div>
                             <div class="fd01_tab"></div>
-                            <div class="fd01_tab"></div>
+                           
                             <div class="fd01_tab"></div>
                         </div>
 
@@ -454,43 +454,7 @@
                 </div>
 
 
-                <div class="mb-3">
-                    <h5 class="form_middle_text">
-                        প্রধান নির্বাহীর তথ্যাদি
-                    </h5>
-                </div>
 
-
-                <!--new code for ngo-->
-                <div class="mb-3">
-                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->chief_name }}"  name="chief_name"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-                    <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->chief_desi }}"   name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-                </div>
-
-
-
-                <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                  <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
-
-                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
-                </div>
-
-
-                <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                    <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
-
-                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
-                </div>
-                <!-- end new code -->
 
 
                 @if(Route::is('fdOneFormEdit') )

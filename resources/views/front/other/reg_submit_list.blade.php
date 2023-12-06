@@ -191,37 +191,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
                                         <tr>
-                                            <td>
 
-                                                @if(empty($get_date_fd_eight))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_eight->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_eight->format('d-m-Y') }}
-
-                                                @endif
-
-                                                @endif
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.fd_eight')}}</td>
-                                            <td style="position:relative">
-                                                @if($complete_status_fd_eight == 'complete')
-                                                <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
-
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
 
 
                                         @if($localNgoTypem == 'Old')
@@ -379,7 +349,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         var all = $('input[type="checkbox"]:checked').length;
 
-        if(all < 5){
+        if(all < 4){
             $('#bb3').attr('disabled',true);
 
         }else{
@@ -401,7 +371,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 5){
+    if(all < 4){
         $('#bb3').attr('disabled',true);
 
     }else{
