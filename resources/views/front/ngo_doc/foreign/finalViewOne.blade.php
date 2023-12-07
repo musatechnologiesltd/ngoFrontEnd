@@ -1234,8 +1234,24 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                     <div class="file-box">
-
                         @if($key+1 == 1)
+
+                        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                        <h6>এফডি-১ ফরম</h6>
+                        @else
+
+                        <h6>Form FD-1</h6>
+                        @endif
+                        @elseif($key+1 == 2)
+
+                        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                        <h6>ফরম নং - ৮</h6>
+                        @else
+
+                        <h6>Form No - 8</h6>
+                        @endif
+
+                        @elseif($key+1 == 3)
 
                             @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                             <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
@@ -1244,7 +1260,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                             @endif
 
-                        @elseif($key+1 == 2)
+                        @elseif($key+1 == 4)
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                         <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
@@ -1253,7 +1269,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>Attested copy of constitution</h6>
                         @endif
 
-                        @elseif($key+1 == 3)
+                        @elseif($key+1 == 5)
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                         <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
@@ -1262,7 +1278,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>Activity report of the organization</h6>
                         @endif
 
-                        @elseif($key+1 == 4)
+                        @elseif($key+1 == 6)
 
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1274,7 +1290,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                        @elseif($key+1 == 5)
+                        @elseif($key+1 == 7)
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                         <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
@@ -1282,7 +1298,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                         <h6>Letter Of Appoinment Of The Country Representative</h6>
                         @endif
-                        @elseif($key+1 == 6)
+                        @elseif($key+1 == 8)
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1290,7 +1306,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                         <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                         @endif
-                        @elseif($key+1 == 7)
+                        @elseif($key+1 == 9)
 
                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1321,13 +1337,30 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                         @if($key+1 == 1)
 
                                                         @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                        <h6>এফডি-১ ফরম</h6>
+                                                        @else
+
+                                                        <h6>Form FD-1</h6>
+                                                        @endif
+                                                        @elseif($key+1 == 2)
+
+                                                        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                        <h6>ফরম নং - ৮</h6>
+                                                        @else
+
+                                                        <h6>Form No - 8</h6>
+                                                        @endif
+
+                                                        @elseif($key+1 == 3)
+
+                                                        @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                         <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                         @else
 
                                                         <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                         @endif
 
-                                                    @elseif($key+1 == 2)
+                                                    @elseif($key+1 == 4)
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                     <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
@@ -1336,7 +1369,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>Attested copy of constitution</h6>
                                                     @endif
 
-                                                    @elseif($key+1 == 3)
+                                                    @elseif($key+1 == 5)
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                     <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
@@ -1345,7 +1378,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>Activity report of the organization</h6>
                                                     @endif
 
-                                                    @elseif($key+1 == 4)
+                                                    @elseif($key+1 == 6)
 
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1357,7 +1390,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                                    @elseif($key+1 == 5)
+                                                    @elseif($key+1 == 7)
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                     <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
@@ -1365,7 +1398,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                     <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                     @endif
-                                                    @elseif($key+1 == 6)
+                                                    @elseif($key+1 == 8)
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1373,7 +1406,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                     <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                                                     @endif
-                                                    @elseif($key+1 == 7)
+                                                    @elseif($key+1 == 9)
 
                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>

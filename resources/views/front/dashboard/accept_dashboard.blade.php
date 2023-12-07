@@ -210,26 +210,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="d-flex align-items-center">
-                                                                        <div class="avatar-sm">
-                                                                            <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                                <i class="ri-file-zip-fill"></i>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="ms-3 flex-grow-1">
-                                                                            <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                        href="{{ route('formEightPdf',['main_id'=>$ngo_list_all->user_id]) }}">কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম - ০৮ এর ফাইনাল কপি</a>
-                                                                            </h6>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>Pdf File</td>
 
-                                                                <td>{{ $ngo_list_all_form_eight->updated_at->format('d-M-Y')}}</td>
-
-                                                            </tr>
                                                             @if($oldOrNewStatus->ngo_type_new_old == 'Old')
 
 
@@ -1142,48 +1123,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                         </tr>
 
 
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                            <i class="ri-file-zip-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a
-                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngo_list_all->user_id,'id'=>'final_pdf']) }}">কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম - ০১ এর ফাইনাল কপি</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all->updated_at->format('d-M-Y')}}</td>
-
-                                                        </tr>
-
-
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                            <i class="ri-file-zip-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('formEightPdf',['main_id'=>$ngo_list_all->user_id]) }}">কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম - ০৮ এর ফাইনাল কপি</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Pdf File</td>
-
-                                                            <td>{{ $ngo_list_all_form_eight->updated_at->format('d-M-Y')}}</td>
-
-                                                        </tr>
 
                                                         @foreach($all_source_of_fund as $all_get_all_source_of_fund_data)
                                                         <tr>
@@ -1225,7 +1165,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                                     href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                                    <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
+                                                                                    <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -১ এর ফাইনাল কপি</h6>
                                                                                     @else
 
                                                                                     <h6>Executive committee of primary registering authority and attested copy</h6>
@@ -1234,42 +1174,64 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </h6>
                                                                         @elseif($key+1 == 2)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                    <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম নং - ৮ এর ফাইনাল কপি</h6>
+                                                                                    @else
+
+                                                                                    <h6>Executive committee of primary registering authority and attested copy</h6>
+                                                                                    @endif
+                                                                                </a>
+                                                                        </h6>
+                                                                        @elseif($key+1 == 3)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                    <h6>নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
+                                                                                    @else
+
+                                                                                    <h6>Executive committee of primary registering authority and attested copy</h6>
+                                                                                    @endif
+                                                                                </a>
+                                                                        </h6>
+                                                                        @elseif($key+1 == 4)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                    <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
+                    <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                     @else
 
                     <h6>Attested copy of constitution</h6>
                     @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 3)
+                                                                        @elseif($key+1 == 5)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
+                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                                                             @else
 
                                                                             <h6>Activity report of the organization</h6>
                                                                             @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 4)
+                                                                        @elseif($key+1 == 6)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
+                                                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
                                                                             @else
 
                                                                             <h6>Donors Receipt</h6>
                                                                             @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 5)
+                                                                        @elseif($key+1 == 7)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
+                                                                            <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
                                                                             @else
 
                                                                             <h6>Attested copy of the minutes of the general meeting regarding</h6>
@@ -1277,12 +1239,12 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </a>
                                                                 </h6>
 
-                                                                        @elseif($key+1 == 6)
+                                                                        @elseif($key+1 == 8)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
+                                                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
                                                                             @else
 
                                                                             <h6>LIST OF NAMES OF GENERAL MEMBERS OF THE ORGANIZATION</h6>
@@ -1290,6 +1252,34 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                                                         </a>
                                                                 </h6>
+
+                                                                @elseif($key+1 == 9)
+                                                                <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+
+                                                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                    <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ ) </h6>
+                                                                    @else
+
+                                                                    <h6>LIST OF NAMES OF GENERAL MEMBERS OF THE ORGANIZATION</h6>
+                                                                    @endif
+
+                                                                </a>
+                                                        </h6>
+
+                                                        @elseif($key+1 == 10)
+                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+
+                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
+                                                            @else
+
+                                                            <h6>LIST OF NAMES OF GENERAL MEMBERS OF THE ORGANIZATION</h6>
+                                                            @endif
+
+                                                        </a>
+                                                </h6>
                                                                         @endif
                                                                     </div>
                                                                 </div>

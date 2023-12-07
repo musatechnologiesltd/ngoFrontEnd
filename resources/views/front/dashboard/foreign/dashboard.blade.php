@@ -102,7 +102,7 @@
 
 
 $data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->value('chief_name');
+                                           ->value('id');
 
 
 

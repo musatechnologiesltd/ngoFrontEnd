@@ -12,7 +12,7 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                     <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                     {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                            {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
                         <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
@@ -44,7 +44,7 @@
                             <div class="fd01_tab"></div>
                             <div class="fd01_tab"></div>
                             <div class="fd01_tab fd01_checked"></div>
-                            <div class="fd01_tab"></div>
+                        
                         </div>
 
                         <div class="mt-3">

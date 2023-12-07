@@ -74,7 +74,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @if($get_value_fd_one_one == 1)
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                 @else
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
+                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>
@@ -106,7 +106,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                @else
 
-                                               <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
+                                               <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                @endif
 
                                                 <label for="chk" readonly></label>
@@ -141,7 +141,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
         @else
-        <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+        <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
         @endif
         <label for="chk"></label>
     </td>
@@ -173,7 +173,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
                                                 @else
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+                                                <input id="chk" type="checkbox" onclick="return false;"  checked   class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>

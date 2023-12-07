@@ -192,23 +192,7 @@ $get_all_data_1 = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->
             </div>
 
 
-                  <!--new code for ngo-->
-                  <div class="mb-3">
-                    <label for="" class="form-label">Digital Signature  <span class="text-danger">*</span> </label>
-                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
-
-                    <img src="{{asset('/')}}{{ $get_all_data_1->digital_signature }}" style="height:40px;"/>
-                </div>
-
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Digital Seal  <span class="text-danger">*</span> </label>
-                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
-
-                    <img src="{{asset('/')}}{{ $get_all_data_1->digital_seal }}" style="height:40px;"/>
-
-                </div>
-                <!-- end new code -->
+                
 
 
 

@@ -213,7 +213,7 @@ $count3 = 11;
 
                                     @else
 
-                                    @if(!empty($data->chief_name))
+                                    @if(!empty($data->id))
                                     <tr>
                                         <td>{{ trans('first_info.fd_one')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
@@ -231,17 +231,7 @@ $count3 = 11;
 
 
 
-                                       @if(!empty($data1->total_year))
-                                       <tr>
-                                        <td>ফরম নং -৮</td>
-                                        <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
-                                    </tr>
-                                       @else
-                                       <tr>
-                                           <td>ফরম নং -৮</td>
-                                           <td><span class="badge bg-danger">{{ trans('first_info.incomplete')}}</span></td>
-                                       </tr>
-                                       @endif
+
 
 
 

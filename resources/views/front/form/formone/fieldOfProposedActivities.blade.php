@@ -57,7 +57,12 @@
                         <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
+                    <div class="fd01_tablist">
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab fd01_checked"></div>
+                        <div class="fd01_tab"></div>
 
+                    </div>
                     <div class="mt-3">
                         @if($localNgoTypem == 'Old')
 

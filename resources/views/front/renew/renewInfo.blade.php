@@ -161,7 +161,7 @@ color:white !important;
                                                         <input type="text" data-parsley-required  name="নাম" value="{{ $get_all_data_new->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
                                                         <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
                                                         <input type="text" data-parsley-required  name="পদবি" value="{{ $get_all_data_new->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
-                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
+                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $all_partiw1->id }}" class="form-control" id="mainId">
                                                     </div>
 
 

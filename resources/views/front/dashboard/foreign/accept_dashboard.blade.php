@@ -989,26 +989,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                         </tr>
 
 
-                                                        <tr>
-                                                            <td>
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="avatar-sm">
-                                                                        <div class="avatar-title bg-soft-primary text-primary rounded fs-20">
-                                                                            <i class="ri-file-zip-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="ms-3 flex-grow-1">
-                                                                        <h6 class="fs-15 mb-0"><a
-                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngo_list_all->user_id,'id'=>'final_pdf']) }}">কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম - ০১ এর ফাইনাল কপি</a>
-                                                                        </h6>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all->updated_at->format('d-M-Y')}}</td>
-
-                                                        </tr>
 
 
 
@@ -1053,7 +1034,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                                     href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                                    <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
+                                                                                    <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -১ এর ফাইনাল কপি</h6>
                                                                                     @else
 
                                                                                     <h6>Executive committee of primary registering authority and attested copy</h6>
@@ -1061,6 +1042,28 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                                 </a>
                                                                         </h6>
                                                                         @elseif($key+1 == 2)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                    <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম নং - ৮ এর ফাইনাল কপি</h6>
+                                                                                    @else
+
+                                                                                    <h6>Executive committee of primary registering authority and attested copy</h6>
+                                                                                    @endif
+                                                                                </a>
+                                                                        </h6>
+                                                                        @elseif($key+1 == 3)
+                                                                        <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                    <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
+                                                                                    @else
+
+                                                                                    <h6>Executive committee of primary registering authority and attested copy</h6>
+                                                                                    @endif
+                                                                                </a>
+                                                                        </h6>
+                                                                        @elseif($key+1 == 4)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1071,7 +1074,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                     @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 3)
+                                                                        @elseif($key+1 == 5)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1082,7 +1085,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                             @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 4)
+                                                                        @elseif($key+1 == 6)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1093,7 +1096,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                             @endif
                                                                         </a>
                                                                 </h6>
-                                                                        @elseif($key+1 == 5)
+                                                                        @elseif($key+1 == 7)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1105,7 +1108,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </a>
                                                                 </h6>
 
-                                                                        @elseif($key+1 == 6)
+                                                                        @elseif($key+1 == 8)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
                                                                             href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
 
@@ -1118,6 +1121,19 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                                                         </a>
                                                                 </h6>
+                                                                @elseif($key+1 == 9)
+                                                                <h6 class="fs-15 mb-0"><a target="_blank"
+                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+
+                                                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                    <h6>Letter Of Intent</h6>
+                                                                    @else
+
+                                                                    <h6>LIST OF NAMES OF GENERAL MEMBERS OF THE ORGANIZATION</h6>
+                                                                    @endif
+
+                                                                </a>
+                                                        </h6>
                                                                         @endif
                                                                     </div>
                                                                 </div>

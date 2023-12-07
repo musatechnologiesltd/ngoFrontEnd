@@ -69,6 +69,17 @@
                             <div class="mb-3" id="mResult">
                             </div>
                             <b>অন্যান্য তথ্য: </b>
+
+
+                            <div class="mb-3">
+
+
+
+                                <label class="form-label" for="">
+                                    কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -৮ এর ফাইনাল কপি <span class="text-danger">*</span>
+                    <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি বেশি হওয়া যাবে না</span> </label>
+                                <input class="form-control" name="final_fd_eight_form" data-parsley-required accept=".pdf" type="file" id="">
+                            </div>
                                 <div class="mb-3">
 
 

@@ -67,6 +67,13 @@
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
 
+                    <div class="fd01_tablist">
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab fd01_checked"></div>
+
+                    </div>
+
                     <div class="mt-3">
 
                         @if($localNgoTypem == 'Old')
@@ -386,11 +393,11 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
         </tr>
         <tr>
             <td>
-                <input type="text" required  name="name[]" placeholder="পরামর্শকের নাম"
+                <input type="text"   name="name[]" placeholder="পরামর্শকের নাম"
                        class="form-control"/>
             </td>
             <td>
-                <input type="text"  required name="information[]" placeholder="পরামর্শকের ঠিকানা"
+                <input type="text"   name="information[]" placeholder="পরামর্শকের ঠিকানা"
                        class="form-control"/>
             </td>
             <td></td>

@@ -142,10 +142,10 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
         @endif
                             </div>
                             <div class="p-2">
-                                <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
+                                {{-- <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                         {{ trans('other_doc.add_new_document')}}
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
 
@@ -1343,11 +1343,248 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
-                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+
+                                       <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                                        @csrf
+            <input type="hidden" name="main_ngo_type" value="{{ $foreignNgoType }}"/>
+                                        @if($foreignNgoType == 'Old')
+
+                                        <div class="mt-3">
+
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">Whether the constitution of the organization has changed or not ? <span class="text-danger">*</span> </label>
+                                                <div class="mt-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="Yes" >
+                                                    <label class="form-check-label" for="inlineRadio1">Yes</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="No" >
+                                                    <label class="form-check-label" for="inlineRadio2">No</label>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="mb-3" id="mResult">
+                                        </div>
+                                        <b>Other Information: </b>
+                                            {{-- <div class="mb-3">
+
+
+
+
+                                                <label class="form-label" for="">
+                                                  নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
+                                                <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
+                                            </div> --}}
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+
+
+
+                                                    List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
+
+                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+
+
+
+                                                </label>
+                                                <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-success">PDF Should not exceed 500 KB in size</span></label>
+
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+
+
+
+
+
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+            Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
+
+            <br><span class="text-success">PDF Should not exceed 1MB in size</span>
+            </label>
+
+
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-success">PDF Should not exceed 5 MB in size</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
+                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                </label>
+                                                <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
+                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                </label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
+                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+
+
+
+                                        @else
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                FD-1 Form<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Form No - 8<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Constitution <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Activities Report <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter Of Intent <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endif
+
+                                        <div class="d-grid d-md-flex justify-content-md-end">
+                                            <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
+                                            </button>
+                                        </div>
+
+                                    </form>
+
+                                      {{-- @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                       <h2>তথ্য পাওয়া যায়নি</h2>
                                       @else
                                       <h2>Data Not Found</h2>
-                                      @endif
+                                      @endif --}}
 
                                       @else
 
@@ -1368,7 +1605,25 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="file-box">
 
+
                                                 @if($key+1 == 1)
+
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6>এফডি-১ ফরম</h6>
+                                                @else
+
+                                                <h6>Form FD-1</h6>
+                                                @endif
+                                                @elseif($key+1 == 2)
+
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6>ফরম নং - ৮</h6>
+                                                @else
+
+                                                <h6>Form No - 8</h6>
+                                                @endif
+
+                                                @elseif($key+1 == 3)
 
                                                     @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                     <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
@@ -1377,7 +1632,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                     @endif
 
-                                                @elseif($key+1 == 2)
+                                                @elseif($key+1 == 4)
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
@@ -1386,7 +1641,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>Attested copy of constitution</h6>
                                                 @endif
 
-                                                @elseif($key+1 == 3)
+                                                @elseif($key+1 == 5)
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
@@ -1395,7 +1650,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>Activity report of the organization</h6>
                                                 @endif
 
-                                                @elseif($key+1 == 4)
+                                                @elseif($key+1 == 6)
 
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1407,7 +1662,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                                @elseif($key+1 == 5)
+                                                @elseif($key+1 == 7)
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
@@ -1415,7 +1670,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                 <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                 @endif
-                                                @elseif($key+1 == 6)
+                                                @elseif($key+1 == 8)
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1423,7 +1678,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                 <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                                                 @endif
-                                                @elseif($key+1 == 7)
+                                                @elseif($key+1 == 9)
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1450,8 +1705,23 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title" id="exampleModalLabel">
-
                                                                                 @if($key+1 == 1)
+
+                                                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                                                <h6>এফডি-১ ফরম</h6>
+                                                                                @else
+
+                                                                                <h6>Form FD-1</h6>
+                                                                                @endif
+                                                                                @elseif($key+1 == 2)
+
+                                                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                                                <h6>ফরম নং - ৮</h6>
+                                                                                @else
+
+                                                                                <h6>Form No - 8</h6>
+                                                                                @endif
+                                                                                @elseif($key+1 == 3)
 
                                                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                                                 <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
@@ -1460,7 +1730,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                                                 @endif
 
-                                                                            @elseif($key+1 == 2)
+                                                                            @elseif($key+1 == 4)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>গঠনতন্ত্রের সত্যায়িত অনুলিপি</h6>
@@ -1469,7 +1739,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Attested copy of constitution</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 3)
+                                                                            @elseif($key+1 == 5)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
@@ -1478,7 +1748,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Activity report of the organization</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 4)
+                                                                            @elseif($key+1 == 6)
 
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1490,7 +1760,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                                                            @elseif($key+1 == 5)
+                                                                            @elseif($key+1 == 7)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
@@ -1498,7 +1768,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 6)
+                                                                            @elseif($key+1 == 8)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1506,7 +1776,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 7)
+                                                                            @elseif($key+1 == 9)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
@@ -1610,216 +1880,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                 <div class="card">
                     <div class="card-body">
 
-                        <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
-                            @csrf
-<input type="hidden" name="main_ngo_type" value="{{ $foreignNgoType }}"/>
-                            @if($foreignNgoType == 'Old')
-
-                            <div class="mt-3">
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Whether the constitution of the organization has changed or not ? <span class="text-danger">*</span> </label>
-                                    <div class="mt-2">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
-                                               value="Yes" >
-                                        <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input organizational_structure" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
-                                               value="No" >
-                                        <label class="form-check-label" for="inlineRadio2">No</label>
-                                    </div>
-                                    </div>
-                                </div>
-
-                            <div class="mb-3" id="mResult">
-                            </div>
-                            <b>Other Information: </b>
-                                {{-- <div class="mb-3">
-
-
-
-
-                                    <label class="form-label" for="">
-                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
-                                </div> --}}
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-
-
-
-                                        List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
-
-                                        <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
-
-
-
-                                    </label>
-                                    <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-success">PDF Should not exceed 500 KB in size</span></label>
-
-                                    <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
-
-
-
-
-
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
-
-<br><span class="text-success">PDF Should not exceed 1MB in size</span>
-</label>
-
-
-                                    <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-success">PDF Should not exceed 5 MB in size</span></label>
-                                    <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
-                                        <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
-                                    </label>
-                                    <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
-                                        <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
-                                    </label>
-                                    <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
-                                        <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
-                                    <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-
-
-
-                            @else
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Constitution <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Activities Report <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    Letter Of Intent <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-
-                            <div class="d-grid d-md-flex justify-content-md-end">
-                                <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
-                                </button>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>

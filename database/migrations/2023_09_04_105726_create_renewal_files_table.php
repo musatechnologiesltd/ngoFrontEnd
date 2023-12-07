@@ -37,6 +37,8 @@ return new class extends Migration
             $table->string('previous_constitution_and_current_constitution_compare')->nullable();
             $table->string('constitution_of_the_organization_if_unchanged')->nullable();
             $table->string('time_for_api')->nullable();
+            $table->string('final_fd_eight_form')->nullable();
+
             $table->timestamps();
         });
     }

@@ -66,7 +66,12 @@
                         <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
+                    <div class="fd01_tablist">
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab "></div>
+                        <div class="fd01_tab fd01_checked"></div>
 
+                    </div>
                     <div class="mt-3">
 
                         @if($foreignNgoType == 'Old')
