@@ -476,8 +476,23 @@ if(!$checkCompleteStatusData){
 }
 
 
+//new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
 
-        return redirect('/ngoAllRegistrationForm');
+    return redirect()->route('addDataStepOneFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/ngoAllRegistrationForm');
+}
+
+//end new code for fd eight
+
+
+
+
 
 
 
@@ -488,12 +503,8 @@ if(!$checkCompleteStatusData){
     public function particularsOfOrganisationUpdate(Request $request){
 
 
+//dd($request->all());
 
-        $request->validate([
-
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
-        ]);
 
        $arr_all = implode(",",$request->citizenship);
 
@@ -579,16 +590,54 @@ if(!$checkCompleteStatusData){
 
 if($request->submit_value == 'exit_from_step_one_edit'){
 
+    // return redirect('/ngoAllRegistrationForm');
+
+    //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('updateDataStepOneFd8',base64_encode($mm_id));
+
+}else{
+
     return redirect('/ngoAllRegistrationForm');
+}
 
 
 }elseif($request->submit_value == 'go_to_step_two'){
     Session::put('fdOneFormEdit','fdOneFormEdit');
-    return redirect('/fieldOfProposedActivities');
+
+    //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('updateDataStepOneFd8',base64_encode($mm_id));
 
 }else{
 
-       return redirect('/ngoAllRegistrationForm');
+    return redirect('/fieldOfProposedActivities');
+}
+
+
+    //return redirect('/fieldOfProposedActivities');
+
+}else{
+
+     //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('updateDataStepOneFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/ngoAllRegistrationForm');
+}
+
+       //return redirect('/ngoAllRegistrationForm');
     }
 
 
@@ -785,9 +834,11 @@ if($request->submit_value == 'exit_from_step_one_edit'){
         $updateDataStepTwo->complete_status = $request->submit_value;
         $updateDataStepTwo->save();
 
-
+        $mm_id = $updateDataStepTwo->id;
         $stepTwoId = $updateDataStepTwo->id;
         $input = $request->all();
+
+
 
 
 
@@ -859,18 +910,54 @@ if($request->submit_value == 'exit_from_step_one_edit'){
 
         if($request->submit_value == 'exit_from_step_two_edit'){
 
+
+            //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepTwoFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/ngoAllRegistrationForm');
+}
+
             return redirect('/ngoAllRegistrationForm');
 
 
         }elseif($request->submit_value == 'go_to_step_three'){
 
             Session::put('fdOneFormEditThree','go_to_step_three');
-            return redirect('/allStaffDetailsInformation');
+
+            //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepTwoFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/allStaffDetailsInformation');
+}
+
+
 
 
         }else{
 
-               return redirect('/ngoAllRegistrationForm');
+               //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepTwoFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/ngoAllRegistrationForm');
+}
             }
 
 }
@@ -1510,7 +1597,24 @@ if(!$checkCompleteStatusData){
 }
 
 }
-   return redirect('/ngoAllRegistrationForm');
+
+
+
+//new code for old ngo
+
+//new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
+
+}else{
+
+    return redirect('/ngoAllRegistrationForm');
+}
+//end new code for  ngo
+   //return redirect('/ngoAllRegistrationForm');
 
 }
 

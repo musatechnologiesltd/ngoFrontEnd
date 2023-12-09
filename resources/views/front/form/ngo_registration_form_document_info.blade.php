@@ -171,11 +171,7 @@ if($localNgoTypem == 'Old'){
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
-                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                      <h2>তথ্য পাওয়া যায়নি</h2>
-                                      @else
-                                      <h2>Data Not Found</h2>
-                                      @endif
+
 
                                       <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
@@ -209,18 +205,13 @@ if($localNgoTypem == 'Old'){
 
                                         <div class="mb-3">
                                             <label class="form-label" for="">
-                                                এফডি-১ ফরম<span class="text-danger">*</span>
+                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম <span class="text-danger">*</span>
                                             <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
-                                            <input class="form-control" name="fd_one_form_data" data-parsley-required accept=".pdf" type="file" id="">
+                                            <input class="form-control" name="fd_eight_form_data" data-parsley-required accept=".pdf" type="file" id="">
                                         </div>
 
 
-                                        <div class="mb-3">
-                                            <label class="form-label" for="">
-                                                ফরম নং - ৮<span class="text-danger">*</span>
-                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
-                                            <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="">
-                                        </div>
+
 
 
 
@@ -452,6 +443,88 @@ if($localNgoTypem == 'Old'){
                                     </form>
 
                                       @else
+
+
+                                       <!--new start -->
+                                       @if(empty($ngoOtherDocListsFirst->fd_eight_form_data))
+
+                                       @else
+                                       <?php
+
+                                         $file_path = url($ngoOtherDocListsFirst->fd_eight_form_data);
+                                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                                         ?>
+
+
+                                             <div class="file-box">
+
+
+
+                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম
+
+                                                 <div class="file-top">
+                                                     <i class="fa fa-file-pdf-o txt-primary"></i>
+                                                 </div>
+
+                                                 <div class="mt-2">
+                                                     <h6>{{ $filename }}</h6>
+                                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                             data-bs-target="#exampleModal555551211"><i class="fa fa-pencil"></i></button>
+
+
+                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                                               <!--modal -->
+                                                               <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                 <div class="modal-dialog">
+                                                                     <div class="modal-content">
+                                                                         <div class="modal-header">
+                                                                             <h5 class="modal-title" id="exampleModalLabel">
+                                                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম
+ </h5>
+                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                         </div>
+                                                                         <div class="modal-body">
+                                                                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                                                 @csrf
+                                                                                 @method('PUT')
+                                                                                 <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                                                 <input type="hidden" name="title" value="fd_eight_form_data"/>
+                                                                                 <div class="mb-3">
+
+                                                                                     <input type="file" name="fd_eight_form_data" class="form-control" id="">
+
+                                                                                     <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->fd_eight_form_data  }}"
+                         style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                                                 </div>
+                                                                                 <div class="modal-footer">
+                                                                                     <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                                                 </div>
+                                                                             </form>
+                                                                         </div>
+
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                             <!--model end -->
+                                                 </div>
+
+
+                                             </div>
+
+                                             @endif
+
+                                             <!--end if -->
+
 
 
 

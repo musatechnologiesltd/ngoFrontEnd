@@ -27,6 +27,7 @@ use App\Models\FdOneSourceOfFund;
 use App\Models\FdOneMemberList;
 use Response;
 use Session;
+use App\Models\NgoRenew;
 class OtherformController extends Controller
 {
 
@@ -425,11 +426,11 @@ if($mainNgoTypeOld == 'Old'){
 
     $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-    $category_list = new NgoStatus();
-    $category_list->fd_one_form_id = $get_reg_id->id;
-    $category_list->status = 'Old Ngo Renew';
-    $category_list->email = Auth::user()->email;
-    $category_list->save();
+    // $category_list = new NgoStatus();
+    // $category_list->fd_one_form_id = $get_reg_id->id;
+    // $category_list->status = 'Old Ngo Renew';
+    // $category_list->email = Auth::user()->email;
+    // $category_list->save();
 
 
     // $category_list = new NgoRenew();
@@ -437,11 +438,28 @@ if($mainNgoTypeOld == 'Old'){
     // $category_list->status = 'Ongoing';
     // $category_list->save();
 
+
+    $dt = new DateTime();
+    $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+
+    $main_time = $dt->format('H:i:s a');
+
+
+    $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+    //dd($ngo_list_all->id);
+    $add_renew_request = new NgoRenew();
+    $add_renew_request->fd_one_form_id = $ngo_list_all->id;
+    $add_renew_request->time_for_api =$main_time;
+    $add_renew_request->status = 'Ongoing';
+    $add_renew_request->save();
+
+
+
         $get_v_email = Auth::user()->email;
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
 
-    Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+        Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
         $message->to($get_v_email);
         $message->subject('Old NGOAB Renew Service');
     });
@@ -478,12 +496,21 @@ if($mainNgoTypeOld == 'Old'){
     public function renewalSubmitForOld(Request $request){
 
         $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $category_list = new NgoStatus();
-        $category_list->fd_one_form_id = $get_reg_id->id;
-        $category_list->status = 'Old Ngo Renew';
-        $category_list->email = Auth::user()->email;
-        $category_list->save();
+        $main_time = $dt->format('H:i:s a');
+        // $category_list = new NgoStatus();
+        // $category_list->fd_one_form_id = $get_reg_id->id;
+        // $category_list->status = 'Old Ngo Renew';
+        // $category_list->email = Auth::user()->email;
+        // $category_list->save();
+
+        $add_renew_request = new NgoRenew();
+        $add_renew_request->fd_one_form_id = $get_reg_id->id;
+        $add_renew_request->time_for_api =$main_time;
+        $add_renew_request->status = 'Ongoing';
+        $add_renew_request->save();
 
 
         // $category_list = new NgoRenew();

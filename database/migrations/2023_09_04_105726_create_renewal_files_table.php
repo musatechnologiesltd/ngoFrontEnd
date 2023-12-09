@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
+            $table->string('fd_eight_form_data')->nullable();
             $table->string('constitution_of_the_organization_has_changed')->nullable();
             $table->string('list_of_board_of_directors_or_board_of_trustees')->nullable();
             $table->string('organization_by_laws_or_constitution')->nullable();

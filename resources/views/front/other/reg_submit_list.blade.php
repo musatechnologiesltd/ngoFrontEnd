@@ -12,12 +12,22 @@
 
 
 <?php
-
+use App\Http\Controllers\NGO\CommonController;
 $getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
 
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
+$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
+}else{
+
+    $get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$getFormOneId)->value('status');
+
+}
 
 ?>
+
+
 
 @if(empty($get_reg_id))
 
@@ -280,6 +290,20 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                     <p class="fst-italic text-danger">
                                         {{ trans('reg_sub.last')}}
                                     </p>
+
+                                    @if($localNgoTypem == 'Old')
+
+
+                                    <form action="{{ route('finalSubmitRegForm') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="NGO Renew" name="reg_type" />
+                                    <div class="d-grid d-md-flex justify-content-md-end">
+                                        <button type="submit"  id="bb3" class="btn btn-registration" disabled>{{ trans('reg_sub.submit')}}</button>
+                                    </div>
+                                    </form>
+
+
+                                    @else
                                     <form action="{{ route('finalSubmitRegForm') }}" method="post">
                                         @csrf
                                         <input type="hidden" value="NGO Registration" name="reg_type" />
@@ -287,6 +311,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                         <button type="submit"  id="bb3" class="btn btn-registration" disabled>{{ trans('reg_sub.submit')}}</button>
                                     </div>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

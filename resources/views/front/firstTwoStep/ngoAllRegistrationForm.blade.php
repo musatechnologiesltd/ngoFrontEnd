@@ -13,7 +13,14 @@
 <?php
 use App\Http\Controllers\NGO\CommonController;
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
+}else{
+$get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->value('status');
+}
 $mainNgoType = CommonController::changeView();
 
 ?>
@@ -174,7 +181,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                     </a>
                                 </li>
 
-                               
+
 
 
                                 <li class="nav-item">

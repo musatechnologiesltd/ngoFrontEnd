@@ -85,6 +85,13 @@ class NgodocumentController extends Controller
 
         $newDataAll = new RenewalFile();
         $newDataAll->fd_one_form_id = $fdOneFormId;
+
+        if ($request->hasfile('fd_eight_form_data')) {
+            $filePath="RenewalFile";
+           $file = $request->file('fd_eight_form_data');
+    $newDataAll->fd_eight_form_data =CommonController::pdfUpload($request,$file,$filePath);
+        }
+
         $newDataAll->constitution_of_the_organization_has_changed = $request->constitution_of_the_organization_has_changed;
         if ($request->hasfile('constitution_of_the_organization_if_unchanged')) {
             $filePath="RenewalFile";
@@ -337,6 +344,8 @@ $newDataAll->save();
             $get_file_data = RenewalFile::where('id',$id)->value('committee_members_list');
         }elseif($title == 'registration_renewal_fee'){
             $get_file_data = RenewalFile::where('id',$id)->value('registration_renewal_fee');
+        }elseif($title == 'fd_eight_form_data'){
+            $get_file_data = RenewalFile::where('id',$id)->value('fd_eight_form_data');
         }
 
         $file_path = url('public/'.$get_file_data);
@@ -431,6 +440,8 @@ return Response::make(file_get_contents($file), 200, [
             $newDataAll->committee_members_list = null;
         }elseif($title == 'registration_renewal_fee'){
             $newDataAll->registration_renewal_fee = null;
+        }elseif($title == 'fd_eight_form_data'){
+            $newDataAll->fd_eight_form_data = null;
         }
         $newDataAll->save();
 
@@ -482,6 +493,14 @@ return Response::make(file_get_contents($file), 200, [
 
 
             $newDataAll =RenewalFile::find($id);
+
+            if ($request->hasfile('fd_eight_form_data')) {
+                $filePath="RenewalFile";
+               $file = $request->file('fd_eight_form_data');
+      $newDataAll->fd_eight_form_data =CommonController::pdfUpload($request,$file,$filePath);
+
+           }
+
 
             if ($request->hasfile('constitution_of_the_organization_if_unchanged')) {
                 $filePath="RenewalFile";

@@ -17,8 +17,18 @@ Renew Submit | {{ trans('header.ngo_ab')}}
 
 <?php
 
+use App\Http\Controllers\NGO\CommonController;
 $getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
+}else{
+
+    $get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$getFormOneId)->value('status');
+
+}
 
 
 ?>
@@ -169,7 +179,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 <!--new-->
 
-                                  
+
 
                                         @if($foreignNgoType == 'Old')
                                         <tr>

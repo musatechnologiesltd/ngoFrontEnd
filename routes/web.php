@@ -21,6 +21,7 @@ use App\Http\Controllers\NGO\Fd7FormController;
 use App\Http\Controllers\NGO\Fc1FormController;
 use App\Http\Controllers\NGO\Fc2FormController;
 use App\Http\Controllers\NGO\Fd3FormController;
+use App\Http\Controllers\NGO\OLDNGO\FD8Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -200,6 +201,23 @@ Route::controller(OtherformController::class)->group(function () {
 
 
 Route::group(['middleware' => ['auth']], function() {
+
+
+
+    Route::controller(FD8Controller::class)->group(function () {
+
+
+        Route::get('updateDataStepOneFd8/{id}', 'updateDataStepOneFd8')->name('updateDataStepOneFd8');
+        Route::get('updateDataStepTwoFd8/{id}', 'updateDataStepTwoFd8')->name('updateDataStepTwoFd8');
+        Route::get('updateDataStepThreeFd8/{id}', 'updateDataStepThreeFd8')->name('updateDataStepThreeFd8');
+
+
+
+
+        Route::get('addDataStepOneFd8/{id}', 'addDataStepOneFd8')->name('addDataStepOneFd8');
+        Route::get('addDataStepTwoFd8/{id}', 'addDataStepTwoFd8')->name('addDataStepTwoFd8');
+        Route::get('addDataStepThreeFd8/{id}', 'addDataStepThreeFd8')->name('addDataStepThreeFd8');
+    });
 
     Route::resource('fd3Form',Fd3FormController::class);
 

@@ -50,7 +50,7 @@
 
                 <div class="main active">
                     <div class="text">
-                        <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
+                       <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
                     <div class="fd01_tablist">

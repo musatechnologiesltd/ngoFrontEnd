@@ -47,78 +47,15 @@ $allformOneData = DB::table('fd_one_forms')
                      <table class="table table-bordered">
                          <tr>
                              @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                             <td>পিডিএফ ডাউনলোড</td>
-                             {{-- <td>পিডিএফ আপলোড</td> --}}
+
                              <td>তথ্য সংশোধন করুন</td>
                              @else
-                             <td>PDF Download</td>
-                             {{-- <td>PDF Upload</td> --}}
+
                              <td>Update Information</td>
                              @endif
                          </tr>
                          <tr>
-                             <td>
-                                {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </a> --}}
-
-                 {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button> --}}
-                 <?php
-                 $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-
-
-
-                                                      ?>
-                 @if($ngoTypeInfo == 'দেশিও')
-                 @if($localNgoTypem == 'Old')
-                 <button class="btn btn-sm btn-success" id="downloadButtonNew">
-                    {{ trans('form 8_bn.download_pdf')}}
-                </button>
-                 @else
-                 <button class="btn btn-sm btn-success" id="downloadButton">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button>
-                 @endif
-
-                 @else
-
-                 <button class="btn btn-sm btn-success" id="downloadButtonNew">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button>
-                 @endif
-
-                 <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                       <div class="modal-content">
-                         <div class="modal-header">
-
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                             <h5>{{ trans('mview.ttOne')}}</h5>
-                                 <div class=" mt-3 mb-3">
-                                     <label for="" class="form-label">{{ trans('mview.ttTwo')}}:</label>
-                                     <input type="text" data-parsley-required  name="{{ trans('mview.ttTwo')}}" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-
-
-
-<input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
-
-                                     <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}:</label>
-                                     <input type="text" data-parsley-required  name="{{ trans('mview.ttThree')}}" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="{{ trans('mview.ttThree')}}">
-                                     <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
-                                 </div>
-
-
-
-                         </div>
-
-                       </div>
-                     </div>
-                   </div>
-                             </td>
+                            
 
                              <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
