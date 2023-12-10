@@ -439,11 +439,11 @@
 
                                     <div class="card mb-3">
                                         <div class="card-header">
-                                            দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিফ
+                                            দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিএফ /এফডি -৭ ফরম
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিফ আপলোড করুন</label>
+                                                <label for="" class="form-label">দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিএফ /এফডি -৭ ফরম আপলোড করুন</label>
                                                 <input type="file" accept=".pdf" required name="relief_assistance_project_proposal_pdf" class="form-control" id=""
                                                        placeholder="">
                                             </div>

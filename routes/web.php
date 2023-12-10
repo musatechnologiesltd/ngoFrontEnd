@@ -223,6 +223,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(Fd3FormController::class)->group(function () {
         Route::get('fd3PdfDownload/{id}', 'fd3PdfDownload')->name('fd3PdfDownload');
+
+        Route::get('verifiedFdThreeForm/{id}', 'verifiedFdThreeForm')->name('verifiedFdThreeForm');
+
     });
 
 
@@ -232,6 +235,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(Fc1FormController::class)->group(function () {
         Route::get('fc1PdfDownload/{id}', 'fc1PdfDownload')->name('fc1PdfDownload');
+
+        Route::get('verifiedFcOneForm/{id}', 'verifiedFcOneForm')->name('verifiedFcOneForm');
     });
 
 
@@ -239,6 +244,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(Fc2FormController::class)->group(function () {
         Route::get('fc2PdfDownload/{id}', 'fc2PdfDownload')->name('fc2PdfDownload');
+
+        Route::get('verifiedFcTwoForm/{id}', 'verifiedFcTwoForm')->name('verifiedFcTwoForm');
     });
 
     Route::controller(Fd2FormController::class)->group(function () {

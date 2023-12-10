@@ -336,7 +336,7 @@
                         </table>
                         <table class="table table-bordered">
                             <tr>
-                                <td>প্রকল্প প্রস্তাব ফরম পিডিফ</td>
+                                <td>প্রকল্প প্রস্তাব ফরম পিডিএফ /এফডি -৬ ফরম </td>
                                 <td>: <a href="{{ route('ProjectProposalFormPdfDownload',$fd6FormList->id) }}" target="_blank" class="btn btn-success">View</a></td>
                             </tr>
                         </table>

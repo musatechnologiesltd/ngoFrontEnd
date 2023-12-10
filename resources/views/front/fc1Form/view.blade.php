@@ -381,7 +381,19 @@
 
                         </table>
 
+                        <div class="form9_upper_box">
+                            <h3> এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</h3>
+                        </div>
 
+                        <table class="table table-bordered">
+
+
+                            <tr>
+                                <td>এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</td>
+                                <td>:<a href="{{ route('verifiedFcOneForm',$fc1FormList->id) }}" target="_blank" class="btn btn-success">View</a></td>
+                            </tr>
+
+                        </table>
 
 
                     </div>

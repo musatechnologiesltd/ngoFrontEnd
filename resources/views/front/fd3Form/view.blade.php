@@ -382,7 +382,19 @@
 
                         </table>
 
+                        <div class="form9_upper_box">
+                            <h3>পূর্বপর্তি বছরের অর্থগ্রহনের বিবরণী ফরম / এফডি - ৩ ফরম</h3>
+                        </div>
 
+                        <table class="table table-bordered">
+
+
+                            <tr>
+                                <td>পূর্বপর্তি বছরের অর্থগ্রহনের বিবরণী ফরম / এফডি - ৩ ফরম</td>
+                                <td>:<a href="{{ route('verifiedFdThreeForm',$fd3FormList->id) }}" target="_blank" class="btn btn-success">View</a></td>
+                            </tr>
+
+                        </table>
 
                     </div>
                 </div>

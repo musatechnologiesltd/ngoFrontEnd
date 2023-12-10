@@ -85,6 +85,9 @@ return view('front.nVisa.create',compact('fd9Id','ngo_list_all','countryList','g
     }
 
     public function create(){
+
+
+
         $getCityzenshipData = Country::whereNotNull('country_people_english')
                                                 ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 
@@ -97,10 +100,11 @@ return view('front.nVisa.create',compact('fd9Id','ngo_list_all','countryList','g
 $mainNgoType = CommonController::changeView();
 
 if($mainNgoType== 'দেশিও'){
-
+    //dd(11);
 
         return view('front.nVisa.create',compact('ngo_list_all','countryList','getCityzenshipData'));
 }else{
+    //dd(112);
     return view('front.nVisa.foreign.create',compact('ngo_list_all','countryList','getCityzenshipData'));
 }
     }

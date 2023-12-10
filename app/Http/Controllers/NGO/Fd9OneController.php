@@ -116,8 +116,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
 
             'foreigner_name_for_subject' => 'required|string',
@@ -161,6 +161,14 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+
+        if ($request->hasfile('verified_fd_nine_one_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_one_form');
+            $fd9FormInfo->verified_fd_nine_one_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('digital_signature')) {
@@ -222,8 +230,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
         ]);
 
 
@@ -252,6 +260,13 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+        if ($request->hasfile('verified_fd_nine_one_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_one_form');
+            $fd9FormInfo->verified_fd_nine_one_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('digital_signature')) {

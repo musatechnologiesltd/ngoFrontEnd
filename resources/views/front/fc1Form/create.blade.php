@@ -447,13 +447,32 @@
                                                     <input type="text" name="bank_account_name" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
+
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">ব্যাংক হিসাব নম্বর</label>
-                                                    <input type="text" name="bank_account_number" class="form-control" id=""
+                                                    <input type="text"  name="bank_account_number" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
+
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="mb-3 col-lg-12">
+
+                                        <div class="card-header">
+                                            এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম
+                                        </div>
+
+                                        <div class="card-body">
+
+                                            <div class="mb-3 col-lg-12">
+                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</label>
+                                                <input type="file" name="verified_fc_one_form" class="form-control" id=""
+                                                       placeholder="">
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                     <div class="d-grid d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-registration"

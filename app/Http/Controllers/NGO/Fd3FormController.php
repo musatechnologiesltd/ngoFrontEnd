@@ -246,6 +246,14 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
          $fd3FormInfo->bank_account_name =$request->bank_account_name;
          $fd3FormInfo->bank_account_number =$request->bank_account_number;
          $fd3FormInfo->status ='Ongoing';
+         $filePath="FdThreeForm";
+         if ($request->hasfile('verified_fd_three_form')) {
+
+            $file = $request->file('verified_fd_three_form');
+
+            $fd3FormInfo->verified_fd_three_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
 
          $fd3FormInfo->save();
 
@@ -318,8 +326,14 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
         $fd3FormInfo->bank_address =$request->bank_address;
         $fd3FormInfo->bank_account_name =$request->bank_account_name;
         $fd3FormInfo->bank_account_number =$request->bank_account_number;
+        $filePath="FdThreeForm";
+        if ($request->hasfile('verified_fd_three_form')) {
 
+            $file = $request->file('verified_fd_three_form');
 
+            $fd3FormInfo->verified_fd_three_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
         $fd3FormInfo->save();
 
         $fd3FormInfoId = $fd3FormInfo->id;
@@ -379,4 +393,25 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
     }
     return back()->with('error','Deleted successfully!');
 }
+
+
+public function verifiedFdThreeForm($id){
+    $get_file_data = Fd3Form::where('id',$id)->value('verified_fd_three_form');
+
+    $file_path = url('public/'.$get_file_data);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+    $file= public_path('/'). $get_file_data;
+
+    $headers = array(
+              'Content-Type: application/pdf',
+            );
+
+    // return Response::download($file,$filename.'.pdf', $headers);
+
+    return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+    ]);
+
+   }
 }

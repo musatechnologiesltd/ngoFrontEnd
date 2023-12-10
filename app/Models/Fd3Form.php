@@ -14,6 +14,7 @@ class Fd3Form extends Model
     protected $fillable = [
         'fd_one_form_id',
         'ngo_name',
+        'verified_fd_three_form',
         'ngo_address',
         'ngo_registration_number',
         'ngo_registration_date',

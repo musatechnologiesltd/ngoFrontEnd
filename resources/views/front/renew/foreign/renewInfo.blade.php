@@ -126,32 +126,7 @@ color:white !important;
             </div>
             <div class="col-lg-9 col-md-6 col-sm-12">
 
-                <!--download pdf -->
-                <div class="card mt-3 mb-3">
-                    <div class="card-body">
-
-                        <table class="table table-bordered">
-                            <tr>
-                                <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button>
-
-                                    <input type="hidden" data-parsley-required  name="id"  value="{{ $all_partiw1->id }}" class="form-control" id="mainId">
-                                </td>
-
-
-                         </tr>
-
-                        </table>
-
-                    </div>
-                </div>
-<!--end download pdf -->
+            
 
 
                 <div class="card">

@@ -129,106 +129,13 @@ color:white !important;
 
                         <table class="table table-bordered">
                             <tr>
-                                <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
+
+
                                 <td>Update Information (তথ্য সংশোধন করুন)</td>
                             </tr>
                             <tr>
-                                <td>
 
-                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button>
-
-
-                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button> --}}
-
-                                    <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
-                                                    <div class=" mt-3 mb-3">
-                                                        <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
-                                                        <input type="text" data-parsley-required  name="নাম" value="{{ $fdNineData->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
-                                                        <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
-                                                        <input type="text" data-parsley-required  name="পদবি" value="{{ $fdNineData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
-                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $fdNineData->id }}" class="form-control" id="mainId">
-                                                    </div>
-
-
-
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                      </div>
-
-                                </td>
-                                {{-- <td>
-
-                                    @if(empty($fdNineData->verified_fd_nine_form))
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        {{ trans('form 8_bn.upload_pdf')}}
-                                    </button>
-                                    @else
-
-                                    <?php
-
-                                    $file_path = url($fdNineData->verified_fd_nine_form);
-                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                                    ?>
-                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        @if(session()->get('locale') == 'en')
-                                        পুনরায় আপলোড করুন
-                                        @else
-                                        Re-upload
-                                        @endif
-                                    </button><br>
-                                    <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
-                                    @endif
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="{{ route('mainFd9PdfUpload') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-                            @csrf
-
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-                                <input type="file" data-parsley-required accept=".pdf" name="verified_fd_nine_form"  class="form-control" id="">
-                                <input type="hidden" data-parsley-required  name="id"  value="{{ $fdNineData->id }}" class="form-control" id="">
-                            </div>
-
-                            <button class="btn btn-sm btn-success" type="submit">
-                                {{ trans('form 8_bn.upload_pdf')}}
-                            </button>
-                        </form>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-                                </td> --}}
+                              
                             <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdNineForm.edit',base64_encode($fdNineData->id)) }}';">
                                     আপডেট করুন
@@ -569,29 +476,7 @@ color:white !important;
                                             </tbody>
                                         </table>
 
-                                        <h5 class="text-center mt-3 mb-3">ঘোষণা</h5>
-                                        <p class="mt-3">আমি এই মর্মে ঘোষণা করছি যে, আমি সংশ্লিষ্ট সকল আইন-কানুন পড়েছি এবং উল্লেখিত
-                                            সকল তথ্য সত্য ও সঠিক। </p>
 
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-12"></div>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <table class="table table-borderless">
-                                                    <tr>
-                                                        <td>প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>নামঃ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>পদবীঃ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>তারিখঃ</td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

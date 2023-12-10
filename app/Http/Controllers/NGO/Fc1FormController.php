@@ -227,6 +227,21 @@ class Fc1FormController extends Controller
 
         }
 
+
+        if ($request->hasfile('verified_fc_one_form')) {
+
+            $file = $request->file('verified_fc_one_form');
+
+            $fc1FormInfo->verified_fc_one_form =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+
+
+
+
+
+
         $fc1FormInfo->save();
 
         $fc1FormInfoId = $fc1FormInfo->id;
@@ -300,6 +315,14 @@ class Fc1FormController extends Controller
             $file = $request->file('organization_name_of_the_job_amount_of_money_and_duration_pdf');
 
             $fc1FormInfo->organization_name_of_the_job_amount_of_money_and_duration_pdf =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+        if ($request->hasfile('verified_fc_one_form')) {
+
+            $file = $request->file('verified_fc_one_form');
+
+            $fc1FormInfo->verified_fc_one_form =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
@@ -388,6 +411,28 @@ class Fc1FormController extends Controller
         'content-type'=>'application/pdf',
     ]);
 
+
+   }
+
+
+   public function verifiedFcOneForm($id){
+
+    $get_file_data = Fc1Form::where('id',$id)->value('verified_fc_one_form');
+
+    $file_path = url('public/'.$get_file_data);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+    $file= public_path('/'). $get_file_data;
+
+    $headers = array(
+              'Content-Type: application/pdf',
+            );
+
+    // return Response::download($file,$filename.'.pdf', $headers);
+
+    return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+    ]);
 
    }
 

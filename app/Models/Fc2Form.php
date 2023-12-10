@@ -13,6 +13,7 @@ class Fc2Form extends Model
 
     protected $fillable = [
         'fd_one_form_id',
+        'verified_fc_two_form',
         'person_full_name',
         'person_father_name',
         'person_mother_name',

@@ -192,33 +192,12 @@
                                         </div>
                                     </div>
 
-
-                                     <!--new code for ngo-->
- <div class="mb-3">
-    <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-         <input type="text" data-parsley-required  name="chief_name"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-    </div>
-
-    <div class="mb-3">
-        <label for="" class="form-label">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-        <input type="text" data-parsley-required  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-    </div>
-
-
-
-    <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
-    </div>
-
-
-    <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
-    </div>
-    <!-- end new code -->
+                                    <div class="mb-3 col-lg-12">
+                                        <label for="" class="form-label">প্রধান নির্বাহীর সিল ও স্বাক্ষরকৃত এফডি-৯(১) ফরম <span
+                                            class="text-danger">*</span></label>
+                                        <input type="file" accept=".pdf" class="form-control" id=""
+                                               placeholder=""  name="verified_fd_nine_one_form" required>
+                                    </div>
 
                                     <div class="d-grid d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-registration"

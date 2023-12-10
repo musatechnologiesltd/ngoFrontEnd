@@ -80,6 +80,8 @@ return new class extends Migration
             $table->string('bank_account_name')->nullable();
             $table->string('bank_account_number')->nullable();
 
+            $table->string('verified_fc_two_form')->nullable();
+
 
             $table->string('status')->nullable();
             $table->text('comment')->nullable();

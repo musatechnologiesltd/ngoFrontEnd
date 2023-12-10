@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('ngo_registration_date')->nullable();
             $table->string('ngo_prokolpo_name')->nullable();
 
+            $table->string('verified_fd_three_form')->nullable();
+
+
             $table->string('ngo_prokolpo_duration')->nullable();
             $table->string('project_approval_exemption_letter_memo_number')->nullable();
             $table->string('project_approval_exemption_letter_date')->nullable();

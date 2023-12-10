@@ -13,6 +13,7 @@ class Fc1Form extends Model
 
     protected $fillable = [
         'fd_one_form_id',
+        'verified_fc_one_form',
         'ngo_name',
         'ngo_address',
         'ngo_telephone_number',

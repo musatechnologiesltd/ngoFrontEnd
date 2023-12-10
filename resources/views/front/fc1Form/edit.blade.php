@@ -457,6 +457,36 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="mb-3 col-lg-12">
+
+                                        <div class="card-header">
+                                            এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম
+                                        </div>
+
+                                        <div class="card-body">
+
+                                            <div class="mb-3 col-lg-12">
+                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</label>
+                                                <input type="file" name="verified_fc_one_form" class="form-control" id=""
+                                                       placeholder="">
+
+                                                       <?php
+
+                                                       $file_path = url($fc1FormList->verified_fc_one_form);
+                                                       $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                                       $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                                                       ?>
+                                                        <b>{{ $filename.'.'.$extension }}</b>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
                                     <div class="d-grid d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-registration"
                                                 >পরবর্তী পৃষ্ঠা

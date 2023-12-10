@@ -544,42 +544,40 @@
                @endif
     </div>
 
+
+    <div class="mb-3 col-lg-12">
+        <label for="" class="form-label">প্রধান নির্বাহীর সিল ও স্বাক্ষরকৃত এফডি-৯ ফরম <span
+            class="text-danger">*</span></label>
+        <input type="file" accept=".pdf" class="form-control" id=""
+               placeholder=""  name="verified_fd_nine_form" required>
+
+               @if(!$fdNineData->verified_fd_nine_form)
+
+               @else
+               <?php
+
+               $file_path = url($fdNineData->verified_fd_nine_form);
+               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+               ?>
+               {{ $filename.'.'.$extension }}
+               @endif
+
+
+    </div>
+
+
+
 </div>
  <!--end empty data -->
 
 
-                                                                          <!--new code for ngo-->
-                                                                          <div class="mb-3">
-                                                                            <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-                                                                                 <input type="text" data-parsley-required  name="chief_name" value="{{ $fdNineData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                                                                            </div>
 
-                                                                            <div class="mb-3">
-                                                                                <label for="" class="form-label">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-                                                                                <input type="text" data-parsley-required  name="chief_desi" value="{{ $fdNineData->chief_desi }}"   class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-                                                                            </div>
-
-
-
-                                                                            <div class="mb-3">
-                                                                                <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                                                                             <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-
-                                                                                <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
-
-                                                                                <img src="{{asset('/')}}{{ $fdNineData->digital_signature }}" style="height:40px;"/>
-                                                                            </div>
-
-
-                                                                            <div class="mb-3">
-                                                                                <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                                                                             <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                                                                                <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
-
-
-                                                                                <img src="{{asset('/')}}{{ $fdNineData->digital_seal }}" style="height:40px;"/>
-                                                                            </div>
-                                                                            <!-- end new code -->
 
 
 
