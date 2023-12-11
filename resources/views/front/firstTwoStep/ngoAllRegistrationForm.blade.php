@@ -93,6 +93,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @include('front.form.foreign.ngo_registration_form_nid_image_info')
 
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
+
+
 @include('front.form.foreign.ngo_registration_form_document_info')
 @endif
 
