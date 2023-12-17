@@ -47,30 +47,30 @@ class NgodocumentController extends Controller
 
         //dd($request->all());
 
-        $request->validate([
-            'nid_and_image_of_executive_committee_members'=>'nullable|file|mimes:pdf|max:2000',
-            'approval_of_executive_committee'=>'nullable|file|mimes:pdf|max:500',
-            'committee_members_list'=>'nullable|file|mimes:pdf|max:500',
-            'registration_renewal_fee'=>'nullable|file|mimes:pdf|max:500',
+//         $request->validate([
+//             'nid_and_image_of_executive_committee_members'=>'nullable|file|mimes:pdf|max:2000',
+//             'approval_of_executive_committee'=>'nullable|file|mimes:pdf|max:500',
+//             'committee_members_list'=>'nullable|file|mimes:pdf|max:500',
+//             'registration_renewal_fee'=>'nullable|file|mimes:pdf|max:500',
 
-'constitution_of_the_organization_has_changed'=>'nullable',
-'right_to_information_act' => 'nullable|file|mimes:pdf|max:500',
-'attested_copy_of_latest_registration_or_renewal_certificate' => 'nullable|file|mimes:pdf|max:500',
+// 'constitution_of_the_organization_has_changed'=>'nullable',
+// 'right_to_information_act' => 'nullable|file|mimes:pdf|max:500',
+// 'attested_copy_of_latest_registration_or_renewal_certificate' => 'nullable|file|mimes:pdf|max:500',
 
-'constitution_of_the_organization_if_unchanged' => 'nullable|file|mimes:pdf|max:500',
+// 'constitution_of_the_organization_if_unchanged' => 'nullable|file|mimes:pdf|max:500',
 
-'the_constitution_of_the_company_along_with_fee_if_changed' => 'nullable|file|mimes:pdf|max:500',
-'constitution_approved_by_primary_registering_authority' => 'nullable|file|mimes:pdf|max:500',
-'payment_of_change_fee' => 'nullable|file|mimes:pdf|max:500',
-'section_sub_section_of_the_constitution' => 'nullable|file|mimes:pdf|max:1000',
-'previous_constitution_and_current_constitution_compare' => 'nullable|file|mimes:pdf|max:1000',
+// 'the_constitution_of_the_company_along_with_fee_if_changed' => 'nullable|file|mimes:pdf|max:500',
+// 'constitution_approved_by_primary_registering_authority' => 'nullable|file|mimes:pdf|max:500',
+// 'payment_of_change_fee' => 'nullable|file|mimes:pdf|max:500',
+// 'section_sub_section_of_the_constitution' => 'nullable|file|mimes:pdf|max:1000',
+// 'previous_constitution_and_current_constitution_compare' => 'nullable|file|mimes:pdf|max:1000',
 
-'list_of_board_of_directors_or_board_of_trustees' => 'nullable|file|mimes:pdf|max:500',
-'organization_by_laws_or_constitution' => 'nullable|file|mimes:pdf|max:500',
-'work_procedure_of_organization' => 'nullable|file|mimes:pdf|max:1000',
-'last_ten_years_audit_report_and_annual_report_of_the_company' => 'nullable|file|mimes:pdf|max:5000',
-'registration_certificate' => 'nullable|file|mimes:pdf|max:500',
-        ]);
+// 'list_of_board_of_directors_or_board_of_trustees' => 'nullable|file|mimes:pdf|max:500',
+// 'organization_by_laws_or_constitution' => 'nullable|file|mimes:pdf|max:500',
+// 'work_procedure_of_organization' => 'nullable|file|mimes:pdf|max:1000',
+// 'last_ten_years_audit_report_and_annual_report_of_the_company' => 'nullable|file|mimes:pdf|max:5000',
+// 'registration_certificate' => 'nullable|file|mimes:pdf|max:500',
+//         ]);
 
 
 
