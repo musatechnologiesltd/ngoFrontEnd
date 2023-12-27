@@ -19,9 +19,9 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                     </div>
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
-                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
+                        <li>{{ trans('fd_one_step_one.fd8')}}</li>
                         @else
-                        <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
                         {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                        {{--  <li>{{ trans('fd_one_step_one.member_title')}}</li>
@@ -296,18 +296,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                এফডি-১ ফরম <span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
 
 
 
@@ -2158,18 +2147,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                এফডি-১ ফরম <span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
 
 
 
@@ -2326,21 +2304,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 @if($key+1 == 1)
 
                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                                <h6>এফডি-১ ফরম</h6>
-                                                @else
-
-                                                <h6>Form FD-1</h6>
-                                                @endif
-                                                @elseif($key+1 == 2)
-
-                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                 <h6>ফরম নং - ৮</h6>
                                                 @else
 
                                                 <h6>Form No - 8</h6>
                                                 @endif
 
-                                                @elseif($key+1 == 3)
+                                                @elseif($key+1 == 2)
 
                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                 <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
@@ -2349,7 +2319,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                 @endif
 
-                                            @elseif($key+1 == 4)
+                                            @elseif($key+1 == 3)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
@@ -2358,7 +2328,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <h6>Attested copy of constitution</h6>
                                             @endif
 
-                                            @elseif($key+1 == 5)
+                                            @elseif($key+1 == 4)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
@@ -2367,7 +2337,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <h6>Activity report of the organization</h6>
                                             @endif
 
-                                            @elseif($key+1 == 6)
+                                            @elseif($key+1 == 5)
 
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -2379,7 +2349,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                            @elseif($key+1 == 7)
+                                            @elseif($key+1 == 6)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
@@ -2387,7 +2357,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                             @endif
-                                            @elseif($key+1 == 8)
+                                            @elseif($key+1 == 7)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
@@ -2395,7 +2365,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                                             @endif
-                                            @elseif($key+1 == 9)
+                                            @elseif($key+1 == 8)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
@@ -2403,7 +2373,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <h6>Letter Of Intent </h6>
                                             @endif
-                                            @elseif($key+1 == 10)
+                                            @elseif($key+1 == 9)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
@@ -2432,16 +2402,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h5 class="modal-title" id="exampleModalLabel">
 
 
-
-                                                                                @if($key+1 == 1)
-
-                                                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                                                                <h6>এফডি-১ ফরম</h6>
-                                                                                @else
-
-                                                                                <h6>Form FD-1</h6>
-                                                                                @endif
-                                                                                @elseif($key+1 == 2)
+                                                                              @if($key+1 == 1)
 
                                                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                                                 <h6>ফরম নং - ৮</h6>
@@ -2450,7 +2411,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>Form No - 8</h6>
                                                                                 @endif
 
-                                                                                @elseif($key+1 == 3)
+                                                                                @elseif($key+1 == 2)
 
                                                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                                                 <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
@@ -2459,7 +2420,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                                                 @endif
 
-                                                                            @elseif($key+1 == 4)
+                                                                            @elseif($key+1 == 3)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
@@ -2468,7 +2429,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Attested copy of constitution</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 5)
+                                                                            @elseif($key+1 == 4)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
@@ -2477,7 +2438,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Activity report of the organization</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 6)
+                                                                            @elseif($key+1 == 5)
 
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -2489,7 +2450,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                                                            @elseif($key+1 == 7)
+                                                                            @elseif($key+1 == 6)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
@@ -2497,7 +2458,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 8)
+                                                                            @elseif($key+1 == 7)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
@@ -2505,7 +2466,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 9)
+                                                                            @elseif($key+1 == 8)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
@@ -2513,7 +2474,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Intent </h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 10)
+                                                                            @elseif($key+1 == 9)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>

@@ -385,6 +385,8 @@ if(empty($formCompleteStatus)){
             'email' => 'required|string',
             'profession' => 'required|string',
             'submit_value' => 'required|string',
+            'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
         ]);
 
@@ -890,7 +892,7 @@ if($newOldNgo == 'Old'){
             $newStatusData->user_id = Auth::user()->id;
             $newStatusData->fd_one_form_step_one_status = 1;
             $newStatusData->fd_one_form_step_two_status = 1;
-            $newStatusData->fd_one_form_step_three_status = 1;
+            $newStatusData->fd_one_form_step_three_status = 0;
             $newStatusData->fd_one_form_step_four_status = 0;
             $newStatusData->form_eight_status = 0;
             $newStatusData->ngo_member_status = 0;
@@ -901,8 +903,7 @@ if($newOldNgo == 'Old'){
 
             FormCompleteStatus::where('id', $checkCompleteStatusData->id)
             ->update([
-                'fd_one_form_step_two_status' => 1,
-                'fd_one_form_step_three_status' => 1
+                'fd_one_form_step_two_status' => 1
              ]);
 
 
@@ -968,7 +969,7 @@ if($newOldNgo == 'Old'){
 
 
     public function allStaffDetailsInformationUpdate(Request $request){
-
+//dd($request->all());
         // $request->validate([
         //     'staff_name.*' => 'required|string',
         //     'staff_position.*' => 'required|string',
@@ -1174,17 +1175,46 @@ if($newOldNgo == 'Old'){
 
     if($request->submit_value == 'exit_from_step_three_edit'){
 
+                   //new code for fd eight
+$newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
+
+}else{
+
         return redirect('/ngoAllRegistrationForm');
+}
+
+    }elseif($request->submit_value == 'next_step_from_three'){
+
+        Session::put('fdOneFormEditFour','next_step_from_three');
 
 
-    }elseif($request->submit_value == 'go_to_step_four'){
+        $newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
 
-        Session::put('fdOneFormEditFour','go_to_step_four');
+    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
+
+}else{
 
         return redirect('/othersInformation');
+}
     }else{
 
+        $newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo == 'Old'){
+
+    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
+
+}else{
+
            return redirect('/ngoAllRegistrationForm');
+
+}
         }
 
     }

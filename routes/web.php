@@ -210,6 +210,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('updateDataStepOneFd8/{id}', 'updateDataStepOneFd8')->name('updateDataStepOneFd8');
         Route::get('updateDataStepTwoFd8/{id}', 'updateDataStepTwoFd8')->name('updateDataStepTwoFd8');
         Route::get('updateDataStepThreeFd8/{id}', 'updateDataStepThreeFd8')->name('updateDataStepThreeFd8');
+        Route::get('updateDataStepFourFd8/{id}', 'updateDataStepFourFd8')->name('updateDataStepFourFd8');
 
 
 
@@ -217,6 +218,7 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('addDataStepOneFd8/{id}', 'addDataStepOneFd8')->name('addDataStepOneFd8');
         Route::get('addDataStepTwoFd8/{id}', 'addDataStepTwoFd8')->name('addDataStepTwoFd8');
         Route::get('addDataStepThreeFd8/{id}', 'addDataStepThreeFd8')->name('addDataStepThreeFd8');
+        Route::get('addDataStepFourFd8/{id}', 'addDataStepFourFd8')->name('addDataStepFourFd8');
     });
 
     Route::resource('fd3Form',Fd3FormController::class);

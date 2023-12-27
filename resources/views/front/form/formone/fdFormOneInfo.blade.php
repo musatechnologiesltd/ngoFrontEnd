@@ -29,7 +29,7 @@
                             <p>Details of the NGO</p>
                             @endif
                             <table class="table table-bordered">
-                               
+
                                 <tr>
 
                                     <td>
