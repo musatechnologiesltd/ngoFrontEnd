@@ -77,6 +77,12 @@ class FD8Controller extends Controller
        $ngoRenew->email_new = $fdOneData->org_email;
        $ngoRenew->phone_new = $fdOneData->org_phone;
        $ngoRenew->profession = $fdOneData->profession;
+
+       $ngoRenew->chief_name = $fdOneData->chief_name;
+       $ngoRenew->chief_desi = $fdOneData->chief_desi;
+       $ngoRenew->digital_signature = $fdOneData->digital_signature;
+       $ngoRenew->digital_seal = $fdOneData->digital_seal;
+
        $ngoRenew->save();
 
 
@@ -235,6 +241,10 @@ class FD8Controller extends Controller
        $ngoRenew->email_new = $fdOneData->org_email;
        $ngoRenew->phone_new = $fdOneData->org_phone;
        $ngoRenew->profession = $fdOneData->profession;
+       $ngoRenew->chief_name = $fdOneData->chief_name;
+       $ngoRenew->chief_desi = $fdOneData->chief_desi;
+       $ngoRenew->digital_signature = $fdOneData->digital_signature;
+       $ngoRenew->digital_seal = $fdOneData->digital_seal;
        $ngoRenew->save();
 
 
