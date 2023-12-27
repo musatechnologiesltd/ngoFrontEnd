@@ -216,12 +216,7 @@ if($foreignNgoType == 'Old'){
                                                 <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
                                             </div> --}}
 
-                                            <div class="mb-3">
-                                                <label class="form-label" for="">
-                                                    FD-8 Form with seal and signature of Chief Executive Officer <span class="text-danger">*</span>
-                                                <br><span class="text-success">PDF Should not exceed 2 MB in size</span></label>
-                                                <input class="form-control" name="fd_eight_form_data" data-parsley-required accept=".pdf" type="file" id="">
-                                            </div>
+                                          
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
@@ -1702,12 +1697,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
                                             </div> --}}
 
-                                            <div class="mb-3">
-                                                <label class="form-label" for="">
-                                                    FD-8 Form with seal and signature of Chief Executive Officer <span class="text-danger">*</span>
-                                                <br><span class="text-success">PDF Should not exceed 2 MB in size</span></label>
-                                                <input class="form-control" name="fd_eight_form_data" data-parsley-required accept=".pdf" type="file" id="">
-                                            </div>
+
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">

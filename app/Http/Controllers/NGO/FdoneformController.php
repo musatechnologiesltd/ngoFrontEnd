@@ -1175,46 +1175,28 @@ if($newOldNgo == 'Old'){
 
     if($request->submit_value == 'exit_from_step_three_edit'){
 
-                   //new code for fd eight
-$newOldNgo = CommonController::newOldNgo();
-//dd($newOldNgo);
-if($newOldNgo == 'Old'){
 
-    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
-
-}else{
 
         return redirect('/ngoAllRegistrationForm');
-}
+
 
     }elseif($request->submit_value == 'next_step_from_three'){
 
         Session::put('fdOneFormEditFour','next_step_from_three');
 
 
-        $newOldNgo = CommonController::newOldNgo();
-//dd($newOldNgo);
-if($newOldNgo == 'Old'){
 
-    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
 
-}else{
 
         return redirect('/othersInformation');
-}
+
     }else{
 
-        $newOldNgo = CommonController::newOldNgo();
-//dd($newOldNgo);
-if($newOldNgo == 'Old'){
 
-    return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
-
-}else{
 
            return redirect('/ngoAllRegistrationForm');
 
-}
+
         }
 
     }

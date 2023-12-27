@@ -203,12 +203,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                                        <div class="mb-3">
-                                            <label class="form-label" for="">
-                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম <span class="text-danger">*</span>
-                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
-                                            <input class="form-control" name="fd_eight_form_data" data-parsley-required accept=".pdf" type="file" id="">
-                                        </div>
+                                        
 
 
 

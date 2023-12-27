@@ -139,7 +139,7 @@ class FD8Controller extends Controller
 
         if($fdOneData->complete_status = 'go_to_step_three'){
 
-            return redirect('/othersInformation');
+            return redirect('/allStaffDetailsInformation');
 
         }else{
                return redirect('/ngoAllRegistrationForm');
