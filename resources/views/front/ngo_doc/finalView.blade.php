@@ -106,15 +106,8 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                             @endif
+
                                             @elseif($key+1 == 7)
-
-                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                            @else
-
-                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                            @endif
-                                            @elseif($key+1 == 8)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
@@ -122,7 +115,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                             <h6>Letter Of Intent </h6>
                                             @endif
-                                            @elseif($key+1 == 9)
+                                            @elseif($key+1 == 8)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
@@ -148,78 +141,84 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">    @if($key+1 == 1)
+                                                <h5 class="modal-title" id="exampleModalLabel">
 
-                                                    @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                                    <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
-                                                    @else
+                                                    @if($key+1 == 1)
 
-                                                    <h6>Certificate Of Incorporation in the Country Of Origin</h6>
-                                                    @endif
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6>ফরম নং - ৮</h6>
+                                                @else
+
+                                                <h6>Form No - 8</h6>
+                                                @endif
 
                                                 @elseif($key+1 == 2)
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
                                                 @else
 
-                                                <h6>Attested copy of constitution</h6>
+                                                <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                 @endif
 
-                                                @elseif($key+1 == 3)
+                                            @elseif($key+1 == 3)
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
-                                                @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                            @else
 
-                                                <h6>Activity report of the organization</h6>
-                                                @endif
+                                            <h6>Attested copy of constitution</h6>
+                                            @endif
 
-                                                @elseif($key+1 == 4)
+                                            @elseif($key+1 == 4)
+
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                            @else
+
+                                            <h6>Activity report of the organization</h6>
+                                            @endif
+
+                                            @elseif($key+1 == 5)
 
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
-                                                @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
+                                            @else
 
-                                                <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
-                                                @endif
+                                            <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                            @endif
 
 
 
-                                                @elseif($key+1 == 5)
+                                            @elseif($key+1 == 6)
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
-                                                @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
+                                            @else
 
-                                                <h6>Letter Of Appoinment Of The Country Representative</h6>
-                                                @endif
-                                                @elseif($key+1 == 6)
+                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                            @endif
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                                @else
+                                            @elseif($key+1 == 7)
 
-                                                <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                                @endif
-                                                @elseif($key+1 == 7)
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
+                                            @else
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
-                                                @else
+                                            <h6>Letter Of Intent </h6>
+                                            @endif
+                                            @elseif($key+1 == 8)
 
-                                                <h6>Letter Of Intent </h6>
-                                                @endif
-                                                @elseif($key+1 == 8)
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
+                                            @else
 
-                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
-                                                @else
+                                            <h6>Letter Of Intent </h6>
+                                            @endif
+                                            @endif
 
-                                                <h6>Letter Of Intent </h6>
-                                                @endif
-                                                @endif</h5>
+                                            </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">

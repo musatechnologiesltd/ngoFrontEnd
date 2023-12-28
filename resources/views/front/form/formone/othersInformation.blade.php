@@ -348,14 +348,14 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 
 
                             <div class="mb-3">
-                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> :</label>
+                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_name')}}:</label>
                                 <input type="text" value="{{ $all_get_all_data_other->name }}" name="sname" id="sname{{ $all_get_all_data_other->id }}" class="form-control"  >
                                 <input type="hidden" value="{{ $all_get_all_data_other->id }}" name="sid" id="sid{{ $all_get_all_data_other->id }}" class="form-control"  >
 
                               </div>
 
                               <div class="mb-3">
-                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> :</label>
+                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_information')}}:</label>
                                 <input type="text" value="{{ $all_get_all_data_other->information }}"  name="sinformation" id="sinformation{{ $all_get_all_data_other->id }}" placeholder=""
                                 class="form-control"/>
 
@@ -388,8 +388,8 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 <div class="mb-3">
     <table class="table table-light" id="dynamicAddRemoveAdvisor">
         <tr>
-            <th>{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> </th>
-            <th>{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> </th>
+            <th>{{ trans('fd_one_step_four.advisor_name')}}</th>
+            <th>{{ trans('fd_one_step_four.advisor_information')}}</th>
             <th></th>
         </tr>
         <tr>

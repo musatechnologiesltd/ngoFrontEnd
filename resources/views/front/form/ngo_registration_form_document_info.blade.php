@@ -203,7 +203,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                                        
+
 
 
 
@@ -2226,18 +2226,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         </div>
 
 
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ  <span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
 
                                         <div class="card mb-3">
                                             <div class="card-header">
@@ -2352,15 +2341,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                             @endif
+
                                             @elseif($key+1 == 7)
-
-                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                            @else
-
-                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                            @endif
-                                            @elseif($key+1 == 8)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
@@ -2368,7 +2350,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <h6>Letter Of Intent </h6>
                                             @endif
-                                            @elseif($key+1 == 9)
+                                            @elseif($key+1 == 8)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
@@ -2453,15 +2435,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                                             @endif
+
                                                                             @elseif($key+1 == 7)
-
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                                                            @else
-
-                                                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                                                            @endif
-                                                                            @elseif($key+1 == 8)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
@@ -2469,7 +2444,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Intent </h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 9)
+                                                                            @elseif($key+1 == 8)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
