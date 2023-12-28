@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
 use PDF;
+use Mpdf\Mpdf;
 use DateTime;
 use DateTimezone;
 use Response;
@@ -46,10 +47,10 @@ class FdoneformController extends Controller
 
 
 
-        $formEightData =FdOneForm::find($id);
-        $formEightData->chief_name = $name;
-        $formEightData->chief_desi = $designation;
-        $formEightData->save();
+        // $formEightData =FdOneForm::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
 
          return $data = url('fdFormEightInfoPdfOld');
 
@@ -77,10 +78,10 @@ class FdoneformController extends Controller
 
 
 
-        $formEightData =FdOneForm::find($id);
-        $formEightData->chief_name = $name;
-        $formEightData->chief_desi = $designation;
-        $formEightData->save();
+        // $formEightData =FdOneForm::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
 
          return $data = url('fdFormOneInfoPdf');
 
@@ -1645,25 +1646,56 @@ public function fdFormEightInfoPdfOld(){
     $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
 
-    $file_Name_Custome = 'fd_eight_form';
+    $file_Name_Custome = '(এফডি-৮ ফরম)'.Auth::user()->user_name;
 
     $payment_detail = 11;
 
 
 
 
-    $pdf=PDF::loadView('front.form.foreign.formone.fdFormEightInfoPdfOld',[
-        'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+//     $pdf=PDF::loadView('front.form.foreign.formone.fdFormEightInfoPdfOld',[
+//         'getNgoTypeForPdf'=>$getNgoTypeForPdf,
 
-        'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-        'formOneMemberList'=>$formOneMemberList,
-        'get_all_data_adviser'=>$get_all_data_adviser,
-        'get_all_data_other'=>$get_all_data_other,
-        'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-        'allformOneData'=>$allformOneData
+//         'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+//         'formOneMemberList'=>$formOneMemberList,
+//         'get_all_data_adviser'=>$get_all_data_adviser,
+//         'get_all_data_other'=>$get_all_data_other,
+//         'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+//         'allformOneData'=>$allformOneData
 
-    ],[],['format' => 'A4']);
-return $pdf->stream($file_Name_Custome.''.'.pdf');
+//     ],[],['format' => 'A4']);
+// return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+$data =view('front.form.foreign.formone.fdFormEightInfoPdfOld',[
+             'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+
+            'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+            'formOneMemberList'=>$formOneMemberList,
+            'get_all_data_adviser'=>$get_all_data_adviser,
+            'get_all_data_other'=>$get_all_data_other,
+            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+            'allformOneData'=>$allformOneData
+
+         ])->render();
+
+
+$pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+                 $mpdf = new Mpdf([
+                    //'default_font_size' => 14,
+                    'default_font' => 'nikosh'
+                ]);
+
+                //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+                $mpdf->WriteHTML($data);
+
+
+
+                $mpdf->Output($pdfFilePath, "I");
+                die();
 
 }
 
@@ -1673,13 +1705,17 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
         $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
         $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+
         $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+
+//dd($get_all_data_other);
+
         $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
         $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
         $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
 
-        $file_Name_Custome = 'fd_one_form';
+        $file_Name_Custome = '(এফডি-১ ফরম)'.Auth::user()->user_name;
 
         $payment_detail = 11;
 
@@ -1692,33 +1728,100 @@ return $pdf->stream($file_Name_Custome.''.'.pdf');
 
         if($mainNgoType== 'দেশিও'){
 
-        $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
-            'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+    //     $pdf=PDF::loadView('front.form.formone.fdFormOneInfoPdf',[
+    //         'getNgoTypeForPdf'=>$getNgoTypeForPdf,
 
-            'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-            'formOneMemberList'=>$formOneMemberList,
-            'get_all_data_adviser'=>$get_all_data_adviser,
-            'get_all_data_other'=>$get_all_data_other,
-            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-            'allformOneData'=>$allformOneData
+    //         'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+    //         'formOneMemberList'=>$formOneMemberList,
+    //         'get_all_data_adviser'=>$get_all_data_adviser,
+    //         'get_all_data_other'=>$get_all_data_other,
+    //         'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+    //         'allformOneData'=>$allformOneData
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+    $data =view('front.form.formone.fdFormOneInfoPdf',[
+        'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+
+        'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+        'formOneMemberList'=>$formOneMemberList,
+        'get_all_data_adviser'=>$get_all_data_adviser,
+        'get_all_data_other'=>$get_all_data_other,
+        'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+        'allformOneData'=>$allformOneData
+
+    ])->render();
+
+
+    $pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+                     $mpdf = new Mpdf([
+                        //'default_font_size' => 14,
+                        'default_font' => 'nikosh'
+                    ]);
+
+                    //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+                    $mpdf->WriteHTML($data);
+
+
+
+                    $mpdf->Output($pdfFilePath, "I");
+                    die();
+
+
+
+
     }else{
 
+//dd(12);
+    //     $pdf=PDF::loadView('front.form.foreign.formone.fdFormOneInfoPdf',[
+    //         'getNgoTypeForPdf'=>$getNgoTypeForPdf,
 
-        $pdf=PDF::loadView('front.form.foreign.formone.fdFormOneInfoPdf',[
-            'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+    //         'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+    //         'formOneMemberList'=>$formOneMemberList,
+    //         'get_all_data_adviser'=>$get_all_data_adviser,
+    //         'get_all_data_other'=>$get_all_data_other,
+    //         'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+    //         'allformOneData'=>$allformOneData
 
-            'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-            'formOneMemberList'=>$formOneMemberList,
-            'get_all_data_adviser'=>$get_all_data_adviser,
-            'get_all_data_other'=>$get_all_data_other,
-            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-            'allformOneData'=>$allformOneData
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+    $data =view('front.form.foreign.formone.fdFormOneInfoPdf',[
+        'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+
+        'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+        'formOneMemberList'=>$formOneMemberList,
+        'get_all_data_adviser'=>$get_all_data_adviser,
+        'get_all_data_other'=>$get_all_data_other,
+        'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+        'allformOneData'=>$allformOneData
+
+    ])->render();
+
+
+    $pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+                     $mpdf = new Mpdf([
+                        //'default_font_size' => 14,
+                        'default_font' => 'nikosh'
+                    ]);
+
+                    //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+                    $mpdf->WriteHTML($data);
+
+
+
+                    $mpdf->Output($pdfFilePath, "I");
+                    die();
 
 
     }

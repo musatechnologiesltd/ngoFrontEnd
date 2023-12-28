@@ -47,16 +47,42 @@ $allformOneData = DB::table('fd_one_forms')
                      <table class="table table-bordered">
                          <tr>
                              @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
+                             <td>পিডিএফ ডাউনলোড</td>
                              <td>তথ্য সংশোধন করুন</td>
                              @else
-
+                             <td>PDF Download</td>
                              <td>Update Information</td>
                              @endif
                          </tr>
                          <tr>
-                            
 
+<td>
+    <?php
+                 $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+
+                                                      ?>
+    @if($ngoTypeInfo == 'দেশিও')
+    @if($localNgoTypem == 'Old')
+    <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
+    <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
+    <button class="btn btn-sm btn-success" id="downloadButtonNew">
+       {{ trans('form 8_bn.download_pdf')}}
+   </button>
+    @else
+    <button class="btn btn-sm btn-success" id="downloadButton">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    @endif
+
+    @else
+
+    <button class="btn btn-sm btn-success" id="downloadButtonNew">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    @endif
+</td>
                              <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
                      ফর্ম আপডেট করুন

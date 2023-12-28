@@ -33,7 +33,7 @@ return [
     'seven'=>'৭',
     'eight'=>'৮',
     'nine'=>'৯',
-    'f_form' =>'এফডি-০১ ফরম',
+    'f_form' =>'এফডি-১ ফরম',
     'all_info'=>'সকল তথ্য',
     'Particulars_of_Head_of_the_Organization_in_Bangladesh'=>'বাংলাদেশস্থ সংস্থা
     প্রধানের তথ্যাদি',

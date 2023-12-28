@@ -27,6 +27,6 @@ return [
     'step_5'=>'Step 5',
     'Main_Account_Details'=>'Mother Account Details',
     'Submit'=>'Submit',
-    'fd_update'=>'Update FD01-From',
+    'fd_update'=>'Update FD-1 From',
 ];
 ?>

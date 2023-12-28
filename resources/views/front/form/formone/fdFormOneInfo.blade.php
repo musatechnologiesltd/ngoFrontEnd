@@ -28,10 +28,28 @@
                             @else
                             <p>Details of the NGO</p>
                             @endif
+                            <?php
+                            $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+
+                                                                        ?>
                             <table class="table table-bordered">
 
                                 <tr>
+<td>  @if($ngoTypeInfo == 'দেশিও')
 
+    <button class="btn btn-sm btn-success" id="downloadButton">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
+    <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
+    @else
+
+    <button class="btn btn-sm btn-success" id="downloadButton345">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    @endif</td>
                                     <td>
                                        <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
                                         তথ্য সংশোধন করুন
@@ -489,7 +507,7 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td>({{ trans('form 8_bn.e')}})</td>
-                                    <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
+                                    <td>{{ trans('fd_one_step_four.bank_address')}}</td>
                                     <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                                 </tr>
                                 @endif
