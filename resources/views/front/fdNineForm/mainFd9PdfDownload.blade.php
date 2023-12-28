@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>এফডি-৯ ফরম</title>
-    <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet">
+    {{-- <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet"> --}}
     <style>
          body,h5,h4,h3 {
-            font-family: 'bangla', sans-serif;
+            /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
 
         }

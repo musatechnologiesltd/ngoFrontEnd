@@ -274,7 +274,78 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
                                     <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
                                 </div>
 
+                                <div class="mb-3">
+                                    <h5 class="form_middle_text">
+                                        প্রধান নির্বাহীর তথ্যাদি
+                                    </h5>
+                                </div>
 
+                                @if($mainNgoTypeRenew == 'Old')
+                                <!--new code for ngo-->
+                                <div class="mb-3">
+                                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+                                     <input type="text" data-parsley-required  name="chief_name" value=""  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+                                    <input type="text" data-parsley-required value=""  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+                                </div>
+
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+                                 <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
+                                    <input type="file" value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+                                 <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
+                                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+
+                                </div>
+                                <!-- end new code -->
+
+                                @else
+
+ <!--new code for ngo-->
+ <div class="mb-3">
+    <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+         <input type="text" data-parsley-required  name="chief_name"   class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+        <input type="text" data-parsley-required  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
+        <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+
+    </div>
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
+        <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+
+    </div>
+    <!-- end new code -->
+
+                                @endif
 
 
     </div>
@@ -538,7 +609,43 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
 
-   
+    <div class="mb-3">
+        <h5 class="form_middle_text">
+            প্রধান নির্বাহীর তথ্যাদি
+        </h5>
+    </div>
+
+
+    <!--new code for ngo-->
+    <div class="mb-3">
+    <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+         <input type="text" data-parsley-required  name="chief_name" value="{{ $get_all_data_new_first->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+        <input type="text" data-parsley-required value="{{ $get_all_data_new_first->chief_desi }}"  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+    </div>
+
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
+     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
+        <input type="file" value="" name="digital_signature" accept="image/*" class="form-control" id="">
+
+        <img src="{{asset('/')}}{{ $get_all_data_new_first->digital_signature }}" style="height:40px;"/>
+    </div>
+
+
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
+     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
+        <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+
+        <img src="{{asset('/')}}{{ $get_all_data_new_first->digital_seal }}" style="height:40px;"/>
+    </div>
+    <!-- end new code -->
 
 
 

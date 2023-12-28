@@ -130,12 +130,18 @@ color:white !important;
                         <table class="table table-bordered">
                             <tr>
 
-
+                                <td>PDF Download (পিডিএফ ডাউনলোড )</td>
                                 <td>Update Information (তথ্য সংশোধন করুন)</td>
                             </tr>
                             <tr>
 
-                              
+
+    <td>
+        <input type="hidden" data-parsley-required  name="id"  value="{{ $fdNineData->id }}" class="form-control" id="mainId">
+        <button class="btn btn-sm btn-success" id="downloadButton">
+            {{ trans('form 8_bn.download_pdf')}}
+        </button>
+</td>
                             <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdNineForm.edit',base64_encode($fdNineData->id)) }}';">
                                     আপডেট করুন

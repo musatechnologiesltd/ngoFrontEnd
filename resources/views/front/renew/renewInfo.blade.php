@@ -127,8 +127,32 @@ color:white !important;
             </div>
             <div class="col-lg-9 col-md-6 col-sm-12">
 
-                <!--download pdf -->
-                
+    <!--download pdf -->
+    <div class="card mt-3 mb-3">
+        <div class="card-body">
+
+            <table class="table table-bordered">
+                <tr>
+                    <td>পিডিএফ ডাউনলোড</td>
+                    {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
+                    {{-- <td>সংশোধন করুন </td> --}}
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
+                        <button class="btn btn-sm btn-success" id="downloadButton">
+                            {{ trans('form 8_bn.download_pdf')}}
+                        </button>
+
+                    </td>
+{{-- <td>ddd</td> --}}
+
+             </tr>
+
+            </table>
+
+        </div>
+    </div>
 <!--end download pdf -->
 
 
@@ -599,13 +623,14 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('script')
 <script>
 $("#downloadButton").click(function(){
-      var name = $('#mainName').val();
-      var designation = $('#mainDesignation').val();
+      var name = 1;
+      var designation = 11;
       var id = $('#mainId').val();
 
       $.ajax({

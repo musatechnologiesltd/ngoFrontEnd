@@ -20,7 +20,7 @@
                     </div>
                     <ul class="progress-bar">
 
-                        <li >এফডি -৮ ফরম </li>
+                        <li class="active">এফডি -৮ ফরম </li>
                         {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
                         <li>{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>
@@ -147,6 +147,8 @@ $get_cityzenship_data = DB::table('countries')->whereNotNull('country_people_eng
                             </div>
                         </div>
                         @endforeach
+
+
 
 
 

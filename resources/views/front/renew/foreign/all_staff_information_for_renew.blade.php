@@ -16,11 +16,11 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>Step 1</h3>
+                        <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
 
-                        <li class="active">FD-8 Form</li>
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
                         {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
                         <li>{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>

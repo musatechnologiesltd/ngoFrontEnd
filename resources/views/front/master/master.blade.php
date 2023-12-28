@@ -26,11 +26,11 @@
   <link href="{{ asset('/') }}public/front/assets/css/responsive_style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/') }}public/front/assets/vendor/fontawesome4.7.0/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nokshaia/angkur@latest/PublicFonts/Nikosh/stylesheet_Normal_DisplaySwap.css"/>
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nokshaia/angkur@latest/PublicFonts/Nikosh/stylesheet_Normal_DisplaySwap.css"/> --}}
     <style>
-body {
+/* body {
 	font-family: 'Nikosh', serif !important;
-}
+} */
 .swal2-confirm{
 
     margin-left: 20px;

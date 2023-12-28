@@ -9,7 +9,7 @@
 
 
         body {
-            font-family: 'bangla', sans-serif;
+            /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
             height: 11in;
             width: 8.5in;
@@ -49,10 +49,10 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .bt
+        /* .bt
       	{
 			font-family: 'banglabold', sans-serif;
-		}
+		} */
 
         .number_section
         {
@@ -67,7 +67,7 @@
 </head>
 <body>
     <div class="pdf_header">
-        <h5 style="font-family: 'bangla', sans-serif;">এফডি -৮ ফরম </h5>
+        <h5>এফডি -৮ ফরম </h5>
         <p>নিবন্ধন নবায়নের আবেদন ফরম <br>
             [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
         </p>
@@ -417,7 +417,50 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
 </table>
 
 
+<h4 style="text-align:center; font-weight:bold; font-size:20px;">ঘোষণা </h4>
+<p>আমি এই মর্মে ঘোষণা করছি যে, আমি সংশ্লিষ্ট সকল আইন-কানুন পড়িয়াছি এবং উল্লিখিত সকল তথ্য সত্য ও সঠিক।</p>
 
+
+<table style=" margin-top: 15px;width:100%">
+
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $get_all_data_new->digital_signature}}"/></td>
+    </tr>
+    <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $get_all_data_new->digital_seal}}"/></td>
+    </tr>
+</table>
+
+        <table style=" margin-top: 10px;width:100%">
+            <tr>
+                <td style="text-align: right; padding-right: 14%" colspan="3">প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
+            </tr>
+            <tr>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width:5%;">নাম</td>
+                <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_name }}</td>
+            </tr>
+            <tr>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width: 5%;">পদবি</td>
+                <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_desi }}</td>
+            </tr>
+
+            <tr>
+                <td style="width: 65%"></td>
+                <td style="text-align: left; width: 5%;">তারিখ</td>
+
+                <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new->created_at->format('d/m/Y')) }}</td>
+
+            </tr>
+        </table>
+
+
+<ul style="margin-top:25px">
+
+    <li>সংযোজনী হিসেবে পৃথক কাগজপত্রাদি সংযুক্ত করা যাবে।</li>
+
+</ul>
 
 
 

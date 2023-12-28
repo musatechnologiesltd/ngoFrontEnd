@@ -16,11 +16,11 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>Step 2</h3>
+                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
 
-                        <li >FD-08</li>
+                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
                         {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
                         <li class="active">{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>
@@ -71,15 +71,7 @@
                             <b>অন্যান্য তথ্য: </b>
 
 
-                            <div class="mb-3">
 
-
-
-                                <label class="form-label" for="">
-                                    কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -৮ এর ফাইনাল কপি <span class="text-danger">*</span>
-                    <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি বেশি হওয়া যাবে না</span> </label>
-                                <input class="form-control" name="final_fd_eight_form" data-parsley-required accept=".pdf" type="file" id="">
-                            </div>
                                 <div class="mb-3">
 
 

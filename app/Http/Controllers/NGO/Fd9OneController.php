@@ -11,6 +11,7 @@ use App\Models\Fd9OneForm;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
 use Illuminate\Support\Facades\Crypt;
 use DB;
+use Mpdf\Mpdf;
 use PDF;
 use DateTime;
 use DateTimezone;
@@ -446,13 +447,44 @@ return Response::make(file_get_contents($file), 200, [
 
 
 $file_Name_Custome = "Fd9.1_Form";
-        $pdf=PDF::loadView('front.fd9OneForm.mainPdfDownload',[
 
-            'ngo_list_all'=>$ngo_list_all,
-            'fd9OneList'=>$fd9OneList
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+    //     $pdf=PDF::loadView('front.fd9OneForm.mainPdfDownload',[
+
+    //         'ngo_list_all'=>$ngo_list_all,
+    //         'fd9OneList'=>$fd9OneList
+
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+
+    $data =view('front.fd9OneForm.mainPdfDownload',[
+
+        'ngo_list_all'=>$ngo_list_all,
+        'fd9OneList'=>$fd9OneList
+
+    ])->render();
+
+
+$pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+$mpdf = new Mpdf([
+   'default_font_size' => 14,
+   'default_font' => 'nikosh'
+]);
+
+//$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+$mpdf->WriteHTML($data);
+
+
+
+$mpdf->Output($pdfFilePath, "I");
+die();
+
+
 
     }
 

@@ -16,7 +16,7 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>ধাপ ২</h3>
+                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
                         <li >এফডি -৮ ফরম </li>
@@ -293,15 +293,7 @@
 
 
 
-        <div class="mb-3">
 
-
-
-            <label class="form-label" for="">
-                কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -৮ এর ফাইনাল কপি <span class="text-danger">*</span>
-<br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি বেশি হওয়া যাবে না</span> </label>
-            <input class="form-control" name="final_fd_eight_form" data-parsley-required accept=".pdf" type="file" id="">
-        </div>
 
 
 
