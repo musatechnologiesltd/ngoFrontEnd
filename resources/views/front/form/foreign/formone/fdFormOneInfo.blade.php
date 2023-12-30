@@ -152,14 +152,7 @@ foreach ($data   as $a) {
                                 <?php
                                 $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                  ?>
-                                 @if($getngoForLanguage =='দেশিও')
-                                <tr>
-                                    <td></td>
-                                    <td>(v)</td>
-                                    <td>{{ trans('fd_one_step_one.Address_of_the_Head_Office')}}</td>
-                                    <td>: {{ $allformOneData->address_of_head_office }}</td>
-                                </tr>
-                                @else
+
                                 <tr>
                                     <td></td>
                                     <td>(v)</td>
@@ -167,7 +160,7 @@ foreach ($data   as $a) {
                                     <td>: {{ $allformOneData->address_of_head_office_eng }}</td>
                                 </tr>
 
-                                @endif
+
 
                                 <tr>
                                     <td></td>
@@ -209,14 +202,8 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}, Telephone Number</td>
-                                    <td>: {{ $allformOneData->address }},
-                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
-                                        @else
-                                        {{ $allformOneData->phone }},
-                                        @endif
-                                        {{ $allformOneData->email }}, {{ $allformOneData->tele_phone_number }}</td>
+                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
+                                    <td>: {{ $allformOneData->address }}, {{ $allformOneData->tele_phone_number }}, {{ $allformOneData->phone }}, {{ $allformOneData->email }}</td>
                                 </tr>
                                  <?php
                                     if($getngoForLanguage =='দেশিও'){
@@ -283,7 +270,7 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td></td>
                                     <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
-                                    <td>: {{ $all_get_all_source_of_fund_data->name }},{{ $all_get_all_source_of_fund_data->address }}</td>
+                                    <td>: {{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -481,7 +468,7 @@ foreach ($data   as $a) {
                                 @endforeach
                                 <tr>
                                     <td>{{ trans('fd_one_step_one.seven')}}.</td>
-                                    <td colspan="3">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
+                                    <td colspan="3">{{ trans('fd_one_step_four.tt3')}}
                                     </td>
                                 </tr>
 

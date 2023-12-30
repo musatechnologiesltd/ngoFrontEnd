@@ -188,13 +188,9 @@
         <tr>
             <td></td>
             <td></td>
-            <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}},Telephone Number</td>
+            <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
             <td style="width:4px">:</td>
-            <td> {{ $allformOneData->address }}, {{ $allformOneData->tele_phone_number }}, @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }}
-                @else
-                {{ $allformOneData->phone }},
-                @endif, {{ $allformOneData->email }} </td>
+            <td>{{ $allformOneData->address }}, {{ $allformOneData->tele_phone_number }}, {{ $allformOneData->phone }}, {{ $allformOneData->email }}</td>
         </tr>
 
        <?php
@@ -249,7 +245,7 @@
             <td></td>
             <td>(ii) {{ trans('fd_one_step_two.pp')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->district }},{{ $allformOneData->sub_district }}</td>
+            <td>{{ $allformOneData->district }}</td>
         </tr>
         <tr>
             <td></td>
@@ -263,7 +259,7 @@
             <td></td>
             <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $all_get_all_source_of_fund_data->name }},{{ $all_get_all_source_of_fund_data->address }}</td>
+            <td>{{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
         </tr>
         <tr>
             <td></td>
@@ -454,7 +450,7 @@
         @endforeach
         <tr>
             <td>{{ trans('fd_one_step_one.seven')}}.</td>
-            <td colspan="4">{{ trans('fd_one_step_four.main_account_details')}}({{ trans('fd_one_step_four.tt3')}})
+            <td colspan="4">{{ trans('fd_one_step_four.tt3')}}
             </td>
         </tr>
         @if(!$get_all_data_adviser_bank)
@@ -529,7 +525,7 @@ attached
 
         </tbody>
     </table>
-<h4 style="text-align:center; font-weight:bold; font-size:20px;margin-top: 100px">{{ trans('fd_one_step_one.tt_1')}}</h4>
+<h4 style="text-align:center; font-weight:bold; font-size:15px;margin-top: 100px">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
 <table style=" margin-top: 15px;width:100%">
 
@@ -541,9 +537,9 @@ attached
     </tr>
 </table>
 <table style=" margin-top: 15px">
-    <tr>
+    {{-- <tr>
         <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
-    </tr>
+    </tr> --}}
     <tr>
         <td style="width: 65%"></td>
         <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>

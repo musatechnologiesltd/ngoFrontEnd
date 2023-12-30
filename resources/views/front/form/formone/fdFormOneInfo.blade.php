@@ -96,7 +96,7 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>(i)</td>
                                     <td>{{ trans('fd_one_step_one.Organization_Name_Organization_address')}}</td>
-                                    <td>: {{ $allformOneData->organization_name }}</td>
+                                    <td>: {{ $allformOneData->organization_name_ban }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -193,13 +193,13 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}</td>
+                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
                                     <td>: {{ $allformOneData->address }},
                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
-                                        @else
-                                        {{ $allformOneData->phone }},
-                                        @endif
+                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->tele_phone_number.', '.$allformOneData->phone) }},
+                @else
+                {{ $allformOneData->tele_phone_number.', '.$allformOneData->phone }},
+                @endif
                                         {{ $allformOneData->email }}</td>
                                 </tr>
                                  <?php
@@ -267,7 +267,7 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td></td>
                                     <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
-                                    <td>: {{ $all_get_all_source_of_fund_data->name }},{{ $all_get_all_source_of_fund_data->address }}</td>
+                                    <td>: {{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -367,7 +367,11 @@ foreach ($data   as $a) {
                                     <td>:
                                         @if($getngoForLanguage =='দেশিও')
                                       @foreach($getCityzendata as $all_getCityzendata)
+                                      @if(count($getCityzendata) == 1)
+                                      {{$all_getCityzendata->country_people_bangla}}
+                                      @else
                                       {{$all_getCityzendata->country_people_bangla}},
+                                      @endif
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}

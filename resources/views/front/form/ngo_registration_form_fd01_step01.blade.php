@@ -145,9 +145,9 @@
                                                                         <label for="" class="form-label">{{ trans('fd_one_step_one.Country_of_Origin')}} <span class="text-danger">*</span> </label>
                                                                     <select name="country_of_origin" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
                                                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                        <option value="বাংলাদেশ" >বাংলাদেশ</option>
+                                                                        <option value="বাংলাদেশী" >বাংলাদেশী</option>
                                                                         @else
-                                                                        <option value="Bangladesh">Bangladesh</option>
+                                                                        <option value="Bangladeshi">Bangladeshi</option>
                                                                         @endif
                                                                     </select>
 
