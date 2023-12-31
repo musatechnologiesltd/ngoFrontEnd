@@ -9,7 +9,7 @@ class NVisaManpowerOfTheOffice extends Model
 {
     use HasFactory;
 
-    public $table = "n_visa_manpower_of_the_offices";
+    protected $table = "n_visa_manpower_of_the_offices";
 
     protected $fillable = [
         'n_visa_id',
@@ -29,5 +29,5 @@ public function nVisa()
     {
         return $this->belongsTo(NVisa::class,'n_visa_id');
     }
-    
+
 }

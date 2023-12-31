@@ -17,8 +17,18 @@ Renew Submit | {{ trans('header.ngo_ab')}}
 
 <?php
 
+use App\Http\Controllers\NGO\CommonController;
 $getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
+}else{
+
+    $get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$getFormOneId)->value('status');
+
+}
 
 
 ?>
@@ -158,7 +168,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
                                                 @else
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+                                                <input id="chk" type="checkbox" onclick="return false;"  checked class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>
@@ -169,61 +179,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 <!--new-->
 
-                                        <tr>
-                                            <td>
 
-                                                @if(empty($get_date_fd_one))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_one->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_one->format('d-m-Y') }}
-
-                                                @endif
-                                                @endif
-
-                                            </td>
-                                            <td>
-                                                @if($foreignNgoType == 'Old')
-                                                FD-8 Form Submit
-                                                @else
-
-                                               {{ trans('reg_sub.f_fd_s')}}
-                                                @endif
-
-
-                                            </td>
-                                            <td style="position:relative">
-
-                                                @if($foreignNgoType == 'Old')
-
-
-                                                @if(empty($complete_status_fd_one_pdf_old))
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
-                                                @endif
-
-
-                                                @else
-
-                                                @if($complete_status_fd_one_pdf == 0)
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
-                                                @endif
-
-
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
 
                                         @if($foreignNgoType == 'Old')
                                         <tr>
@@ -397,7 +353,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 5){
+    if(all < 4){
         $('#bb3').attr('disabled',true);
 
     }else{

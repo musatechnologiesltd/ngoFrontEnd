@@ -21,10 +21,10 @@
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
                         <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         @endif
                         {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
@@ -57,7 +57,13 @@
                         <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
+                    <div class="fd01_tablist">
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab fd01_checked"></div>
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab"></div>
 
+                    </div>
                     <div class="mt-3">
                         @if($localNgoTypem == 'Old')
 

@@ -85,6 +85,37 @@ color:white !important;
                                 <p class="{{ Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd6Form.index') }}">
+                                <p class="{{ Route::is('fd6Form.index') ||  Route::is('fd6Form.create') || Route::is('fd6Form.view') || Route::is('fd2Form.create') || Route::is('fd2Form.index') || Route::is('fd6Form.edit') || Route::is('fd2Form.view') || Route::is('fd2Form.edit')? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd6')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd7Form.index') }}">
+                                <p class="{{ Route::is('fd7Form.index') ||  Route::is('fd7Form.create') || Route::is('fd7Form.view') || Route::is('addFd2DetailForFd7') || Route::is('editFd2DetailForFd7') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd7')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fc1Form.index') }}">
+                                <p class="{{ Route::is('fc1Form.index') ||  Route::is('fc1Form.create') || Route::is('fc1Form.view') || Route::is('addFd2DetailForFc1') || Route::is('editFd2DetailForFc1') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fc1')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fc2Form.index') }}">
+                                <p class="{{ Route::is('fc2Form.index') ||  Route::is('fc2Form.create') || Route::is('fc2Form.view') || Route::is('addFd2DetailForFc2') || Route::is('editFd2DetailForFc2') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fc2')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd3Form.index') }}">
+                                <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
+                            </a>
+                        </div>
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -96,116 +127,32 @@ color:white !important;
             </div>
             <div class="col-lg-9 col-md-6 col-sm-12">
 
-                <!--download pdf -->
-                <div class="card mt-3 mb-3">
-                    <div class="card-body">
+    <!--download pdf -->
+    <div class="card mt-3 mb-3">
+        <div class="card-body">
 
-                        <table class="table table-bordered">
-                            <tr>
-                                <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
-                            </tr>
-                            <tr>
-                                <td>
+            <table class="table table-bordered">
+                <tr>
+                    <td>পিডিএফ ডাউনলোড</td>
+                    {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
+                    {{-- <td>সংশোধন করুন </td> --}}
+                </tr>
+                <tr>
+                    <td>
+                        <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
+                        <button class="btn btn-sm btn-success" id="downloadButton">
+                            {{ trans('form 8_bn.download_pdf')}}
+                        </button>
 
-                                    <button class="btn btn-sm btn-success" id="downloadButton">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button>
-                                    
-                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button> --}}
+                    </td>
+{{-- <td>ddd</td> --}}
 
-                                    <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
+             </tr>
 
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
-                                                    <div class=" mt-3 mb-3">
-                                                        <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
-                                                        <input type="text" data-parsley-required  name="নাম" value="{{ $get_all_data_new->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
-                                                        <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
-                                                        <input type="text" data-parsley-required  name="পদবি" value="{{ $get_all_data_new->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
-                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
-                                                    </div>
+            </table>
 
-
-
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                      </div>
-                                </td>
-                                {{-- <td>
-
-                                    @if(empty($get_all_data_new->verified_form))
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        {{ trans('form 8_bn.upload_pdf')}}
-                                    </button>
-                                    @else
-
-                                    <?php
-
-                                    $file_path = url($get_all_data_new->verified_form);
-                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                                    ?>
-                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        পুনরায় আপলোড করুন
-                                        @else
-                                        Re-upload
-                                        @endif
-                                    </button><br>
-                                    <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
-                                    @endif
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="{{ route('verifiedFdEightDownload') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-                            @csrf
-
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-                                <input type="file" data-parsley-required accept=".pdf" name="verified_fd_eight_form"  class="form-control" id="">
-                                <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="">
-                            </div>
-
-                            <button class="btn btn-sm btn-success" type="submit">
-                                {{ trans('form 8_bn.upload_pdf')}}
-                            </button>
-                        </form>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-                                </td> --}}
-
-                         </tr>
-
-                        </table>
-
-                    </div>
-                </div>
+        </div>
+    </div>
 <!--end download pdf -->
 
 
@@ -676,13 +623,14 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('script')
 <script>
 $("#downloadButton").click(function(){
-      var name = $('#mainName').val();
-      var designation = $('#mainDesignation').val();
+      var name = 1;
+      var designation = 11;
       var id = $('#mainId').val();
 
       $.ajax({

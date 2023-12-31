@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet">
+    <title>এফডি-৯(১) ফরম</title>
+    {{-- <link href="{{ asset('/') }}public/front/assets/css/style.css" rel="stylesheet"> --}}
     <style>
          body {
-            font-family: 'bangla', sans-serif;
+            /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
 
         }
@@ -42,7 +42,7 @@
 
 
         <div class="pdf_header">
-            <h5 style="font-family: 'bangla', sans-serif;">এফডি-৯(১) ফরম</h5>
+            <h5>এফডি-৯(১) ফরম</h5>
             <p>
                 বিদেশি বিশেষজ্ঞ, উপদেষ্টা, কর্মকর্তা বা স্বেচ্ছাসেবী এর ওয়ার্ক পারমিটের (কার্যানুমতি)
                 আবেদন ফরম<br>

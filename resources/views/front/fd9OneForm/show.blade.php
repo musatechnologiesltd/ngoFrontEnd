@@ -71,6 +71,36 @@
                                 <p class="{{ Route::is('fdNineOneForm.show') || Route::is('fdNineOneForm.index') ||  Route::is('fdNineOneForm.create') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd09formone')}}</p>
                             </a>
                         </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd6Form.index') }}">
+                                <p class="{{ Route::is('fd6Form.index') ||  Route::is('fd6Form.create') || Route::is('fd6Form.view') || Route::is('fd2Form.create') || Route::is('fd2Form.index') || Route::is('fd6Form.edit') || Route::is('fd2Form.view') || Route::is('fd2Form.edit')? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd6')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd7Form.index') }}">
+                                <p class="{{ Route::is('fd7Form.index') ||  Route::is('fd7Form.create') || Route::is('fd7Form.view') || Route::is('addFd2DetailForFd7') || Route::is('editFd2DetailForFd7') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd7')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fc1Form.index') }}">
+                                <p class="{{ Route::is('fc1Form.index') ||  Route::is('fc1Form.create') || Route::is('fc1Form.view') || Route::is('addFd2DetailForFc1') || Route::is('editFd2DetailForFc1') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fc1')}}</p>
+                            </a>
+                        </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fc2Form.index') }}">
+                                <p class="{{ Route::is('fc2Form.index') ||  Route::is('fc2Form.create') || Route::is('fc2Form.view') || Route::is('addFd2DetailForFc2') || Route::is('editFd2DetailForFc2') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fc2')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('fd3Form.index') }}">
+                                <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
+                            </a>
+                        </div>
+
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -87,110 +117,19 @@
 
                         <table class="table table-bordered">
                             <tr>
+
                                 <td>PDF Download (পিডিএফ ডাউনলোড )</td>
-                                {{-- <td>PDF Upload (পিডিএফ আপলোড)</td> --}}
                                 <td>Update Information (তথ্য সংশোধন করুন)</td>
                             </tr>
                             <tr>
+
                                 <td>
 
-
+                                    <input type="hidden" data-parsley-required  name="id"  value="{{ $fd9OneList->id }}" class="form-control" id="mainId">
                                     <button class="btn btn-sm btn-success" id="downloadButton">
                                         {{ trans('form 8_bn.download_pdf')}}
                                     </button>
-
-                                    
-                                    {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('mainPdfDownload',$fd9OneList->id) }}">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </a> --}}
-
-                                    {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                                        {{ trans('form 8_bn.download_pdf')}}
-                                    </button> --}}
-
-                                    <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                          <div class="modal-content">
-                                            <div class="modal-header">
-
-                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <h5>প্রধান নির্বাহীর নাম ও পদবি প্রদান করুন </h5>
-                                                    <div class=" mt-3 mb-3">
-                                                        <label for="" class="form-label">প্রধান নির্বাহীর নাম:</label>
-                                                        <input type="text" data-parsley-required  name="নাম" value="{{ $fd9OneList->chief_name }}"  class="form-control" id="mainName" placeholder="নাম">
-                                                        <label for="" class="form-label mt-3">প্রধান নির্বাহীর পদবি:</label>
-                                                        <input type="text" data-parsley-required  name="পদবি" value="{{ $fd9OneList->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="পদবী">
-                                                        <input type="hidden" data-parsley-required  name="id"  value="{{ $fd9OneList->id }}" class="form-control" id="mainId">
-                                                    </div>
-
-
-
-                                            </div>
-
-                                          </div>
-                                        </div>
-                                      </div>
                                 </td>
-                                {{-- <td>
-
-                                    @if(empty($fd9OneList->verified_fd_nine_one_form))
-                                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        {{ trans('form 8_bn.upload_pdf')}}
-                                    </button>
-                                    @else
-
-                                    <?php
-
-                                    $file_path = url($fd9OneList->verified_fd_nine_one_form);
-                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                                    ?>
-                                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        @if(session()->get('locale') == 'en')
-                                        পুনরায় আপলোড করুন
-                                        @else
-                                        Re-upload
-                                        @endif
-                                    </button><br>
-                                    <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
-                                    @endif
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="post" action="{{ route('mainPdfUpload') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-                            @csrf
-
-                            <div class=" mb-3">
-                                <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-                                <input type="file" data-parsley-required accept=".pdf" name="verified_fd_nine_one_form"  class="form-control" id="">
-                                <input type="hidden" data-parsley-required  name="id"  value="{{ $fd9OneList->id }}" class="form-control" id="">
-                            </div>
-
-                            <button class="btn btn-sm btn-success" type="submit">
-                                {{ trans('form 8_bn.upload_pdf')}}
-                            </button>
-                        </form>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-
-                                </td> --}}
                             <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdNineOneForm.edit',$fd9OneList->id) }}';">
                                     আপডেট করুন
@@ -351,25 +290,7 @@
 
                     <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} হতে {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fd9OneList->proposed_from_date))) }} মেয়াদে উক্ত বিদেশি কর্মকর্তাকে ওয়ার্ক পারমিট ইস্যু করার জন্য বিনীত অনুরধ করেছি।</p>
 
-                    <div class="row">
-                        <div class="col-lg-6 col-sm-12"></div>
-                        <div class="col-lg-6 col-sm-12">
-                            <table class="table table-borderless">
-                                <tr>
-                                    <td>প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
-                                </tr>
-                                <tr>
-                                    <td>নামঃ</td>
-                                </tr>
-                                <tr>
-                                    <td>পদবীঃ</td>
-                                </tr>
-                                <tr>
-                                    <td>তারিখঃ</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+
                 </div>
             </div>
 

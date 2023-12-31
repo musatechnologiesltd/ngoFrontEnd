@@ -9,7 +9,7 @@
 
 
         body {
-            font-family: 'bangla', sans-serif;
+            /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
             height: 11in;
             width: 8.5in;
@@ -49,10 +49,10 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .bt
+        /* .bt
       	{
 			font-family: 'banglabold', sans-serif;
-		}
+		} */
 
         .number_section
         {
@@ -67,7 +67,7 @@
 </head>
 <body>
     <div class="pdf_header">
-        <h5 style="font-family: 'bangla', sans-serif;">এফডি -৮ ফরম </h5>
+        <h5 >এফডি-৮ ফরম </h5>
         <p>নিবন্ধন নবায়নের আবেদন ফরম <br>
             [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
         </p>

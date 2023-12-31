@@ -262,7 +262,17 @@ class AuthController extends Controller
     {
         if(Auth::check()){
             $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-            $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
+
+            $newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
+    $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
+}else{
+
+    $ngo_status_list = DB::table('ngo_renews')->where('fd_one_form_id',$ngo_list_all)->value('status');
+
+}
+
 
             if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing' || $ngo_status_list == 'Old Ngo Renew'){
 

@@ -16,11 +16,11 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>Step 2</h3>
+                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
 
-                        <li >FD-08</li>
+                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
                         {{-- <li class="active">{{ trans('fd_one_step_three.All_staff_details_information')}} </li> --}}
                         <li class="active">{{ trans('fd_one_step_four.o_info')}}</li>
                     </ul>
@@ -69,6 +69,9 @@
                             <div class="mb-3" id="mResult">
                             </div>
                             <b>অন্যান্য তথ্য: </b>
+
+
+
                                 <div class="mb-3">
 
 

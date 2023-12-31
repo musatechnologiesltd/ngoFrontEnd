@@ -11,6 +11,7 @@ use App\Models\Fd9OneForm;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
 use Illuminate\Support\Facades\Crypt;
 use DB;
+use Mpdf\Mpdf;
 use PDF;
 use DateTime;
 use DateTimezone;
@@ -116,8 +117,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
 
             'foreigner_name_for_subject' => 'required|string',
@@ -161,6 +162,14 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+
+        if ($request->hasfile('verified_fd_nine_one_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_one_form');
+            $fd9FormInfo->verified_fd_nine_one_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('digital_signature')) {
@@ -222,8 +231,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
         ]);
 
 
@@ -252,6 +261,13 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->arrival_date_in_nvisa = $request->arrival_date_in_nvisa;
         $fd9OneFormInfo->proposed_from_date = $request->proposed_from_date;
         $fd9OneFormInfo->proposed_to_date = $request->proposed_to_date;
+
+        if ($request->hasfile('verified_fd_nine_one_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_one_form');
+            $fd9FormInfo->verified_fd_nine_one_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('digital_signature')) {
@@ -431,13 +447,44 @@ return Response::make(file_get_contents($file), 200, [
 
 
 $file_Name_Custome = "Fd9.1_Form";
-        $pdf=PDF::loadView('front.fd9OneForm.mainPdfDownload',[
 
-            'ngo_list_all'=>$ngo_list_all,
-            'fd9OneList'=>$fd9OneList
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+    //     $pdf=PDF::loadView('front.fd9OneForm.mainPdfDownload',[
+
+    //         'ngo_list_all'=>$ngo_list_all,
+    //         'fd9OneList'=>$fd9OneList
+
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+
+    $data =view('front.fd9OneForm.mainPdfDownload',[
+
+        'ngo_list_all'=>$ngo_list_all,
+        'fd9OneList'=>$fd9OneList
+
+    ])->render();
+
+
+$pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+$mpdf = new Mpdf([
+   'default_font_size' => 14,
+   'default_font' => 'nikosh'
+]);
+
+//$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+$mpdf->WriteHTML($data);
+
+
+
+$mpdf->Output($pdfFilePath, "I");
+die();
+
+
 
     }
 

@@ -274,7 +274,6 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
                                     <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
                                 </div>
 
-
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
                                         প্রধান নির্বাহীর তথ্যাদি
@@ -347,6 +346,7 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
     <!-- end new code -->
 
                                 @endif
+
 
     </div>
     <div class="buttons d-flex justify-content-end mt-4">

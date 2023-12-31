@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NVisa extends Model
 {
     use HasFactory;
-    public $table = "n_visas";
+    protected $table = "n_visas";
 
     protected $fillable = [
         'fd_one_form_id',

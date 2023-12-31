@@ -9,7 +9,7 @@ class NVisaNecessaryDocumentForWorkPermit extends Model
 {
     use HasFactory;
 
-    public $table = "n_visa_necessary_document_for_work_permits";
+    protected $table = "n_visa_necessary_document_for_work_permits";
 
     protected $fillable = [
         'n_visa_id',
@@ -27,5 +27,5 @@ public function nVisa()
         return $this->belongsTo(NVisa::class,'n_visa_id');
     }
 
-    
+
 }

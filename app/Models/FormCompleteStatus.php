@@ -9,7 +9,7 @@ class FormCompleteStatus extends Model
 {
     use HasFactory;
 
-    public $table = "form_complete_statuses";
+    protected $table = "form_complete_statuses";
 
 
 

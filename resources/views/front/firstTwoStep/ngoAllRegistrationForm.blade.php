@@ -13,7 +13,14 @@
 <?php
 use App\Http\Controllers\NGO\CommonController;
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
 $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
+}else{
+$get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->value('status');
+}
 $mainNgoType = CommonController::changeView();
 
 ?>
@@ -86,6 +93,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @include('front.form.foreign.ngo_registration_form_nid_image_info')
 
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
+
+
 @include('front.form.foreign.ngo_registration_form_document_info')
 @endif
 
@@ -174,9 +183,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                     </a>
                                 </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" data-bs-toggle="tab" href="#tofen">ফরম নং -০৮</a>
-                                </li>
+
 
 
                                 <li class="nav-item">
@@ -221,7 +228,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                 </div>
                                 <div class="tab-pane container" id="tofen">
-                                  @include('front.form.form_eight.formEightNgoCommitteeMemberTotalView')
+
 
                                 </div>
 

@@ -12,7 +12,7 @@ return [
     'name' => 'Name',
     'desi' => 'Designation',
     'address' => 'Address',
-    'date_of_joining' => 'Date of Joining',
+    'date_of_joining' => 'Date of appoinment',
     'citizenship' => 'Citizenship (Must clearify, I duel citizenship)',
     's_statement' => 'Present emoluments',
     'detail' => 'Provide details if associated (in the past or at present) with any other Voluntry Organization (s)',

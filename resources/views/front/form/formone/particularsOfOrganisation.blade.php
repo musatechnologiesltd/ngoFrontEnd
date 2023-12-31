@@ -24,7 +24,7 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         {{-- @if($localNgoTypem == 'Old')
 
                         @else
@@ -117,9 +117,9 @@
                                                                         <label for="" class="form-label">{{ trans('fd_one_step_one.Country_of_Origin')}} <span class="text-danger">*</span> </label>
                                                                     <select name="country_of_origin" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
                                                                         @if(session()->get('locale') == 'en')
-                                                                        <option value="বাংলাদেশ" >বাংলাদেশ</option>
+                                                                        <option value="বাংলাদেশী" >বাংলাদেশী</option>
                                                                         @else
-                                                                        <option value="Bangladesh">Bangladesh</option>
+                                                                        <option value="Bangladeshi">Bangladeshi</option>
                                                                         @endif
                                                                     </select>
 
@@ -311,9 +311,9 @@
                                                 <label for="" class="form-label">{{ trans('fd_one_step_one.Country_of_Origin')}} <span class="text-danger">*</span> </label>
                                                 <select name="country_of_origin" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
                                                     @if(session()->get('locale') == 'en')
-                                                    <option value="বাংলাদেশ" {{ 'বাংলাদেশ' == $allParticularsOfOrganisation->country_of_origin ? 'selected':'' }}>বাংলাদেশ</option>
+                                                    <option value="বাংলাদেশী" {{ 'বাংলাদেশী' == $allParticularsOfOrganisation->country_of_origin ? 'selected':'' }}>বাংলাদেশী</option>
                                                     @else
-                                                    <option value="Bangladesh" {{ 'Bangladesh' == $allParticularsOfOrganisation->country_of_origin ? 'selected':'' }}>Bangladesh</option>
+                                                    <option value="Bangladeshi" {{ 'Bangladeshi' == $allParticularsOfOrganisation->country_of_origin ? 'selected':'' }}>Bangladeshi</option>
                                                     @endif
                                                 </select>
 
@@ -491,6 +491,7 @@
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>
                 <!-- end new code -->
+
 
 
                 @if(Route::is('fdOneFormEdit') )

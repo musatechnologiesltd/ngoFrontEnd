@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class FdOneForm extends Model
 {
     use HasFactory;
-    public $table = "fd_one_forms";
+    protected $table = "fd_one_forms";
 
     protected $fillable = [
         'place',

@@ -9,7 +9,7 @@ class NgoTypeAndLanguage extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_type_and_languages";
+    protected $table = "ngo_type_and_languages";
 
     protected $fillable = [
 

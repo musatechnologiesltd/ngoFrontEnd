@@ -9,7 +9,7 @@ class FdOneSourceOfFund extends Model
 {
     use HasFactory;
 
-    public $table = "fd_one_source_of_funds";
+    protected $table = "fd_one_source_of_funds";
 
 
 

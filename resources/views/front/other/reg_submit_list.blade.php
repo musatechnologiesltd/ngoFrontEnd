@@ -12,12 +12,22 @@
 
 
 <?php
-
+use App\Http\Controllers\NGO\CommonController;
 $getFormOneId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
 
+$newOldNgo = CommonController::newOldNgo();
+
+if($newOldNgo != 'Old'){
+$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->value('status');
+}else{
+
+    $get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$getFormOneId)->value('status');
+
+}
 
 ?>
+
+
 
 @if(empty($get_reg_id))
 
@@ -74,7 +84,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 @if($get_value_fd_one_one == 1)
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                 @else
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
+                                                <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>
@@ -106,7 +116,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                                 <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                @else
 
-                                               <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
+                                               <input id="chk" type="checkbox" onclick="return false;" checked class="custom_checkbox" />
                                                @endif
 
                                                 <label for="chk" readonly></label>
@@ -141,7 +151,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
         @else
-        <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+        <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
         @endif
         <label for="chk"></label>
     </td>
@@ -173,7 +183,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
                                                 <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
                                                 @else
-                                                <input id="chk" type="checkbox" onclick="return false;"   class="custom_checkbox" />
+                                                <input id="chk" type="checkbox" onclick="return false;"  checked   class="custom_checkbox" />
                                                 @endif
                                                 <label for="chk"></label>
                                             </td>
@@ -191,37 +201,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
                                         <tr>
-                                            <td>
 
-                                                @if(empty($get_date_fd_eight))
-
-
-                                                @else
-
-                                                @if(session()->get('locale') == 'en')
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_date_fd_eight->format('d-m-Y')) }}
-
-                                                @else
-
-                                                {{ $get_date_fd_eight->format('d-m-Y') }}
-
-                                                @endif
-
-                                                @endif
-
-                                            </td>
-                                            <td>{{ trans('reg_sub.fd_eight')}}</td>
-                                            <td style="position:relative">
-                                                @if($complete_status_fd_eight == 'complete')
-                                                <input id="chk" type="checkbox" onclick="return false;" checked  class="custom_checkbox" />
-
-                                                @else
-                                                <input id="chk" type="checkbox" onclick="return false;"  class="custom_checkbox" />
-                                                @endif
-                                                <label for="chk"></label>
-                                            </td>
-
-                                        </tr>
 
 
                                         @if($localNgoTypem == 'Old')
@@ -310,6 +290,20 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                     <p class="fst-italic text-danger">
                                         {{ trans('reg_sub.last')}}
                                     </p>
+
+                                    @if($localNgoTypem == 'Old')
+
+
+                                    <form action="{{ route('finalSubmitRegForm') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" value="NGO Renew" name="reg_type" />
+                                    <div class="d-grid d-md-flex justify-content-md-end">
+                                        <button type="submit"  id="bb3" class="btn btn-registration" disabled>{{ trans('reg_sub.submit')}}</button>
+                                    </div>
+                                    </form>
+
+
+                                    @else
                                     <form action="{{ route('finalSubmitRegForm') }}" method="post">
                                         @csrf
                                         <input type="hidden" value="NGO Registration" name="reg_type" />
@@ -317,6 +311,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                         <button type="submit"  id="bb3" class="btn btn-registration" disabled>{{ trans('reg_sub.submit')}}</button>
                                     </div>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -379,7 +374,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
         var all = $('input[type="checkbox"]:checked').length;
 
-        if(all < 5){
+        if(all < 4){
             $('#bb3').attr('disabled',true);
 
         }else{
@@ -401,7 +396,7 @@ $(document).ready(function(){
 
     var all = $('input[type="checkbox"]:checked').length;
 
-    if(all < 5){
+    if(all < 4){
         $('#bb3').attr('disabled',true);
 
     }else{

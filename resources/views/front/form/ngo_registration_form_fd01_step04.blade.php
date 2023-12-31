@@ -12,7 +12,7 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                      <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                      {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                           {{-- <<li>{{ trans('fd_one_step_one.member_title')}}</li>
                         <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
@@ -50,10 +50,16 @@
 
                 <div class="main active">
                     <div class="text">
-                        <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
+                       <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
                         {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
+                    <div class="fd01_tablist">
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab"></div>
+                        <div class="fd01_tab "></div>
+                        <div class="fd01_tab fd01_checked"></div>
 
+                    </div>
                     <div class="mt-3">
 
                         @if($localNgoTypem == 'Old')
@@ -247,6 +253,7 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 
 
 <div class="row">
+
     @foreach($get_all_data_adviser as $key=>$all_get_all_data_other)
     <div class="col-md-4 mt-2">
 
@@ -275,14 +282,14 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 
 
                             <div class="mb-3">
-                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> :</label>
+                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_name')}}:</label>
                                 <input type="text" value="{{ $all_get_all_data_other->name }}" name="sname" id="sname{{ $all_get_all_data_other->id }}" class="form-control"  >
                                 <input type="hidden" value="{{ $all_get_all_data_other->id }}" name="sid" id="sid{{ $all_get_all_data_other->id }}" class="form-control"  >
 
                               </div>
 
                               <div class="mb-3">
-                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> :</label>
+                                <label  class="form-label">{{ trans('fd_one_step_four.advisor_information')}}:</label>
                                 <input type="text" value="{{ $all_get_all_data_other->information }}"  name="sinformation" id="sinformation{{ $all_get_all_data_other->id }}" placeholder=""
                                 class="form-control"/>
 

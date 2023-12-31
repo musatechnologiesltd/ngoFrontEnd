@@ -9,7 +9,7 @@ class NVisaAuthorizedPersonalOfTheOrg extends Model
 {
     use HasFactory;
 
-    public $table = "n_visa_authorized_personal_of_the_orgs";
+    protected $table = "n_visa_authorized_personal_of_the_orgs";
 
     protected $fillable = [
         'n_visa_id',

@@ -9,7 +9,7 @@ class FdOneBankAccount extends Model
 {
     use HasFactory;
 
-    public $table = "fd_one_bank_accounts";
+    protected $table = "fd_one_bank_accounts";
 
     protected $fillable = [
         'fd_one_form_id',

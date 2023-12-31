@@ -16,7 +16,7 @@
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>ধাপ ২</h3>
+                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
                         <li >এফডি -৮ ফরম </li>
@@ -290,6 +290,14 @@
     <div class="mt-3">
 
         <b>অন্যান্য তথ্য: </b>
+
+
+
+
+
+
+
+
 
             <div class="mb-3">
 

@@ -158,6 +158,15 @@ return session()->put('locale',$status);
     }
 
 
+    public static function newOldNgo(){
+
+        $newOldNgo = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+
+        return $newOldNgo;
+
+    }
+
+
 
 
 

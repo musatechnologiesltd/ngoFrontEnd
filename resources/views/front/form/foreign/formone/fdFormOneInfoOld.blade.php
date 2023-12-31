@@ -30,164 +30,42 @@ $allformOneData = DB::table('fd_one_forms')
 
            <div class="card-body mt-3 mb-3">
                  <div class="card-body">
-                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                     <p>                     @if($foreignNgoType == 'Old')
-                        {{ trans('fd_one_step_one.fd8')}}
-                                                @else
-                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
-                                                @endif পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
-                     @else
-                     <p>Download                      @if($foreignNgoType == 'Old')
-                        {{ trans('fd_one_step_one.fd8')}}
-                                                @else
-                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
-                                                @endif PDF Chief Executive</p>
-                     @endif
                      <table class="table table-bordered">
                          <tr>
                              @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                              <td>পিডিএফ ডাউনলোড</td>
-                             {{-- <td>পিডিএফ আপলোড</td> --}}
                              <td>তথ্য সংশোধন করুন</td>
                              @else
                              <td>PDF Download</td>
-                             {{-- <td>PDF Upload</td> --}}
                              <td>Update Information</td>
                              @endif
                          </tr>
                          <tr>
-                             <td>
-                                {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </a> --}}
 
-                 {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button> --}}
-                 <?php
-                 $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+                                <td>
+                                    <?php
+                                    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
 
 
-                                                      ?>
+                                                                         ?>
 
-                 @if($ngoTypeInfo == 'দেশিও')
+                                    @if($ngoTypeInfo == 'দেশিও')
 
-                 <button class="btn btn-sm btn-success" id="downloadButton">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button>
+                                    <button class="btn btn-sm btn-success" id="downloadButton">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button>
 
-                 @else
+                                    @else
+                                    <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
+                                    <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
+                                    <button class="btn btn-sm btn-success" id="downloadButtonNew">
+                                        {{ trans('form 8_bn.download_pdf')}}
+                                    </button>
+                                    @endif
+                                </td>
 
-                 <button class="btn btn-sm btn-success" id="downloadButtonNew">
-                     {{ trans('form 8_bn.download_pdf')}}
-                 </button>
-                 @endif
-
-
-                 <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                     <div class="modal-dialog">
-                       <div class="modal-content">
-                         <div class="modal-header">
-
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                             <h5>{{ trans('mview.ttOne')}}</h5>
-                                 <div class=" mt-3 mb-3">
-                                     <label for="" class="form-label">{{ trans('mview.ttTwo')}}:</label>
-                                     <input type="text" data-parsley-required  name="{{ trans('mview.ttTwo')}}" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-
-
-
-<input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
-
-                                     <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}:</label>
-                                     <input type="text" data-parsley-required  name="{{ trans('mview.ttThree')}}" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="{{ trans('mview.ttThree')}}">
-                                     <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
-                                 </div>
-
-                                 @if($ngoTypeInfo == 'দেশিও')
-
-                                 <button class="btn btn-sm btn-success" id="downloadButton">
-                                     {{ trans('form 8_bn.download_pdf')}}
-                                 </button>
-
-                                 @else
-
-                                 <button class="btn btn-sm btn-success" id="downloadButtonNew">
-                                     {{ trans('form 8_bn.download_pdf')}}
-                                 </button>
-                                 @endif
-
-                         </div>
-
-                       </div>
-                     </div>
-                   </div>
-                             </td>
-                             {{-- <td>
-
-
-                 @if($allformOneData->verified_fd_eight_form_old == 0)
-                 <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                     {{ trans('form 8_bn.upload_pdf')}}
-                 </button>
-                 @else
-
-                 <?php
-
-                 $file_path = url($allformOneData->verified_fd_eight_form_old);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                 $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                 ?>
-                 <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                     পুনরায় আপলোড করুন
-                     @else
-                     Re-upload
-                     @endif
-                 </button><br>
-                 <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
-                 @endif
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-<div class="modal-content">
- <div class="modal-header">
-
-   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
- </div>
- <div class="modal-body">
-     <form method="post" action="{{ route('uploadFromEightPdfOld') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-         @csrf
-
-         <div class=" mb-3">
-             <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-             <input type="file" data-parsley-required accept=".pdf" name="verified_fd_eight_form_old"  class="form-control" id="">
-             <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="">
-         </div>
-
-         <button class="btn btn-sm btn-success" type="submit">
-             {{ trans('form 8_bn.upload_pdf')}}
-         </button>
-     </form>
- </div>
-
-</div>
-</div>
-</div>
-
-
-
-                             </td> --}}
                              <td>
                                 <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
                      Update Form

@@ -1,7 +1,7 @@
 <?php
 return [
-    'tt4'=>'Any other information of significance which the application may like to furnish (Enclousure may be given)',
-    'tt3'=>'Account number, type, bank name, branch and detailed address',
+    'tt4'=>'Any other information of significance which the applicant may like to furnish (Enclousure may be given)',
+    'tt3'=>'Name, address and account No. of Bank in Bangladesh through: which the Foreign Donations would be received',
     'tt2'=>'Detailed description',
     'tt1'=>'If registration fee has been paid (please enclouse supporting papers)',
     'tt'=>'Name & Details of Consultant (s) If Proposed to be employed',
@@ -27,6 +27,6 @@ return [
     'step_5'=>'Step 5',
     'Main_Account_Details'=>'Mother Account Details',
     'Submit'=>'Submit',
-    'fd_update'=>'Update FD01-From',
+    'fd_update'=>'Update FD-1 From',
 ];
 ?>

@@ -9,7 +9,7 @@ class FormEight extends Model
 {
     use HasFactory;
 
-    public $table = "form_eights";
+    protected $table = "form_eights";
 
     protected $fillable = [
         'job_picture',

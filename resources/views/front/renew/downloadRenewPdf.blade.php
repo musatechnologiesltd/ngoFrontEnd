@@ -9,7 +9,7 @@
 
 
         body {
-            font-family: 'bangla', sans-serif;
+            /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
             height: 11in;
             width: 8.5in;
@@ -49,10 +49,10 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .bt
+        /* .bt
       	{
 			font-family: 'banglabold', sans-serif;
-		}
+		} */
 
         .number_section
         {
@@ -67,7 +67,7 @@
 </head>
 <body>
     <div class="pdf_header">
-        <h5 style="font-family: 'bangla', sans-serif;">এফডি -৮ ফরম </h5>
+        <h5>এফডি -৮ ফরম </h5>
         <p>নিবন্ধন নবায়নের আবেদন ফরম <br>
             [অবশ্যকভাবে বাংলা নিকস ফন্টে পুরণ করে দাখিল করতে হবে]
         </p>
@@ -87,21 +87,16 @@ $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->v
 
 
       ?>
-    <tr>
+     <tr>
         <td></td>
-        <td>(i)</td>
-        <td>সংস্থার নাম</td>
-        <td>: {{ $reg_name }}</td>
+        <td>অ)</td>
+        <td>সংস্থার নাম ও সংস্থার ঠিকানা</td>
+        <td>: {{ $reg_name }}, {{ $all_partiw1->organization_address}}</td>
     </tr>
+
     <tr>
         <td></td>
-        <td>(ii)</td>
-        <td>সংস্থার ঠিকানা</td>
-        <td>: {{ $all_partiw1->organization_address}}</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>(iii)</td>
+        <td>আ)</td>
         <td>নিবন্ধন নম্বর</td>
         <td>:
             <?php
@@ -139,32 +134,28 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
     </tr>
     <tr>
         <td></td>
-        <td>(iv)</td>
-        <td>কোন দেশীয় সংস্থা</td>
-        <td>: {{ $all_partiw1->country_of_origin }}</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>(v)</td>
+        <td>ই)</td>
         <td>প্রধান কার্যালয়ের ঠিকানা</td>
         <td>: {{ $all_partiw1->address_of_head_office }}</td>
     </tr>
     <tr>
         <td></td>
         <td></td>
-        <td>টেলিফোন নম্বর ,মোবাইল নম্বর ,ইমেইল  ও ওয়েব এড্রেস</td>
+        <td>(টেলিফোন নম্বর ,মোবাইল নম্বর ,ইমেইল  ও ওয়েব এড্রেস)</td>
         <td>:
             @if(!$get_all_data_new )
 
             @else
-            {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->phone_new) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile_new) }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
+            {{ App\Http\Controllers\Admin\CommonController::englishToBangla($get_all_data_new ->phone_new) }},{{ App\Http\Controllers\Admin\CommonController::englishToBangla($get_all_data_new ->mobile_new) }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
             @endif
         </td>
     </tr>
     <tr>
         <td></td>
-        <td>(vi)</td>
+        <td>ঈ)</td>
         <td>বাংলাদেশস্থ সংস্থা প্রধানের তথ্যাদি</td>
+        <td></td>
+    </tr>
         <td></td>
     </tr>
     <tr>
@@ -204,12 +195,7 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
         </td>
         <td>: {{ $all_partiw1->citizenship }}</td>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td>চ) পেশা (বর্তমান পেশা উল্লেখ করতে হবে)</td>
-        <td>: {{ $all_partiw1->profession }}</td>
-    </tr>
+
 
     <tr>
         <td>২.</td>
@@ -250,9 +236,7 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
 
     <tr>
         <td>৪.</td>
-        <td colspan="3">কর্মকর্তাদের তথ্যাদি পৃথক কাগজে
-            [ঊর্ধ্বতন ৫(পাঁচ) জন কর্মকর্তার]
-            উপস্থাপন করতে হবে
+        <td colspan="3">৫(পাঁচ) জন ঊর্ধ্বতন কর্মকর্তার তথ্যাদি :
         </td>
     </tr>
     @foreach($all_partiw as $key=>$all_all_parti)
@@ -283,7 +267,7 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
     <tr>
         <td></td>
         <td>(ঘ)</td>
-        <td>নাগরিকত্ব (দ্বৈত নাগরিকত্ব থাকলে উল্লেখ করতে হবে)
+        <td>নাগরিকত্ব (পূর্বতন নাগরিকত্ব যদি থাকে উল্লেখ করতে হবে)
         </td>
         <td>: {{ $all_all_parti->citizenship }}</td>
     </tr>
@@ -324,7 +308,7 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
 
     <tr>
         <td>৫.</td>
-        <td colspan="2">নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে
+        <td colspan="2">নিবন্ধন নবায়ন ফি ও ভ্যাট পরিশোধ করা হয়েছে
             কিনা (চালানের কপি সংযুক্ত করতে
             হবে)
         </td>
@@ -415,8 +399,10 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
 
     </tbody>
 </table>
-<h4 style="text-align:center; font-weight:bold; font-size:20px;">{{ trans('fd_one_step_one.tt_1')}}</h4>
-<p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
+
+
+<h4 style="text-align:center; font-weight:bold; font-size:20px;">ঘোষণা </h4>
+<p>আমি এই মর্মে ঘোষণা করছি যে, আমি সংশ্লিষ্ট সকল আইন-কানুন পড়িয়াছি এবং উল্লিখিত সকল তথ্য সত্য ও সঠিক।</p>
 
 
 <table style=" margin-top: 15px;width:100%">
@@ -429,46 +415,41 @@ $getNgoTypeForPdf =DB::table('ngo_type_and_languages')->where('user_id',Auth::us
     </tr>
 </table>
 
-        <table style=" margin-top: 15px;width:100%">
+        <table style=" margin-top: 10px;width:100%">
             <tr>
-                <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
+                <td style="text-align: right; padding-right: 14%" colspan="3">প্রধান নির্বাহীর স্বাক্ষর ও সিল</td>
             </tr>
             <tr>
                 <td style="width: 65%"></td>
-                <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
+                <td style="text-align: left; width:5%;">নাম</td>
                 <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_name }}</td>
             </tr>
             <tr>
                 <td style="width: 65%"></td>
-                <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_6')}}</td>
+                <td style="text-align: left; width: 5%;">পদবি</td>
                 <td style="width:30%; text-align: left;">: {{ $get_all_data_new->chief_desi }}</td>
             </tr>
-            @if(session()->get('locale') == 'en' || empty(session()->get('locale')) )
-
-            @else
 
             <tr>
                 <td style="width: 65%"></td>
-                <td style="text-align: left; width: 5%;">Place</td>
-                <td style="width:30%; text-align: left;">: {{ Session::get('place')}}</td>
-            </tr>
-            @endif
-            <tr>
-                <td style="width: 65%"></td>
-                <td style="text-align: left; width: 5%;">{{ trans('fd_one_step_one.tt_7')}}</td>
-                @if($getNgoTypeForPdf == 'দেশিও')
+                <td style="text-align: left; width: 5%;">তারিখ</td>
+
                 <td style="width:30%; text-align: left;">: {{  App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new->created_at->format('d/m/Y')) }}</td>
-                @else
-                <td style="width:30%; text-align: left;">: {{  $get_all_data_new->created_at->format('d/m/Y') }}</td>
-                @endif
+
             </tr>
         </table>
 
 
 <ul style="margin-top:25px">
 
-    <li>{{ trans('fd_one_step_one.tt_11')}}</li>
+    <li>সংযোজনী হিসেবে পৃথক কাগজপত্রাদি সংযুক্ত করা যাবে।</li>
 
 </ul>
+
+
+
+
+
+
 </body>
 </html>

@@ -16,6 +16,7 @@ use DateTime;
 use DateTimezone;
 use Carbon\Carbon;
 use Session;
+use Mpdf\Mpdf;
 use Illuminate\Support\Facades\App;
 use App\Models\FdOneForm;
 use App\Models\NgoMemberList;
@@ -149,11 +150,7 @@ class RenewController extends Controller
 
     public function updateRenewInformationList(Request $request){
 
-        $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
-        ]);
 
         $time_dy = time().date("Ymd");
 
@@ -220,7 +217,7 @@ class RenewController extends Controller
 
         $mm_id = $ngoRenew->id;
 
-return redirect('/allStaffInformationForRenew');
+return redirect('/otherInformationForRenew');
 
 
 
@@ -233,9 +230,10 @@ return redirect('/allStaffInformationForRenew');
 
 $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
-        ]);
+    'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+    'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+]);
+
         $time_dy = time().date("Ymd");
 
         $filePath="NgoRenewInfo";
@@ -305,9 +303,9 @@ $request->validate([
 
        $mm_id = $ngoRenew->id;
 
+//return redirect('/otherInformationForRenew');
+
 return redirect('/allStaffInformationForRenew');
-
-
 
     }
 
@@ -361,10 +359,10 @@ return redirect('/allStaffInformationForRenew');
         $designation = $request->designation;
         $id = $request->id;
 
-        $formEightData =NgoRenewInfo::find($id);
-        $formEightData->chief_name = $name;
-        $formEightData->chief_desi = $designation;
-        $formEightData->save();
+        // $formEightData =NgoRenewInfo::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
 
          return $data = url('downloadRenewPdf/'.base64_encode($id));
 
@@ -388,15 +386,44 @@ return redirect('/allStaffInformationForRenew');
 
 
 
-        $pdf=PDF::loadView('front.renew.downloadRenewPdf',[
-            'get_all_data_new'=>$get_all_data_new,
+    //     $pdf=PDF::loadView('front.renew.downloadRenewPdf',[
+    //         'get_all_data_new'=>$get_all_data_new,
 
-            'all_partiw1'=>$all_partiw1,
-            'all_partiw'=>$all_partiw,
-            'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+    //         'all_partiw1'=>$all_partiw1,
+    //         'all_partiw'=>$all_partiw,
+    //         'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+
+    $data =view('front.renew.downloadRenewPdf',[
+                'get_all_data_new'=>$get_all_data_new,
+
+                'all_partiw1'=>$all_partiw1,
+                'all_partiw'=>$all_partiw,
+                 'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+
+            ])->render();
+
+
+    $pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+                     $mpdf = new Mpdf([
+                        //'default_font_size' => 14,
+                        'default_font' => 'nikosh'
+                    ]);
+
+                    //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+                    $mpdf->WriteHTML($data);
+
+
+
+                    $mpdf->Output($pdfFilePath, "I");
+                    die();
 
 
     }
@@ -509,6 +536,17 @@ return redirect('/allStaffInformationForRenew');
   $newDataAll->constitution_of_the_organization_if_unchanged =CommonController::pdfUpload($request,$file,$filePath);
 
        }
+
+
+       if ($request->hasfile('final_fd_eight_form')) {
+        $filePath="RenewalFile";
+       $file = $request->file('final_fd_eight_form');
+$newDataAll->final_fd_eight_form =CommonController::pdfUpload($request,$file,$filePath);
+
+   }
+
+
+
 
 
        if ($request->hasfile('nid_and_image_of_executive_committee_members')) {

@@ -24,150 +24,35 @@
                         <div class="card-body">
                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                            <p>এফডি-১ ফরম পিডিএফ ডাউনলোড </p>
+                            <p>এনজিও'র বিবরণ </p>
                             @else
-                            <p>Download FD-1 Form PDF, upload with seal, signature of Chief Executive</p>
+                            <p>Details of the NGO</p>
                             @endif
+                            <?php
+                            $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+
+                                                                        ?>
                             <table class="table table-bordered">
+
                                 <tr>
-                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <td>পিডিএফ ডাউনলোড</td>
-                                    {{-- <td>পিডিএফ আপলোড</td> --}}
-                                    <td>তথ্য সংশোধন করুন</td>
-                                    @else
-                                    <td>PDF Download</td>
-                                    {{-- <td>PDF Upload</td> --}}
-                                    <td>Update Information</td>
-                                    @endif
-                                </tr>
-                                <tr>
-                                    <td>
-                                       {{-- <a class="btn btn-sm btn-success" target="_blank" href = "{{ route('fdFormOneInfoPdf') }}">
-                            {{ trans('form 8_bn.download_pdf')}}
-                        </a> --}}
-                        <?php
-                        $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+<td>  @if($ngoTypeInfo == 'দেশিও')
 
+    <button class="btn btn-sm btn-success" id="downloadButton">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
+    <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
+    @else
 
-
-                                                                    ?>
-
-                        @if($ngoTypeInfo == 'দেশিও')
-
-                        <button class="btn btn-sm btn-success" id="downloadButton">
-                            {{ trans('form 8_bn.download_pdf')}}
-                        </button>
-
-                        @else
-
-                        <button class="btn btn-sm btn-success" id="downloadButton345">
-                            {{ trans('form 8_bn.download_pdf')}}
-                        </button>
-                        @endif
-
-
-
-                        {{-- <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal234">
-                            {{ trans('form 8_bn.download_pdf')}}
-                        </button> --}}
-
-                        <div class="modal fade" id="exampleModal234" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <h5>{{ trans('mview.ttOne')}}</h5>
-                                        <div class=" mt-3 mb-3">
-                                            <label for="" class="form-label">{{ trans('mview.ttTwo')}}:</label>
-                                            <input type="text" data-parsley-required  name="{{ trans('mview.ttTwo')}}" value="{{ $allformOneData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-
-
-@if($ngoTypeInfo == 'দেশিও')
-<input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
-@else
-<label for="" class="form-label mt-3">{{ trans('mview.place')}}:</label>
-<input type="text" data-parsley-required  name="{{ trans('mview.place')}}" value="{{ Session::get('place')}}"  class="form-control" id="mainPlace" placeholder="{{ trans('mview.place')}}">
-@endif
-                                            <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}:</label>
-                                            <input type="text" data-parsley-required  name="{{ trans('mview.ttThree')}}" value="{{ $allformOneData->chief_desi }}"  class="form-control" id="mainDesignation" placeholder="{{ trans('mview.ttThree')}}">
-                                            <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="mainId">
-                                        </div>
-
-
-
-                                </div>
-
-                              </div>
-                            </div>
-                          </div>
-                                    </td>
-                                    {{-- <td>
-
-
-                        @if($allformOneData->verified_fd_one_form == 0)
-                        <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            {{ trans('form 8_bn.upload_pdf')}}
-                        </button>
-                        @else
-
-                        <?php
-
-                        $file_path = url($allformOneData->verified_fd_one_form);
-                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                        ?>
-                        <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                            পুনরায় আপলোড করুন
-                            @else
-                            Re-upload
-                            @endif
-                        </button><br>
-                        <p class="badge bg-success rounded">{{ $filename.'.'.$extension }}</p>
-                        @endif
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form method="post" action="{{ route('uploadFromOnePdf') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
-
-                @csrf
-
-                <div class=" mb-3">
-                    <label for="" class="form-label">{{ trans('form 8_bn.pdf')}}:</label>
-                    <input type="file" data-parsley-required accept=".pdf" name="verified_fd_one_form"  class="form-control" id="">
-                    <input type="hidden" data-parsley-required  name="id"  value="{{ $allformOneData->id }}" class="form-control" id="">
-                </div>
-
-                <button class="btn btn-sm btn-success" type="submit">
-                    {{ trans('form 8_bn.upload_pdf')}}
-                </button>
-            </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-
-                                    </td> --}}
+    <button class="btn btn-sm btn-success" id="downloadButton345">
+        {{ trans('form 8_bn.download_pdf')}}
+    </button>
+    @endif</td>
                                     <td>
                                        <button class="btn btn-sm btn-success" onclick="location.href = '{{ route('fdOneFormEdit') }}';">
-                            {{ trans('fd_one_step_four.fd_update')}}
+                                        তথ্য সংশোধন করুন
                         </button>
                                     </td>
                                 </tr>
@@ -191,15 +76,7 @@ foreach ($data   as $a) {
 
                     ?>
 
-                    @if(!empty($data->chief_name))
 
-                    <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p>
-
-                            @else
-
-                            <p class="badge bg-danger rounded">{{ trans('form 8_bn.un_complete_status')}}</p>
-
-                            @endif
 
                         </div>
                     </div>
@@ -219,7 +96,7 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td>(i)</td>
                                     <td>{{ trans('fd_one_step_one.Organization_Name_Organization_address')}}</td>
-                                    <td>: {{ $allformOneData->organization_name }}</td>
+                                    <td>: {{ $allformOneData->organization_name_ban }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -316,13 +193,13 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td></td>
-                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address')}}, {{ trans('fd_one_step_one.Mobile_Number')}}, {{ trans('fd_one_step_one.Email')}}</td>
+                                    <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
                                     <td>: {{ $allformOneData->address }},
                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
-                                        @else
-                                        {{ $allformOneData->phone }},
-                                        @endif
+                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->tele_phone_number.', '.$allformOneData->phone) }},
+                @else
+                {{ $allformOneData->tele_phone_number.', '.$allformOneData->phone }},
+                @endif
                                         {{ $allformOneData->email }}</td>
                                 </tr>
                                  <?php
@@ -390,7 +267,7 @@ foreach ($data   as $a) {
                                     <td></td>
                                     <td></td>
                                     <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
-                                    <td>: {{ $all_get_all_source_of_fund_data->name }},{{ $all_get_all_source_of_fund_data->address }}</td>
+                                    <td>: {{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -490,7 +367,11 @@ foreach ($data   as $a) {
                                     <td>:
                                         @if($getngoForLanguage =='দেশিও')
                                       @foreach($getCityzendata as $all_getCityzendata)
+                                      @if(count($getCityzendata) == 1)
+                                      {{$all_getCityzendata->country_people_bangla}}
+                                      @else
                                       {{$all_getCityzendata->country_people_bangla}},
+                                      @endif
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}
@@ -630,7 +511,7 @@ foreach ($data   as $a) {
                                 <tr>
                                     <td></td>
                                     <td>({{ trans('form 8_bn.e')}})</td>
-                                    <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
+                                    <td>{{ trans('fd_one_step_four.bank_address')}}</td>
                                     <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                                 </tr>
                                 @endif

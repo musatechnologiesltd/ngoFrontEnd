@@ -9,7 +9,7 @@ class NgoRenewInfo extends Model
 {
     use HasFactory;
 
-    public $table = "ngo_renew_infos";
+    protected $table = "ngo_renew_infos";
 
     protected $fillable = [
 

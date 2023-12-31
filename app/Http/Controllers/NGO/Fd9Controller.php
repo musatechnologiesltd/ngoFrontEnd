@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NVisa;
 use App\Models\NgoStatus;
+use App\Models\NgoRenew;
 use App\Models\Country;
 use App\Models\Fd9Form;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
 use Illuminate\Support\Facades\Crypt;
 use DB;
 use PDF;
+use Mpdf\Mpdf;
 use DateTime;
 use DateTimezone;
 use Response;
@@ -45,10 +47,24 @@ class Fd9Controller extends Controller
 
 
     public function create(){
+       // dd(1);
         $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
         ->first();
+
+
+//dd($checkNgoTypeForForeginNgo);
+
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        $newOldNgo = CommonController::newOldNgo();
+//dd($newOldNgo);
+if($newOldNgo != 'Old'){
         $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+}else{
+
+    $ngoStatus = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+}
         return view('front.fdNineForm.create',compact('ngo_list_all','ngoStatus','checkNgoTypeForForeginNgo'));
 
     }
@@ -72,7 +88,15 @@ $fdNineData =Fd9Form::where('id',$nVisaId)->first();
 $fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
 
 $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
-$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+$newOldNgo = CommonController::newOldNgo();
+if($newOldNgo != 'Old'){
+    $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+}else{
+
+$ngoStatus = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+}
 //dd($fdNineData);
 
 CommonController::checkNgotype(1);
@@ -92,8 +116,8 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         $request->validate([
 
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
 
 
@@ -158,6 +182,19 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $fd9FormInfo->fd9_previous_citizenship_is_grounds_for_non_retention = $request->fd9_previous_citizenship_is_grounds_for_non_retention;
          $fd9FormInfo->fd9_current_address = $request->fd9_current_address;
          $fd9FormInfo->fd9_number_of_family_members = $request->fd9_number_of_family_members;
+
+
+
+
+
+         if ($request->hasfile('verified_fd_nine_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_form');
+            $fd9FormInfo->verified_fd_nine_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
 
          if ($request->hasfile('digital_signature')) {
             $filePath="ngoHead";
@@ -269,11 +306,7 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
     public function update(Request $request,$id){
 
 
-        $request->validate([
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
-        ]);
 
 
         $fd9FormInfo = Fd9Form::find($id);
@@ -299,6 +332,17 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         $fd9FormInfo->fd9_previous_citizenship_is_grounds_for_non_retention = $request->fd9_previous_citizenship_is_grounds_for_non_retention;
         $fd9FormInfo->fd9_current_address = $request->fd9_current_address;
         $fd9FormInfo->fd9_number_of_family_members = $request->fd9_number_of_family_members;
+
+
+
+
+        if ($request->hasfile('verified_fd_nine_form')) {
+            $filePath="ngoHead";
+            $file = $request->file('verified_fd_nine_form');
+            $fd9FormInfo->verified_fd_nine_form =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
 
 
         if ($request->hasfile('digital_signature')) {
@@ -429,7 +473,14 @@ $fdNineData =Fd9Form::where('id',$nVisaId)->first();
 $fdOneFormId = NVisa::where('id',$nVisaId)->value('fd_one_form_id');
 
 $fdOneFormData = FdOneForm::where('id',$fdOneFormId)->first();
-$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+$newOldNgo = CommonController::newOldNgo();
+if($newOldNgo != 'Old'){
+    $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+}else{
+
+$ngoStatus = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+}
 //dd($fdNineData);
 
 CommonController::checkNgotype(1);
@@ -463,18 +514,48 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
 
 //$fdNineData =Fd9Form::where('id',$id)->first();
 
-$file_Name_Custome = "Fd9_Form";
-        $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
-            'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
-            'fdNineData'=>$fdNineData,
-            'fdNineData'=>$fdNineData,
-            'getCityzenshipData'=>$getCityzenshipData,
-            'countryList'=>$countryList,
-            'ngo_list_all'=>$ngo_list_all,
-            'ngoStatus'=>$ngoStatus
+// $file_Name_Custome = "Fd9_Form";
+//         $pdf=PDF::loadView('front.fdNineForm.mainFd9PdfDownload',[
+//             'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
+//             'fdNineData'=>$fdNineData,
+//             'fdNineData'=>$fdNineData,
+//             'getCityzenshipData'=>$getCityzenshipData,
+//             'countryList'=>$countryList,
+//             'ngo_list_all'=>$ngo_list_all,
+//             'ngoStatus'=>$ngoStatus
 
-        ],[],['format' => 'A4']);
-    return $pdf->stream($file_Name_Custome.''.'.pdf');
+//         ],[],['format' => 'A4']);
+//     return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+$file_Name_Custome = 'fd_nine_form';
+$data =view('front.fdNineForm.mainFd9PdfDownload',[
+                 'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
+                 'fdNineData'=>$fdNineData,
+                 'fdNineData'=>$fdNineData,
+                 'getCityzenshipData'=>$getCityzenshipData,
+                 'countryList'=>$countryList,
+                 'ngo_list_all'=>$ngo_list_all,
+             'ngoStatus'=>$ngoStatus
+
+             ])->render();
+
+
+$pdfFilePath =$file_Name_Custome.'.pdf';
+
+
+         $mpdf = new Mpdf([
+            'default_font_size' => 14,
+            'default_font' => 'nikosh'
+        ]);
+
+        //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
+        $mpdf->WriteHTML($data);
+
+
+
+        $mpdf->Output($pdfFilePath, "I");
+        die();
 
     }
 

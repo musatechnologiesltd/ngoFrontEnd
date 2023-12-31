@@ -26,9 +26,11 @@
   <link href="{{ asset('/') }}public/front/assets/css/responsive_style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('/') }}public/front/assets/vendor/fontawesome4.7.0/css/font-awesome.min.css">
 
-
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/nokshaia/angkur@latest/PublicFonts/Nikosh/stylesheet_Normal_DisplaySwap.css"/> --}}
     <style>
-
+/* body {
+	font-family: 'Nikosh', serif !important;
+} */
 .swal2-confirm{
 
     margin-left: 20px;
@@ -456,7 +458,7 @@ $("document").ready(function(){
 <script>
    $( function() {
 	$( "#datepicker" ).datepicker({
-		dateFormat: "dd-mm-yy"
+		dateFormat: "yy-mm-dd"
 		,	duration: "fast"
 	});
 } );
@@ -465,7 +467,7 @@ $("document").ready(function(){
 <script>
     $( function() {
      $( ".datepicker" ).datepicker({
-         dateFormat: "dd-mm-yy"
+         dateFormat: "yy-mm-dd"
          ,	duration: "fast"
      });
  } );
@@ -474,7 +476,7 @@ $("document").ready(function(){
 <script>
     $( function() {
      $( "#datepicker1" ).datepicker({
-         dateFormat: "dd-mm-yy"
+         dateFormat: "yy-mm-dd"
          ,	duration: "fast"
      });
  } );

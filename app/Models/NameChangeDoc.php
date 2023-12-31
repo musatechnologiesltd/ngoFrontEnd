@@ -9,7 +9,7 @@ class NameChangeDoc extends Model
 {
     use HasFactory;
 
-    public $table = "name_change_docs";
+    protected $table = "name_change_docs";
 
     protected $fillable = [
         'pdf_file_list',

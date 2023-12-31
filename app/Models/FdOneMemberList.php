@@ -9,7 +9,7 @@ class FdOneMemberList extends Model
 {
     use HasFactory;
 
-    public $table = "fd_one_member_lists";
+    protected $table = "fd_one_member_lists";
 
     protected $fillable = [
         'name',

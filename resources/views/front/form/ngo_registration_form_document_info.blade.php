@@ -15,15 +15,15 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
             <div class="form">
                 <div class="left-side">
                     <div class="steps-content">
-                        <h3>{{ trans('fd_one_step_three.Step_3')}}</h3>
+                        <h3>{{ trans('fd_one_step_two.Step_2')}}</h3>
                     </div>
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
-                        <li >{{ trans('fd_one_step_one.fd8')}}</li>
+                        <li>{{ trans('fd_one_step_one.fd8')}}</li>
                         @else
-                        <li >{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                        {{--  <li>{{ trans('fd_one_step_one.member_title')}}</li>
                         <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         {{-- <li>{{ trans('fd_one_step_one.other_doc_title')}}</li> --}}
@@ -140,10 +140,10 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
         @endif
                             </div>
                             <div class="p-2">
-                                <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
+                                {{-- <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
                                         {{ trans('other_doc.add_new_document')}}
-                                </button>
+                                </button> --}}
                             </div>
                         </div>
 
@@ -171,13 +171,344 @@ if($localNgoTypem == 'Old'){
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
-                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                      <h2>তথ্য পাওয়া যায়নি</h2>
-                                      @else
-                                      <h2>Data Not Found</h2>
-                                      @endif
+
+
+                                      <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                                        @csrf
+            <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                        @if($localNgoTypem == 'Old')
+
+                                        <div class="mt-3">
+
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">সংগঠনের গঠনতন্ত্রে পরিবর্তন হয়েছে কি না ?<span class="text-danger">*</span> </label>
+                                                <div class="mt-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="Yes" >
+                                                    <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="No" >
+                                                    <label class="form-check-label" for="inlineRadio2">না</label>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="mb-3" id="mResult">
+                                        </div>
+                                        <b>অন্যান্য তথ্য:</b>
+
+
+
+
+
+
+
+
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        @else
+
+
+
+
+
+
+
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                ফরম নং - ৮ <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ  <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        @endif
+
+                                        <div class="d-grid d-md-flex justify-content-md-end">
+                                            <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
+                                            </button>
+                                        </div>
+
+                                    </form>
 
                                       @else
+
+
+                                       <!--new start -->
+                                       @if(empty($ngoOtherDocListsFirst->fd_eight_form_data))
+
+                                       @else
+                                       <?php
+
+                                         $file_path = url($ngoOtherDocListsFirst->fd_eight_form_data);
+                                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                                         ?>
+
+
+                                             <div class="file-box">
+
+
+
+                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম
+
+                                                 <div class="file-top">
+                                                     <i class="fa fa-file-pdf-o txt-primary"></i>
+                                                 </div>
+
+                                                 <div class="mt-2">
+                                                     <h6>{{ $filename }}</h6>
+                                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                             data-bs-target="#exampleModal555551211"><i class="fa fa-pencil"></i></button>
+
+
+                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                                               <!--modal -->
+                                                               <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                 <div class="modal-dialog">
+                                                                     <div class="modal-content">
+                                                                         <div class="modal-header">
+                                                                             <h5 class="modal-title" id="exampleModalLabel">
+                                                                                নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম
+ </h5>
+                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                         </div>
+                                                                         <div class="modal-body">
+                                                                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                                                 @csrf
+                                                                                 @method('PUT')
+                                                                                 <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                                                 <input type="hidden" name="title" value="fd_eight_form_data"/>
+                                                                                 <div class="mb-3">
+
+                                                                                     <input type="file" name="fd_eight_form_data" class="form-control" id="">
+
+                                                                                     <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->fd_eight_form_data  }}"
+                         style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                                                 </div>
+                                                                                 <div class="modal-footer">
+                                                                                     <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                                                 </div>
+                                                                             </form>
+                                                                         </div>
+
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                             <!--model end -->
+                                                 </div>
+
+
+                                             </div>
+
+                                             @endif
+
+                                             <!--end if -->
+
 
 
 
@@ -1677,11 +2008,263 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
-                                      @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                      {{-- @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                       <h2>তথ্য পাওয়া যায়নি</h2>
                                       @else
                                       <h2>Data Not Found</h2>
-                                      @endif
+                                      @endif --}}
+
+                                      <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                                        @csrf
+            <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                        @if($localNgoTypem == 'Old')
+
+                                        <div class="mt-3">
+
+                                            <div class="mb-3">
+                                                <label for="" class="form-label">সংগঠনের গঠনতন্ত্রে পরিবর্তন হয়েছে কি না ?<span class="text-danger">*</span> </label>
+                                                <div class="mt-2">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="Yes" >
+                                                    <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
+                                                           value="No" >
+                                                    <label class="form-check-label" for="inlineRadio2">না</label>
+                                                </div>
+                                                </div>
+                                            </div>
+
+                                        <div class="mb-3" id="mResult">
+                                        </div>
+                                        <b>অন্যান্য তথ্য:</b>
+
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="">
+                                                এফডি-১ ফরম<span class="text-danger">*</span>
+                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                            <input class="form-control" name="fd_one_form_data" data-parsley-required accept=".pdf" type="file" id="">
+                                        </div>
+
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="">
+                                                ফরম নং - ৮<span class="text-danger">*</span>
+                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                            <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="">
+                                        </div>
+
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
+                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+                                        @else
+
+
+
+
+
+
+
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                ফরম নং - ৮ <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        @endif
+
+                                        <div class="d-grid d-md-flex justify-content-md-end">
+                                            <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
+                                            </button>
+                                        </div>
+
+                                    </form>
 
                                       @else
 
@@ -1704,76 +2287,78 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                 @if($key+1 == 1)
 
-                                                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                                                                <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
-                                                                                @else
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6>ফরম নং - ৮</h6>
+                                                @else
 
-                                                                                <h6>Certificate Of Incorporation in the Country Of Origin</h6>
-                                                                                @endif
+                                                <h6>Form No - 8</h6>
+                                                @endif
 
-                                                                            @elseif($key+1 == 2)
+                                                @elseif($key+1 == 2)
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
-                                                                            @else
+                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
+                                                @else
 
-                                                                            <h6>Attested copy of constitution</h6>
-                                                                            @endif
+                                                <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                @endif
 
-                                                                            @elseif($key+1 == 3)
+                                            @elseif($key+1 == 3)
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
-                                                                            @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                            @else
 
-                                                                            <h6>Activity report of the organization</h6>
-                                                                            @endif
+                                            <h6>Attested copy of constitution</h6>
+                                            @endif
 
-                                                                            @elseif($key+1 == 4)
+                                            @elseif($key+1 == 4)
+
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                            @else
+
+                                            <h6>Activity report of the organization</h6>
+                                            @endif
+
+                                            @elseif($key+1 == 5)
 
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
-                                                                            @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
+                                            @else
 
-                                                                            <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
-                                                                            @endif
+                                            <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                            @endif
 
 
 
-                                                                            @elseif($key+1 == 5)
+                                            @elseif($key+1 == 6)
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
-                                                                            @else
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
+                                            @else
 
-                                                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
-                                                                            @endif
-                                                                            @elseif($key+1 == 6)
+                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                            @endif
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                                                            @else
+                                            @elseif($key+1 == 7)
 
-                                                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                                                            @endif
-                                                                            @elseif($key+1 == 7)
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
+                                            @else
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )</h6>
-                                                                            @else
+                                            <h6>Letter Of Intent </h6>
+                                            @endif
+                                            @elseif($key+1 == 8)
 
-                                                                            <h6>Letter Of Intent </h6>
-                                                                            @endif
-                                                                            @elseif($key+1 == 8)
+                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
+                                            @else
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
-                                                                            @else
-
-                                                                            <h6>Letter Of Intent </h6>
-                                                                            @endif
-                                                                            @endif
+                                            <h6>Letter Of Intent </h6>
+                                            @endif
+                                            @endif
 
 
 
@@ -1793,7 +2378,17 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title" id="exampleModalLabel">
 
-                                                                                @if($key+1 == 1)
+
+                                                                              @if($key+1 == 1)
+
+                                                                                @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
+                                                                                <h6>ফরম নং - ৮</h6>
+                                                                                @else
+
+                                                                                <h6>Form No - 8</h6>
+                                                                                @endif
+
+                                                                                @elseif($key+1 == 2)
 
                                                                                 @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
                                                                                 <h6> নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
@@ -1802,7 +2397,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>Certificate Of Incorporation in the Country Of Origin</h6>
                                                                                 @endif
 
-                                                                            @elseif($key+1 == 2)
+                                                                            @elseif($key+1 == 3)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
@@ -1811,7 +2406,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Attested copy of constitution</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 3)
+                                                                            @elseif($key+1 == 4)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
@@ -1820,7 +2415,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>Activity report of the organization</h6>
                                                                             @endif
 
-                                                                            @elseif($key+1 == 4)
+                                                                            @elseif($key+1 == 5)
 
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1832,7 +2427,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                                                                            @elseif($key+1 == 5)
+                                                                            @elseif($key+1 == 6)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
@@ -1840,14 +2435,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                             <h6>Letter Of Appoinment Of The Country Representative</h6>
                                                                             @endif
-                                                                            @elseif($key+1 == 6)
 
-                                                                            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
-                                                                            @else
-
-                                                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
-                                                                            @endif
                                                                             @elseif($key+1 == 7)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -1914,7 +2502,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                         <div class="buttons d-flex justify-content-end mt-4">
-                            <button class="btn btn-dark me-2 back_button"  onclick="location.href = '{{ route('formEightNgoCommitteMember.index') }}';">{{ trans('fd_one_step_one.back')}}</button>
+                            <button class="btn btn-dark me-2 back_button"  onclick="location.href = '{{ route('othersInformation') }}';">{{ trans('fd_one_step_one.back')}}</button>
 @if(count($ngoOtherDocLists) == 0)
                           @if(count($ngoOtherDocLists) >= 1)
 <button class="btn btn-custom next_button" type="button">{{ trans('fd_one_step_four.Submit')}}</button>
@@ -1963,233 +2551,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-                        <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
-                            @csrf
-<input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
-                            @if($localNgoTypem == 'Old')
-
-                            <div class="mt-3">
-
-                                <div class="mb-3">
-                                    <label for="" class="form-label">সংগঠনের গঠনতন্ত্রে পরিবর্তন হয়েছে কি না ?<span class="text-danger">*</span> </label>
-                                    <div class="mt-2">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
-                                               value="Yes" >
-                                        <label class="form-check-label" for="inlineRadio1">হ্যাঁ</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input organizational_structurel" data-parsley-checkmin="1" data-parsley-required type="radio" name="constitution_of_the_organization_has_changed" id=""
-                                               value="No" >
-                                        <label class="form-check-label" for="inlineRadio2">না</label>
-                                    </div>
-                                    </div>
-                                </div>
-
-                            <div class="mb-3" id="mResult">
-                            </div>
-                            <b>অন্যান্য তথ্য:</b>
-
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                    <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
-                                    <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
-                                    <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                    <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
-                                    <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
-                                    <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                    <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                                    <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                    <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="form-label" for="">
-                                        নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
-                                        <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                                    <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
-                                </div>
-
-
-
-
-
-
-
-
-
-
-
-                            @else
-
-
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ  <span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-                            @endif
-
-                            <div class="d-grid d-md-flex justify-content-md-end">
-                                <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
-                                </button>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>

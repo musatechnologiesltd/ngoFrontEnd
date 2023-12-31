@@ -9,7 +9,7 @@ class Fd9ForeignerEmployeeFamilyMemberList extends Model
 {
     use HasFactory;
 
-    public $table = "fd9_foreigner_employee_family_member_lists";
+    protected $table = "fd9_foreigner_employee_family_member_lists";
 
     protected $fillable = [
         'fd9_form_id',

@@ -6,7 +6,7 @@
     <style>
 
         body {
-            font-family: 'bangla', sans-serif;
+         /* font-family: 'bangla', sans-serif; */
             font-size: 14px;
             height: 11in;
             width: 8.5in;
@@ -47,10 +47,10 @@
             text-align: center;
             margin-bottom: 30px;
         }
-        .bt
+        /* .bt
       	{
 			font-family: 'banglabold', sans-serif;
-		}
+		} */
 
         .number_section
         {
@@ -75,7 +75,7 @@
         <p>
             [Under act 4(1) of the Foreign Donations (Voluntary Activities) Regulation Act, 2016]
              <br>
-    {{ trans('fd_one_step_one.n_r')}}
+    <b>{{ trans('fd_one_step_one.n_r')}}</b>
 </p>
     </div>
     @endif
@@ -91,6 +91,8 @@
             <td class="number_section">(i)</td>
             <td>{{ trans('fd_one_step_one.Organization_Name_Organization_address')}}</td>
             <td style="width:4px">:</td>
+
+
             @if($getNgoTypeForPdf == 'দেশিও')
             <td>{{ $allformOneData->organization_name_ban }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address }}</td>
             @else
@@ -191,10 +193,10 @@
             <td>{{ trans('form 8_bn.c')}}) {{ trans('fd_one_step_one.Address_Mobile_Number_Email')}}</td>
             <td style="width:4px">:</td>
             <td>{{ $allformOneData->address }}, @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->phone) }},
+                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allformOneData->tele_phone_number.', '.$allformOneData->phone) }},
                 @else
-                {{ $allformOneData->phone }},
-                @endif, {{ $allformOneData->email }}</td>
+                {{ $allformOneData->tele_phone_number.', '.$allformOneData->phone }},
+                @endif {{ $allformOneData->email }}</td>
         </tr>
 
        <?php
@@ -249,7 +251,7 @@
             <td></td>
             <td>(ii) {{ trans('fd_one_step_two.pp')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $allformOneData->district }},{{ $allformOneData->sub_district }}</td>
+            <td>{{ $allformOneData->district }}</td>
         </tr>
         <tr>
             <td></td>
@@ -263,7 +265,7 @@
             <td></td>
             <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $all_get_all_source_of_fund_data->name }},{{ $all_get_all_source_of_fund_data->address }}</td>
+            <td>{{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
         </tr>
         <tr>
             <td></td>
@@ -361,7 +363,12 @@
             <td style="width:4px">:</td>
             <td> @if($getngoForLanguage =='দেশিও')
                                       @foreach($getCityzendata as $all_getCityzendata)
+
+                                      @if(count($getCityzendata) == 1)
+                                      {{$all_getCityzendata->country_people_bangla}}
+                                      @else
                                       {{$all_getCityzendata->country_people_bangla}},
+                                      @endif
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}
@@ -419,7 +426,7 @@
         </tr>
         <tr>
             <td>{{ trans('fd_one_step_one.six')}}.</td>
-            <td colspan="4">{{ trans('fd_one_step_four.tt')}}
+            <td colspan="4">{{ trans('fd_one_step_four.tt')}} :
             </td>
         </tr>
         @foreach($get_all_data_adviser as $key=>$all_get_all_data_adviser)
@@ -495,7 +502,7 @@
         <tr>
             <td></td>
             <td>({{ trans('form 8_bn.e')}})</td>
-            <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
+            <td>{{ trans('fd_one_step_four.bank_address')}}</td>
             <td style="width:4px">:</td>
             <td>{{ $get_all_data_adviser_bank->bank_address }}</td>
         </tr>
@@ -508,7 +515,7 @@
             <td>
 @foreach($get_all_data_other as $all_get_all_data_other)
 
-@if(empty($all_get_all_data_other->information_type))
+@if(empty($all_get_all_data_other->information_title))
 
 @else
 
@@ -529,12 +536,23 @@ attached
 
         </tbody>
     </table>
-<h4 style="text-align:center; font-weight:bold; font-size:20px;margin-top: 100px">{{ trans('fd_one_step_one.tt_1')}}</h4>
+<h4 style="text-align:center; font-weight:bold; font-size:20px;margin-top: 30px">{{ trans('fd_one_step_one.tt_1')}}</h4>
 <p>{{ trans('fd_one_step_one.tt_2')}},{{ trans('fd_one_step_one.tt_3')}}</p>
-<table style=" margin-top: 150px">
+
+<table style=" margin-top: 15px;width:100%">
+
     <tr>
-        <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
+        <td style="text-align: right;padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/') }}{{ $allformOneData->digital_signature}}"/></td>
     </tr>
+    <tr>
+        <td style="text-align: right;padding-right: 14%" colspan="3"><img width="150" height="60" src="{{ asset('/')}}{{ $allformOneData->digital_seal}}"/></td>
+    </tr>
+</table>
+
+<table style=" margin-top: 15px">
+    {{-- <tr>
+        <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
+    </tr> --}}
     <tr>
         <td style="width: 65%"></td>
         <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
