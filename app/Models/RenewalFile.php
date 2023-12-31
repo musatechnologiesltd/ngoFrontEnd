@@ -9,6 +9,8 @@ class RenewalFile extends Model
 {
     use HasFactory;
 
+    protected $table = 'renewal_files';
+
     protected $fillable = [
 
         'fd_one_form_id',
