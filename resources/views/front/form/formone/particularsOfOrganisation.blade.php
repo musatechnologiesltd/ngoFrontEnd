@@ -476,8 +476,8 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                  <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                  <span class="text-success"><b>Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG</b></span>
+                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
                 </div>
@@ -485,8 +485,8 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                    <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                    <span class="text-success"><b>Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG</b></span>
+                    <input type="file"  value="" name="digital_seal" accept="image/png" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>

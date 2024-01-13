@@ -216,7 +216,7 @@ if($foreignNgoType == 'Old'){
                                                 <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
                                             </div> --}}
 
-                                          
+
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
@@ -281,7 +281,7 @@ if($foreignNgoType == 'Old'){
 
 
                                             <div class="mb-3">
-                                                <label class="form-label" for="">
+                                                <laকর্তৃপক্ষbel class="form-label" for="">
                                                     Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
                                                     <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
                                                 <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
@@ -296,7 +296,10 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Form No - 8<span class="text-danger">*</span>
+                                            List of Executive Committee (foreign)<span class="text-danger">*</span>
+
+                                            <br><span >PDF Should not exceed 500 KB in size</span>
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -308,7 +311,9 @@ if($foreignNgoType == 'Old'){
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
+                                                Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -321,6 +326,8 @@ if($foreignNgoType == 'Old'){
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Constitution <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 5mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -334,6 +341,7 @@ if($foreignNgoType == 'Old'){
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Activities Report <span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 5mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -346,7 +354,9 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                                Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 2mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -359,21 +369,9 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
 
-
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 1mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -387,7 +385,23 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Intent <span class="text-danger">*</span>
+                                                Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter of Intent <span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -425,7 +439,7 @@ if($foreignNgoType == 'Old'){
 
 
 
-                                                FD-8 Form with seal and signature of Chief Executive Officer
+                                                FD-8 Form with seal and signature of Chief Executive officer
 
                                                   <div class="file-top">
                                                       <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -451,7 +465,7 @@ if($foreignNgoType == 'Old'){
                                                                       <div class="modal-content">
                                                                           <div class="modal-header">
                                                                               <h5 class="modal-title" id="exampleModalLabel">
-                                                                                FD-8 Form with seal and signature of Chief Executive Officer
+                                                                                FD-8 Form with seal and signature of Chief Executive officer
   </h5>
                                                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                           </div>
@@ -1777,7 +1791,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Form No - 8<span class="text-danger">*</span>
+                                       List of Executive Committee (foreign)<span class="text-danger">*</span>
+
+                                       <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1789,7 +1805,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
+                                                Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1802,6 +1820,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Constitution <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 5 MB in size</span>
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1815,6 +1836,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Activities Report <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 5 MB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1827,7 +1850,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                                Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 2 MB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1840,21 +1865,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
 
-
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 1 MB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1868,7 +1881,25 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Intent <span class="text-danger">*</span>
+                                                Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter of Intent <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1913,7 +1944,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>ফরম নং - ৮</h6>
                                                 @else
 
-                                                <h6>Form No - 8</h6>
+                                                <h6>List of Executive Committee (foreign)</h6>
                                                 @endif
 
                                                 @elseif($key+1 == 2)
@@ -1922,7 +1953,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                     @else
 
-                                                    <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                    <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                     @endif
 
                                                 @elseif($key+1 == 3)
@@ -1950,7 +1981,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                 @else
 
-                                                <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                 @endif
 
 
@@ -1961,7 +1992,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                 @else
 
-                                                <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                <h6>Letter of Appoinment of The Country Representative</h6>
                                                 @endif
                                                 @elseif($key+1 == 7)
 
@@ -1969,7 +2000,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                 @else
 
-                                                <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                 @endif
                                                 @elseif($key+1 == 8)
 
@@ -1977,7 +2008,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                 @else
 
-                                                <h6>Letter Of Intent </h6>
+                                                <h6>Letter of Intent </h6>
                                                 @endif
                                                 @endif
 
@@ -2004,7 +2035,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>ফরম নং - ৮</h6>
                                                                                 @else
 
-                                                                                <h6>Form No - 8</h6>
+                                                                                <h6>List of Executive Committee (foreign)</h6>
                                                                                 @endif
                                                                                 @elseif($key+1 == 2)
 
@@ -2012,7 +2043,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                                                 @else
 
-                                                                                <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                                                <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                                                 @endif
 
                                                                             @elseif($key+1 == 3)
@@ -2040,7 +2071,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                                             @else
 
-                                                                            <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                                            <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                                             @endif
 
 
@@ -2051,7 +2082,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                                             @else
 
-                                                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                                            <h6>Letter of Appoinment of The Country Representative</h6>
                                                                             @endif
                                                                             @elseif($key+1 == 7)
 
@@ -2059,7 +2090,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                                             @else
 
-                                                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                                            <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                                             @endif
                                                                             @elseif($key+1 == 8)
 
@@ -2067,7 +2098,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                                             @else
 
-                                                                            <h6>Letter Of Intent </h6>
+                                                                            <h6>Letter of Intent </h6>
                                                                             @endif
                                                                             @endif
 

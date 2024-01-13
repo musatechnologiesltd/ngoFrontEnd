@@ -55,8 +55,8 @@
                                 <li>Plan of Operation (Work/Organogram)</li>
                                 <li>Decision of the Committee/ Board to open office in Bangladesh</li>
                                 <li>Letter of Appointment of the Country Representative</li>
-                                <li>Copy of Treasury Chalan in support of depositing US$ 9,000 or Equivalent TK amount
-                                    in the Code 1-0323-0000- 1836 and 15% Vat Code No (1-1133-0035-0311)
+                                <li>Copy of Treasury Chalan in support of depositing US $9,000 or Equivalent TK amount
+                                    in the Code 1-0323-0000-1836 and 15% Vat Code No (1-1133-0035-0311)
                                 </li>
                                 <li>Deed of agreement Stamp of TK.300/-with the landlord in Support of opening the
                                     office in Bangladesh

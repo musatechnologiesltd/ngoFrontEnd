@@ -219,7 +219,7 @@ if($localNgoTypem == 'Old'){
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
                                                     <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
                                                 <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                             </div>
@@ -249,7 +249,7 @@ if($localNgoTypem == 'Old'){
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                                     <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                             </div>
@@ -325,7 +325,7 @@ if($localNgoTypem == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -337,7 +337,7 @@ if($localNgoTypem == 'Old'){
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -947,7 +947,7 @@ if($localNgoTypem == 'Old'){
                                   <div class="file-box">
 
 
-                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
                                       <div class="file-top">
                                           <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -973,7 +973,7 @@ if($localNgoTypem == 'Old'){
                                                           <div class="modal-content">
                                                               <div class="modal-header">
                                                                   <h5 class="modal-title" id="exampleModalLabel">
-                                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 </h5>
                                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                               </div>
@@ -1030,7 +1030,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                        প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
                              <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1056,7 +1056,7 @@ if($localNgoTypem == 'Old'){
                                              <div class="modal-content">
                                                  <div class="modal-header">
                                                      <h5 class="modal-title" id="exampleModalLabel">
-                                                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                                                        প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 </h5>
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
@@ -1524,7 +1524,7 @@ if($localNgoTypem == 'Old'){
           <div class="file-box">
 
 
-            প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+            প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
               <div class="file-top">
                   <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1550,7 +1550,7 @@ if($localNgoTypem == 'Old'){
                                   <div class="modal-content">
                                       <div class="modal-header">
                                           <h5 class="modal-title" id="exampleModalLabel">
-                                            প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+                                            প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 </h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
@@ -2070,7 +2070,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
                                                     <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
                                                 <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                             </div>
@@ -2100,7 +2100,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                                     <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                             </div>
@@ -2149,7 +2149,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                ফরম নং - ৮ <span class="text-danger">*</span>
+                                                 ফরম নং - ৮ <span class="text-danger">*</span>
+                                                 <br><span>পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2163,6 +2164,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+
+                                                <br><span>পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2176,7 +2179,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                <br><span>পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2188,7 +2192,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+
+                                                <br><span>পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2202,6 +2208,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
+
+                                                <br><span>পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2215,6 +2223,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
+
+                                                <br><span>পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2231,6 +2241,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
+                                                <br><span>পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2245,6 +2256,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
+                                                <br><span>পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -2306,7 +2318,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             @elseif($key+1 == 3)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                            <h6>প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
                                             @else
 
                                             <h6>Attested copy of constitution</h6>
@@ -2315,7 +2327,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             @elseif($key+1 == 4)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                             @else
 
                                             <h6>Activity report of the organization</h6>
@@ -2400,7 +2412,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             @elseif($key+1 == 3)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                                                            <h6>প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
                                                                             @else
 
                                                                             <h6>Attested copy of constitution</h6>
@@ -2409,7 +2421,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             @elseif($key+1 == 4)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                                                             @else
 
                                                                             <h6>Activity report of the organization</h6>

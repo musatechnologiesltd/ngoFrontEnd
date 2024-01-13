@@ -70,7 +70,7 @@
                                         {{ trans('fd_one_step_three.staff_position')}}
                                     </h5>
                                     <h5 class="form_middle_text">
-                                        <b>{{ trans('fd_one_step_three.staff_position1')}}</b>
+                                        <b style="color:red !important;">{{ trans('fd_one_step_three.staff_position1')}}</b>
                                     </h5>
                                 </div>
                                 @if(count($formOneMemberList) == 0)

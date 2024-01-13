@@ -1240,7 +1240,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>ফরম নং - ৮</h6>
                         @else
 
-                        <h6>Form No - 8</h6>
+                        <h6>List of Executive Committee (foreign)</h6>
                         @endif
 
                         @elseif($key+1 == 2)
@@ -1249,7 +1249,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                             @else
 
-                            <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                            <h6>Certificate of Incorporation in the Country of Origin</h6>
                             @endif
 
                         @elseif($key+1 == 3)
@@ -1277,7 +1277,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                         @else
 
-                        <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                        <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                         @endif
 
 
@@ -1288,7 +1288,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                         @else
 
-                        <h6>Letter Of Appoinment Of The Country Representative</h6>
+                        <h6>Letter of Appoinment of The Country Representative</h6>
                         @endif
                         @elseif($key+1 == 7)
 
@@ -1296,7 +1296,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                         @else
 
-                        <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                        <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                         @endif
                         @elseif($key+1 == 8)
 
@@ -1304,7 +1304,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                         @else
 
-                        <h6>Letter Of Intent </h6>
+                        <h6>Letter of Intent </h6>
                         @endif
                         @endif
 
@@ -1332,7 +1332,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                         <h6>ফরম নং - ৮</h6>
                                                         @else
 
-                                                        <h6>Form No - 8</h6>
+                                                        <h6>List of Executive Committee (foreign)</h6>
                                                         @endif
 
                                                         @elseif($key+1 == 2)
@@ -1341,7 +1341,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                         <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                         @else
 
-                                                        <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                        <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                         @endif
 
                                                     @elseif($key+1 == 3)
@@ -1369,7 +1369,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                     @else
 
-                                                    <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                    <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                     @endif
 
 
@@ -1380,7 +1380,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                     @else
 
-                                                    <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                    <h6>Letter of Appoinment of The Country Representative</h6>
                                                     @endif
                                                     @elseif($key+1 == 7)
 
@@ -1388,7 +1388,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                     @else
 
-                                                    <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                    <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                     @endif
                                                     @elseif($key+1 == 8)
 
@@ -1396,7 +1396,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                     @else
 
-                                                    <h6>Letter Of Intent </h6>
+                                                    <h6>Letter of Intent </h6>
                                                     @endif
                                                     @endif
 

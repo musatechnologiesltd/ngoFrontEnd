@@ -19,7 +19,11 @@
                         <h3>{{ trans('fd_one_step_one.Step_1')}}</h3>
                     </div>
                     <ul class="progress-bar">
+                        @if($foreignNgoType == 'Old')
+                        <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
+                        @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
+                        @endif
                         {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
                         <li>{{ trans('fd_one_step_one.member_title')}}</li>
                         <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
@@ -482,8 +486,8 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                   <span class="text-danger">Dimension:(300*80) & Size: Max 60 KB</span>
-                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                   <span class="text-danger">Dimension:(300*80) , Size: Max 60 KB & Image Format:PNG</span>
+                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
                 </div>
@@ -504,8 +508,8 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                    <span class="text-danger">Dimension:(300*100) & Size: Max 80 KB</span>
-                    <input type="file" value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                    <span class="text-danger">Dimension:(300*100) , Size: Max 80 KB & Image Format:PNG</span>
+                    <input type="file" value="" name="digital_seal" accept="image/png" class="form-control" id="">
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>

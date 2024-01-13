@@ -488,7 +488,15 @@ if($newOldNgo == 'Old'){
 
 }else{
 
+
+    if($request->submit_value == 'save_and_exit_from_one'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
 }
 
 //end new code for fd eight
@@ -604,7 +612,7 @@ if($newOldNgo == 'Old'){
 
 }else{
 
-    return redirect('/ngoAllRegistrationForm');
+    return redirect('/dashboard');
 }
 
 
@@ -912,7 +920,7 @@ if($newOldNgo == 'Old'){
 
         if($request->submit_value == 'exit_from_step_two_edit'){
 
-
+              //dd(12);
             //new code for fd eight
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
@@ -922,13 +930,15 @@ if($newOldNgo == 'Old'){
 
 }else{
 
-    return redirect('/ngoAllRegistrationForm');
+    return redirect('/dashboard');
 }
 
-            return redirect('/ngoAllRegistrationForm');
+            //return redirect('/ngoAllRegistrationForm');
 
 
         }elseif($request->submit_value == 'go_to_step_three'){
+
+            //dd(122);
 
             Session::put('fdOneFormEditThree','go_to_step_three');
 
@@ -953,12 +963,26 @@ if($newOldNgo == 'Old'){
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
 if($newOldNgo == 'Old'){
-
+    //dd(12223);
     return redirect()->route('addDataStepTwoFd8',base64_encode($mm_id));
 
 }else{
 
+
+
+    if($request->submit_value == 'save_and_exit_from_two'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
+
+   // return redirect('/ngoAllRegistrationForm');
+
+
+
 }
             }
 
@@ -1194,8 +1218,18 @@ if($newOldNgo == 'Old'){
     }else{
 
 
+        if($request->submit_value == 'save_and_exit_from_three'){
 
-           return redirect('/ngoAllRegistrationForm');
+            return redirect('/dashboard');
+
+        }else{
+
+        return redirect('/othersInformation');
+        }
+
+
+
+          // return redirect('/ngoAllRegistrationForm');
 
 
         }
@@ -1624,7 +1658,17 @@ if($newOldNgo == 'Old'){
 
 }else{
 
+
+    if($request->submit_value == 'save_and_exit_from_four'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
+
+    //return redirect('/ngoAllRegistrationForm');
 }
 //end new code for  ngo
    //return redirect('/ngoAllRegistrationForm');

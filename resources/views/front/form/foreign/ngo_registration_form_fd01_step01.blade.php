@@ -272,8 +272,8 @@
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                                   <span class="text-success"><b>Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG</b></span>
+                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="">
                                 </div>
 
                                 @if($foreignNgoType == 'Old')
@@ -291,8 +291,8 @@
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                                  <span class="text-success"><b>Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG</b></span>
+                                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control" id="">
                                 </div>
                                 <!-- end new code -->
 
