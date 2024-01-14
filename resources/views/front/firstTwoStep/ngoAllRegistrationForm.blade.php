@@ -307,6 +307,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+
 <script>
     $(document).on('click', '.organizational_structure', function () {
 

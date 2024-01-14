@@ -225,22 +225,24 @@ if($foreignNgoType == 'Old'){
 
                                                     List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
 
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
 
 
 
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="structurePartThree1">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree1_text"></small>
+
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-success">PDF Should not exceed 500 KB in size</span></label>
+                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
 
-                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="structurePartThree2">
 
 
-
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree2_text"></small>
 
 
                                             </div>
@@ -249,42 +251,47 @@ if($foreignNgoType == 'Old'){
                                                 <label class="form-label" for="">
             Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
 
-            <br><span class="text-success">PDF Should not exceed 1MB in size</span>
+            <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span>
             </label>
 
 
-                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="structurePartThree3">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree3_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-success">PDF Should not exceed 5 MB in size</span></label>
-                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartThree4">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree4_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="structurePartThree5">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree5_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="structurePartThree6">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree6_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
-                                                <laকর্তৃপক্ষbel class="form-label" for="">
+                                                <label class="form-label" for="">
                                                     Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
-                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="structurePartThree7">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree7_text"></small>
                                             </div>
 
 

@@ -84,8 +84,9 @@
 
 
                             <label class="form-label" for="">
-                                নিবন্ধন নবায়ন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) : <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                            <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="">
+                                নিবন্ধন নবায়ন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) : <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="copy_of_chalan">
+                                <p id="copy_of_chalan_text" class="text-danger mt-3" style="font-size: 14px;"></p>
 
                             @if(empty($getFormOneData->copy_of_chalan))
 
@@ -107,8 +108,10 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">
-                                তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে): <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                            <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে): <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+
+                            <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="due_vat_pdf">
+                            <p id="due_vat_pdf_text" class="text-danger mt-3" style="font-size: 14px;"></p>
                             @if(empty($getFormOneData->due_vat_pdf))
 
                             @else
@@ -214,8 +217,9 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="">ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে:</label>
-                            <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+                            <label class="form-label" for="">ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে:<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                            <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="change_ac_number">
+                            <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 14px;"></p>
                             </div>
 
                             @if(empty($getFormOneData->change_ac_number))
@@ -244,7 +248,7 @@
 
                             @if(empty($getFormOneData->attach_the__supporting_paper))
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                                 <input class="form-control" required  name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
                             </div>
                             @else
@@ -263,7 +267,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 ?>
 
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                                 <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
@@ -278,7 +282,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                             @if(empty($getFormOneData->board_of_revenue_on_fees))
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                                 <input class="form-control"  name="board_of_revenue_on_fees" required accept=".pdf" type="file" id="">
                             </div>
                             @else
@@ -297,7 +301,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                                 <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="">
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>

@@ -69,12 +69,12 @@
 
 
                             <label class="form-label" for="">
-                                Whether registration renewal fee and VAT have been paid (copy of invoice to be attached) <br><span class="text-success">The size of the PDF should not exceed 500 kb</span></label>
+                                Whether registration renewal fee and VAT have been paid (copy of invoice to be attached) <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                             <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">
-                                Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): <br><span class="text-success">The size of the PDF should not exceed 500 kb</span> </label>
+                                Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
                             <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
                         </div>
 
@@ -177,7 +177,7 @@
 
                             @if(empty($getFormOneData->attach_the__supporting_paper))
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 500 kb</span> </label>
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
                                 <input class="form-control" required  name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
                             </div>
                             @else
@@ -196,7 +196,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 ?>
 
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 500 kb</span> </label>
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
                                 <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
@@ -211,7 +211,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                             @if(empty($getFormOneData->board_of_revenue_on_fees))
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 500 kb</span> </label>
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
                                 <input class="form-control"  name="board_of_revenue_on_fees"  required accept=".pdf" type="file" id="">
                             </div>
                             @else
@@ -230,7 +230,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 500 kb</span> </label>
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
                                 <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="">
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>

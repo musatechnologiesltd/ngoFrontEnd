@@ -71,9 +71,8 @@ id="">
                         <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-
 
 danger">*</span> </label>
-                        <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-
-
-control" id="">
+<input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="foregin_pdf" required>
+<p id="foregin_pdf_text" style="font-size: 12px;" class="text-danger mt-2"></p>
                     </div>
                     @else
                     <?php
@@ -88,8 +87,9 @@ control" id="">
 
                     ?>
  <div class="mb-3">
-    <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 5 MB</span></label>
-    <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="">
+    <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+    <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="foregin_pdf">
+    <p id="foregin_pdf_text" style="font-size: 12px;" class="text-danger mt-2"></p>
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
                     @endif
@@ -105,10 +105,9 @@ parsley-required class="form-control" id="">
                     <div class="mb-3">
                         <label for="" class="form-label">Probable / expected annual budget source of the
 
-organization<span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 5 MB</span> </label>
-                        <input type="file" name="annual_budget_file"  data-parsley-required class="form-control"
-
-id="">
+organization<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span> </label>
+<input type="file" name="annual_budget_file" required accept=".pdf"  class="form-control" id="annual_budget_file">
+<p id="annual_budget_file_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                     </div>
                     @else
                     <?php
@@ -125,8 +124,9 @@ id="">
                     <div class="mb-3">
                         <label for="" class="form-label">Probable / expected annual budget source of the
 
-organization<span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 2 MB</span> </label>
-                        <input type="file" name="annual_budget_file"   class="form-control" id="">
+organization<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span> </label>
+<input type="file" name="annual_budget_file" accept=".pdf"  class="form-control" id="annual_budget_file">
+<p id="annual_budget_file_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                     </div>
                     <b>{{ $filename.'.'.$extension }}</b>
                     @endif
@@ -139,7 +139,7 @@ organization<span class="text-danger">*</span> <br><span class="text-success">Th
                             <div class="mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}}
 
-<span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 5 MB</span> </label>
+<span class="text-danger">*</span> <br><br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span> </label>
                                 <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation"
 
 class="form-control" id="">
@@ -158,7 +158,7 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 ?>
 <div class="mb-3">
-    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-success">The size of the PDF should not exceed 5 MB</span> </label>
+    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span> </label>
     <input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="">
 </div>
 <b>{{ $filename.'.'.$extension }}</b>

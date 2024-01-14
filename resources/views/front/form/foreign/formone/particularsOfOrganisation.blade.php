@@ -485,9 +485,12 @@
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                   <span class="text-danger">Dimension:(300*80) , Size: Max 60 KB & Image Format:PNG</span>
-                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="">
+                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span><br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
+
+                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+
+                    <small id="digital_signature_text" class="text-danger"></small>
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
                 </div>
@@ -507,9 +510,12 @@
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                    <span class="text-danger">Dimension:(300*100) , Size: Max 80 KB & Image Format:PNG</span>
-                    <input type="file" value="" name="digital_seal" accept="image/png" class="form-control" id="">
+                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span><br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+
+                    <input type="file" value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+
+                    <small id="digital_seal_text" class="text-danger"></small>
 
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>
