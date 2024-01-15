@@ -9,7 +9,7 @@
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>  <span class="text-danger">*</span> </label>
             <input class="form-control" name="the_constitution_of_the_company_along_with_fee_if_changed" data-parsley-required accept=".pdf" type="file" id="structurePartOne1">
 
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne1_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne1_text"></p>
 
 
         </div>
@@ -21,7 +21,7 @@
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
             <input class="form-control" name="constitution_approved_by_primary_registering_authority" data-parsley-required accept=".pdf" type="file" id="structurePartOne2">
 
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne2_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne2_text"></p>
         </div>
 
         <div class="mb-3">
@@ -30,7 +30,7 @@
             <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
             <input class="form-control" name="clean_copy_of_the_constitution" data-parsley-required accept=".pdf" type="file" id="structurePartOne3">
 
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne3_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne3_text"></p>
         </div>
 
         <div class="mb-3">
@@ -38,7 +38,7 @@
                 গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ফি  জমা প্রদানের চালানের মূলকপিসহ   <span class="text-danger">*</span>
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
             <input class="form-control" name="payment_of_change_fee" data-parsley-required accept=".pdf" type="file" id="structurePartOne4">
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne4_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne4_text"></p>
         </div>
 
         <div class="mb-3">
@@ -46,7 +46,7 @@
                 গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি   <span class="text-danger">*</span>
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span>  </label>
             <input class="form-control" name="section_sub_section_of_the_constitution" data-parsley-required accept=".pdf" type="file" id="structurePartOne5">
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne5_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne5_text"></p>
         </div>
 
         <div class="mb-3">
@@ -56,7 +56,7 @@
             </label>
             <input class="form-control" name="previous_constitution_and_current_constitution_compare" data-parsley-required accept=".pdf" type="file" id="structurePartOne6">
 
-            <small class="text-danger mt-2" style="font-size:12px;" id="structurePartOne6_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="structurePartOne6_text"></p>
         </div>
     </div>
 </div>

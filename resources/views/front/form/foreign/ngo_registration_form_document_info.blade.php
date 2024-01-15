@@ -305,7 +305,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="card-header">
                                             List of Executive Committee (foreign)<span class="text-danger">*</span>
 
-                                            <br><span >PDF Should not exceed 500 KB in size</span>
+                                            <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
 
                                             </div>
                                             <div class="card-body">
@@ -1800,12 +1800,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                        List of Executive Committee (foreign)<span class="text-danger">*</span>
 
-                                       <br><span >PDF Should not exceed 500 KB in size</span>
+                                       <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV1">
+
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV1_text"></p>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1814,12 +1817,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV2">
+
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV2_text"></p>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1828,13 +1834,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Constitution <span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 5 MB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
 
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="foreignNgoPdfV3">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV3_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1844,12 +1851,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Activities Report <span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 5 MB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV4">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV4_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1859,12 +1867,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 2 MB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV5">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV5_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1874,12 +1883,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 1 MB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV6">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV6_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1890,12 +1900,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV7">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV7_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1906,12 +1917,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Letter of Intent <span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV8">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV8_text"></p>
                                                     </div>
                                                 </div>
                                             </div>

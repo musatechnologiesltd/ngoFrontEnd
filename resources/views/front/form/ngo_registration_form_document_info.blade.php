@@ -2173,12 +2173,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                  ফরম নং - ৮ <span class="text-danger">*</span>
-                                                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                 <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV1">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV1_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2188,12 +2189,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
 
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV2">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV2_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2203,12 +2205,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV3">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV3_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2217,12 +2220,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
 
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="newNgoPdfV4">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV4_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2232,12 +2236,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
 
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV5">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV5_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2247,12 +2252,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
 
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 1MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 1MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV6">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV6_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2264,12 +2270,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV7">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV7_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2279,12 +2286,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV8">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV8_text"></p>
                                                     </div>
                                                 </div>
                                             </div>

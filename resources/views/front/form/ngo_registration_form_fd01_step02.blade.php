@@ -106,7 +106,7 @@
                     ?>
                     <div class="mb-3">
                         <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
-                        <input type="file" name="annual_budget_file"   class="form-control" id="annual_budget_file">
+                        <input type="file" name="annual_budget_file"   class="form-control" id="annual_budget_file"/>
                         <small id="annual_budget_file_text" class="text-danger" style="font-size: 12px;"></small>
                     </div>
                     <b>{{ $filename.'.'.$extension }}</b>
@@ -119,7 +119,8 @@
 
                     <div class="mb-3">
                         <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
-                        <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation" class="form-control" id="">
+                        <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation" class="form-control" id="plan_of_operation">
+                        <p id="plan_of_operation_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                     </div>
 @else
 
@@ -136,7 +137,8 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 ?>
 <div class="mb-3">
 <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
-<input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="">
+<input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="plan_of_operation">
+<p id="plan_of_operation_text" class="text-danger mt-2" style="font-size: 12px;"></p>
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
                 @endif

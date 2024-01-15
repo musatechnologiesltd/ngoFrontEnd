@@ -6,7 +6,7 @@
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
             </label>
             <input class="form-control" name="constitution_of_the_organization_if_unchanged" data-parsley-required accept=".pdf" type="file" id="constitution_of_the_organization_if_unchanged">
-            <small class="text-danger mt-2" style="font-size:12px;" id="constitution_of_the_organization_if_unchanged_text"></small>
+            <p class="text-danger mt-2" style="font-size:12px;" id="constitution_of_the_organization_if_unchanged_text"></p>
         </div>
     </div>
 </div>

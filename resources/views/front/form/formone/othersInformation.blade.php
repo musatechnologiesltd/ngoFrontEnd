@@ -219,7 +219,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="">ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে:<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                             <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="change_ac_number">
-                            <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 14px;"></p>
+                            <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
 
                             @if(empty($getFormOneData->change_ac_number))
@@ -249,7 +249,8 @@
                             @if(empty($getFormOneData->attach_the__supporting_paper))
                             <div class="mb-3">
                                 <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                <input class="form-control" required  name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
+                                <input class="form-control" required  name="attach_the__supporting_papers" accept=".pdf" type="file" id="attach_the__supporting_papers">
+                                <p id="attach_the__supporting_papers_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             @else
 
@@ -268,7 +269,8 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <div class="mb-3">
                                 <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
+                                <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="attach_the__supporting_papers">
+                                <p id="attach_the__supporting_papers_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
                             @endif
@@ -283,7 +285,8 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                             <div class="mb-3">
                                 <label class="form-label" for="">
                                     {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                <input class="form-control"  name="board_of_revenue_on_fees" required accept=".pdf" type="file" id="">
+                                <input class="form-control"  name="board_of_revenue_on_fees" required accept=".pdf" type="file" id="board_of_revenue_on_fees">
+                                <p id="board_of_revenue_on_fees_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             @else
 
@@ -302,7 +305,8 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                             <div class="mb-3">
                                 <label class="form-label" for="">
                                     {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="">
+                                <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="board_of_revenue_on_fees">
+                                <p id="board_of_revenue_on_fees_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
                             @endif
