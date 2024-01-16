@@ -129,7 +129,9 @@
             <tr>
                 <td>০৩</td>
                 <td>ছবি</td>
-                <td>:<img src="{{ asset('/') }}{{ $fd9OneList->foreigner_image }}" style="height:40px;"/></td>
+                <td>: সংযুক্ত
+                    {{-- <img src="{{ asset('/') }}{{ $fd9OneList->foreigner_image }}" style="height:40px;"/> --}}
+                </td>
             </tr>
             <tr>
                 <td>০৪</td>

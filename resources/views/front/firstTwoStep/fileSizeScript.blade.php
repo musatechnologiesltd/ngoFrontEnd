@@ -522,6 +522,247 @@ $('#foreignNameChange'+getId+'_text').text('');
 });
 
 
+//////////////////////////////////////////////////
+
+$('[id^=fdNinePdf]').on('change', function(e) {
+
+var mainId = $(this).attr('id');
+var getId = mainId.slice(9)
+//alert(getId);
+let size = this.files[0].size;
+
+
+if(getId == 4 || getId == 7 ){
+
+if (size > 1000000 ) {
+$('#fdNinePdf'+getId+'_text').text('Please Upload Maximum 1 MB File');
+}else{
+$('#fdNinePdf'+getId+'_text').text('');
+}
+
+}else if( getId == 6 ){
+
+if (size > 200000 ) {
+$('#fdNinePdf'+getId+'_text').text('Please Upload Maximum 200 KB File');
+}else{
+$('#fdNinePdf'+getId+'_text').text('');
+}
+
+
+}else{
+
+
+
+if (size > 500000 ) {
+$('#fdNinePdf'+getId+'_text').text('Please Upload Maximum 500 KB File');
+}else{
+$('#fdNinePdf'+getId+'_text').text('');
+}
+}
+
+
+});
+
+//////////
+
+
+
+$('[id^=fdNineOnePdf]').on('change', function(e) {
+
+var mainId = $(this).attr('id');
+var getId = mainId.slice(12)
+//alert(getId);
+let size = this.files[0].size;
+
+
+ if( getId == 3 ){
+
+if (size > 200000 ) {
+$('#fdNineOnePdf'+getId+'_text').text('Please Upload Maximum 200 KB File');
+}else{
+$('#fdNineOnePdf'+getId+'_text').text('');
+}
+
+
+}else{
+
+
+
+if (size > 500000 ) {
+$('#fdNineOnePdf'+getId+'_text').text('Please Upload Maximum 500 KB File');
+}else{
+$('#fdNineOnePdf'+getId+'_text').text('');
+}
+}
+
+
+});
+
+/////////////////////////
+
+
+
+$('[id^=nVisaDoc]').on('change', function(e) {
+
+var mainId = $(this).attr('id');
+var getId = mainId.slice(8)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if (size > 500000 ) {
+$('#nVisaDoc'+getId+'_text').text('Please Upload Maximum 500 KB File');
+}else{
+$('#nVisaDoc'+getId+'_text').text('');
+}
+
+
+
+});
+
+
+///////////////////
+
+
+
+$('#project_proposal_form').on('change', function(e) {
+
+// var mainId = $(this).attr('id');
+// var getId = mainId.slice(8)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if (size > 10000000 ) {
+$('#project_proposal_form_text').text('Please Upload Maximum 10 MB File');
+}else{
+$('#project_proposal_form_text').text('');
+}
+
+
+
+});
+
+/////////////////
+
+
+$('#rPdfP').on('change', function(e) {
+
+// var mainId = $(this).attr('id');
+// var getId = mainId.slice(8)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if (size > 10000000 ) {
+$('#rPdfP_text').text('Please Upload Maximum 10 MB File');
+}else{
+$('#rPdfP_text').text('');
+}
+
+
+
+});
+
+/////////////////
+
+
+
+$('#fd_2_form_pdf').on('change', function(e) {
+
+// var mainId = $(this).attr('id');
+// var getId = mainId.slice(8)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if (size > 2000000 ) {
+$('#fd_2_form_pdf_text').text('Please Upload Maximum 2 MB File');
+}else{
+$('#fd_2_form_pdf_text').text('');
+}
+
+
+
+});
+
+/////////
+
+
+
+
+$('[id^=fd7PdfN]').on('change', function(e) {
+
+var mainId = $(this).attr('id');
+var getId = mainId.slice(7)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if (size > 500000 ) {
+$('#fd7PdfN'+getId+'_text').text('Please Upload Maximum 500 KB File');
+}else{
+$('#fd7PdfN'+getId+'_text').text('');
+}
+
+
+
+});
+
+//////////////////////
+
+
+$('[id^=fc1PdfN]').on('change', function(e) {
+
+var mainId = $(this).attr('id');
+var getId = mainId.slice(7)
+//alert(getId);
+let size = this.files[0].size;
+
+
+
+
+
+if( getId == 1 ){
+
+if (size > 500000 ) {
+$('#fc1PdfN'+getId+'_text').text('Please Upload Maximum 500 KB File');
+}else{
+$('#fc1PdfN'+getId+'_text').text('');
+}
+
+
+}else{
+
+
+
+if (size > 10000000 ) {
+$('#fc1PdfN'+getId+'_text').text('Please Upload Maximum 10 MB File');
+}else{
+$('#fc1PdfN'+getId+'_text').text('');
+}
+}
+
+
+
+});
+
+
 })
 
 </script>

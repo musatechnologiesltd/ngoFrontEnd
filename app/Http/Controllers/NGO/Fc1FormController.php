@@ -151,7 +151,7 @@ class Fc1FormController extends Controller
             'objectives_of_the_organization' => 'required|string',
 
 
-            'relation_with_donor' => 'required|string',
+            //'relation_with_donor' => 'required|string',
             'organization_letter_of_commitment' => 'required|string',
             'organization_name_of_the_job_amount_of_money_and_duration_pdf' => 'required|file',
             'organization_amount_of_foreign_currency' => 'required|string',

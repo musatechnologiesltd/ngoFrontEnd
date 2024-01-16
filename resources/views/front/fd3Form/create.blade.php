@@ -147,7 +147,7 @@
 
     @csrf
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">সংস্থার নাম</label>
+                                            <label for="" class="form-label">সংস্থার নাম <span class="text-danger">*</span></label>
 
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -169,53 +169,53 @@
 
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">সংস্থার ঠিকানা</label>
+                                            <label for="" class="form-label">সংস্থার ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_address" class="form-control" value="{{ $ngo_list_all->organization_address }}" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">নিবন্ধন নম্বর</label>
+                                            <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_registration_number" value="{{ $ngo_list_all->registration_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
 
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ব্যুরোর নিবন্ধন তারিখ </label>
+                                            <label for="" class="form-label">ব্যুরোর নিবন্ধন তারিখ <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_registration_date" value="{{ date("d-m-Y", strtotime($ngoDurationReg)) }}" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">প্রস্তাবিত প্রকল্পের নাম</label>
+                                            <label for="" class="form-label">প্রস্তাবিত প্রকল্পের নাম <span class="text-danger">*</span></label>
                                             <input name="ngo_prokolpo_name" type="text" class="form-control" id="ngo_prokolpo_name"
                                                    placeholder="" required>
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">প্রকল্পের মেয়াদ </label>
-                                            <input type="text" name="ngo_prokolpo_duration" class="form-control" id="" placeholder="">
+                                            <label for="" class="form-label">প্রকল্পের মেয়াদ <span class="text-danger">*</span></label>
+                                            <input type="text" required name="ngo_prokolpo_duration" class="form-control" id="" placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">প্রকল্প অনুমোদনপত্র ও অর্থছাড়পত্রের স্মারক নম্বর</label>
-                                            <input type="text" name="project_approval_exemption_letter_memo_number" class="form-control" id=""
+                                            <label for="" class="form-label">প্রকল্প অনুমোদনপত্র ও অর্থছাড়পত্রের স্মারক নম্বর <span class="text-danger">*</span></label>
+                                            <input type="text" required name="project_approval_exemption_letter_memo_number" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">প্রকল্প অনুমোদনপত্র ও অর্থছাড়পত্রের স্মারক তারিখ </label>
-                                            <input type="text" name="project_approval_exemption_letter_date" class="form-control datepicker" id=""
+                                            <label for="" class="form-label">প্রকল্প অনুমোদনপত্র ও অর্থছাড়পত্রের স্মারক তারিখ <span class="text-danger">*</span></label>
+                                            <input type="text" required name="project_approval_exemption_letter_date" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">পূর্বপর্তি বছরে অর্থছাড়ের পরিমান</label>
-                                            <input type="text" name="exemption_amount_in_previous_year" class="form-control" id=""
+                                            <label for="" class="form-label">পূর্বপর্তি বছরে অর্থছাড়ের পরিমান <span class="text-danger">*</span></label>
+                                            <input type="text" required name="exemption_amount_in_previous_year" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">পূর্ববর্তী বছরে দাতা সংস্থা হতে গৃহীত অর্থের পরিমান </label>
-                                            <input type="text" name="money_received_in_the_previous_year" class="form-control" id=""
+                                            <label for="" class="form-label">পূর্ববর্তী বছরে দাতা সংস্থা হতে গৃহীত অর্থের পরিমান <span class="text-danger">*</span></label>
+                                            <input type="text" required name="money_received_in_the_previous_year" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                     </div>
@@ -228,26 +228,26 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">অর্থগ্রহনের তারিখ</label>
-                                                    <input type="text" name="date_of_payment" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">অর্থগ্রহনের তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="date_of_payment" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
 
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">বৈদেশিক অনুদানের ধরণ (এককালীন/বহুবর্ষী)</label>
-                                                    <select class="form-control" name="type_of_foreign_grant" id="">
+                                                    <label for="" class="form-label">বৈদেশিক অনুদানের ধরণ (এককালীন/বহুবর্ষী) <span class="text-danger">*</span></label>
+                                                    <select class="form-control" name="type_of_foreign_grant" id="" required>
                                                         <option value="এককালীন">এককালীন</option>
                                                         <option value="বহুবর্ষী">বহুবর্ষী</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">বৈদেশিক অনুদানের পরিমান (বৈদেশিক মুদ্রা)</label>
-                                                    <input type="text" name="foreign_grant_amount" class="form-control" id=""
+                                                    <label for="" class="form-label">বৈদেশিক অনুদানের পরিমান (বৈদেশিক মুদ্রা) <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="foreign_grant_amount" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">বৈদেশিক অনুদানের পরিমান (দেশীয় মুদ্রা)</label>
-                                                    <input type="text" name="local_grant_amount" class="form-control" id=""
+                                                    <label for="" class="form-label">বৈদেশিক অনুদানের পরিমান (দেশীয় মুদ্রা) <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="local_grant_amount" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
@@ -467,9 +467,11 @@
                                         <div class="card-body">
 
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">পূর্বপর্তি বছরের অর্থগ্রহনের বিবরণী ফরম / এফডি - ৩ ফরম</label>
-                                                <input type="file" name="verified_fd_three_form" class="form-control" id=""
-                                                       placeholder="">
+                                                <label for="" class="form-label">পূর্বপর্তি বছরের অর্থগ্রহনের বিবরণী ফরম / এফডি - ৩ ফরম <span class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" name="verified_fd_three_form" class="form-control" id="fc1PdfN2"
+                                                placeholder="" accept=".pdf" required>
+
+                                                <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                             </div>
 
                                         </div>
