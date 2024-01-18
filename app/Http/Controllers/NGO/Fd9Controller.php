@@ -505,7 +505,31 @@ return view('front.fdNineForm.show',compact('checkNgoTypeForForeginNgo','ngoStat
 
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+
+ //new code for old  and new
+
+ $checkOldorNew = DB::table('ngo_type_and_languages')
+ ->where('user_id',$ngo_list_all->user_id)->value('ngo_type_new_old');
+
+//end new code for old and new
+
+if($checkOldorNew == 'Old'){
+
+$ngoStatus = DB::table('ngo_renews')
+->where('fd_one_form_id',$ngo_list_all->id)->first();
+
+}else{
+
+$ngoStatus = DB::table('ngo_statuses')
+->where('fd_one_form_id',$ngo_list_all->id)->first();
+}
+
+
+
+//$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+
 
 
 $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
