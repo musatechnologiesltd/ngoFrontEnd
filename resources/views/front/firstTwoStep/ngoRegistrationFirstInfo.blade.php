@@ -13,7 +13,7 @@
 <section>
     <div class="container">
         <div class="form-card">
-            <form method="post" action="{{ route('ngoRegistrationFirstInfoPost') }}">
+            <form method="post" action="{{ route('ngoRegistrationFirstInfoPost') }}" id="form">
                 @csrf
             <div class="dashboard_box">
                 <div class="dashboard_left">

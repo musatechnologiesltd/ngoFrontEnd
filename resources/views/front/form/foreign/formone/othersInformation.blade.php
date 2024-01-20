@@ -55,7 +55,7 @@
 
 
 
-                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form" id="form"  data-parsley-validate="">
+                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"   data-parsley-validate="">
                     @csrf
                     <input type="hidden" class="form-control" value="Foreign" name="ngoOrigin"  id="">
                     <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
@@ -691,7 +691,7 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<form method="post" action="{{ route('otherInformationAUpdate') }}">
+<form method="post" action="{{ route('otherInformationAUpdate') }}" id="form">
 @csrf
 
 

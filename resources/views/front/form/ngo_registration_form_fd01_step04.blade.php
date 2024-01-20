@@ -42,7 +42,7 @@
 
 
 
-                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form" id="form"  data-parsley-validate="">
+                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data"  id="form"  data-parsley-validate="">
                     @csrf
                     <input type="hidden" class="form-control" value="local" name="ngoOrigin"  id="">
                     <input type="hidden" class="form-control" value="{{ $localNgoTypem }}" name="oldOrNew"  id="">

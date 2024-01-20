@@ -620,7 +620,7 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<form method="post" action="{{ route('otherInformationAUpdate') }}">
+<form method="post" action="{{ route('otherInformationAUpdate') }}"  id="form">
 @csrf
 
 

@@ -83,7 +83,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                      <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                           @csrf
                                                           @method('PUT')
@@ -168,7 +168,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                        <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                             @csrf
                                                             @method('PUT')
@@ -252,7 +252,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                       </div>
                                                       <div class="modal-body">
-                                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                               @csrf
                                                               @method('PUT')
@@ -334,7 +334,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                    </div>
                                                    <div class="modal-body">
-                                                       <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                       <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                            @csrf
                                                            @method('PUT')
@@ -418,7 +418,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -501,7 +501,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                               @csrf
                                               @method('PUT')
@@ -584,7 +584,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -667,7 +667,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -749,7 +749,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -831,7 +831,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -912,7 +912,7 @@ Right To Information Act - 2009-এর আওতায় ফোকাল Focal Poi
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -997,7 +997,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -1078,7 +1078,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1159,7 +1159,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1240,7 +1240,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1320,7 +1320,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1399,7 +1399,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1481,7 +1481,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                           <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                           <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                @csrf
                                @method('PUT')
@@ -1708,7 +1708,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -1735,7 +1735,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <button  onclick="deleteTag({{ $all_ngo_list_all->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
-                    <form id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
+                    <form  id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
 
                         @csrf
 @method('DELETE')

@@ -274,7 +274,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
                                     @if($foreignNgoType == 'Old')
 
 
-                                    <form action="{{ route('renewalSubmitForOld') }}" method="post">
+                                    <form id="form" action="{{ route('renewalSubmitForOld') }}" method="post">
                                         @csrf
                                         <input type="hidden" value="NGO Renew" name="reg_type" />
                                     <div class="d-grid d-md-flex justify-content-md-end">
@@ -284,7 +284,7 @@ $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$getFormOneId)->
 
 
                                     @else
-                                    <form action="{{ route('finalSubmitRegForm') }}" method="post">
+                                    <form id="form" action="{{ route('finalSubmitRegForm') }}" method="post">
                                         @csrf
                                         <input type="hidden" value="NGO Registration" name="reg_type" />
                                     <div class="d-grid d-md-flex justify-content-md-end">
