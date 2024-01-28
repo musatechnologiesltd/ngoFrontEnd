@@ -91,10 +91,10 @@
 
                             <?php
 
-                            $file_path = url($getFormOneData->copy_of_chalan);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                            $filePath = url($getFormOneData->copy_of_chalan);
+                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -113,10 +113,10 @@
                             @else
                             <?php
 
-                            $file_path = url($getFormOneData->due_vat_pdf);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                            $filePath = url($getFormOneData->due_vat_pdf);
+                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -223,10 +223,10 @@
                             @else
                             <?php
 
-                            $file_path = url($getFormOneData->change_ac_number);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                            $filePath = url($getFormOneData->change_ac_number);
+                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -253,10 +253,10 @@
 
                             <?php
 
-$file_path = url($getFormOneData->attach_the__supporting_paper);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($getFormOneData->attach_the__supporting_paper);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -288,10 +288,10 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <?php
 
-$file_path = url($getFormOneData->board_of_revenue_on_fees);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($getFormOneData->board_of_revenue_on_fees);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

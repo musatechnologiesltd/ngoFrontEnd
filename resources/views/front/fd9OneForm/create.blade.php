@@ -37,12 +37,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -156,10 +156,10 @@
                                             <p class="mt-3">
                                                 উপর্যুক্ত বিষয় ও সূত্রের বরাতে <span style="color:red;">*</span>
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                <input type="text" value="{{ $ngo_list_all->organization_name_ban }}" name="institute_name" required class="form-control custom-form"
+                                                <input type="text" value="{{ $ngoListAll->organization_name_ban }}" name="institute_name" required class="form-control custom-form"
                                                                                       id="" placeholder="">
                                                                                       @else
-                                                                                      <input type="text" value="{{ $ngo_list_all->organization_name }}" name="institute_name" required class="form-control custom-form"
+                                                                                      <input type="text" value="{{ $ngoListAll->organization_name }}" name="institute_name" required class="form-control custom-form"
                                                                                       id="" placeholder="">
                                                                                       @endif
 

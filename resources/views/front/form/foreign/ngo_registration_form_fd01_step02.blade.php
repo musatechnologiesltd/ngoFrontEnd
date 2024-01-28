@@ -63,10 +63,10 @@
                     @else
                     <?php
 
-                    $file_path = url($allFormOneData->foregin_pdf);
-                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                    $filePath = url($allFormOneData->foregin_pdf);
+                    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                    $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -93,10 +93,10 @@
                     @else
                     <?php
 
-                    $file_path = url($allFormOneData->foregin_pdf);
-                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                    $filePath = url($allFormOneData->foregin_pdf);
+                    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                    $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -124,10 +124,10 @@
 
 <?php
 
-$file_path = url($allFormOneData->plan_of_operation);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($allFormOneData->plan_of_operation);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

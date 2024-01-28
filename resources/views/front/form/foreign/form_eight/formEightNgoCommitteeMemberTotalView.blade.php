@@ -57,10 +57,10 @@ $complete_status_fd_eight_pdf = DB::table('form_eights')->where('fd_one_form_id'
 
                         <?php
 
-                        $file_path = url($complete_status_fd_eight_pdf);
-                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                        $filePath = url($complete_status_fd_eight_pdf);
+                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

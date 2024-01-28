@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -419,7 +419,7 @@
                             </tr>
                             <tr>
                                 <td>কোন দেশীয় সংস্থা</td>
-                                <td>: {{ $ngo_list_all->country_of_origin }}</td>
+                                <td>: {{ $ngoListAll->country_of_origin }}</td>
                             </tr>
                             <tr>
                                 <td>প্রকল্প মেয়াদ </td>

@@ -8,68 +8,7 @@
             <th>Required Attachment</th>
             <th>Action</th>
         </tr>
-        {{-- <tr>
-            <td>1</td>
-            <td>Copy of buyer's nomination letter in case of employment of buyer;s representative</td>
-            <td>
-                <input type="file" accept="application/pdf" name="nomination_letter_of_buyer" class="form-control" id="">
 
-                @if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit)
-
-                @else
-                <?php
-
-                if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->nomination_letter_of_buyer){
-
-                }else{
-
-
-
-                $file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->nomination_letter_of_buyer);
-                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-                echo $filename.'.'.$extension ;
-                }
-
-
-                ?>
-
-                @endif
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Copy of registration letter of board of investment, if not submitted earlier</td>
-            <td>
-                <input type="file" accept="application/pdf" name="registration_letter_of_board_of_investment" class="form-control" id="">
-
-                @if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit)
-
-                @else
-                <?php
-
-if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->registration_letter_of_board_of_investment){
-
-}else{
-
-
-
-$file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->registration_letter_of_board_of_investment);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
-echo $filename.'.'.$extension ;
-}
-
-
-
-
-                ?>
-
-                @endif
-            </td>
-        </tr> --}}
         <tr>
             <td>1</td>
             <td>Copy of service contract/agreement/ appointment letter in case of employee<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>
@@ -81,27 +20,22 @@ echo $filename.'.'.$extension ;
                 @if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit)
 
                 @else
-                <?php
+<?php
 
 if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->employee_contract_copy){
 
 }else{
 
+$filePath = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->employee_contract_copy);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-$file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->employee_contract_copy);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 echo $filename.'.'.$extension ;
 }
 
+?>
 
-
-
-                ?>
-
-                @endif
+             @endif
             </td>
         </tr>
         <tr>
@@ -113,25 +47,20 @@ echo $filename.'.'.$extension ;
                 @if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit)
 
                 @else
-                <?php
+               <?php
 
 if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->board_of_the_directors_sign_letter){
 
 }else{
 
+$filePath = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->board_of_the_directors_sign_letter);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-$file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->board_of_the_directors_sign_letter);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 echo $filename.'.'.$extension ;
 }
 
-
-
-
-                ?>
+?>
 
                 @endif
             </td>
@@ -151,19 +80,14 @@ if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->share_holder_copy){
 
 }else{
 
+$filePath = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->share_holder_copy);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-$file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->share_holder_copy);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 echo $filename.'.'.$extension ;
 }
 
-
-
-
-                ?>
+?>
 
                 @endif
             </td>
@@ -183,19 +107,13 @@ if(!$nVisaEdit->nVisaNecessaryDocumentForWorkPermit->passport_photocopy){
 
 }else{
 
+$filePath = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->passport_photocopy);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-$file_path = url($nVisaEdit->nVisaNecessaryDocumentForWorkPermit->passport_photocopy);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 echo $filename.'.'.$extension ;
 }
-
-
-
-
-                ?>
+?>
 
                 @endif
             </td>

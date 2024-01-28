@@ -567,10 +567,10 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 <?php
 
-$file_path = url($get_all_data_new_first->foregin_pdf);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($get_all_data_new_first->foregin_pdf);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -601,10 +601,10 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 <?php
 
-$file_path = url($get_all_data_new_first->yearly_budget_file);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($get_all_data_new_first->yearly_budget_file);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

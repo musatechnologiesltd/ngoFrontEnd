@@ -34,85 +34,47 @@ use Illuminate\Support\Facades\App;
 class Fd7FormController extends Controller
 {
     public function index(){
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
 
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
+        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->value('ngo_duration_start_date');
+        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->orderBy('id','desc')->first();
 
-
-        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-        ->value('ngo_duration_start_date');
-
-
-        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-                               ->orderBy('id','desc')->first();
-
-        return view('front.fd7Form.index',compact('ngoDurationLastEx','ngoDurationReg','ngo_list_all','fd7FormList'));
+        return view('front.fd7Form.index',compact('ngoDurationLastEx','ngoDurationReg','ngoListAll','fd7FormList'));
     }
 
 
     public function create(){
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-        ->value('ngo_duration_start_date');
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->value('ngo_duration_start_date');
+        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->orderBy('id','desc')->first();
+        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngoListAll->id)->value('web_site_name');
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
 
-
-        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-                               ->orderBy('id','desc')->first();
-
-
-                               $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngo_list_all->id)
-                               ->value('web_site_name');
-
-
-            $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-            ->select('division_bn')->get();
-
-            //dd($districtList);
-
-        return view('front.fd7Form.create',compact('divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
+        return view('front.fd7Form.create',compact('divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngoListAll'));
 
     }
 
     public function edit($id){
+
         $fd6Id = base64_decode($id);
 
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->value('ngo_duration_start_date');
+        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->orderBy('id','desc')->first();
+        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngoListAll->id)->value('web_site_name');
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $districtList = DB::table('civilinfos')->groupBy('district_bn')->select('district_bn')->get();
+        $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')->select('city_orporation')->get();
+        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd6Id)->latest()->first();
+        $prokolpoAreaList = Fd7FormProkolpoArea::where('fd7_form_id',$fd6Id)->latest()->get();
 
-        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-        ->value('ngo_duration_start_date');
-
-
-        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-                               ->orderBy('id','desc')->first();
-
-
-                               $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngo_list_all->id)
-                               ->value('web_site_name');
-
-
-            $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-            ->select('division_bn')->get();
-
-            $districtList = DB::table('civilinfos')->groupBy('district_bn')
-            ->select('district_bn')->get();
-
-            $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')
-            ->select('city_orporation')->get();
-
-            //dd($districtList);
-            $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
-            ->where('id',$fd6Id)->latest()->first();
-
-            $prokolpoAreaList = Fd7FormProkolpoArea::where('fd7_form_id',$fd6Id)->latest()->get();
-        return view('front.fd7Form.edit',compact('cityCorporationList','districtList','prokolpoAreaList','fd7FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
+        return view('front.fd7Form.edit',compact('cityCorporationList','districtList','prokolpoAreaList','fd7FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngoListAll'));
 
     }
 
     public function store(Request $request){
-
-        //dd($request->all());
-
 
         $request->validate([
 
@@ -129,7 +91,6 @@ class Fd7FormController extends Controller
             'donor_organization_phone' => 'required|string',
             'donor_organization_email' => 'required|string',
             'donor_organization_website' => 'required|string',
-
             'ongoing_prokolpo_name' => 'required|string',
             'total_prokolpo_cost' => 'required|string',
             'date_of_bureau_approval' => 'required|string',
@@ -142,9 +103,6 @@ class Fd7FormController extends Controller
             'relief_assistance_project_proposal_pdf' => 'required|file',
 
         ]);
-
-
-       // dd(12);
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd7FormInfo = new Fd7Form();
@@ -168,8 +126,6 @@ class Fd7FormController extends Controller
         $fd7FormInfo->date_of_bureau_approval =$request->date_of_bureau_approval;
         $fd7FormInfo->percentage_of_the_original_project =$request->percentage_of_the_original_project;
         $fd7FormInfo->adverse_impact_on_the_ongoing_project =$request->adverse_impact_on_the_ongoing_project;
-
-
         $fd7FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd7FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
         $fd7FormInfo->status ='Ongoing';
@@ -179,7 +135,6 @@ class Fd7FormController extends Controller
         if ($request->hasfile('bureau_approval_pdf')) {
 
             $file = $request->file('bureau_approval_pdf');
-
             $fd7FormInfo->bureau_approval_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
@@ -188,7 +143,6 @@ class Fd7FormController extends Controller
         if ($request->hasfile('letter_from_donor_agency_pdf')) {
 
             $file = $request->file('letter_from_donor_agency_pdf');
-
             $fd7FormInfo->letter_from_donor_agency_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
@@ -197,26 +151,18 @@ class Fd7FormController extends Controller
         if ($request->hasfile('relief_assistance_project_proposal_pdf')) {
 
             $file = $request->file('relief_assistance_project_proposal_pdf');
-
             $fd7FormInfo->relief_assistance_project_proposal_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd7FormInfo->save();
 
-          $fd7FormInfo->save();
+        $input = $request->all();
+        $divisionName = $input['division_name'];
+        $fd7FormInfoId = $fd7FormInfo->id;
 
+        foreach($divisionName as $key => $divisionName){
 
-
-          $input = $request->all();
-
-          $divisionName = $input['division_name'];
-
-
-          $fd7FormInfoId = $fd7FormInfo->id;
-
-
-
-          foreach($divisionName as $key => $divisionName){
             $form= new Fd7FormProkolpoArea();
             $form->fd7_form_id=$fd7FormInfoId;
             $form->division_name=$input['division_name'][$key];
@@ -280,26 +226,15 @@ class Fd7FormController extends Controller
                 $form->number_of_beneficiaries=$input['number_of_beneficiaries'][$key];
             }
 
-
-
-
             $form->save();
-   }
+        }
 
-
-
-
-
-        return redirect()->route('addFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Added Successfuly');
-
-
+    return redirect()->route('addFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Added Successfuly');
 
     }
 
 
     public function update(Request $request,$id){
-
-           //dd($request->all());
 
         $fd7FormInfo = Fd7Form::find($id);
         $fd7FormInfo->ngo_name =$request->ngo_name;
@@ -320,55 +255,42 @@ class Fd7FormController extends Controller
         $fd7FormInfo->date_of_bureau_approval =$request->date_of_bureau_approval;
         $fd7FormInfo->percentage_of_the_original_project =$request->percentage_of_the_original_project;
         $fd7FormInfo->adverse_impact_on_the_ongoing_project =$request->adverse_impact_on_the_ongoing_project;
-
-
         $fd7FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd7FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
 
         $filePath="FdSevenForm";
 
         if ($request->hasfile('bureau_approval_pdf')) {
 
             $file = $request->file('bureau_approval_pdf');
-
             $fd7FormInfo->bureau_approval_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
-
         if ($request->hasfile('letter_from_donor_agency_pdf')) {
 
             $file = $request->file('letter_from_donor_agency_pdf');
-
             $fd7FormInfo->letter_from_donor_agency_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
-
         if ($request->hasfile('relief_assistance_project_proposal_pdf')) {
 
             $file = $request->file('relief_assistance_project_proposal_pdf');
-
             $fd7FormInfo->relief_assistance_project_proposal_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd7FormInfo->save();
 
-          $fd7FormInfo->save();
+        $input = $request->all();
+        $divisionName = $input['division_name'];
+        $fd7FormInfoId = $fd7FormInfo->id;
 
+        Fd7FormProkolpoArea::where('fd7_form_id',$fd7FormInfoId)->delete();
 
+        foreach($divisionName as $key => $divisionName){
 
-          $input = $request->all();
-
-          $divisionName = $input['division_name'];
-
-
-          $fd7FormInfoId = $fd7FormInfo->id;
-
-          Fd7FormProkolpoArea::where('fd7_form_id',$fd7FormInfoId)->delete();
-
-          foreach($divisionName as $key => $divisionName){
             $form= new Fd7FormProkolpoArea();
             $form->fd7_form_id=$fd7FormInfoId;
             $form->division_name=$input['division_name'][$key];
@@ -432,17 +354,10 @@ class Fd7FormController extends Controller
                 $form->number_of_beneficiaries=$input['number_of_beneficiaries'][$key];
             }
 
-
-
-
             $form->save();
-   }
+        }
 
-
-
-
-
-        return redirect()->route('editFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Updated Successfuly');
+    return redirect()->route('editFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Updated Successfuly');
 
     }
 
@@ -460,62 +375,36 @@ class Fd7FormController extends Controller
 
 
     public function show($id){
+
         $fd7Id = base64_decode($id);
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->value('ngo_duration_start_date');
+        $fd2FormList = Fd2FormForFd7Form::where('fd_one_form_id',$ngoListAll->id)->where('fd7_form_id',$fd7Id)->latest()->first();
+        $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',$fd2FormList->id)->latest()->get();
+        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngoListAll->id)->orderBy('id','desc')->first();
+        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngoListAll->id)->value('web_site_name');
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $districtList = DB::table('civilinfos')->groupBy('district_bn')->select('district_bn')->get();
+        $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')->select('city_orporation')->get();
+        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd7Id)->latest()->first();
+        $prokolpoAreaList = Fd7FormProkolpoArea::where('fd7_form_id',$fd7Id)->latest()->get();
 
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-       $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-       ->value('ngo_duration_start_date');
-
-       $fd2FormList = Fd2FormForFd7Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('fd7_form_id',$fd7Id)->latest()->first();
-
-       $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',$fd2FormList->id)->latest()->get();
-
-       $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-                              ->orderBy('id','desc')->first();
-
-
-                              $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngo_list_all->id)
-                              ->value('web_site_name');
-
-
-           $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-           ->select('division_bn')->get();
-
-           $districtList = DB::table('civilinfos')->groupBy('district_bn')
-           ->select('district_bn')->get();
-
-           $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')
-           ->select('city_orporation')->get();
-
-           //dd($districtList);
-           $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
-           ->where('id',$fd7Id)->latest()->first();
-
-           $prokolpoAreaList = Fd7FormProkolpoArea::where('fd7_form_id',$fd7Id)->latest()->get();
-
-
-
-       return view('front.fd7Form.view',compact('fd2OtherInfo','fd2FormList','cityCorporationList','districtList','prokolpoAreaList','fd7FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
+        return view('front.fd7Form.view',compact('fd2OtherInfo','fd2FormList','cityCorporationList','districtList','prokolpoAreaList','fd7FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngoListAll'));
 
    }
 
    public function reliefAssistanceProjectProposalPdf($id){
 
 
-    $get_file_data = Fd7Form::where('id',$id)->value('relief_assistance_project_proposal_pdf');
+    $getFileData = Fd7Form::where('id',$id)->value('relief_assistance_project_proposal_pdf');
 
-    $file_path = url('public/'.$get_file_data);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+    $filePath = url('public/'.$getFileData);
+    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+    $file= public_path('/'). $getFileData;
 
-    $file= public_path('/'). $get_file_data;
-
-    $headers = array(
-              'Content-Type: application/pdf',
-            );
-
-    // return Response::download($file,$filename.'.pdf', $headers);
+        $headers = array(
+                'Content-Type: application/pdf',
+                );
 
     return Response::make(file_get_contents($file), 200, [
         'content-type'=>'application/pdf',
@@ -528,18 +417,15 @@ class Fd7FormController extends Controller
    public function authorizationLetter($id){
 
 
-    $get_file_data = Fd7Form::where('id',$id)->value('bureau_approval_pdf');
+    $getFileData = Fd7Form::where('id',$id)->value('bureau_approval_pdf');
 
-    $file_path = url('public/'.$get_file_data);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+    $filePath = url('public/'.$getFileData);
+    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+    $file= public_path('/'). $getFileData;
 
-    $file= public_path('/'). $get_file_data;
-
-    $headers = array(
-              'Content-Type: application/pdf',
-            );
-
-    // return Response::download($file,$filename.'.pdf', $headers);
+        $headers = array(
+                'Content-Type: application/pdf',
+                );
 
     return Response::make(file_get_contents($file), 200, [
         'content-type'=>'application/pdf',
@@ -551,19 +437,15 @@ class Fd7FormController extends Controller
    public function letterFromDonorAgency($id){
 
 
-    $get_file_data = Fd7Form::where('id',$id)->value('letter_from_donor_agency_pdf');
+    $getFileData = Fd7Form::where('id',$id)->value('letter_from_donor_agency_pdf');
 
-    $file_path = url('public/'.$get_file_data);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+    $filePath = url('public/'.$getFileData);
+    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+    $file= public_path('/'). $getFileData;
 
-    $file= public_path('/'). $get_file_data;
-
-    $headers = array(
-              'Content-Type: application/pdf',
-            );
-
-    // return Response::download($file,$filename.'.pdf', $headers);
-
+        $headers = array(
+                'Content-Type: application/pdf',
+                );
     return Response::make(file_get_contents($file), 200, [
         'content-type'=>'application/pdf',
     ]);

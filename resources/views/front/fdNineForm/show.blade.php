@@ -41,12 +41,12 @@ color:white !important;
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -189,7 +189,7 @@ color:white !important;
                                                         এনডিসা প্রাপ্তির সুপারিশপত্র
                                                         পাওয়ার জন্য আবেদন করছিঃ</p>
                                                     @else
-                                                    <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
+                                                    <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngoListAll->registration_number)}}
                                                         তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
                                                         অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                                                         এনডিসা প্রাপ্তির সুপারিশপত্র
@@ -274,9 +274,7 @@ color:white !important;
 
                                             <?php
    $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
-
-   //dd($familyData);
-    ?>
+ ?>
 
                                             <tr>
                                                 <td>১৩.</td>
@@ -295,10 +293,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_academic_qualification);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_academic_qualification);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
@@ -321,10 +319,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_technical_and_other_qualifications_if_any);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_technical_and_other_qualifications_if_any);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
@@ -345,10 +343,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_past_experience);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_past_experience);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
@@ -375,10 +373,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_offered_post);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_offered_post);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
@@ -400,10 +398,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_name_of_proposed_project);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_name_of_proposed_project);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
@@ -465,10 +463,10 @@ color:white !important;
 
                      <?php
 
-                                                     $file_path = url($fdNineData->fd9_copy_of_passport);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                     $filePath = url($fdNineData->fd9_copy_of_passport);
+                                                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 

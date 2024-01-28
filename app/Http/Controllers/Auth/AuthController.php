@@ -32,9 +32,9 @@ class AuthController extends Controller
 
     public function passwordChangeConfirmed(Request $request){
 
-        $get_all_data = User::find($request->id);
-        $get_all_data->password = Hash::make($request->password);
-        $get_all_data->save();
+        $getAllData = User::find($request->id);
+        $getAllData->password = Hash::make($request->password);
+        $getAllData->save();
 
         return redirect('/login')->with('success','Password Successfully Changed!');
 
@@ -55,14 +55,14 @@ class AuthController extends Controller
 
         return response()->json($data);
 
-     }
+    }
 
 
      public function checkMailAlreadyRegisteredOrNot(Request $request){
 
-        $main_data = User::where('email',$request->pass)->value('email');
+        $mainData = User::where('email',$request->pass)->value('email');
 
-        if(empty($main_data)){
+        if(empty($mainData)){
 
             $data = '<span style="color:green;">Email Available</span>';
 
@@ -75,15 +75,15 @@ class AuthController extends Controller
 
         return $data;
 
-     }
+    }
 
 
      public function sendMailGetFromList(Request $request){
 
         $useremail = $request->email;
-        $main_data = User::where('email',$useremail)->first();
-        $id = $main_data->id;
-        $email = $main_data->email;
+        $mainData = User::where('email',$useremail)->first();
+        $id = $mainData->id;
+        $email = $mainData->email;
 
         Mail::send('emails.passwordResetEmail', ['id' => $id], function($message) use($request){
             $message->to($request->email);
@@ -92,7 +92,7 @@ class AuthController extends Controller
 
        return redirect('/login')->with('success','Email Sent Successfully!');
 
-}
+    }
 
     public function showLinkRequestForm(){
 
@@ -119,10 +119,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
 
-            //CommonController::checkNgotype(1);
-
-            return redirect()->intended('dashboard')
-                        ->with('success','You have Successfully logged in');
+            return redirect()->intended('dashboard')->with('success','You have Successfully logged in');
         }
 
         return redirect("login")->with('error','Opps! You have entered invalid credentials');
@@ -137,9 +134,6 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-
-        //dd($data);
-        //$createUser = $this->create($data);
 
         $createUser = new User;
         $createUser->user_name = $request->name;
@@ -170,80 +164,81 @@ class AuthController extends Controller
     public function updateRegistration(Request $request){
         $filePath="userImage";
         $time_dy = time().date("Ymd");
-        $get_previous_email_all = User::where('id',$request->id)->value('email');
+        $getPreviousEmailAll = User::where('id',$request->id)->value('email');
 
-        if($get_previous_email_all == $request->email){
+        if($getPreviousEmailAll == $request->email){
 
-            $get_all_data = User::find($request->id);
-            $get_all_data->user_name = $request->name;
-            $get_all_data->user_phone = $request->phone;
-            $get_all_data->user_address = $request->address;
-            $get_all_data->email = $request->email;
+            $getAllData = User::find($request->id);
+            $getAllData->user_name = $request->name;
+            $getAllData->user_phone = $request->phone;
+            $getAllData->user_address = $request->address;
+            $getAllData->email = $request->email;
 
             if ($request->hasfile('user_image')) {
 
                 $file = $request->file('user_image');
-                $get_all_data->user_image =  CommonController::imageUpload($request,$file,$filePath);
+                $getAllData->user_image =  CommonController::imageUpload($request,$file,$filePath);
 
 
             }
 
             if ($request->password) {
-                $get_all_data->password = Hash::make($request->password);
+                $getAllData->password = Hash::make($request->password);
             }
-          $get_all_data->save();
+            $getAllData->save();
 
-          if ($request->password) {
+            if ($request->password) {
 
-          Auth::logout();
+            Auth::logout();
 
-          return Redirect('login')->with('success','Password Changed Login Again');
-          }else{
+            return Redirect('login')->with('success','Password Changed Login Again');
+
+            }else{
+
             return Redirect()->back()->with('success','updated Successfully');
-          }
+
+            }
 
         }else{
 
 
-        $get_all_data = User::find($request->id);
-        $get_all_data->user_name = $request->name;
-        $get_all_data->user_phone = $request->phone;
-        $get_all_data->user_address = $request->address;
-        $get_all_data->email = $request->email;
-        $get_all_data->is_email_verified = 0;
-        if ($request->hasfile('user_image')) {
+            $getAllData = User::find($request->id);
+            $getAllData->user_name = $request->name;
+            $getAllData->user_phone = $request->phone;
+            $getAllData->user_address = $request->address;
+            $getAllData->email = $request->email;
+            $getAllData->is_email_verified = 0;
+            if ($request->hasfile('user_image')) {
 
-            $file = $request->file('user_image');
-            $get_all_data->user_image =  CommonController::imageUpload($request,$file,$filePath);
+                $file = $request->file('user_image');
+                $getAllData->user_image =  CommonController::imageUpload($request,$file,$filePath);
 
-        }
-        if ($request->password) {
-            $get_all_data->password = Hash::make($request->password);
-        }
-      $get_all_data->save();
+            }
+            if ($request->password) {
+                $getAllData->password = Hash::make($request->password);
+            }
+            $getAllData->save();
+            $token = Str::random(10);
 
-      $token = Str::random(10);
+            UserVerify::where('user_id',$request->id)->delete();
 
-      UserVerify::where('user_id',$request->id)->delete();
+            UserVerify::create([
+                'user_id' => $request->id,
+                'token' => $token
+            ]);
 
-      UserVerify::create([
-        'user_id' => $request->id,
-        'token' => $token
-      ]);
+            Mail::send('emails.emailVerificationEmail', ['token' => $token], function($message) use($request){
+                    $message->to($request->email);
+                    $message->subject('NGOAB Registration Service || User Sign Up & Email Verification');
+                });
 
-  Mail::send('emails.emailVerificationEmail', ['token' => $token], function($message) use($request){
-        $message->to($request->email);
-        $message->subject('NGOAB Registration Service || User Sign Up & Email Verification');
-    });
+            Session::flush();
+            Auth::logout();
 
-    Session::flush();
-    Auth::logout();
-
-    return Redirect('login')->with('success','Please Check Mail For Varification');;
-
+            return Redirect('login')->with('success','Please Check Mail For Varification');;
 
         }
-     }
+    }
 
 
     public function create(array $data)
@@ -252,7 +247,6 @@ class AuthController extends Controller
         'user_name' => $data['name'],
         'email' => $data['email'],
         'user_phone' => $data['phone'],
-       // 'user_address' => $data['address'],
         'password' => Hash::make($data['password'])
       ]);
     }
@@ -261,82 +255,60 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
+            $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->value('id');
 
             $newOldNgo = CommonController::newOldNgo();
 
-if($newOldNgo != 'Old'){
-    $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
-}else{
+            if($newOldNgo != 'Old'){
 
-    $ngo_status_list = DB::table('ngo_renews')->where('fd_one_form_id',$ngo_list_all)->value('status');
+                $ngoStatusList = DB::table('ngo_statuses')->where('fd_one_form_id',$ngoListAll)->value('status');
 
-}
+            }else{
 
+                $ngoStatusList = DB::table('ngo_renews')->where('fd_one_form_id',$ngoListAll)->value('status');
 
-            if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing' || $ngo_status_list == 'Old Ngo Renew'){
-
-                $get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$ngo_list_all)->value('status');
+            }
 
 
-                //CommonController::checkNgotype(1);
+            if(empty($ngoStatusList) || $ngoStatusList == 'Ongoing' || $ngoStatusList == 'Old Ngo Renew'){
 
+                $getRegId = DB::table('ngo_statuses')->where('fd_one_form_id',$ngoListAll)->value('status');
                 $mainNgoType = CommonController::changeView();
 
                 if($mainNgoType== 'দেশিও'){
 
-
-
-                return view('front.dashboard.dashboard',compact('get_reg_id'));
+                    return view('front.dashboard.dashboard',compact('getRegId'));
 
                 }else{
-                    return view('front.dashboard.foreign.dashboard',compact('get_reg_id'));
+                    return view('front.dashboard.foreign.dashboard',compact('getRegId'));
 
                 }
 
             }else{
 
+                $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+                $nameChangeListR = NgoRenew::where('fd_one_form_id',$ngoListAll->id)->get();
+                $nameChangeList = NgoNameChange::where('fd_one_form_id',$ngoListAll->id)->get();
+                $ngoListAllFormEight = FormEight::where('fd_one_form_id',$ngoListAll->id)->first();
+                $formMemberDataDoc = NgoMemberNidPhoto::where('fd_one_form_id',$ngoListAll->id)->get();
+                $formNgoDataDoc = NgoOtherDoc::where('fd_one_form_id',$ngoListAll->id)->get();
+                $allSourceOfFund = FdOneSourceOfFund::where('fd_one_form_id',$ngoListAll->id)->get();
+                $getAllDataOther= FdOneOtherPdfList::where('fd_one_form_id',$ngoListAll->id)->get();
+                $oldOrNewStatus = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
 
-                $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+                CommonController::checkNgotype(1);
+                $mainNgoType = CommonController::changeView();
+                $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
 
+                if($mainNgoType== 'দেশিও'){
 
+                    return view('front.dashboard.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
 
-$name_change_list_r = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->get();
+                }else{
 
-//dd(count($name_change_list_r));
-$name_change_list = NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->get();
-//dd(count($name_change_list));
-$ngo_list_all_form_eight = FormEight::where('fd_one_form_id',$ngo_list_all->id)->first();
-$form_member_data_doc = NgoMemberNidPhoto::where('fd_one_form_id',$ngo_list_all->id)->get();
-$form_ngo_data_doc = NgoOtherDoc::where('fd_one_form_id',$ngo_list_all->id)->get();
-$all_source_of_fund = FdOneSourceOfFund::where('fd_one_form_id',$ngo_list_all->id)->get();
-$get_all_data_other= FdOneOtherPdfList::where('fd_one_form_id',$ngo_list_all->id)
-            ->get();
+                return view('front.dashboard.foreign.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
 
-
-            $oldOrNewStatus = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
-//dd(1);
-            CommonController::checkNgotype(1);
-
-
-
-            $mainNgoType = CommonController::changeView();
-
-
-$ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
-
-
-//dd($mainNgoType);
-
-
-
-            if($mainNgoType== 'দেশিও'){
-
-                return view('front.dashboard.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
-            }else{
-
-                return view('front.dashboard.foreign.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','name_change_list_r','name_change_list','get_all_data_other','all_source_of_fund','form_ngo_data_doc','ngo_list_all_form_eight','ngo_list_all','form_member_data_doc'));
-            }
+                }
             }
         }
 
@@ -354,7 +326,7 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
     public function verifyAccount($token)
     {
 
-        //dd(11);
+
         $verifyUser = UserVerify::where('token', $token)->first();
 
         $message = 'Sorry your email cannot be identified.';

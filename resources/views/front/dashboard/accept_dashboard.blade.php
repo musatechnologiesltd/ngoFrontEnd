@@ -32,12 +32,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                                                 @if($oldOrNewStatus->ngo_type_new_old == 'Old')
                                                                 {{ $oldOrNewStatus->registration }}
                                                                                                                                 @else
-                                                                                                                                {{ $ngo_list_all->registration_number }}
+                                                                                                                                {{ $ngoListAll->registration_number }}
                                                                                                                                 @endif
 
                                                             </td>
@@ -99,25 +99,25 @@
 
                                                       <?php
 
-                                                      $allEnglishCountry = DB::table('countries')->where('country_name_bangla',$ngo_list_all->country_of_origin)->value('country_name_english');
+                                                      $allEnglishCountry = DB::table('countries')->where('country_name_bangla',$ngoListAll->country_of_origin)->value('country_name_english');
 
                                                       ?>
                                                         <tr>
                                                             <td>দেশ</td>
-                                                            <td>{{ $ngo_list_all->country_of_origin}}</td>
+                                                            <td>{{ $ngoListAll->country_of_origin}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>সংস্থা প্রধান এর  তথ্য</td>
-                                                            <td>Name: {{ $ngo_list_all->name_of_head_in_bd }} <br> Address: {{ $ngo_list_all->address_of_head_office }} <br> Phone Number: {{ $ngo_list_all->phone }} </td>
+                                                            <td>Name: {{ $ngoListAll->name_of_head_in_bd }} <br> Address: {{ $ngoListAll->address_of_head_office }} <br> Phone Number: {{ $ngoListAll->phone }} </td>
                                                         </tr>
                                                         <tr>
                                                             <td>মোবাইল নম্বর</td>
-                                                            <td>{{ $ngo_list_all->tele_phone_number }}</td>
+                                                            <td>{{ $ngoListAll->tele_phone_number }}</td>
                                                         </tr>
 
                                                         <tr>
                                                             <td>ইমেইল </td>
-                                                            <td>{{ $ngo_list_all->email }}</td>
+                                                            <td>{{ $ngoListAll->email }}</td>
                                                         </tr>
 
                                                     </table>
@@ -127,14 +127,8 @@
 
                                         <?php
 
-
-
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-
-
-$renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->get();
-
-//dd($renew_list_all);
+$renewListAll = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->get();
 
                                         ?>
 
@@ -148,7 +142,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                         <div class="profile-timeline">
                                                             <div class="d-flex">
 
-                                                                @if(count($name_change_list) == 0   && count($name_change_list_r) == 0)
+                                                                @if(count($nameChangeList) == 0   && count($nameChangeListR) == 0)
 
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h6 class="fs-14 mb-1">
@@ -157,23 +151,23 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                 </div>
                                                                 @else
-                                                                @foreach($name_change_list as $all_name_change_list)
+                                                                @foreach($nameChangeList as $allNameChangeList)
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h6 class="fs-14 mb-1">
                                                              নাম পরিবর্তনের অনুরোধ
                                                                     </h6>
-                                                                    <small class="text-muted">তারিখ: {{ $all_name_change_list->created_at->format('d-M-Y')}} &
-                                                                        সময়: {{ $all_name_change_list->time_for_api }}</small>
+                                                                    <small class="text-muted">তারিখ: {{ $allNameChangeList->created_at->format('d-M-Y')}} &
+                                                                        সময়: {{ $allNameChangeList->time_for_api }}</small>
                                                                 </div>
                                                                 @endforeach
 
-                                                                @foreach($name_change_list_r as $all_name_change_list)
+                                                                @foreach($nameChangeListR as $allNameChangeList)
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h6 class="fs-14 mb-1">
 রিনিউ রিকুয়েস্ট
                                                                     </h6>
-                                                                    <small class="text-muted">তারিখ:{{ $all_name_change_list->created_at->format('d-M-Y')}} &
-                                                                        সময়:{{ $all_name_change_list->time_for_api }}</small>
+                                                                    <small class="text-muted">তারিখ:{{ $allNameChangeList->created_at->format('d-M-Y')}} &
+                                                                        সময়:{{ $allNameChangeList->time_for_api }}</small>
                                                                 </div>
                                                                 @endforeach
                                                                 @endif
@@ -226,7 +220,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0">
-                                                                            <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'foregin_pdf', 'id' =>$ngo_list_all->id] )}}" >বিগত ১০ (দশ) বছরে বিদেশী অনুদান ব্যবস্থাপনা কার্যক্রমের বিশদ বিবরণ (প্রকল্প অনুযায়ী সারসংক্ষেপ সংযুক্ত করা হবে)</a>
+                                                                            <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'foregin_pdf', 'id' =>$ngoListAll->id] )}}" >বিগত ১০ (দশ) বছরে বিদেশী অনুদান ব্যবস্থাপনা কার্যক্রমের বিশদ বিবরণ (প্রকল্প অনুযায়ী সারসংক্ষেপ সংযুক্ত করা হবে)</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
@@ -236,7 +230,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                <td>Pdf File</td>
 
-                                                               <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                               <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
                                                             </tr>
 
 
@@ -253,7 +247,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                                      </div>
                                                                      <div class="ms-3 flex-grow-1">
                                                                          <h6 class="fs-15 mb-0">
-                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'annual_file', 'id' =>$ngo_list_all->id] )}}" >সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ)</a>
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'annual_file', 'id' =>$ngoListAll->id] )}}" >সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ)</a>
                                                                          </h6>
                                                                      </div>
                                                                  </div>
@@ -263,7 +257,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                 <td>Pdf File</td>
 
-                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                                <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
                                                              </tr>
 
 
@@ -280,7 +274,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                                      </div>
                                                                      <div class="ms-3 flex-grow-1">
                                                                          <h6 class="fs-15 mb-0">
-                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'copy_of_chalan', 'id' =>$ngo_list_all->id] )}}" >নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'copy_of_chalan', 'id' =>$ngoListAll->id] )}}" >নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে
                                                                     কিনা (চালানের কপি সংযুক্ত করতে
                                                                     হবে)</a>
                                                                          </h6>
@@ -292,7 +286,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                 <td>Pdf File</td>
 
-                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                                <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
                                                              </tr>
 
 
@@ -309,7 +303,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                                      </div>
                                                                      <div class="ms-3 flex-grow-1">
                                                                          <h6 class="fs-15 mb-0">
-                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'due_vat_pdf', 'id' =>$ngo_list_all->id] )}}" >তফসিল -১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে)</a>
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'due_vat_pdf', 'id' =>$ngoListAll->id] )}}" >তফসিল -১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে)</a>
                                                                          </h6>
                                                                      </div>
                                                                  </div>
@@ -319,12 +313,12 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                 <td>Pdf File</td>
 
-                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                                <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
                                                              </tr>
 
 
 
-                                                             @if(empty($ngo_list_all->change_ac_number))
+                                                             @if(empty($ngoListAll->change_ac_number))
 
 
                                                              @else
@@ -340,7 +334,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
                                                                      </div>
                                                                      <div class="ms-3 flex-grow-1">
                                                                          <h6 class="fs-15 mb-0">
-                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'change_ac_number', 'id' =>$ngo_list_all->id] )}}" >ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমোদনপত্রের কপি </a>
+                                                                             <a target="_blank" href="{{ route('renewFileDownloadFromView', ['title' =>'change_ac_number', 'id' =>$ngoListAll->id] )}}" >ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমোদনপত্রের কপি </a>
                                                                          </h6>
                                                                      </div>
                                                                  </div>
@@ -350,7 +344,7 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 
                                                                 <td>Pdf File</td>
 
-                                                                <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                                <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
                                                              </tr>
 
 @endif
@@ -502,8 +496,8 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 @else
 <?php
 
-  $file_path = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
-  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+  $filePath = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
+  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
   ?>
@@ -549,8 +543,8 @@ $renew_list_all = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)-
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -588,8 +582,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->work_procedure_of_organization);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->work_procedure_of_organization);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -631,8 +625,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -667,8 +661,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->registration_certificate);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->registration_certificate);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -705,8 +699,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -743,8 +737,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->right_to_information_act);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->right_to_information_act);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -783,8 +777,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-  $file_path = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
-  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+  $filePath = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
+  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
   ?>
@@ -823,8 +817,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -862,8 +856,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -901,8 +895,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->payment_of_change_fee);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->payment_of_change_fee);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -939,8 +933,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -976,8 +970,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -1015,8 +1009,8 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 @else
 <?php
 
-$file_path = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 ?>
@@ -1068,14 +1062,14 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0">
-                                                                            <a target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngo_list_all->user_id,'id'=>'plan']) }}" >পরিচালন পরিকল্পনা</a>
+                                                                            <a target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngoListAll->user_id,'id'=>'plan']) }}" >পরিচালন পরিকল্পনা</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
 
@@ -1089,14 +1083,14 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a
-                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngo_list_all->user_id,'id'=>'treasury_bill']) }}">চালানের কপি</a>
+                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngoListAll->user_id,'id'=>'treasury_bill']) }}">চালানের কপি</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
 
@@ -1111,21 +1105,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a
-                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngo_list_all->user_id,'id'=>'treasury_bill']) }}">ট্রেজারি চালানের মূলকপি</a>
+                                                                            target="_blank" href="{{ route('formOnePdf',['main_id'=>$ngoListAll->user_id,'id'=>'treasury_bill']) }}">ট্রেজারি চালানের মূলকপি</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $ngo_list_all->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $ngoListAll->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
 
 
 
 
-                                                        @foreach($all_source_of_fund as $all_get_all_source_of_fund_data)
+                                                        @foreach($allSourceOfFund as $allGetAllSourceOFundData)
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
@@ -1136,21 +1130,21 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('sourceOfFund',$all_get_all_source_of_fund_data->id ) }}">সম্ভাব্য দাতার কাছ থেকে প্রতিশ্রুতির চিঠি(দাতা সংস্থার নাম)</a>
+                                                                                    href="{{ route('sourceOfFund',$allGetAllSourceOFundData->id ) }}">সম্ভাব্য দাতার কাছ থেকে প্রতিশ্রুতির চিঠি(দাতা সংস্থার নাম)</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $all_get_all_source_of_fund_data->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $allGetAllSourceOFundData->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
                                                         @endforeach
 
 
 
-                                                        @foreach($form_ngo_data_doc as $key=>$all_get_all_source_of_fund_data)
+                                                        @foreach($formNgoDataDoc as $key=>$allGetAllSourceOFundData)
 
                                                         <tr>
                                                             <td>
@@ -1163,7 +1157,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     <div class="ms-3 flex-grow-1">
                                                                         @if($key+1 == 1)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                    href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                                     <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ এফডি -১ এর ফাইনাল কপি</h6>
                                                                                     @else
@@ -1174,7 +1168,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </h6>
                                                                         @elseif($key+1 == 2)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                    href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                                     <h6>কর্মকর্তার স্বাক্ষর ও তারিখ সহ ফরম নং - ৮ এর ফাইনাল কপি</h6>
                                                                                     @else
@@ -1185,7 +1179,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </h6>
                                                                         @elseif($key+1 == 3)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                                    href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                                      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                                     <h6>নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি</h6>
                                                                                     @else
@@ -1196,7 +1190,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                         </h6>
                                                                         @elseif($key+1 == 4)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                     <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                     @else
@@ -1207,7 +1201,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                 </h6>
                                                                         @elseif($key+1 == 5)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                                                             @else
@@ -1218,7 +1212,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                 </h6>
                                                                         @elseif($key+1 == 6)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>সংস্থার কার্যক্রম প্রতিবেদন</h6>
                                                                             @else
@@ -1229,7 +1223,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                 </h6>
                                                                         @elseif($key+1 == 7)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )</h6>
                                                                             @else
@@ -1241,7 +1235,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                                                         @elseif($key+1 == 8)
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                             <h6>কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ </h6>
@@ -1255,7 +1249,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                                                 @elseif($key+1 == 9)
                                                                 <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                    href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                                    href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
 
                                                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                                     <h6>সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ ) </h6>
@@ -1269,7 +1263,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                                                         @elseif($key+1 == 10)
                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                            href="{{ route('ngoOtherDocument',$all_get_all_source_of_fund_data->id ) }}">
+                                                            href="{{ route('ngoOtherDocument',$allGetAllSourceOFundData->id ) }}">
 
                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )</h6>
@@ -1286,13 +1280,13 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $all_get_all_source_of_fund_data->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $allGetAllSourceOFundData->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
                                                         @endforeach
 
 
-                                                        @foreach($form_member_data_doc as $key=>$all_get_all_source_of_fund_data)
+                                                        @foreach($formMemberDataDoc as $key=>$allGetAllSourceOFundData)
 
                                                         <tr>
                                                             <td>
@@ -1304,20 +1298,20 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('ngoMemberDocument',$all_get_all_source_of_fund_data->id ) }}">সাধারণ সদস্যদের নথি  {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
+                                                                                    href="{{ route('ngoMemberDocument',$allGetAllSourceOFundData->id ) }}">সাধারণ সদস্যদের নথি  {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $all_get_all_source_of_fund_data->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $allGetAllSourceOFundData->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
                                                         @endforeach
 
 
-                                                        @foreach($get_all_data_other as $key=>$all_get_all_source_of_fund_data)
+                                                        @foreach($getAllDataOther as $key=>$allGetAllSourceOFundData)
                                                         <tr>
                                                             <td>
                                                                 <div class="d-flex align-items-center">
@@ -1328,14 +1322,14 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                                                     </div>
                                                                     <div class="ms-3 flex-grow-1">
                                                                         <h6 class="fs-15 mb-0"><a target="_blank"
-                                                                                    href="{{ route('otherPdfFromFDOneForm',$all_get_all_source_of_fund_data->id ) }}">অন্যান্য পিডিএফ কপি {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
+                                                                                    href="{{ route('otherPdfFromFDOneForm',$allGetAllSourceOFundData->id ) }}">অন্যান্য পিডিএফ কপি {{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}</a>
                                                                         </h6>
                                                                     </div>
                                                                 </div>
                                                             </td>
                                                             <td>Pdf File</td>
 
-                                                            <td>{{ $all_get_all_source_of_fund_data->created_at->format('d-M-Y')}}</td>
+                                                            <td>{{ $allGetAllSourceOFundData->created_at->format('d-M-Y')}}</td>
 
                                                         </tr>
                                                         @endforeach

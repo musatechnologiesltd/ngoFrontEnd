@@ -185,10 +185,10 @@
 
                             <?php
 
-$file_path = url($getFormOneData->attach_the__supporting_paper);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($getFormOneData->attach_the__supporting_paper);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -218,10 +218,10 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <?php
 
-$file_path = url($getFormOneData->board_of_revenue_on_fees);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+$filePath = url($getFormOneData->board_of_revenue_on_fees);
+$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

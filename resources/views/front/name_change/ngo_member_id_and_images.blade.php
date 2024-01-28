@@ -169,8 +169,8 @@
 
 <?php
 
-                                $file_path = url($all_all_ngo_member_doc->member_nid_copy);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                $filePath = url($all_all_ngo_member_doc->member_nid_copy);
+                                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 

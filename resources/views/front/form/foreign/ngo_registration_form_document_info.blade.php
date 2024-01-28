@@ -435,8 +435,8 @@ if($foreignNgoType == 'Old'){
                                         @else
                                         <?php
 
-                                          $file_path = url($ngoOtherDocListsFirst->fd_eight_form_data);
-                                          $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                          $filePath = url($ngoOtherDocListsFirst->fd_eight_form_data);
+                                          $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                                           ?>
@@ -516,8 +516,8 @@ if($foreignNgoType == 'Old'){
                                       @else
                                       <?php
 
-                                        $file_path = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
-                                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                        $filePath = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
+                                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                                         ?>
@@ -600,8 +600,8 @@ if($foreignNgoType == 'Old'){
                             @else
                             <?php
 
-                              $file_path = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
-                              $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                              $filePath = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
+                              $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                               ?>
@@ -683,8 +683,8 @@ if($foreignNgoType == 'Old'){
                @else
                <?php
 
-                 $file_path = url($ngoOtherDocListsFirst->work_procedure_of_organization);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                 $filePath = url($ngoOtherDocListsFirst->work_procedure_of_organization);
+                 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                  ?>
@@ -766,8 +766,8 @@ if($foreignNgoType == 'Old'){
                @else
                <?php
 
-                 $file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                 $filePath = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
+                 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                  ?>
@@ -848,8 +848,8 @@ if($foreignNgoType == 'Old'){
                @else
                <?php
 
-                 $file_path = url($ngoOtherDocListsFirst->registration_certificate);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                 $filePath = url($ngoOtherDocListsFirst->registration_certificate);
+                 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                  ?>
@@ -930,8 +930,8 @@ if($foreignNgoType == 'Old'){
                @else
                <?php
 
-                 $file_path = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                 $filePath = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
+                 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                  ?>
@@ -1012,8 +1012,8 @@ if($foreignNgoType == 'Old'){
                @else
                <?php
 
-                 $file_path = url($ngoOtherDocListsFirst->right_to_information_act);
-                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                 $filePath = url($ngoOtherDocListsFirst->right_to_information_act);
+                 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                  ?>
@@ -1097,8 +1097,8 @@ if($foreignNgoType == 'Old'){
                                       @else
                                       <?php
 
-                                        $file_path = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
-                                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                        $filePath = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
+                                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                                         ?>
@@ -1179,8 +1179,8 @@ if($foreignNgoType == 'Old'){
     @else
     <?php
 
-      $file_path = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
-      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+      $filePath = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
+      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
       ?>
@@ -1260,8 +1260,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
     @else
     <?php
 
-      $file_path = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
-      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+      $filePath = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
+      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
       ?>
@@ -1341,8 +1341,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
     @else
     <?php
 
-      $file_path = url($ngoOtherDocListsFirst->payment_of_change_fee);
-      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+      $filePath = url($ngoOtherDocListsFirst->payment_of_change_fee);
+      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
       ?>
@@ -1421,8 +1421,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                    @else
                    <?php
 
-                     $file_path = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
-                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                     $filePath = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
+                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                      ?>
@@ -1500,8 +1500,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                    @else
                    <?php
 
-                     $file_path = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
-                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                     $filePath = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
+                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                      ?>
@@ -1582,8 +1582,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
              @else
              <?php
 
-               $file_path = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
                ?>
@@ -1943,8 +1943,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <?php
 
-                                        $file_path = url($all_ngo_list_all->pdf_file_list);
-                                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                        $filePath = url($all_ngo_list_all->pdf_file_list);
+                                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 

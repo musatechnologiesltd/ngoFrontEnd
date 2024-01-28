@@ -30,12 +30,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                                     এনডিসা প্রাপ্তির সুপারিশপত্র
                                                     পাওয়ার জন্য আবেদন করছিঃ</p>
                                                 @else
-                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
+                                                <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngoListAll->registration_number)}}
                                                     তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
                                                     অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                                                     এনডিসা প্রাপ্তির সুপারিশপত্র
@@ -292,60 +292,12 @@
                placeholder="" value="{{ $fdNineData->fd9_number_of_family_members }}" name="fd9_number_of_family_members" required>
     </div>
 
-    {{-- <div class="mb-3 row">
-        <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):<span
-                    class="text-danger">*</span></label>
-    </div> --}}
+
 
     <?php
    $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
-
-   //dd($familyData);
     ?>
 
-    {{-- <div class="mb-3 col-lg-12">
-        <table class="table table-light" id="dynamicAddRemove">
-            <tr>
-                <th>নাম<span
-                    class="text-danger">*</span></th>
-                <th>বয়স<span
-                    class="text-danger">*</span></th>
-                <th></th>
-            </tr>
-            @foreach($familyData as $key=>$allFamilyData)
-
-            @if($key==0)
-            <tr>
-                <td>
-                    <input type="text" value="{{ $allFamilyData->family_member_name }}" name="family_member_name[]"
-                           class="form-control" required/>
-                </td>
-                <td>
-                    <input type="text" value="{{ $allFamilyData->family_member_age }}" name="family_member_age[]"
-                           class="form-control" required/>
-                </td>
-                <td></td>
-            </tr>
-            @else
-
-            <tr>
-                <td>
-                    <input type="text" value="{{ $allFamilyData->family_member_name }}" name="family_member_name[]"
-                           class="form-control" required/>
-                </td>
-                <td>
-                    <input type="text" value="{{ $allFamilyData->family_member_age }}" name="family_member_age[]"
-                           class="form-control" required/>
-                </td>
-                <td><button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-earmark-x-fill"></i></button></td>
-            </tr>
-
-            @endif
-            @endforeach
-        </table>
-        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
-        </button>
-    </div> --}}
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
             class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
@@ -360,10 +312,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_academic_qualification);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_academic_qualification);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -386,10 +338,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_technical_and_other_qualifications_if_any);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_technical_and_other_qualifications_if_any);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -411,10 +363,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_past_experience);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_past_experience);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -441,10 +393,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_offered_post);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_offered_post);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -466,10 +418,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_name_of_proposed_project);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_name_of_proposed_project);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -543,10 +495,10 @@
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_copy_of_passport);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+               $filePath = url($fdNineData->fd9_copy_of_passport);
+               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 

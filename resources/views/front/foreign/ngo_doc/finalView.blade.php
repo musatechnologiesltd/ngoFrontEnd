@@ -37,8 +37,8 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
             <?php
 
-            $file_path = url($all_ngo_list_all->pdf_file_list);
-            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            $filePath = url($all_ngo_list_all->pdf_file_list);
+            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 
@@ -254,8 +254,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
             <?php
 
-            $file_path = url($all_ngo_list_all->pdf_file_list);
-            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            $filePath = url($all_ngo_list_all->pdf_file_list);
+            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 

@@ -28,7 +28,7 @@
             $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                            ->value('id');
 ?>
-@if(empty($get_reg_id))
+@if(empty($getRegId))
                         {{-- <button class="btn btn-sm btn-danger"  onclick="deleteTag(2)" >{{ trans('first_info.reset')}}</button>
                         <form id="delete-form-2" action="{{ route('resetAllData') }}" method="POST" style="display: none;">
 
@@ -96,102 +96,67 @@
 
                                     <?php
 
+$dataMOne = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+if(count($dataMOne) == 0){
 
-$data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->get();
-
-                                        if(count($data_m_one) == 0){
 $count = 11;
 
-                                        }else{
+}else{
 
-                                    $data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->first();
+$data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id) ->first();
+$count = 0;
 
-                                           $count = 0;
+}
 
+$fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+$data1MOne = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)->get();
 
-            }
-
-            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->value('id');
-            $data1_m_one = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
-
-
-                                           if(count($data1_m_one) == 0){
+if(count($data1MOne) == 0){
 $count1 = 11;
-
-                                        }else{
-
-
-
-
-                                            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                                           ->value('id');
-                                           $data1 = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-                                           $count1 = 0;
+}else{
+$fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+$data1 = DB::table('form_eights')->where('fd_one_form_id',$fdoneFormId)->first();
+ $count1 = 0;
                 foreach ($data1   as $a1) {
                     if (is_null($a1)) {
                         $count1++;
                   }
                 }
+}
 
-                                        }
+$data2MOne = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)->get();
 
-                                        $data2_m_one = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
-
-                                           if(count($data2_m_one) == 0){
+if(count($data2MOne) == 0){
 $count2 = 11;
+}else{
 
-                                        }else{
-
-
-                                           $data2 = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-                                           $count2 = 0;
+$data2 = DB::table('ngo_member_nid_photos')->where('fd_one_form_id',$fdoneFormId)->first();
+$count2 = 0;
                 foreach ($data2   as $a2) {
                     if (is_null($a2)) {
                         $count2++;
                   }
                 }
-            }
+}
 
-            $data3_m_one = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
+$data3MOne = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)->get();
 
-                                           if(count($data3_m_one) == 0){
+if(count($data3MOne) == 0){
 $count3 = 11;
+}else{
 
-                                        }else{
-
-
-
-                    $data3 = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)
-                                           ->first();
-
-
-                $count3 = 0;
+$data3 = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdoneFormId)->first();
+$count3 = 0;
                 foreach ($data3   as $a3) {
                     if (is_null($a3)) {
                         $count3++;
                   }
                 }
-            }
+}
 
+$renewalFilesDoc = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)->get();
 
-
-
-            $renewal_files_doc = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)
-                                           ->get();
-
-
-                                        //    dd(count($renewal_files_doc));
-                                    ?>
+?>
 
 
                                    <table class="table table-borderless">
@@ -239,7 +204,7 @@ $count3 = 11;
 
 
 
-                                       @if(count($renewal_files_doc) == 1)
+                                       @if(count($renewalFilesDoc) == 1)
                                        <tr>
                                         <td>{{ trans('first_info.other_info')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>

@@ -15,19 +15,6 @@
                         <input type="text" class="form-control" id=""
                         placeholder="Nationality" value="{{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->nationality  }}" name="nationality" required>
 
-
-                        {{-- <select class="js-example-basic-single form-control" data-parsley-required name="nationality"
-                       >
-<option value="">--Please Select--</option>
-                        @foreach($getCityzenshipData as $allGetCityzenshipData)
-                        @if(session()->get('locale') == 'en')
-                        <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->nationality == $allGetCityzenshipData->country_people_english ? 'selected':''}}>{{ $allGetCityzenshipData->country_people_english }}</option>
-                        @else
-                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ $nVisaEdit->nVisaParticularsOfForeignIncumbnet->nationality == $allGetCityzenshipData->country_people_english ? 'selected':''}}>{{ $allGetCityzenshipData->country_people_english }}</option>
-                    @endif
-                    @endforeach
-
-                </select> --}}
         </div>
         <div class="mb-3 col-lg-4">
             <label for="" class="form-label">Passport Number:<span

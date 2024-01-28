@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -153,13 +153,13 @@
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
-                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name_ban }}" class="form-control" id=""
+                                    <input type="text" required name="ngo_name" value="{{ $ngoListAll->organization_name_ban }}" class="form-control" id=""
                                     placeholder="">
 
                                     @else
 
 
-                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name }}" class="form-control" id=""
+                                    <input type="text" required name="ngo_name" value="{{ $ngoListAll->organization_name }}" class="form-control" id=""
                                     placeholder="">
 
 
@@ -185,28 +185,28 @@
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ঠিকানা <span class="text-danger">*</span></label>
-                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $ngo_list_all->organization_address }}" id=""
+                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $ngoListAll->organization_address }}" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">টেলিফোন <span class="text-danger">*</span></label>
-                                            <input type="text" required name="ngo_telephone_number" value="{{ $ngo_list_all->tele_phone_number }}" class="form-control" id=""
+                                            <input type="text" required name="ngo_telephone_number" value="{{ $ngoListAll->tele_phone_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span></label>
                                             <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                             type = "number" required
-                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngo_list_all->phone }}" class="form-control" id=""
+                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngoListAll->phone }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ইমেইল ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_email_address" class="form-control" id=""
-                                                   placeholder="" value="{{ $ngo_list_all->email }}">
+                                                   placeholder="" value="{{ $ngoListAll->email }}">
                                         </div>
 
-                                        @if(empty($ngo_list_all->web_site_name))
+                                        @if(empty($ngoListAll->web_site_name))
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
                                             <input type="text" required value="{{ $renewWebsiteName }}" name="ngo_website" class="form-control" id=""
@@ -215,7 +215,7 @@
                                         @else
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
-                                            <input type="text" required value="{{ $ngo_list_all->web_site_name }}" name="ngo_website" class="form-control" id=""
+                                            <input type="text" required value="{{ $ngoListAll->web_site_name }}" name="ngo_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
 

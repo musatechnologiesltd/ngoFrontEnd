@@ -24,8 +24,7 @@ class NamechangeController extends Controller
 {
     public function nameChange(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
         $name_change_list_all =  NgoNameChange::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();

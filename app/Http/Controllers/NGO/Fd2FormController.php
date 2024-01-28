@@ -14,19 +14,13 @@ use App\Models\Fd6Form;
 use App\Models\Fd7Form;
 use App\Models\Fd2FormForFd7Form;
 use App\Models\Fd2Fd7OtherInfo;
-
-
 use App\Models\Fd3Form;
 use App\Models\Fd2FormForFd3Form;
 use App\Models\Fd2Fd3OtherInfo;
-
-
-
 use App\Models\Fd2FormForFc1Form;
 use App\Models\Fd2Fc1OtherInfo;
 use App\Models\Fc1Form;
 use App\Models\Fc2Form;
-
 use App\Models\Fd2FormForFc2Form;
 use App\Models\Fd2Fc2OtherInfo;
 
@@ -45,29 +39,15 @@ use App\Models\FdOneForm;
 use Illuminate\Support\Facades\App;
 class Fd2FormController extends Controller
 {
-    public function index(){
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-
-
-
-    }
-
-
 
     public function addFd2Detail($id){
+
        $fd6Id = base64_decode($id);
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-       ->select('division_bn')->get();
+       $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+       $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+       $fd6FormList = Fd6Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd6Id)->latest()->first();
 
-
-
-       $fd6FormList = Fd6Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('id',$fd6Id)->latest()->first();
-
-
-        return view('front.fd2Form.create',compact('fd6Id','ngo_list_all','divisionList','fd6FormList'));
+       return view('front.fd2Form.create',compact('fd6Id','ngoListAll','divisionList','fd6FormList'));
 
 
     }
@@ -75,19 +55,12 @@ class Fd2FormController extends Controller
 
     public function addFd2DetailForFd7($id){
 
+       $fd7Id = base64_decode($id);
+       $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+       $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+       $fd7FormList = Fd7Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd7Id)->latest()->first();
 
-        $fd7Id = base64_decode($id);
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-       ->select('division_bn')->get();
-
-
-
-       $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('id',$fd7Id)->latest()->first();
-
-
-        return view('front.fd2Form.addFd2DetailForFd7',compact('fd7Id','ngo_list_all','divisionList','fd7FormList'));
+       return view('front.fd2Form.addFd2DetailForFd7',compact('fd7Id','ngoListAll','divisionList','fd7FormList'));
 
 
     }
@@ -95,19 +68,12 @@ class Fd2FormController extends Controller
 
     public function addFd2DetailForFd3($id){
 
+       $fd3Id = base64_decode($id);
+       $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+       $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+       $fd3FormList = Fd3Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd3Id)->latest()->first();
 
-        $fd3Id = base64_decode($id);
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-       ->select('division_bn')->get();
-
-
-
-       $fd3FormList = Fd3Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('id',$fd3Id)->latest()->first();
-
-
-        return view('front.fd2Form.addFd2DetailForFd3',compact('fd3Id','ngo_list_all','divisionList','fd3FormList'));
+       return view('front.fd2Form.addFd2DetailForFd3',compact('fd3Id','ngoListAll','divisionList','fd3FormList'));
 
 
     }
@@ -115,40 +81,25 @@ class Fd2FormController extends Controller
 
     public function addFd2DetailForFc1($id){
 
+       $fc1Id = base64_decode($id);
+       $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+       $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+       $fc1FormList = Fc1Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fc1Id)->latest()->first();
 
-        $fc1Id = base64_decode($id);
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-       ->select('division_bn')->get();
-
-
-
-       $fc1FormList = Fc1Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('id',$fc1Id)->latest()->first();
-
-
-        return view('front.fd2Form.addFd2DetailForFc1',compact('fc1Id','ngo_list_all','divisionList','fc1FormList'));
-
+       return view('front.fd2Form.addFd2DetailForFc1',compact('fc1Id','ngoListAll','divisionList','fc1FormList'));
 
     }
 
 
     public function addFd2DetailForFc2($id){
 
-
         $fc2Id = base64_decode($id);
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-       $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-       ->select('division_bn')->get();
 
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fc2FormList = Fc2Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fc2Id)->latest()->first();
 
-
-       $fc2FormList = Fc2Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('id',$fc2Id)->latest()->first();
-
-
-        return view('front.fd2Form.addFd2DetailForFc2',compact('fc2Id','ngo_list_all','divisionList','fc2FormList'));
-
+        return view('front.fd2Form.addFd2DetailForFc2',compact('fc2Id','ngoListAll','divisionList','fc2FormList'));
 
     }
 
@@ -156,56 +107,38 @@ class Fd2FormController extends Controller
     public function edit($id){
 
         $fd6Id = base64_decode($id);
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-        ->select('division_bn')->get();
 
-        $fd2FormList = Fd2Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('fd_six_form_id',$id)->latest()->first();
-
-        $fd6FormList = Fd6Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('id',$fd6Id)->latest()->first();
-
-
-
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fd2FormList = Fd2Form::where('fd_one_form_id',$ngoListAll->id)->where('fd_six_form_id',$id)->latest()->first();
+        $fd6FormList = Fd6Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd6Id)->latest()->first();
         $fd2OtherInfo = Fd2FormOtherInfo::where('fd2_form_id',$fd2FormList->id)->latest()->get();
 
 
-         return view('front.fd2Form.edit',compact('fd2FormList','fd2OtherInfo','fd6Id','ngo_list_all','divisionList','fd6FormList'));
+         return view('front.fd2Form.edit',compact('fd2FormList','fd2OtherInfo','fd6Id','ngoListAll','divisionList','fd6FormList'));
 
     }
 
 
     public function editFd2DetailForFd7($id){
 
-
         $fd7Id = base64_decode($id);
-
-        //dd($fd7Id);
-
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-        ->select('division_bn')->get();
-
-        $fd2FormList = Fd2FormForFd7Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('fd7_form_id',$fd7Id)->latest()->first();
-
-        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('id',$fd7Id)->latest()->first();
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fd2FormList = Fd2FormForFd7Form::where('fd_one_form_id',$ngoListAll->id)->where('fd7_form_id',$fd7Id)->latest()->first();
+        $fd7FormList = Fd7Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd7Id)->latest()->first();
 
         if(!$fd2FormList){
 
             $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',0)->latest()->get();
 
-
-         return view('front.fd2Form.addFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngo_list_all','divisionList','fd7FormList'));
+            return view('front.fd2Form.addFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngoListAll','divisionList','fd7FormList'));
 
         }else{
 
-        $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',$fd2FormList->id)->latest()->get();
+            $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',$fd2FormList->id)->latest()->get();
 
-
-         return view('front.fd2Form.editFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngo_list_all','divisionList','fd7FormList'));
+            return view('front.fd2Form.editFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngoListAll','divisionList','fd7FormList'));
         }
 
     }
@@ -213,74 +146,44 @@ class Fd2FormController extends Controller
 
     public function editFd2DetailForFc2($id){
 
-
         $fc2Id = base64_decode($id);
-
-
-
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-
-        $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-        ->select('division_bn')->get();
-
-        $fd2FormList = Fd2FormForFc2Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('fc2_form_id',$fc2Id)->latest()->first();
-
-
-
-        $fc2FormList = Fc2Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('id',$fc2Id)->latest()->first();
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fd2FormList = Fd2FormForFc2Form::where('fd_one_form_id',$ngoListAll->id)->where('fc2_form_id',$fc2Id)->latest()->first();
+        $fc2FormList = Fc2Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fc2Id)->latest()->first();
 
 
 
         if(!$fd2FormList){
+
             $fd2OtherInfo = Fd2Fc2OtherInfo::where('fd2_form_for_fc2_form_id',0)->latest()->get();
-            return view('front.fd2Form.addFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngo_list_all','divisionList','fc2FormList'));
+            return view('front.fd2Form.addFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngoListAll','divisionList','fc2FormList'));
 
         }else{
 
-
-
-        $fd2OtherInfo = Fd2Fc2OtherInfo::where('fd2_form_for_fc2_form_id',$fd2FormList->id)->latest()->get();
-        return view('front.fd2Form.editFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngo_list_all','divisionList','fc2FormList'));
-    }
-
-
-
+            $fd2OtherInfo = Fd2Fc2OtherInfo::where('fd2_form_for_fc2_form_id',$fd2FormList->id)->latest()->get();
+            return view('front.fd2Form.editFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngoListAll','divisionList','fc2FormList'));
+        }
 
     }
 
     public function editFd2DetailForFd3($id){
 
-
         $fd3Id = base64_decode($id);
-
-        //dd($fd3Id);
-
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-        ->select('division_bn')->get();
-
-        $fd2FormList = Fd2FormForFd3Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('fd3_form_id',$fd3Id)->latest()->first();
-
-        $fd3FormList = Fd3Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('id',$fd3Id)->latest()->first();
-
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fd2FormList = Fd2FormForFd3Form::where('fd_one_form_id',$ngoListAll->id)->where('fd3_form_id',$fd3Id)->latest()->first();
+        $fd3FormList = Fd3Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fd3Id)->latest()->first();
 
         if(!$fd2FormList){
 
             $fd2OtherInfo = Fd2Fd3OtherInfo::where('fd2_form_for_fd3_form_id',0)->latest()->get();
-
-
-         return view('front.fd2Form.addFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngo_list_all','divisionList','fd3FormList'));
+            return view('front.fd2Form.addFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngoListAll','divisionList','fd3FormList'));
 
         }else{
-        $fd2OtherInfo = Fd2Fd3OtherInfo::where('fd2_form_for_fd3_form_id',$fd2FormList->id)->latest()->get();
 
-
-         return view('front.fd2Form.editFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngo_list_all','divisionList','fd3FormList'));
+            $fd2OtherInfo = Fd2Fd3OtherInfo::where('fd2_form_for_fd3_form_id',$fd2FormList->id)->latest()->get();
+            return view('front.fd2Form.editFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngoListAll','divisionList','fd3FormList'));
 
         }
     }
@@ -288,37 +191,24 @@ class Fd2FormController extends Controller
 
     public function editFd2DetailForFc1($id){
 
-
         $fc1Id = base64_decode($id);
 
-        //dd($fc1Id);
-
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-        ->select('division_bn')->get();
-
-        $fd2FormList = Fd2FormForFc1Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('fc1_form_id',$fc1Id)->latest()->first();
-
-        $fc1FormList = Fc1Form::where('fd_one_form_id',$ngo_list_all->id)
-        ->where('id',$fc1Id)->latest()->first();
+        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $fd2FormList = Fd2FormForFc1Form::where('fd_one_form_id',$ngoListAll->id) ->where('fc1_form_id',$fc1Id)->latest()->first();
+        $fc1FormList = Fc1Form::where('fd_one_form_id',$ngoListAll->id)->where('id',$fc1Id)->latest()->first();
 
 
         if(!$fd2FormList){
 
             $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',0)->latest()->get();
-
-
-            return view('front.fd2Form.addFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngo_list_all','divisionList','fc1FormList'));
+            return view('front.fd2Form.addFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngoListAll','divisionList','fc1FormList'));
 
         }else{
 
+            $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',$fd2FormList->id)->latest()->get();
+            return view('front.fd2Form.editFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngoListAll','divisionList','fc1FormList'));
 
-
-        $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',$fd2FormList->id)->latest()->get();
-
-
-         return view('front.fd2Form.editFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngo_list_all','divisionList','fc1FormList'));
         }
 
     }
@@ -327,20 +217,18 @@ class Fd2FormController extends Controller
     public function fd2PdfUpdate(Request $request){
 
         $fd2FormInfo =Fd2FormOtherInfo::find($request->mid);
+
         if ($request->hasfile('file')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('file');
-
             $fd2FormInfo->file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-
-          return redirect()->back()->with('success','Added Successfuly');
-
+        return redirect()->back()->with('success','Added Successfuly');
 
     }
 
@@ -348,18 +236,16 @@ class Fd2FormController extends Controller
 
         $fd2FormInfo =Fd2Fc2OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('file');
-
             $fd2FormInfo->file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-
-          return redirect()->back()->with('success','Added Successfuly');
+        return redirect()->back()->with('success','Added Successfuly');
 
 
     }
@@ -369,18 +255,16 @@ class Fd2FormController extends Controller
 
         $fd2FormInfo =Fd2Fc1OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('file');
-
             $fd2FormInfo->file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-
-          return redirect()->back()->with('success','Added Successfuly');
+        return redirect()->back()->with('success','Added Successfuly');
 
 
     }
@@ -390,18 +274,16 @@ class Fd2FormController extends Controller
 
         $fd2FormInfo =Fd2Fd7OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('file');
-
             $fd2FormInfo->file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-
-          return redirect()->back()->with('success','Added Successfuly');
+        return redirect()->back()->with('success','Added Successfuly');
 
 
     }
@@ -411,19 +293,16 @@ class Fd2FormController extends Controller
 
         $fd2FormInfo =Fd2Fd3OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('file');
-
             $fd2FormInfo->file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-
-          return redirect()->back()->with('success','Added Successfuly');
-
+        return redirect()->back()->with('success','Added Successfuly');
 
     }
 
@@ -474,18 +353,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFd7Other($id){
 
-        $get_file_data = Fd2Fd7OtherInfo::where('id',$id)->value('file');
+        $getFileData = Fd2Fd7OtherInfo::where('id',$id)->value('file');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -495,18 +370,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFd3Other($id){
 
-        $get_file_data = Fd2Fd3OtherInfo::where('id',$id)->value('file');
+        $getFileData = Fd2Fd3OtherInfo::where('id',$id)->value('file');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -516,18 +387,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFc2Other($id){
 
-        $get_file_data = Fd2Fc2OtherInfo::where('id',$id)->value('file');
+        $getFileData = Fd2Fc2OtherInfo::where('id',$id)->value('file');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -537,42 +404,30 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFc1Other($id){
 
-        $get_file_data = Fd2Fc1OtherInfo::where('id',$id)->value('file');
+        $getFileData = Fd2Fc1OtherInfo::where('id',$id)->value('file');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
         ]);
     }
 
-
-
-
-
     public function fd2PdfDownload($id){
 
-        $get_file_data = Fd2FormOtherInfo::where('id',$id)->value('file');
+        $getFileData = Fd2FormOtherInfo::where('id',$id)->value('file');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -582,18 +437,15 @@ class Fd2FormController extends Controller
 
 
     public function fd2MainPdfDownload($id){
-        $get_file_data = Fd2Form::where('id',$id)->value('fd_2_form_pdf');
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+        $getFileData = Fd2Form::where('id',$id)->value('fd_2_form_pdf');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -604,19 +456,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFd7($id){
 
+        $getFileData = Fd2FormForFd7Form::where('id',$id)->value('fd_2_form_pdf');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $get_file_data = Fd2FormForFd7Form::where('id',$id)->value('fd_2_form_pdf');
-
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -627,19 +474,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFd3($id){
 
+        $getFileData = Fd2FormForFd3Form::where('id',$id)->value('fd_2_form_pdf');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $get_file_data = Fd2FormForFd3Form::where('id',$id)->value('fd_2_form_pdf');
-
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -650,19 +492,14 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFc2($id){
 
+        $getFileData = Fd2FormForFc2Form::where('id',$id)->value('fd_2_form_pdf');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $get_file_data = Fd2FormForFc2Form::where('id',$id)->value('fd_2_form_pdf');
-
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -673,35 +510,25 @@ class Fd2FormController extends Controller
 
     public function downloadFd2DetailForFc1($id){
 
+        $getFileData = Fd2FormForFc1Form::where('id',$id)->value('fd_2_form_pdf');
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
-        $get_file_data = Fd2FormForFc1Form::where('id',$id)->value('fd_2_form_pdf');
-
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
-
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        // return Response::download($file,$filename.'.pdf', $headers);
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
         ]);
 
-
     }
-
-
 
     public function create(){
 
         return view('front.fd2Form.create');
     }
-
-    //fc1
 
     public function storeFd2DetailForFd7(Request $request){
 
@@ -719,9 +546,6 @@ class Fd2FormController extends Controller
 
         ]);
 
-
-
-
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFd7Form();
         $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -733,29 +557,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $key=>$fileData){
 
@@ -769,27 +587,20 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2FormOtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fd7_form_id  = $fd2FormInfoId;
+                $filePath="Fd2FormOtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fd7_form_id  = $fd2FormInfoId;
                 $form->save();
 
 
             }
+        }
 
-
-
-          }
-
-          return redirect()->route('fd7Form.index')->with('success','Added Successfuly');
-
-
-
+        return redirect()->route('fd7Form.index')->with('success','Added Successfuly');
     }
-    // end fc1
+
 
     public function storeFd2DetailForFc1(Request $request){
-
 
         $request->validate([
             'ngo_name' => 'required|string',
@@ -804,9 +615,6 @@ class Fd2FormController extends Controller
 
         ]);
 
-
-
-
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFc1Form();
         $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -818,29 +626,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $key=>$fileData){
 
@@ -853,23 +655,18 @@ class Fd2FormController extends Controller
 
                     $form->file_name=$input['file_name'][$key];
                 }
+
                 $file=$input['file'][$key];
-               $filePath="Fd2Fc1OtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fc1_form_id  = $fd2FormInfoId;
+                $filePath="Fd2Fc1OtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fc1_form_id  = $fd2FormInfoId;
                 $form->save();
 
 
             }
+        }
 
-
-
-          }
-
-          return redirect()->route('fc1Form.index')->with('success','Added Successfuly');
-
-
-
+        return redirect()->route('fc1Form.index')->with('success','Added Successfuly');
     }
 
 
@@ -889,9 +686,6 @@ class Fd2FormController extends Controller
 
         ]);
 
-
-
-
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFc2Form();
         $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -903,27 +697,21 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
-
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
           if (array_key_exists("file", $input)){
             $fileData = $input['file'];
@@ -939,29 +727,22 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2Fc2OtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fc2_form_id  = $fd2FormInfoId;
+                $filePath="Fd2Fc2OtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fc2_form_id  = $fd2FormInfoId;
                 $form->save();
 
 
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fc2Form.index')->with('success','Added Successfuly');
-
-
-
+        return redirect()->route('fc2Form.index')->with('success','Added Successfuly');
     }
 
 
 
     public function store(Request $request){
-
-        //dd($request->all());
 
         $request->validate([
             'ngo_name' => 'required|string',
@@ -987,29 +768,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $key=>$fileData){
 
@@ -1023,19 +798,16 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2FormOtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_id = $fd2FormInfoId;
+                $filePath="Fd2FormOtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_id = $fd2FormInfoId;
                 $form->save();
-
 
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fd6Form.index')->with('success','Added Successfuly');
+        return redirect()->route('fd6Form.index')->with('success','Added Successfuly');
     }
 
 
@@ -1051,29 +823,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $fileData){
 
@@ -1087,29 +853,20 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2FormOtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_id = $fd2FormInfoId;
+                $filePath="Fd2FormOtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_id = $fd2FormInfoId;
                 $form->save();
-
 
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fd6Form.index')->with('success','Updated Successfuly');
-
-
+        return redirect()->route('fd6Form.index')->with('success','Updated Successfuly');
     }
-
-
 
     public function updateFd2DetailForFd7(Request $request){
 
-
-        //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2FormForFd7Form::find($request->id);
         $fd2FormInfo->ngo_name =$request->ngo_name;
@@ -1118,29 +875,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $fileData){
 
@@ -1154,29 +905,21 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2FormOtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fd7_form_id = $fd2FormInfoId;
+                $filePath="Fd2FormOtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fd7_form_id = $fd2FormInfoId;
                 $form->save();
-
-
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fd7Form.index')->with('success','Updated Successfuly');
-
-
+        return redirect()->route('fd7Form.index')->with('success','Updated Successfuly');
     }
 
 
 
     public function updateFd2DetailForFc1(Request $request){
 
-
-        //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2FormForFc1Form::find($request->id);
         $fd2FormInfo->ngo_name =$request->ngo_name;
@@ -1185,29 +928,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $fileData){
 
@@ -1221,28 +958,21 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2Fc1OtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fc1_form_id = $fd2FormInfoId;
+                $filePath="Fd2Fc1OtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fc1_form_id = $fd2FormInfoId;
                 $form->save();
-
 
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fc1Form.index')->with('success','Updated Successfuly');
-
-
+        return redirect()->route('fc1Form.index')->with('success','Updated Successfuly');
     }
 
 
     public function updateFd2DetailForFc2(Request $request){
 
-
-        //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2FormForFc2Form::find($request->id);
         $fd2FormInfo->ngo_name =$request->ngo_name;
@@ -1251,29 +981,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $fileData){
 
@@ -1287,20 +1011,15 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2Fc2OtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fc2_form_id = $fd2FormInfoId;
+                $filePath="Fd2Fc2OtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fc2_form_id = $fd2FormInfoId;
                 $form->save();
 
-
             }
+        }
 
-
-
-          }
-
-          return redirect()->route('fc2Form.index')->with('success','Updated Successfuly');
-
+        return redirect()->route('fc2Form.index')->with('success','Updated Successfuly');
 
     }
 
@@ -1322,9 +1041,6 @@ class Fd2FormController extends Controller
 
         ]);
 
-
-
-
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFd3Form();
         $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -1336,29 +1052,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $key=>$fileData){
 
@@ -1372,29 +1082,21 @@ class Fd2FormController extends Controller
                     $form->file_name=$input['file_name'][$key];
                 }
                 $file=$input['file'][$key];
-               $filePath="Fd2FormOtherInfo";
-               $form->file =CommonController::pdfUpload($request,$file,$filePath);
-               $form->fd2_form_for_fd3_form_id  = $fd2FormInfoId;
+                $filePath="Fd2FormOtherInfo";
+                $form->file =CommonController::pdfUpload($request,$file,$filePath);
+                $form->fd2_form_for_fd3_form_id  = $fd2FormInfoId;
                 $form->save();
-
 
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fd3Form.index')->with('success','Added Successfuly');
-
-
-
+        return redirect()->route('fd3Form.index')->with('success','Added Successfuly');
     }
 
 
     public function updateFd2DetailForFd3(Request $request){
 
-
-        //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2FormForFd3Form::find($request->id);
         $fd2FormInfo->ngo_name =$request->ngo_name;
@@ -1403,29 +1105,23 @@ class Fd2FormController extends Controller
         $fd2FormInfo->ngo_prokolpo_duration =$request->ngo_prokolpo_duration;
         $fd2FormInfo->ngo_prokolpo_start_date =$request->ngo_prokolpo_start_date;
         $fd2FormInfo->ngo_prokolpo_end_date =$request->ngo_prokolpo_end_date;
-
         $fd2FormInfo->proposed_rebate_amount_bangladeshi_taka =$request->proposed_rebate_amount_bangladeshi_taka;
         $fd2FormInfo->proposed_rebate_amount_in_foreign_currency =$request->proposed_rebate_amount_in_foreign_currency;
 
         if ($request->hasfile('fd_2_form_pdf')) {
+
             $filePath="FdTwoForm";
             $file = $request->file('fd_2_form_pdf');
-
             $fd2FormInfo->fd_2_form_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
+        $fd2FormInfo->save();
 
-          $fd2FormInfo->save();
+        $input = $request->all();
+        $fd2FormInfoId = $fd2FormInfo->id;
 
-          $input = $request->all();
-
-
-
-
-          $fd2FormInfoId = $fd2FormInfo->id;
-
-          if (array_key_exists("file", $input)){
+        if (array_key_exists("file", $input)){
             $fileData = $input['file'];
             foreach($fileData as $fileData){
 
@@ -1444,18 +1140,11 @@ class Fd2FormController extends Controller
                $form->fd2_form_for_fd3_form_id = $fd2FormInfoId;
                 $form->save();
 
-
             }
 
+        }
 
-
-          }
-
-          return redirect()->route('fd3Form.index')->with('success','Updated Successfuly');
-
-
+        return redirect()->route('fd3Form.index')->with('success','Updated Successfuly');
     }
-
-
 
 }

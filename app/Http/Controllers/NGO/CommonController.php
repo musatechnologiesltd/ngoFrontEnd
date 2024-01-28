@@ -26,8 +26,7 @@ class CommonController extends Controller
         $imageUrl =  'public/uploads/'.$filePath.'/'.$filename;
 
 
-    return $imageUrl;
-    //$imageUrl = $this->imageUpload($request);
+        return $imageUrl;
 
     }
 
@@ -48,8 +47,7 @@ class CommonController extends Controller
         $imageUrl =  'uploads/'.$filePath.'/'.$filename;
 
 
-    return $imageUrl;
-    //$imageUrl = $this->imageUpload($request);
+        return $imageUrl;
 
     }
 
@@ -75,77 +73,45 @@ class CommonController extends Controller
     }
 
 
-   public static function checkNgotype($status){
+    public static function checkNgotype($status){
 
+        $mainSession = session()->get('locale');
+            if(!empty($mainSession)){
 
+                App::setLocale($mainSession);
+                session()->put('locale',$mainSession);
 
+                return session()->put('locale',$mainSession);
 
-    $mainSession = session()->get('locale');
+            }else{
 
-//dd($mainSession);
+                if($status == 1){
+                        $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
 
+                    if(empty($first_form_check)){
+                            App::setLocale('en');
+                            session()->put('locale','en');
 
-if(!empty($mainSession)){
+                        return session()->put('locale','en');
 
+                        }else{
 
-//dd(11);
+                            App::setLocale($first_form_check);
+                            session()->put('locale',$first_form_check);
 
-    App::setLocale($mainSession);
-    session()->put('locale',$mainSession);
+                        return session()->put('locale',$first_form_check);
 
-return session()->put('locale',$mainSession);
+                        }
 
+                }else{
 
+                    App::setLocale($status);
+                    session()->put('locale',$status);
+                    return session()->put('locale',$status);
 
+                }
 
-}else{
-
-
-//dd(111);
-
-
-
-    if($status == 1){
-
-        //dd($status);
-
-
-    $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
-
-
-
-
-
-    if(empty($first_form_check)){
-        App::setLocale('en');
-        session()->put('locale','en');
-
-    return session()->put('locale','en');
-
-    }else{
-
-       // dd($first_form_check);
-        App::setLocale($first_form_check);
-        session()->put('locale',$first_form_check);
-
-    return session()->put('locale',$first_form_check);
-
-    }
-
-}else{
-
-
-
-    App::setLocale($status);
-    session()->put('locale',$status);
-
-return session()->put('locale',$status);
-
-
-
-}
-
-}
+            }
 
     }
 
@@ -165,9 +131,5 @@ return session()->put('locale',$status);
         return $newOldNgo;
 
     }
-
-
-
-
 
 }

@@ -38,8 +38,8 @@
 
                                 <?php
 
-                                $file_path = url($all_ngo_list_all->pdf_file_list);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                $filePath = url($all_ngo_list_all->pdf_file_list);
+                                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
 

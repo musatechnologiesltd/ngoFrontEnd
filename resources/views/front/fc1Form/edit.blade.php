@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -395,10 +395,10 @@
 
                                                <?php
 
-                                               $file_path = url($fc1FormList->organization_name_of_the_job_amount_of_money_and_duration_pdf);
-                                               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                               $filePath = url($fc1FormList->organization_name_of_the_job_amount_of_money_and_duration_pdf);
+                                               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
@@ -476,10 +476,10 @@
 
                                                        <?php
 
-                                                       $file_path = url($fc1FormList->verified_fc_one_form);
-                                                       $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+                                                       $filePath = url($fc1FormList->verified_fc_one_form);
+                                                       $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-                                                       $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                       $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 
 
