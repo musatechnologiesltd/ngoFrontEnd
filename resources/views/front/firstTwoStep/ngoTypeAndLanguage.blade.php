@@ -18,7 +18,7 @@
                 <div class="dashboard_left">
 
                     <ul>
-                        @include('front.include.sidebar_dash')
+                        @include('front.include.sidebarDash')
                     </ul>
 
                 </div>
@@ -69,18 +69,6 @@
 </div>
 
 
-                                {{-- <div class="mb-4">
-                                    <label for="" class="form-label">{{ trans('main.lan')}} <span class="text-danger">*</span> </label>
-                                    <br>
-                                    <div class="form-check ms-3">
-                                        <input class="form-check-input changeLang" type="radio" data-parsley-checkmin="1" required name="input_language" id="input_language1" value="en" checked >
-                                        <label class="form-check-label" for="input_language1">{{ trans('main.bangla')}}</label>
-                                    </div>
-                                    <div class="form-check ms-3">
-                                        <input class="form-check-input changeLang" data-parsley-checkmin="1" required type="radio" name="input_language" id="input_language2" value="sp" >
-                                        <label class="form-check-label" for="input_language2">{{ trans('main.English')}} </label>
-                                    </div>
-                                </div> --}}
 
                         </div>
                     </div>

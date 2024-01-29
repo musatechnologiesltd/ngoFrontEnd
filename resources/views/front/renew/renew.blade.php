@@ -31,12 +31,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
+                                    <h4>{{ $ngoListAll->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
 
             <?php
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
- $name_change_list = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )->latest()->value('status');
+ $nameChangeList = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )->latest()->value('status');
 
 
 
@@ -133,7 +133,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
-                                    @if($name_change_list == 'Ongoing')
+                                    @if($nameChangeList == 'Ongoing')
                                     <div class="d-grid d-md-flex justify-content-end">
                                         <button type="button" disabled  class="btn btn-registration"
                                                 onclick="location.href = '{{ route('ngoRenewStepOne') }}';">{{ trans('fd9.ar')}}
@@ -148,7 +148,7 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                     @endif
                                 </div>
                             </div>
-                            @if(empty($name_change_list) || $name_change_list == 'Rejected')
+                            @if(empty($nameChangeList) || $nameChangeList == 'Rejected')
                             <div class="no_name_change">
                                 <div class="d-flex justify-content-center pt-5">
                                     <img src="{{ asset('/') }}public/front/assets/img/icon/no-results%20(1).png" alt="" width="120" height="120">
@@ -168,13 +168,13 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                         <th>স্ট্যাটাস</th>
                                         <th>কার্যকলাপ </th>
                                     </tr>
-                                    @foreach($name_change_list_all as $key=>$all_name_change_list_all)
+                                    @foreach($nameChangeListAll as $key=>$allNameChangeListAll)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ $all_name_change_list_all->created_at->format('d-M-Y')}}</td>
+                                        <td>{{ $allNameChangeListAll->created_at->format('d-M-Y')}}</td>
 
-                                        <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
-                                        <td> <a  href="{{ route('renewInfo',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
+                                        <td><span class="text-success">{{ $allNameChangeListAll->status }}</span></td>
+                                        <td> <a  href="{{ route('renewInfo',base64_encode($allNameChangeListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </table>

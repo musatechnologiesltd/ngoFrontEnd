@@ -17,22 +17,17 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 $newOldNgo = CommonController::newOldNgo();
 
 if($newOldNgo != 'Old'){
-$get_reg_id = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
+$getRegId = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('status');
 }else{
-$get_reg_id = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->value('status');
+$getRegId = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->value('status');
 }
 $mainNgoType = CommonController::changeView();
 
 ?>
 
-@if(empty($get_reg_id))
+@if(empty($getRegId))
 <?php
-$checkCompleteStatusData = DB::table('form_complete_statuses')
-->where('user_id',Auth::user()->id)
-->first();
-
-//dd($checkCompleteStatusData );
-
+$checkCompleteStatusData = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->first();
 $checkCompleteStatus = DB::table('form_complete_statuses')
 ->where('user_id',Auth::user()->id)
 ->where('fd_one_form_step_one_status',1)
@@ -52,50 +47,46 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @if($mainNgoType== 'দেশিও')
 
 @if(!$checkCompleteStatusData)
-@include('front.form.ngo_registration_form_fd01_step01')
+@include('front.form.ngoRegistrationFormFd01Step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
-@include('front.form.ngo_registration_form_fd01_step01')
+@include('front.form.ngoRegistrationFormFd01Step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_two_status == 0)
-@include('front.form.ngo_registration_form_fd01_step02')
+@include('front.form.ngoRegistrationFormFd01Step02')
 @elseif($checkCompleteStatusData->fd_one_form_step_three_status == 0)
-@include('front.form.ngo_registration_form_fd01_step03')
+@include('front.form.ngoRegistrationFormFd01Step03')
 @elseif($checkCompleteStatusData->fd_one_form_step_four_status == 0)
-@include('front.form.ngo_registration_form_fd01_step04')
+@include('front.form.ngoRegistrationFormFd01Step04')
 @elseif($checkCompleteStatusData->form_eight_status == 0)
-@include('front.form.ngo_registration_form_form08')
+@include('front.form.ngoRegistrationFormForm08')
 @elseif($checkCompleteStatusData->ngo_member_status == 0)
-@include('front.form.ngo_registration_form_member_info')
+@include('front.form.ngoRegistrationFormMemberInfo')
 @elseif($checkCompleteStatusData->ngo_member_nid_photo_status == 0)
-@include('front.form.ngo_registration_form_nid_image_info')
-
+@include('front.form.ngoRegistrationFormNidImageInfo')
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
-@include('front.form.ngo_registration_form_document_info')
+@include('front.form.ngoRegistrationFormDocumentInfo')
 @endif
 
 @else
 
 
 @if(!$checkCompleteStatusData)
-@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@include('front.form.foreign.ngoRegistrationFormFd01Step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_one_status == 0)
-@include('front.form.foreign.ngo_registration_form_fd01_step01')
+@include('front.form.foreign.ngoRegistrationFormFd01Step01')
 @elseif($checkCompleteStatusData->fd_one_form_step_two_status == 0)
-@include('front.form.foreign.ngo_registration_form_fd01_step02')
+@include('front.form.foreign.ngoRegistrationFormFd01Step02')
 @elseif($checkCompleteStatusData->fd_one_form_step_three_status == 0)
-@include('front.form.foreign.ngo_registration_form_fd01_step03')
+@include('front.form.foreign.ngoRegistrationFormFd01Step03')
 @elseif($checkCompleteStatusData->fd_one_form_step_four_status == 0)
-@include('front.form.foreign.ngo_registration_form_fd01_step04')
+@include('front.form.foreign.ngoRegistrationFormFd01Step04')
 @elseif($checkCompleteStatusData->form_eight_status == 0)
-@include('front.form.foreign.ngo_registration_form_form08')
+@include('front.form.foreign.ngoRegistrationFormForm08')
 @elseif($checkCompleteStatusData->ngo_member_status == 0)
-@include('front.form.foreign.ngo_registration_form_member_info')
+@include('front.form.foreign.ngoRegistrationFormMemberInfo')
 @elseif($checkCompleteStatusData->ngo_member_nid_photo_status == 0)
-@include('front.form.foreign.ngo_registration_form_nid_image_info')
-
+@include('front.form.foreign.ngoRegistrationFormNidImageInfo')
 @elseif($checkCompleteStatusData->ngo_other_document_status == 0)
-
-
-@include('front.form.foreign.ngo_registration_form_document_info')
+@include('front.form.foreign.ngoRegistrationFormDocumentInfo')
 @endif
 
 
@@ -110,15 +101,13 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
             <div class="dashboard_box">
                 <div class="dashboard_left">
                     <ul>
-                        @include('front.include.sidebar_dash')
+                        @include('front.include.sidebarDash')
                     </ul>
                 </div>
                 <div class="dashboard_right">
                     <div class="card">
                         <div class="card-header">
                             {{ trans('first_info.ngo_Registration_All_Steps')}}
-
-
                         </div>
                         <div class="card-body">
 
@@ -130,27 +119,23 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                         @if($mainNgoType== 'Foreign')
                                           @if($foreignNgoType == 'Old')
-{{ trans('fd_one_step_one.fd8')}}
-                        @else
-                     {{ trans('fd_one_step_one.fd_one_form_title')}}
-                        @endif
+                                            {{ trans('fd_one_step_one.fd8')}}
+                                          @else
+                                            {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                          @endif
 
-                        @else
+                                        @else
 
-
-                        @if($localNgoTypem == 'Old')
-                        {{ trans('fd_one_step_one.fd8')}}
-                                                @else
+                                            @if($localNgoTypem == 'Old')
+                                               {{ trans('fd_one_step_one.fd8')}}
+                                            @else
                                              {{ trans('fd_one_step_one.fd_one_form_title')}}
-                                                @endif
+                                            @endif
 
-
-                        @endif
+                                        @endif
 
                                     </a>
                                 </li>
-
-
 
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#tofen2">{{ trans('fd_one_step_one.other_doc_title')}}</a>
@@ -163,28 +148,22 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                         @if($mainNgoType== 'Foreign')
                                           @if($foreignNgoType == 'Old')
-{{ trans('fd_one_step_one.fd8')}}
-                        @else
-                     {{ trans('fd_one_step_one.fd_one_form_title')}}
-                        @endif
+                                            {{ trans('fd_one_step_one.fd8')}}
+                                          @else
+                                            {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                          @endif
 
-                        @else
-
-
-                        @if($localNgoTypem == 'Old')
-                        {{ trans('fd_one_step_one.fd8')}}
-                                                @else
+                                        @else
+                                            @if($localNgoTypem == 'Old')
+                                             {{ trans('fd_one_step_one.fd8')}}
+                                            @else
                                              {{ trans('fd_one_step_one.fd_one_form_title')}}
-                                                @endif
+                                            @endif
 
-
-                        @endif
+                                        @endif
 
                                     </a>
                                 </li>
-
-
-
 
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#tofen3">{{ trans('fd_one_step_one.other_doc_title')}}</a>
@@ -208,7 +187,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 
                                 <div class="tab-pane container" id="tofen2">
-                                    @include('front.ngo_doc.foreign.finalViewOne')
+
+                                    @include('front.ngoDoc.foreign.finalViewOne')
 
                                 </div>
 
@@ -223,8 +203,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
                                     @if($localNgoTypem == 'Old')
                                     @include('front.form.formone.fdFormOneInfoOld')
                                     @else
-                                   @include('front.form.formone.fdFormOneInfo')
-                                   @endif
+                                    @include('front.form.formone.fdFormOneInfo')
+                                    @endif
 
                                 </div>
                                 <div class="tab-pane container" id="tofen">
@@ -232,23 +212,13 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
                                 </div>
 
-                                {{-- <div class="tab-pane container" id="tofen1">
-                                  @include('front.ngomember.finalView')
-
-                                </div>
-
-                                <div class="tab-pane container" id="tofen2">
-                                    @include('front.ngo_doc.finalView')
-
-                                </div> --}}
-
                                 <div class="tab-pane container" id="tofen3">
 
                                     @if($localNgoTypem == 'Old')
-                                    @include('front.ngo_doc.finalViewOne')
+                                    @include('front.ngoDoc.finalViewOne')
                                     @else
-                                    @include('front.ngo_doc.finalView')
-                                @endif
+                                    @include('front.ngoDoc.finalView')
+                                    @endif
 
                                 </div>
 
@@ -274,7 +244,7 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
             <div class="dashboard_box">
                 <div class="dashboard_left">
                     <ul>
-                        @include('front.include.sidebar_dash')
+                        @include('front.include.sidebarDash')
                     </ul>
                 </div>
                 <div class="dashboard_right">

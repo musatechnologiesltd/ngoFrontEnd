@@ -31,34 +31,34 @@ class NgomemberdocController extends Controller
     }
 
     public function ngoMemberDocFinalUpdate(){
-//dd(1);
-        $checkCompleteStatusData = DB::table('form_complete_statuses')
-   ->where('user_id',Auth::user()->id)
-   ->first();
 
-   if(!$checkCompleteStatusData){
+        $checkCompleteStatusData = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->first();
 
-       $newStatusData = new FormCompleteStatus();
-       $newStatusData->user_id = Auth::user()->id;
-       $newStatusData->fd_one_form_step_one_status = 1;
-       $newStatusData->fd_one_form_step_two_status = 1;
-       $newStatusData->fd_one_form_step_three_status = 1;
-       $newStatusData->fd_one_form_step_four_status = 1;
-       $newStatusData->form_eight_status = 1;
-       $newStatusData->ngo_member_status = 1;
-       $newStatusData->ngo_member_nid_photo_status = 1;
-       $newStatusData->ngo_other_document_status = 0;
-       $newStatusData->save();
-   }else{
+        if(!$checkCompleteStatusData){
 
-       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
-       ->update([
-           'ngo_member_nid_photo_status' => 1
-        ]);
+            $newStatusData = new FormCompleteStatus();
+            $newStatusData->user_id = Auth::user()->id;
+            $newStatusData->fd_one_form_step_one_status = 1;
+            $newStatusData->fd_one_form_step_two_status = 1;
+            $newStatusData->fd_one_form_step_three_status = 1;
+            $newStatusData->fd_one_form_step_four_status = 1;
+            $newStatusData->form_eight_status = 1;
+            $newStatusData->ngo_member_status = 1;
+            $newStatusData->ngo_member_nid_photo_status = 1;
+            $newStatusData->ngo_other_document_status = 0;
+            $newStatusData->save();
+        }else{
+
+            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+            ->update([
+                'ngo_member_nid_photo_status' => 1
+                ]);
 
 
-   }
-   return redirect('/ngoAllRegistrationForm');
+        }
+
+        return redirect('/ngoAllRegistrationForm');
+
     }
 
 
@@ -73,12 +73,11 @@ class NgomemberdocController extends Controller
 
     public function store(Request $request){
 
-        //dd($request->all());
-        $time_dy = time().date("Ymd");
+        $timeDy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $main_time = $dt->format('H:i:s');
+        $mainTime = $dt->format('H:i:s');
         $input = $request->all();
 
 
@@ -89,12 +88,12 @@ class NgomemberdocController extends Controller
         ]);
 
 
-        $condition_main_image = $input['member_name'];
+        $conditionMainImage = $input['member_name'];
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
-        foreach($condition_main_image as $key => $all_condition_main_image){
+        foreach($conditionMainImage as $key => $allConditionMainImage){
 
-            $file_size = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
+            $fileSize = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
 
             $form= new NgoMemberNidPhoto();
             $filePath="NgoMemberNidPhoto";
@@ -104,9 +103,9 @@ class NgomemberdocController extends Controller
             $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
             $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
             $form->member_name=$input['member_name'][$key];
-            $form->time_for_api = $main_time;
+            $form->time_for_api = $mainTime;
             $form->fd_one_form_id = $fdOneFormId;
-            $form->member_nid_copy_size =$file_size;
+            $form->member_nid_copy_size =$fileSize;
             $form->save();
        }
 
@@ -118,29 +117,25 @@ class NgomemberdocController extends Controller
     public function update(Request $request,$id){
 
 
-        $time_dy = time().date("Ymd");
-
-
+            $timeDy = time().date("Ymd");
             $form= NgoMemberNidPhoto::find($id);
             $filePath="NgoMemberNidPhoto";
             if ($request->hasfile('member_nid_copy')) {
+
                 $file = $request->file('member_nid_copy');
-                $file_size = number_format($file->getSize() / 1048576,2);
-
-
+                $fileSize = number_format($file->getSize() / 1048576,2);
                 $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
-            $form->member_nid_copy_size =$file_size;
+                $form->member_nid_copy_size =$fileSize;
 
             }
             if ($request->hasfile('member_image')) {
-            $file1 = $request->file('member_image');
 
-            $form->member_image =CommonController::imageUpload($request,$file1,$filePath);
+                $file1 = $request->file('member_image');
+                $form->member_image =CommonController::imageUpload($request,$file1,$filePath);
 
             }
+
             $form->member_name=$request->member_name;
-
-
             $form->save();
 
             return redirect()->back()->with('info','Updated Successfully');
@@ -163,19 +158,15 @@ class NgomemberdocController extends Controller
 
     public function ngoMemberDocumentDownload($id){
 
-        $get_file_data = NgoMemberNidPhoto::where('id',$id)->value('member_nid_copy');
+        $getFileData = NgoMemberNidPhoto::where('id',$id)->value('member_nid_copy');
 
-        $file_path = url('public/'.$get_file_data);
-                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-        $file= public_path('/'). $get_file_data;
+        $filePath = url('public/'.$getFileData);
+        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+        $file= public_path('/'). $getFileData;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
-
-
-
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',

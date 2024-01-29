@@ -41,15 +41,15 @@ color:white !important;
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $all_partiw1->organization_name_ban }}</h4>
+                                    <h4>{{ $allPartiw1->organization_name_ban }}</h4>
                                     @else
 
 
 
-                                    <h4>{{ $all_partiw1->organization_name }}</h4>
+                                    <h4>{{ $allPartiw1->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $all_partiw1->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $all_partiw1->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $allPartiw1->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $allPartiw1->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ color:white !important;
                 </tr>
                 <tr>
                     <td>
-                        <input type="hidden" data-parsley-required  name="id"  value="{{ $get_all_data_new->id }}" class="form-control" id="mainId">
+                        <input type="hidden" data-parsley-required  name="id"  value="{{ $getAllDataNew->id }}" class="form-control" id="mainId">
                         <button class="btn btn-sm btn-success" id="downloadButton">
                             {{ trans('form 8_bn.download_pdf')}}
                         </button>
@@ -181,11 +181,11 @@ color:white !important;
                                             <td colspan="3">সংস্থার বিবরণ:</td>
                                         </tr>
                                           <?php
-$getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_partiw1->user_id)->value('ngo_type');
+$getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$allPartiw1->user_id)->value('ngo_type');
                      // dd($getngoForLanguage);
 
 
-                            $reg_name = DB::table('fd_one_forms')->where('user_id',$all_partiw1->user_id)->value('organization_name_ban');
+                            $regName = DB::table('fd_one_forms')->where('user_id',$allPartiw1->user_id)->value('organization_name_ban');
 
 
                                           ?>
@@ -193,13 +193,13 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(i)</td>
                                             <td>সংস্থার নাম</td>
-                                            <td>: {{ $reg_name }}</td>
+                                            <td>: {{ $regName }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(ii)</td>
                                             <td>সংস্থার ঠিকানা</td>
-                                            <td>: {{ $all_partiw1->organization_address}}</td>
+                                            <td>: {{ $allPartiw1->organization_address}}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -221,17 +221,17 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
 @else
 
 
-                                              @if($all_partiw1->registration_number == 0)
+                                              @if($allPartiw1->registration_number == 0)
 
 
                                               @else
 
                                               @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                              {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->registration_number)}}
+                                              {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allPartiw1->registration_number)}}
                                               @else
 
-                                              {{ $all_partiw1->registration_number}}
+                                              {{ $allPartiw1->registration_number}}
 @endif
                                               @endif
 
@@ -242,26 +242,26 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(iv)</td>
                                             <td>কোন দেশীয় সংস্থা</td>
-                                            <td>: {{ $all_partiw1->country_of_origin }}</td>
+                                            <td>: {{ $allPartiw1->country_of_origin }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(v)</td>
                                             <td>প্রধান কার্যালয়ের ঠিকানা</td>
-                                            <td>: {{ $all_partiw1->address_of_head_office }}</td>
+                                            <td>: {{ $allPartiw1->address_of_head_office }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
                                             <td>টেলিফোন নম্বর ,মোবাইল নম্বর ,ইমেইল  ও ওয়েব এড্রেস</td>
                                             <td>:
-                                                @if(!$get_all_data_new )
+                                                @if(!$getAllDataNew )
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->phone_new) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile_new) }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataNew ->phone_new) }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataNew ->mobile_new) }},{{ $getAllDataNew ->email_new }},{{ $getAllDataNew ->web_site_name }}
                                                 @else
-                                                {{ $get_all_data_new ->phone_new }},{{ $get_all_data_new ->mobile_new }},{{ $get_all_data_new ->email_new }},{{ $get_all_data_new ->web_site_name }}
+                                                {{ $getAllDataNew ->phone_new }},{{ $getAllDataNew ->mobile_new }},{{ $getAllDataNew ->email_new }},{{ $getAllDataNew ->web_site_name }}
                                                 @endif
                                                 @endif
                                             </td>
@@ -276,21 +276,21 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td></td>
                                             <td>ক) নাম</td>
-                                            <td>: {{ $all_partiw1->name_of_head_in_bd }}</td>
+                                            <td>: {{ $allPartiw1->name_of_head_in_bd }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
                                             <td>খ) জাতীয়তা</td>
-                                            <td>:          @if(!$get_all_data_new )
+                                            <td>:          @if(!$getAllDataNew )
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->nationality) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataNew ->nationality) }}
 
                                                 @else
-                                                {{ $get_all_data_new ->nationality}}
+                                                {{ $getAllDataNew ->nationality}}
                                                 @endif
                                                 @endif
                                             </td>
@@ -299,7 +299,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td></td>
                                             <td>গ) পূর্ণকালীন/ খণ্ডকালীন</td>
-                                            <td>: {{ $all_partiw1->job_type }}</td>
+                                            <td>: {{ $allPartiw1->job_type }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -307,9 +307,9 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>ঘ) ঠিকানা,টেলিফোন নম্বর ,মোবাইল নম্বর, ইমেইল</td>
                                             <td>:
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                {{ $all_partiw1->address }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_new ->mobile) }} {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_partiw1->phone) }}, {{ $all_partiw1->email }}
+                                                {{ $allPartiw1->address }},{{ App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataNew ->mobile) }} {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allPartiw1->phone) }}, {{ $allPartiw1->email }}
                                                 @else
-                                                {{ $all_partiw1->address }},{{ $get_all_data_new ->mobile }} {{ $all_partiw1->phone}}, {{ $all_partiw1->email }}
+                                                {{ $allPartiw1->address }},{{ $getAllDataNew ->mobile }} {{ $allPartiw1->phone}}, {{ $allPartiw1->email }}
                                                 @endif
 
                                             </td>
@@ -320,13 +320,13 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>ঙ) নাগরিকত্ব (পূর্বতন নাগরিকত্ব যদি থাকে তাও উল্লেখ
                                                 করতে হবে)
                                             </td>
-                                            <td>: {{ $all_partiw1->citizenship }}</td>
+                                            <td>: {{ $allPartiw1->citizenship }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td></td>
                                             <td>চ) পেশা (বর্তমান পেশা উল্লেখ করতে হবে)</td>
-                                            <td>: {{ $all_partiw1->profession }}</td>
+                                            <td>: {{ $allPartiw1->profession }}</td>
                                         </tr>
 
                                         <tr>
@@ -335,20 +335,20 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             </td>
                                             <td>:
 
-                                                @if(!$get_all_data_new )
+                                                @if(!$getAllDataNew )
 
 
                                                 @else
-                                                @if(empty($get_all_data_new ->foregin_pdf))
+                                                @if(empty($getAllDataNew ->foregin_pdf))
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
 
 @else
 
-<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('foreginPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
 
 
@@ -363,20 +363,20 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>৩.</td>
                                             <td colspan="2">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ)
                                             </td>
-                                            <td>:          @if(!$get_all_data_new )
+                                            <td>:          @if(!$getAllDataNew )
 
 
                                                 @else
-                                                @if(empty($get_all_data_new ->yearly_budget))
+                                                @if(empty($getAllDataNew ->yearly_budget))
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
 
                                                 @else
 
-                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                                <a target="_blank"  href="{{ route('yearlyBudgetPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
 
 
@@ -393,7 +393,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 উপস্থাপন করতে হবে
                                             </td>
                                         </tr>
-                                        @foreach($all_partiw as $key=>$all_all_parti)
+                                        @foreach($allPartiw as $key=>$allAllParti)
                                         <tr>
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
                                             <td></td>
@@ -411,38 +411,38 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(ক)</td>
                                             <td>নাম</td>
-                                            <td>: {{ $all_all_parti->name }}</td>
+                                            <td>: {{ $allAllParti->name }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(খ)</td>
                                             <td>পদবি</td>
-                                            <td>: {{ $all_all_parti->position }}</td>
+                                            <td>: {{ $allAllParti->position }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(গ)</td>
                                             <td>ঠিকানা</td>
-                                            <td>: {{ $all_all_parti->address }}</td>
+                                            <td>: {{ $allAllParti->address }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(ঘ)</td>
                                             <td>নাগরিকত্ব (দ্বৈত নাগরিকত্ব থাকলে উল্লেখ করতে হবে)
                                             </td>
-                                            <td>: {{ $all_all_parti->citizenship }}</td>
+                                            <td>: {{ $allAllParti->citizenship }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(ঙ)</td>
                                             <td>যোগদানের তারিখ</td>
-                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($all_all_parti->date_of_join))) }}</td>
+                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($allAllParti->date_of_join))) }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(চ)</td>
                                             <td>বেতন ভাতাদি</td>
-                                            <td>: {{ $all_all_parti->salary_statement }}</td>
+                                            <td>: {{ $allAllParti->salary_statement }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -452,10 +452,10 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
 
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($all_all_parti->mobile) }}
+                                                {{ App\Http\Controllers\NGO\CommonController::englishToBangla($allAllParti->mobile) }}
 
                                                 @else
-                                                {{ $all_all_parti->mobile }}
+                                                {{ $allAllParti->mobile }}
                                                 @endif
 
                                             </td>
@@ -465,7 +465,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(জ)</td>
                                             <td>ইমেইল এড্রেস</td>
-                                            <td>: {{ $all_all_parti->email }}</td>
+                                            <td>: {{ $allAllParti->email }}</td>
                                         </tr>
 
 
@@ -473,7 +473,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td></td>
                                             <td>(ঝ)</td>
                                             <td>সম্পৃক্ত অন্য পেশার বিবরণ</td>
-                                            <td>: {{ $all_all_parti->other_occupation }}</td>
+                                            <td>: {{ $allAllParti->other_occupation }}</td>
                                         </tr>
                                         @endforeach
 
@@ -483,20 +483,20 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 কিনা (চালানের কপি সংযুক্ত করতে
                                                 হবে)
                                             </td>
-                                            <td>: @if(!$get_all_data_new )
+                                            <td>: @if(!$getAllDataNew )
 
 
                                                 @else
-                                                @if(empty($get_all_data_new ->copy_of_chalan))
+                                                @if(empty($getAllDataNew ->copy_of_chalan))
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
 
                                                 @else
 
-                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                                <a target="_blank"  href="{{ route('copyOfChalanPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
 
 
@@ -509,20 +509,20 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                             <td>৬.</td>
                                             <td colspan="2">তফসিল -১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে)
                                             </td>
-                                            <td>: @if(!$get_all_data_new )
+                                            <td>: @if(!$getAllDataNew )
 
 
                                                 @else
-                                                @if(empty($get_all_data_new ->due_vat_pdf))
+                                                @if(empty($getAllDataNew ->due_vat_pdf))
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
 
                                                 @else
 
-                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                                <a target="_blank"  href="{{ route('dueVatPdfDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
 
 
@@ -538,58 +538,58 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',$all_p
                                                 নাম,শাখা ও বিস্তারিত ঠিকানা)
                                             </td>
                                         </tr>
-                                        @if(!$get_all_data_adviser_bank)
+                                        @if(!$getAllDataAdviserBank)
 
                                         @else
                                         <tr>
                                             <td></td>
                                             <td>(ক)</td>
                                             <td>হিসাব নম্বর</td>
-                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number) }}</td>
+                                            <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataAdviserBank->account_number) }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(খ)</td>
                                             <td>ধরণ</td>
-                                            <td>: {{ $get_all_data_adviser_bank->account_type }}</td>
+                                            <td>: {{ $getAllDataAdviserBank->account_type }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(গ)</td>
                                             <td>ব্যাংকের নাম</td>
-                                            <td>: {{ $get_all_data_adviser_bank->name_of_bank }}</td>
+                                            <td>: {{ $getAllDataAdviserBank->name_of_bank }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(ঘ)</td>
                                             <td>শাখা</td>
-                                            <td>: {{ $get_all_data_adviser_bank->branch_name_of_bank }}</td>
+                                            <td>: {{ $getAllDataAdviserBank->branch_name_of_bank }}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
                                             <td>(ঙ)</td>
                                             <td>বিস্তারিত ঠিকানা</td>
-                                            <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
+                                            <td>: {{ $getAllDataAdviserBank->bank_address }}</td>
                                         </tr>
                                         @endif
                                         <tr>
                                             <td>৮.</td>
                                             <td colspan="2">ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমোদনপত্রের কপি সংযুক্ত করতে হবে
                                             </td>
-                                            <td>: @if(!$get_all_data_new )
+                                            <td>: @if(!$getAllDataNew )
 
 
                                                 @else
-                                                @if(empty($get_all_data_new ->change_ac_number))
+                                                @if(empty($getAllDataNew ->change_ac_number))
 
                                                 @else
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
 
                                                 @else
 
-                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($get_all_data_new->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+                                                <a target="_blank"  href="{{ route('changeAcNumberDownload',base64_encode($getAllDataNew->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
 
 
 

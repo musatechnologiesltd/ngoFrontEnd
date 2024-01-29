@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use DB;
 use PDF;
-
 use Response;
 use App\Models\NgoTypeAndLanguage;
 use App\Models\FormEight;
@@ -37,23 +36,15 @@ class FD8Controller extends Controller
     public function addDataStepOneFd8($id){
 
         $deCodeId = base64_decode($id);
-
-
-
-
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
-
-        //dd($fdOneData);
 
         FdOneForm::where('id',$deCodeId)
         ->update([
             'registration_number' => $regnumber->registration
          ]);
 
-
-
-        $time_dy = time().date("Ymd");
+        $timeDy = time().date("Ymd");
 
         $filePath="NgoRenewInfo";
 
@@ -77,88 +68,63 @@ class FD8Controller extends Controller
        $ngoRenew->email_new = $fdOneData->org_email;
        $ngoRenew->phone_new = $fdOneData->org_phone;
        $ngoRenew->profession = $fdOneData->profession;
-
        $ngoRenew->chief_name = $fdOneData->chief_name;
        $ngoRenew->chief_desi = $fdOneData->chief_desi;
        $ngoRenew->digital_signature = $fdOneData->digital_signature;
        $ngoRenew->digital_seal = $fdOneData->digital_seal;
-
        $ngoRenew->save();
-
-
 
        Session::put('newFd8Id',$ngoRenew->id);
 
-
-
-
-
        if($fdOneData->complete_status == 'save_and_exit_from_one'){
 
-        return redirect('/dashboard');
+          return redirect('/dashboard');
 
-    }else{
+        }else{
 
-    return redirect('/ngoAllRegistrationForm');
-    }
+          return redirect('/ngoAllRegistrationForm');
+        }
 
-      // return redirect('/ngoAllRegistrationForm');
+
     }
 
 
     public function addDataStepTwoFd8($id){
 
-
-
         $deCodeId = base64_decode($id);
 
-
-
-
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
-
-        //dd($fdOneData);
-
-
         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
-
 
         if(empty(Session::get('updateFd8Id'))){
 
-
-
-
-        $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
-
+            $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
 
         }else{
 
             $ngoRenew = NgoRenewInfo::find(Session::get('updateFd8Id'));
         }
 
-
         $ngoRenew->yearly_budget = $fdOneData->annual_budget;
         $ngoRenew->foregin_pdf = $fdOneData->foregin_pdf;
         $ngoRenew->yearly_budget_file =$fdOneData->annual_budget_file;
         $ngoRenew->save();
-        Session::put('newFd8Id',$ngoRenew->id);
 
+        Session::put('newFd8Id',$ngoRenew->id);
 
 
         if(empty(Session::get('updateFd8Id'))){
 
-}else{
-    Session::forget('updateFd8Id');
-            }
-
-
+        }else{
+             Session::forget('updateFd8Id');
+        }
 
         if($fdOneData->complete_status == 'go_to_step_three'){
-//dd(12);
+
             return redirect('/allStaffDetailsInformation');
 
         }else{
-//dd(233);
+
             if($fdOneData->complete_status == 'save_and_exit_from_two' || $fdOneData->complete_status == 'exit_from_step_two_edit'){
 
                 return redirect('/dashboard');
@@ -166,15 +132,11 @@ class FD8Controller extends Controller
             }else{
 
             return redirect('/ngoAllRegistrationForm');
+
             }
 
-
-               //return redirect('/ngoAllRegistrationForm');
         }
 
-
-
-        //return redirect('/ngoAllRegistrationForm');
     }
 
 
@@ -182,80 +144,48 @@ class FD8Controller extends Controller
         $deCodeId = base64_decode($id);
 
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
+        $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
 
-        // dd($fdOneData);
+        $timeDy = time().date("Ymd");
+        $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
+        $ngoRenew->main_account_number = $fdOneData->account_number;
+        $ngoRenew->main_account_type = $fdOneData->account_type;
+        $ngoRenew->name_of_bank = $fdOneData->name_of_bank;
+        $ngoRenew->main_account_name_of_branch = $fdOneData->branch_name_of_bank;
+        $ngoRenew->bank_address_main = $fdOneData->bank_address;
+        $ngoRenew->change_ac_number =$fdOneData->change_ac_number;
+        $ngoRenew->copy_of_chalan =$fdOneData->copy_of_chalan;
+        $ngoRenew->due_vat_pdf =$fdOneData->due_vat_pdf;
+        $ngoRenew->save();
 
+        Session::put('newFd8Id',$ngoRenew->id);
 
-         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
-
-
-
-         $time_dy = time().date("Ymd");
-
-          $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
-          $ngoRenew->main_account_number = $fdOneData->account_number;
-          $ngoRenew->main_account_type = $fdOneData->account_type;
-          $ngoRenew->name_of_bank = $fdOneData->name_of_bank;
-          $ngoRenew->main_account_name_of_branch = $fdOneData->branch_name_of_bank;
-          $ngoRenew->bank_address_main = $fdOneData->bank_address;
-          $ngoRenew->change_ac_number =$fdOneData->change_ac_number;
-          $ngoRenew->copy_of_chalan =$fdOneData->copy_of_chalan;
-          $ngoRenew->due_vat_pdf =$fdOneData->due_vat_pdf;
-          $ngoRenew->save();
-
-
-
-
-
-
-         Session::put('newFd8Id',$ngoRenew->id);
-
-
-
-         //return redirect('/ngoAllRegistrationForm');
-
-
-
-         if($fdOneData->complete_status == 'save_and_exit_from_four'){
+        if($fdOneData->complete_status == 'save_and_exit_from_four'){
 
             return redirect('/dashboard');
 
         }else{
 
-        return redirect('/ngoAllRegistrationForm');
+            return redirect('/ngoAllRegistrationForm');
         }
 
-
     }
-
-
 
     public function updateDataStepOneFd8($id){
 
         $deCodeId = base64_decode($id);
 
-
-
-
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
 
-
-
-        $renewId = NgoRenewInfo::where('fd_one_form_id',$deCodeId)
-                                     ->orderBy('id','desc')->value('id');
-
-        //dd($fdOneData);
+        $renewId = NgoRenewInfo::where('fd_one_form_id',$deCodeId)->orderBy('id','desc')->value('id');
 
         FdOneForm::where('id',$deCodeId)
         ->update([
             'registration_number' => $regnumber->registration
          ]);
 
-
-
-        $time_dy = time().date("Ymd");
-
+        $timeDy = time().date("Ymd");
         $filePath="NgoRenewInfo";
 
        $ngoRenew = NgoRenewInfo::find($renewId);
@@ -282,20 +212,15 @@ class FD8Controller extends Controller
        $ngoRenew->digital_seal = $fdOneData->digital_seal;
        $ngoRenew->save();
 
-
-//dd($fdOneData->complete_status);
        Session::put('updateFd8Id',$ngoRenew->id);
 
+       if($fdOneData->complete_status == 'go_to_step_two'){
 
+        return redirect('/fieldOfProposedActivities');
 
-if($fdOneData->complete_status == 'go_to_step_two'){
-
-    return redirect('/fieldOfProposedActivities');
-
-}else{
-       return redirect('/dashboard');
-}
+       }else{
+        return redirect('/dashboard');
+       }
     }
-
 
 }

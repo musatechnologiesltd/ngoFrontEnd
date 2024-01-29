@@ -44,7 +44,7 @@ class AuthController extends Controller
 
         $id = $id;
 
-        return view('front.auth_page.password_reset_page',compact('id'));
+        return view('front.authPage.passwordResetPage',compact('id'));
 
     }
 
@@ -96,17 +96,17 @@ class AuthController extends Controller
 
     public function showLinkRequestForm(){
 
-        return view('front.auth_page.showLinkRequestForm');
+        return view('front.authPage.showLinkRequestForm');
     }
 
     public function index(){
 
-        return view('front.auth_page.login');
+        return view('front.authPage.login');
     }
 
     public function registration(){
 
-        return view('front.auth_page.register');
+        return view('front.authPage.register');
     }
 
     public function postLogin(Request $request)
@@ -302,11 +302,11 @@ class AuthController extends Controller
 
                 if($mainNgoType== 'দেশিও'){
 
-                    return view('front.dashboard.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
+                    return view('front.dashboard.acceptDashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
 
                 }else{
 
-                return view('front.dashboard.foreign.accept_dashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
+                return view('front.dashboard.foreign.acceptDashboard',compact('ngoOtherDocLists','oldOrNewStatus','nameChangeListR','nameChangeList','getAllDataOther','allSourceOfFund','formNgoDataDoc','ngoListAllFormEight','ngoListAll','formMemberDataDoc'));
 
                 }
             }

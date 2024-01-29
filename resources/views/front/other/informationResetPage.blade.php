@@ -16,7 +16,7 @@
                 <div class="dashboard_left">
 
                     <ul>
-                        @include('front.include.sidebar_dash')
+                        @include('front.include.sidebarDash')
                     </ul>
 
                 </div>
