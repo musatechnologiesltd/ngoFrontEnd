@@ -216,7 +216,7 @@ if($foreignNgoType == 'Old'){
 
                                                     List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
 
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
 
 
 
@@ -228,7 +228,7 @@ if($foreignNgoType == 'Old'){
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
 
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="structurePartThree2">
 
@@ -242,7 +242,7 @@ if($foreignNgoType == 'Old'){
                                                 <label class="form-label" for="">
             Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
 
-            <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span>
+            <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
             </label>
 
 
@@ -252,7 +252,7 @@ if($foreignNgoType == 'Old'){
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
                                                 <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartThree4">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree4_text"></small>
                                             </div>
@@ -260,7 +260,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
                                                 </label>
                                                 <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="structurePartThree5">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree5_text"></small>
@@ -270,7 +270,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
                                                 </label>
                                                 <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="structurePartThree6">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree6_text"></small>
@@ -280,7 +280,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span> </label>
                                                 <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="structurePartThree7">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree7_text"></small>
                                             </div>
@@ -293,7 +293,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="card-header">
                                             List of Executive Committee (foreign)<span class="text-danger">*</span>
 
-                                            <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                            <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
 
                                             </div>
                                             <div class="card-body">
@@ -308,7 +308,7 @@ if($foreignNgoType == 'Old'){
                                             <div class="card-header">
                                                 Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
 
-                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                                <br><span >PDF Should not exceed 5 MB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1606,7 +1606,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                        List of Executive Committee (foreign)<span class="text-danger">*</span>
 
-                                       <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                       <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1623,7 +1623,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1673,7 +1673,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1689,7 +1689,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1706,7 +1706,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1723,7 +1723,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 Letter of Intent <span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">

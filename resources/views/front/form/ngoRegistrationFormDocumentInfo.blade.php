@@ -152,7 +152,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="structurePartTwo1">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo1_text"></small>
@@ -162,7 +162,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="structurePartTwo2">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo2_text"></small>
@@ -171,7 +171,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="structurePartTwo3">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo3_text"></small>
@@ -180,7 +180,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="structurePartTwo4">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo4_text"></small>
@@ -189,7 +189,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
                                                 <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartTwo5">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo5_text"></small>
@@ -198,7 +198,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="structurePartTwo6">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo6_text"></small>
@@ -208,7 +208,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="structurePartTwo7">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo7_text"></small>
@@ -219,7 +219,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="structurePartTwo8">
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo8_text"></small>
@@ -229,7 +229,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="structurePartTwo9">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo9_text"></small>
                                             </div>
@@ -1776,82 +1776,82 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="mb-3">
                                             <label class="form-label" for="">
                                                 এফডি-১ ফরম<span class="text-danger">*</span>
-                                            <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
-                                            <input class="form-control" name="fd_one_form_data" data-parsley-required accept=".pdf" type="file" id="">
+                                            <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                            <input class="form-control" name="fd_one_form_data" data-parsley-required accept=".pdf" type="file" id="fd_one_form_data">
                                         </div>
 
 
                                         <div class="mb-3">
                                             <label class="form-label" for="">
                                                 ফরম নং - ৮<span class="text-danger">*</span>
-                                            <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
-                                            <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="">
+                                            <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                            <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="form_no_8_data">
                                         </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
-                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+                                                <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="nid_and_image_of_executive_committee_members">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
-                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="work_procedure_of_organization">
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="registration_renewal_fee">
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
-                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="approval_of_executive_committee">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
-                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="last_ten_years_audit_report_and_annual_report_of_the_company">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="organization_by_laws_or_constitution">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="attested_copy_of_latest_registration_or_renewal_certificate">
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
-                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="right_to_information_act">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
-                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="committee_members_list">
                                             </div>
 
                                         @else
@@ -1859,7 +1859,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                  ফরম নং - ৮ <span class="text-danger">*</span>
-                                                 <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                 <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1890,7 +1890,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1921,7 +1921,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1937,7 +1937,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="card-header">
                                                 দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
 
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 1MB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1955,7 +1955,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -1971,7 +1971,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
-                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">

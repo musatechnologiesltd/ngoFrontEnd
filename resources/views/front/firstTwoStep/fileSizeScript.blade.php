@@ -142,37 +142,21 @@ var getId = mainId.slice(16)
 let size = this.files[0].size;
 
 
-if(getId == 1){
+if( getId == 5){
 
-    if (size > 2000000 ) {
-    $('#structurePartTwo'+getId+'_text').text('Please Upload Maximum 2 MB File');
+    if (size > 10000000 ) {
+    $('#structurePartTwo'+getId+'_text').text('Please Upload Maximum 10 MB File');
 }else{
     $('#structurePartTwo'+getId+'_text').text('');
 }
 
-}else if(getId == 2 || getId == 4 ){
 
-    if (size > 1000000 ) {
-    $('#structurePartTwo'+getId+'_text').text('Please Upload Maximum 1 MB File');
 }else{
-    $('#structurePartTwo'+getId+'_text').text('');
-}
 
-}else if( getId == 5){
 
-    if (size > 5000000 ) {
+
+if (size > 5000000 ) {
     $('#structurePartTwo'+getId+'_text').text('Please Upload Maximum 5 MB File');
-}else{
-    $('#structurePartTwo'+getId+'_text').text('');
-}
-
-
-}else{
-
-
-
-if (size > 500000 ) {
-    $('#structurePartTwo'+getId+'_text').text('Please Upload Maximum 500 KB File');
 }else{
     $('#structurePartTwo'+getId+'_text').text('');
 }
@@ -190,15 +174,15 @@ var getId = mainId.slice(18)
 let size = this.files[0].size;
 
 
-if(getId == 3 ){
+if(getId == 4 ){
 
-if (size > 1000000 ) {
-$('#structurePartThree'+getId+'_text').text('Please Upload Maximum 1 MB File');
+if (size > 10000000 ) {
+$('#structurePartThree'+getId+'_text').text('Please Upload Maximum 10 MB File');
 }else{
 $('#structurePartThree'+getId+'_text').text('');
 }
 
-}else if( getId == 4){
+}else {
 
 if (size > 5000000 ) {
 $('#structurePartThree'+getId+'_text').text('Please Upload Maximum 5 MB File');
@@ -207,15 +191,6 @@ $('#structurePartThree'+getId+'_text').text('');
 }
 
 
-}else{
-
-
-
-if (size > 500000 ) {
-$('#structurePartThree'+getId+'_text').text('Please Upload Maximum 500 KB File');
-}else{
-$('#structurePartThree'+getId+'_text').text('');
-}
 }
 
 
@@ -232,7 +207,7 @@ var getId = mainId.slice(10)
 let size = this.files[0].size;
 
 
-if(getId == 2 || getId == 4 ){
+
 
 if (size > 5000000 ) {
 $('#newNgoPdfV'+getId+'_text').text('Please Upload Maximum 5 MB File');
@@ -240,34 +215,7 @@ $('#newNgoPdfV'+getId+'_text').text('Please Upload Maximum 5 MB File');
 $('#newNgoPdfV'+getId+'_text').text('');
 }
 
-}else if( getId == 5){
 
-if (size > 2000000 ) {
-$('#newNgoPdfV'+getId+'_text').text('Please Upload Maximum 2 MB File');
-}else{
-$('#newNgoPdfV'+getId+'_text').text('');
-}
-
-
-}else if( getId == 6){
-
-if (size > 1000000 ) {
-$('#newNgoPdfV'+getId+'_text').text('Please Upload Maximum 1 MB File');
-}else{
-$('#newNgoPdfV'+getId+'_text').text('');
-}
-
-
-}else{
-
-
-
-if (size > 500000 ) {
-$('#newNgoPdfV'+getId+'_text').text('Please Upload Maximum 500 KB File');
-}else{
-$('#newNgoPdfV'+getId+'_text').text('');
-}
-}
 
 
 });
@@ -284,7 +232,7 @@ var getId = mainId.slice(14)
 let size = this.files[0].size;
 
 
-if(getId == 3 || getId == 4 ){
+
 
 if (size > 5000000 ) {
 $('#foreignNgoPdfV'+getId+'_text').text('Please Upload Maximum 5 MB File');
@@ -292,34 +240,7 @@ $('#foreignNgoPdfV'+getId+'_text').text('Please Upload Maximum 5 MB File');
 $('#foreignNgoPdfV'+getId+'_text').text('');
 }
 
-}else if( getId == 5){
 
-if (size > 2000000 ) {
-$('#foreignNgoPdfV'+getId+'_text').text('Please Upload Maximum 2 MB File');
-}else{
-$('#foreignNgoPdfV'+getId+'_text').text('');
-}
-
-
-}else if( getId == 6){
-
-if (size > 1000000 ) {
-$('#foreignNgoPdfV'+getId+'_text').text('Please Upload Maximum 1 MB File');
-}else{
-$('#foreignNgoPdfV'+getId+'_text').text('');
-}
-
-
-}else{
-
-
-
-if (size > 500000 ) {
-$('#foreignNgoPdfV'+getId+'_text').text('Please Upload Maximum 500 KB File');
-}else{
-$('#foreignNgoPdfV'+getId+'_text').text('');
-}
-}
 
 
 });
