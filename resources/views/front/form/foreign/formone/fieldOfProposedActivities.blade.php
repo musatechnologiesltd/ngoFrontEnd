@@ -24,22 +24,19 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
+
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
                 <div class="right-side">
 
-                    <?php
+    <?php
 
-                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-           ->first();
+        $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
 
-                                    ?>
+    ?>
 
                     @if(count($particularsOfOrganisationData) == 0)
 
@@ -79,11 +76,7 @@ danger">*</span> </label>
 
                     $filePath = url($allFormOneData->foregin_pdf);
                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
                     ?>
  <div class="mb-3">
@@ -114,11 +107,7 @@ organization<span class="text-danger">*</span> <br><span class="text-danger" sty
 
                     $filePath = url($allFormOneData->annual_budget_file);
                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
                     ?>
                     <div class="mb-3">
@@ -149,11 +138,7 @@ organization<span class="text-danger">*</span> <br><span class="text-danger" sty
 
 $filePath = url($allFormOneData->plan_of_operation);
 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
 $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
 ?>
 <div class="mb-3">
@@ -164,35 +149,21 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 <b>{{ $filename.'.'.$extension }}</b>
                         @endif
 
+<div class="mb-3 mt-4">
 
+    <label for="" class="form-label">{{ trans('fd_one_step_two.Project_District')}},{{ trans('fd_one_step_two.Project_Sub_District')}}<span class="text-danger">*</span> </label>
+    <input type="text"  name="district" value="{{ $allFormOneData->district }}" data-parsley-required class="form-control" id="">
 
-                            <div class="mb-3 mt-4">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.Project_District')}},
-
-{{ trans('fd_one_step_two.Project_Sub_District')}}<span class="text-danger">*</span> </label>
-
-
-                                <input type="text"  name="district" value="{{ $allFormOneData->district }}" data-
-
-parsley-required class="form-control" id="">
-
-                            </div>
-
-
-                            <div class="mb-3">
-                                <h5 class="form_middle_text">
-                                    {{ trans('fd_one_step_two.Source_of_Fund')}}
-                                </h5>
-                            </div>
-
-
+</div>
+<div class="mb-3">
+    <h5 class="form_middle_text">{{ trans('fd_one_step_two.Source_of_Fund')}}</h5>
+</div>
 
 <?php
 
 $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_form_id',$allFormOneData->id)->get();
 
-
-                ?>
+?>
 
                 <div class="row">
                     @foreach($getAllSourceOfFundData as $key=>$allGetAllSourceOfFundData)
@@ -201,20 +172,11 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
                         <div class="card">
 
                             <div class="card-body">
-                                <p><b>{{ trans('fd_one_step_two.Name_of_donor_organization')}}:</b> {{
-
-$allGetAllSourceOfFundData->name }}</p>
-                                <p><b>{{ trans('fd_one_step_two.Address_of_donor_organization')}}:</b> {{
-
-$allGetAllSourceOfFundData->address }}</p>
-
-                                <p><b>{{ trans
-
-('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}}:</b> <a target="_blank" href="{{ route
-
-('sourceOfFundDocDownload',$allGetAllSourceOfFundData->id) }}" class="btn btn-custom next_button btn-sm" >
-                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                </a></p>
+                                <p><b>{{ trans('fd_one_step_two.Name_of_donor_organization')}}:</b> {{$allGetAllSourceOfFundData->name }}</p>
+                                <p><b>{{ trans('fd_one_step_two.Address_of_donor_organization')}}:</b> {{$allGetAllSourceOfFundData->address }}</p>
+                                <p><b>{{ trans('fd_one_step_two.Letter_of_Commitment_from_Prospective_donor')}}:</b>
+                                    <a target="_blank" href="{{ route('sourceOfFundDocDownload',$allGetAllSourceOfFundData->id) }}" class="btn btn-custom next_button btn-sm" >
+                                    <i class="fa fa-download" aria-hidden="true"></i></a></p>
                             </div>
                             <div class="card-footer">
                                 <button type="button" class="btn btn-custom next_button btn-sm" data-bs-
@@ -229,10 +191,6 @@ toggle="modal" data-bs-target="#exampleModal{{ $key+1 }}">
 danger btn-sm" data-id="{{ $allGetAllSourceOfFundData->id }}" type="button" name="deleting">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </button>
-
-
-
-
 
                                   <!-- Modal -->
 <div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-
@@ -295,9 +253,6 @@ id="exampleFormControlInput1">
                     </div>
                     @endforeach
                 </div>
-
-
-
 
 @if(count($getAllSourceOfFundData) == 0)
 
@@ -376,10 +331,6 @@ id="exampleFormControlInput1">
 class="form-control" id="">
 </div>
 @endif
-
-
-
-
 
                     </div>
 @if(Session::get('fdOneFormEdit') == 'fdOneFormEdit')

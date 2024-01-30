@@ -9,12 +9,8 @@
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
                         <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
-
-                        {{-- <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         @endif
 
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>

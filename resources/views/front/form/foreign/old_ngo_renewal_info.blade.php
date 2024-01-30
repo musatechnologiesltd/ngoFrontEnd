@@ -4,11 +4,6 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
 ?>
 
-
-
-
-
-
 <section>
 
                     <div class="committee_container active">
@@ -19,9 +14,8 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                         </div>
 
-                        <?php
-                        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-
+    <?php
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
 if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
     $ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
@@ -30,9 +24,7 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
     $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
 }
 
-
-
-                                                ?>
+    ?>
 
 
                         <div class="file-content">
@@ -83,10 +75,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
-
-
-
-
                                                               <!--modal -->
                                                               <div class="modal fade" id="exampleModal{{ $ngoOtherDocListsFirst->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
@@ -131,9 +119,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
                                             <!--end if -->
 
 
-
-
-
                             <!--new start -->
                             @if(empty($ngoOtherDocListsFirst->organization_by_laws_or_constitution))
 
@@ -149,8 +134,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                   <div class="file-box">
 
-
-
                                     By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)
 
                                       <div class="file-top">
@@ -165,9 +148,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                                   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
 
 
 
@@ -215,8 +195,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
                                   <!--end if -->
 
 
-
-
                <!--new start -->
                @if(empty($ngoOtherDocListsFirst->work_procedure_of_organization))
 
@@ -248,11 +226,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -332,11 +305,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                          <div class="modal-dialog">
@@ -397,8 +365,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                      <div class="file-box">
 
-
-
                         Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company
 
                          <div class="file-top">
@@ -413,11 +379,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -479,8 +440,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                      <div class="file-box">
 
-
-
                         Attested copy of latest registration/renewal certificate
 
                          <div class="file-top">
@@ -495,11 +454,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -577,10 +531,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                                        <!--modal -->
@@ -663,11 +613,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                                                               <!--modal -->
                                                               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
@@ -743,10 +688,6 @@ if($foreignNgoType == 'Old' || $foreignNgoType == 'New'){
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                             <!--modal -->
@@ -825,11 +766,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                             <!--modal -->
                             <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
@@ -906,11 +842,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                             <!--modal -->
                             <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
@@ -986,11 +917,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                          <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                                            <!--modal -->
                                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                              <div class="modal-dialog">
@@ -1065,11 +991,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                          <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
-
-
-
-
-
                                            <!--modal -->
                                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                              <div class="modal-dialog">
@@ -1125,12 +1046,9 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                $filePath = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
                ?>
 
-
                    <div class="file-box">
-
 
                     Copy of 'Unchanged' certificate (notarized/attested by the Peace of Justice Department of the concerned country) if the constitution of the organization has not changed
 
@@ -1143,14 +1061,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                    data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
 
-
                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                    <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                      <!--modal -->
                                      <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1195,11 +1107,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                    <!--end if -->
                                       @endif
-
-
-
-
-
 
                                       @endif
                                     </div>
@@ -1282,16 +1189,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <div class="mb-3" id="mResult">
                             </div>
                             <b>Other Information: </b>
-                                {{-- <div class="mb-3">
-
-
-
-
-                                    <label class="form-label" for="">
-                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
-                                </div> --}}
-
                                 <div class="mb-3">
                                     <label class="form-label" for="">
                                         List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span> </label>
@@ -1335,10 +1232,6 @@ Work Procedure of the Board of Directors / Board of Trustees meeting of the orga
                                         Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span> </label>
                                     <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                 </div>
-
-
-
-
 
                             @else
                             <div class="card mb-3">

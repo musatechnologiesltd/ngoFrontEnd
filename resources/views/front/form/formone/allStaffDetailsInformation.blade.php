@@ -24,32 +24,25 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                     {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
-                           {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
+
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
                 <div class="right-side">
-                    <?php
+<?php
 
-                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+    $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
+    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id) ->value('ngo_type');
 
-                    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
-
-            $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
-
-            $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-                           ->value('ngo_type');
-
-
-                                    ?>
+?>
 
                     <div class="committee_container active">
                         <div class="text">
+
                             <h2>{{ trans('fd_one_step_three.All_staff_details_information')}}</h2>
-                            {{-- <p>Enter your information to get closer to Registration.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -445,8 +438,6 @@
                                     </h5>
                                 </div>
 
-
-
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12 mb-3">
                                         <label for="" class="form-label">  {{ trans('fd_one_step_three.name')}} <span class="text-danger">*</span> </label>
@@ -479,7 +470,7 @@
                                     </div>
 
                                     <?php
-                                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                                        ?>
 
@@ -491,9 +482,9 @@
 
                                             @foreach($getCityzenshipData as $allGetCityzenshipData)
                                             @if($checkNgoTypeForForeginNgo == 'Foreign')
-                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                                                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                                 @else
-                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                            <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                             @endif
                                         @endforeach
                                         </select>
@@ -525,18 +516,15 @@
 
                                 @endforeach
 
-                                <?php
+<?php
 
-                                $countNew = count($formOneMemberList);
-
-        //dd($countNew);
-
-        $finalData = 5 - $countNew ;
-        $cityzenValue = 0;
-        ?>
+    $countNew = count($formOneMemberList);
+    $finalData = 5 - $countNew ;
+    $cityzenValue = 0;
+?>
 
         @for ($i = 0; $i < $finalData; $i++)
-                {{-- <p>The current value is {{ $i }}.</p> --}}
+               
                <?php $cityzenValue = $cityzenValue+1 ?>
 
                 <div class="mb-3">
@@ -590,7 +578,7 @@
                     </div>
 
                     <?php
-                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                        ?>
 

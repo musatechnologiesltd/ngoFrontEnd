@@ -45,16 +45,16 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 
                                         <th>{{ trans('form 8_bn.action')}}</th>
                                     </tr>
-                                    @foreach($ngoMemberLists as $key=>$main_all_data_list)
+                                    @foreach($ngoMemberLists as $key=>$mainAllDataList)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ $main_all_data_list->member_name }} <br> <span class="text-success">{{ trans('form 8_bn.designation')}}:</span>
-                                            {{ $main_all_data_list->member_designation }}
+                                        <td>{{ $mainAllDataList->member_name }} <br> <span class="text-success">{{ trans('form 8_bn.designation')}}:</span>
+                                            {{ $mainAllDataList->member_designation }}
                                         </td>
                                         <td>
                                             <?php
 
-                                            $newDate12 = date("d-m-Y", strtotime($main_all_data_list->member_dob ));
+                                            $newDate12 = date("d-m-Y", strtotime($mainAllDataList->member_dob ));
 
                                                                                             ?>
 
@@ -74,16 +74,16 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
 
 
                                         </td>
-                                        <td><span>{{ trans('form 8_bn.present_address')}}:</span>  {{ $main_all_data_list->member_present_address }} <br>
-                                            <span>{{ trans('form 8_bn.permanent_address')}}:</span>  {{ $main_all_data_list->member_permanent_address }}
+                                        <td><span>{{ trans('form 8_bn.present_address')}}:</span>  {{ $mainAllDataList->member_present_address }} <br>
+                                            <span>{{ trans('form 8_bn.permanent_address')}}:</span>  {{ $mainAllDataList->member_permanent_address }}
                                         </td>
 
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $main_all_data_list->id}}"><i
+                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ $mainAllDataList->id}}"><i
                                                             class="bi bi-pencil-fill"></i></button>
 
-                                                            <div class="modal modal-xl fade" id="exampleModal{{ $main_all_data_list->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal modal-xl fade" id="exampleModal{{ $mainAllDataList->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -93,50 +93,50 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                         <div class="modal-body">
                                                                             <div class="card">
                                                                                 <div class="card-body">
-                                                                                    <form method="post" action="{{ route('ngoMember.update',$main_all_data_list->id ) }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                                                                                    <form method="post" action="{{ route('ngoMember.update',$mainAllDataList->id ) }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                                                                         @csrf
                                                                                         @method('PUT')
                                                                                         <div class="row">
                                                                                             <div class="col-lg-12 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.name')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="name" value="{{ $main_all_data_list->member_name }}"   class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="name" value="{{ $mainAllDataList->member_name }}"   class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.designation')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="desi" value="{{ $main_all_data_list->member_designation }}" class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="desi" value="{{ $mainAllDataList->member_designation }}" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.date_of_birth')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="dob" value="{{ $main_all_data_list->member_dob }}" class="form-control" id="datepicker">
+                                                                                                <input type="text" data-parsley-required name="dob" value="{{ $mainAllDataList->member_dob }}" class="form-control" id="datepicker">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.nid_no')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="nid_no" value="{{ $main_all_data_list->member_nid_no }}"  class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="nid_no" value="{{ $mainAllDataList->member_nid_no }}"  class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.mobile_no')}} <span class="text-danger">*</span> </label>
                                                                                                 <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                                                 type = "number"
-                                                                                                maxlength = "11" data-parsley-required minlength="11" value="{{ $main_all_data_list->member_mobile }}"   name="phone" class="form-control" id="">
+                                                                                                maxlength = "11" data-parsley-required minlength="11" value="{{ $mainAllDataList->member_mobile }}"   name="phone" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.fathers_name')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="father_name" value="{{ $main_all_data_list->member_father_name }}" class="form-control" id="">
+                                                                                                <input type="text" data-parsley-required name="father_name" value="{{ $mainAllDataList->member_father_name }}" class="form-control" id="">
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.present_address')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" class="form-control"  data-parsley-required name="present_address" value="{{ $main_all_data_list->member_present_address }}" id="exampleFormControlTextarea1"
+                                                                                                <input type="text" class="form-control"  data-parsley-required name="present_address" value="{{ $mainAllDataList->member_present_address }}" id="exampleFormControlTextarea1"
                                                                                                           rows="2"/>
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.permanent_address')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" class="form-control" data-parsley-required value="{{ $main_all_data_list->member_permanent_address }}"  name="permanent_address"  id="exampleFormControlTextarea1"
+                                                                                                <input type="text" class="form-control" data-parsley-required value="{{ $mainAllDataList->member_permanent_address }}"  name="permanent_address"  id="exampleFormControlTextarea1"
                                                                                                           rows="2"/>
                                                                                             </div>
                                                                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
                                                                                                 <label for="" class="form-label">{{ trans('ngo_member.name_of_spouse')}} <span class="text-danger">*</span> </label>
-                                                                                                <input type="text" data-parsley-required name="name_supouse" class="form-control" value="{{ $main_all_data_list->member_name_supouse }}" id="">
+                                                                                                <input type="text" data-parsley-required name="name_supouse" class="form-control" value="{{ $mainAllDataList->member_name_supouse }}" id="">
                                                                                             </div>
 
                                                                                         </div>
@@ -153,17 +153,17 @@ $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->val
                                                                 </div>
                                                             </div>
 
-                                                <button type="button" onclick="deleteTag({{ $main_all_data_list->id}})" class="btn btn-sm btn-danger"><i
+                                                <button type="button" onclick="deleteTag({{ $mainAllDataList->id}})" class="btn btn-sm btn-danger"><i
                                                             class="bi bi-trash"></i></button>
 
-                                                            <form id="delete-form-{{ $main_all_data_list->id }}" action="{{ route('ngoMember.destroy',$main_all_data_list->id) }}" method="POST" style="display: none;">
+                                                            <form id="delete-form-{{ $mainAllDataList->id }}" action="{{ route('ngoMember.destroy',$mainAllDataList->id) }}" method="POST" style="display: none;">
 
                                                                 @csrf
 @method('DELETE')
                                                             </form>
 
 
-                                                <button id="member_id{{ $main_all_data_list->id }}" class="btn btn-success btn-sm" type="button"
+                                                <button id="member_id{{ $mainAllDataList->id }}" class="btn btn-success btn-sm" type="button"
                                                         data-bs-toggle="offcanvas"
                                                         data-bs-target="#offcanvasWithBothOptions"
                                                         aria-controls="offcanvasWithBothOptions"><i

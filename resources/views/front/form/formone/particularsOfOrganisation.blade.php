@@ -415,7 +415,7 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Citizenship')}} <span class="text-danger">*</span> </label>
 
                         <?php
-     $convert_new_ass_cat  = explode(",",$allParticularsOfOrganisation->citizenship);
+     $convertNewAssCat  = explode(",",$allParticularsOfOrganisation->citizenship);
 
                         ?>
 
@@ -430,17 +430,17 @@
                     @if($ngoTypeInfo == 'দেশিও')
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                    <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                    <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                     @else
-                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                 @endif
                 @endforeach
                     @else
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                     @endif

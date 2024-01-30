@@ -97,13 +97,6 @@
             <td>{{ $allformOneData->organization_name }} <br> {{ trans('fd_one_step_one.Organization_address')}}: {{ $allformOneData->organization_address}}</td>
             @endif
         </tr>
-        <!-- <tr>
-            <td></td>
-            <td class="number_section">(ii)</td>
-            <td>{{ trans('fd_one_step_one.Organization_address')}}</td>
-            <td style="width:4px">:</td>
-            <td>{{ $allformOneData->organization_address }}</td>
-        </tr>-->
         <tr>
             <td></td>
             <td class="number_section">(iii)</td>
@@ -169,9 +162,6 @@
        <?php
                                   $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
                                   if($getngoForLanguage =='দেশিও'){
-
-
-
                                   }else{
                                    $getJobType =$allformOneData->job_type;
                                   }
@@ -253,20 +243,20 @@
             <td>{{ trans('fd_one_step_two.Source_of_Fund')}}</td>
             <td></td>
         </tr>
-        @foreach($get_all_source_of_fund_data as $all_get_all_source_of_fund_data)
+        @foreach($getAllSourceOfFundData as $allGetAllSourceOfFundData)
         <tr>
             <td></td>
             <td></td>
             <td>(i) {{ trans('fd_one_step_two.dd')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $all_get_all_source_of_fund_data->name }}, {{ $all_get_all_source_of_fund_data->address }}</td>
+            <td>{{ $allGetAllSourceOfFundData->name }}, {{ $allGetAllSourceOfFundData->address }}</td>
         </tr>
         <tr>
             <td></td>
             <td></td>
             <td>(ii) {{ trans('fd_one_step_two.copy')}}</td>
             <td style="width:4px">:</td>
-            <td> @if(empty($all_get_all_source_of_fund_data->letter_file))
+            <td> @if(empty($allGetAllSourceOfFundData->letter_file))
 
                 @else
 
@@ -348,7 +338,7 @@
 
                                     $getCityzendata = $allFormOneMemberList->citizenship;
                                     }
-                                  //dd($getCityzendata);
+
                                   ?>
         <tr>
             <td></td>
@@ -356,8 +346,8 @@
             <td colspan="2" class="padding-left">({{ trans('form 8_bn.d')}}) {{ trans('fd_one_step_three.citizenship')}}</td>
             <td style="width:4px">:</td>
             <td> @if($getngoForLanguage =='দেশিও')
-                                      @foreach($getCityzendata as $all_getCityzendata)
-                                      {{$all_getCityzendata->country_people_bangla}},
+                                      @foreach($getCityzendata as $allGetCityzendata)
+                                      {{$allGetCityzendata->country_people_bangla}},
                                       @endforeach
                                       @else
                                       {{ $allFormOneMemberList->citizenship }}
@@ -418,7 +408,7 @@
             <td colspan="4">{{ trans('fd_one_step_four.tt')}}
             </td>
         </tr>
-        @foreach($get_all_data_adviser as $key=>$all_get_all_data_adviser)
+        @foreach($getAllDataAdviser as $key=>$allGetAllDataAdviser)
         <tr>
             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
             <td></td>
@@ -438,14 +428,14 @@
 
             <td class="padding-left" colspan="2">({{ trans('form 8_bn.a')}}) {{ trans('fd_one_step_four.advisor_name')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $all_get_all_data_adviser->name }}</td>
+            <td>{{ $allGetAllDataAdviser->name }}</td>
         </tr>
         <tr>
             <td></td>
 
             <td class="padding-left" colspan="2">({{ trans('form 8_bn.b')}}) {{ trans('fd_one_step_four.tt2')}}</td>
             <td style="width:4px">:</td>
-            <td> {{ $all_get_all_data_adviser->information	 }}</td>
+            <td> {{ $allGetAllDataAdviser->information	 }}</td>
         </tr>
         @endforeach
         <tr>
@@ -453,7 +443,7 @@
             <td colspan="4">{{ trans('fd_one_step_four.tt3')}}
             </td>
         </tr>
-        @if(!$get_all_data_adviser_bank)
+        @if(!$getAllDataAdviserBank)
 
         @else
         <tr>
@@ -462,9 +452,9 @@
             <td>{{ trans('fd_one_step_four.account_number')}}</td>
             <td style="width:4px">:</td>
             <td>@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                {{App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number)}}
+                {{App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataAdviserBank->account_number)}}
                 @else
-                {{ $get_all_data_adviser_bank->account_number }}
+                {{ $getAllDataAdviserBank->account_number }}
                 @endif</td>
         </tr>
         <tr>
@@ -472,28 +462,28 @@
             <td>({{ trans('form 8_bn.b')}})</td>
             <td>{{ trans('fd_one_step_four.account_type')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $get_all_data_adviser_bank->account_type }}</td>
+            <td>{{ $getAllDataAdviserBank->account_type }}</td>
         </tr>
         <tr>
             <td></td>
             <td>({{ trans('form 8_bn.c')}})</td>
             <td>{{ trans('fd_one_step_four.name_of_bank')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $get_all_data_adviser_bank->name_of_bank }}</td>
+            <td>{{ $getAllDataAdviserBank->name_of_bank }}</td>
         </tr>
         <tr>
             <td></td>
             <td>({{ trans('form 8_bn.d')}})</td>
             <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $get_all_data_adviser_bank->branch_name_of_bank }}</td>
+            <td>{{ $getAllDataAdviserBank->branch_name_of_bank }}</td>
         </tr>
         <tr>
             <td></td>
             <td>({{ trans('form 8_bn.e')}})</td>
             <td>{{ trans('fd_one_step_four.bank_address')}}</td>
             <td style="width:4px">:</td>
-            <td>{{ $get_all_data_adviser_bank->bank_address }}</td>
+            <td>{{ $getAllDataAdviserBank->bank_address }}</td>
         </tr>
         @endif
         <tr>
@@ -502,9 +492,9 @@
             </td>
             <td style="width:4px">:</td>
             <td>
-@foreach($get_all_data_other as $all_get_all_data_other)
+@foreach($getAllDataOther as $allGetAllDataOther)
 
-@if(empty($all_get_all_data_other->information_title))
+@if(empty($allGetAllDataOther->information_title))
 
 @else
 
@@ -537,10 +527,7 @@ attached
     </tr>
 </table>
 <table style=" margin-top: 15px">
-    {{-- <tr>
-        <td style="text-align: right; padding-right: 14%" colspan="3">{{ trans('fd_one_step_one.tt_4')}}</td>
-    </tr> --}}
-    <tr>
+   <tr>
         <td style="width: 65%"></td>
         <td style="text-align: left; width:5%;">{{ trans('fd_one_step_one.tt_5')}}</td>
         <td style="width:30%; text-align: left;">: {{ $allformOneData->chief_name }}</td>

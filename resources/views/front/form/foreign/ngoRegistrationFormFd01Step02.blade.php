@@ -14,27 +14,21 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
                 <div class="right-side">
+ <?php
 
-                    <?php
+    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
-                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                     ->first();
-
-
-                                    ?>
-
+?>
 
                     <div class="committee_container active">
                         <div class="text">
+
                             <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
-                            {{-- <p>Enter your information to get closer to Registration.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -65,11 +59,7 @@
 
                     $filePath = url($allFormOneData->foregin_pdf);
                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
                     ?>
  <div class="mb-3">
@@ -95,11 +85,7 @@
 
                     $filePath = url($allFormOneData->foregin_pdf);
                     $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
                     ?>
                     <div class="mb-3">
@@ -126,11 +112,7 @@
 
 $filePath = url($allFormOneData->plan_of_operation);
 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
 $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
 ?>
 <div class="mb-3">
@@ -164,7 +146,6 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_form_id',$allFormOneData->id)->get();
 
-
         ?>
 
         <div class="row">
@@ -190,11 +171,6 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
                           <button id="deleteRecord{{ $allGetAllSourceOfFundData->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllSourceOfFundData->id }}" type="button" name="deleting">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </button>
-
-
-
-
-
                           <!-- Modal -->
 <div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -240,9 +216,6 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
             </div>
             @endforeach
         </div>
-
-
-
 
 @if(count($getAllSourceOfFundData) == 0)
 
@@ -311,11 +284,6 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
     <input type="text" name="annual_budget" value="{{ $allFormOneData->annual_budget }}" data-parsley-required class="form-control" id="">
 </div>
 @endif
-
-
-
-
-
 
                         </div>
 

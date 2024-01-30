@@ -56,15 +56,10 @@
 
 <?php
 
-                                $filePath = url($all_all_ngo_member_doc->member_nid_copy);
-                                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+    $filePath = url($all_all_ngo_member_doc->member_nid_copy);
+    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-
-
-
-
-                                ?>
+?>
                                         <div class="file-box-image">
                                             <div class="file-top">
                                                 <img class="file-top-img" src="{{ asset('/') }}{{ $all_all_ngo_member_doc->member_image }}"
@@ -91,7 +86,6 @@
                                                             @method('DELETE')
 
                                                         </form>
-
 
                                             </div>
                                         </div>
@@ -213,10 +207,7 @@
                     <button type="submit" class="btn btn-registration">{{ trans('other_doc.add_new_document')}}</button>
                 </form>
 
-
             </div>
-
-
 
         </div>
     </div>

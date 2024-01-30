@@ -12,9 +12,6 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                     {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
-                           {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -467,7 +464,7 @@
                                     </div>
 
                                     <?php
-                                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                                        ?>
 
@@ -578,7 +575,7 @@
                     </div>
 
                     <?php
-                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                        ?>
 

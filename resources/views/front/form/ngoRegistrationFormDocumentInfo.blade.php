@@ -131,14 +131,12 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
         @endif
                             </div>
                             <div class="p-2">
-                                {{-- <button class="btn btn-primary btn-custom" type="button" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
-                                        {{ trans('other_doc.add_new_document')}}
-                                </button> --}}
+
                             </div>
                         </div>
 
                         <?php
+
                         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
 
@@ -2302,11 +2300,11 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                       @else
 
-                                        @foreach($ngoOtherDocLists as $key=>$all_ngo_list_all)
+                                        @foreach($ngoOtherDocLists as $key=>$allNgoListAll)
 
                                         <?php
 
-                                        $filePath = url($all_ngo_list_all->pdf_file_list);
+                                        $filePath = url($allNgoListAll->pdf_file_list);
                                         $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
@@ -2401,12 +2399,12 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 </div>
                                                 <div class="mt-2">
                                                     <h6>{{ $filename }}</h6>
-                                                    <p class="mb-1">{{ $all_ngo_list_all->file_size }} {{ trans('other_doc.m_b')}}</p>
+                                                    <p class="mb-1">{{ $allNgoListAll->file_size }} {{ trans('other_doc.m_b')}}</p>
                                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModal{{ $all_ngo_list_all->id  }}"><i class="fa fa-pencil"></i></button>
+                                                            data-bs-target="#exampleModal{{ $allNgoListAll->id  }}"><i class="fa fa-pencil"></i></button>
 
                                                             <!--modal -->
-                                                            <div class="modal fade" id="exampleModal{{ $all_ngo_list_all->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal fade" id="exampleModal{{ $allNgoListAll->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -2492,7 +2490,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data" id="form">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$allNgoListAll->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')
@@ -2501,7 +2499,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                                                     <input type="file" name="pdf_file_list" class="form-control" id="">
 
-                                                                                    <iframe src="{{ asset('/') }}{{'public/'. $all_ngo_list_all->pdf_file_list  }}"
+                                                                                    <iframe src="{{ asset('/') }}{{'public/'. $allNgoListAll->pdf_file_list  }}"
                         style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 </div>
                                                                                 <div class="modal-footer">
@@ -2515,11 +2513,11 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                             </div>
                                                             <!--model end -->
 
-                                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('ngoDocumentDownload',$all_ngo_list_all->id) }}'><i class="fa fa-download"></i></a>
-                                                    <button  onclick="deleteTag({{ $all_ngo_list_all->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('ngoDocumentDownload',$allNgoListAll->id) }}'><i class="fa fa-download"></i></a>
+                                                    <button  onclick="deleteTag({{ $allNgoListAll->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </div>
-                                            <form id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
+                                            <form id="delete-form-{{ $allNgoListAll->id }}" action="{{ route('ngoDocument.destroy',$allNgoListAll->id) }}" method="POST" style="display: none;">
 
                                                 @csrf
         @method('DELETE')

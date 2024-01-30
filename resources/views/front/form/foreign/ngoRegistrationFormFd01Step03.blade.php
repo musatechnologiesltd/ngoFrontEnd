@@ -467,7 +467,7 @@
                                     </div>
 
                                     <?php
-                                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                                        ?>
 
@@ -578,7 +578,7 @@
                     </div>
 
                     <?php
-                    $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
+                    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
 
                                        ?>
 

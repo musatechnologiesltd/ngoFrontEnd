@@ -1,23 +1,16 @@
 
 <?php
 
-
 $oldNgoRegNumber = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
-
-
-$allformOneData = DB::table('fd_one_forms')
-->where('user_id',Auth::user()->id)->first();
- $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
- $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
- $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
- $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
- $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
-
-
-
-
-
-       ?>
+$allformOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+$getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+$getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+$formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+$getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+$ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+$getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+?>
 
              @include('flash_message')
              <div class="user_dashboard_right">
@@ -44,12 +37,6 @@ $allformOneData = DB::table('fd_one_forms')
                          <tr>
 
                                 <td>
-                                    <?php
-                                    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-
-
-
-                                                                         ?>
 
                                     @if($ngoTypeInfo == 'দেশিও')
 
@@ -73,33 +60,6 @@ $allformOneData = DB::table('fd_one_forms')
                              </td>
                          </tr>
                      </table>
-<?php
-
-             $data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                    ->first();
-
-
-
-
-$count = 0;
-foreach ($data   as $a) {
-if (is_null($a)) {
- $count++;
-}
-}
-
-
-
-             ?>
-
-             @if($count == 0)
-             {{-- <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p> --}}
-
-                     @else
-
-                     {{-- <p class="badge bg-danger rounded">{{ trans('form 8_bn.un_complete_status')}}</p> --}}
-
-                     @endif
 
                  </div>
              </div>
@@ -143,10 +103,6 @@ if (is_null($a)) {
                              </td>
                          </tr>
 
-
-                         <?php
-                         $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-                          ?>
                           @if($getngoForLanguage =='দেশিও')
                          <tr>
                              <td></td>
@@ -236,8 +192,6 @@ if (is_null($a)) {
                              $getCityzendata = $allformOneData->citizenship;
                              }
 
-
-
                            ?>
                          <tr>
                              <td></td>
@@ -245,12 +199,7 @@ if (is_null($a)) {
                              <td>{{ trans('form 8_bn.e')}}) {{ trans('fd_one_step_one.Citizenship')}}</td>
                              <td>: {{ $getCityzendata }}</td>
                          </tr>
-                         {{-- <tr>
-                             <td></td>
-                             <td></td>
-                             <td>{{ trans('form 8_bn.f')}}) {{ trans('fd_one_step_one.Profession')}}</td>
-                             <td>: {{ $allformOneData->profession }}</td>
-                         </tr> --}}
+
                          <tr>
                              <td>{{ trans('fd_one_step_one.two')}}.</td>
                              <td colspan="3">Details of foreign grant management activities in the last 10 (ten) years (project wise summary to be attached):
@@ -333,7 +282,7 @@ if (is_null($a)) {
 
                              $getCityzendata = $allFormOneMemberList->citizenship;
                              }
-                           //dd($getCityzendata);
+
                            ?>
 
                              <td></td>
@@ -341,8 +290,8 @@ if (is_null($a)) {
                              <td>{{ trans('fd_one_step_three.citizenship')}}</td>
                              <td>:
                                  @if($getngoForLanguage =='দেশিও')
-                               @foreach($getCityzendata as $all_getCityzendata)
-                               {{$all_getCityzendata->country_people_bangla}},
+                               @foreach($getCityzendata as $allGetCityzendata)
+                               {{$allGetCityzendata->country_people_bangla}},
                                @endforeach
                                @else
                                {{ $allFormOneMemberList->citizenship }}
@@ -437,7 +386,7 @@ if (is_null($a)) {
                              </td>
                          </tr>
 
-                         @if(!$get_all_data_adviser_bank)
+                         @if(!$getAllDataAdviserBank)
 
 
                          @else
@@ -447,9 +396,9 @@ if (is_null($a)) {
                              <td>{{ trans('fd_one_step_four.account_number')}}</td>
                              <td>:
                                  @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number)}}
+                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataAdviserBank->account_number)}}
                                  @else
-                                 {{ $get_all_data_adviser_bank->account_number }}
+                                 {{ $getAllDataAdviserBank->account_number }}
                                  @endif
 
                              </td>
@@ -458,25 +407,25 @@ if (is_null($a)) {
                              <td></td>
                              <td>({{ trans('form 8_bn.b')}})</td>
                              <td>{{ trans('fd_one_step_four.account_type')}}</td>
-                             <td>: {{ $get_all_data_adviser_bank->account_type }}</td>
+                             <td>: {{ $getAllDataAdviserBank->account_type }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.c')}})</td>
                              <td>{{ trans('fd_one_step_four.name_of_bank')}}</td>
-                             <td>: {{ $get_all_data_adviser_bank->name_of_bank }}</td>
+                             <td>: {{ $getAllDataAdviserBank->name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.d')}})</td>
                              <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
-                             <td>: {{ $get_all_data_adviser_bank->branch_name_of_bank }}</td>
+                             <td>: {{ $getAllDataAdviserBank->branch_name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.e')}})</td>
                              <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
-                             <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
+                             <td>: {{ $getAllDataAdviserBank->bank_address }}</td>
                          </tr>
                          @endif
                          <tr>
@@ -491,10 +440,6 @@ if (is_null($a)) {
                                 <a target="_blank"  href="{{ route('renewFileDownloadFromView', ['title' =>'change_ac_number', 'id' =>$allformOneData->id] )}}"
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
-
-
-
-
 
                              </td>
                          </tr>

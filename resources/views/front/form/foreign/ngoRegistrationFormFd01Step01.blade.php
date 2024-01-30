@@ -13,9 +13,6 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -23,8 +20,9 @@
                     <div class="committee_container active">
 
                         <div class="text">
+
                             <h2>{{ trans('fd_one_step_one.Particulars_of_Organisation')}}</h2>
-                            {{-- <p>Enter your personal information to get closer to copanies.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -36,10 +34,9 @@
 
                         <div class="mt-3">
 
-                            <?php
+<?php
 
-    $allParticularsOfOrganisation = DB::table('fd_one_forms')->
-    where('user_id',Auth::user()->id)->first();
+    $allParticularsOfOrganisation = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
 ?>
 
@@ -268,14 +265,6 @@
                                     <input type="text" data-parsley-required  name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
                                 </div>
 
-
-
-                                {{-- <div class="mb-3">
-                                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                                   <span class="text-success"><b>Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="">
-                                </div> --}}
-
                                 @if($foreignNgoType == 'Old')
 
                                 @else
@@ -306,9 +295,6 @@
                                     <small id="digital_seal_text" class="text-danger" style="font-size: 12px;"></small>
                                 </div>
                                 <!-- end new code -->
-
-
-
 
 
                         <div class="buttons d-flex justify-content-end ">
