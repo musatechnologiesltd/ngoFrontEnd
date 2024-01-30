@@ -18,23 +18,17 @@
                 <div class="right-side">
                     <?php
 
-                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+        $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+        $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english') ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+        $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
-                    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
-
-            $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allFormOneData->id)->get();
-
-            $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-                           ->value('ngo_type');
-
-
-                                    ?>
+                ?>
 
                     <div class="committee_container active">
                         <div class="text">
                             <h2>{{ trans('fd_one_step_three.All_staff_details_information')}}</h2>
-                            {{-- <p>Enter your information to get closer to Registration.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -510,18 +504,15 @@
 
                                 @endforeach
 
-                                <?php
+    <?php
 
-                                $countNew = count($formOneMemberList);
-
-        //dd($countNew);
-
+        $countNew = count($formOneMemberList);
         $finalData = 5 - $countNew ;
         $cityzenValue = 0;
-        ?>
+    ?>
 
         @for ($i = 0; $i < $finalData; $i++)
-                {{-- <p>The current value is {{ $i }}.</p> --}}
+            
                <?php $cityzenValue = $cityzenValue+1 ?>
 
                 <div class="mb-3">

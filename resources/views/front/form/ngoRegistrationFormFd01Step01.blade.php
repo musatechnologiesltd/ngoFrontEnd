@@ -12,13 +12,7 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
-                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
-                        {{-- @if($localNgoTypem == 'Old')
 
-                        @else
-                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
-                        @endif
-                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -27,7 +21,7 @@
 
                         <div class="text">
                             <h2>{{ trans('fd_one_step_one.Particulars_of_Organisation')}}</h2>
-                            {{-- <p>Enter your personal information to get closer to copanies.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -39,10 +33,9 @@
 
                         <div class="mt-3">
 
-                            <?php
+<?php
 
-    $allParticularsOfOrganisation = DB::table('fd_one_forms')->
-    where('user_id',Auth::user()->id)->first();
+    $allParticularsOfOrganisation = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
 
 ?>
 @if(Session::has('success'))
@@ -129,16 +122,13 @@
                                     @endif
 
 
-                                    <?php
+    <?php
 
-                                    $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
+       $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
+       $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+       $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 
-                                    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-
-
-                                    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
-                                                ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
-                                                                    ?>
+    ?>
 
                                                                     @if($ngoTypeInfo == 'দেশিও')
                                                                     <div class="mb-3">
@@ -196,11 +186,7 @@
                                     <input type="text" required name="address" value="{{ Session::get('address') }}" class="form-control" id="">
                                 </div>
 
-
-
-
                                 @if($localNgoTypem == 'Old')
-
 
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>

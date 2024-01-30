@@ -17,27 +17,14 @@
 
                 </div>
                 <div class="right-side">
-                    <?php
+<?php
 
-                    $getFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                           ->first();
-
-
-                $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-                           ->value('ngo_type');
-
-                           $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
-                                   ->first();
+    $getFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+    $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->first();
 
 
-                    ?>
-
-
-
-
-
-
-
+?>
 
                 <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data"  id="form"  data-parsley-validate="">
                     @csrf
@@ -48,7 +35,7 @@
                 <div class="main active">
                     <div class="text">
                        <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
-                        {{-- <p>Enter your information to get closer to Registration.</p> --}}
+
                     </div>
                     <div class="fd01_tablist">
                         <div class="fd01_tab"></div>
@@ -186,11 +173,7 @@
 
 $filePath = url($getFormOneData->attach_the__supporting_paper);
 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
 $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
 ?>
 
@@ -219,11 +202,7 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
 $filePath = url($getFormOneData->board_of_revenue_on_fees);
 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-
 $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
 ?>
 
@@ -243,10 +222,7 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
                         <?php
 
-
-$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',Session::get('mm_id'))
-       ->get();
-
+$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',Session::get('mm_id'))->get();
 
                             ?>
 
@@ -306,8 +282,6 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                   <button id="adeleteRecord{{ $allGetAllDataOther->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllDataOther->id }}" type="button" name="deleting">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
-
-
 
             </div>
 
@@ -376,18 +350,14 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                             </div>
 
 
-                            <?php
+    <?php
 
 
-                            $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
-                                   ->first();
+        $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->first();
+        $getAllDataAdviserBank_all = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->get();
 
 
-                            $getAllDataAdviserBank_all = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
-                             ->get();
-
-
-                                                        ?>
+    ?>
 
                                                       @if(count($getAllDataAdviserBank_all) == 0)
 
@@ -567,14 +537,13 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                             @endif
 
 
-             <?php
+    <?php
 
 
-                            $getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',Session::get('mm_id'))
-                                   ->get();
+        $getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',Session::get('mm_id'))->get();
 
 
-                 ?>
+    ?>
 
 <div class="row">
 
@@ -606,10 +575,6 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                   <button id="deleteRecord{{ $allGetAllDataOther->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllDataOther->id }}" type="button" name="deleting">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
-
-
-
-
 
                   <!-- Modal -->
 <div class="modal fade" id="mmexampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

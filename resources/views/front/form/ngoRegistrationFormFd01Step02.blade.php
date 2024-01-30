@@ -18,19 +18,17 @@
                 </div>
                 <div class="right-side">
 
-                    <?php
+<?php
 
-                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
-                     ->first();
+    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id) ->first();
 
-
-                                    ?>
+?>
 
 
                     <div class="committee_container active">
                         <div class="text">
                             <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
-                            {{-- <p>Enter your information to get closer to Registration.</p> --}}
+
                         </div>
 
                         <div class="fd01_tablist">
@@ -65,9 +63,6 @@
 
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
-
-
-
                     ?>
  <div class="mb-3">
     <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
@@ -96,9 +91,6 @@
 
                     $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
-
-
-
                     ?>
                     <div class="mb-3">
                         <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
@@ -126,9 +118,6 @@ $filePath = url($allFormOneData->plan_of_operation);
 $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 $extension = pathinfo($filePath, PATHINFO_EXTENSION);
-
-
-
 
 ?>
 <div class="mb-3">
@@ -188,10 +177,6 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
                           <button id="deleteRecord{{ $allGetAllSourceOfFundData->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllSourceOfFundData->id }}" type="button" name="deleting">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
                         </button>
-
-
-
-
 
                           <!-- Modal -->
 <div class="modal fade" id="exampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -311,12 +296,7 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 </div>
 @endif
 
-
-
-
-
                         </div>
-
 
                         <div class="buttons d-flex justify-content-end mt-4">
                             <a href="{{ route('backFromStepTwo') }}"  class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>

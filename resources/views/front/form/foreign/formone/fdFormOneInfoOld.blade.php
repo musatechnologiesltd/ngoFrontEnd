@@ -443,7 +443,35 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
 
                              </td>
                          </tr>
+                         <tr>
+                            <td>{{ trans('fd_one_step_one.nine')}}.</td>
+                            <td colspan="2">{{ trans('fd_one_step_four.tt4')}}
+                            </td>
+                            <td>:
+@foreach($getAllDataOther as $allGetAllDataOther)
 
+@if(empty($allGetAllDataOther->information_pdf))
+
+@else
+
+@if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+<a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($allGetAllDataOther->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> {{ $allGetAllDataOther->information_title }} </a>
+
+@else
+
+<a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($allGetAllDataOther->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+@endif
+@endif
+
+                                @endforeach
+
+
+                            </td>
+                        </tr>
                          </tbody>
                      </table>
                  </div>

@@ -18,7 +18,7 @@
 
                     <?php
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-                        $ngoMemberLists = DB::table('ngo_member_lists')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
+$ngoMemberLists = DB::table('ngo_member_lists')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
 
 
                         ?>

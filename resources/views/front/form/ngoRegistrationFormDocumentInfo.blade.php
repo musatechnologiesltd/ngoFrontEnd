@@ -40,93 +40,55 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
         <span class="text-danger">{{ $errors->first('registration_certificate') }}</span><br>
         @endif
 
-
-
-
         @if ($errors->has('last_ten_years_audit_report_and_annual_report_of_the_company'))
         <span class="text-danger">{{ $errors->first('last_ten_years_audit_report_and_annual_report_of_the_company') }}</span><br>
         @endif
-
-
-
 
         @if ($errors->has('work_procedure_of_organization'))
         <span class="text-danger">{{ $errors->first('work_procedure_of_organization') }}</span><br>
         @endif
 
-
-
-
         @if ($errors->has('organization_by_laws_or_constitution'))
         <span class="text-danger">{{ $errors->first('organization_by_laws_or_constitution') }}</span><br>
         @endif
-
-
-
 
         @if ($errors->has('list_of_board_of_directors_or_board_of_trustees'))
         <span class="text-danger">{{ $errors->first('list_of_board_of_directors_or_board_of_trustees') }}</span><br>
         @endif
 
-
-
-
-
         @if ($errors->has('section_sub_section_of_the_constitution'))
         <span class="text-danger">{{ $errors->first('section_sub_section_of_the_constitution') }}</span><br>
         @endif
-
 
         @if ($errors->has('payment_of_change_fee'))
         <span class="text-danger">{{ $errors->first('payment_of_change_fee') }}</span><br>
         @endif
 
-
-
         @if ($errors->has('constitution_approved_by_primary_registering_authority'))
         <span class="text-danger">{{ $errors->first('constitution_approved_by_primary_registering_authority') }}</span><br>
         @endif
-
-
-
 
         @if ($errors->has('the_constitution_of_the_company_along_with_fee_if_changed'))
         <span class="text-danger">{{ $errors->first('the_constitution_of_the_company_along_with_fee_if_changed') }}</span><br>
         @endif
 
-
-
-
-
         @if ($errors->has('constitution_of_the_organization_has_changed'))
         <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
         @endif
-
-
-
 
         @if ($errors->has('constitution_of_the_organization_if_unchanged'))
         <span class="text-danger">{{ $errors->first('constitution_of_the_organization_if_unchanged') }}</span><br>
         @endif
 
-
-
-
-
         @if ($errors->has('attested_copy_of_latest_registration_or_renewal_certificate'))
         <span class="text-danger">{{ $errors->first('attested_copy_of_latest_registration_or_renewal_certificate') }}</span><br>
         @endif
 
+        @if ($errors->has('constitution_of_the_organization_has_changed'))
+        <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
+        @endif
 
-
-
-
-                @if ($errors->has('constitution_of_the_organization_has_changed'))
-                <span class="text-danger">{{ $errors->first('constitution_of_the_organization_has_changed') }}</span><br>
-            @endif
-
-
-            @if ($errors->has('right_to_information_act'))
+        @if ($errors->has('right_to_information_act'))
             <span class="text-danger">{{ $errors->first('right_to_information_act') }}</span><br>
         @endif
                             </div>
@@ -135,21 +97,18 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                             </div>
                         </div>
 
-                        <?php
+<?php
 
-                        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+    $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
 
+    if($localNgoTypem == 'Old'){
+        $ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
+        $ngoOtherDocListsFirst = DB::table('renewal_files')->where('fd_one_form_id',$fdOneFormId)->first();
+    }else{
+        $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
+    }
 
-if($localNgoTypem == 'Old'){
-    $ngoOtherDocLists = DB::table('renewal_files')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
-    $ngoOtherDocListsFirst = DB::table('renewal_files')->where('fd_one_form_id',$fdOneFormId)->first();
-}else{
-    $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFormId)->latest()->get();
-}
-
-
-
-                                                ?>
+ ?>
 @if($localNgoTypem == 'Old')
 
                         <div class="file-content">
@@ -190,24 +149,13 @@ if($localNgoTypem == 'Old'){
                                         </div>
                                         <b>অন্যান্য তথ্য:</b>
 
-
-
-
-
-
-
-
-
-
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
                                                 <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="structurePartTwo1">
 
-
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo1_text"></small>
-
 
                                             </div>
 
@@ -220,7 +168,6 @@ if($localNgoTypem == 'Old'){
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo2_text"></small>
                                             </div>
 
-
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
@@ -229,7 +176,6 @@ if($localNgoTypem == 'Old'){
 
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo3_text"></small>
                                             </div>
-
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
@@ -288,25 +234,7 @@ if($localNgoTypem == 'Old'){
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo9_text"></small>
                                             </div>
 
-
-
-
-
-
-
-
-
-
-
                                         @else
-
-
-
-
-
-
-
-
 
                                         <div class="card mb-3">
                                             <div class="card-header">
@@ -386,7 +314,6 @@ if($localNgoTypem == 'Old'){
                                             </div>
                                         </div>
 
-
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 কোড নং -১-০৩২৩-০০০০-১৮৩৬-এ তফসিল-১ নির্ধারিত ফি জমা প্রদান করে ট্রেজারি চালানের মূল কপিসহ  <span class="text-danger">*</span>
@@ -427,8 +354,6 @@ if($localNgoTypem == 'Old'){
                                             </div>
                                         </div>
 
-
-
                                         @endif
 
                                         <div class="d-grid d-md-flex justify-content-md-end">
@@ -456,8 +381,6 @@ if($localNgoTypem == 'Old'){
 
                                              <div class="file-box">
 
-
-
                                                 নির্বাহী কর্মকর্তার সীল এবং স্বাক্ষরসহ  এফডি - ৮ ফরম
 
                                                  <div class="file-top">
@@ -472,11 +395,6 @@ if($localNgoTypem == 'Old'){
 
                                                              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fd_eight_form_data', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                                                <!--modal -->
                                                                <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -521,9 +439,6 @@ if($localNgoTypem == 'Old'){
 
                                              <!--end if -->
 
-
-
-
                                         <!--new start -->
                                         @if(empty($ngoOtherDocListsFirst->registration_renewal_fee))
 
@@ -539,8 +454,6 @@ if($localNgoTypem == 'Old'){
 
                                               <div class="file-box">
 
-
-
                                                 নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি
 
                                                   <div class="file-top">
@@ -555,11 +468,6 @@ if($localNgoTypem == 'Old'){
 
                                                               <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_renewal_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                               <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_renewal_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                                                 <!--modal -->
                                                                 <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -604,11 +512,6 @@ if($localNgoTypem == 'Old'){
 
                                               <!--end if -->
 
-
-
-
-
-
                                           <!--new start -->
                                           @if(empty($ngoOtherDocListsFirst->committee_members_list))
 
@@ -621,10 +524,7 @@ if($localNgoTypem == 'Old'){
 
                                             ?>
 
-
                                                 <div class="file-box">
-
-
 
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা
 
@@ -640,11 +540,6 @@ if($localNgoTypem == 'Old'){
 
                                                                 <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'committee_members_list', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                                 <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'committee_members_list', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                                                   <!--modal -->
                                                                   <div class="modal fade" id="exampleModal5555512" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -689,10 +584,6 @@ if($localNgoTypem == 'Old'){
 
                                                 <!--end if -->
 
-
-
-
-
                                             <!--new start -->
                                             @if(empty($ngoOtherDocListsFirst->approval_of_executive_committee))
 
@@ -705,10 +596,7 @@ if($localNgoTypem == 'Old'){
 
                                               ?>
 
-
                                                   <div class="file-box">
-
-
 
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি
 
@@ -724,10 +612,6 @@ if($localNgoTypem == 'Old'){
 
                                                                   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'approval_of_executive_committee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                                   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'approval_of_executive_committee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                                                                     <!--modal -->
@@ -774,7 +658,6 @@ if($localNgoTypem == 'Old'){
                                                   <!--end if -->
 
 
-
                                          <!--new start -->
                                          @if(empty($ngoOtherDocListsFirst->nid_and_image_of_executive_committee_members))
 
@@ -787,10 +670,7 @@ if($localNgoTypem == 'Old'){
 
                                            ?>
 
-
                                                <div class="file-box">
-
-
 
                                                 নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি
 
@@ -806,10 +686,6 @@ if($localNgoTypem == 'Old'){
 
                                                                <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'nid_and_image_of_executive_committee_members', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                                <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'nid_and_image_of_executive_committee_members', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                                                                  <!--modal -->
@@ -856,9 +732,6 @@ if($localNgoTypem == 'Old'){
                                                <!--end if -->
 
 
-
-
-
                                       <!--new start -->
                                       @if(empty($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees))
 
@@ -871,10 +744,7 @@ if($localNgoTypem == 'Old'){
 
                                         ?>
 
-
                                             <div class="file-box">
-
-
 
                                                 List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)
 
@@ -890,11 +760,6 @@ if($localNgoTypem == 'Old'){
 
                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                                               <!--modal -->
                                                               <div class="modal fade" id="exampleModal{{ $ngoOtherDocListsFirst->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -939,10 +804,6 @@ if($localNgoTypem == 'Old'){
 
                                             <!--end if -->
 
-
-
-
-
                             <!--new start -->
                             @if(empty($ngoOtherDocListsFirst->organization_by_laws_or_constitution))
 
@@ -955,9 +816,7 @@ if($localNgoTypem == 'Old'){
 
                               ?>
 
-
                                   <div class="file-box">
-
 
                                     অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
@@ -973,11 +832,6 @@ if($localNgoTypem == 'Old'){
 
                                                   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                                     <!--modal -->
                                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1022,9 +876,6 @@ if($localNgoTypem == 'Old'){
 
                                   <!--end if -->
 
-
-
-
                <!--new start -->
                @if(empty($ngoOtherDocListsFirst->work_procedure_of_organization))
 
@@ -1037,10 +888,7 @@ if($localNgoTypem == 'Old'){
 
                  ?>
 
-
                      <div class="file-box">
-
-
 
                         প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
@@ -1056,10 +904,6 @@ if($localNgoTypem == 'Old'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                                        <!--modal -->
@@ -1098,15 +942,11 @@ if($localNgoTypem == 'Old'){
                                      <!--model end -->
                          </div>
 
-
                      </div>
 
                      @endif
 
                      <!--end if -->
-
-
-
 
                       <!--new start -->
                @if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
@@ -1117,13 +957,9 @@ if($localNgoTypem == 'Old'){
                  $filePath = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
                  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
                  ?>
 
-
                      <div class="file-box">
-
-
 
                         বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
 
@@ -1136,14 +972,8 @@ if($localNgoTypem == 'Old'){
                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                      data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
 
-
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1188,8 +1018,6 @@ if($localNgoTypem == 'Old'){
 
                      <!--end if -->
 
-
-
                                 <!--new start -->
                @if(empty($ngoOtherDocListsFirst->registration_certificate))
 
@@ -1202,10 +1030,7 @@ if($localNgoTypem == 'Old'){
 
                  ?>
 
-
                      <div class="file-box">
-
-
 
                         Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company
 
@@ -1221,11 +1046,6 @@ if($localNgoTypem == 'Old'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1270,8 +1090,6 @@ if($localNgoTypem == 'Old'){
 
                      <!--end if -->
 
-
-
                                           <!--new start -->
                @if(empty($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate))
 
@@ -1281,13 +1099,9 @@ if($localNgoTypem == 'Old'){
                  $filePath = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
                  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
                  ?>
 
-
                      <div class="file-box">
-
-
 
                         সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি
 
@@ -1303,11 +1117,6 @@ if($localNgoTypem == 'Old'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal411" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1345,14 +1154,11 @@ if($localNgoTypem == 'Old'){
                                      <!--model end -->
                          </div>
 
-
                      </div>
 
                      @endif
 
                      <!--end if -->
-
-
 
                                                     <!--new start -->
                @if(empty($ngoOtherDocListsFirst->right_to_information_act))
@@ -1363,12 +1169,8 @@ if($localNgoTypem == 'Old'){
                  $filePath = url($ngoOtherDocListsFirst->right_to_information_act);
                  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
                  ?>
-
-
                      <div class="file-box">
-
 
                         Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি
 
@@ -1384,11 +1186,6 @@ if($localNgoTypem == 'Old'){
 
                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                        <!--modal -->
                                        <div class="modal fade" id="exampleModal444" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1433,10 +1230,7 @@ if($localNgoTypem == 'Old'){
 
                      <!--end if -->
 
-
                                       @if($ngoOtherDocListsFirst->constitution_of_the_organization_has_changed == 'Yes')
-
-
 
                                       <!--new start -->
                                       @if(empty($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed))
@@ -1450,10 +1244,7 @@ if($localNgoTypem == 'Old'){
 
                                         ?>
 
-
                                             <div class="file-box">
-
-
 
                                                 সংস্থার  গঠনতন্ত্র  পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ  তার সত্যায়িত অনুলিপি
 
@@ -1469,10 +1260,6 @@ if($localNgoTypem == 'Old'){
 
                                                             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                                             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
 
 
                                                               <!--modal -->
@@ -1511,7 +1298,6 @@ if($localNgoTypem == 'Old'){
                                                             <!--model end -->
                                                 </div>
 
-
                                             </div>
 
                                             @endif
@@ -1532,9 +1318,7 @@ if($localNgoTypem == 'Old'){
 
       ?>
 
-
           <div class="file-box">
-
 
             প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
@@ -1550,11 +1334,6 @@ if($localNgoTypem == 'Old'){
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                             <!--modal -->
                             <div class="modal fade" id="exampleModal400" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1599,8 +1378,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
           <!--end if -->
 
-
-
              <!--new start -->
     @if(empty($ngoOtherDocListsFirst->clean_copy_of_the_constitution))
 
@@ -1613,9 +1390,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
       ?>
 
-
           <div class="file-box">
-
 
             সংস্থার চেয়ারম্যান ও সেক্রেটারী কতৃক যৌথ স্বাক্ষরিত গঠনতন্ত্রের পরিচ্ছন্ন কপি
 
@@ -1631,11 +1406,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                             <!--modal -->
                             <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1673,14 +1443,11 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                           <!--model end -->
               </div>
 
-
           </div>
 
           @endif
 
           <!--end if -->
-
-
 
                     <!--new start -->
     @if(empty($ngoOtherDocListsFirst->payment_of_change_fee))
@@ -1691,12 +1458,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
       $filePath = url($ngoOtherDocListsFirst->payment_of_change_fee);
       $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
       ?>
-
-
           <div class="file-box">
-
 
             গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ফি  জমা প্রদানের চালানের মূলকপিসহ
 
@@ -1712,11 +1475,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                             <!--modal -->
                             <div class="modal fade" id="exampleModal4333" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1773,10 +1531,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
                      ?>
-
-
                          <div class="file-box">
-
 
                             গঠনতন্ত্রের কোন ধারা , উপধারা  পরিবর্তন  ও সংযোজনের বিষয়ে সাধারণ সভার কার্যবিবরণীর সত্যায়িত কপি
 
@@ -1792,11 +1547,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                          <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                            <!--modal -->
                                            <div class="modal fade" id="exampleModal4988" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1833,8 +1583,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                          </div>
                                          <!--model end -->
                              </div>
-
-
                          </div>
 
                          @endif
@@ -1850,12 +1598,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                      $filePath = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
                      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
                      ?>
-
-
                          <div class="file-box">
-
 
                             পূর্ববর্তী সংবিধান এবং বর্তমান সংবিধানের তুলনামূলক বিবরণী (প্রতি পাতায় সভাপতি ও সম্পাদকের যৌথ স্বাক্ষর সহ)
 
@@ -1871,11 +1615,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                          <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                          <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                            <!--modal -->
                                            <div class="modal fade" id="exampleModal45555" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -1913,13 +1652,11 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                          <!--model end -->
                              </div>
 
-
                          </div>
 
                          @endif
 
                          <!--end if -->
-
 
                                       @else
 
@@ -1935,9 +1672,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                ?>
 
-
                    <div class="file-box">
-
 
                      'অপরিবর্তিত' প্রশংসাপত্রের অনুলিপি (সংশ্লিষ্ট দেশের পিস অফ জাস্টিস ডিপার্টমেন্ট দ্বারা নোটারাইজড/প্রত্যয়িত) যদি সংস্থার গঠনতন্ত্র পরিবর্তিত না হয়
 
@@ -1953,11 +1688,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                    <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
-
-
-
-
-
 
                                      <!--modal -->
                                      <div class="modal fade" id="exampleModal434" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -2003,11 +1733,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                    <!--end if -->
                                       @endif
 
-
-
-
-
-
                                       @endif
                                     </div>
                                 </div>
@@ -2019,12 +1744,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                 <div class="card-body file-manager">
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
-
-                                      {{-- @if(session()->get('locale') == 'en' ||  empty(session()->get('locale')))
-                                      <h2>তথ্য পাওয়া যায়নি</h2>
-                                      @else
-                                      <h2>Data Not Found</h2>
-                                      @endif --}}
 
                                       <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
@@ -2054,8 +1773,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         </div>
                                         <b>অন্যান্য তথ্য:</b>
 
-
-
                                         <div class="mb-3">
                                             <label class="form-label" for="">
                                                 এফডি-১ ফরম<span class="text-danger">*</span>
@@ -2070,8 +1787,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
                                             <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="">
                                         </div>
-
-
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
@@ -2139,25 +1854,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
                                             </div>
 
-
-
-
-
-
-
-
-
-
-
                                         @else
-
-
-
-
-
-
-
-
 
                                         <div class="card mb-3">
                                             <div class="card-header">
@@ -2189,7 +1886,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="card mb-3">
                                             <div class="card-header">
@@ -2307,13 +2003,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         $filePath = url($allNgoListAll->pdf_file_list);
                                         $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
-
-
-
-
-
                                         ?>
-
 
                                             <div class="file-box">
 
@@ -2391,7 +2081,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <h6>Letter Of Intent </h6>
                                             @endif
                                             @endif
-
 
 
                                                 <div class="file-top">
@@ -2579,10 +2268,6 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
             <div class="modal-body">
                 <div class="card">
                     <div class="card-body">
-
-
-
-
 
                     </div>
                 </div>
