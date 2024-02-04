@@ -102,7 +102,7 @@ class FD8Controller extends Controller
 
         }else{
 
-            $ngoRenew = NgoRenewInfo::find(Session::get('updateFd8Id'));
+            $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
         }
 
         $ngoRenew->yearly_budget = $fdOneData->annual_budget;
@@ -212,7 +212,7 @@ class FD8Controller extends Controller
        $ngoRenew->digital_seal = $fdOneData->digital_seal;
        $ngoRenew->save();
 
-       Session::put('updateFd8Id',$ngoRenew->id);
+       Session::put('newFd8Id',$ngoRenew->id);
 
        if($fdOneData->complete_status == 'go_to_step_two'){
 

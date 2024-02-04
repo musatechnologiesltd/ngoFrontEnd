@@ -33,7 +33,85 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
 
               @else
 
+            <!--new start -->
+            @if(empty($ngoOtherDocListsFirst->form_eight_executive_committee_member))
 
+            @else
+            <?php
+
+              $file_path = url($ngoOtherDocListsFirst->form_eight_executive_committee_member);
+              $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+              ?>
+
+
+                  <div class="file-box">
+
+
+
+                    ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+
+                      <div class="file-top">
+                          <i class="fa fa-file-pdf-o txt-primary"></i>
+                      </div>
+
+                      <div class="mt-2">
+                          <h6>{{ $filename }}</h6>
+                          <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal555551211"><i class="fa fa-pencil"></i></button>
+
+
+                                  <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                  <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                    <!--modal -->
+                                    <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">
+                                                    ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                      @csrf
+                                                      @method('PUT')
+                                                      <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                      <input type="hidden" name="title" value="form_eight_executive_committee_member"/>
+                                                      <div class="mb-3">
+
+                                                          <input type="file" name="form_eight_executive_committee_member" class="form-control" id="">
+
+                                                          <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->form_eight_executive_committee_member  }}"
+style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                          <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                      </div>
+                                                  </form>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--model end -->
+                      </div>
+
+
+                  </div>
+
+                  @endif
+
+                  <!--end if -->
 
                 <!--new start -->
                 @if(empty($ngoOtherDocListsFirst->registration_renewal_fee))
@@ -41,16 +119,18 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                 @else
                 <?php
 
-                  $filePath = url($ngoOtherDocListsFirst->registration_renewal_fee);
-                  $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                  $file_path = url($ngoOtherDocListsFirst->registration_renewal_fee);
+                  $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                   ?>
 
 
-            <div class="file-box">
+                      <div class="file-box">
 
-                নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি
+
+
+                        নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি
 
                           <div class="file-top">
                               <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -66,6 +146,10 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                       <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_renewal_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                                         <!--modal -->
                                         <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog">
@@ -77,7 +161,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                      <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                           @csrf
                                                           @method('PUT')
@@ -120,14 +204,16 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                   @else
                   <?php
 
-                    $filePath = url($ngoOtherDocListsFirst->committee_members_list);
-                    $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                    $file_path = url($ngoOtherDocListsFirst->committee_members_list);
+                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                     ?>
 
 
                         <div class="file-box">
+
+
 
                             নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা
 
@@ -144,6 +230,11 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                         <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'committee_members_list', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                         <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'committee_members_list', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                                           <!--modal -->
                                           <div class="modal fade" id="exampleModal5555512" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -155,7 +246,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                        <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                             @csrf
                                                             @method('PUT')
@@ -187,20 +278,26 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
 
                         <!--end if -->
 
+
+
+
+
                     <!--new start -->
                     @if(empty($ngoOtherDocListsFirst->approval_of_executive_committee))
 
                     @else
                     <?php
 
-                      $filePath = url($ngoOtherDocListsFirst->approval_of_executive_committee);
-                      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                      $file_path = url($ngoOtherDocListsFirst->approval_of_executive_committee);
+                      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                       ?>
 
 
                           <div class="file-box">
+
+
 
                             উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি
 
@@ -217,6 +314,11 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                           <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'approval_of_executive_committee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'approval_of_executive_committee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                                             <!--modal -->
                                             <div class="modal fade" id="exampleModal555551" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                               <div class="modal-dialog">
@@ -228,7 +330,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                       </div>
                                                       <div class="modal-body">
-                                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                               @csrf
                                                               @method('PUT')
@@ -268,14 +370,16 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                  @else
                  <?php
 
-                   $filePath = url($ngoOtherDocListsFirst->nid_and_image_of_executive_committee_members);
-                   $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                   $file_path = url($ngoOtherDocListsFirst->nid_and_image_of_executive_committee_members);
+                   $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                    ?>
 
 
                        <div class="file-box">
+
+
 
                         নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি
 
@@ -292,6 +396,11 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                        <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'nid_and_image_of_executive_committee_members', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                        <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'nid_and_image_of_executive_committee_members', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                                          <!--modal -->
                                          <div class="modal fade" id="exampleModal55555" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                            <div class="modal-dialog">
@@ -303,7 +412,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                    </div>
                                                    <div class="modal-body">
-                                                       <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                       <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                            @csrf
                                                            @method('PUT')
@@ -335,20 +444,26 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
 
                        <!--end if -->
 
+
+
+
+
               <!--new start -->
               @if(empty($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees))
 
               @else
               <?php
 
-                $filePath = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
-                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                $file_path = url($ngoOtherDocListsFirst->list_of_board_of_directors_or_board_of_trustees);
+                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                 ?>
 
 
                     <div class="file-box">
+
+
 
                         List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)
 
@@ -365,6 +480,11 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                     <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'trustees', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                                       <!--modal -->
                                       <div class="modal fade" id="exampleModal{{ $ngoOtherDocListsFirst->id  }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -376,7 +496,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -408,14 +528,18 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                     <!--end if -->
 
+
+
+
+
     <!--new start -->
     @if(empty($ngoOtherDocListsFirst->organization_by_laws_or_constitution))
 
     @else
     <?php
 
-      $filePath = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
-      $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+      $file_path = url($ngoOtherDocListsFirst->organization_by_laws_or_constitution);
+      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
       ?>
@@ -424,7 +548,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
           <div class="file-box">
 
 
-            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
               <div class="file-top">
                   <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -440,18 +564,22 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                           <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'laws_or_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                             <!--modal -->
                             <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
                                   <div class="modal-content">
                                       <div class="modal-header">
                                           <h5 class="modal-title" id="exampleModalLabel">
-                                            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 </h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                               @csrf
                                               @method('PUT')
@@ -483,14 +611,17 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
           <!--end if -->
 
+
+
+
 <!--new start -->
 @if(empty($ngoOtherDocListsFirst->work_procedure_of_organization))
 
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->work_procedure_of_organization);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->work_procedure_of_organization);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -498,7 +629,9 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 <div class="file-box">
 
-প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+
+
+প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
  <div class="file-top">
      <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -514,18 +647,22 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'work_procedure', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                <!--modal -->
                <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header">
                              <h5 class="modal-title" id="exampleModalLabel">
-                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 </h5>
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -558,79 +695,243 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 <!--end if -->
 
 
-<!--new start -->
-@if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
-
-@else
-<?php
-
-$filePath = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
 
 
-?>
+   <!--new start -->
+   @if(empty($ngoOtherDocListsFirst->last_ten_year_annual_report))
+
+   @else
+   <?php
+
+     $file_path = url($ngoOtherDocListsFirst->last_ten_year_annual_report);
+     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
-<div class="file-box">
-
-বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-
- <div class="file-top">
-     <i class="fa fa-file-pdf-o txt-primary"></i>
- </div>
-
- <div class="mt-2">
-     <h6>{{ $filename }}</h6>
-     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+     ?>
+  <div class="file-box">
 
 
-             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
-             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+     সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+
+      <div class="file-top">
+          <i class="fa fa-file-pdf-o txt-primary"></i>
+      </div>
+
+      <div class="mt-2">
+          <h6>{{ $filename }}</h6>
+          <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
 
 
-               <!--modal -->
-               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="exampleModalLabel">
-                                বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                  <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                  <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                    <!--modal -->
+                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">
+                                     সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
 </h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                         </div>
-                         <div class="modal-body">
-                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
-                                 @csrf
-                                 @method('PUT')
-                                 <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
-                                 <input type="hidden" name="title" value="last_ten_years"/>
-                                 <div class="mb-3">
+                                      @csrf
+                                      @method('PUT')
+                                      <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                      <input type="hidden" name="title" value="last_ten_year_annual_report"/>
+                                      <div class="mb-3">
 
-                                     <input type="file" name="last_ten_years_audit_report_and_annual_report_of_the_company" class="form-control" id="">
+                                          <input type="file" name="last_ten_year_annual_report" class="form-control" id="">
 
-                                     <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company  }}"
+                                          <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_year_annual_report  }}"
 style="width:300px; height:150px;" frameborder="0"></iframe>
-                                 </div>
-                                 <div class="modal-footer">
-                                     <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
-                                 </div>
-                             </form>
-                         </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                      </div>
+                                  </form>
+                              </div>
 
-                     </div>
-                 </div>
-             </div>
-             <!--model end -->
- </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!--model end -->
+      </div>
 
 
-</div>
+  </div>
 
-@endif
+  @endif
 
-<!--end if -->
+  <!--end if -->
+
+                              <!--new start -->
+                              @if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
+
+                              @else
+                              <?php
+
+                                $file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                                ?>
+
+
+                                    <div class="file-box">
+
+
+
+                                       সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
+
+                                        <div class="file-top">
+                                            <i class="fa fa-file-pdf-o txt-primary"></i>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <h6>{{ $filename }}</h6>
+                                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                                                    <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                                    <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                                      <!--modal -->
+                                                      <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                       সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
+               </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                                        @csrf
+                                                                        @method('PUT')
+                                                                        <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                                        <input type="hidden" name="title" value="last_ten_years"/>
+                                                                        <div class="mb-3">
+
+                                                                            <input type="file" name="last_ten_years_audit_report_and_annual_report_of_the_company" class="form-control" id="">
+
+                                                                            <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company  }}"
+                style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--model end -->
+                                        </div>
+
+
+                                    </div>
+
+                                    @endif
+
+                                    <!--end if -->
+
+
+    <!--new start -->
+    @if(empty($ngoOtherDocListsFirst->constitution_extra))
+
+    @else
+    <?php
+
+      $file_path = url($ngoOtherDocListsFirst->constitution_extra);
+      $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+      ?>
+   <div class="file-box">
+
+
+     সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+
+       <div class="file-top">
+           <i class="fa fa-file-pdf-o txt-primary"></i>
+       </div>
+
+       <div class="mt-2">
+           <h6>{{ $filename }}</h6>
+           <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                     <!--modal -->
+                     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <h5 class="modal-title" id="exampleModalLabel">
+                                     সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+</h5>
+                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                               </div>
+                               <div class="modal-body">
+                                   <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                       @csrf
+                                       @method('PUT')
+                                       <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                       <input type="hidden" name="title" value="constitution_extra"/>
+                                       <div class="mb-3">
+
+                                           <input type="file" name="constitution_extra" class="form-control" id="">
+
+                                           <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->constitution_extra  }}"
+style="width:300px; height:150px;" frameborder="0"></iframe>
+                                       </div>
+                                       <div class="modal-footer">
+                                           <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                       </div>
+                                   </form>
+                               </div>
+
+                           </div>
+                       </div>
+                   </div>
+                   <!--model end -->
+       </div>
+
+
+   </div>
+
+   @endif
+
+   <!--end if -->
 
 
 
@@ -640,14 +941,16 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->registration_certificate);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->registration_certificate);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
 
 
 <div class="file-box">
+
+
 
 Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company
 
@@ -665,6 +968,10 @@ Copy of registration certificate (notarized/attested of the concerned country) o
              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                <!--modal -->
                <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
@@ -676,7 +983,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -716,14 +1023,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->attested_copy_of_latest_registration_or_renewal_certificate);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
 
 
 <div class="file-box">
+
 
 
 সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি
@@ -742,6 +1050,10 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'registration_or_renewal_certificate', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                <!--modal -->
                <div class="modal fade" id="exampleModal411" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
@@ -753,7 +1065,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -793,14 +1105,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->right_to_information_act);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->right_to_information_act);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
 
 
 <div class="file-box">
+
 
 Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি
 
@@ -817,6 +1130,11 @@ Right To Information Act - 2009-এর আওতায় ফোকাল Focal Poi
              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'right_to_information_act', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                <!--modal -->
                <div class="modal fade" id="exampleModal444" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
@@ -828,7 +1146,7 @@ Right To Information Act - 2009-এর আওতায় ফোকাল Focal Poi
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -871,14 +1189,16 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
               @else
               <?php
 
-                $filePath = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
-                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                $file_path = url($ngoOtherDocListsFirst->the_constitution_of_the_company_along_with_fee_if_changed);
+                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
                 ?>
 
 
                     <div class="file-box">
+
+
 
                         সংস্থার  গঠনতন্ত্র  পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ  তার সত্যায়িত অনুলিপি
 
@@ -895,6 +1215,11 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
                                     <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'fee_if_changed', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
                                       <!--modal -->
                                       <div class="modal fade" id="exampleModal4567" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -906,7 +1231,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -946,8 +1271,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->constitution_approved_by_primary_registering_authority);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -956,7 +1281,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
 <div class="file-box">
 
 
-প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
 <div class="file-top">
 <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -972,18 +1297,22 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'primary_registering_authority', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
     <!--modal -->
     <div class="modal fade" id="exampleModal400" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">
-                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1023,8 +1352,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->clean_copy_of_the_constitution);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -1048,6 +1377,11 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
   <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'clean_copy_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
     <!--modal -->
     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -1059,7 +1393,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1099,8 +1433,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->payment_of_change_fee);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->payment_of_change_fee);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -1125,6 +1459,10 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
   <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'payment_of_change_fee', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
     <!--modal -->
     <div class="modal fade" id="exampleModal4333" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -1136,7 +1474,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1175,8 +1513,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->section_sub_section_of_the_constitution);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -1201,6 +1539,10 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                  <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'section_sub_section_of_the_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                    <!--modal -->
                    <div class="modal fade" id="exampleModal4988" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
@@ -1212,7 +1554,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1250,8 +1592,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->previous_constitution_and_current_constitution_compare);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -1276,6 +1618,10 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                  <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'previous_constitution', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
+
+
+
+
                    <!--modal -->
                    <div class="modal fade" id="exampleModal45555" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                      <div class="modal-dialog">
@@ -1287,7 +1633,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1328,8 +1674,8 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 @else
 <?php
 
-$filePath = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
+$file_path = url($ngoOtherDocListsFirst->constitution_of_the_organization_if_unchanged);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 ?>
@@ -1353,6 +1699,11 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
            <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
            <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'organization_if_unchanged', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
+
+
+
+
+
              <!--modal -->
              <div class="modal fade" id="exampleModal434" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                <div class="modal-dialog">
@@ -1364,7 +1715,7 @@ $filename  = pathinfo($filePath, PATHINFO_FILENAME);
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                           <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                           <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                @csrf
                                @method('PUT')
@@ -1426,8 +1777,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                 <?php
 
-                $filePath = url($all_ngo_list_all->pdf_file_list);
-                $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                $file_path = url($all_ngo_list_all->pdf_file_list);
+                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+
+
+
 
                 ?>
 
@@ -1586,7 +1942,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                    <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -1613,7 +1969,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <button  onclick="deleteTag({{ $all_ngo_list_all->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
-                    <form  id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
+                    <form id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
 
                         @csrf
 @method('DELETE')
