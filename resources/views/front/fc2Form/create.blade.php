@@ -147,57 +147,57 @@
 
     @csrf
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> পূর্ণ নাম</label>
-        <input type="text" name="person_full_name" class="form-control" id=""
+        <label for="" class="form-label"> পূর্ণ নাম <span class="text-danger">*</span></label>
+        <input type="text" required name="person_full_name" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> পিতার নাম</label>
-        <input type="text" name="person_father_name" class="form-control" id=""
+        <label for="" class="form-label"> পিতার নাম <span class="text-danger">*</span></label>
+        <input type="text" required name="person_father_name" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">মাতার নাম</label>
-        <input type="text" name="person_mother_name" class="form-control" id=""
+        <label for="" class="form-label">মাতার নাম <span class="text-danger">*</span></label>
+        <input type="text" required name="person_mother_name" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পেশা</label>
-        <input type="text" name="person_occupation" class="form-control" id=""
+        <label for="" class="form-label">পেশা <span class="text-danger">*</span></label>
+        <input type="text" required name="person_occupation" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">জাতীয় পরিচয়পত্র নম্বর</label>
-        <input type="text" name="person_nid" class="form-control" id=""
+        <label for="" class="form-label">জাতীয় পরিচয়পত্র নম্বর <span class="text-danger">*</span></label>
+        <input type="text" required name="person_nid" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পাসপোর্ট নম্বর (যদি থাকে)</label>
-        <input type="text" name="person_passport" class="form-control" id=""
+        <label for="" class="form-label">পাসপোর্ট নম্বর (যদি থাকে) <span class="text-danger">*</span></label>
+        <input type="text" required name="person_passport" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> টি আই এন নম্বর</label>
-        <input type="text" name="person_tin" class="form-control" id=""
+        <label for="" class="form-label"> টি আই এন নম্বর <span class="text-danger">*</span></label>
+        <input type="text" required name="person_tin" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">জাতীয়তা/ নাগরিকত্ব</label>
-        <input type="text" name="person_nationality"  class="form-control" id=""
+        <label for="" class="form-label">জাতীয়তা/ নাগরিকত্ব <span class="text-danger">*</span></label>
+        <input type="text" required name="person_nationality"  class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পূর্ণ ঠিকানা </label>
-        <input type="text" name="person_full_address" class="form-control" id=""
+        <label for="" class="form-label">পূর্ণ ঠিকানা <span class="text-danger">*</span></label>
+        <input type="text" required name="person_full_address" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">টেলিফোন</label>
-        <input type="text" name="person_tele_phone_number"  class="form-control" id=""
+        <label for="" class="form-label">টেলিফোন <span class="text-danger">*</span></label>
+        <input type="text" required name="person_tele_phone_number"  class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">মোবাইল</label>
+        <label for="" class="form-label">মোবাইল <span class="text-danger">*</span></label>
         <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
         type = "number" required
         maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="person_mobile" class="form-control" id=""
@@ -219,13 +219,13 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ</label>
-                                                    <input type="text" name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ</label>
-                                                    <input type="text" name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -238,9 +238,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা</label>
+                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা <span class="text-danger">*</span></label>
 
-                                                    <input type="text" name="ngo_district" class="form-control" id=""
+                                                    <input type="text" required name="ngo_district" class="form-control" id=""
                                                            placeholder="">
 
 
@@ -248,13 +248,13 @@
 
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা</label>
-                                                    <input type="text" name="ngo_sub_district" class="form-control" id=""
+                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="ngo_sub_district" class="form-control" id=""
                                                     placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
-                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা</label>
-                                                    <input type="number" name="total_number_of_beneficiaries" class="form-control" id=""
+                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা <span class="text-danger">*</span></label>
+                                                    <input type="number" required name="total_number_of_beneficiaries" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -400,9 +400,11 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-lg-12">
-                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে</label>
-                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id=""
-                                               placeholder="">
+                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id="fc1PdfN1"
+                                        placeholder="">
+
+                                        <p id="fc1PdfN1_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                     </div>
                                     <div class="mb-3 col-lg-12">
                                         <div class="card-header">
@@ -411,18 +413,18 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">বৈদেশিক মুদ্রার পরিমান</label>
-                                                    <input type="number" name="organization_amount_of_foreign_currency" class="form-control" id=""
+                                                    <label for="" class="form-label">বৈদেশিক মুদ্রার পরিমান <span class="text-danger">*</span></label>
+                                                    <input type="number" required name="organization_amount_of_foreign_currency" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">সমপরিমাণ বাংলাদেশী টাকা</label>
-                                                    <input type="number" name="equivalent_amount_of_bd_taka" class="form-control" id=""
+                                                    <label for="" class="form-label">সমপরিমাণ বাংলাদেশী টাকা <span class="text-danger">*</span></label>
+                                                    <input type="number" required name="equivalent_amount_of_bd_taka" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
-                                                    <label for="" class="form-label">পণ্যসামগ্রী (বাংলাদেশী মুদ্রায় আনুমানিক মূল্য)</label>
-                                                    <input type="number" name="commodities_value_in_bangladeshi_currency" class="form-control" id=""
+                                                    <label for="" class="form-label">পণ্যসামগ্রী (বাংলাদেশী মুদ্রায় আনুমানিক মূল্য) <span class="text-danger">*</span></label>
+                                                    <input type="number" required name="commodities_value_in_bangladeshi_currency" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -467,9 +469,11 @@
                                         <div class="card-body">
 
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">ব্যক্তি কর্তৃক বৈদেশিক অনুদানে গৃহীত প্রকল্প প্রস্তাব ফরম/এফসি -২ ফরম</label>
-                                                <input type="file" name="verified_fc_two_form" class="form-control" id=""
-                                                       placeholder="">
+                                                <label for="" class="form-label">ব্যক্তি কর্তৃক বৈদেশিক অনুদানে গৃহীত প্রকল্প প্রস্তাব ফরম/এফসি -২ ফরম <span class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" required  name="verified_fc_two_form" class="form-control" id="fc1PdfN2"
+                                                placeholder="" accept=".pdf" required>
+
+                                                <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                             </div>
 
                                         </div>

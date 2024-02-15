@@ -176,15 +176,23 @@
                                                 করার জন্য একসাথে নিম্ন বর্ণিত কাগজপত্র সংযুক্ত করা হল:
                                             </p>
                                             <ul>
-                                                <li>নিয়োগপত্র সত্যায়ন প্রমাণক :  <span style="color:red;">*</span><input type="file" name="attestation_of_appointment_letter" accept="application/pdf" class="form-control custom-form"
-                                                                                        id="" required placeholder=""></li>
-                                                <li>ফর্ম ৯ এর কপি: <span style="color:red;">*</span><input type="file" name="copy_of_form_nine" required accept="application/pdf"class="form-control custom-form"
-                                                                         id="" placeholder=""></li>
-                                                <li>ছবি: <span style="color:red;">*</span><input type="file" accept="image/*" name="foreigner_image" class="form-control custom-form"
-                                                               id="" placeholder=""></li>
+                                                <li>নিয়োগপত্র সত্যায়ন প্রমাণক :  <span style="color:red;">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span><input type="file" name="attestation_of_appointment_letter" accept="application/pdf" class="form-control custom-form"
+                                                                                        id="fdNineOnePdf1" required placeholder="">
+                                                                                        <p id="fdNineOnePdf1_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                                                                                    </li>
+                                                <li>ফর্ম ৯ এর কপি: <span style="color:red;">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span><input type="file" name="copy_of_form_nine" required accept="application/pdf"class="form-control custom-form"
+                                                                         id="fdNineOnePdf2" placeholder="">
+                                                                         <p id="fdNineOnePdf2_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                                                                        </li>
+                                                <li>ছবি: <span style="color:red;">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 200 KB & Image Format:PNG)</span><input type="file" accept="image/png" name="foreigner_image" class="form-control custom-form"
+                                                               id="fdNineOnePdf3" placeholder="">
+                                                               <p id="fdNineOnePdf3_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                                                            </li>
                                                 <li>এন ভিসা নিয়ে আগমনের তারিখ (প্রমানসহ): <span style="color:red;">*</span><input type="text" required name="arrival_date_in_nvisa"  class="form-control datepicker custom-form"
                                                                                                 id="" placeholder=""><span style="color:red;">*</span><input required type="file" accept="application/pdf" name="copy_of_nvisa" class="form-control custom-form"
-                                                                                                id="" placeholder=""></li>
+                                                                                                id="fdNineOnePdf4" placeholder=""><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                                                                                <p id="fdNineOnePdf4_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                                                                                            </li>
                                             </ul>
                                             <p class="mb-3">এমতবস্থায়, অত্র সংস্থার উল্লেখিত পদে <span><span style="color:red;">*</span><input type="text" required name="proposed_from_date" class="datepicker form-control custom-form"
                                                 id="" placeholder=""></span> হতে <span><span style="color:red;">*</span><input type="text" required name="proposed_to_date" class="datepicker form-control custom-form"
@@ -206,16 +214,20 @@
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span><br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
+
+            <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+            <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
     </div>
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span><br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+
+                <input type="file" data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+                <p id="digital_seal_text" class="text-danger mt-2" style="font-size:12px;"></p>
     </div>
     <!-- end new code -->
 

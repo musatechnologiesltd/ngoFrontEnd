@@ -32,7 +32,7 @@
 						@endif
 					</p>
                 </div>
-                <form action="{{ route('checkStatusRegFrom') }}" method="post">
+                <form id="form" action="{{ route('checkStatusRegFrom') }}" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6 col-sm-12">

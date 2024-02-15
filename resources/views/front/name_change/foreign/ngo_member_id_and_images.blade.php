@@ -218,7 +218,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="post" action="{{ route('ngoMemberNidAndImageUpdate') }}" enctype="multipart/form-data">
+                                            <form method="post" action="{{ route('ngoMemberNidAndImageUpdate') }}" enctype="multipart/form-data" id="form">
 
                                                 @csrf
                                                 <div class="mb-3">

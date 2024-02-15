@@ -36,6 +36,25 @@
     margin-left: 20px;
 }
 
+#pageloader
+{
+  background: rgba( 255, 255, 255, 0.8 );
+  display: none;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
+}
+
+#pageloader img
+{
+  left: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+  position: absolute;
+  top: 50%;
+}
+
         </style>
 <script src="{{ asset('/') }}public/front/assets/js/jquery_3.2.1.js"></script>
 @yield('css')
@@ -149,7 +168,7 @@
 </head>
 
 <body>
-
+@include('front.include.loader')
 <!-- ======= Hero Section ======= -->
 
 
@@ -415,7 +434,7 @@
 </script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script> --}}
-
+@include('front.firstTwoStep.fileSizeScript')
 @yield('script')
 
 <script>
@@ -499,6 +518,16 @@ $("document").ready(function(){
      });
  } );
      </script>
+
+
+<script>
+    $(document).ready(function(){
+  $("#form").on("submit", function(){
+    //alert(123);
+    $("#pageloader").fadeIn();
+  });//submit
+});//document ready
+</script>
 </body>
 
 </html>

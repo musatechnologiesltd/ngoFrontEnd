@@ -55,7 +55,7 @@
 
 
 
-                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form" id="form"  data-parsley-validate="">
+                <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"   data-parsley-validate="">
                     @csrf
                     <input type="hidden" class="form-control" value="Foreign" name="ngoOrigin"  id="">
                     <input type="hidden" class="form-control" value="{{ $foreignNgoType }}" name="oldOrNew"  id="">
@@ -82,9 +82,9 @@
 
 
                             <label class="form-label" for="">
-                                Whether registration renewal fee and VAT have been paid (copy of invoice to be attached)</label>
-                            <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="">
-
+                                Whether registration renewal fee and VAT have been paid (copy of invoice to be attached) <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                            <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="copy_of_chalan">
+                            <p id="copy_of_chalan_text" class="text-danger mt-3" style="font-size: 14px;"></p>
                             @if(empty($getFormOneData->copy_of_chalan))
 
                             @else
@@ -105,8 +105,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="">
-                                Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): </label>
-                            <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                Whether VAT due, if any, on any fees mentioned in Schedule-1 has been paid (copy of invoice to be attached): <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                            <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="due_vat_pdf">
+                            <p id="due_vat_pdf_text" class="text-danger mt-3" style="font-size: 14px;"></p>
                             @if(empty($getFormOneData->due_vat_pdf))
 
                             @else
@@ -212,8 +213,9 @@
 
 
                         <div class="mb-3">
-                            <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached:</label>
-                            <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+                            <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                            <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="change_ac_number">
+                            <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 14px;"></p>
                             </div>
 
                             @if(empty($getFormOneData->change_ac_number))
@@ -242,8 +244,9 @@
 
                             @if(empty($getFormOneData->attach_the__supporting_paper))
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> </label>
-                                <input class="form-control" required  name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                                <input class="form-control" required   name="attach_the__supporting_papers" accept=".pdf" type="file" id="attach_the__supporting_papers">
+                                <p id="attach_the__supporting_papers_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             @else
 
@@ -261,8 +264,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 ?>
 
                             <div class="mb-3">
-                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> </label>
-                                <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="">
+                                <label class="form-label"  for="">{{ trans('fd_one_step_four.attach_the_supporting_papers')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                                <input class="form-control"   name="attach_the__supporting_papers" accept=".pdf" type="file" id="attach_the__supporting_papers">
+                                <p id="attach_the__supporting_papers_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
                             @endif
@@ -276,8 +280,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
                             @if(empty($getFormOneData->board_of_revenue_on_fees))
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> </label>
-                                <input class="form-control"  name="board_of_revenue_on_fees" required accept=".pdf" type="file" id="">
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                    <input class="form-control"  name="board_of_revenue_on_fees" required accept=".pdf" type="file" id="board_of_revenue_on_fees">
+                                    <p id="board_of_revenue_on_fees_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             @else
 
@@ -295,8 +300,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
                             <div class="mb-3">
                                 <label class="form-label" for="">
-                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> </label>
-                                <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="">
+                                    {{ trans('fd_one_step_four.15_VAT')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span> </label>
+                                    <input class="form-control"  name="board_of_revenue_on_fees"  accept=".pdf" type="file" id="board_of_revenue_on_fees">
+                                    <p id="board_of_revenue_on_fees_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                             </div>
                             <b>{{ $filename.'.'.$extension }}</b>
                             @endif
@@ -685,7 +691,7 @@ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id
 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-<form method="post" action="{{ route('otherInformationAUpdate') }}">
+<form method="post" action="{{ route('otherInformationAUpdate') }}" id="form">
 @csrf
 
 
@@ -772,8 +778,8 @@ Update
 
                     <div class="buttons d-flex justify-content-end mt-4">
                         <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
-                        <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
-                        <button class="btn btn-custom next_button" name="submit_value" value="save_and_exit_from_three" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+                        <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_four" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
+                        <button class="btn btn-custom next_button" name="submit_value" value="next_step_from_four" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
 
                     </div>
 

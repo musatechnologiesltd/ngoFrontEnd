@@ -387,9 +387,11 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-lg-12">
-                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে</label>
-                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id=""
+                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id="fc1PdfN1"
                                                placeholder="">
+
+                                               <p id="fc1PdfN1_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                                <?php
 
@@ -466,9 +468,11 @@
                                         <div class="card-body">
 
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</label>
-                                                <input type="file" name="verified_fc_one_form" class="form-control" id=""
+                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" accept=".pdf" name="verified_fc_one_form" class="form-control" id="fc1PdfN2"
                                                        placeholder="">
+
+                                                       <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                                        <?php
 

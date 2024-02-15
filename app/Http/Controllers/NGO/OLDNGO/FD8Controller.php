@@ -44,7 +44,7 @@ class FD8Controller extends Controller
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
 
-        //dd($fdOneData);
+       //dd($fdOneData);
 
         FdOneForm::where('id',$deCodeId)
         ->update([
@@ -85,14 +85,24 @@ class FD8Controller extends Controller
 
        $ngoRenew->save();
 
-
+        
 
        Session::put('newFd8Id',$ngoRenew->id);
 
 
+ //dd($ngoRenew->id);
 
 
-       return redirect('/ngoAllRegistrationForm');
+       if($fdOneData->complete_status == 'save_and_exit_from_one'){
+
+        return redirect('/dashboard');
+
+    }else{
+
+    return redirect('/ngoAllRegistrationForm');
+    }
+
+      // return redirect('/ngoAllRegistrationForm');
     }
 
 
@@ -107,7 +117,7 @@ class FD8Controller extends Controller
 
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
 
-        //dd($fdOneData);
+       // dd(Session::get('updateFd8Id'));
 
 
         $regnumber = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->first();
@@ -123,7 +133,7 @@ class FD8Controller extends Controller
 
         }else{
 
-            $ngoRenew = NgoRenewInfo::find(Session::get('updateFd8Id'));
+            $ngoRenew = NgoRenewInfo::find(Session::get('newFd8Id'));
         }
 
 
@@ -143,12 +153,23 @@ class FD8Controller extends Controller
 
 
 
-        if($fdOneData->complete_status = 'go_to_step_three'){
-
+        if($fdOneData->complete_status == 'go_to_step_three'){
+//dd(12);
             return redirect('/allStaffDetailsInformation');
 
         }else{
-               return redirect('/ngoAllRegistrationForm');
+//dd(233);
+            if($fdOneData->complete_status == 'save_and_exit_from_two' || $fdOneData->complete_status == 'exit_from_step_two_edit'){
+
+                return redirect('/dashboard');
+
+            }else{
+
+            return redirect('/ngoAllRegistrationForm');
+            }
+
+
+               //return redirect('/ngoAllRegistrationForm');
         }
 
 
@@ -188,7 +209,21 @@ class FD8Controller extends Controller
 
 
          Session::put('newFd8Id',$ngoRenew->id);
-         return redirect('/ngoAllRegistrationForm');
+
+
+
+         //return redirect('/ngoAllRegistrationForm');
+
+
+
+         if($fdOneData->complete_status == 'save_and_exit_from_four'){
+
+            return redirect('/dashboard');
+
+        }else{
+
+        return redirect('/ngoAllRegistrationForm');
+        }
 
 
     }
@@ -248,17 +283,17 @@ class FD8Controller extends Controller
        $ngoRenew->save();
 
 
+//dd($fdOneData->complete_status);
+       Session::put('newFd8Id',$ngoRenew->id);
 
-       Session::put('updateFd8Id',$ngoRenew->id);
 
 
-
-if($fdOneData->complete_status = 'go_to_step_two'){
+if($fdOneData->complete_status == 'go_to_step_two'){
 
     return redirect('/fieldOfProposedActivities');
 
 }else{
-       return redirect('/ngoAllRegistrationForm');
+       return redirect('/dashboard');
 }
     }
 

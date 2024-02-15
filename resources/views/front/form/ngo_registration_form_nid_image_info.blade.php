@@ -113,7 +113,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="{{ route('ngoMemberDocument.update',$all_all_ngo_member_doc->id) }}" enctype="multipart/form-data">
+                                                        <form method="post" action="{{ route('ngoMemberDocument.update',$all_all_ngo_member_doc->id) }}" enctype="multipart/form-data" id="form">
 
                                                             @csrf
                                                             @method('PUT')

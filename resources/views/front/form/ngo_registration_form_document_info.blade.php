@@ -165,7 +165,7 @@ if($localNgoTypem == 'Old'){
 
                         <div class="file-content">
                             <div class="card">
-                                <div class="card-body file-manager">
+                                <div class="card-body file-manager 4">
 
 
                                     <div class="files">
@@ -204,7 +204,14 @@ if($localNgoTypem == 'Old'){
 
 
 
-
+<div class="mb-3">
+                                            <label class="form-label" for="">
+                                                ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা<span class="text-danger">*</span>
+                                            <br><span class="text-success">(maximum 5 MB)</span></label>
+                                            <input class="form-control" name="form_eight_executive_committee_member" data-parsley-required accept=".pdf" type="file" id="structurePartTwo402">
+											
+											<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo402_text"></small>
+                                        </div>
 
 
 
@@ -213,67 +220,105 @@ if($localNgoTypem == 'Old'){
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
-                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
+                                                <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="structurePartTwo1">
+
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo1_text"></small>
+
+
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
-                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="structurePartTwo2">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo2_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="structurePartTwo3">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo3_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
-                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="structurePartTwo4">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo4_text"></small>
+                                            </div>
+ <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="constitution_extra"  accept=".pdf" type="file" id="structurePartTwo800">
+												
+												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo800_text"></small>
+                                            </div>
+                                          <div class="mb-3">
+                                                <label class="form-label" for="">
+                                                    সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
+                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartTwo400">
+												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo400_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
-                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                                    সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                <input class="form-control"  name="last_ten_year_annual_report"  accept=".pdf" type="file" id="structurePartTwo401">
+												
+												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo401_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="structurePartTwo6">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo6_text"></small>
+
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="structurePartTwo7">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo7_text"></small>
+
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
-                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="structurePartTwo8">
+
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo8_text"></small>
+
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
-                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
+                                                <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="structurePartTwo9">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo9_text"></small>
                                             </div>
 
 
@@ -325,7 +370,7 @@ if($localNgoTypem == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -337,7 +382,7 @@ if($localNgoTypem == 'Old'){
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -477,7 +522,7 @@ if($localNgoTypem == 'Old'){
                                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                          </div>
                                                                          <div class="modal-body">
-                                                                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                  @csrf
                                                                                  @method('PUT')
@@ -509,7 +554,85 @@ if($localNgoTypem == 'Old'){
 
                                              <!--end if -->
 
+              <!--new start -->
+                                        @if(empty($ngoOtherDocListsFirst->form_eight_executive_committee_member))
 
+                                        @else
+                                        <?php
+
+                                          $file_path = url($ngoOtherDocListsFirst->form_eight_executive_committee_member);
+                                          $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                                          ?>
+
+
+                                              <div class="file-box">
+
+
+
+                                                ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+
+                                                  <div class="file-top">
+                                                      <i class="fa fa-file-pdf-o txt-primary"></i>
+                                                  </div>
+
+                                                  <div class="mt-2">
+                                                      <h6>{{ $filename }}</h6>
+                                                      <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                              data-bs-target="#exampleModal555551211"><i class="fa fa-pencil"></i></button>
+
+
+                                                              <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                                              <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                                                <!--modal -->
+                                                                <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                  <div class="modal-dialog">
+                                                                      <div class="modal-content">
+                                                                          <div class="modal-header">
+                                                                              <h5 class="modal-title" id="exampleModalLabel">
+                                                                                ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+  </h5>
+                                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                          </div>
+                                                                          <div class="modal-body">
+                                                                              <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                                                  @csrf
+                                                                                  @method('PUT')
+                                                                                  <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                                                  <input type="hidden" name="title" value="form_eight_executive_committee_member"/>
+                                                                                  <div class="mb-3">
+
+                                                                                      <input type="file" name="form_eight_executive_committee_member" class="form-control" id="">
+
+                                                                                      <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->form_eight_executive_committee_member  }}"
+                          style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                                                  </div>
+                                                                                  <div class="modal-footer">
+                                                                                      <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                                                  </div>
+                                                                              </form>
+                                                                          </div>
+
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <!--model end -->
+                                                  </div>
+
+
+                                              </div>
+
+                                              @endif
+
+                                              <!--end if -->
 
 
                                         <!--new start -->
@@ -560,7 +683,7 @@ if($localNgoTypem == 'Old'){
                                                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                           </div>
                                                                           <div class="modal-body">
-                                                                              <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                              <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                   @csrf
                                                                                   @method('PUT')
@@ -645,7 +768,7 @@ if($localNgoTypem == 'Old'){
                                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                             </div>
                                                                             <div class="modal-body">
-                                                                                <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                                <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                     @csrf
                                                                                     @method('PUT')
@@ -729,7 +852,7 @@ if($localNgoTypem == 'Old'){
                                                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                               </div>
                                                                               <div class="modal-body">
-                                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                       @csrf
                                                                                       @method('PUT')
@@ -811,7 +934,7 @@ if($localNgoTypem == 'Old'){
                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                            </div>
                                                                            <div class="modal-body">
-                                                                               <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                               <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                    @csrf
                                                                                    @method('PUT')
@@ -895,7 +1018,7 @@ if($localNgoTypem == 'Old'){
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')
@@ -947,7 +1070,7 @@ if($localNgoTypem == 'Old'){
                                   <div class="file-box">
 
 
-                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
                                       <div class="file-top">
                                           <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -973,12 +1096,12 @@ if($localNgoTypem == 'Old'){
                                                           <div class="modal-content">
                                                               <div class="modal-header">
                                                                   <h5 class="modal-title" id="exampleModalLabel">
-                                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 </h5>
                                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                               </div>
                                                               <div class="modal-body">
-                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                       @csrf
                                                                       @method('PUT')
@@ -1030,7 +1153,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                        প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
                              <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1056,12 +1179,12 @@ if($localNgoTypem == 'Old'){
                                              <div class="modal-content">
                                                  <div class="modal-header">
                                                      <h5 class="modal-title" id="exampleModalLabel">
-                                                        প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                                                        প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 </h5>
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1095,8 +1218,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-
-                      <!--new start -->
+                  <!--new start -->
                @if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
 
                @else
@@ -1113,7 +1235,7 @@ if($localNgoTypem == 'Old'){
 
 
 
-                        বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                        সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
 
                          <div class="file-top">
                              <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1139,7 +1261,7 @@ if($localNgoTypem == 'Old'){
                                              <div class="modal-content">
                                                  <div class="modal-header">
                                                      <h5 class="modal-title" id="exampleModalLabel">
-                                                        বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                                                        সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
 </h5>
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
@@ -1175,6 +1297,164 @@ if($localNgoTypem == 'Old'){
                      @endif
 
                      <!--end if -->
+
+
+                      <!--new start -->
+                      @if(empty($ngoOtherDocListsFirst->last_ten_year_annual_report))
+
+                      @else
+                      <?php
+
+                        $file_path = url($ngoOtherDocListsFirst->last_ten_year_annual_report);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                        ?>
+                     <div class="file-box">
+
+
+
+                        সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+
+                         <div class="file-top">
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
+                         </div>
+
+                         <div class="mt-2">
+                             <h6>{{ $filename }}</h6>
+                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                     <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                       <!--modal -->
+                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">
+                                                        সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+</h5>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                         @csrf
+                                                         @method('PUT')
+                                                         <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                         <input type="hidden" name="title" value="last_ten_year_annual_report"/>
+                                                         <div class="mb-3">
+
+                                                             <input type="file" name="last_ten_year_annual_report" class="form-control" id="">
+
+                                                             <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_year_annual_report  }}"
+ style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                             <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                         </div>
+                                                     </form>
+                                                 </div>
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!--model end -->
+                         </div>
+
+
+                     </div>
+
+                     @endif
+
+                     <!--end if -->
+
+
+
+                       <!--new start -->
+                       @if(empty($ngoOtherDocListsFirst->constitution_extra))
+
+                       @else
+                       <?php
+
+                         $file_path = url($ngoOtherDocListsFirst->constitution_extra);
+                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                         ?>
+                      <div class="file-box">
+
+
+                        সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+
+                          <div class="file-top">
+                              <i class="fa fa-file-pdf-o txt-primary"></i>
+                          </div>
+
+                          <div class="mt-2">
+                              <h6>{{ $filename }}</h6>
+                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                      data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                        <!--modal -->
+                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">
+                                                        সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+ </h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                          @csrf
+                                                          @method('PUT')
+                                                          <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                          <input type="hidden" name="title" value="constitution_extra"/>
+                                                          <div class="mb-3">
+
+                                                              <input type="file" name="constitution_extra" class="form-control" id="">
+
+                                                              <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->constitution_extra  }}"
+  style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <!--model end -->
+                          </div>
+
+
+                      </div>
+
+                      @endif
+
+                      <!--end if -->
 
 
 
@@ -1226,7 +1506,7 @@ if($localNgoTypem == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1308,7 +1588,7 @@ if($localNgoTypem == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1389,7 +1669,7 @@ if($localNgoTypem == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1474,7 +1754,7 @@ if($localNgoTypem == 'Old'){
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')
@@ -1524,7 +1804,7 @@ if($localNgoTypem == 'Old'){
           <div class="file-box">
 
 
-            প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+            প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
               <div class="file-top">
                   <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1550,12 +1830,12 @@ if($localNgoTypem == 'Old'){
                                   <div class="modal-content">
                                       <div class="modal-header">
                                           <h5 class="modal-title" id="exampleModalLabel">
-                                            প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+                                            প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 </h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1636,7 +1916,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1717,7 +1997,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1797,7 +2077,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                      </div>
                                                      <div class="modal-body">
-                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                              @csrf
                                                              @method('PUT')
@@ -1876,7 +2156,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                      </div>
                                                      <div class="modal-body">
-                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                              @csrf
                                                              @method('PUT')
@@ -1958,7 +2238,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                   <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                        @csrf
                                                        @method('PUT')
@@ -2047,7 +2327,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="mb-3">
                                             <label class="form-label" for="">
                                                 এফডি-১ ফরম<span class="text-danger">*</span>
-                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                            <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                             <input class="form-control" name="fd_one_form_data" data-parsley-required accept=".pdf" type="file" id="">
                                         </div>
 
@@ -2055,7 +2335,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="mb-3">
                                             <label class="form-label" for="">
                                                 ফরম নং - ৮<span class="text-danger">*</span>
-                                            <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                            <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                             <input class="form-control" name="form_no_8_data" data-parsley-required accept=".pdf" type="file" id="">
                                         </div>
 
@@ -2064,14 +2344,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                <br><span class="text-success">পিডিএফ এর সাইজ ২ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" name="nid_and_image_of_executive_committee_members" data-parsley-required accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি  বেশি হওয়া যাবে না</span> </label>
+                                                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
                                             </div>
 
@@ -2079,7 +2359,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধন নবায়ন ফি জমাদানের চালানের মূলকপিসহ সত্যায়িত অনুলিপি   <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="registration_renewal_fee"  accept=".pdf" type="file" id="">
                                             </div>
 
@@ -2087,28 +2367,28 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ নির্বাহী কমিটি অনুমোদন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ১ এমবি বেশি হওয়া যাবে না</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="approval_of_executive_committee"  accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫ এমবি  বেশি হওয়া যাবে না</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
                                                 <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                    অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সর্বশেষ নিবন্ধন /নবায়ন সনদের সত্যায়িত অনুলিপি<span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                             </div>
 
@@ -2116,14 +2396,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Right To Information Act - 2009-এর আওতায় ফোকাল Focal Point করত :ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span> </label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span> </label>
                                                 <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
-                                                    <br><span class="text-success">পিডিএফ এর সাইজ ৫০০ কেবি বেশি হওয়া যাবে না</span></label>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
                                             </div>
 
@@ -2149,12 +2429,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                ফরম নং - ৮ <span class="text-danger">*</span>
+                                                 ফরম নং - ৮ <span class="text-danger">*</span>
+                                                 <br><span class="text-light" style="font-size: 12px;">(maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV1">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV1_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2163,11 +2445,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 নির্বাহী কমিটির সদস্যদের পাসপোর্ট সাইজের ছবিসহ জাতীয় পরিচয়পত্রে সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV2">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV2_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2176,24 +2461,29 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV3">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV3_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+                                                গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="newNgoPdfV4">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV4_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2202,11 +2492,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার কার্যক্রম প্রতিবেদন  <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV5">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV5_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2215,11 +2508,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 দাতা সংস্থার প্রতিশ্রুতিপত্র (সংস্থার প্রধান কতৃক সত্যায়িত )<span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 1MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV6">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV6_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2231,11 +2527,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার নির্বাহী কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি (উপস্থিত সাধারণ সদস্যদের উপস্থিতির স্বাক্ষরিত তালিকাসহ )<span class="text-danger">*</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV7">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV7_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2245,11 +2543,13 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 সংস্থার সাধারণ সদস্যদের নামের তালিকা (প্রত্যেক সদস্যদের স্বাক্ষরসহ নাম, পিতা /মাতা, স্বামী/স্ত্রী'র নাম ও ঠিকানা ,জাতীয় পরিচয়পত্র নম্বর )<span class="text-danger">*</span>
+                                                <br><span class="text-light" style="font-size: 12px;">(maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="newNgoPdfV8">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="newNgoPdfV8_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2306,7 +2606,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             @elseif($key+1 == 3)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                            <h6>প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
                                             @else
 
                                             <h6>Attested copy of constitution</h6>
@@ -2315,7 +2615,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             @elseif($key+1 == 4)
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                             @else
 
                                             <h6>Activity report of the organization</h6>
@@ -2400,7 +2700,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             @elseif($key+1 == 3)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
+                                                                            <h6>প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি </h6>
                                                                             @else
 
                                                                             <h6>Attested copy of constitution</h6>
@@ -2409,7 +2709,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             @elseif($key+1 == 4)
 
                                                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কতৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
+                                                                            <h6>গঠনতন্ত্রের (প্রাথমিক নিবন্ধন কর্তৃপক্ষ কতৃক অনুমোদিত ) সত্যায়িত অনুলিপি </h6>
                                                                             @else
 
                                                                             <h6>Activity report of the organization</h6>
@@ -2458,7 +2758,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')

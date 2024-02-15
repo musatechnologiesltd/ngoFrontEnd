@@ -498,7 +498,39 @@ if (is_null($a)) {
 
                              </td>
                          </tr>
+ <tr>
+                            <td>{{ trans('fd_one_step_one.nine')}}.</td>
+                            <td colspan="3">{{ trans('fd_one_step_four.tt4')}}
+                            </td>
 
+                        </tr>
+
+                        @foreach($get_all_data_other as $key=>$allGetAllDataOther)
+                   
+
+                         <tr>
+                             <td></td>
+                             <td>({{ trans('fd_one_step_one.nine')}}.{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }})</td>
+                             <td>{{ $allGetAllDataOther->information_title }}</td>
+                             <td>: @if(empty($allGetAllDataOther->information_pdf))
+
+                                @else
+
+                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+                                <a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($allGetAllDataOther->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i>দেখুন</a>
+
+                                @else
+
+                                <a target="_blank"  href="{{ route('otherInfoFromOneDownload',base64_encode($allGetAllDataOther->id)) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+
+
+
+                                @endif
+                                @endif</td>
+                         </tr>
+
+                         @endforeach
                          </tbody>
                      </table>
                  </div>

@@ -117,8 +117,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         $request->validate([
 
-            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
 
             'foreigner_name_for_subject' => 'required|string',

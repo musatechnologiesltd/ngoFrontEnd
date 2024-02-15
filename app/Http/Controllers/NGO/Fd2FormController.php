@@ -193,13 +193,20 @@ class Fd2FormController extends Controller
         $fd7FormList = Fd7Form::where('fd_one_form_id',$ngo_list_all->id)
         ->where('id',$fd7Id)->latest()->first();
 
+        if(!$fd2FormList){
 
+            $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',0)->latest()->get();
+
+
+         return view('front.fd2Form.addFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngo_list_all','divisionList','fd7FormList'));
+
+        }else{
 
         $fd2OtherInfo = Fd2Fd7OtherInfo::where('fd2_form_for_fd7_form_id',$fd2FormList->id)->latest()->get();
 
 
          return view('front.fd2Form.editFd2DetailForFd7',compact('fd2FormList','fd2OtherInfo','fd7Id','ngo_list_all','divisionList','fd7FormList'));
-
+        }
 
     }
 
@@ -209,24 +216,37 @@ class Fd2FormController extends Controller
 
         $fc2Id = base64_decode($id);
 
-        //dd($fc2Id);
+
 
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+
         $divisionList = DB::table('civilinfos')->groupBy('division_bn')
         ->select('division_bn')->get();
 
         $fd2FormList = Fd2FormForFc2Form::where('fd_one_form_id',$ngo_list_all->id)
         ->where('fc2_form_id',$fc2Id)->latest()->first();
 
+
+
         $fc2FormList = Fc2Form::where('fd_one_form_id',$ngo_list_all->id)
         ->where('id',$fc2Id)->latest()->first();
 
 
 
+        if(!$fd2FormList){
+            $fd2OtherInfo = Fd2Fc2OtherInfo::where('fd2_form_for_fc2_form_id',0)->latest()->get();
+            return view('front.fd2Form.addFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngo_list_all','divisionList','fc2FormList'));
+
+        }else{
+
+
+
         $fd2OtherInfo = Fd2Fc2OtherInfo::where('fd2_form_for_fc2_form_id',$fd2FormList->id)->latest()->get();
+        return view('front.fd2Form.editFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngo_list_all','divisionList','fc2FormList'));
+    }
 
 
-         return view('front.fd2Form.editFd2DetailForFc2',compact('fd2FormList','fd2OtherInfo','fc2Id','ngo_list_all','divisionList','fc2FormList'));
 
 
     }
@@ -249,13 +269,20 @@ class Fd2FormController extends Controller
         ->where('id',$fd3Id)->latest()->first();
 
 
+        if(!$fd2FormList){
 
+            $fd2OtherInfo = Fd2Fd3OtherInfo::where('fd2_form_for_fd3_form_id',0)->latest()->get();
+
+
+         return view('front.fd2Form.addFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngo_list_all','divisionList','fd3FormList'));
+
+        }else{
         $fd2OtherInfo = Fd2Fd3OtherInfo::where('fd2_form_for_fd3_form_id',$fd2FormList->id)->latest()->get();
 
 
          return view('front.fd2Form.editFd2DetailForFd3',compact('fd2FormList','fd2OtherInfo','fd3Id','ngo_list_all','divisionList','fd3FormList'));
 
-
+        }
     }
 
 
@@ -277,12 +304,22 @@ class Fd2FormController extends Controller
         ->where('id',$fc1Id)->latest()->first();
 
 
+        if(!$fd2FormList){
+
+            $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',0)->latest()->get();
+
+
+            return view('front.fd2Form.addFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngo_list_all','divisionList','fc1FormList'));
+
+        }else{
+
+
 
         $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',$fd2FormList->id)->latest()->get();
 
 
          return view('front.fd2Form.editFd2DetailForFc1',compact('fd2FormList','fd2OtherInfo','fc1Id','ngo_list_all','divisionList','fc1FormList'));
-
+        }
 
     }
 

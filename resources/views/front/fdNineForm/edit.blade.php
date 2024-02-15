@@ -348,9 +348,11 @@
     </div> --}}
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
-            class="text-danger">*</span></label>
-        <input type="file" accept=".pdf"  class="form-control" id=""
-               placeholder=""  name="fd9_academic_qualification">
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+            <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf1"
+                   placeholder=""  name="fd9_academic_qualification">
+
+                   <p id="fdNinePdf1_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
 
                @if(!$fdNineData->fd9_academic_qualification)
@@ -373,9 +375,11 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
-            class="text-danger">*</span></label>
-        <input type="file" accept=".pdf"  class="form-control" id=""
-               placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+            <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf2"
+                   placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
+
+                   <p id="fdNinePdf2_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
 
@@ -396,9 +400,11 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)<span
-            class="text-danger">*</span>:</label>
-        <input type="file" accept=".pdf"   class="form-control" id=""
-               placeholder="" name="fd9_past_experience">
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf3"
+                   placeholder="" name="fd9_past_experience">
+
+                   <p id="fdNinePdf3_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_past_experience)
 
@@ -425,9 +431,10 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত করতে হবে),<span
-            class="text-danger">*</span></label>
-        <input type="file" accept=".pdf"   class="form-control" id=""
-               placeholder="" name="fd9_offered_post">
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf4"
+                   placeholder="" name="fd9_offered_post">
+                   <p id="fdNinePdf4_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_offered_post)
 
@@ -448,9 +455,11 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন পত্র সংযুক্ত করতে হবে)<span
-            class="text-danger">*</span>:</label>
-        <input type="file" accept=".pdf"   class="form-control" id=""
-               placeholder="" name="fd9_name_of_proposed_project">
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf5"
+                   placeholder="" name="fd9_name_of_proposed_project">
+
+                   <p id="fdNinePdf5_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_name_of_proposed_project)
 
@@ -511,9 +520,11 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি <span
-            class="text-danger">*</span></label>
-        <input type="file" class="form-control" id=""
-               placeholder="" accept="image/*" name="fd9_foreigner_passport_size_photo" >
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 200 KB & Image Format:PNG)</span></label>
+            <input type="file" class="form-control" id="fdNinePdf6"
+                   placeholder="" accept="image/png" name="fd9_foreigner_passport_size_photo" >
+
+                   <p id="fdNinePdf6_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
 
                 <img src="{{ asset('/') }}{{ $fdNineData->fd9_foreigner_passport_size_photo }}" alt="" style="height:40px;" id="output">
@@ -522,9 +533,10 @@
     </div>
     <div class="mb-3 col-lg-6">
         <label for="" class="form-label">পাসপোর্টের কপি সংযুক্ত<span
-            class="text-danger">*</span></label>
-        <input type="file" accept=".pdf" class="form-control" id=""
-               placeholder=""  name="fd9_copy_of_passport" >
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+            <input type="file" accept=".pdf" class="form-control" id="fdNinePdf7"
+                   placeholder=""  name="fd9_copy_of_passport" >
+                   <p id="fdNinePdf7_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_copy_of_passport)
 
@@ -545,31 +557,7 @@
     </div>
 
 
-    <div class="mb-3 col-lg-12">
-        <label for="" class="form-label">প্রধান নির্বাহীর সিল ও স্বাক্ষরকৃত এফডি-৯ ফরম <span
-            class="text-danger">*</span></label>
-        <input type="file" accept=".pdf" class="form-control" id=""
-               placeholder=""  name="verified_fd_nine_form" required>
 
-               @if(!$fdNineData->verified_fd_nine_form)
-
-               @else
-               <?php
-
-               $file_path = url($fdNineData->verified_fd_nine_form);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
-
-
-    </div>
 
 
 
@@ -591,19 +579,22 @@
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                 <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
+                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span><br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
 
-                    <input type="file"  value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+                    <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                     <img src="{{asset('/')}}{{ $fdNineData->digital_signature }}" style="height:40px;"/>
                 </div>
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                 <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> <br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+
+                    <input type="file"  name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+                    <p id="digital_seal_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
 
                     <img src="{{asset('/')}}{{ $fdNineData->digital_seal }}" style="height:40px;"/>

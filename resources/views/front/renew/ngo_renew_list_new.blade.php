@@ -259,8 +259,11 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
             </div>
             <div class="mb-3">
-                                    <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                                    <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                    <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="foregin_pdf"/>
+                                    <p id="foregin_pdf_text" class="text-danger" style="font-size: 12px;"></p>
+
+
                                 </div>
 
                                 <div class="mb-3">
@@ -270,8 +273,9 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 
                           <div class="mb-3">
-                                    <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-                                    <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
+                                    <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+                                    <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="annual_budget_file">
+                                    <p id="annual_budget_file_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
@@ -295,20 +299,22 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-                                 <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                                    <input type="file" value="" name="digital_signature" accept="image/*" class="form-control" id="">
+                                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> <br>
+                                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span></label>
 
+                                    <input type="file" value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+                                    <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                 </div>
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-                                 <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                                    <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span><br>
+                                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b>  </label>
 
+                                    <input type="file"  value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
 
+                                    <p id="digital_seal_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
                                 <!-- end new code -->
 
@@ -328,19 +334,21 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
+        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> <br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span></label>
 
+        <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+        <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
     </div>
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-        <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span><br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b>  </label>
 
+        <input type="file" data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+        <p id="digital_seal_text" class="text-danger" style="font-size: 12px;"></p>
 
     </div>
     <!-- end new code -->
@@ -551,8 +559,9 @@ $ngoType =  DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
             @if(empty($get_all_data_new_first->foregin_pdf))
 
             <div class="mb-3">
-                <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="foregin_pdf"/>
+                <p id="foregin_pdf_text" class="text-danger" style="font-size: 12px;"></p>
             </div>
 @else
 
@@ -568,8 +577,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 ?>
  <div class="mb-3">
-    <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-    <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="">
+    <label for="" class="form-label">বিগত ১০(দশ) বছরে বৈদেশিক অনুদানে পরিচালত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+    <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="foregin_pdf"/>
+    <p id="foregin_pdf_text" class="text-danger" style="font-size: 12px;"></p>
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
         @endif
@@ -583,8 +593,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
         @if(empty($get_all_data_new_first->yearly_budget_file))
 
         <div class="mb-3">
-            <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-            <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="">
+            <label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+            <input type="file" name="yearly_budget_file" data-parsley-required accept=".pdf" class="form-control" id="annual_budget_file">
+            <p id="annual_budget_file_text" class="text-danger mt-2" style="font-size:12px;"></p>
         </div>
 @else
 
@@ -600,8 +611,11 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 ?>
 <div class="mb-3">
-<label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> </label>
-<input type="file" name="yearly_budget_file"  accept=".pdf" class="form-control" id="">
+<label for="" class="form-label">সংস্থার সম্ভাব্য/প্রত্যাশিত বার্ষিক বাজেট (উৎসসহ) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+<input type="file" name="yearly_budget_file"  accept=".pdf" class="form-control" id="annual_budget_file">
+
+<p id="annual_budget_file_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
     @endif
@@ -630,18 +644,22 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-        <input type="file" value="" name="digital_signature" accept="image/*" class="form-control" id="">
+        < <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> <br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span></label>
+
+        <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+        <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
         <img src="{{asset('/')}}{{ $get_all_data_new_first->digital_signature }}" style="height:40px;"/>
     </div>
 
 
     <div class="mb-3">
-        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> </label>
-     <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-        <input type="file"  value="" name="digital_seal" accept="image/*" class="form-control" id="">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span><br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b>  </label>
+
+        <input type="file"  value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+        <p id="digital_seal_text" class="text-danger" style="font-size: 12px;"></p>
 
         <img src="{{asset('/')}}{{ $get_all_data_new_first->digital_seal }}" style="height:40px;"/>
     </div>

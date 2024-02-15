@@ -139,6 +139,11 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 });
 
 Route::controller(OtherformController::class)->group(function () {
+	    /// 12 february code start
+    Route::get('ngoInstructionPageApply', 'ngoInstructionPageApply')->name('ngoInstructionPageApply');
+    Route::get('ngoInstructionPageaRenew', 'ngoInstructionPageaRenew')->name('ngoInstructionPageaRenew');
+    Route::get('ngoInstructionPageNameChange', 'ngoInstructionPageNameChange')->name('ngoInstructionPageNameChange');
+    ///12 february code end
 
     Route::get('allNoticeBoard', 'allNoticeBoard')->name('allNoticeBoard');
     Route::get('viewNotice/{id}', 'viewNotice')->name('viewNotice');Route::get('informationResetPage', 'informationResetPage')->name('informationResetPage');

@@ -575,4 +575,22 @@ if($mainNgoTypeOld == 'Old'){
         return view('front.auth_page.first_reg_mail');
 
     }
+	
+	
+    public function ngoInstructionPageApply(){
+
+        return view('front.instruction_page.ngoInstructionPageApply');
+    }
+
+
+    public function ngoInstructionPageaRenew(){
+
+        return view('front.instruction_page.ngoInstructionPageaRenew');
+    }
+
+
+    public function ngoInstructionPageNameChange(){
+
+        return view('front.instruction_page.ngoInstructionPageNameChange');
+    }
 }

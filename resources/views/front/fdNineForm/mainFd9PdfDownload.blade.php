@@ -297,8 +297,8 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
 
                         @else
 
-                        <img src="{{ asset('/') }}{{ $fdNineData->fd9_foreigner_passport_size_photo }}" alt="" style="height:40px;" id="output">
-
+                        {{-- <img src="{{ asset('/') }}{{ $fdNineData->fd9_foreigner_passport_size_photo }}" alt="" style="height:40px;" id="output"> --}}
+                        সংযুক্ত
 @endif
                     </td>
                 </tr>

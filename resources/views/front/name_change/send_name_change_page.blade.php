@@ -139,7 +139,7 @@
                                এনজিওর নতুন নাম
                             </div>
                             <div class="card-body">
-                                <form method="get" action="{{ route('formEightData') }}">
+                                <form method="get" action="{{ route('formEightData') }}" id="form">
 
                                     <div class=" mb-3">
                                         <label for="" class="form-label">পুরাতন  নাম(English)</label>
