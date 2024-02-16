@@ -35,7 +35,8 @@ use App\Http\Controllers\NGO\CommonController;
 class FD8Controller extends Controller
 {
     public function addDataStepOneFd8($id){
-
+        try{
+            DB::beginTransaction();
         $deCodeId = base64_decode($id);
 
 
@@ -85,14 +86,14 @@ class FD8Controller extends Controller
 
        $ngoRenew->save();
 
-        
+
 
        Session::put('newFd8Id',$ngoRenew->id);
 
 
  //dd($ngoRenew->id);
 
-
+ DB::commit();
        if($fdOneData->complete_status == 'save_and_exit_from_one'){
 
         return redirect('/dashboard');
@@ -101,13 +102,17 @@ class FD8Controller extends Controller
 
     return redirect('/ngoAllRegistrationForm');
     }
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
       // return redirect('/ngoAllRegistrationForm');
     }
 
 
     public function addDataStepTwoFd8($id){
-
+        try{
+            DB::beginTransaction();
 
 
         $deCodeId = base64_decode($id);
@@ -150,7 +155,7 @@ class FD8Controller extends Controller
 }else{
     Session::forget('updateFd8Id');
             }
-
+            DB::commit();
 
 
         if($fdOneData->complete_status == 'go_to_step_three'){
@@ -173,12 +178,18 @@ class FD8Controller extends Controller
         }
 
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
         //return redirect('/ngoAllRegistrationForm');
     }
 
 
     public function addDataStepThreeFd8($id){
+
+        try{
+            DB::beginTransaction();
         $deCodeId = base64_decode($id);
 
         $fdOneData = FdOneForm::where('id',$deCodeId)->first();
@@ -214,7 +225,7 @@ class FD8Controller extends Controller
 
          //return redirect('/ngoAllRegistrationForm');
 
-
+         DB::commit();
 
          if($fdOneData->complete_status == 'save_and_exit_from_four'){
 
@@ -224,14 +235,18 @@ class FD8Controller extends Controller
 
         return redirect('/ngoAllRegistrationForm');
         }
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
 
 
     public function updateDataStepOneFd8($id){
-
+        try{
+            DB::beginTransaction();
         $deCodeId = base64_decode($id);
 
 
@@ -286,7 +301,7 @@ class FD8Controller extends Controller
 //dd($fdOneData->complete_status);
        Session::put('newFd8Id',$ngoRenew->id);
 
-
+       DB::commit();
 
 if($fdOneData->complete_status == 'go_to_step_two'){
 
@@ -294,6 +309,11 @@ if($fdOneData->complete_status == 'go_to_step_two'){
 
 }else{
        return redirect('/dashboard');
+}
+
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
 }
     }
 

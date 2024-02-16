@@ -183,7 +183,8 @@ class Fd3FormController extends Controller
 
 
          ]);
-
+         try{
+            DB::beginTransaction();
  //dd(11);
          $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
          $fd3FormInfo = new Fd3Form();
@@ -259,15 +260,19 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
 
          $fd3FormInfoId = $fd3FormInfo->id;
 
-
+         DB::commit();
          return redirect()->route('addFd2DetailForFd3',base64_encode($fd3FormInfoId))->with('success','Added Successfuly');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
      }
 
      public function update(Request $request,$id){
 
-
+        try{
+            DB::beginTransaction();
         $fd3FormInfo = Fd3Form::find($id);
         $fd3FormInfo->ngo_name =$request->ngo_name;
         $fd3FormInfo->ngo_address =$request->ngo_address;
@@ -337,9 +342,13 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
         $fd3FormInfo->save();
 
         $fd3FormInfoId = $fd3FormInfo->id;
-
+        DB::commit();
         return redirect()->route('editFd2DetailForFd3',base64_encode($fd3FormInfoId))->with('success','Updated Successfuly');
 
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
      }
 
 
@@ -386,12 +395,19 @@ $fd3FormInfo->communication_between_NGO_and_donor =$request->communication_betwe
    }
 
    public function destroy($id){
-
+    try{
+        DB::beginTransaction();
     $admins = Fd3Form::find($id);
     if (!is_null($admins)) {
         $admins->delete();
     }
+    DB::commit();
     return back()->with('error','Deleted successfully!');
+
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
 }
 
 

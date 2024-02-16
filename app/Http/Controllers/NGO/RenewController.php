@@ -149,7 +149,8 @@ class RenewController extends Controller
 
 
     public function updateRenewInformationList(Request $request){
-
+        try{
+            DB::beginTransaction();
 
 
         $time_dy = time().date("Ymd");
@@ -216,9 +217,12 @@ class RenewController extends Controller
 
 
         $mm_id = $ngoRenew->id;
-
+        DB::commit();
 return redirect('/otherInformationForRenew');
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
 
 
     }
@@ -233,7 +237,8 @@ $request->validate([
     'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
     'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 ]);
-
+try{
+    DB::beginTransaction();
         $time_dy = time().date("Ymd");
 
         $filePath="NgoRenewInfo";
@@ -304,9 +309,12 @@ $request->validate([
        $mm_id = $ngoRenew->id;
 
 //return redirect('/otherInformationForRenew');
-
+DB::commit();
 return redirect('/allStaffInformationForRenew');
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
 
@@ -334,7 +342,8 @@ return redirect('/allStaffInformationForRenew');
 
 
     public function verifiedFdEightDownload(Request $request){
-
+        try{
+            DB::beginTransaction();
         $fd9FormInfo = NgoRenewInfo::find($request->id);
 
         if ($request->hasfile('verified_fd_eight_form')) {
@@ -347,9 +356,12 @@ return redirect('/allStaffInformationForRenew');
 
         $fd9FormInfo->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Update Successfully');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -471,7 +483,8 @@ return redirect('/allStaffInformationForRenew');
        // dd($request->all());
 
         $input = $request->all();
-
+        try{
+            DB::beginTransaction();
 
         $condition_main_id = $input['id'];
         foreach($condition_main_id as $key => $condition_main_id){
@@ -481,15 +494,20 @@ return redirect('/allStaffInformationForRenew');
 
                 $form->save();
         }
-
+        DB::commit();
         return redirect()->route('otherInformationForRenew');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function otherInformationForRenewGet(Request $request){
 //dd($request->copy_of_chalan);
         $time_dy = time().date("Ymd");
-
+        try{
+            DB::beginTransaction();
        $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)
        ->orderBy('id','desc')->value('id');
        $filePath="NgoRenewInfo";
@@ -697,8 +715,13 @@ $newDataAll->save();
         $add_renew_request->time_for_api =$main_time;
         $add_renew_request->status = 'Ongoing';
         $add_renew_request->save();
-
+        DB::commit();
         return redirect('/renew')->with('success','Renew Request Send Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 

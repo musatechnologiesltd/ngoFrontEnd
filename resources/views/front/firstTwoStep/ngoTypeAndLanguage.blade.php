@@ -63,6 +63,11 @@
                     </div>
 
                     <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label">{{ trans('header.last_renew_date1')}}<span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control"   name="ngo_registration_date" id="datepicker1">
+                    </div>
+
+                    <div class="mb-4">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.last_renew_date')}} <span class="text-danger">*</span> </label>
                         <input type="text" class="form-control"   name="last_renew_date" id="datepicker">
                     </div>

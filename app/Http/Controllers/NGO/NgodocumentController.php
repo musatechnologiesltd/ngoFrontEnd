@@ -77,7 +77,8 @@ class NgodocumentController extends Controller
         $time_dy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
+        try{
+            DB::beginTransaction();
         $main_time = $dt->format('H:i:s a');
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
        if($request->main_ngo_type == 'Old'){
@@ -285,14 +286,20 @@ $newDataAll->save();
 
     }
 
-
-         return redirect()->back()->with('success','Created Successfully');
-
+    DB::commit();
+    return redirect()->back()->with('success','Created Successfully');
+}catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
 
     public function ngoDocumentFinal(){
+
+        try{
+            DB::beginTransaction();
         $checkCompleteStatusData = DB::table('form_complete_statuses')
         ->where('user_id',Auth::user()->id)
         ->first();
@@ -319,8 +326,12 @@ $newDataAll->save();
 
 
         }
+        DB::commit();
         return redirect('/ngoAllRegistrationForm');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -427,6 +438,9 @@ return Response::make(file_get_contents($file), 200, [
 
 
     public function deleteRenewalFile($title, $id){
+
+        try{
+            DB::beginTransaction();
         $newDataAll =RenewalFile::find($id);
         if($title == 'trustees'){
 
@@ -475,8 +489,12 @@ return Response::make(file_get_contents($file), 200, [
             $newDataAll->form_eight_executive_committee_member = null;
         }
         $newDataAll->save();
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -503,20 +521,26 @@ return Response::make(file_get_contents($file), 200, [
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoOtherDoc::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function update(Request $request,$id){
 
-
+        try{
+            DB::beginTransaction();
 
 
         if($request->main_ngo_type == 'Old'){
@@ -524,7 +548,7 @@ return Response::make(file_get_contents($file), 200, [
 
 
             $newDataAll =RenewalFile::find($id);
-			
+
 			 if ($request->hasfile('form_eight_executive_committee_member')) {
             $filePath="RenewalFile";
            $file = $request->file('form_eight_executive_committee_member');
@@ -710,8 +734,12 @@ return Response::make(file_get_contents($file), 200, [
         $updateOtherPdf->save();
 
     }
-        return redirect()->back()->with('success','Created Successfully');
-
+    DB::commit();
+    return redirect()->back()->with('success','Created Successfully');
+}catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 }

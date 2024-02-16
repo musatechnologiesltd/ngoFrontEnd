@@ -164,7 +164,8 @@ class Fc1FormController extends Controller
             'bank_account_number' => 'required|string',
 
         ]);
-
+        try{
+            DB::beginTransaction();
 //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fc1FormInfo = new Fc1Form();
@@ -246,9 +247,12 @@ class Fc1FormController extends Controller
 
         $fc1FormInfoId = $fc1FormInfo->id;
 
-
+        DB::commit();
         return redirect()->route('addFd2DetailForFc1',base64_encode($fc1FormInfoId))->with('success','Added Successfuly');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -258,7 +262,8 @@ class Fc1FormController extends Controller
 
     public function update(Request $request,$id){
 
-
+        try{
+            DB::beginTransaction();
         $fc1FormInfo = Fc1Form::find($id);
         $fc1FormInfo->ngo_name =$request->ngo_name;
         $fc1FormInfo->ngo_address =$request->ngo_address;
@@ -329,20 +334,29 @@ class Fc1FormController extends Controller
         $fc1FormInfo->save();
 
         $fc1FormInfoId = $fc1FormInfo->id;
-
+        DB::commit();
         return redirect()->route('editFd2DetailForFc1',base64_encode($fc1FormInfoId))->with('success','Updated Successfuly');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fc1Form::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 

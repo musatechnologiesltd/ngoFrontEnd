@@ -155,7 +155,8 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         ]);
 
       //dd($request->passport_photocopy);
-
+      try{
+        DB::beginTransaction();
          $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
          $fd9FormInfo = new Fd9Form();
          $fd9FormInfo->status = 'Ongoing';
@@ -296,9 +297,12 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
     //    }
 
 
-
+    DB::commit();
        return redirect()->route('fdNineForm.index')->with('success','Created Successfully');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -306,7 +310,8 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
     public function update(Request $request,$id){
 
 
-
+        try{
+            DB::beginTransaction();
 
 
         $fd9FormInfo = Fd9Form::find($id);
@@ -447,10 +452,13 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
     //   }
 
 
-
+    DB::commit();
       return redirect()->route('fdNineForm.index')->with('success','Updated Successfully');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function show($id){
@@ -584,7 +592,8 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
     }
 
     public function mainFd9PdfUpload(Request $request){
-
+        try{
+            DB::beginTransaction();
         $fd9FormInfo = Fd9Form::find($request->id);
 
         if ($request->hasfile('verified_fd_nine_form')) {
@@ -597,8 +606,13 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
 
         $fd9FormInfo->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Update Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -619,11 +633,17 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fd9Form::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 }

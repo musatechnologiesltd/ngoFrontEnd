@@ -138,7 +138,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
             'foreigner_image' => 'required|file',
             'copy_of_nvisa' => 'required|file',
         ]);
-
+        try{
+            DB::beginTransaction();
         $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd9OneFormInfo = new Fd9OneForm();
         $fd9OneFormInfo->fd_one_form_id = $fdOneFormId->id;
@@ -220,8 +221,12 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->save();
 
         $id = $fd9OneFormInfo->id;
-
+        DB::commit();
         return redirect()->route('addnVisaDetail',$id)->with('success','Addedd Successfully');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -236,7 +241,8 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         ]);
 
 
-
+        try{
+            DB::beginTransaction();
 
 
        $nVisaId = NVisa::where('fd9_one_form_id',$id)->value('id');
@@ -318,7 +324,7 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
         $fd9OneFormInfo->save();
 
         $id = $fd9OneFormInfo->id;
-
+        DB::commit();
         if(empty($nVisaId)){
 
             return redirect()->route('addnVisaDetail',$id);
@@ -327,17 +333,29 @@ $nVisaEdit = NVisa::where('fd9_one_form_id',base64_decode($id))
 
         return redirect()->route('nVisa.edit',$nVisaId)->with('success','Update Successfully');
 
+    }
 
+
+    }
+    catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
     }
     }
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fd9OneForm::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 

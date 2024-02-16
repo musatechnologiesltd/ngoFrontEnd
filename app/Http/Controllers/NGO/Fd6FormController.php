@@ -149,7 +149,8 @@ class Fd6FormController extends Controller
             'project_proposal_form' => 'required|file',
 
         ]);
-
+        try{
+            DB::beginTransaction();
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd6FormInfo = new Fd6Form();
         $fd6FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -295,10 +296,13 @@ class Fd6FormController extends Controller
 
 
 
-
+   DB::commit();
         return redirect()->route('addFd2Detail',base64_encode($fd6FormInfoId))->with('success','Added Successfuly');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -340,7 +344,8 @@ class Fd6FormController extends Controller
 
 
     public function update(Request $request,$id){
-
+        try{
+            DB::beginTransaction();
 
         $fd6FormInfo = Fd6Form::find($id);
 
@@ -489,9 +494,12 @@ class Fd6FormController extends Controller
 
 
 
-
+   DB::commit();
         return redirect()->route('fd2Form.edit',base64_encode($fd6FormInfoId))->with('success','Updated Successfuly');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -540,12 +548,19 @@ class Fd6FormController extends Controller
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fd6Form::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 

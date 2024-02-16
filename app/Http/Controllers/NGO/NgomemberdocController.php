@@ -35,7 +35,8 @@ class NgomemberdocController extends Controller
         $checkCompleteStatusData = DB::table('form_complete_statuses')
    ->where('user_id',Auth::user()->id)
    ->first();
-
+   try{
+    DB::beginTransaction();
    if(!$checkCompleteStatusData){
 
        $newStatusData = new FormCompleteStatus();
@@ -58,7 +59,12 @@ class NgomemberdocController extends Controller
 
 
    }
+   DB::commit();
    return redirect('/ngoAllRegistrationForm');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
 
@@ -91,7 +97,8 @@ class NgomemberdocController extends Controller
 
         $condition_main_image = $input['member_name'];
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-
+        try{
+            DB::beginTransaction();
         foreach($condition_main_image as $key => $all_condition_main_image){
 
             $file_size = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
@@ -109,8 +116,12 @@ class NgomemberdocController extends Controller
             $form->member_nid_copy_size =$file_size;
             $form->save();
        }
-
+       DB::commit();
        return redirect()->back()->with('success','Created Successfully');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -119,7 +130,8 @@ class NgomemberdocController extends Controller
 
 
         $time_dy = time().date("Ymd");
-
+        try{
+            DB::beginTransaction();
 
             $form= NgoMemberNidPhoto::find($id);
             $filePath="NgoMemberNidPhoto";
@@ -142,23 +154,32 @@ class NgomemberdocController extends Controller
 
 
             $form->save();
-
+            DB::commit();
             return redirect()->back()->with('info','Updated Successfully');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoMemberNidPhoto::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function ngoMemberDocumentDownload($id){

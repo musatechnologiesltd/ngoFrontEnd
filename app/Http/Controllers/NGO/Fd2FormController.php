@@ -326,6 +326,9 @@ class Fd2FormController extends Controller
 
     public function fd2PdfUpdate(Request $request){
 
+        try{
+            DB::beginTransaction();
+
         $fd2FormInfo =Fd2FormOtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
             $filePath="FdTwoForm";
@@ -338,13 +341,19 @@ class Fd2FormController extends Controller
 
           $fd2FormInfo->save();
 
-
+          DB::commit();
           return redirect()->back()->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
     public function fd2ForFc2PdfUpdate(Request $request){
+
+        try{
+            DB::beginTransaction();
 
         $fd2FormInfo =Fd2Fc2OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
@@ -358,14 +367,19 @@ class Fd2FormController extends Controller
 
           $fd2FormInfo->save();
 
-
+          DB::commit();
           return redirect()->back()->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
     public function fd2ForFc1PdfUpdate(Request $request){
+        try{
+            DB::beginTransaction();
 
         $fd2FormInfo =Fd2Fc1OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
@@ -379,14 +393,20 @@ class Fd2FormController extends Controller
 
           $fd2FormInfo->save();
 
-
+          DB::commit();
           return redirect()->back()->with('success','Added Successfuly');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
 
     public function fd2ForFd7PdfUpdate(Request $request){
+
+        try{
+            DB::beginTransaction();
 
         $fd2FormInfo =Fd2Fd7OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
@@ -400,14 +420,20 @@ class Fd2FormController extends Controller
 
           $fd2FormInfo->save();
 
-
+          DB::commit();
           return redirect()->back()->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
     public function fd2ForFd3PdfUpdate(Request $request){
+
+        try{
+            DB::beginTransaction();
 
         $fd2FormInfo =Fd2Fd3OtherInfo::find($request->mid);
         if ($request->hasfile('file')) {
@@ -421,54 +447,101 @@ class Fd2FormController extends Controller
 
           $fd2FormInfo->save();
 
-
+          DB::commit();
           return redirect()->back()->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
     public function fd2PdfDestroy($id){
+
+        try{
+            DB::beginTransaction();
 
         $admins = Fd2FormOtherInfo::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function deleteFd2DetailForFd7($id){
+
+        try{
+            DB::beginTransaction();
 
         $admins = Fd2Fd7OtherInfo::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function deleteFd2DetailForFd3($id){
+
+        try{
+            DB::beginTransaction();
 
         $admins = Fd2Fd3OtherInfo::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function deleteFd2DetailForFc2($id){
+        try{
+            DB::beginTransaction();
 
         $admins = Fd2Fc2OtherInfo::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
     public function deleteFd2DetailForFc1($id){
 
+
+        try{
+            DB::beginTransaction();
         $admins = Fd2Fc1OtherInfo::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -720,7 +793,8 @@ class Fd2FormController extends Controller
         ]);
 
 
-
+        try{
+            DB::beginTransaction();
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFd7Form();
@@ -780,10 +854,13 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd7Form.index')->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
     // end fc1
@@ -805,7 +882,8 @@ class Fd2FormController extends Controller
         ]);
 
 
-
+        try{
+            DB::beginTransaction();
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFc1Form();
@@ -865,10 +943,13 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fc1Form.index')->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -891,7 +972,8 @@ class Fd2FormController extends Controller
 
 
 
-
+        try{
+            DB::beginTransaction();
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2FormForFc2Form();
         $fd2FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -950,10 +1032,13 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fc2Form.index')->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -975,6 +1060,9 @@ class Fd2FormController extends Controller
             'fd_2_form_pdf' => 'required|file',
 
         ]);
+
+        try{
+            DB::beginTransaction();
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = new Fd2Form();
@@ -1034,15 +1122,20 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd6Form.index')->with('success','Added Successfuly');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
 
 
     public function update(Request $request,$id){
-
+        try{
+            DB::beginTransaction();
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2Form::find($id);
         $fd2FormInfo->ngo_name =$request->ngo_name;
@@ -1098,16 +1191,20 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd6Form.index')->with('success','Updated Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
 
     public function updateFd2DetailForFd7(Request $request){
-
+        try{
+            DB::beginTransaction();
 
         //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
@@ -1165,16 +1262,20 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd7Form.index')->with('success','Updated Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
 
     public function updateFd2DetailForFc1(Request $request){
-
+        try{
+            DB::beginTransaction();
 
         //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
@@ -1232,15 +1333,19 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fc1Form.index')->with('success','Updated Successfuly');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
 
     public function updateFd2DetailForFc2(Request $request){
-
+        try{
+            DB::beginTransaction();
 
         //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
@@ -1298,10 +1403,13 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fc2Form.index')->with('success','Updated Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -1322,7 +1430,8 @@ class Fd2FormController extends Controller
 
         ]);
 
-
+        try{
+            DB::beginTransaction();
 
 
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
@@ -1383,17 +1492,21 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd3Form.index')->with('success','Added Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
 
     public function updateFd2DetailForFd3(Request $request){
 
-
+        try{
+            DB::beginTransaction();
         //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd2FormInfo = Fd2FormForFd3Form::find($request->id);
@@ -1450,10 +1563,13 @@ class Fd2FormController extends Controller
 
 
           }
-
+          DB::commit();
           return redirect()->route('fd3Form.index')->with('success','Updated Successfuly');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/admin')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
