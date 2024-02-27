@@ -1490,7 +1490,8 @@ if($request->oldOrNew == 'Old'){
                 'fd_one_form_step_four_status' => 1,
                 'ngo_member_status' => 1,
                 'form_eight_status' => 1,
-                'ngo_member_nid_photo_status' => 1
+                'ngo_member_nid_photo_status' => 1,
+                'ngo_other_document_status' => 0
              ]);
 
 
@@ -1544,7 +1545,8 @@ if($request->oldOrNew == 'Old'){
             'fd_one_form_step_four_status' => 1,
             'form_eight_status' => 1,
             'ngo_member_status' => 1,
-            'ngo_member_nid_photo_status' => 1
+            'ngo_member_nid_photo_status' => 1,
+            'ngo_other_document_status' => 0
          ]);
 
 
@@ -1665,7 +1667,8 @@ if(in_array(null, $input['name'])){
             'fd_one_form_step_four_status' => 1,
             'ngo_member_status' => 1,
             'form_eight_status' => 1,
-            'ngo_member_nid_photo_status' => 1
+            'ngo_member_nid_photo_status' => 1,
+            'ngo_other_document_status' => 0
          ]);
 
 
@@ -1693,7 +1696,8 @@ if(!$checkCompleteStatusData){
         'fd_one_form_step_four_status' => 1,
         'form_eight_status' => 1,
         'ngo_member_status' => 1,
-        'ngo_member_nid_photo_status' => 1
+        'ngo_member_nid_photo_status' => 1,
+        'ngo_other_document_status' => 0
      ]);
 
 
