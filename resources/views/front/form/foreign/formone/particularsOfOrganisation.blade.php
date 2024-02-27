@@ -24,6 +24,9 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
                 </div>
@@ -31,9 +34,8 @@
                     <div class="committee_container active">
 
                         <div class="text">
-
                             <h2>{{ trans('fd_one_step_one.Particulars_of_Organisation')}}</h2>
-
+                            {{-- <p>Enter your personal information to get closer to copanies.</p> --}}
                         </div>
 
                         <div class="fd01_tablist">
@@ -107,13 +109,16 @@
                                             </label>
                                         <input type="text" class="form-control" value="" name="address_of_head_office_eng" data-parsley-required  id="">
                                     </div>
-<?php
+                                    <?php
 
-    $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
-    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+                                    $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
 
-?>
+                                    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+                                    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
+                                                ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+                                                                    ?>
 
                                                                     @if($ngoTypeInfo == 'দেশিও')
                                                                     <div class="mb-3">
@@ -196,6 +201,8 @@
                                 <div class="mb-3">
                                     <label for="" class="form-label">{{ trans('fd_one_step_one.Citizenship')}} <span class="text-danger">*</span> </label>
 
+
+
                                     <select class="js-example-basic-multiple form-control" data-parsley-required name="citizenship[]"
                                     multiple="multiple">
 
@@ -265,13 +272,18 @@
                     <input type="text" class="form-control" value="{{ $allParticularsOfOrganisation->address_of_head_office_eng }}" name="address_of_head_office_eng" data-parsley-required  id="">
                 </div>
 
-<?php
 
-    $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
-    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
-    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
-?>
+                <?php
+
+                $countryList = DB::table('countries')->where('id','!=',209)->orderBy('id','asc')->get();
+
+
+                $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
+                ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+
+                $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+                                                ?>
 
                                                 @if($ngoTypeInfo == 'দেশিও')
                                                 <label for="" class="form-label">{{ trans('fd_one_step_one.Country_of_Origin')}} <span class="text-danger">*</span> </label>
@@ -299,6 +311,9 @@
                                                     </select>
                                                 </div>
                                                 @endif
+
+
+
 
                                                 @if($foreignNgoType == 'Old')
                                                 <div class="mb-3">
@@ -334,6 +349,12 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.name')}} <span class="text-danger">*</span> </label>
                     <input type="text" data-parsley-required name="name_of_head_in_bd" value="{{ $allParticularsOfOrganisation->name_of_head_in_bd }}" class="form-control" id="">
                 </div>
+
+
+
+
+
+
 
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Whether_part_time_or_full_time')}} <span class="text-danger">*</span> </label>
@@ -373,6 +394,7 @@
                     <input type="text" data-parsley-required name="address" value="{{ $allParticularsOfOrganisation->address }}" class="form-control" id="">
                 </div>
 
+
                 @if($foreignNgoType == 'Old')
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.nn')}} <span class="text-danger">*</span> </label>
@@ -381,6 +403,7 @@
                 @else
 
                 @endif
+
 
                 <div class="mb-3">
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Mobile_Number')}} <span class="text-danger">*</span> </label>
@@ -402,9 +425,14 @@
                     <label for="" class="form-label">{{ trans('fd_one_step_one.Citizenship')}} <span class="text-danger">*</span> </label>
 
                         <?php
-     $convertNewAssCat  = explode(",",$allParticularsOfOrganisation->citizenship);
+     $convert_new_ass_cat  = explode(",",$allParticularsOfOrganisation->citizenship);
 
                         ?>
+
+
+
+
+
 
                     <select class="js-example-basic-multiple form-control" data-parsley-required name="citizenship[]"
                     multiple="multiple">
@@ -412,17 +440,17 @@
                     @if($ngoTypeInfo == 'দেশিও')
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                    <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                    <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                     @else
-                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                 @endif
                 @endforeach
                     @else
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                                         @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                        <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                        <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                         @else
-                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @endif
                                     @endforeach
                                     @endif
@@ -435,11 +463,13 @@
                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->profession }}" name="profession" class="form-control" id="">
                 </div>
 
+
                 <div class="mb-3">
                     <h5 class="form_middle_text">
                         Chief Executive Information
                     </h5>
                 </div>
+
 
                 <!--new code for ngo-->
                 <div class="mb-3">
@@ -451,6 +481,8 @@
                     <label for="" class="form-label mt-3">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->chief_desi }}"   name="chief_desi"  class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
                 </div>
+
+
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span><br>
@@ -473,7 +505,9 @@
                     <input type="text" data-parsley-required value="{{ $allParticularsOfOrganisation->place }}"   name="place"  class="form-control"  placeholder="Place">
                 </div>
 
+
                 @endif
+
 
                 <div class="mb-3">
                     <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span><br>
@@ -486,6 +520,7 @@
                     <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
                 </div>
                 <!-- end new code -->
+
 
                 @if(Route::is('fdOneFormEdit') )
 

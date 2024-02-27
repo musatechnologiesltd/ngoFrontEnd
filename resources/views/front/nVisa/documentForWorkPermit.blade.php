@@ -8,7 +8,16 @@
             <th>Required Attachment</th>
             <th>Action</th>
         </tr>
-        
+        {{-- <tr>
+            <td>1</td>
+            <td>Copy of buyer's nomination letter in case of employment of buyer;s representative</td>
+            <td><input type="file" accept="application/pdf" name="nomination_letter_of_buyer" class="form-control" id=""></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Copy of registration letter of board of investment, if not submitted earlier</td>
+            <td><input type="file" accept="application/pdf" name="registration_letter_of_board_of_investment" class="form-control" id=""></td>
+        </tr> --}}
         <tr>
             <td>1</td>
             <td>Copy of service contract/agreement/ appointment letter in case of employee<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>

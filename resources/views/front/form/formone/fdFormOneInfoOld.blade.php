@@ -1,15 +1,23 @@
 
 <?php
 
+
 $oldNgoRegNumber = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
-$allformOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-$getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-$getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
-$ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-    ?>
+
+
+$allformOneData = DB::table('fd_one_forms')
+->where('user_id',Auth::user()->id)->first();
+ $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+ $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+
+
+
+
+
+       ?>
 
              @include('flash_message')
              <div class="user_dashboard_right">
@@ -22,7 +30,20 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
            <div class="card-body mt-3 mb-3">
                  <div class="card-body">
+                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
+                     {{-- <p>                     @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif পিডিএফ ডাউনলোড করে, প্রধান নির্বাহির সিল, স্বাক্ষর সহ আপলোড করুন</p>
+                     @else
+                     <p>Download                      @if($localNgoTypem == 'Old')
+                        {{ trans('fd_one_step_one.fd8')}}
+                                                @else
+                                             {{ trans('fd_one_step_one.fd_one_form_title')}}
+                                                @endif PDF, upload with seal, signature of Chief Executive</p> --}}
+                     @endif
                      <table class="table table-bordered">
                          <tr>
                              @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -36,7 +57,12 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                          <tr>
 
 <td>
+    <?php
+                 $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
 
+
+
+                                                      ?>
     @if($ngoTypeInfo == 'দেশিও')
     @if($localNgoTypem == 'Old')
     <input type="hidden" data-parsley-required  name="স্থান" value="0"  class="form-control" id="mainPlace" placeholder="স্থান">
@@ -64,6 +90,33 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              </td>
                          </tr>
                      </table>
+<?php
+
+             $data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                    ->first();
+
+
+
+
+$count = 0;
+foreach ($data   as $a) {
+if (is_null($a)) {
+ $count++;
+}
+}
+
+
+
+             ?>
+
+             @if($count == 0)
+             {{-- <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p> --}}
+
+                     @else
+
+                     {{-- <p class="badge bg-danger rounded">{{ trans('form 8_bn.un_complete_status')}}</p> --}}
+
+                     @endif
 
                  </div>
              </div>
@@ -92,6 +145,8 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              <td>{{ trans('fd_one_step_one.reg_num')}}</td>
                              <td>:
 
+
+
                                  @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
                                  {{ App\Http\Controllers\NGO\CommonController::englishToBangla($oldNgoRegNumber) }}
@@ -99,6 +154,8 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                                  {{ $oldNgoRegNumber}}
                                  @endif
+
+
 
                              </td>
                          </tr>
@@ -205,7 +262,12 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              <td>{{ trans('form 8_bn.e')}}) {{ trans('fd_one_step_one.Citizenship')}}</td>
                              <td>: {{ $getCityzendata }}</td>
                          </tr>
-
+                         {{-- <tr>
+                             <td></td>
+                             <td></td>
+                             <td>{{ trans('form 8_bn.f')}}) {{ trans('fd_one_step_one.Profession')}}</td>
+                             <td>: {{ $allformOneData->profession }}</td>
+                         </tr> --}}
                          <tr>
                              <td>{{ trans('fd_one_step_one.two')}}.</td>
                              <td colspan="3">বিগত ১০(দশ ) বছরের বৈদেশিক অনুদানে পরিচালিত কার্যক্রমের বিবরণ (প্রকল্প ওয়ারী তথ্যাদির সংক্ষিপ্তসার সংযুক্ত করতে হবে ):
@@ -288,7 +350,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
 
                              $getCityzendata = $allFormOneMemberList->citizenship;
                              }
-
+                           //dd($getCityzendata);
                            ?>
 
                              <td></td>
@@ -392,7 +454,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              </td>
                          </tr>
 
-                         @if(!$getAllDataAdviserBank)
+                         @if(!$get_all_data_adviser_bank)
 
 
                          @else
@@ -402,9 +464,9 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              <td>{{ trans('fd_one_step_four.account_number')}}</td>
                              <td>:
                                  @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataAdviserBank->account_number)}}
+                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number)}}
                                  @else
-                                 {{ $getAllDataAdviserBank->account_number }}
+                                 {{ $get_all_data_adviser_bank->account_number }}
                                  @endif
 
                              </td>
@@ -413,25 +475,25 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                              <td></td>
                              <td>({{ trans('form 8_bn.b')}})</td>
                              <td>{{ trans('fd_one_step_four.account_type')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->account_type }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->account_type }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.c')}})</td>
                              <td>{{ trans('fd_one_step_four.name_of_bank')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->name_of_bank }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.d')}})</td>
                              <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->branch_name_of_bank }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->branch_name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.e')}})</td>
                              <td>{{ trans('fd_one_step_four.bank_address')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->bank_address }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                          </tr>
                          @endif
                          <tr>
@@ -447,16 +509,20 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
 
+
+
+
+
                              </td>
                          </tr>
-                         <tr>
+ <tr>
                             <td>{{ trans('fd_one_step_one.nine')}}.</td>
                             <td colspan="3">{{ trans('fd_one_step_four.tt4')}}
                             </td>
 
                         </tr>
 
-                        @foreach($getAllDataOther as $key=>$allGetAllDataOther)
+                        @foreach($get_all_data_other as $key=>$allGetAllDataOther)
                    
 
                          <tr>

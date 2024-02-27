@@ -20,28 +20,31 @@
                     </div>
                     <ul class="progress-bar">
                         @if($localNgoTypem == 'Old')
-
                         <li class="active">{{ trans('fd_one_step_one.fd8')}}</li>
-
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         @else
-
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
-
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
                         @endif
-
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li> --}}
+                        {{-- <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
                 <div class="right-side">
 
-    <?php
+                    <?php
 
-        $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+           ->first();
 
-    ?>
 
-                @if(count($particularsOfOrganisationData) == 0)
+                                    ?>
+
+                    @if(count($particularsOfOrganisationData) == 0)
+
 
                 @else
 
@@ -52,7 +55,7 @@
                 <div class="main active">
                     <div class="text">
                         <h2>{{ trans('fd_one_step_two.Field_of_proposed_activities')}}</h2>
-
+                        {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
                     <div class="fd01_tablist">
                         <div class="fd01_tab"></div>
@@ -73,9 +76,13 @@
                         @else
                         <?php
 
-                        $filePath = url($allFormOneData->foregin_pdf);
-                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-                        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                        $file_path = url($allFormOneData->foregin_pdf);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
                         ?>
      <div class="mb-3">
@@ -100,9 +107,13 @@
                         @else
                         <?php
 
-                        $filePath = url($allFormOneData->foregin_pdf);
-                        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-                        $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                        $file_path = url($allFormOneData->foregin_pdf);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
                         ?>
                         <div class="mb-3">
@@ -125,9 +136,13 @@
 
 <?php
 
-$filePath = url($allFormOneData->plan_of_operation);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
-$extension = pathinfo($filePath, PATHINFO_EXTENSION);
+$file_path = url($allFormOneData->plan_of_operation);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
 ?>
 <div class="mb-3">
@@ -143,6 +158,7 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                             <div class="mb-3 mt-4">
                                 <label for="" class="form-label">{{ trans('fd_one_step_two.Project_District')}}, {{ trans('fd_one_step_two.Project_Sub_District')}}<span class="text-danger">*</span> </label>
 
+
                                 <input type="text"  name="district" value="{{ $allFormOneData->district }}" data-parsley-required class="form-control" id="">
 
                             </div>
@@ -154,11 +170,14 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
                                 </h5>
                             </div>
 
+
+
 <?php
 
 $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_form_id',$allFormOneData->id)->get();
 
-?>
+
+                ?>
 
                 <div class="row">
                     @foreach($getAllSourceOfFundData as $key=>$allGetAllSourceOfFundData)
@@ -305,6 +324,9 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
 </div>
 
 @endif
+
+
+
 
 
 

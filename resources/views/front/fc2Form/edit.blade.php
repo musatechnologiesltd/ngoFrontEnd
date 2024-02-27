@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngoListAll->organization_name }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -96,6 +96,24 @@
                         <div class="profile_link_box">
                             <a href="{{ route('fd3Form.index') }}">
                                 <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
                             </a>
                         </div>
                         <div class="profile_link_box">
@@ -413,10 +431,10 @@
 
                                                <?php
 
-                                               $filePath = url($fc2FormList->organization_name_of_the_job_amount_of_money_and_duration_pdf);
-                                               $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                                               $file_path = url($fc2FormList->organization_name_of_the_job_amount_of_money_and_duration_pdf);
+                                               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-                                               $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                                               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
 
@@ -496,10 +514,10 @@
                                                 <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                                        <?php
 
-                                                       $filePath = url($fc2FormList->verified_fc_two_form);
-                                                       $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+                                                       $file_path = url($fc2FormList->verified_fc_two_form);
+                                                       $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-                                                       $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                                                       $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
 

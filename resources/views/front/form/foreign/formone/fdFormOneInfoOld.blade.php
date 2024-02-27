@@ -1,16 +1,23 @@
 
 <?php
 
+
 $oldNgoRegNumber = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
-$allformOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-$getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-$getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-$getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
-$ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-$getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-?>
+
+
+$allformOneData = DB::table('fd_one_forms')
+->where('user_id',Auth::user()->id)->first();
+ $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+ $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $formOneMemberList = DB::table('fd_one_member_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+ $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+
+
+
+
+
+       ?>
 
              @include('flash_message')
              <div class="user_dashboard_right">
@@ -37,6 +44,12 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                          <tr>
 
                                 <td>
+                                    <?php
+                                    $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+
+
+
+                                                                         ?>
 
                                     @if($ngoTypeInfo == 'দেশিও')
 
@@ -60,6 +73,33 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              </td>
                          </tr>
                      </table>
+<?php
+
+             $data = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                    ->first();
+
+
+
+
+$count = 0;
+foreach ($data   as $a) {
+if (is_null($a)) {
+ $count++;
+}
+}
+
+
+
+             ?>
+
+             @if($count == 0)
+             {{-- <p class="badge bg-success rounded">{{ trans('form 8_bn.complete_status')}}</p> --}}
+
+                     @else
+
+                     {{-- <p class="badge bg-danger rounded">{{ trans('form 8_bn.un_complete_status')}}</p> --}}
+
+                     @endif
 
                  </div>
              </div>
@@ -103,6 +143,10 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              </td>
                          </tr>
 
+
+                         <?php
+                         $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+                          ?>
                           @if($getngoForLanguage =='দেশিও')
                          <tr>
                              <td></td>
@@ -192,6 +236,8 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              $getCityzendata = $allformOneData->citizenship;
                              }
 
+
+
                            ?>
                          <tr>
                              <td></td>
@@ -199,7 +245,12 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              <td>{{ trans('form 8_bn.e')}}) {{ trans('fd_one_step_one.Citizenship')}}</td>
                              <td>: {{ $getCityzendata }}</td>
                          </tr>
-
+                         {{-- <tr>
+                             <td></td>
+                             <td></td>
+                             <td>{{ trans('form 8_bn.f')}}) {{ trans('fd_one_step_one.Profession')}}</td>
+                             <td>: {{ $allformOneData->profession }}</td>
+                         </tr> --}}
                          <tr>
                              <td>{{ trans('fd_one_step_one.two')}}.</td>
                              <td colspan="3">Details of foreign grant management activities in the last 10 (ten) years (project wise summary to be attached):
@@ -282,7 +333,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
 
                              $getCityzendata = $allFormOneMemberList->citizenship;
                              }
-
+                           //dd($getCityzendata);
                            ?>
 
                              <td></td>
@@ -290,8 +341,8 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              <td>{{ trans('fd_one_step_three.citizenship')}}</td>
                              <td>:
                                  @if($getngoForLanguage =='দেশিও')
-                               @foreach($getCityzendata as $allGetCityzendata)
-                               {{$allGetCityzendata->country_people_bangla}},
+                               @foreach($getCityzendata as $all_getCityzendata)
+                               {{$all_getCityzendata->country_people_bangla}},
                                @endforeach
                                @else
                                {{ $allFormOneMemberList->citizenship }}
@@ -386,7 +437,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              </td>
                          </tr>
 
-                         @if(!$getAllDataAdviserBank)
+                         @if(!$get_all_data_adviser_bank)
 
 
                          @else
@@ -396,9 +447,9 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              <td>{{ trans('fd_one_step_four.account_number')}}</td>
                              <td>:
                                  @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($getAllDataAdviserBank->account_number)}}
+                                 {{App\Http\Controllers\NGO\CommonController::englishToBangla($get_all_data_adviser_bank->account_number)}}
                                  @else
-                                 {{ $getAllDataAdviserBank->account_number }}
+                                 {{ $get_all_data_adviser_bank->account_number }}
                                  @endif
 
                              </td>
@@ -407,25 +458,25 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                              <td></td>
                              <td>({{ trans('form 8_bn.b')}})</td>
                              <td>{{ trans('fd_one_step_four.account_type')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->account_type }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->account_type }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.c')}})</td>
                              <td>{{ trans('fd_one_step_four.name_of_bank')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->name_of_bank }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.d')}})</td>
                              <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->branch_name_of_bank }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->branch_name_of_bank }}</td>
                          </tr>
                          <tr>
                              <td></td>
                              <td>({{ trans('form 8_bn.e')}})</td>
                              <td>{{ trans('fd_one_step_four.branch_name_of_bank')}}</td>
-                             <td>: {{ $getAllDataAdviserBank->bank_address }}</td>
+                             <td>: {{ $get_all_data_adviser_bank->bank_address }}</td>
                          </tr>
                          @endif
                          <tr>
@@ -441,21 +492,25 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                                     class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
                                 @endif
 
+
+
+
+
                              </td>
                          </tr>
-                         <tr>
+ <tr>
                             <td>{{ trans('fd_one_step_one.nine')}}.</td>
                             <td colspan="3">{{ trans('fd_one_step_four.tt4')}}
                             </td>
 
                         </tr>
 
-                        @foreach($getAllDataOther as $key=>$allGetAllDataOther)
-                     
+                        @foreach($get_all_data_other as $key=>$allGetAllDataOther)
+                   
 
                          <tr>
                              <td></td>
-                             <td>({{ trans('fd_one_step_one.nine')}}.{{ $key+1 }})</td>
+                             <td>({{ trans('fd_one_step_one.nine')}}.{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }})</td>
                              <td>{{ $allGetAllDataOther->information_title }}</td>
                              <td>: @if(empty($allGetAllDataOther->information_pdf))
 
@@ -474,6 +529,7 @@ $getngoForLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::
                                 @endif
                                 @endif</td>
                          </tr>
+
                          @endforeach
                          </tbody>
                      </table>

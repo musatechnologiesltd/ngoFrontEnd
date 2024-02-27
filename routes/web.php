@@ -22,6 +22,9 @@ use App\Http\Controllers\NGO\Fc1FormController;
 use App\Http\Controllers\NGO\Fc2FormController;
 use App\Http\Controllers\NGO\Fd3FormController;
 use App\Http\Controllers\NGO\OLDNGO\FD8Controller;
+use App\Http\Controllers\NGO\ApprovalOfConstitutionController;
+use App\Http\Controllers\NGO\DuplicateCertificateController;
+use App\Http\Controllers\NGO\ExecutiveComitteeApprovalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -139,6 +142,11 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 });
 
 Route::controller(OtherformController::class)->group(function () {
+	    /// 12 february code start
+    Route::get('ngoInstructionPageApply', 'ngoInstructionPageApply')->name('ngoInstructionPageApply');
+    Route::get('ngoInstructionPageaRenew', 'ngoInstructionPageaRenew')->name('ngoInstructionPageaRenew');
+    Route::get('ngoInstructionPageNameChange', 'ngoInstructionPageNameChange')->name('ngoInstructionPageNameChange');
+    ///12 february code end
 
     Route::get('allNoticeBoard', 'allNoticeBoard')->name('allNoticeBoard');
     Route::get('viewNotice/{id}', 'viewNotice')->name('viewNotice');Route::get('informationResetPage', 'informationResetPage')->name('informationResetPage');
@@ -239,6 +247,31 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fd2Form',Fd2FormController::class);
     Route::resource('fd6Form',Fd6FormController::class);
     Route::resource('fd7Form',Fd7FormController::class);
+
+
+    Route::resource('approvalOfConstitution',ApprovalOfConstitutionController::class);
+    Route::resource('duplicateCertificate',DuplicateCertificateController::class);
+    Route::resource('executiveCommitteeApproval',ExecutiveComitteeApprovalController::class);
+
+    Route::controller(DuplicateCertificateController::class)->group(function () {
+
+        Route::get('duplicateCertificate/{id}/{title}', 'duplicateCertificate')->name('duplicateCertificate');
+    });
+
+
+    Route::controller(ApprovalOfConstitutionController::class)->group(function () {
+
+        Route::get('approvalOfConstitution/{id}/{title}', 'approvalOfConstitution')->name('approvalOfConstitution');
+    });
+
+
+
+    Route::controller(ExecutiveComitteeApprovalController::class)->group(function () {
+
+        Route::get('executiveCommitteeApproval/{id}/{title}', 'executiveCommitteeApproval')->name('executiveCommitteeApproval');
+
+
+    });
 
     Route::controller(Fd7FormController::class)->group(function () {
 

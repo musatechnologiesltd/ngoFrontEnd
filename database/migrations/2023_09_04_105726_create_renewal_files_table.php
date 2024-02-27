@@ -18,11 +18,9 @@ return new class extends Migration
             $table->bigInteger('fd_one_form_id')->unsigned();
             $table->foreign('fd_one_form_id')->references('id')->on('fd_one_forms')->onDelete('cascade');
             $table->string('fd_eight_form_data')->nullable();
-            $table->string('constitution_extra')->nullable();
-           
             $table->string('final_fd_eight_form')->nullable();
-            $table->string('last_ten_year_annual_report')->nullable();
-            $table->string('form_eight_executive_committee_member')->nullable();
+			$table->string('form_eight_executive_committee_member')->nullable();
+			$table->string('last_ten_year_annual_report')->nullable();
             $table->string('constitution_of_the_organization_has_changed')->nullable();
             $table->string('list_of_board_of_directors_or_board_of_trustees')->nullable();
             $table->string('organization_by_laws_or_constitution')->nullable();
@@ -43,7 +41,7 @@ return new class extends Migration
             $table->string('previous_constitution_and_current_constitution_compare')->nullable();
             $table->string('constitution_of_the_organization_if_unchanged')->nullable();
             $table->string('time_for_api')->nullable();
-
+    $table->string('constitution_extra')->nullable();
 
             $table->timestamps();
         });

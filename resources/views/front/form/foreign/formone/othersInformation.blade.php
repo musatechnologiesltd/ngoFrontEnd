@@ -24,21 +24,36 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
                 <div class="right-side">
-<?php
+                    <?php
 
-$getFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-$checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-$getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->first();
+                    $getFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                           ->first();
 
-?>
-    @if(count($particularsOfOrganisationData) == 0)
 
-    @else
+                $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+                           ->value('ngo_type');
+
+                           $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
+                                   ->first();
+                    ?>
+                    @if(count($particularsOfOrganisationData) == 0)
+
+
+                @else
+
+
+
+
+
+
 
                 <form action="{{ route('othersInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"   data-parsley-validate="">
                     @csrf
@@ -49,6 +64,7 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
                 <div class="main active">
                     <div class="text">
                         <h2>{{ trans('fd_one_step_four.o_info')}}</h2>
+                        {{-- <p>Enter your information to get closer to Registration.</p> --}}
                     </div>
                     <div class="fd01_tablist">
                         <div class="fd01_tab"></div>
@@ -63,6 +79,8 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
 
                         <div class="mb-3">
 
+
+
                             <label class="form-label" for="">
                                 Whether registration renewal fee and VAT have been paid (copy of invoice to be attached) <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
                             <input class="form-control" name="copy_of_chalan"  accept=".pdf" type="file" id="copy_of_chalan">
@@ -73,9 +91,13 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
 
                             <?php
 
-                            $filePath = url($getFormOneData->copy_of_chalan);
-                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                            $file_path = url($getFormOneData->copy_of_chalan);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
                             ?>
   <b>{{ $filename.'.'.$extension }}</b>
@@ -91,9 +113,13 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
                             @else
                             <?php
 
-                            $filePath = url($getFormOneData->due_vat_pdf);
-                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                            $file_path = url($getFormOneData->due_vat_pdf);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
                             ?>
                               <b>{{ $filename.'.'.$extension }}</b>
@@ -107,7 +133,7 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
                             </h5>
                         </div>
 
-                        @if(!$getAllDataAdviserBank)
+                        @if(!$get_all_data_adviser_bank)
                         <div class="mb-3">
                             <div class="row">
                             <div class="col-lg-6 col-sm-12">
@@ -150,39 +176,41 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.account_number')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" value="{{ $getAllDataAdviserBank->account_number }}" required name="account_number" class="form-control" id="">
+                                            <input type="text" value="{{ $get_all_data_adviser_bank->account_number }}" required name="account_number" class="form-control" id="">
 
-                                            <input type="hidden" value="{{ $getAllDataAdviserBank->id }}" required name="bank_id" class="form-control" id="">
+                                            <input type="hidden" value="{{ $get_all_data_adviser_bank->id }}" required name="bank_id" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.account_type')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required name="account_type" value="{{ $getAllDataAdviserBank->account_type }}" class="form-control" id="">
+                                            <input type="text" required name="account_type" value="{{ $get_all_data_adviser_bank->account_type }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.name_of_bank')}} <span class="text-danger">*</span> </label>
-                                            <input type="text"  required name="name_of_bank" value="{{ $getAllDataAdviserBank->name_of_bank }}" class="form-control" id="">
+                                            <input type="text"  required name="name_of_bank" value="{{ $get_all_data_adviser_bank->name_of_bank }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.branch_name_of_bank')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required  name="branch_name_of_bank" value="{{ $getAllDataAdviserBank->branch_name_of_bank }}" class="form-control" id="">
+                                            <input type="text" required  name="branch_name_of_bank" value="{{ $get_all_data_adviser_bank->branch_name_of_bank }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.bank_address')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required  name="bank_address" value="{{ $getAllDataAdviserBank->bank_address }}" class="form-control" id="">
+                                            <input type="text" required  name="bank_address" value="{{ $get_all_data_adviser_bank->bank_address }}" class="form-control" id="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+
                             @endif
+
 
                         <div class="mb-3">
                             <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
@@ -195,9 +223,13 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
                             @else
                             <?php
 
-                            $filePath = url($getFormOneData->change_ac_number);
-                            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-                            $extension = pathinfo($filePath, PATHINFO_EXTENSION);
+                            $file_path = url($getFormOneData->change_ac_number);
+                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
                             ?>
                               <b>{{ $filename.'.'.$extension }}</b>
@@ -221,9 +253,13 @@ $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_i
 
                             <?php
 
-$filePath = url($getFormOneData->attach_the__supporting_paper);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
-$extension = pathinfo($filePath, PATHINFO_EXTENSION);
+$file_path = url($getFormOneData->attach_the__supporting_paper);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
 
 ?>
 
@@ -252,9 +288,12 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
                             <?php
 
-$filePath = url($getFormOneData->board_of_revenue_on_fees);
-$filename  = pathinfo($filePath, PATHINFO_FILENAME);
-$extension = pathinfo($filePath, PATHINFO_EXTENSION);
+$file_path = url($getFormOneData->board_of_revenue_on_fees);
+$filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+$extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
 
 
 ?>
@@ -274,22 +313,27 @@ $extension = pathinfo($filePath, PATHINFO_EXTENSION);
 
                             </div>
 
-    <?php
+                        <?php
 
-$getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',Session::get('mm_id'))->get();
 
-    ?>
+$get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',Session::get('mm_id'))
+       ->get();
+
+
+                            ?>
 
 
 <div class="row">
-    @foreach($getAllDataAdviser as $key=>$allGetAllDataOther)
+    @foreach($get_all_data_adviser as $key=>$all_get_all_data_other)
     <div class="col-md-4 mt-2">
 
         <div class="card">
 
             <div class="card-body">
-                <p><b>{{ trans('fd_one_step_four.advisor_name')}}: {{ $allGetAllDataOther->name }}</b> </p>
-                <p><b>{{ trans('fd_one_step_four.advisor_information')}}: {{ $allGetAllDataOther->information }}</b> </p>
+
+
+                <p><b>{{ trans('fd_one_step_four.advisor_name')}}: {{ $all_get_all_data_other->name }}</b> </p>
+                <p><b>{{ trans('fd_one_step_four.advisor_information')}}: {{ $all_get_all_data_other->information }}</b> </p>
             </div>
             <div class="card-footer">
                 <button type="button" class="btn btn-custom next_button btn-sm" data-bs-toggle="modal" data-bs-target="#mmmexampleModal{{ $key+1 }}">
@@ -306,21 +350,23 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                         </div>
                         <div class="modal-body">
 
+
                             <div class="mb-3">
                                 <label  class="form-label">{{ trans('fd_one_step_four.advisor_name')}}<span class="text-danger">*</span> :</label>
-                                <input type="text" value="{{ $allGetAllDataOther->name }}" name="sname" id="sname{{ $allGetAllDataOther->id }}" class="form-control"  >
-                                <input type="hidden" value="{{ $allGetAllDataOther->id }}" name="sid" id="sid{{ $allGetAllDataOther->id }}" class="form-control"  >
+                                <input type="text" value="{{ $all_get_all_data_other->name }}" name="sname" id="sname{{ $all_get_all_data_other->id }}" class="form-control"  >
+                                <input type="hidden" value="{{ $all_get_all_data_other->id }}" name="sid" id="sid{{ $all_get_all_data_other->id }}" class="form-control"  >
 
                               </div>
 
                               <div class="mb-3">
                                 <label  class="form-label">{{ trans('fd_one_step_four.advisor_information')}}<span class="text-danger">*</span> :</label>
-                                <input type="text" value="{{ $allGetAllDataOther->information }}"  name="sinformation" id="sinformation{{ $allGetAllDataOther->id }}" placeholder=""
+                                <input type="text" value="{{ $all_get_all_data_other->information }}"  name="sinformation" id="sinformation{{ $all_get_all_data_other->id }}" placeholder=""
                                 class="form-control"/>
 
                               </div>
 
-                            <button id="final_b_get{{ $allGetAllDataOther->id }}" data-id="{{ $allGetAllDataOther->id }}" class="btn btn-custom next_button btn-sm">Update</button>
+
+                            <button id="final_b_get{{ $all_get_all_data_other->id }}" data-id="{{ $all_get_all_data_other->id }}" class="btn btn-custom next_button btn-sm">Update</button>
 
                         </div>
 
@@ -328,9 +374,11 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                     </div>
                   </div>
 
-                  <button id="adeleteRecord{{ $allGetAllDataOther->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllDataOther->id }}" type="button" name="deleting">
+                  <button id="adeleteRecord{{ $all_get_all_data_other->id }}" class="btn btn-danger btn-sm" data-id="{{ $all_get_all_data_other->id }}" type="button" name="deleting">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
+
+
 
             </div>
 
@@ -340,7 +388,7 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
     @endforeach
 </div>
 
-@if(count($getAllDataAdviser) == 0)
+@if(count($get_all_data_adviser) == 0)
 <div class="mb-3">
     <table class="table table-light" id="dynamicAddRemoveAdvisor">
         <tr>
@@ -399,16 +447,20 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                             </div>
 
 
-<?php
+                            <?php
 
 
-    $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->first();
-    $getAllDataAdviserBankAll = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))->get();
+                            $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
+                                   ->first();
 
 
-?>
+                            $get_all_data_adviser_bank_all = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',Session::get('mm_id'))
+                             ->get();
 
-                                                      @if(count($getAllDataAdviserBankAll) == 0)
+
+                                                        ?>
+
+                                                      @if(count($get_all_data_adviser_bank_all) == 0)
 
 
                                                       @if($checkNgoTypeForForeginNgo == 'Foreign')
@@ -496,77 +548,83 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
 
                                                       @if($checkNgoTypeForForeginNgo == 'Foreign')
 
+
+
                                                       <div class="mb-3">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-sm-12">
                                                                 <div class="mb-3">
                                                                     <label for="" class="form-label">{{ trans('fd_one_step_four.account_number')}}</label>
-                                                                    <input type="text" value="{{ $getAllDataAdviserBank->account_number }}"  name="account_number" class="form-control" id="">
+                                                                    <input type="text" value="{{ $get_all_data_adviser_bank->account_number }}"  name="account_number" class="form-control" id="">
 
-                                                                    <input type="hidden" value="{{ $getAllDataAdviserBank->id }}"  name="bank_id" class="form-control" id="">
+                                                                    <input type="hidden" value="{{ $get_all_data_adviser_bank->id }}"  name="bank_id" class="form-control" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-sm-12">
                                                                 <div class="mb-3">
                                                                     <label for="" class="form-label">{{ trans('fd_one_step_four.account_type')}}</label>
-                                                                    <input type="text"  name="account_type" value="{{ $getAllDataAdviserBank->account_type }}" class="form-control" id="">
+                                                                    <input type="text"  name="account_type" value="{{ $get_all_data_adviser_bank->account_type }}" class="form-control" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-sm-12">
                                                                 <div class="mb-3">
                                                                     <label for="" class="form-label">{{ trans('fd_one_step_four.name_of_bank')}}</label>
-                                                                    <input type="text"   name="name_of_bank" value="{{ $getAllDataAdviserBank->name_of_bank }}" class="form-control" id="">
+                                                                    <input type="text"   name="name_of_bank" value="{{ $get_all_data_adviser_bank->name_of_bank }}" class="form-control" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6 col-sm-12">
                                                                 <div class="mb-3">
                                                                     <label for="" class="form-label">{{ trans('fd_one_step_four.branch_name_of_bank')}}</label>
-                                                                    <input type="text"   name="branch_name_of_bank" value="{{ $getAllDataAdviserBank->branch_name_of_bank }}" class="form-control" id="">
+                                                                    <input type="text"   name="branch_name_of_bank" value="{{ $get_all_data_adviser_bank->branch_name_of_bank }}" class="form-control" id="">
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
                                                                 <div class="mb-3">
                                                                     <label for="" class="form-label">{{ trans('fd_one_step_four.bank_address')}}</label>
-                                                                    <input type="text"   name="bank_address" value="{{ $getAllDataAdviserBank->bank_address }}" class="form-control" id="">
+                                                                    <input type="text"   name="bank_address" value="{{ $get_all_data_adviser_bank->bank_address }}" class="form-control" id="">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
+
+
                                                       @else
+
+
 
                             <div class="mb-3">
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.account_number')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" value="{{ $getAllDataAdviserBank->account_number }}" required name="account_number" class="form-control" id="">
+                                            <input type="text" value="{{ $get_all_data_adviser_bank->account_number }}" required name="account_number" class="form-control" id="">
 
-                                            <input type="hidden" value="{{ $getAllDataAdviserBank->id }}" required name="bank_id" class="form-control" id="">
+                                            <input type="hidden" value="{{ $get_all_data_adviser_bank->id }}" required name="bank_id" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.account_type')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required name="account_type" value="{{ $getAllDataAdviserBank->account_type }}" class="form-control" id="">
+                                            <input type="text" required name="account_type" value="{{ $get_all_data_adviser_bank->account_type }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.name_of_bank')}} <span class="text-danger">*</span> </label>
-                                            <input type="text"  required name="name_of_bank" value="{{ $getAllDataAdviserBank->name_of_bank }}" class="form-control" id="">
+                                            <input type="text"  required name="name_of_bank" value="{{ $get_all_data_adviser_bank->name_of_bank }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.branch_name_of_bank')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required  name="branch_name_of_bank" value="{{ $getAllDataAdviserBank->branch_name_of_bank }}" class="form-control" id="">
+                                            <input type="text" required  name="branch_name_of_bank" value="{{ $get_all_data_adviser_bank->branch_name_of_bank }}" class="form-control" id="">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="" class="form-label">{{ trans('fd_one_step_four.bank_address')}} <span class="text-danger">*</span> </label>
-                                            <input type="text" required  name="bank_address" value="{{ $getAllDataAdviserBank->bank_address }}" class="form-control" id="">
+                                            <input type="text" required  name="bank_address" value="{{ $get_all_data_adviser_bank->bank_address }}" class="form-control" id="">
                                         </div>
                                     </div>
                                 </div>
@@ -580,10 +638,14 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
                             @endif
 
 
-<?php
+             <?php
 
-    $getAllDataOther= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',Session::get('mm_id'))->get();
-?>
+
+                            $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',Session::get('mm_id'))
+                                   ->get();
+
+
+                 ?>
 
 <div class="row">
 
@@ -594,14 +656,15 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
     </div>
 
 
-    @foreach($getAllDataOther as $key=>$allGetAllDataOther)
+    @foreach($get_all_data_other as $key=>$all_get_all_data_other)
     <div class="col-md-3 mt-2">
 
         <div class="card">
 
             <div class="card-body">
 
-                <p><b>{{ $allGetAllDataOther->information_title }}:</b> <a target="_blank" href="{{ route('otherInfoFromOneDownload',$allGetAllDataOther->id) }}" class="btn btn-custom next_button btn-sm" >
+
+                <p><b>{{ $all_get_all_data_other->information_title }}:</b> <a target="_blank" href="{{ route('otherInfoFromOneDownload',$all_get_all_data_other->id) }}" class="btn btn-custom next_button btn-sm" >
                     <i class="fa fa-download" aria-hidden="true"></i>
                 </a></p>
             </div>
@@ -611,9 +674,13 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
 
                   </button>
 
-                  <button id="deleteRecord{{ $allGetAllDataOther->id }}" class="btn btn-danger btn-sm" data-id="{{ $allGetAllDataOther->id }}" type="button" name="deleting">
+                  <button id="deleteRecord{{ $all_get_all_data_other->id }}" class="btn btn-danger btn-sm" data-id="{{ $all_get_all_data_other->id }}" type="button" name="deleting">
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
+
+
+
+
 
                   <!-- Modal -->
 <div class="modal fade" id="mmexampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -627,7 +694,11 @@ $getAllDataAdviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',S
 <form method="post" action="{{ route('otherInformationAUpdate') }}" id="form">
 @csrf
 
-<input type="hidden" name="mid" value="{{ $allGetAllDataOther->id }}" class="form-control" id="exampleFormControlInput1" >
+
+<input type="hidden" name="mid" value="{{ $all_get_all_data_other->id }}" class="form-control" id="exampleFormControlInput1" >
+
+
+
 
 <div class="mb-3">
 <label for="exampleFormControlInput1" class="form-label">{{ trans('fd_one_step_four.information_pdf')}}</label>
@@ -652,7 +723,7 @@ Update
     @endforeach
 </div>
 
-@if(count($getAllDataOther) == 0)
+@if(count($get_all_data_other) == 0)
 
                             <div class="mb-3">
                                 <table class="table table-light" id="dynamicAddRemoveInformation">
@@ -703,6 +774,8 @@ Update
 
                     </div>
 
+
+
                     <div class="buttons d-flex justify-content-end mt-4">
                         <a href="{{ route('allStaffDetailsInformation') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
                         <button class="btn btn-danger me-2" name="submit_value" value="save_and_exit_from_four" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
@@ -712,6 +785,8 @@ Update
 
                 </div>
             </form>
+
+
 
                 @endif
                 </div>
@@ -724,6 +799,9 @@ Update
 @section('script')
 
 <script>
+
+
+
 
 $("[id^=final_b_get]").click(function () {
 

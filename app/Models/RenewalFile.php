@@ -35,10 +35,10 @@ class RenewalFile extends Model
         'section_sub_section_of_the_constitution',
         'previous_constitution_and_current_constitution_compare',
         'constitution_of_the_organization_if_unchanged',
-        'last_ten_year_annual_report',
-		'form_eight_executive_committee_member',
-        'constitution_extra',
         'time_for_api',
+		'constitution_extra',
+		'last_ten_year_annual_report',
+		'form_eight_executive_committee_member',
         'final_fd_eight_form',
 
     ];

@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngoListAll->organization_name }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -97,7 +97,24 @@
                                 <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
                             </a>
                         </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
 
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div>
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -153,13 +170,13 @@
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
 
-                                    <input type="text" required name="ngo_name" value="{{ $ngoListAll->organization_name_ban }}" class="form-control" id=""
+                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name_ban }}" class="form-control" id=""
                                     placeholder="">
 
                                     @else
 
 
-                                    <input type="text" required name="ngo_name" value="{{ $ngoListAll->organization_name }}" class="form-control" id=""
+                                    <input type="text" required name="ngo_name" value="{{ $ngo_list_all->organization_name }}" class="form-control" id=""
                                     placeholder="">
 
 
@@ -170,29 +187,29 @@
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">সংস্থার ঠিকানা <span class="text-danger">*</span></label>
-                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $ngoListAll->organization_address }}" id=""
+                                            <input type="text" required name="ngo_address" class="form-control" value="{{ $ngo_list_all->organization_address }}" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">টেলিফোন <span class="text-danger">*</span></label>
-                                            <input type="text" required name="ngo_telephone_number" value="{{ $ngoListAll->tele_phone_number }}" class="form-control" id=""
+                                            <input type="text" required name="ngo_telephone_number" value="{{ $ngo_list_all->tele_phone_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span></label>
                                             <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                             type = "number" required
-                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngoListAll->phone }}" class="form-control" id=""
+                                            maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngo_list_all->phone }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ইমেইল ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_email" class="form-control" id=""
-                                                   placeholder="" value="{{ $ngoListAll->email }}">
+                                                   placeholder="" value="{{ $ngo_list_all->email }}">
                                         </div>
 
-                                        @if(empty($ngoListAll->web_site_name))
+                                        @if(empty($ngo_list_all->web_site_name))
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
                                             <input type="text" required value="{{ $renewWebsiteName }}" name="ngo_website" class="form-control" id=""
@@ -201,7 +218,7 @@
                                         @else
                                         <div class="mb-3 col-lg-6">
                                             <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
-                                            <input type="text" required value="{{ $ngoListAll->web_site_name }}" name="ngo_website" class="form-control" id=""
+                                            <input type="text" required value="{{ $ngo_list_all->web_site_name }}" name="ngo_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
 

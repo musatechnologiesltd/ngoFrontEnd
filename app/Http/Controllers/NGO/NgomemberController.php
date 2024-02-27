@@ -16,6 +16,7 @@ class NgomemberController extends Controller
 {
     public function index(){
 
+
         CommonController::checkNgotype(1);
         $mainNgoType = CommonController::changeView();
 
@@ -32,52 +33,62 @@ class NgomemberController extends Controller
     }
 
     public function edit($id){
+        $all_data_list = NgoMemberList::where('name_slug',$id)->first();
 
-        $allDataList = NgoMemberList::where('name_slug',$id)->first();
-
-        return view('front.ngomember.edit',compact('allDataList'));
+        return view('front.ngomember.edit',compact('all_data_list'));
 
     }
 
 
     public function ngoMemberFinalUpdate(){
+        try{
+            DB::beginTransaction();
+        $checkCompleteStatusData = DB::table('form_complete_statuses')
+   ->where('user_id',Auth::user()->id)
+   ->first();
 
-        $checkCompleteStatusData = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id) ->first();
+   if(!$checkCompleteStatusData){
 
-        if(!$checkCompleteStatusData){
+       $newStatusData = new FormCompleteStatus();
+       $newStatusData->user_id = Auth::user()->id;
+       $newStatusData->fd_one_form_step_one_status = 1;
+       $newStatusData->fd_one_form_step_two_status = 1;
+       $newStatusData->fd_one_form_step_three_status = 1;
+       $newStatusData->fd_one_form_step_four_status = 1;
+       $newStatusData->form_eight_status = 1;
+       $newStatusData->ngo_member_status = 1;
+       $newStatusData->ngo_member_nid_photo_status = 0;
+       $newStatusData->ngo_other_document_status = 0;
+       $newStatusData->save();
+   }else{
 
-            $newStatusData = new FormCompleteStatus();
-            $newStatusData->user_id = Auth::user()->id;
-            $newStatusData->fd_one_form_step_one_status = 1;
-            $newStatusData->fd_one_form_step_two_status = 1;
-            $newStatusData->fd_one_form_step_three_status = 1;
-            $newStatusData->fd_one_form_step_four_status = 1;
-            $newStatusData->form_eight_status = 1;
-            $newStatusData->ngo_member_status = 1;
-            $newStatusData->ngo_member_nid_photo_status = 0;
-            $newStatusData->ngo_other_document_status = 0;
-            $newStatusData->save();
-        }else{
-
-            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
-            ->update([
-                'ngo_member_status' => 1
-                ]);
+       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+       ->update([
+           'ngo_member_status' => 1
+        ]);
 
 
-        }
-        return redirect('/ngoAllRegistrationForm');
-
+   }
+   DB::commit();
+   return redirect('/ngoAllRegistrationForm');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
     public function store(Request $request){
 
-        $timeDy = time().date("Ymd");
+
+        //dd($request->all());
+
+
+        $time_dy = time().date("Ymd");
 
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $mainTime = $dt->format('H:i:s');
+        $main_time = $dt->format('H:i:s');
 
         $request->validate([
             'name' => 'required|string',
@@ -90,13 +101,16 @@ class NgomemberController extends Controller
             'permanent_address' => 'required|string',
             'name_supouse' => 'required|string',
         ]);
+
+        try{
+            DB::beginTransaction();
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $ngoMemberData = new NgoMemberList();
         $ngoMemberData->member_name = $request->name;
         $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
         $ngoMemberData->member_designation = $request->desi;
         $ngoMemberData->member_dob = $request->dob;
-        $ngoMemberData->time_for_api = $mainTime;
+        $ngoMemberData->time_for_api = $main_time;
         $ngoMemberData->verified_file = 0;
         $ngoMemberData->member_mobile = $request->phone;
         $ngoMemberData->member_nid_no = $request->nid_no;
@@ -107,14 +121,20 @@ class NgomemberController extends Controller
         $ngoMemberData->fd_one_form_id  = $fdOneFormId;
         $ngoMemberData->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Created Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function update(Request $request,$id){
-        $timeDy = time().date("Ymd");
-
+        $time_dy = time().date("Ymd");
+        try{
+            DB::beginTransaction();
         $ngoMemberData = NgoMemberList::find($id);
         $ngoMemberData->member_name = $request->name;
         $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
@@ -128,30 +148,40 @@ class NgomemberController extends Controller
         $ngoMemberData->member_name_supouse = $request->name_supouse;
         $ngoMemberData->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Created Successfully');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoMemberList::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function ngoMemberView(Request $request){
 
-        $allDataList = NgoMemberList::where('id',$request->id_for_pass)->first();
+        //dd($request->id_for_pass);
 
-        return view('front.ngomember.view',compact('allDataList'));
+        $all_data_list = NgoMemberList::where('id',$request->id_for_pass)->first();
+
+        return view('front.ngomember.view',compact('all_data_list'));
 
 
     }

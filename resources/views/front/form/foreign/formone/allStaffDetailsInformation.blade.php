@@ -24,21 +24,33 @@
                         @else
                         <li class="active">{{ trans('fd_one_step_one.fd_one_form_title')}}</li>
                         @endif
+                        {{-- <li>{{ trans('fd_one_step_one.form_eight_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.member_title')}}</li>
+                        <li>{{ trans('fd_one_step_one.image_nid_title')}}</li> --}}
                         <li>{{ trans('fd_one_step_one.other_doc_title')}}</li>
                     </ul>
 
                 </div>
                 <div class="right-side">
 
-<?php
 
-    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-    $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
-?>
+                    <?php
+
+                    $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
+                    $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+                           ->value('ngo_type');
+
+                                    ?>
                     @if(count($particularsOfOrganisationData) == 0)
 
             @else
+
+
+<?php
+$getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
+            ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
+?>
+
 
             <form action="{{ route('allStaffDetailsInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
                 @csrf
@@ -46,6 +58,7 @@
             <div class="main active">
                 <div class="text">
                     <h2>{{ trans('fd_one_step_three.All_staff_details_information')}} </h2>
+                    {{-- <p>Enter your information to get closer to Registration.</p> --}}
                 </div>
                 <div class="fd01_tablist">
                     <div class="fd01_tab"></div>
@@ -465,9 +478,9 @@
                             </div>
 
                             <?php
-                            $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
+                            $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
 
-                            ?>
+                                               ?>
 
                             <div class="col-lg-12 mb-3">
                                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
@@ -477,9 +490,9 @@
 
                                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                                     @if($checkNgoTypeForForeginNgo == 'Foreign')
-                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
+                                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_english }}</option>
                                     @else
-                                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_people_bangla }}</option>
                                 @endif
                                 @endforeach
                                 </select>
@@ -512,16 +525,18 @@
 
                         @endforeach
 
-<?php
+                        <?php
 
-$countNew = count($formOneMemberList);
+                        $countNew = count($formOneMemberList);
+
+//dd($countNew);
+
 $finalData = 5 - $countNew ;
 $cityzenValue = 0;
-
 ?>
 
 @for ($i = 0; $i < $finalData; $i++)
-
+        {{-- <p>The current value is {{ $i }}.</p> --}}
        <?php $cityzenValue = $cityzenValue+1 ?>
 
         <div class="mb-3">
@@ -555,6 +570,9 @@ $cityzenValue = 0;
             <div class="col-lg-6 col-sm-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.address')}} <span class="text-danger">*</span> </label>
                 <input name="staff_address[]"   type="text" class="form-control" id="">
+
+
+
             </div>
 
             <div class="col-lg-6 col-sm-12 mb-3">
@@ -573,22 +591,22 @@ $cityzenValue = 0;
                 <input name="date_of_join[]"   type="text" class="form-control datepicker" id="">
             </div>
 
-<?php
+            <?php
+            $convert_new_ass_cat  = explode(",",$allFormOneMemberList->citizenship);
 
-    $convertNewAssCat  = explode(",",$allFormOneMemberList->citizenship);
-
-?>
+                               ?>
 
             <div class="col-lg-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.citizenship')}} <span class="text-danger">*</span> </label>
                 <select name="citizenship{{ $countNew+$cityzenValue }}[]"  class="js-example-basic-multiple form-control" name="states[]"
                         multiple="multiple">
 
+
                     @foreach($getCityzenshipData as $allGetCityzenshipData)
                     @if($checkNgoTypeForForeginNgo == 'Foreign')
-                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convertNewAssCat)) ? 'selected' : '' }} >{{ $allGetCityzenshipData->country_people_english }}</option>
+                    <option value="{{ $allGetCityzenshipData->country_people_english }}" {{ (in_array($allGetCityzenshipData->country_people_english,$convert_new_ass_cat)) ? 'selected' : '' }} >{{ $allGetCityzenshipData->country_people_english }}</option>
                     @else
-                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convertNewAssCat)) ? 'selected' : '' }} >{{ $allGetCityzenshipData->country_people_bangla }}</option>
+                <option value="{{ $allGetCityzenshipData->country_people_bangla }}" {{ (in_array($allGetCityzenshipData->country_people_bangla,$convert_new_ass_cat)) ? 'selected' : '' }} >{{ $allGetCityzenshipData->country_people_bangla }}</option>
                 @endif
                 @endforeach
                 </select>
@@ -600,6 +618,8 @@ $cityzenValue = 0;
                 <input type="text"  name="now_working_at[]" value="" class="form-control" id="">
             </div>
             @else
+
+
             @endif
 
             <div class="col-lg-12 mb-3">
@@ -608,14 +628,18 @@ $cityzenValue = 0;
             </div>
             <div class="col-lg-12 mb-3">
                 <label for="" class="form-label">{{ trans('fd_one_step_three.detail')}} <span class="text-danger">*</span> </label>
+
                 <input type="text" name="other_occupation[]"  class="form-control" id=""
                 placeholder="Detail Description (বিস্তারিত বিবরণ)">
+
 
             </div>
         </div>
     @endfor
 
-             @endif
+                        @endif
+
+
 
                 </div>
                 @if(Session::get('fdOneFormEditThree') == 'go_to_step_three')
@@ -624,6 +648,7 @@ $cityzenValue = 0;
                     <a href="{{ route('fieldOfProposedActivities') }}" class="btn btn-dark back_button me-2">{{ trans('fd_one_step_one.back')}}</a>
                     <button class="btn btn-danger me-2" name="submit_value" value="exit_from_step_three_edit" type="submit">{{ trans('fd_one_step_one.Save_&_Exit')}}</button>
                     <button class="btn btn-custom next_button" name="submit_value" value="go_to_step_four" type="submit">{{ trans('fd_one_step_one.Next_Step')}}</button>
+
                 </div>
 
                 @else
@@ -635,7 +660,11 @@ $cityzenValue = 0;
                 </div>
                 @endif
             </div>
+
+
     </form>
+
+
             @endif
 
                 </div>

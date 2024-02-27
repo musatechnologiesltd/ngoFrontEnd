@@ -27,12 +27,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngoListAll->organization_name }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -100,7 +100,24 @@
                                 <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
                             </a>
                         </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
 
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div>
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -363,7 +380,7 @@
                             </tr>
                             <tr>
                                 <td>কোন দেশীয় সংস্থা</td>
-                                <td>: {{ $ngoListAll->country_of_origin }}</td>
+                                <td>: {{ $ngo_list_all->country_of_origin }}</td>
                             </tr>
                             <tr>
                                 <td>প্রকল্প মেয়াদ </td>

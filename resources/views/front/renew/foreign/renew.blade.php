@@ -31,12 +31,12 @@
                                      @endif
                                 <div class="mt-3">
                                     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-                                    <h4>{{ $ngoListAll->organization_name_ban }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name_ban }}</h4>
                                     @else
-                                    <h4>{{ $ngoListAll->organization_name }}</h4>
+                                    <h4>{{ $ngo_list_all->organization_name }}</h4>
                                     @endif
-                                    <p class="text-secondary mb-1">{{ $ngoListAll->name_of_head_in_bd }}</p>
-                                    <p class="text-muted font-size-sm">{{ $ngoListAll->organization_address }}</p>
+                                    <p class="text-secondary mb-1">{{ $ngo_list_all->name_of_head_in_bd }}</p>
+                                    <p class="text-muted font-size-sm">{{ $ngo_list_all->organization_address }}</p>
 
                                 </div>
                             </div>
@@ -103,6 +103,24 @@
                             </a>
                         </div>
                         <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
                             </a>
@@ -112,10 +130,14 @@
                 </div>
             </div>
 
-    <?php
+            <?php
 $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-$nameChangeList = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )->latest()->value('status');
-    ?>
+ $name_change_list = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )->latest()->value('status');
+
+
+
+
+            ?>
 
 
             <div class="col-lg-9 col-md-6 col-sm-12">
@@ -130,7 +152,7 @@ $nameChangeList = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
-                                    @if($nameChangeList == 'Ongoing')
+                                    @if($name_change_list == 'Ongoing')
                                     <div class="d-grid d-md-flex justify-content-end">
                                         <button type="button" disabled  class="btn btn-registration"
                                                 onclick="location.href = '{{ route('ngoRenewStepOne') }}';">{{ trans('fd9.ar')}}
@@ -145,7 +167,7 @@ $nameChangeList = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )
                                     @endif
                                 </div>
                             </div>
-                            @if(empty($nameChangeList) || $nameChangeList == 'Rejected')
+                            @if(empty($name_change_list) || $name_change_list == 'Rejected')
                             <div class="no_name_change">
                                 <div class="d-flex justify-content-center pt-5">
                                     <img src="{{ asset('/') }}public/front/assets/img/icon/no-results%20(1).png" alt="" width="120" height="120">
@@ -161,15 +183,17 @@ $nameChangeList = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId )
                                     <tr>
                                         <th>ক্র : নং :</th>
                                         <th>তারিখ</th>
+
                                         <th>স্ট্যাটাস</th>
                                         <th>কার্যকলাপ </th>
                                     </tr>
-                                    @foreach($nameChangeListAll as $key=>$allNameChangeListAll)
+                                    @foreach($name_change_list_all as $key=>$all_name_change_list_all)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ $allNameChangeListAll->created_at->format('d-M-Y')}}</td>
-                                        <td><span class="text-success">{{ $allNameChangeListAll->status }}</span></td>
-                                        <td> <a  href="{{ route('renewInfo',base64_encode($allNameChangeListAll->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
+                                        <td>{{ $all_name_change_list_all->created_at->format('d-M-Y')}}</td>
+
+                                        <td><span class="text-success">{{ $all_name_change_list_all->status }}</span></td>
+                                        <td> <a  href="{{ route('renewInfo',base64_encode($all_name_change_list_all->id)) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a></td>
                                     </tr>
                                     @endforeach
                                 </table>

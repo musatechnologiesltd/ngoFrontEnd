@@ -20,7 +20,7 @@
 
 
                             <ul>
-                                @include('front.include.sidebarDash')
+                                @include('front.include.sidebar_dash')
                             </ul>
 
 

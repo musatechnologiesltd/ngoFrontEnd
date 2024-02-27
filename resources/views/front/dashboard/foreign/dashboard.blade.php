@@ -17,7 +17,7 @@
             <div class="dashboard_box">
                 <div class="dashboard_left">
                     <ul>
-                   @include('front.include.sidebarDash')
+                   @include('front.include.sidebar_dash')
                     </ul>
                 </div>
                 <div class="dashboard_right">
@@ -28,7 +28,7 @@
             $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
                                            ->value('id');
 ?>
-@if(empty($getRegId))
+@if(empty($get_reg_id))
                         {{-- <button class="btn btn-sm btn-danger"  onclick="deleteTag(2)" >{{ trans('first_info.reset')}}</button>
                         <form id="delete-form-2" action="{{ route('resetAllData') }}" method="POST" style="display: none;">
 
@@ -100,16 +100,32 @@
 
                                     <?php
 
-$dataMOne = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-$fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-$data3MOne = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)->get();
 
-                                   ?>
+$data_m_one = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
+
+
+
+            $fdoneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)
+                                           ->value('id');
+
+
+
+
+
+
+
+            $data3_m_one = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)
+                                           ->get();
+
+
+
+                                    ?>
 
 
                                    <table class="table table-borderless">
 
-                                    @if(empty($dataMOne))
+                                    @if(empty($data_m_one))
 
                                     <tr>
                                         @if($foreignNgoType == 'Old')
@@ -135,7 +151,7 @@ $data3MOne = DB::table('renewal_files')->where('fd_one_form_id',$fdoneFormId)->g
 
                                        @if($foreignNgoType == 'Old')
 
-                                       @if(count($data3MOne) > 0)
+                                       @if(count($data3_m_one) > 0)
                                        <tr>
                                         <td>{{ trans('first_info.other_info')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>

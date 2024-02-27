@@ -79,13 +79,13 @@ class RenewController extends Controller
 
             if($structureStatus == 'Yes'){
 
-            $data = view('front.nameChange.structureStatusYes')->render();
+            $data = view('front.name_change.structureStatusYes')->render();
             return response()->json($data);
 
 
             }elseif($structureStatus == 'No'){
 
-            $data = view('front.nameChange.structureStatusNo')->render();
+            $data = view('front.name_change.structureStatusNo')->render();
             return response()->json($data);
 
 
@@ -94,21 +94,34 @@ class RenewController extends Controller
 
     }
     public function renew(){
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
+        ->value('ngo_type');
+        // if($checkNgoTypeForForeginNgo == 'Foreign'){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $nameChangeListAll =  NgoRenew::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
+        //     App::setLocale('sp');
+        //     session()->put('locale','sp');
+
+        // }else{
+
+        //     App::setLocale('en');
+        //     session()->put('locale','en');
+        // }
+
+
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
+        $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
         CommonController::checkNgotype(1);
+
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
 
-        return view('front.renew.renew',compact('ngoListAll','nameChangeListAll'));
-
+        return view('front.renew.renew',compact('ngo_list_all','name_change_list_all'));
         }else{
-
-            return view('front.renew.foreign.renew',compact('ngoListAll','nameChangeListAll'));
-
+            return view('front.renew.foreign.renew',compact('ngo_list_all','name_change_list_all'));
         }
     }
 
@@ -116,25 +129,32 @@ class RenewController extends Controller
 
     public function ngoRenewStepOne(){
 
-        $getAllDataNew = NgoRenewInfo::where('user_id',Auth::user()->id)->latest()->get();
-        $all_parti = FdOneForm::where('user_id',Auth::user()->id)->get();
-        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $nameChangeListAll =  NgoRenew::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
+        $get_all_data_new = NgoRenewInfo::where('user_id',Auth::user()->id)->latest()->get();
+         $all_parti = FdOneForm::where('user_id',Auth::user()->id)->get();
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $name_change_list_all =  NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->latest()->get();
+
+
         CommonController::checkNgotype(1);
+
         $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
-                return view('front.renew.ngoRenewListNew',compact('getAllDataNew','ngoListAll','nameChangeListAll','all_parti'));
-        }else{
-                return view('front.renew.foreign.ngoRenewListNew',compact('getAllDataNew','ngoListAll','nameChangeListAll','all_parti'));
-        }
+  if($mainNgoType== 'দেশিও'){
+        return view('front.renew.ngo_renew_list_new',compact('get_all_data_new','ngo_list_all','name_change_list_all','all_parti'));
+  }else{
+    return view('front.renew.foreign.ngo_renew_list_new',compact('get_all_data_new','ngo_list_all','name_change_list_all','all_parti'));
+  }
     }
 
 
 
     public function updateRenewInformationList(Request $request){
+        try{
+            DB::beginTransaction();
 
-        $timeDy = time().date("Ymd");
+
+        $time_dy = time().date("Ymd");
+
 
         $filePath="NgoRenewInfo";
 
@@ -148,8 +168,10 @@ class RenewController extends Controller
         $ngoRenew->name_of_head_in_bd = $request->name_of_head_in_bd;
         $ngoRenew->job_type = $request->job_type;
         $ngoRenew->address = $request->address;
+
         $ngoRenew->chief_name = $request->chief_name;
-        $ngoRenew->chief_desi = $request->chief_desi;
+       $ngoRenew->chief_desi = $request->chief_desi;
+
         $ngoRenew->phone = $request->phone;
         $ngoRenew->nationality = $request->nationality;
         $ngoRenew->email = $request->email;
@@ -162,52 +184,64 @@ class RenewController extends Controller
         $ngoRenew->yearly_budget = $request->yearly_budget;
 
         if ($request->hasfile('digital_signature')) {
-
          $filePath="ngoHead";
          $file = $request->file('digital_signature');
          $ngoRenew->digital_signature =CommonController::imageUpload($request,$file,$filePath);
 
-        }
+     }
 
-        if ($request->hasfile('digital_seal')) {
 
-            $filePath="ngoHead";
-            $file = $request->file('digital_seal');
-            $ngoRenew->digital_seal =CommonController::imageUpload($request,$file,$filePath);
-        }
+     if ($request->hasfile('digital_seal')) {
+         $filePath="ngoHead";
+         $file = $request->file('digital_seal');
+         $ngoRenew->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+     }
         if ($request->hasfile('foregin_pdf')) {
-
          $file = $request->file('foregin_pdf');
+
          $ngoRenew->foregin_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
-        }
+     }
 
-        if ($request->hasfile('yearly_budget_file')) {
 
-            $file = $request->file('yearly_budget_file');
-            $ngoRenew->yearly_budget_file =CommonController::pdfUpload($request,$file,$filePath);
+     if ($request->hasfile('yearly_budget_file')) {
+         $file = $request->file('yearly_budget_file');
 
-        }
+         $ngoRenew->yearly_budget_file =CommonController::pdfUpload($request,$file,$filePath);
+
+     }
+
+
 
         $ngoRenew->save();
-        $mm_id = $ngoRenew->id;
 
-        return redirect('/otherInformationForRenew');
+
+        $mm_id = $ngoRenew->id;
+        DB::commit();
+return redirect('/otherInformationForRenew');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
+
 
     }
 
 
     public function storeRenewInformationList(Request $request){
 
-        $request->validate([
+//dd($request->all());
 
-            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
-        ]);
+$request->validate([
 
-        $timeDy = time().date("Ymd");
+    'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+    'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+]);
+try{
+    DB::beginTransaction();
+        $time_dy = time().date("Ymd");
 
-       $filePath="NgoRenewInfo";
+        $filePath="NgoRenewInfo";
 
        $ngoRenew = new NgoRenewInfo();
        $ngoRenew->fd_one_form_id = $request->id;
@@ -222,8 +256,12 @@ class RenewController extends Controller
        $ngoRenew->address = $request->address;
        $ngoRenew->phone = $request->phone;
        $ngoRenew->email = $request->email;
+
+
        $ngoRenew->chief_name = $request->chief_name;
        $ngoRenew->chief_desi = $request->chief_desi;
+
+
        $ngoRenew->nationality = $request->nationality;
        $ngoRenew->mobile = $request->mobile;
        $ngoRenew->web_site_name = $request->web_site_name;
@@ -234,82 +272,96 @@ class RenewController extends Controller
        $ngoRenew->yearly_budget = $request->yearly_budget;
 
        if ($request->hasfile('digital_signature')) {
-
         $filePath="ngoHead";
         $file = $request->file('digital_signature');
         $ngoRenew->digital_signature =CommonController::imageUpload($request,$file,$filePath);
 
-        }
+    }
 
-        if ($request->hasfile('digital_seal')) {
 
+    if ($request->hasfile('digital_seal')) {
         $filePath="ngoHead";
         $file = $request->file('digital_seal');
         $ngoRenew->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+    }
 
-        }
 
-        if ($request->hasfile('foregin_pdf')) {
-
+       if ($request->hasfile('foregin_pdf')) {
         $file = $request->file('foregin_pdf');
+
         $ngoRenew->foregin_pdf = CommonController::pdfUpload($request,$file,$filePath);
 
-        }
+    }
 
-        if ($request->hasfile('yearly_budget_file')) {
 
-            $file = $request->file('yearly_budget_file');
-            $ngoRenew->yearly_budget_file =CommonController::pdfUpload($request,$file,$filePath);
+    if ($request->hasfile('yearly_budget_file')) {
+        $file = $request->file('yearly_budget_file');
 
-        }
+        $ngoRenew->yearly_budget_file =CommonController::pdfUpload($request,$file,$filePath);
+
+    }
+
+
 
        $ngoRenew->save();
+
+
        $mm_id = $ngoRenew->id;
 
-       return redirect('/allStaffInformationForRenew');
-
+//return redirect('/otherInformationForRenew');
+DB::commit();
+return redirect('/allStaffInformationForRenew');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
 
     public function renewInfo($id){
 
-            $getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
-            $allPartiw1 = FdOneForm::where('id',$getUserIdFrom->fd_one_form_id)->first();
-            $getAllDataNew = NgoRenewInfo::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
-            $allPartiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
-            $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+           $getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+           $all_partiw1 = FdOneForm::where('id',$getUserIdFrom->fd_one_form_id)->first();
+           $get_all_data_new = NgoRenewInfo::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
+           $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->get();
+           $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getUserIdFrom->fd_one_form_id)->first();
 
-            CommonController::checkNgotype(1);
+           CommonController::checkNgotype(1);
 
-            $mainNgoType = CommonController::changeView();
+        $mainNgoType = CommonController::changeView();
 
-            if($mainNgoType== 'দেশিও'){
+        if($mainNgoType== 'দেশিও'){
 
-                return view('front.renew.renewInfo',compact('getAllDataAdviserBank','allPartiw1','allPartiw','getAllDataNew','getUserIdFrom'));
 
-            }else{
+        return view('front.renew.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
+        }else{
+            return view('front.renew.foreign.renewInfo',compact('get_all_data_adviser_bank','all_partiw1','all_partiw','get_all_data_new','getUserIdFrom'));
 
-                return view('front.renew.foreign.renewInfo',compact('getAllDataAdviserBank','allPartiw1','allPartiw','getAllDataNew','getUserIdFrom'));
-
-            }
+        }
     }
 
 
     public function verifiedFdEightDownload(Request $request){
-
+        try{
+            DB::beginTransaction();
         $fd9FormInfo = NgoRenewInfo::find($request->id);
 
         if ($request->hasfile('verified_fd_eight_form')) {
-
             $filePath="fd8FormInfo";
             $file = $request->file('verified_fd_eight_form');
+
             $fd9FormInfo->verified_form =CommonController::pdfUpload($request,$file,$filePath);
+
         }
 
         $fd9FormInfo->save();
 
+        DB::commit();
         return redirect()->back()->with('success','Update Successfully');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -318,37 +370,70 @@ class RenewController extends Controller
         $name = $request->name;
         $designation = $request->designation;
         $id = $request->id;
-        return $data = url('downloadRenewPdf/'.base64_encode($id));
+
+        // $formEightData =NgoRenewInfo::find($id);
+        // $formEightData->chief_name = $name;
+        // $formEightData->chief_desi = $designation;
+        // $formEightData->save();
+
+         return $data = url('downloadRenewPdf/'.base64_encode($id));
 
     }
 
     public function downloadRenewPdf($id){
 
+        //dd(33);
+        $get_all_data_new = NgoRenewInfo::where('id',base64_decode($id))->first();
 
-        $getAllDataNew = NgoRenewInfo::where('id',base64_decode($id))->first();
-        $allPartiw1 = FdOneForm::where('id',$getAllDataNew->fd_one_form_id)->first(); $allPartiw = FdOneMemberList::where('fd_one_form_id',$getAllDataNew->fd_one_form_id)->get();
-        $getAllDataAdviserBank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getAllDataNew->fd_one_form_id)->first();
+        //$getUserIdFrom = NgoRenew::where('id',base64_decode($id))->first();
+        $all_partiw1 = FdOneForm::where('id',$get_all_data_new->fd_one_form_id)->first();
 
-        $fileNameCustome = 'fd_eight_form';
-
-        $data =view('front.renew.downloadRenewPdf',[
-                    'getAllDataNew'=>$getAllDataNew,
-
-                    'allPartiw1'=>$allPartiw1,
-                    'allPartiw'=>$allPartiw,
-                    'getAllDataAdviserBank'=>$getAllDataAdviserBank
-
-                ])->render();
+        $all_partiw = FdOneMemberList::where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->get();
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$get_all_data_new->fd_one_form_id)->first();
 
 
-        $pdfFilePath =$fileNameCustome.'.pdf';
+        $file_Name_Custome = 'fd_eight_form';
+
+
+
+
+
+    //     $pdf=PDF::loadView('front.renew.downloadRenewPdf',[
+    //         'get_all_data_new'=>$get_all_data_new,
+
+    //         'all_partiw1'=>$all_partiw1,
+    //         'all_partiw'=>$all_partiw,
+    //         'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+
+    //     ],[],['format' => 'A4']);
+    // return $pdf->stream($file_Name_Custome.''.'.pdf');
+
+
+
+    $data =view('front.renew.downloadRenewPdf',[
+                'get_all_data_new'=>$get_all_data_new,
+
+                'all_partiw1'=>$all_partiw1,
+                'all_partiw'=>$all_partiw,
+                 'get_all_data_adviser_bank'=>$get_all_data_adviser_bank
+
+            ])->render();
+
+
+    $pdfFilePath =$file_Name_Custome.'.pdf';
 
 
                      $mpdf = new Mpdf([
+                        //'default_font_size' => 14,
                         'default_font' => 'nikosh'
                     ]);
 
+                    //$mpdf->WriteHTML($stylesheet,\Mpdf\HTMLParserMode::HEADER_CSS);
+
                     $mpdf->WriteHTML($data);
+
+
+
                     $mpdf->Output($pdfFilePath, "I");
                     die();
 
@@ -359,64 +444,75 @@ class RenewController extends Controller
     public function allStaffInformationForRenew(){
 
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-        $allPartiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
+        $all_partiw = FdOneMemberList::where('fd_one_form_id',$getUserIdFrom)->get();
+
         CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
 
-        return view('front.renew.allStaffInformationForRenew',compact('allPartiw'));
-
+        return view('front.renew.all_staff_information_for_renew',compact('all_partiw'));
         }else{
 
-            return view('front.renew.foreign.allStaffInformationForRenew',compact('allPartiw'));
+            return view('front.renew.foreign.all_staff_information_for_renew',compact('all_partiw'));
 
         }
     }
 
     public function otherInformationForRenew(){
-
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-        $allPartiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->latest()->limit(1)->get();
+        $all_partiw = FdOneBankAccount::where('fd_one_form_id',$getUserIdFrom)->latest()->limit(1)->get();
+
+
         CommonController::checkNgotype(1);
+
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
 
-        return view('front.renew.otherInformationForRenew',compact('allPartiw'));
-
+        return view('front.renew.other_information_for_renew',compact('all_partiw'));
         }else{
 
-            return view('front.renew.foreign.otherInformationForRenew',compact('allPartiw'));
+            return view('front.renew.foreign.other_information_for_renew',compact('all_partiw'));
 
         }
     }
 
     public function otherInformationForRenewNewPost(Request $request){
+       // dd($request->all());
 
         $input = $request->all();
-        $conditionMainId = $input['id'];
-        foreach($conditionMainId as $key => $conditionMainId){
+        try{
+            DB::beginTransaction();
 
-            $form=FdOneMemberList::find($input['id'][$key]);
-            $form->mobile=$input['staff_mobile'][$key];
-            $form->email=$input['staff_email'][$key];
-            $form->save();
+        $condition_main_id = $input['id'];
+        foreach($condition_main_id as $key => $condition_main_id){
+              $form=FdOneMemberList::find($input['id'][$key]);
+                $form->mobile=$input['staff_mobile'][$key];
+                $form->email=$input['staff_email'][$key];
 
+                $form->save();
         }
-
+        DB::commit();
         return redirect()->route('otherInformationForRenew');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function otherInformationForRenewGet(Request $request){
+//dd($request->copy_of_chalan);
+        $time_dy = time().date("Ymd");
+        try{
+            DB::beginTransaction();
+       $Ngorenewinfo_get_id = NgoRenewInfo::where('user_id',Auth::user()->id)
+       ->orderBy('id','desc')->value('id');
+       $filePath="NgoRenewInfo";
 
-        $timeDy = time().date("Ymd");
-        $NgorenewinfoGetId = NgoRenewInfo::where('user_id',Auth::user()->id)->orderBy('id','desc')->value('id');
-        $filePath="NgoRenewInfo";
-
-        $ngoRenew = NgoRenewInfo::find($NgorenewinfoGetId);
+        $ngoRenew = NgoRenewInfo::find($Ngorenewinfo_get_id);
         $ngoRenew->main_account_number = $request->main_account_number;
         $ngoRenew->main_account_type = $request->main_account_type;
         $ngoRenew->name_of_bank = $request->name_of_bank;
@@ -424,20 +520,22 @@ class RenewController extends Controller
         $ngoRenew->bank_address_main = $request->bank_address_main;
 
         if ($request->hasfile('change_ac_number')) {
-
             $file = $request->file('change_ac_number');
+
             $ngoRenew->change_ac_number =CommonController::pdfUpload($request,$file,$filePath);
+
         }
 
         if ($request->hasfile('copy_of_chalan')) {
-
             $file = $request->file('copy_of_chalan');
+
             $ngoRenew->copy_of_chalan =CommonController::pdfUpload($request,$file,$filePath);
+
         }
 
         if ($request->hasfile('due_vat_pdf')) {
-
             $file = $request->file('due_vat_pdf');
+
             $ngoRenew->due_vat_pdf =CommonController::pdfUpload($request,$file,$filePath);
 
         }
@@ -445,196 +543,202 @@ class RenewController extends Controller
 
 
         $getUserIdFrom = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-
+        //new code for renew
 
         $newDataAll = new RenewalFile();
         $newDataAll->fd_one_form_id = $getUserIdFrom;
         $newDataAll->constitution_of_the_organization_has_changed = $request->constitution_of_the_organization_has_changed;
-            if ($request->hasfile('constitution_of_the_organization_if_unchanged')) {
+        if ($request->hasfile('constitution_of_the_organization_if_unchanged')) {
+            $filePath="RenewalFile";
+           $file = $request->file('constitution_of_the_organization_if_unchanged');
+  $newDataAll->constitution_of_the_organization_if_unchanged =CommonController::pdfUpload($request,$file,$filePath);
 
-                $filePath="RenewalFile";
-                $file = $request->file('constitution_of_the_organization_if_unchanged');
-                $newDataAll->constitution_of_the_organization_if_unchanged =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-        if ($request->hasfile('final_fd_eight_form')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('final_fd_eight_form');
-                $newDataAll->final_fd_eight_form =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-        if ($request->hasfile('nid_and_image_of_executive_committee_members')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('nid_and_image_of_executive_committee_members');
-                $newDataAll->nid_and_image_of_executive_committee_members =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('approval_of_executive_committee')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('approval_of_executive_committee');
-                $newDataAll->approval_of_executive_committee =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('committee_members_list')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('committee_members_list');
-                $newDataAll->committee_members_list =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('registration_renewal_fee')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('registration_renewal_fee');
-                $newDataAll->registration_renewal_fee =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-        if ($request->hasfile('list_of_board_of_directors_or_board_of_trustees')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('list_of_board_of_directors_or_board_of_trustees');
-                $newDataAll->list_of_board_of_directors_or_board_of_trustees =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('organization_by_laws_or_constitution')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('organization_by_laws_or_constitution');
-                $newDataAll->organization_by_laws_or_constitution =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('work_procedure_of_organization')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('work_procedure_of_organization');
-                $newDataAll->work_procedure_of_organization =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('last_ten_years_audit_report_and_annual_report_of_the_company')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('last_ten_years_audit_report_and_annual_report_of_the_company');
-                $newDataAll->last_ten_years_audit_report_and_annual_report_of_the_company =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('registration_certificate')) {
-                $filePath="RenewalFile";
-            $file = $request->file('registration_certificate');
-            $newDataAll->registration_certificate =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('attested_copy_of_latest_registration_or_renewal_certificate')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('attested_copy_of_latest_registration_or_renewal_certificate');
-                $newDataAll->attested_copy_of_latest_registration_or_renewal_certificate =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('right_to_information_act')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('right_to_information_act');
-                $newDataAll->right_to_information_act =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('the_constitution_of_the_company_along_with_fee_if_changed')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('the_constitution_of_the_company_along_with_fee_if_changed');
-                $newDataAll->the_constitution_of_the_company_along_with_fee_if_changed =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
+       }
 
 
-            if ($request->hasfile('constitution_approved_by_primary_registering_authority')) {
+       if ($request->hasfile('final_fd_eight_form')) {
+        $filePath="RenewalFile";
+       $file = $request->file('final_fd_eight_form');
+$newDataAll->final_fd_eight_form =CommonController::pdfUpload($request,$file,$filePath);
 
-                $filePath="RenewalFile";
-                $file = $request->file('constitution_approved_by_primary_registering_authority');
-                $newDataAll->constitution_approved_by_primary_registering_authority =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-
-            if ($request->hasfile('clean_copy_of_the_constitution')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('clean_copy_of_the_constitution');
-                $newDataAll->clean_copy_of_the_constitution =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('payment_of_change_fee')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('payment_of_change_fee');
-                $newDataAll->payment_of_change_fee =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
-
-            if ($request->hasfile('section_sub_section_of_the_constitution')) {
-
-                $filePath="RenewalFile";
-                $file = $request->file('section_sub_section_of_the_constitution');
-                $newDataAll->section_sub_section_of_the_constitution =CommonController::pdfUpload($request,$file,$filePath);
-
-            }
+   }
 
 
-            if ($request->hasfile('previous_constitution_and_current_constitution_compare')) {
 
-                $filePath="RenewalFile";
-                $file = $request->file('previous_constitution_and_current_constitution_compare');
-                $newDataAll->previous_constitution_and_current_constitution_compare =CommonController::pdfUpload($request,$file,$filePath);
 
-            }
 
-        $newDataAll->save();
+       if ($request->hasfile('nid_and_image_of_executive_committee_members')) {
+        $filePath="RenewalFile";
+       $file = $request->file('nid_and_image_of_executive_committee_members');
+$newDataAll->nid_and_image_of_executive_committee_members =CommonController::pdfUpload($request,$file,$filePath);
+
+   }
+
+
+
+   if ($request->hasfile('approval_of_executive_committee')) {
+    $filePath="RenewalFile";
+   $file = $request->file('approval_of_executive_committee');
+$newDataAll->approval_of_executive_committee =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+
+if ($request->hasfile('committee_members_list')) {
+    $filePath="RenewalFile";
+   $file = $request->file('committee_members_list');
+$newDataAll->committee_members_list =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('registration_renewal_fee')) {
+    $filePath="RenewalFile";
+   $file = $request->file('registration_renewal_fee');
+$newDataAll->registration_renewal_fee =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+       if ($request->hasfile('list_of_board_of_directors_or_board_of_trustees')) {
+        $filePath="RenewalFile";
+       $file = $request->file('list_of_board_of_directors_or_board_of_trustees');
+$newDataAll->list_of_board_of_directors_or_board_of_trustees =CommonController::pdfUpload($request,$file,$filePath);
+
+   }
+
+   if ($request->hasfile('organization_by_laws_or_constitution')) {
+    $filePath="RenewalFile";
+   $file = $request->file('organization_by_laws_or_constitution');
+$newDataAll->organization_by_laws_or_constitution =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('work_procedure_of_organization')) {
+    $filePath="RenewalFile";
+   $file = $request->file('work_procedure_of_organization');
+$newDataAll->work_procedure_of_organization =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('last_ten_years_audit_report_and_annual_report_of_the_company')) {
+    $filePath="RenewalFile";
+   $file = $request->file('last_ten_years_audit_report_and_annual_report_of_the_company');
+$newDataAll->last_ten_years_audit_report_and_annual_report_of_the_company =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('registration_certificate')) {
+    $filePath="RenewalFile";
+   $file = $request->file('registration_certificate');
+$newDataAll->registration_certificate =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('attested_copy_of_latest_registration_or_renewal_certificate')) {
+    $filePath="RenewalFile";
+   $file = $request->file('attested_copy_of_latest_registration_or_renewal_certificate');
+$newDataAll->attested_copy_of_latest_registration_or_renewal_certificate =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+if ($request->hasfile('right_to_information_act')) {
+    $filePath="RenewalFile";
+   $file = $request->file('right_to_information_act');
+$newDataAll->right_to_information_act =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+if ($request->hasfile('the_constitution_of_the_company_along_with_fee_if_changed')) {
+    $filePath="RenewalFile";
+   $file = $request->file('the_constitution_of_the_company_along_with_fee_if_changed');
+$newDataAll->the_constitution_of_the_company_along_with_fee_if_changed =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+if ($request->hasfile('constitution_approved_by_primary_registering_authority')) {
+    $filePath="RenewalFile";
+   $file = $request->file('constitution_approved_by_primary_registering_authority');
+$newDataAll->constitution_approved_by_primary_registering_authority =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+if ($request->hasfile('clean_copy_of_the_constitution')) {
+    $filePath="RenewalFile";
+   $file = $request->file('clean_copy_of_the_constitution');
+$newDataAll->clean_copy_of_the_constitution =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('payment_of_change_fee')) {
+    $filePath="RenewalFile";
+   $file = $request->file('payment_of_change_fee');
+$newDataAll->payment_of_change_fee =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+if ($request->hasfile('section_sub_section_of_the_constitution')) {
+    $filePath="RenewalFile";
+   $file = $request->file('section_sub_section_of_the_constitution');
+$newDataAll->section_sub_section_of_the_constitution =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+if ($request->hasfile('previous_constitution_and_current_constitution_compare')) {
+    $filePath="RenewalFile";
+   $file = $request->file('previous_constitution_and_current_constitution_compare');
+$newDataAll->previous_constitution_and_current_constitution_compare =CommonController::pdfUpload($request,$file,$filePath);
+
+}
+
+
+$newDataAll->save();
 
         //new code  for renew
+
+
 
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $mainTime = $dt->format('H:i:s a');
+        $main_time = $dt->format('H:i:s a');
 
-        $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
 
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        //dd($ngo_list_all->id);
         $add_renew_request = new NgoRenew();
-        $add_renew_request->fd_one_form_id = $ngoListAll->id;
-        $add_renew_request->time_for_api =$mainTime;
+        $add_renew_request->fd_one_form_id = $ngo_list_all->id;
+        $add_renew_request->time_for_api =$main_time;
         $add_renew_request->status = 'Ongoing';
         $add_renew_request->save();
-
+        DB::commit();
         return redirect('/renew')->with('success','Renew Request Send Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
     public function foreginPdfDownload($id){
 
-        $getFileData = NgoRenewInfo::where('id',base64_decode($id))->value('foregin_pdf');
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('foregin_pdf');
 
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -642,15 +746,18 @@ class RenewController extends Controller
     }
 
     public function yearlyBudgetPdfDownload($id){
-        $getFileData = NgoRenewInfo::where('id',base64_decode($id))->value('yearly_budget');
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('yearly_budget');
 
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -658,15 +765,18 @@ class RenewController extends Controller
     }
 
     public function copyOfChalanPdfDownload($id){
-        $getFileData = NgoRenewInfo::where('id',base64_decode($id))->value('copy_of_chalan');
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('copy_of_chalan');
 
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
@@ -676,37 +786,41 @@ class RenewController extends Controller
 
     public function dueVatPdfDownload($id){
 
-        $getFileData = NgoRenewInfo::where('id',base64_decode($id))->value('due_vat_pdf');
+        $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('due_vat_pdf');
 
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
-
-        return Response::make(file_get_contents($file), 200, [
-            'content-type'=>'application/pdf',
-        ]);
-    }
-
-    public function changeAcNumberDownload($id){
-        $getFileData = NgoRenewInfo::where('id',base64_decode($id))->value('change_ac_number');
-
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file= public_path('/'). $get_file_data;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
 
+        // return Response::download($file,$filename.'.pdf', $headers);
+
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',
         ]);
-
     }
+        public function changeAcNumberDownload($id){
+            $get_file_data = NgoRenewInfo::where('id',base64_decode($id))->value('change_ac_number');
 
+            $file_path = url('public/'.$get_file_data);
+                                    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+            $file= public_path('/'). $get_file_data;
+
+            $headers = array(
+                      'Content-Type: application/pdf',
+                    );
+
+            // return Response::download($file,$filename.'.pdf', $headers);
+
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
+
+        }
     }
 

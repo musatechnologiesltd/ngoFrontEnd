@@ -31,34 +31,40 @@ class NgomemberdocController extends Controller
     }
 
     public function ngoMemberDocFinalUpdate(){
+//dd(1);
+        $checkCompleteStatusData = DB::table('form_complete_statuses')
+   ->where('user_id',Auth::user()->id)
+   ->first();
+   try{
+    DB::beginTransaction();
+   if(!$checkCompleteStatusData){
 
-        $checkCompleteStatusData = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->first();
+       $newStatusData = new FormCompleteStatus();
+       $newStatusData->user_id = Auth::user()->id;
+       $newStatusData->fd_one_form_step_one_status = 1;
+       $newStatusData->fd_one_form_step_two_status = 1;
+       $newStatusData->fd_one_form_step_three_status = 1;
+       $newStatusData->fd_one_form_step_four_status = 1;
+       $newStatusData->form_eight_status = 1;
+       $newStatusData->ngo_member_status = 1;
+       $newStatusData->ngo_member_nid_photo_status = 1;
+       $newStatusData->ngo_other_document_status = 0;
+       $newStatusData->save();
+   }else{
 
-        if(!$checkCompleteStatusData){
-
-            $newStatusData = new FormCompleteStatus();
-            $newStatusData->user_id = Auth::user()->id;
-            $newStatusData->fd_one_form_step_one_status = 1;
-            $newStatusData->fd_one_form_step_two_status = 1;
-            $newStatusData->fd_one_form_step_three_status = 1;
-            $newStatusData->fd_one_form_step_four_status = 1;
-            $newStatusData->form_eight_status = 1;
-            $newStatusData->ngo_member_status = 1;
-            $newStatusData->ngo_member_nid_photo_status = 1;
-            $newStatusData->ngo_other_document_status = 0;
-            $newStatusData->save();
-        }else{
-
-            FormCompleteStatus::where('id', $checkCompleteStatusData->id)
-            ->update([
-                'ngo_member_nid_photo_status' => 1
-                ]);
+       FormCompleteStatus::where('id', $checkCompleteStatusData->id)
+       ->update([
+           'ngo_member_nid_photo_status' => 1
+        ]);
 
 
-        }
-
-        return redirect('/ngoAllRegistrationForm');
-
+   }
+   DB::commit();
+   return redirect('/ngoAllRegistrationForm');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
 
@@ -73,11 +79,12 @@ class NgomemberdocController extends Controller
 
     public function store(Request $request){
 
-        $timeDy = time().date("Ymd");
+        //dd($request->all());
+        $time_dy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $mainTime = $dt->format('H:i:s');
+        $main_time = $dt->format('H:i:s');
         $input = $request->all();
 
 
@@ -88,12 +95,13 @@ class NgomemberdocController extends Controller
         ]);
 
 
-        $conditionMainImage = $input['member_name'];
+        $condition_main_image = $input['member_name'];
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+        try{
+            DB::beginTransaction();
+        foreach($condition_main_image as $key => $all_condition_main_image){
 
-        foreach($conditionMainImage as $key => $allConditionMainImage){
-
-            $fileSize = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
+            $file_size = number_format($input['member_nid_copy'][$key]->getSize() / 1048576,2);
 
             $form= new NgoMemberNidPhoto();
             $filePath="NgoMemberNidPhoto";
@@ -103,13 +111,17 @@ class NgomemberdocController extends Controller
             $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
             $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
             $form->member_name=$input['member_name'][$key];
-            $form->time_for_api = $mainTime;
+            $form->time_for_api = $main_time;
             $form->fd_one_form_id = $fdOneFormId;
-            $form->member_nid_copy_size =$fileSize;
+            $form->member_nid_copy_size =$file_size;
             $form->save();
        }
-
+       DB::commit();
        return redirect()->back()->with('success','Created Successfully');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -117,56 +129,74 @@ class NgomemberdocController extends Controller
     public function update(Request $request,$id){
 
 
-            $timeDy = time().date("Ymd");
+        $time_dy = time().date("Ymd");
+        try{
+            DB::beginTransaction();
+
             $form= NgoMemberNidPhoto::find($id);
             $filePath="NgoMemberNidPhoto";
             if ($request->hasfile('member_nid_copy')) {
-
                 $file = $request->file('member_nid_copy');
-                $fileSize = number_format($file->getSize() / 1048576,2);
+                $file_size = number_format($file->getSize() / 1048576,2);
+
+
                 $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
-                $form->member_nid_copy_size =$fileSize;
+            $form->member_nid_copy_size =$file_size;
 
             }
             if ($request->hasfile('member_image')) {
+            $file1 = $request->file('member_image');
 
-                $file1 = $request->file('member_image');
-                $form->member_image =CommonController::imageUpload($request,$file1,$filePath);
+            $form->member_image =CommonController::imageUpload($request,$file1,$filePath);
 
             }
-
             $form->member_name=$request->member_name;
+
+
             $form->save();
-
+            DB::commit();
             return redirect()->back()->with('info','Updated Successfully');
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoMemberNidPhoto::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function ngoMemberDocumentDownload($id){
 
-        $getFileData = NgoMemberNidPhoto::where('id',$id)->value('member_nid_copy');
+        $get_file_data = NgoMemberNidPhoto::where('id',$id)->value('member_nid_copy');
 
-        $filePath = url('public/'.$getFileData);
-        $filename  = pathinfo($filePath, PATHINFO_FILENAME);
-        $file= public_path('/'). $getFileData;
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
 
         $headers = array(
                   'Content-Type: application/pdf',
                 );
+
+
+
 
         return Response::make(file_get_contents($file), 200, [
             'content-type'=>'application/pdf',

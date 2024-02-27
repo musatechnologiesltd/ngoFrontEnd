@@ -16,7 +16,9 @@
     ->where('user_id',Auth::user()->id)->value('id');
     $ngoMemberDocLists = DB::table('ngo_member_nid_photos')
     ->where('fd_one_form_id',$fdOneFormId)->latest()->get();
-    ?>
+
+
+                            ?>
 
 
     <div class="file-content">
@@ -28,8 +30,8 @@
 
 <?php
 
-            $filePath = url($all_all_ngo_member_doc->member_nid_copy);
-            $filename  = pathinfo($filePath, PATHINFO_FILENAME);
+            $file_path = url($all_all_ngo_member_doc->member_nid_copy);
+            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 
