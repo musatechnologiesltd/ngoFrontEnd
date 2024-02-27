@@ -23,9 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" data-bs-toggle="tab" href="#tof03">তফসিল ০৪</a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="tab" href="#tof04">তফসিল ০৫</a>
-                    </li>
+                    </li> --}}
                 </ul>
 
                 <!-- Tab panes -->

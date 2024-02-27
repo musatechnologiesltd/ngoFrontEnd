@@ -117,7 +117,7 @@ color:white !important;
                             </a>
                         </div>
 
-                        <div class="profile_link_box">
+                        {{-- <div class="profile_link_box">
                             <a href="{{ route('duplicateCertificate.index') }}">
                                 <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
                             </a>
@@ -134,7 +134,7 @@ color:white !important;
                             <a href="{{ route('executiveCommitteeApproval.index') }}">
                                 <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
