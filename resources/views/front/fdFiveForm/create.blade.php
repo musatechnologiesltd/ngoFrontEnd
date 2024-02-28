@@ -1,7 +1,7 @@
 @extends('front.master.master')
 
 @section('title')
-নির্বাহী কমিটি অনুমোদনের জন্য আবেদন | {{ trans('header.ngo_ab')}}
+বিদেশ থেকে প্রাপ্ত জিনিসপত্র /দ্রব্যসামগ্র্রীর সংরক্ষণ সংক্রান্ত ফরম | {{ trans('header.ngo_ab')}}
 @endsection
 
 @section('css')
@@ -110,7 +110,7 @@
                                 <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
                             </a>
                         </div>
-                        <div class="profile_link_box">
+                        {{-- <div class="profile_link_box">
                             <a href="{{ route('duplicateCertificate.index')}}">
                                 <p class="{{ Route::is('duplicateCertificate.index') ||  Route::is('duplicateCertificate.create') || Route::is('duplicateCertificate.show') || Route::is('duplicateCertificate.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
                             </a>
@@ -127,7 +127,7 @@
                             <a href="{{ route('executiveCommitteeApproval.index') }}">
                                 <p class="{{ Route::is('executiveCommitteeApproval.index') ||  Route::is('executiveCommitteeApproval.create') || Route::is('executiveCommitteeApproval.show') || Route::is('executiveCommitteeApproval.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
                             </a>
-                        </div>
+                        </div> --}}
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -139,7 +139,7 @@
 
             <?php
 $fdOneFormid = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
-$name_change_list = DB::table('document_for_executive_committee_approvals')->where('fdId',$fdOneFormid->id)->latest()->value('status');
+$name_change_list = DB::table('document_for_duplicate_certificates')->where('fd_one_form_id',$fdOneFormid->id)->latest()->value('status');
 
 
 
@@ -151,135 +151,106 @@ $name_change_list = DB::table('document_for_executive_committee_approvals')->whe
 
                 <div class="card">
                     <div class="card-body">
-                        <div class="name_change_box">
+
+                        <form method="post" action="{{ route('fdFiveForm.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+
+                            @csrf
+
                             <div class="row">
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="others_inner_section">
-                                        <h1>নির্বাহী কমিটি অনুমোদনের জন্য আবেদন </h1>
-                                        <div class="notice_underline"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="d-grid d-md-flex justify-content-end">
-
-                                        @if($name_change_list == 'Ongoing')
 
 
-                                        @else
 
-                                        <button type="button"  class="btn btn-registration"
-                                        onclick="location.href = '{{ route('executiveCommitteeApproval.create') }}';">গঠনতন্ত্র পরিবর্তন/অনুমোদনের জন্য আবেদন
-                                </button>
-@endif
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">এনজিও'র নাম <span class="text-danger">*</span></label>
 
-                                    </div>
-                                </div>
-                            </div>
-                            @if(count($documentForDuplicateCertificate) == 0)
-                            <div class="no_name_change">
-                                <div class="d-flex justify-content-center pt-5">
-                                    <img src="{{ asset('/') }}public/front/assets/img/icon/no-results%20(1).png" alt="" width="120" height="120">
-                                </div>
-                                <div class="text-center">
-                                    <h5>নির্বাহী কমিটি অনুমোদন অনুরোধ নেই</h5>
-                                </div>
-                            </div>
+
+                                    @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+
+                            <input type="text" readonly name="ngo_name" value="{{ $ngoListAll->organization_name_ban }}" class="form-control" id=""
+                            placeholder="">
+
                             @else
 
 
-
-                            <div class="no_name_change pt-4">
-                                <h5 class="pb-3">নির্বাহী কমিটি অনুমোদনের তালিকা</h5>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th>ক্রমিক নং </th>
-
-                                        <th>এনজিও'র নাম</th>
-                                        <th>তারিখ</th>
-                                        <th>স্ট্যাটাস</th>
-                                        <th>কার্যকলাপ </th>
-                                    </tr>
-
-                                    @foreach($documentForDuplicateCertificate as $key=>$fd6FormListAll)
-                                    <tr>
-                                        <td>{{ $key+1 }}</td>
-                                        <td>{{ $ngoListAll->organization_name }}</td>
+                            <input type="text" readonly name="ngo_name" value="{{ $ngoListAll->organization_name }}" class="form-control" id=""
+                            placeholder="">
 
 
-                                        <td>{{ $fd6FormListAll->created_at }} <b></td>
-                                        <td><span class="text-success">{{ $fd6FormListAll->status }}</span></td>
-                                        <td>
-
-
-                                            @if($fd6FormListAll->status  == 'Ongoing' || $fd6FormListAll->status  == 'Accepted' )
-@else
-                                            <a  href="{{ route('executiveCommitteeApproval.edit',$fd6FormListAll->id) }}" class="btn btn-sm btn-outline-primary"> <i class="fa fa-pencil"></i> </a>
-
-                                            <button type="button" onclick="deleteTag({{ $fd6FormListAll->id}})" class="btn btn-sm btn-outline-danger"><i
-                                                class="bi bi-trash"></i></button>
-
-                                                <form id="delete-form-{{ $fd6FormListAll->id }}" action="{{ route('executiveCommitteeApproval.destroy',$fd6FormListAll->id) }}" method="POST" style="display: none;">
-
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                </form>
-@endif
-<a  href="{{ route('executiveCommitteeApproval.show',$fd6FormListAll->id) }}" class="btn btn-sm btn-outline-success"> <i class="fa fa-eye"></i> </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-
-                                </table>
-                            </div>
                             @endif
-                            <div class="name_change_instruction mt-5">
-                                <div class="others_inner_section mb-3">
-                                    <h1>নির্বাহী কমিটি অনুমোদনের জন্য নির্দেশনা </h1>
-                                    <div class="notice_underline"></div>
+
+
+
+                                </div>
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">সংস্থার ঠিকানা <span class="text-danger">*</span></label>
+                                    <input type="text" readonly name="ngo_address" class="form-control" value="{{ $ngoListAll->organization_address }}" id=""
+                                           placeholder="">
                                 </div>
 
-                                <ul class="nav nav-tabs custom_tab">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab" href="#tofban">তফসিল ০৫</a>
-                                    </li>
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">টেলিফোন <span class="text-danger">*</span></label>
+                                    <input type="text" readonly name="ngo_telephone_number" value="{{ $ngoListAll->tele_phone_number }}" class="form-control" id=""
+                                           placeholder="">
+                                </div>
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span></label>
+                                    <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    type = "number" required
+                                    maxlength = "11"  minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngoListAll->phone }}" class="form-control" id=""
+                                           placeholder="">
+                                </div>
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">ইমেইল ঠিকানা <span class="text-danger">*</span></label>
+                                    <input type="text" readonly name="ngo_email" class="form-control" id=""
+                                           placeholder="" value="{{ $ngoListAll->email }}">
+                                </div>
 
-                                </ul>
-                                <!-- Tab panes -->
-                                <div class="tab-content custom_tab_content">
-                                    <div class="tab-pane container active" id="tofban">
+                                @if(empty($ngoListAll->web_site_name))
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">ওয়েবসাইট</label>
+                                    <input type="text" readonly value="{{ $renewWebsiteName }}" name="ngo_website" class="form-control" id=""
+                                           placeholder="">
+                                </div>
+                                @else
+                                <div class="mb-3 col-lg-6">
+                                    <label for="" class="form-label">ওয়েবসাইট </label>
+                                    <input type="text" readonly value="{{ $ngoListAll->web_site_name }}" name="ngo_website" class="form-control" id=""
+                                           placeholder="">
+                                </div>
 
-                                        <h5 class="pt-3">৫.৫ নির্বাহী কমিটি অনুমোদনের জন্য প্রয়োজনীয় কাগজপত্রাদি:</h5>
-                                        <table class="table table-borderless instruction_table">
-                                            <tr>
-                                                <td>ক)</td>
-                                                <td>ফরম নং-৮ মোতাবেক নির্বাহী কমিটির তালিকা (সভাপতি ও সম্পাদকের যৌথ স্বাক্ষরিত)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>খ)</td>
-                                                <td>নির্বাহী কমিটির সদস্যদের জাতীয় পরিচয়পত্রের সত্যায়িত কপি ও পাসপোর্ট সাইজের
-                                                    সত্যায়িত ছবি</td>
-                                            </tr>
-                                            <tr>
-                                                <td>গ)</td>
-                                                <td>প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির সত্যায়িত তালিকা</td>
-                                            </tr>
-                                            <tr>
-                                                <td>ঘ)</td>
-                                                <td>নির্বাহ কমিটি গঠন সংক্রান্ত সাধারণ সভার কার্যবিবরণী (হাজিরাসহ) সত্যায়িত কপি</td>
-                                            </tr>
-                                            <tr>
-                                                <td>ঙ)</td>
-                                                <td>সর্বশেষ সাধারণ সদস্যদের স্বাক্ষরসহ নামের তালিকা (সদস্যের নাম, পিত/মাতার নাম,
-                                                    স্বামী/স্ত্রীর নাম, বর্তমান ও স্থায়ী ঠিকানা, জাতীয় পরিচয় পত্র নম্বর, মোবাইল নম্বর ও
-                                                    ইমেইল এড্রেসসহ)</td>
-                                            </tr>
-                                        </table>
+                                @endif
+                            </div>
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    বিদেশ থেকে প্রাপ্ত জিনিসপত্র /দ্রব্যসামগ্র্রীর সংরক্ষণ সংক্রান্ত ফরম  এর পিডিএফ <span class="text-danger">*</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input class="form-control" data-parsley-required accept=".pdf" name="file_one" type="file" id="">
+                                        </div>
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+
+
+
+
+
+
+
+
+
+                            <div class="d-grid d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-registration"
+                                        >যুক্ত করুন
+                                </button>
+                            </div>
+
+                        </form>
+
                     </div>
                 </div>
             </div>

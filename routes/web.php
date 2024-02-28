@@ -25,6 +25,7 @@ use App\Http\Controllers\NGO\OLDNGO\FD8Controller;
 use App\Http\Controllers\NGO\ApprovalOfConstitutionController;
 use App\Http\Controllers\NGO\DuplicateCertificateController;
 use App\Http\Controllers\NGO\ExecutiveComitteeApprovalController;
+use App\Http\Controllers\NGO\FdFiveFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -247,6 +248,15 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fd2Form',Fd2FormController::class);
     Route::resource('fd6Form',Fd6FormController::class);
     Route::resource('fd7Form',Fd7FormController::class);
+
+    Route::resource('fdFiveForm',FdFiveFormController::class);
+
+    Route::controller(FdFiveFormController::class)->group(function () {
+
+        Route::get('fdFiveFormPdf/{id}', 'fdFiveFormPdf')->name('fdFiveFormPdf');
+    });
+
+
 
 
     Route::resource('approvalOfConstitution',ApprovalOfConstitutionController::class);
