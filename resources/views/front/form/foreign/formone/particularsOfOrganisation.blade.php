@@ -147,6 +147,43 @@
                                                                         </select>
                                                                     </div>
                                                                     @endif
+
+                                                                        <!-- district list -->
+
+            <?php
+
+            $allDistrictList = DB::table('districts')->get();
+
+
+            ?>
+
+            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                    <option value="">{{ trans('civil.select')}}</option>
+                    @foreach($allDistrictList as $allDistrictLists)
+
+                    <option value="{{ $allDistrictLists->id }}"  {{ $allDistrictLists->id  == $allParticularsOfOrganisation->district_id ? 'selected':'' }}>{{ $allDistrictLists->bn_name }}</option>
+
+                     @endforeach
+                </select>
+            </div>
+            @else
+
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                    <option value="">{{ trans('civil.select')}}</option>
+                    @foreach($allDistrictList as $allDistrictLists)
+
+                    <option value="{{ $allDistrictLists->id }}" {{ $allDistrictLists->id  == $allParticularsOfOrganisation->district_id ? 'selected':'' }}>{{ $allDistrictLists->name }}</option>
+
+                     @endforeach
+                </select>
+            </div>
+            @endif
+            <!-- end district list -->
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
                                         {{ trans('fd_one_step_one.Particulars_of_Head_of_the_Organization_in_Bangladesh')}}
@@ -339,6 +376,43 @@
                                                 @else
 
                                                 @endif
+
+                                                    <!-- district list -->
+
+            <?php
+
+            $allDistrictList = DB::table('districts')->get();
+
+
+            ?>
+
+            @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                    <option value="">{{ trans('civil.select')}}</option>
+                    @foreach($allDistrictList as $allDistrictLists)
+
+                    <option value="{{ $allDistrictLists->id }}"  {{ $allDistrictLists->id  == $allParticularsOfOrganisation->district_id ? 'selected':'' }}>{{ $allDistrictLists->bn_name }}</option>
+
+                     @endforeach
+                </select>
+            </div>
+            @else
+
+            <div class="mb-3">
+                <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                    <option value="">{{ trans('civil.select')}}</option>
+                    @foreach($allDistrictList as $allDistrictLists)
+
+                    <option value="{{ $allDistrictLists->id }}" {{ $allDistrictLists->id  == $allParticularsOfOrganisation->district_id ? 'selected':'' }}>{{ $allDistrictLists->name }}</option>
+
+                     @endforeach
+                </select>
+            </div>
+            @endif
+            <!-- end district list -->
 
                 <div class="mb-3">
                     <h5 class="form_middle_text">

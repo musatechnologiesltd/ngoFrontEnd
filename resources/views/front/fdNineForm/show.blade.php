@@ -313,7 +313,7 @@ color:white !important;
                                             <tr>
                                                 <td>১৪.</td>
                                                 <td>একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে</td>
-                                                <td>:  @if(!$fdNineData->fd9_academic_qualification)
+                                                <td>: {{ $fdNineData->fd9_academic_qualification_des }},  @if(!$fdNineData->fd9_academic_qualification)
 
                                                     @else
 
@@ -339,7 +339,7 @@ color:white !important;
                                                 <td>কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে
                                                     হবে)
                                                 </td>
-                                                <td>: @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
+                                                <td>: {{ $fdNineData->fd9_technical_and_other_qualifications_if_any_des }}, @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
 
                                                     @else
 
@@ -363,7 +363,7 @@ color:white !important;
                                                 <td>১৬.</td>
                                                 <td>অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)
                                                 </td>
-                                                <td>: @if(!$fdNineData->fd9_past_experience)
+                                                <td>: {{ $fdNineData->fd9_past_experience_des }}, @if(!$fdNineData->fd9_past_experience)
 
                                                     @else
 
@@ -406,10 +406,14 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i>নিয়োগপত্র দেখুন </a>
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success mt-3"><i class="fa fa-file-pdf-o"></i>চুক্তিপত্র দেখুন </a>
      @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open Appointment Letter</a>
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success mt-3"><i class="fa fa-file-pdf-o"></i> Open Agreement</a>
           @endif
                                                      @endif</td>
                                             </tr>
@@ -418,7 +422,7 @@ color:white !important;
                                                 <td>যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন
                                                     পত্র সংযুক্ত করতে হবে)
                                                 </td>
-                                                <td>: @if(!$fdNineData->fd9_name_of_proposed_project)
+                                                <td>: {{ $fdNineData->fd9_name_of_proposed_project_des }}, @if(!$fdNineData->fd9_name_of_proposed_project)
 
                                                     @else
 
@@ -451,7 +455,7 @@ color:white !important;
                                             <tr>
                                                 <td>২২.</td>
                                                 <td>এ প্রকল্পে কতজন বিদেশির পদের সংস্থান রয়েছে এবং কর্মরত কতজন</td>
-                                                <td>: {{ $fdNineData->fd9_post_available_for_foreigner_and_working }}</td>
+                                                <td>:{{ $fdNineData->fd9_post_available_for_foreigner }}, {{ $fdNineData->fd9_post_available_for_foreigner_and_working }}</td>
                                             </tr>
                                             <tr>
                                                 <td>২৩.</td>
@@ -466,7 +470,25 @@ color:white !important;
                                             <tr>
                                                 <td>২৫.</td>
                                                 <td>অন্য কোন তথ্য (যদি থাকে)</td>
-                                                <td>: {{ $fdNineData->fd9_other_information }}</td>
+                                                <td>: {{ $fdNineData->fd9_other_information }} , @if(!$fdNineData->fd9_other_information_file)
+
+                                                    @else
+
+                     <?php
+
+                                                     $file_path = url($fdNineData->fd9_other_information_file);
+                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                                                     ?>
+     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'otherFile','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     @else
+
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'otherFile','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+          @endif
+                                                     @endif</td>
                                             </tr>
                                             <tr>
                                                 <td></td>

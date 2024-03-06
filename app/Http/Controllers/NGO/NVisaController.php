@@ -1319,6 +1319,14 @@ return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','c
 
             $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_copy_of_passport');
 
+        }elseif($cat == 'otherFile'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_other_information_file');
+
+        }elseif($cat == 'offeredPostNiyog'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_offered_post_niyog');
+
         }
 
 

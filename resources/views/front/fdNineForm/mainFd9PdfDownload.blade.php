@@ -60,13 +60,13 @@
                         জনাব,</p>
                         @if($checkNgoTypeForForeginNgo->ngo_type_new_old == 'Old')
                         <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($checkNgoTypeForForeginNgo->registration)}}
-                            তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
+                            তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(Carbon\Carbon::parse($ngoStatus->updated_at)->format('d-m-Y')) }}) বৈদেশিক
                             অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                             এনডিসা প্রাপ্তির সুপারিশপত্র
                             পাওয়ার জন্য আবেদন করছিঃ</p>
                         @else
                         <p>নিম্নলখিত নিয়োগপ্রাপ্ত বিদেশি নাগরিক/নাগরিকগণকে এ সংস্থায় (নিবন্ধন নম্বরঃ {{App\Http\Controllers\NGO\CommonController::englishToBangla($ngo_list_all->registration_number)}}
-                            তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($ngoStatus->updated_at->format('d-m-Y')))) }}) বৈদেশিক
+                            তারিখঃ {{ App\Http\Controllers\NGO\CommonController::englishToBangla(Carbon\Carbon::parse($ngoStatus->updated_at)->format('d-m-Y')) }} ) বৈদেশিক
                             অনুদান (স্বেচ্ছাসেবামূলক কর্মকান্ড) রেগুলেশন আইন ২০১৬ অনুযায়ী নিয়োগপত্র সত্যায়ন ও
                             এনডিসা প্রাপ্তির সুপারিশপত্র
                             পাওয়ার জন্য আবেদন করছিঃ</p>
@@ -165,7 +165,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>১৪.</td>
                     <td>একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে</td>
-                    <td>:  @if(!$fdNineData->fd9_academic_qualification)
+                    <td>: {{ $fdNineData->fd9_academic_qualification_des }}, @if(!$fdNineData->fd9_academic_qualification)
 
                         @else
 
@@ -185,7 +185,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে
                         হবে)
                     </td>
-                    <td>: @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
+                    <td>: {{ $fdNineData->fd9_technical_and_other_qualifications_if_any_des }}, @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
 
                         @else
 
@@ -203,7 +203,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>১৬.</td>
                     <td>অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)
                     </td>
-                    <td>: @if(!$fdNineData->fd9_past_experience)
+                    <td>: {{ $fdNineData->fd9_past_experience_des }}, @if(!$fdNineData->fd9_past_experience)
 
                         @else
 
@@ -227,7 +227,20 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত
                         করতে হবে)
                     </td>
-                    <td>:  @if(!$fdNineData->fd9_offered_post)
+                    <td>:@if(!$fdNineData->fd9_offered_post_niyog)
+
+                        @else
+
+<?php
+
+                         $file_path = url($fdNineData->fd9_offered_post_niyog);
+                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                         $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                         ?>
+সংযুক্ত,
+                         @endif
+                         @if(!$fdNineData->fd9_offered_post)
 
                         @else
 
@@ -246,7 +259,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন
                         পত্র সংযুক্ত করতে হবে)
                     </td>
-                    <td>: @if(!$fdNineData->fd9_name_of_proposed_project)
+                    <td>: {{ $fdNineData->fd9_name_of_proposed_project_des }}, @if(!$fdNineData->fd9_name_of_proposed_project)
 
                         @else
 
@@ -273,7 +286,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২২.</td>
                     <td>এ প্রকল্পে কতজন বিদেশির পদের সংস্থান রয়েছে এবং কর্মরত কতজন</td>
-                    <td>:  {{ $fdNineData->fd9_post_available_for_foreigner_and_working }}</td>
+                    <td>:{{ $fdNineData->fd9_post_available_for_foreigner}},  {{ $fdNineData->fd9_post_available_for_foreigner_and_working }}</td>
                 </tr>
                 <tr>
                     <td>২৩.</td>
@@ -288,7 +301,19 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২৫.</td>
                     <td>অন্য কোন তথ্য (যদি থাকে)</td>
-                    <td>:  {{ $fdNineData->fd9_other_information }}</td>
+                    <td>:  {{ $fdNineData->fd9_other_information }}, @if(!$fdNineData->fd9_other_information_file)
+
+                        @else
+
+<?php
+
+                         $file_path = url($fdNineData->fd9_other_information_file);
+                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                         $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                         ?>
+সংযুক্ত
+                         @endif</td>
                 </tr>
                 <tr>
                     <td></td>

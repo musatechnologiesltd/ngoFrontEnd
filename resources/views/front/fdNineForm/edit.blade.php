@@ -195,6 +195,22 @@
 
 <!-- empty data -->
 <div class="row">
+
+    <div class="mb-3 col-lg-12">
+        <label for="" class="form-label">বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি <span
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 200 KB & Image Format:PNG)</span></label>
+            <input type="file" class="form-control" id="fdNinePdf6"
+                   placeholder="" accept="image/png" name="fd9_foreigner_passport_size_photo" >
+
+                   <p id="fdNinePdf6_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+
+                <img src="{{ asset('/') }}{{ $fdNineData->fd9_foreigner_passport_size_photo }}" alt="" style="height:40px;" id="output">
+
+
+    </div>
+
+
     <div class="mb-3 col-lg-12">
         <label for="" class="form-label">বিদেশি নাগরিকের নাম (ইংরেজীতে Capital Letter এ)<span
             class="text-danger">*</span></label>
@@ -370,40 +386,84 @@
         <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
         </button>
     </div> --}}
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">একাডেমিক যোগ্যতা (একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-            <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf1"
-                   placeholder=""  name="fd9_academic_qualification">
 
-                   <p id="fdNinePdf1_text" class="text-danger mt-2" style="font-size:12px;"></p>
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                একাডেমিক যোগ্যতা(একাডেমিক যোগ্যতার সমর্থনে সনদপত্রের কপি সংযুক্ত করতে হবে)
+                <span
+            class="text-danger">*</span><br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <input value="{{ $fdNineData->fd9_academic_qualification_des }}" type="text" required name="fd9_academic_qualification_des" id="" class="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf1"
+                        placeholder="" accept=".pdf" name="fd9_academic_qualification">
+
+                        <p id="fdNinePdf1_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                        @if(!$fdNineData->fd9_academic_qualification)
+
+                        @else
+                        <?php
+
+                        $file_path = url($fdNineData->fd9_academic_qualification);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
-               @if(!$fdNineData->fd9_academic_qualification)
-
-               @else
-               <?php
-
-               $file_path = url($fdNineData->fd9_academic_qualification);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
+                        ?>
+                        {{ $filename.'.'.$extension }}
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
 
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-            <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf2"
-                   placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
 
-                   <p id="fdNinePdf2_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
+                class="text-danger">*</span><br><span class="text-white" style="font-size: 12px;">(Maximum 500 KB)</span>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <input value="{{ $fdNineData->fd9_technical_and_other_qualifications_if_any_des }}" type="text"  required name="fd9_technical_and_other_qualifications_if_any_des" id="" class="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf2"
+               placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
+
+               <p id="fdNinePdf2_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                @if(!$fdNineData->fd9_technical_and_other_qualifications_if_any)
 
@@ -421,153 +481,366 @@
                ?>
                {{ $filename.'.'.$extension }}
                @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf3"
-                   placeholder="" name="fd9_past_experience">
-
-                   <p id="fdNinePdf3_text" class="text-danger mt-2" style="font-size:12px;"></p>
-
-               @if(!$fdNineData->fd9_past_experience)
-
-               @else
-               <?php
-
-               $file_path = url($fdNineData->fd9_past_experience);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                অতীত অভিজ্ঞতা এবং যে কাজে তাঁকে নিয়োগ দেয়া হচ্ছে তাতে তার দক্ষতা (প্রমাণকসহ)<span
+                class="text-danger">*</span><br><span class="text-white" style="font-size: 12px;">(Maximum 500 KB)</span>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <input value="{{ $fdNineData->fd9_past_experience_des }}" type="text" required name="fd9_past_experience_des" id="" class="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf3"
+                        placeholder="" name="fd9_past_experience">
+
+                        <p id="fdNinePdf3_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                        @if(!$fdNineData->fd9_past_experience)
+
+                        @else
+                        <?php
+
+                        $file_path = url($fdNineData->fd9_past_experience);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
+
+
+                        ?>
+                        {{ $filename.'.'.$extension }}
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">যে সব দেশ ভ্রমণ করেছেন (কর্মসংস্থানের জন্য)<span
-            class="text-danger">*</span></label>
-        <input type="text"  class="form-control" id=""
-               placeholder="" value="{{ $fdNineData->fd9_countries_that_have_traveled }}" name="fd9_countries_that_have_traveled">
+
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                যে সব দেশ ভ্রমণ করেছেন (কর্মসংস্থানের জন্য)<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <input type="text" required class="form-control" id=""
+                placeholder="" value="{{ $fdNineData->fd9_countries_that_have_traveled }}" name="fd9_countries_that_have_traveled">
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত করতে হবে),<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
-            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf4"
-                   placeholder="" name="fd9_offered_post">
-                   <p id="fdNinePdf4_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
-               @if(!$fdNineData->fd9_offered_post)
+    <div class="mb-3 col-lg-12">
 
-               @else
-               <?php
+        <div class="card">
 
-               $file_path = url($fdNineData->fd9_offered_post);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            <div class="card-header">
+                যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র ও চুক্তিপত্র কপি সংযুক্ত করতে হবে)<span
+                class="text-danger">*</span>
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <label for="" class="form-label mt-2">নিয়োগপত্র<span
+                            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+                        <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf4"
+                               placeholder="" name="fd9_offered_post_niyog">
+                               <p id="fdNinePdf4_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+                               @if(!$fdNineData->fd9_offered_post_niyog)
+
+                               @else
+                               <?php
+
+                               $file_path = url($fdNineData->fd9_offered_post_niyog);
+                               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
 
 
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
+                               ?>
+                               {{ $filename.'.'.$extension }}
+                               @endif
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <label for="" class="form-label mt-2">চুক্তিপত্র<span
+                            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+                        <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf55"
+                               placeholder="" name="fd9_offered_post">
+                               <p id="fdNinePdf55_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+                               @if(!$fdNineData->fd9_offered_post)
+
+                               @else
+                               <?php
+
+                               $file_path = url($fdNineData->fd9_offered_post);
+                               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                               ?>
+                               {{ $filename.'.'.$extension }}
+                               @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন পত্র সংযুক্ত করতে হবে)<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
-            <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf5"
-                   placeholder="" name="fd9_name_of_proposed_project">
 
-                   <p id="fdNinePdf5_text" class="text-danger mt-2" style="font-size:12px;"></p>
+    <div class="mb-3 col-lg-12">
 
-               @if(!$fdNineData->fd9_name_of_proposed_project)
+        <div class="card">
 
-               @else
-               <?php
+            <div class="card-header">
+                যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন পত্র সংযুক্ত করতে হবে)<span
+                class="text-danger">*</span><br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
 
-               $file_path = url($fdNineData->fd9_name_of_proposed_project);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            </div>
+            <div class="card-body">
 
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <input value="{{ $fdNineData->fd9_name_of_proposed_project_des }}" type="text" required name="fd9_name_of_proposed_project_des" id="" class="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf5"
+                        placeholder="" name="fd9_name_of_proposed_project">
+
+                        <p id="fdNinePdf5_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                        @if(!$fdNineData->fd9_name_of_proposed_project)
+
+                        @else
+                        <?php
+
+                        $file_path = url($fdNineData->fd9_name_of_proposed_project);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                        $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
 
 
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
+                        ?>
+                        {{ $filename.'.'.$extension }}
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">নিয়োগের যে তারিখ নির্ধারণ করা হয়েছে: (কে) নতুন (খ) প্রতিস্থাপিত (গ) এক্সটেনশন (খ) চলমান্<span
-            class="text-danger">*</span></label>
-        <select name="fd9_date_of_appointment" class="form-control" id="" required>
-            <option value="নতুন" {{ $fdNineData->fd9_date_of_appointment == 'নতুন' ? 'selected':'' }}>নতুন</option>
-            <option value="প্রতিস্থাপিত" {{ $fdNineData->fd9_date_of_appointment == 'প্রতিস্থাপিত' ? 'selected':'' }}>প্রতিস্থাপিত</option>
-            <option value="এক্সটেনশন" {{ $fdNineData->fd9_date_of_appointment == 'এক্সটেনশন' ? 'selected':'' }}>এক্সটেনশন</option>
-            <option value="চলমান" {{ $fdNineData->fd9_date_of_appointment == 'চলমান' ? 'selected':'' }}>চলমান</option>
-        </select>
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                নিয়োগের যে তারিখ নির্ধারণ করা হয়েছে: (কে) নতুন (খ) প্রতিস্থাপিত (গ) এক্সটেনশন (খ) চলমান<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <select name="fd9_date_of_appointment" class="form-control" id="" required>
+                    <option value="নতুন" {{ $fdNineData->fd9_date_of_appointment == 'নতুন' ? 'selected':'' }}>নতুন</option>
+                    <option value="প্রতিস্থাপিত" {{ $fdNineData->fd9_date_of_appointment == 'প্রতিস্থাপিত' ? 'selected':'' }}>প্রতিস্থাপিত</option>
+                    <option value="এক্সটেনশন" {{ $fdNineData->fd9_date_of_appointment == 'এক্সটেনশন' ? 'selected':'' }}>এক্সটেনশন</option>
+                    <option value="চলমান" {{ $fdNineData->fd9_date_of_appointment == 'চলমান' ? 'selected':'' }}>চলমান</option>
+                </select>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">এক্সটেনশন হয়ে থাকলে তার সময়কাল<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control datepicker" id=""
-               placeholder="" value="{{ $fdNineData->fd9_extension_date }}" name="fd9_extension_date" required>
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                এক্সটেনশন হয়ে থাকলে তার সময়কাল<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <input type="text" class="form-control datepicker" id=""
+                placeholder="" value="{{ $fdNineData->fd9_extension_date }}" name="fd9_extension_date" required>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">এ প্রকল্পে কতজন বিদেশির পদের সংস্থান রয়েছে এবং কর্মরত কতজন:<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control" id=""
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                এ প্রকল্পে কতজন বিদেশির পদের সংস্থান রয়েছে এবং কর্মরত কতজন:<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="" class="form-label mt-2">কতজন বিদেশির পদের সংস্থান রয়েছে </label>
+                        <input type="text" class="form-control" id=""
+               placeholder="" value="{{ $fdNineData->fd9_post_available_for_foreigner }}" name="fd9_post_available_for_foreigner" required>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label mt-2">কর্মরত কতজন </label>
+                        <input type="text" class="form-control" id=""
                placeholder="" value="{{ $fdNineData->fd9_post_available_for_foreigner_and_working }}" name="fd9_post_available_for_foreigner_and_working" required>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">বাংলাদেশের ইতঃপূর্বে অন্যকোন সংস্থায় কাজ করেছিলেন কিনা তার বিবরণ:<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control" id=""
-               placeholder="" value="{{ $fdNineData->fd9_previous_work_experience_in_bangladesh }}" name="fd9_previous_work_experience_in_bangladesh" required>
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                বাংলাদেশের ইতঃপূর্বে অন্যকোন সংস্থায় কাজ করেছিলেন কিনা তার বিবরণ:<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <textarea type="text" class="form-control" id=""
+                placeholder="" name="fd9_previous_work_experience_in_bangladesh" required>
+                {{ $fdNineData->fd9_previous_work_experience_in_bangladesh }}
+                </textarea>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">সংস্থায় বর্তমানে কতজন বিদেশি নাগরিক কর্মরত আছেন<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control" id=""
-               placeholder="" value="{{ $fdNineData->fd9_total_foreigner_working }}" name="fd9_total_foreigner_working" required>
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                সংস্থায় বর্তমানে কতজন বিদেশি নাগরিক কর্মরত আছেন<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <input type="text" class="form-control" id=""
+                placeholder="" value="{{ $fdNineData->fd9_total_foreigner_working }}" name="fd9_total_foreigner_working" required>
+
+            </div>
+        </div>
+
+
+
     </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">অন্য কোন তথ্য (যদি থাকে)<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control" id=""
+
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                অন্য কোন তথ্য (যদি থাকে)<span
+            class="text-danger">*</span>
+
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <input type="text" class="form-control" id=""
                placeholder="" value="{{ $fdNineData->fd9_other_information }}" name="fd9_other_information" required>
-    </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি <span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 200 KB & Image Format:PNG)</span></label>
-            <input type="file" class="form-control" id="fdNinePdf6"
-                   placeholder="" accept="image/png" name="fd9_foreigner_passport_size_photo" >
 
-                   <p id="fdNinePdf6_text" class="text-danger mt-2" style="font-size:12px;"></p>
+                    </div>
 
+                    <div class="col-md-6">
 
-                <img src="{{ asset('/') }}{{ $fdNineData->fd9_foreigner_passport_size_photo }}" alt="" style="height:40px;" id="output">
+                        <input type="file" class="form-control" id=""
+               placeholder="" name="fd9_other_information_file" >
 
-
-    </div>
-    <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পাসপোর্টের কপি সংযুক্ত<span
-            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
-            <input type="file" accept=".pdf" class="form-control" id="fdNinePdf7"
-                   placeholder=""  name="fd9_copy_of_passport" >
-                   <p id="fdNinePdf7_text" class="text-danger mt-2" style="font-size:12px;"></p>
-
-               @if(!$fdNineData->fd9_copy_of_passport)
+               @if(!$fdNineData->fd9_other_information_file)
 
                @else
                <?php
 
-               $file_path = url($fdNineData->fd9_copy_of_passport);
+               $file_path = url($fdNineData->fd9_other_information_file);
                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
                $extension = pathinfo($file_path, PATHINFO_EXTENSION);
@@ -578,7 +851,57 @@
                ?>
                {{ $filename.'.'.$extension }}
                @endif
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </div>
+
+
+
+    <div class="mb-3 col-lg-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                পাসপোর্টের কপি সংযুক্ত<span
+            class="text-danger">*</span><br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
+
+            </div>
+            <div class="card-body">
+
+                <input type="file" accept=".pdf" class="form-control" id="fdNinePdf7"
+                placeholder=""  name="fd9_copy_of_passport" >
+                <p id="fdNinePdf7_text" class="text-loght mt-2" style="font-size:12px;"></p>
+                @if(!$fdNineData->fd9_copy_of_passport)
+
+                @else
+                <?php
+
+                $file_path = url($fdNineData->fd9_copy_of_passport);
+                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+                $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+
+
+
+
+                ?>
+                {{ $filename.'.'.$extension }}
+                @endif
+            </div>
+        </div>
+
+
+
+    </div>
+
+
 
 
 
@@ -588,42 +911,60 @@
 </div>
  <!--end empty data -->
 
+ <div class="mb-3 col-lg-12">
 
-             <!--new code for ngo-->
-             <div class="mb-3">
-                <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
-                     <input type="text" data-parsley-required  name="chief_name" value="{{ $fdNineData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
-                </div>
+    <div class="card">
 
-                <div class="mb-3">
-                    <label for="" class="form-label">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
-                    <input type="text" data-parsley-required  name="chief_desi" value="{{ $fdNineData->chief_desi }}"   class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
-                </div>
+        <div class="card-header">
+            প্রধান নির্বাহীর তথ্যাদি
 
+        </div>
+        <div class="card-body">
+   <!--new code for ngo-->
+   <div class="mb-3">
+    <label for="" class="form-label">{{ trans('mview.ttTwo')}}: <span class="text-danger">*</span></label>
+         <input type="text" data-parsley-required  name="chief_name" value="{{ $fdNineData->chief_name }}"  class="form-control" id="mainName" placeholder="{{ trans('mview.ttTwo')}}">
+    </div>
 
-
-                <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span><br>
-                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
-
-                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
-                    <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
-
-                    <img src="{{asset('/')}}{{ $fdNineData->digital_signature }}" style="height:40px;"/>
-                </div>
+    <div class="mb-3">
+        <label for="" class="form-label">{{ trans('mview.ttThree')}}: <span class="text-danger">*</span></label>
+        <input type="text" data-parsley-required  name="chief_desi" value="{{ $fdNineData->chief_desi }}"   class="form-control"  placeholder="{{ trans('mview.ttThree')}}">
+    </div>
 
 
-                <div class="mb-3">
-                    <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> <br>
-                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
 
-                    <input type="file"  name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
-                    <p id="digital_seal_text" class="text-danger mt-2" style="font-size:12px;"></p>
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span><br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
+
+        <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+        <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+        <img src="{{asset('/')}}{{ $fdNineData->digital_signature }}" style="height:40px;"/>
+    </div>
 
 
-                    <img src="{{asset('/')}}{{ $fdNineData->digital_seal }}" style="height:40px;"/>
-                </div>
-                <!-- end new code -->
+    <div class="mb-3">
+        <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> <br>
+            <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+
+        <input type="file"  name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+        <p id="digital_seal_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+
+        <img src="{{asset('/')}}{{ $fdNineData->digital_seal }}" style="height:40px;"/>
+    </div>
+    <!-- end new code -->
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
 
 
 

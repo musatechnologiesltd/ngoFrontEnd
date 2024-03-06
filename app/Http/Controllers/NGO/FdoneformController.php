@@ -401,7 +401,7 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->chief_desi = $request->chief_desi;
 
         $uploadFormOneData->place = $request->place;
-
+        $uploadFormOneData->district_id = $request->district_id;
         $uploadFormOneData->user_id = Auth::user()->id;
         $uploadFormOneData->registration_number = 0;
         $uploadFormOneData->local_address = 0 ;
@@ -526,7 +526,7 @@ if($newOldNgo == 'Old'){
        $uploadFormOneData = FdOneForm::find($request->id);
        $uploadFormOneData->user_id = Auth::user()->id;
 
-
+       $uploadFormOneData->district_id = $request->district_id;
        $uploadFormOneData->place = $request->place;
 
        $uploadFormOneData->chief_name = $request->chief_name;

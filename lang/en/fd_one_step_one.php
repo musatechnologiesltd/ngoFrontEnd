@@ -3,6 +3,7 @@ return [
     'fd8'=>'এফডি-৮ ফরম',
     'tele'=>'টেলিফোন নম্বর',
     'nn'=>'জাতীয়তা',
+    'district'=>'জেলা',
     'fd_one_form_title'=>'এফডি-১ ফরম',
     'form_eight_title'=>'ফরম নং-৮',
     'member_title'=>'সাধারণ সদস্যদের তালিকা',

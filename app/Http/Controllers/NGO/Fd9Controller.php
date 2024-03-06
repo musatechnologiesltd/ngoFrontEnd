@@ -154,7 +154,7 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
             'fd9_other_information' => 'required|string',
         ]);
 
-      //dd($request->passport_photocopy);
+      //dd($request->all());
       try{
         DB::beginTransaction();
          $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
@@ -164,6 +164,11 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $fd9FormInfo->chief_name = $request->chief_name;
          $fd9FormInfo->chief_desi = $request->chief_desi;
 
+         $fd9FormInfo->fd9_academic_qualification_des = $request->fd9_academic_qualification_des;
+         $fd9FormInfo->fd9_technical_and_other_qualifications_if_any_des = $request->fd9_technical_and_other_qualifications_if_any_des;
+         $fd9FormInfo->fd9_past_experience_des = $request->fd9_past_experience_des;
+         $fd9FormInfo->fd9_name_of_proposed_project_des = $request->fd9_name_of_proposed_project_des;
+         $fd9FormInfo->fd9_post_available_for_foreigner = $request->fd9_post_available_for_foreigner;
 
          $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
          $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
@@ -209,6 +214,22 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
             $filePath="ngoHead";
             $file = $request->file('digital_seal');
             $fd9FormInfo->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('fd9_offered_post_niyog')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_offered_post_niyog');
+            $fd9FormInfo->fd9_offered_post_niyog =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('fd9_other_information_file')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_other_information_file');
+            $fd9FormInfo->fd9_other_information_file =CommonController::pdfUpload($request,$file,$filePath);
 
         }
 
@@ -320,6 +341,13 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
        $fd9FormInfo->chief_desi = $request->chief_desi;
 
 
+       $fd9FormInfo->fd9_academic_qualification_des = $request->fd9_academic_qualification_des;
+       $fd9FormInfo->fd9_technical_and_other_qualifications_if_any_des = $request->fd9_technical_and_other_qualifications_if_any_des;
+       $fd9FormInfo->fd9_past_experience_des = $request->fd9_past_experience_des;
+       $fd9FormInfo->fd9_name_of_proposed_project_des = $request->fd9_name_of_proposed_project_des;
+       $fd9FormInfo->fd9_post_available_for_foreigner = $request->fd9_post_available_for_foreigner;
+
+
         $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
         $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
         $fd9FormInfo->fd9_husband_or_wife_name = $request->fd9_husband_or_wife_name;
@@ -365,7 +393,20 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
 
         }
 
+        if ($request->hasfile('fd9_offered_post_niyog')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_offered_post_niyog');
+            $fd9FormInfo->fd9_offered_post_niyog =CommonController::pdfUpload($request,$file,$filePath);
 
+        }
+
+
+        if ($request->hasfile('fd9_other_information_file')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_other_information_file');
+            $fd9FormInfo->fd9_other_information_file =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('fd9_academic_qualification')) {

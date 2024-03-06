@@ -60,6 +60,7 @@ class FD8Controller extends Controller
 
        $ngoRenew = new NgoRenewInfo();
        $ngoRenew->fd_one_form_id = $fdOneData->id;
+       $ngoRenew->district_id = $fdOneData->district_id;
        $ngoRenew->user_id = Auth::user()->id;
        $ngoRenew->registration_number = $regnumber->registration;
        $ngoRenew->organization_name = $fdOneData->organization_name;
@@ -275,6 +276,7 @@ class FD8Controller extends Controller
 
        $ngoRenew = NgoRenewInfo::find($renewId);
        $ngoRenew->fd_one_form_id = $fdOneData->id;
+       $ngoRenew->district_id = $fdOneData->district_id;
        $ngoRenew->organization_name = $fdOneData->organization_name;
        $ngoRenew->organization_address = $fdOneData->organization_address;
        $ngoRenew->address_of_head_office = $fdOneData->address_of_head_office;
