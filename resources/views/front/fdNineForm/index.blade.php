@@ -105,7 +105,7 @@
                                 <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
                             </a>
                         </div>
-                        
+
                         {{-- <div class="profile_link_box">
                             <a href="{{ route('duplicateCertificate.index') }}">
                                 <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
@@ -141,6 +141,7 @@
                                 <div class="col-lg-6 col-sm-12">
                                     <div class="others_inner_section">
                                         <h1>এফডি -৯ ফরম </h1>
+                                        @include('flash_message')
                                         <div class="notice_underline"></div>
                                     </div>
                                 </div>

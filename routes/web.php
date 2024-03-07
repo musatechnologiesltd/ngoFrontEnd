@@ -346,6 +346,12 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::controller(Fd9Controller::class)->group(function () {
 
+
+        Route::get('/singlePdfDownload/{id}', 'singlePdfDownload')->name('singlePdfDownload');
+        Route::get('/singlePdfDelete', 'singlePdfDelete')->name('singlePdfDelete');
+        Route::get('/singlePdfUpdate/{data}', 'singlePdfUpdate')->name('singlePdfUpdate');
+
+
         Route::post('/mainFd9PdfUpload', 'mainFd9PdfUpload')->name('mainFd9PdfUpload');
         Route::get('fd9Chief', 'fd9Chief')->name('fd9Chief');
         Route::get('/mainFd9PdfDownload/{id}', 'mainFd9PdfDownload')->name('mainFd9PdfDownload');

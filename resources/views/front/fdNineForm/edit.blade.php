@@ -195,8 +195,13 @@
 
 <!-- empty data -->
 <div class="row">
-
     <div class="mb-3 col-lg-12">
+        <label for="" class="form-label">বিদেশি নাগরিকের নাম (ইংরেজীতে Capital Letter এ)<span
+            class="text-danger">*</span></label>
+        <input type="text" class="form-control" id=""
+               placeholder="" value="{{ $fdNineData->fd9_foreigner_name }}" name="fd9_foreigner_name" required>
+    </div>
+    <div class="mb-3 col-lg-6">
         <label for="" class="form-label">বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি <span
             class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 200 KB & Image Format:PNG)</span></label>
             <input type="file" class="form-control" id="fdNinePdf6"
@@ -209,14 +214,32 @@
 
 
     </div>
+    <div class="mb-3 col-lg-6">
+        <label for="" class="form-label">পাসপোর্টের কপি সংযুক্ত<span
+            class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 1 MB)</span></label>
+            <input type="file" accept=".pdf" class="form-control" id="fdNinePdf7"
+            placeholder=""  name="fd9_copy_of_passport" >
+            <p id="fdNinePdf7_text" class="text-loght mt-2" style="font-size:12px;"></p>
+
+            @if(!$fdNineData->fd9_copy_of_passport)
+
+            @else
+            <?php
+
+            $file_path = url($fdNineData->fd9_copy_of_passport);
+            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+            $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 
-    <div class="mb-3 col-lg-12">
-        <label for="" class="form-label">বিদেশি নাগরিকের নাম (ইংরেজীতে Capital Letter এ)<span
-            class="text-danger">*</span></label>
-        <input type="text" class="form-control" id=""
-               placeholder="" value="{{ $fdNineData->fd9_foreigner_name }}" name="fd9_foreigner_name" required>
+
+
+            ?>
+            {{ $filename.'.'.$extension }}
+            @endif
     </div>
+
+
     <div class="mb-3 col-lg-4">
         <label for="" class="form-label">পিতার নাম<span
             class="text-danger">*</span></label>
@@ -254,13 +277,13 @@
                placeholder="" value="{{ $fdNineData->fd9_passport_number }}" name="fd9_passport_number" required>
     </div>
     <div class="mb-3 col-lg-4">
-        <label for="" class="form-label">ইস্যু তারিখ<span
+        <label for="" class="form-label">পাসপোর্ট ইস্যু তারিখ<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control datepicker" id=""
                placeholder="" value="{{ $fdNineData->fd9_passport_issue_date }}" name="fd9_passport_issue_date" required>
     </div>
     <div class="mb-3 col-lg-4">
-        <label for="" class="form-label">মেয়াদোর্ত্তীণ তারিখ<span
+        <label for="" class="form-label">পাসপোর্ট মেয়াদউত্তীর্ণের তারিখ<span
             class="text-danger">*</span></label>
         <input type="text" class="form-control datepicker" value="{{ $fdNineData->fd9_passport_expiration_date }}" name="fd9_passport_expiration_date" id=""
                placeholder="" required>
@@ -310,14 +333,12 @@
  placeholder="" name="fd9_nationality_or_citizenship" value="{{ $fdNineData->fd9_nationality_or_citizenship }}" required>
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">একাধিক নাগরিকত্ব থাকলে বিবরণ<span
-            class="text-danger">*</span></label>
-        <textarea required name="fd9_details_if_multiple_citizenships" id="" cols="30" rows="4" class="form-control">{{ $fdNineData->fd9_details_if_multiple_citizenships }}</textarea>
+        <label for="" class="form-label">একাধিক নাগরিকত্ব থাকলে বিবরণ</label>
+        <textarea  name="fd9_details_if_multiple_citizenships" id="" cols="30" rows="4" class="form-control">{{ $fdNineData->fd9_details_if_multiple_citizenships }}</textarea>
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পূর্বের নাগরিকত্ব থাকলে তা বহাল না থাকার কারণ<span
-            class="text-danger">*</span></label>
-        <textarea required name="fd9_previous_citizenship_is_grounds_for_non_retention" id="" cols="30" rows="4" class="form-control">{{ $fdNineData->fd9_previous_citizenship_is_grounds_for_non_retention }}</textarea>
+        <label for="" class="form-label">পূর্বের নাগরিকত্ব থাকলে তা বহাল না থাকার কারণ</label>
+        <textarea  name="fd9_previous_citizenship_is_grounds_for_non_retention" id="" cols="30" rows="4" class="form-control">{{ $fdNineData->fd9_previous_citizenship_is_grounds_for_non_retention }}</textarea>
     </div>
     <div class="mb-3 col-lg-8">
         <label for="" class="form-label">বর্তমান ঠিকানা<span
@@ -332,10 +353,9 @@
                placeholder="" value="{{ $fdNineData->fd9_number_of_family_members }}" name="fd9_number_of_family_members" required>
     </div>
 
-    {{-- <div class="mb-3 row">
-        <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):<span
-                    class="text-danger">*</span></label>
-    </div> --}}
+    <div class="mb-3 row">
+        <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):</label>
+    </div>
 
     <?php
    $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
@@ -343,13 +363,38 @@
    //dd($familyData);
     ?>
 
-    {{-- <div class="mb-3 col-lg-12">
+
+@if(count($familyData) == 0)
+
+<div class="mb-3 col-lg-12">
+    <table class="table table-light" id="dynamicAddRemove">
+        <tr>
+            <th>নাম</th>
+            <th>বয়স</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="family_member_name[]"
+                       class="form-control" />
+            </td>
+            <td>
+                <input type="text" name="family_member_age[]"
+                       class="form-control" />
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">নতুন সদস্য যোগ করুন
+    </button>
+</div>
+@else
+
+    <div class="mb-3 col-lg-12">
         <table class="table table-light" id="dynamicAddRemove">
             <tr>
-                <th>নাম<span
-                    class="text-danger">*</span></th>
-                <th>বয়স<span
-                    class="text-danger">*</span></th>
+                <th>নাম</th>
+                <th>বয়স</th>
                 <th></th>
             </tr>
             @foreach($familyData as $key=>$allFamilyData)
@@ -383,9 +428,10 @@
             @endif
             @endforeach
         </table>
-        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
+        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">নতুন সদস্য যোগ করুন
         </button>
-    </div> --}}
+    </div>
+    @endif
 
     <div class="mb-3 col-lg-12">
 
@@ -402,13 +448,15 @@
 
                 <div class="row">
                     <div class="col-md-6">
-
+                        <label>একাডেমিক যোগ্যতা <span
+                            class="text-danger">*</span></label>
                         <input value="{{ $fdNineData->fd9_academic_qualification_des }}" type="text" required name="fd9_academic_qualification_des" id="" class="form-control"/>
 
                     </div>
 
                     <div class="col-md-6">
-
+                        <label>সংযুক্তি <span
+                            class="text-danger">*</span></label>
                         <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf1"
                         placeholder="" accept=".pdf" name="fd9_academic_qualification">
 
@@ -445,21 +493,20 @@
         <div class="card">
 
             <div class="card-header">
-                কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<span
-                class="text-danger">*</span><br><span class="text-white" style="font-size: 12px;">(Maximum 500 KB)</span>
+                কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে (প্রাসঙ্গিক সনদপত্রের কপি সংযুক্ত করতে হবে)<br><span class="text-white" style="font-size: 12px;">(Maximum 500 KB)</span>
 
             </div>
             <div class="card-body">
 
                 <div class="row">
                     <div class="col-md-6">
-
-                        <input value="{{ $fdNineData->fd9_technical_and_other_qualifications_if_any_des }}" type="text"  required name="fd9_technical_and_other_qualifications_if_any_des" id="" class="form-control"/>
+                        <label>কারিগরি ও অন্যান্য যোগ্যতা যদি থাকে</label>
+                        <input value="{{ $fdNineData->fd9_technical_and_other_qualifications_if_any_des }}" type="text"   name="fd9_technical_and_other_qualifications_if_any_des" id="" class="form-control"/>
 
                     </div>
 
                     <div class="col-md-6">
-
+                        <label>সংযুক্তি </label>
                         <input type="file" accept=".pdf"  class="form-control" id="fdNinePdf2"
                placeholder=""  name="fd9_technical_and_other_qualifications_if_any">
 
@@ -505,13 +552,15 @@
 
                 <div class="row">
                     <div class="col-md-6">
-
+                        <label>অতীত অভিজ্ঞতা এবং নিয়োগপ্রাপ্ত কাজে দক্ষতা <span
+                            class="text-danger">*</span></label>
                         <input value="{{ $fdNineData->fd9_past_experience_des }}" type="text" required name="fd9_past_experience_des" id="" class="form-control"/>
 
                     </div>
 
                     <div class="col-md-6">
-
+                        <label>সংযুক্তি <span
+                            class="text-danger">*</span></label>
                         <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf3"
                         placeholder="" name="fd9_past_experience">
 
@@ -554,8 +603,26 @@
             </div>
             <div class="card-body">
 
-                <input type="text" required class="form-control" id=""
-                placeholder="" value="{{ $fdNineData->fd9_countries_that_have_traveled }}" name="fd9_countries_that_have_traveled">
+                {{-- <input type="text" required class="form-control" id=""
+                placeholder="" value="{{ $fdNineData->fd9_countries_that_have_traveled }}" name="fd9_countries_that_have_traveled"> --}}
+
+                <?php
+
+$countryList = DB::table('countries')->orderBy('id','asc')->get();
+$convert_new_ass_cat  = explode(",",$fdNineData->fd9_countries_that_have_traveled);
+
+?>
+
+                <select class="js-example-basic-multiple form-control"  name="fd9_countries_that_have_traveled[]"
+                multiple="multiple">
+                <option value="">{{ trans('civil.select')}}</option>
+                @foreach($countryList as $allGetCityzenshipData)
+
+                <option value="{{ $allGetCityzenshipData->country_name_bangla }}" {{ (in_array($allGetCityzenshipData->country_name_bangla,$convert_new_ass_cat)) ? 'selected' : '' }}>{{ $allGetCityzenshipData->country_name_bangla }}</option>
+
+            @endforeach
+
+        </select>
 
             </div>
         </div>
@@ -576,6 +643,13 @@
             <div class="card-body">
 
                 <div class="row">
+
+                    <div class="col-md-12">
+
+                        <label for="" class="form-label mt-2">পদের নাম<span
+                            class="text-danger">*</span></label>
+                        <input type="text"  name="fd9_offered_post_name" value="{{ $fdNineData->fd9_offered_post_name }}" id="" class="form-control" />
+                    </div>
                     <div class="col-md-6">
 
                         <label for="" class="form-label mt-2">নিয়োগপত্র<span
@@ -648,14 +722,28 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                    {{-- <div class="col-md-6">
 
                         <input value="{{ $fdNineData->fd9_name_of_proposed_project_des }}" type="text" required name="fd9_name_of_proposed_project_des" id="" class="form-control"/>
 
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-6">
+                        <lable>প্রকল্পের নাম <span
+                            class="text-danger">*</span></lable>
+                                                <input type="text" required name="fd9_name_of_proposed_project_name" value="{{ $fdNineData->fd9_name_of_proposed_project_name }}" id="" class="form-control"/>
 
+                                            </div>
+                    <div class="col-md-6">
+<lable>প্রকল্পের মেয়াদ <span
+    class="text-danger">*</span></lable>
+                        <input type="text" required name="fd9_name_of_proposed_project_duration" value="{{ $fdNineData->fd9_name_of_proposed_project_duration }}" id="" class="form-control"/>
+
+                    </div>
+
+                    <div class="col-md-12 mt-3">
+                        <label>সংযুক্তি <span
+                            class="text-danger">*</span></label>
                         <input type="file" accept=".pdf"   class="form-control" id="fdNinePdf5"
                         placeholder="" name="fd9_name_of_proposed_project">
 
@@ -697,12 +785,38 @@
             </div>
             <div class="card-body">
 
-                <select name="fd9_date_of_appointment" class="form-control" id="" required>
-                    <option value="নতুন" {{ $fdNineData->fd9_date_of_appointment == 'নতুন' ? 'selected':'' }}>নতুন</option>
-                    <option value="প্রতিস্থাপিত" {{ $fdNineData->fd9_date_of_appointment == 'প্রতিস্থাপিত' ? 'selected':'' }}>প্রতিস্থাপিত</option>
-                    <option value="এক্সটেনশন" {{ $fdNineData->fd9_date_of_appointment == 'এক্সটেনশন' ? 'selected':'' }}>এক্সটেনশন</option>
-                    <option value="চলমান" {{ $fdNineData->fd9_date_of_appointment == 'চলমান' ? 'selected':'' }}>চলমান</option>
-                </select>
+                   <div class="row">
+
+
+                    <div class="col-md-6">
+                        <label>তারিখ</label>
+
+                        <input type="text" class="form-control datepicker" id=""
+                        placeholder="" value={{ $fdNineData->fd9_extension_date_new }} name="fd9_extension_date_new" required>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label>ধরণ</label>
+
+                        <select name="fd9_date_of_appointment" class="form-control" id="" required>
+                            <option value="নতুন" {{ $fdNineData->fd9_date_of_appointment == 'নতুন' ? 'selected':'' }}>নতুন</option>
+                            <option value="প্রতিস্থাপিত" {{ $fdNineData->fd9_date_of_appointment == 'প্রতিস্থাপিত' ? 'selected':'' }}>প্রতিস্থাপিত</option>
+                            <option value="এক্সটেনশন" {{ $fdNineData->fd9_date_of_appointment == 'এক্সটেনশন' ? 'selected':'' }}>এক্সটেনশন</option>
+                            <option value="চলমান" {{ $fdNineData->fd9_date_of_appointment == 'চলমান' ? 'selected':'' }}>চলমান</option>
+                        </select>
+                    </div>
+
+
+
+
+                   </div>
+
+
+
+
+
+
 
             </div>
         </div>
@@ -771,14 +885,13 @@
         <div class="card">
 
             <div class="card-header">
-                বাংলাদেশের ইতঃপূর্বে অন্যকোন সংস্থায় কাজ করেছিলেন কিনা তার বিবরণ:<span
-            class="text-danger">*</span>
+                বাংলাদেশের ইতঃপূর্বে অন্যকোন সংস্থায় কাজ করেছিলেন কিনা তার বিবরণ:
 
             </div>
             <div class="card-body">
 
                 <textarea type="text" class="form-control" id=""
-                placeholder="" name="fd9_previous_work_experience_in_bangladesh" required>
+                placeholder="" name="fd9_previous_work_experience_in_bangladesh" >
                 {{ $fdNineData->fd9_previous_work_experience_in_bangladesh }}
                 </textarea>
 
@@ -816,43 +929,118 @@
         <div class="card">
 
             <div class="card-header">
-                অন্য কোন তথ্য (যদি থাকে)<span
-            class="text-danger">*</span>
+                অন্য কোন তথ্য (যদি থাকে)
 
             </div>
             <div class="card-body">
 
                 <div class="row">
-                    <div class="col-md-6">
+                @foreach($fdNineOtherFileList as $key=>$fdNineOtherFileLists)
 
-                        <input type="text" class="form-control" id=""
-               placeholder="" value="{{ $fdNineData->fd9_other_information }}" name="fd9_other_information" required>
+                <div class="col-md-3 mt-2">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+
+                            <p><b>{{ $fdNineOtherFileLists->file_name }}:</b> <a target="_blank" href="{{ route('singlePdfDownload',$fdNineOtherFileLists->id) }}" class="btn btn-custom next_button btn-sm" >
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </a></p>
+                        </div>
+                        <div class="card-footer">
+                            <button type="button" class="btn btn-custom next_button btn-sm" data-bs-toggle="modal" data-bs-target="#mmexampleModal{{ $key+1 }}">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+
+                              </button>
+
+                              <button id="deleteRecord{{ $fdNineOtherFileLists->id }}" class="btn btn-danger btn-sm" data-id="{{ $fdNineOtherFileLists->id }}" type="button" name="deleting">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+
+
+
+
+
+                              <!-- Modal -->
+            <div class="modal fade" id="mmexampleModal{{ $key+1 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{ $fdNineOtherFileLists->file_name }}</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+            <input type="hidden" name="mid" value="{{ $fdNineOtherFileLists->id }}" class="form-control" id="exampleFormControlInput1" >
+
+            <div class="mb-3">
+
+                <label for="exampleFormControlInput11" class="form-label">ফাইল নাম </label>
+                <input type="text" name="file_name_edit" value="{{ $fdNineOtherFileLists->file_name }}" class="form-control" id="exampleFormControlInput11" >
+
+            </div>
+
+
+            <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">ফাইল</label>
+            <input type="file" accept=".pdf" name="main_file_edit" class="form-control" id="exampleFormControlInput1">
+            </div>
+
+            <button type="submit" name="submit_value" value="single_update" class="btn btn-custom next_button btn-sm">
+                আপডেট করুন
+            </button>
+
+
+            </div>
+
+            </div>
+            </div>
+            </div>
+                        </div>
 
                     </div>
 
-                    <div class="col-md-6">
-
-                        <input type="file" class="form-control" id=""
-               placeholder="" name="fd9_other_information_file" >
-
-               @if(!$fdNineData->fd9_other_information_file)
-
-               @else
-               <?php
-
-               $file_path = url($fdNineData->fd9_other_information_file);
-               $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-               $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+                </div>
 
 
+                @endforeach
+                </div>
 
+                <div class="row mt-5">
+                    <div class="col-md-12">
 
-               ?>
-               {{ $filename.'.'.$extension }}
-               @endif
-
+                        <div class="mb-3">
+                            <table class="table table-light" id="dynamicAddRemoveInformation">
+                                <tr>
+                                    <th>ফাইল নাম </th>
+                                    <th>ফাইল</th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text"  name="file_name[]" class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="file"  accept=".pdf"  name="main_file[]" class="form-control"/>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <button type="button" name="add" id="dynamic-information"
+                                    class="btn btn-outline-primary">{{ trans('fd_one_step_four.add_new_information')}}
+                            </button>
+                        </div>
                     </div>
+
+                    <div class="col-md-12 mt-3">
+                        <label>অন্যান্য বিবরণ </label>
+                                                <input type="text" class="form-control" id=""
+                                       placeholder="" value="{{ $fdNineData->fd9_other_information }}" name="fd9_other_information" >
+
+                                            </div>
                 </div>
 
             </div>
@@ -861,51 +1049,6 @@
 
 
     </div>
-
-
-
-    <div class="mb-3 col-lg-12">
-
-        <div class="card">
-
-            <div class="card-header">
-                পাসপোর্টের কপি সংযুক্ত<span
-            class="text-danger">*</span><br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
-
-            </div>
-            <div class="card-body">
-
-                <input type="file" accept=".pdf" class="form-control" id="fdNinePdf7"
-                placeholder=""  name="fd9_copy_of_passport" >
-                <p id="fdNinePdf7_text" class="text-loght mt-2" style="font-size:12px;"></p>
-                @if(!$fdNineData->fd9_copy_of_passport)
-
-                @else
-                <?php
-
-                $file_path = url($fdNineData->fd9_copy_of_passport);
-                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-
-
-
-
-                ?>
-                {{ $filename.'.'.$extension }}
-                @endif
-            </div>
-        </div>
-
-
-
-    </div>
-
-
-
-
-
-
 
 
 </div>
@@ -970,7 +1113,7 @@
 
  <div class="buttons d-flex justify-content-end mt-4">
 
-    <button class="btn btn-danger me-2" name="submit_value" value="next_step_from_three" type="submit">তথ্য জমা দিন</button>
+    <button class="btn btn-danger me-2" name="submit_value" value="main_update" type="submit">তথ্য জমা দিন</button>
 
 </div>
 </form>
@@ -997,16 +1140,67 @@
 @endsection
 
 @section('script')
+
 <script>
+    var i = 0;
+    $("#dynamic-information").click(function () {
+        ++i;
+        $("#dynamicAddRemoveInformation").append('<tr>' +
+            '<td>' +
+            '<input type="text"  name="file_name[]" placeholder="" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="file" accept=".pdf" name="main_file[]" placeholder="" class="form-control" />' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +
+            '</td>' +
+            '</tr>'
+        );
+    });
+    $(document).on('click', '.remove-input-field-information', function () {
+        $(this).parents('tr').remove();
+    });
+
+</script>
+<script>
+
+
+$("[id^=deleteRecord]").click(function () {
+
+var x = confirm("Are you sure you want to delete?");
+if (x) {
+    var id = $(this).data("id");
+    var token = $("meta[name='csrf-token']").attr("content");
+
+    $.ajax({
+        url: "{{ route('singlePdfDelete') }}",
+        type: 'get',
+        data: {
+            "id": id,
+
+        },
+        success: function (data) {
+            alert('success');
+            location.reload(true);
+        }
+    });
+} else {
+    return false;
+}
+
+});
+
+////////
     var i = 0;
     $("#dynamic-ar").click(function () {
         ++i;
         $("#dynamicAddRemove").append('<tr>' +
             '<td>' +
-            '<input type="text" name="family_member_name[]" class="form-control" required/>' +
+            '<input type="text" name="family_member_name[]" class="form-control" />' +
             '</td>' +
             '<td>' +
-            '<input type="text" name="family_member_age[]" class="form-control" required/>' +
+            '<input type="text" name="family_member_age[]" class="form-control" />' +
             '</td>' +
             '<td>' +
             '<button type="button" class="btn btn-outline-danger remove-input-field"><i class="bi bi-file-earmark-x-fill"></i></button>' +

@@ -333,18 +333,15 @@
                placeholder="" name="fd9_number_of_family_members" required>
     </div>
 
-    {{-- <div class="mb-3 row">
-        <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):<span
-                    class="text-danger">*</span></label>
+    <div class="mb-3 row">
+        <label for="" class="col-sm-12 col-form-label">পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন):</label>
     </div>
 
     <div class="mb-3 col-lg-12">
         <table class="table table-light" id="dynamicAddRemove">
             <tr>
-                <th>নাম<span
-                    class="text-danger">*</span></th>
-                <th>বয়স<span
-                    class="text-danger">*</span></th>
+                <th>নাম</th>
+                <th>বয়স</th>
                 <th></th>
             </tr>
             <tr>
@@ -359,9 +356,9 @@
                 <td></td>
             </tr>
         </table>
-        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add New Member
+        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">নতুন সদস্য যোগ করুন
         </button>
-    </div> --}}
+    </div>
     <div class="mb-3 col-lg-12">
 
         <div class="card">
@@ -525,8 +522,9 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
 
                     <div class="col-md-12">
 
-                        <label for="" class="form-label mt-2">পদের নাম</label>
-                        <input type="text"  name="fd9_technical_and_other_qualifications_if_any_des" id="" class="form-control"/>
+                        <label for="" class="form-label mt-2">পদের নাম<span
+                            class="text-danger">*</span></label>
+                        <input type="text"  name="fd9_offered_post_name" id="" class="form-control" required/>
                     </div>
                     <div class="col-md-6 mt-3">
 
@@ -571,12 +569,12 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
                 <div class="row">
                     <div class="col-md-6">
                         <lable>প্রকল্পের নাম</lable>
-                                                <input type="text" required name="fd9_name_of_proposed_project_des" id="" class="form-control"/>
+                                                <input type="text" required name="fd9_name_of_proposed_project_name" id="" class="form-control"/>
 
                                             </div>
                     <div class="col-md-6">
 <lable>প্রকল্পের মেয়াদ </lable>
-                        <input type="text" required name="fd9_name_of_proposed_project_des" id="" class="form-control"/>
+                        <input type="text" required name="fd9_name_of_proposed_project_duration" id="" class="form-control"/>
 
                     </div>
 
@@ -613,7 +611,7 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
                         <label>তারিখ</label>
 
                         <input type="text" class="form-control datepicker" id=""
-                        placeholder="" name="fd9_extension_date" required>
+                        placeholder="" name="fd9_extension_date_new" required>
                     </div>
 
                     <div class="col-md-6">
@@ -763,10 +761,10 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
                                 </tr>
                                 <tr>
                                     <td>
-                                        <input type="text"  name="information_title[]" class="form-control"/>
+                                        <input type="text"  name="file_name[]" class="form-control"/>
                                     </td>
                                     <td>
-                                        <input type="file"  accept=".pdf"  name="information_type[]" class="form-control"/>
+                                        <input type="file"  accept=".pdf"  name="main_file[]" class="form-control"/>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -887,10 +885,10 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
         ++i;
         $("#dynamicAddRemoveInformation").append('<tr>' +
             '<td>' +
-            '<input type="text"  name="information_title[]" placeholder="" class="form-control" />' +
+            '<input type="text"  name="file_name[]" placeholder="" class="form-control" />' +
             '</td>' +
             '<td>' +
-            '<input type="file" accept=".pdf" name="information_type[]" placeholder="" class="form-control" />' +
+            '<input type="file" accept=".pdf" name="main_file[]" placeholder="" class="form-control" />' +
             '</td>' +
             '<td>' +
             '<button type="button" class="btn btn-outline-danger remove-input-field-information"><i class="bi bi-file-earmark-x-fill"></i></button>' +

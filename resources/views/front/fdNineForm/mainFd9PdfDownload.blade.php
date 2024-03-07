@@ -157,10 +157,14 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>১৩.</td>
                     <td>পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন)</td>
-                    <td>: @foreach($familyData as $key=>$allFamilyData)
-                          {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
-                        @endforeach
+                    <td>:
                     </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>@foreach($familyData as $key=>$allFamilyData)
+                        ({{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}) {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
+                        @endforeach</td>
                 </tr>
                 <tr>
                     <td>১৪.</td>
@@ -227,7 +231,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত
                         করতে হবে)
                     </td>
-                    <td>:@if(!$fdNineData->fd9_offered_post_niyog)
+                    <td>:{{ $fdNineData->fd9_offered_post_name }}, @if(!$fdNineData->fd9_offered_post_niyog)
 
                         @else
 
@@ -259,7 +263,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                     <td>যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন
                         পত্র সংযুক্ত করতে হবে)
                     </td>
-                    <td>: {{ $fdNineData->fd9_name_of_proposed_project_des }}, @if(!$fdNineData->fd9_name_of_proposed_project)
+                    <td>: {{ $fdNineData->fd9_name_of_proposed_project_name }}, {{ $fdNineData->fd9_name_of_proposed_project_duration }}, @if(!$fdNineData->fd9_name_of_proposed_project)
 
                         @else
 
@@ -276,7 +280,7 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২০.</td>
                     <td>নিয়োগের যে তারিখ নির্ধারণ করা হয়েছে</td>
-                    <td>:  {{ $fdNineData->fd9_date_of_appointment }}</td>
+                    <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fdNineData->fd9_extension_date_new))) }},  {{ $fdNineData->fd9_date_of_appointment }}</td>
                 </tr>
                 <tr>
                     <td>২১.</td>
@@ -301,20 +305,16 @@ $familyData = $fdNineData->fd9ForeignerEmployeeFamilyMemberList;
                 <tr>
                     <td>২৫.</td>
                     <td>অন্য কোন তথ্য (যদি থাকে)</td>
-                    <td>:  {{ $fdNineData->fd9_other_information }}, @if(!$fdNineData->fd9_other_information_file)
-
-                        @else
-
-<?php
-
-                         $file_path = url($fdNineData->fd9_other_information_file);
-                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                         $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-                         ?>
-সংযুক্ত
-                         @endif</td>
+                    <td>: {{ $fdNineData->fd9_other_information }} </td>
                 </tr>
+
+                @foreach($fdNineOtherFileList as $key=>$fdNineOtherFileLists)
+                <tr>
+                    <td></td>
+                    <td>(২৫.{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}). {{ $fdNineOtherFileLists->file_name }}</td>
+                    <td>: সংযুক্ত</td>
+                </tr>
+                @endforeach
                 <tr>
                     <td></td>
                     <td>বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি</td>

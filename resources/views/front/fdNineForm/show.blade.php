@@ -305,10 +305,15 @@ color:white !important;
                                             <tr>
                                                 <td>১৩.</td>
                                                 <td>পরিবারের সদসাদের নাম ও বয়স (যাহারা তার সাথে থাকবেন)</td>
-                                                <td>: @foreach($familyData as $key=>$allFamilyData)
-                                                    {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
-                                                    @endforeach
+                                                <td>
+                                                    :
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2"></td>
+                                                <td>@foreach($familyData as $key=>$allFamilyData)
+                                                    ({{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}) {{ $allFamilyData->family_member_name }},{{ $allFamilyData->family_member_age }}<br>
+                                                    @endforeach</td>
                                             </tr>
                                             <tr>
                                                 <td>১৪.</td>
@@ -326,10 +331,10 @@ color:white !important;
                                                      ?>
                                                 @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-                                                <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+                                                <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
                                                 @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'academic','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open </a>
                                                      @endif
                                                      @endif
                                                     </td>
@@ -352,10 +357,10 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
      @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'technical','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open </a>
           @endif
                                                      @endif</td>
                                             </tr>
@@ -376,10 +381,10 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
      @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'pastExperience','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open </a>
           @endif
                                                      @endif</td>
                                             </tr>
@@ -393,7 +398,7 @@ color:white !important;
                                                 <td>যে পদের জন্য নিয়োগ প্রস্তাব দেয়া হয়েছে : (নিয়োগপত্র কপি ও চুক্তিপত্র সংযুক্ত
                                                     করতে হবে)
                                                 </td>
-                                                <td>:  @if(!$fdNineData->fd9_offered_post)
+                                                <td>:{{ $fdNineData->fd9_offered_post_name }},  @if(!$fdNineData->fd9_offered_post)
 
                                                     @else
 
@@ -406,14 +411,14 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i>নিয়োগপত্র দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i>নিয়োগপত্র দেখুন </a>
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success mt-3"><i class="fa fa-file-pdf-o"></i>চুক্তিপত্র দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm mt-3"><i class="fa fa-file-pdf-o"></i>চুক্তিপত্র দেখুন </a>
      @else
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open Appointment Letter</a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPostNiyog','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open Appointment Letter</a>
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success mt-3"><i class="fa fa-file-pdf-o"></i> Open Agreement</a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'offeredPost','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm mt-3"><i class="fa fa-file-pdf-o"></i> Open Agreement</a>
           @endif
                                                      @endif</td>
                                             </tr>
@@ -422,7 +427,7 @@ color:white !important;
                                                 <td>যে প্রকল্পে তাকে নিয়োগের প্রস্থাব করা হয়েছে তার নাম ও মেয়াদ ব্যুরোর অনুমোদন
                                                     পত্র সংযুক্ত করতে হবে)
                                                 </td>
-                                                <td>: {{ $fdNineData->fd9_name_of_proposed_project_des }}, @if(!$fdNineData->fd9_name_of_proposed_project)
+                                                <td>: {{ $fdNineData->fd9_name_of_proposed_project_name }}, {{ $fdNineData->fd9_name_of_proposed_project_duration }}, @if(!$fdNineData->fd9_name_of_proposed_project)
 
                                                     @else
 
@@ -435,17 +440,17 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
      @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'proposedProject','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open </a>
           @endif
                                                      @endif</td>
                                             </tr>
                                             <tr>
                                                 <td>২০.</td>
                                                 <td>নিয়োগের যে তারিখ নির্ধারণ করা হয়েছে</td>
-                                                <td>: {{ $fdNineData->fd9_date_of_appointment }}</td>
+                                                <td>: {{ App\Http\Controllers\NGO\CommonController::englishToBangla(date('d-m-Y', strtotime($fdNineData->fd9_extension_date_new))) }}, {{ $fdNineData->fd9_date_of_appointment }}</td>
                                             </tr>
                                             <tr>
                                                 <td>২১.</td>
@@ -470,26 +475,21 @@ color:white !important;
                                             <tr>
                                                 <td>২৫.</td>
                                                 <td>অন্য কোন তথ্য (যদি থাকে)</td>
-                                                <td>: {{ $fdNineData->fd9_other_information }} , @if(!$fdNineData->fd9_other_information_file)
-
-                                                    @else
-
-                     <?php
-
-                                                     $file_path = url($fdNineData->fd9_other_information_file);
-                                                     $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-                                                     $extension = pathinfo($file_path, PATHINFO_EXTENSION);
-                                                     ?>
-     @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
-
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'otherFile','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
-     @else
-
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'otherFile','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
-          @endif
-                                                     @endif</td>
+                                                <td>: {{ $fdNineData->fd9_other_information }} </td>
                                             </tr>
+
+                                            @foreach($fdNineOtherFileList as $key=>$fdNineOtherFileLists)
+                                            <tr>
+                                                <td></td>
+                                                <td>(২৫.{{ App\Http\Controllers\NGO\CommonController::englishToBangla($key+1) }}). {{ $fdNineOtherFileLists->file_name }}</td>
+                                                <td>: <a target="_blank" href="{{ route('singlePdfDownload',$fdNineOtherFileLists->id) }}" class="btn btn-outline-success btn-sm" >
+                                                    <i class="fa fa-file-pdf-o"></i> দেখুন
+                                                </a></td>
+                                            </tr>
+                                            @endforeach
+
+
+
                                             <tr>
                                                 <td></td>
                                                 <td>বিদেশি নাগরিকের পাসপোর্ট সাইজের ছবি</td>
@@ -518,10 +518,10 @@ color:white !important;
                                                      ?>
      @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
 
-     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
+     <a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> দেখুন </a>
      @else
 
-<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success"><i class="fa fa-file-pdf-o"></i> Open </a>
+<a target="_blank"  href="{{ route('fd9FormExtraPdfDownload',['cat'=>'passportCopy','id'=>base64_encode($fdNineData->id)]) }}" class="btn btn-outline-success btn-sm"><i class="fa fa-file-pdf-o"></i> Open </a>
           @endif
                                                      @endif</td>
                                             </tr>
