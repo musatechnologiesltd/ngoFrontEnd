@@ -23,7 +23,7 @@
 
         <div class="mb-3">
             <label class="form-label" for="">
-                Clean copy of the constitution jointly signed by the chairman and secretary of the organization<span class="text-success">*</span>
+                Clean copy of the constitution jointly signed by the chairman and secretary of the organization<span class="text-danger">*</span>
                 <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
             <input class="form-control" name="clean_copy_of_the_constitution" data-parsley-required accept=".pdf" type="file" id="structurePartOne3">
 

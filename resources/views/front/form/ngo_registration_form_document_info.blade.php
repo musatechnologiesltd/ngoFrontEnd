@@ -207,9 +207,9 @@ if($localNgoTypem == 'Old'){
 <div class="mb-3">
                                             <label class="form-label" for="">
                                                 ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা<span class="text-danger">*</span>
-                                            <br><span class="text-success">(maximum 5 MB)</span></label>
+                                            <br><span class="text-danger">(maximum 5 MB)</span></label>
                                             <input class="form-control" name="form_eight_executive_committee_member" data-parsley-required accept=".pdf" type="file" id="structurePartTwo402">
-											
+
 											<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo402_text"></small>
                                         </div>
 
@@ -260,15 +260,15 @@ if($localNgoTypem == 'Old'){
  <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি <span class="text-danger">*</span>
-                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                    <br><span class="text-danger">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="constitution_extra"  accept=".pdf" type="file" id="structurePartTwo800">
-												
+
 												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo800_text"></small>
                                             </div>
                                           <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                    <br><span class="text-danger">(maximum 5 MB)</span></label>
                                                 <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartTwo400">
 												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo400_text"></small>
                                             </div>
@@ -276,9 +276,9 @@ if($localNgoTypem == 'Old'){
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
-                                                    <br><span class="text-success">(maximum 5 MB)</span></label>
+                                                    <br><span class="text-danger">(maximum 5 MB)</span></label>
                                                 <input class="form-control"  name="last_ten_year_annual_report"  accept=".pdf" type="file" id="structurePartTwo401">
-												
+
 												<small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo401_text"></small>
                                             </div>
 
@@ -315,7 +315,7 @@ if($localNgoTypem == 'Old'){
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
+                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span>
                                                     <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="structurePartTwo9">
                                                 <small class="text-danger mt-2" style="font-size:12px;" id="structurePartTwo9_text"></small>
@@ -2402,7 +2402,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-success">*</span>
+                                                    নিবন্ধনকালীন দাখিলকৃত সাধারণ ও নির্বাহী কমিটির তালিকা এবং বর্তমান সাধারণ সদস্য ও নির্বাহী কমিটির তালিকা  <span class="text-danger">*</span>
                                                     <br><span class="text-danger" style="font-size: 12px;">(maximum 5 MB)</span></label>
                                                 <input class="form-control" data-parsley-required name="committee_members_list"  accept=".pdf" type="file" id="">
                                             </div>

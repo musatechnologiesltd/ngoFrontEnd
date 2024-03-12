@@ -143,6 +143,12 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 });
 
 Route::controller(OtherformController::class)->group(function () {
+
+
+    Route::post('signatureCrop', 'signatureCrop')->name('signatureCrop');
+    Route::post('sealCrop', 'sealCrop')->name('sealCrop');
+
+
 	    /// 12 february code start
     Route::get('ngoInstructionPageApply', 'ngoInstructionPageApply')->name('ngoInstructionPageApply');
     Route::get('ngoInstructionPageaRenew', 'ngoInstructionPageaRenew')->name('ngoInstructionPageaRenew');

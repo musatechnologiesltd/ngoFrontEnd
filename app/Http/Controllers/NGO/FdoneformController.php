@@ -386,8 +386,8 @@ if(empty($formCompleteStatus)){
             'email' => 'required|string',
             'profession' => 'required|string',
             'submit_value' => 'required|string',
-            'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
         ]);
 
@@ -428,18 +428,18 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->complete_status = $request->submit_value;
         $uploadFormOneData->time_for_api = $main_time;
 
-        if ($request->hasfile('digital_signature')) {
+        if (!empty($request->image_base64)) {
             $filePath="ngoHead";
             $file = $request->file('digital_signature');
-            $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+            $uploadFormOneData->digital_signature =CommonController::storeBase64($request->image_base64);
 
         }
 
 
-        if ($request->hasfile('digital_seal')) {
+        if (!empty($request->image_seal_base64)) {
             $filePath="ngoHead";
             $file = $request->file('digital_seal');
-            $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+            $uploadFormOneData->digital_seal =CommonController::storeBase64($request->image_seal_base64);
 
         }
 
@@ -553,18 +553,18 @@ if($newOldNgo == 'Old'){
        $uploadFormOneData->citizenship = $arr_all;
        $uploadFormOneData->complete_status = $request->submit_value;
 
-       if ($request->hasfile('digital_signature')) {
+       if (!empty($request->image_base64)) {
         $filePath="ngoHead";
         $file = $request->file('digital_signature');
-        $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+        $uploadFormOneData->digital_signature =CommonController::storeBase64($request->image_base64);
 
     }
 
 
-    if ($request->hasfile('digital_seal')) {
+    if (!empty($request->image_seal_base64)) {
         $filePath="ngoHead";
         $file = $request->file('digital_seal');
-        $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+        $uploadFormOneData->digital_seal =CommonController::storeBase64($request->image_seal_base64);
 
     }
 

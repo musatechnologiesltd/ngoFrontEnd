@@ -7,9 +7,66 @@ use Illuminate\Http\Request;
 use File;
 use App;
 use Auth;
+use Image;
 use App\Models\NgoTypeAndLanguage;
 class CommonController extends Controller
 {
+
+
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public static  function storeBase64($imageBase64)
+    {
+        list($type, $imageBase64) = explode(';', $imageBase64);
+        list(, $imageBase64)      = explode(',', $imageBase64);
+        $imageBase64 = base64_decode($imageBase64);
+        $imageName= date('Y-d-m').time().mt_rand(1000000000, 9999999999).'.png';
+        $path = public_path() . "/uploads/" . $imageName;
+
+        file_put_contents($path, $imageBase64);
+
+
+        $finalFile = 'public/uploads/'.$imageName;
+
+        return $finalFile;
+    }
+
+
+    public static  function profileImageUpload($request,$file,$filePath){
+
+
+        $path = public_path('uploads/'.$filePath);
+
+        if(!File::isDirectory($path)){
+            File::makeDirectory($path, 0777, true, true);
+        }
+
+
+        $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
+        $directory = 'public/uploads/';
+        $imageUrl = $directory.$imageName;
+
+        //$img=Image::make($productImage)->resize(200,200);
+        $img=Image::make($imageName);
+        $img->save($imageUrl,60);
+
+
+        // $extension = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
+        // $filename = $extension;
+        // $file->move('public/uploads/'.$filePath.'/', $filename);
+        // $imageUrl =  'public/uploads/'.$filePath.'/'.$filename;
+
+
+    return $imageUrl;
+    //$imageUrl = $this->imageUpload($request);
+
+    }
+
+
     public static  function imageUpload($request,$file,$filePath){
 
 
@@ -18,6 +75,14 @@ class CommonController extends Controller
         if(!File::isDirectory($path)){
             File::makeDirectory($path, 0777, true, true);
         }
+
+
+        // $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
+        // $directory = 'public/uploads/';
+        // $imageUrl = $directory.$imageName;
+
+        // $img=Image::make($productImage)->resize(450,450);
+        // $img->save($imageUrl);
 
 
         $extension = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
