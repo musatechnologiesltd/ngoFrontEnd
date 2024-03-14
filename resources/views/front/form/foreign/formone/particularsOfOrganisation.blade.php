@@ -5,7 +5,34 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
 
+
+
+<style>
+    img {
+        display: block;
+        max-width: 100%;
+    }
+    .preview {
+        text-align: center;
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+
+    .section{
+        margin-top:150px;
+        background:#fff;
+        padding:50px 30px;
+    }
+    .modal-lg{
+        max-width: 1000px !important;
+    }
+</style>
 @endsection
 
 @section('body')
@@ -558,16 +585,7 @@
 
 
 
-                <div class="mb-3">
-                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span><br>
-                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
 
-                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
-
-                    <small id="digital_signature_text" class="text-danger"></small>
-
-                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="height:40px;"/>
-                </div>
 
 
                 @if($foreignNgoType == 'Old')
@@ -584,14 +602,31 @@
 
 
                 <div class="mb-3">
-                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span><br>
-                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+                    <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> <br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span></label>
+                    <input type="file"  value="" name="digital_signature" accept="image/png" class="form-control digital_signature" id="digital_signature">
+                    <small id="digital_signature_text" class="text-danger"></small>
 
-                    <input type="file" value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
+
+                    <input type="hidden" name="image_base64">
+                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_signature }}" style="width: 200px;" class="show-image">
+
+
+
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span><br>
+                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label></span>
+                    <input type="file"  value="" name="digital_seal" accept="image/png" class="form-control digital_seal" id="digital_seal">
 
                     <small id="digital_seal_text" class="text-danger"></small>
 
-                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="height:40px;"/>
+
+
+                    <input type="hidden" name="image_seal_base64">
+                    <img src="{{asset('/')}}{{ $allParticularsOfOrganisation->digital_seal }}" style="width: 200px;" class="show_image_seal">
                 </div>
                 <!-- end new code -->
 
@@ -620,12 +655,39 @@
     </div>
 </section>
 
+<!-- modal start --->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">{{ trans('oldorg.digiSign')}}</h5>
 
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  modal end -->
 
 @endsection
 
 @section('script')
-
+@include('front.imageCropScript')
 <script>
     $(document).ready(function () {
     $('#form').validate({ // initialize the plugin

@@ -5,7 +5,33 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
 
+
+<style>
+    img {
+        display: block;
+        max-width: 100%;
+    }
+    .preview {
+        text-align: center;
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+
+    .section{
+        margin-top:150px;
+        background:#fff;
+        padding:50px 30px;
+    }
+    .modal-lg{
+        max-width: 1000px !important;
+    }
+</style>
 @endsection
 
 @section('body')
@@ -818,20 +844,35 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
 
 
         <div class="mb-3">
-            <label for="" class="form-label">ডিজিটাল স্বাক্ষর: <span class="text-danger">*</span> <br>
+            <label for="" class="form-label">ডিজিটাল স্বাক্ষর:<span class="text-danger">*</span><br>
                 <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
 
-            <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="digital_signature">
+            <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control digital_signature" id="digital_signature"/>
             <p id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></p>
+
+
+            {{-- <input type="file" name="image" class="image"> --}}
+            <input type="hidden" name="image_base64">
+            <img src="" style="width: 200px;display: none;" class="show-image">
+
         </div>
 
 
         <div class="mb-3">
-            <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span> <br>
+            <label for="" class="form-label">ডিজিটাল সিল: <span class="text-danger">*</span><br>
                 <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
 
-            <input type="file" data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control" id="digital_seal">
-            <p id="digital_seal_text" class="text-danger mt-2" style="font-size:12px;"></p>
+            <input type="file"  data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control digital_seal" id="digital_seal">
+            <p id="digital_seal_text" class="text-danger" style="font-size: 12px;"></p>
+
+
+             <!-- new code start -->
+
+             <input type="hidden" name="image_seal_base64">
+             <img src="" style="width: 200px;display: none;" class="show_image_seal">
+
+             <!-- new code end -->
+
         </div>
         <!-- end new code -->
 
@@ -875,10 +916,38 @@ $countryList = DB::table('countries')->orderBy('id','asc')->get();
         </div>
     </div>
 </section>
+<!-- modal start --->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">{{ trans('oldorg.digiSign')}}</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  modal end -->
 @endsection
 
 @section('script')
-
+@include('front.imageCropScript')
 <script>
     var i = 0;
     $("#dynamic-information").click(function () {
