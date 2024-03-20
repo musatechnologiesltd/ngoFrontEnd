@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class FdFiveForm extends Model
 {
     use HasFactory;
+
+    protected $table = "fd_five_forms";
+
+    protected $fillable = [
+        'fdId',
+        'file_one',
+        'status'
+
+];
 }
