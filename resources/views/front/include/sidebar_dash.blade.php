@@ -90,7 +90,49 @@ $ngo_type = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->i
 </a></li>
 
 @endif
+
+<?php
+
+$ngoTypeForreset = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type_new_old');
+?>
+
+@if(empty($ngoTypeForreset))
+
+@else
+
+
+@if($ngoTypeForreset == 'Old')
+
+<?php
+
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$fdOneFormRenew = DB::table('ngo_renews')->where('fd_one_form_id',$fdOneFormId)->value('id');
+
+
+?>
+
+@if(empty($fdOneFormRenew))
 <li class="{{ Route::is('informationResetPage')  ? 'active_link' : '' }}"> <a href="{{ route('informationResetPage') }}"> <i class="fa fa-cog pe-1 dashboard_icon" aria-hidden="true"></i>{{ trans('first_info.reset')}}</a></li>
+@endif
+
+@else
+
+<?php
+
+$fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+
+$fdOneFormRenew = DB::table('ngo_statuses')->where('fd_one_form_id',$fdOneFormId)->value('id');
+
+
+?>
+@if(empty($fdOneFormRenew))
+<li class="{{ Route::is('informationResetPage')  ? 'active_link' : '' }}"> <a href="{{ route('informationResetPage') }}"> <i class="fa fa-cog pe-1 dashboard_icon" aria-hidden="true"></i>{{ trans('first_info.reset')}}</a></li>
+@endif
+
+@endif
+@endif
+
 <li class="{{ Route::is('logout')  ? 'active_link' : '' }}"> <a href="{{ route('logout') }}"> <i class="fa fa-sign-out pe-1 dashboard_icon" aria-hidden="true"></i> {{ trans('first_info.logout')}}</a></li>
 
 

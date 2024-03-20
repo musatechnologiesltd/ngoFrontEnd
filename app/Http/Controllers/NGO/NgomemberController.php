@@ -41,7 +41,8 @@ class NgomemberController extends Controller
 
 
     public function ngoMemberFinalUpdate(){
-
+        try{
+            DB::beginTransaction();
         $checkCompleteStatusData = DB::table('form_complete_statuses')
    ->where('user_id',Auth::user()->id)
    ->first();
@@ -68,7 +69,12 @@ class NgomemberController extends Controller
 
 
    }
+   DB::commit();
    return redirect('/ngoAllRegistrationForm');
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
     public function store(Request $request){
@@ -95,6 +101,9 @@ class NgomemberController extends Controller
             'permanent_address' => 'required|string',
             'name_supouse' => 'required|string',
         ]);
+
+        try{
+            DB::beginTransaction();
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
         $ngoMemberData = new NgoMemberList();
         $ngoMemberData->member_name = $request->name;
@@ -112,14 +121,20 @@ class NgomemberController extends Controller
         $ngoMemberData->fd_one_form_id  = $fdOneFormId;
         $ngoMemberData->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Created Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function update(Request $request,$id){
         $time_dy = time().date("Ymd");
-
+        try{
+            DB::beginTransaction();
         $ngoMemberData = NgoMemberList::find($id);
         $ngoMemberData->member_name = $request->name;
         $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
@@ -133,23 +148,31 @@ class NgomemberController extends Controller
         $ngoMemberData->member_name_supouse = $request->name_supouse;
         $ngoMemberData->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Created Successfully');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoMemberList::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function ngoMemberView(Request $request){

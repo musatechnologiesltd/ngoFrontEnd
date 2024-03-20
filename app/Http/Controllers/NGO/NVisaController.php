@@ -208,7 +208,8 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
       //dd($request->all());
 
-
+      try{
+        DB::beginTransaction();
 
         $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->first();
 
@@ -704,8 +705,12 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
 
         ->delete();
+        DB::commit();
         return redirect()->route('fdNineOneForm.index')->with('success','Created Successfully');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -716,7 +721,8 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
  //dd($request->passport_photocopy);
 
-
+ try{
+    DB::beginTransaction();
 
  $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->first();
 
@@ -1235,19 +1241,28 @@ return view('front.nVisa.edit',compact('nVisaEdit','ngo_list_all','countryList',
 
 //  return redirect()->route('fdNineForm.edit',base64_encode($nVisaId))->with('success','Created Successfully');
 
-
+DB::commit();
 return redirect()->route('fdNineOneForm.index')->with('success','Updated Successfully');
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
     }
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = NVisa::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -1303,6 +1318,14 @@ return view('front.nVisa.show',compact('ngoStatus','nVisaEdit','ngo_list_all','c
         }elseif($cat == 'passportCopy'){
 
             $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_copy_of_passport');
+
+        }elseif($cat == 'otherFile'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_other_information_file');
+
+        }elseif($cat == 'offeredPostNiyog'){
+
+            $get_file_data = Fd9Form::where('id',base64_decode($id))->value('fd9_offered_post_niyog');
 
         }
 

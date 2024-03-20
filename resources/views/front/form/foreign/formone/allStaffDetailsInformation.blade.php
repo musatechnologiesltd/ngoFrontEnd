@@ -32,6 +32,8 @@
 
                 </div>
                 <div class="right-side">
+
+
                     <?php
 
                     $allFormOneData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->first();
@@ -48,6 +50,8 @@
 $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_english')
             ->whereNotNull('country_people_bangla')->orderBy('id','asc')->get();
 ?>
+
+
             <form action="{{ route('allStaffDetailsInformationUpdate') }}" method="post" enctype="multipart/form-data" id="form"  data-parsley-validate="">
                 @csrf
                 <input type="hidden" class="form-control" value="{{ $allFormOneData->id }}" name="id"  id="">
@@ -56,12 +60,21 @@ $getCityzenshipData = DB::table('countries')->whereNotNull('country_people_engli
                     <h2>{{ trans('fd_one_step_three.All_staff_details_information')}} </h2>
                     {{-- <p>Enter your information to get closer to Registration.</p> --}}
                 </div>
-
+                <div class="fd01_tablist">
+                    <div class="fd01_tab"></div>
+                    <div class="fd01_tab"></div>
+                    <div class="fd01_tab fd01_checked"></div>
+                    <div class="fd01_tab"></div>
+                </div>
                 <div class="mt-3">
 
                         <div class="mb-3">
                             <h5 class="form_middle_text">
                                 {{ trans('fd_one_step_three.staff_position')}}
+                            </h5>
+
+                            <h5 class="form_middle_text">
+                                <b style="color:red !important;">{{ trans('fd_one_step_three.staff_position1')}}</b>
                             </h5>
                         </div>
                         @if(count($formOneMemberList) == 0)

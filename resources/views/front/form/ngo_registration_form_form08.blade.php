@@ -122,14 +122,14 @@ $to_total_year = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)-
                                                     <input type="text"   data-parsley-required class="form-control" required name="designation_one" id="designation_one">
                                                 </div>
                                                 <div class="mb-3 col-xl-3 col-sm-12">
-                                                    <label for="" class="form-label">স্বাক্ষর :  <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span> </label>
-                                                    <input type="file" data-parsley-required accept="image/*" class="form-control" required name="signature_one" id="signature_one">
+                                                    <label for="" class="form-label">স্বাক্ষর :  <span class="text-success"><b>Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG</b></span> </label>
+                                                    <input type="file" data-parsley-required accept="image/png" class="form-control" required name="signature_one" id="signature_one">
 
                                                 </div>
 
                                                 <div class="mb-3 col-xl-3 col-sm-12">
-                                                    <label for="" class="form-label">সীল  :  <span class="text-success"><b>Dimension:(300*100) & Size: Max: 80 KB</b></span></label>
-                                                    <input type="file" data-parsley-required  accept="image/*" class="form-control" required name="seal_one" id="seal_one">
+                                                    <label for="" class="form-label">সীল  :  <span class="text-success"><b>Dimension:(300*100) , Size: Max: 80 KB & Image Format:PNG</b></span></label>
+                                                    <input type="file" data-parsley-required  accept="image/png" class="form-control" required name="seal_one" id="seal_one">
 
                                                 </div>
                                             </div>

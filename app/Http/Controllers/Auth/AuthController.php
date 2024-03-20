@@ -31,12 +31,17 @@ class AuthController extends Controller
 {
 
     public function passwordChangeConfirmed(Request $request){
-
-        $get_all_data = User::find($request->id);
-        $get_all_data->password = Hash::make($request->password);
-        $get_all_data->save();
-
-        return redirect('/login')->with('success','Password Successfully Changed!');
+        try{
+            DB::beginTransaction();
+            $get_all_data = User::find($request->id);
+            $get_all_data->password = Hash::make($request->password);
+            $get_all_data->save();
+            DB::commit();
+            return redirect('/login')->with('success','Password Successfully Changed!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -79,7 +84,8 @@ class AuthController extends Controller
 
 
      public function sendMailGetFromList(Request $request){
-
+        try{
+            DB::beginTransaction();
         $useremail = $request->email;
         $main_data = User::where('email',$useremail)->first();
         $id = $main_data->id;
@@ -89,8 +95,13 @@ class AuthController extends Controller
             $message->to($request->email);
             $message->subject('NGOAB Registration Service || Password Reset ');
         });
-
+        DB::commit();
        return redirect('/login')->with('success','Email Sent Successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
 }
 
@@ -115,7 +126,7 @@ class AuthController extends Controller
             'email' => 'required | string',
             'password' => 'required',
         ]);
-
+        try{
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
 
@@ -126,6 +137,9 @@ class AuthController extends Controller
         }
 
         return redirect("login")->with('error','Opps! You have entered invalid credentials');
+    } catch (\Exception $e) {
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function postRegistration(Request $request)
@@ -137,7 +151,8 @@ class AuthController extends Controller
         ]);
 
         $data = $request->all();
-
+        try{
+            DB::beginTransaction();
         //dd($data);
         //$createUser = $this->create($data);
 
@@ -161,8 +176,13 @@ class AuthController extends Controller
               $message->subject('NGOAB Registration Service || User Sign Up & Email Verification');
           });
 
-
+          DB::commit();
           return redirect("emailVerifyPage");
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -173,7 +193,8 @@ class AuthController extends Controller
         $get_previous_email_all = User::where('id',$request->id)->value('email');
 
         if($get_previous_email_all == $request->email){
-
+            try{
+                DB::beginTransaction();
             $get_all_data = User::find($request->id);
             $get_all_data->user_name = $request->name;
             $get_all_data->user_phone = $request->phone;
@@ -196,15 +217,21 @@ class AuthController extends Controller
           if ($request->password) {
 
           Auth::logout();
-
+          DB::commit();
           return Redirect('login')->with('success','Password Changed Login Again');
           }else{
             return Redirect()->back()->with('success','updated Successfully');
           }
 
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
+
         }else{
 
-
+            try{
+                DB::beginTransaction();
         $get_all_data = User::find($request->id);
         $get_all_data->user_name = $request->name;
         $get_all_data->user_phone = $request->phone;
@@ -238,9 +265,12 @@ class AuthController extends Controller
 
     Session::flush();
     Auth::logout();
-
+    DB::commit();
     return Redirect('login')->with('success','Please Check Mail For Varification');;
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
 
         }
      }
@@ -260,6 +290,8 @@ class AuthController extends Controller
 
     public function dashboard()
     {
+
+        try{
         if(Auth::check()){
             $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->value('id');
 
@@ -341,6 +373,9 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
         }
 
         return redirect("login")->with('error','Opps! You do not have access');
+    } catch (\Exception $e) {
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function logout() {
@@ -353,6 +388,9 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
 
     public function verifyAccount($token)
     {
+
+        try{
+            DB::beginTransaction();
 
         //dd(11);
         $verifyUser = UserVerify::where('token', $token)->first();
@@ -371,7 +409,12 @@ $ngoOtherDocLists = RenewalFile::where('fd_one_form_id',$ngo_list_all->id)->late
                 $message = "Your e-mail is already verified. You can now login.";
             }
         }
-
+        DB::commit();
         return redirect("emailVerifiedPage");
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 }

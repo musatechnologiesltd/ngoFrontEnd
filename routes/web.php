@@ -22,6 +22,10 @@ use App\Http\Controllers\NGO\Fc1FormController;
 use App\Http\Controllers\NGO\Fc2FormController;
 use App\Http\Controllers\NGO\Fd3FormController;
 use App\Http\Controllers\NGO\OLDNGO\FD8Controller;
+use App\Http\Controllers\NGO\ApprovalOfConstitutionController;
+use App\Http\Controllers\NGO\DuplicateCertificateController;
+use App\Http\Controllers\NGO\ExecutiveComitteeApprovalController;
+use App\Http\Controllers\NGO\FdFiveFormController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -140,6 +144,17 @@ Route::get('account/verify/{token}','verifyAccount')->name('user.verify');
 
 Route::controller(OtherformController::class)->group(function () {
 
+
+    Route::post('signatureCrop', 'signatureCrop')->name('signatureCrop');
+    Route::post('sealCrop', 'sealCrop')->name('sealCrop');
+
+
+	    /// 12 february code start
+    Route::get('ngoInstructionPageApply', 'ngoInstructionPageApply')->name('ngoInstructionPageApply');
+    Route::get('ngoInstructionPageaRenew', 'ngoInstructionPageaRenew')->name('ngoInstructionPageaRenew');
+    Route::get('ngoInstructionPageNameChange', 'ngoInstructionPageNameChange')->name('ngoInstructionPageNameChange');
+    ///12 february code end
+
     Route::get('allNoticeBoard', 'allNoticeBoard')->name('allNoticeBoard');
     Route::get('viewNotice/{id}', 'viewNotice')->name('viewNotice');Route::get('informationResetPage', 'informationResetPage')->name('informationResetPage');
     Route::get('frequentlyAskQuestion', 'frequentlyAskQuestion')->name('frequentlyAskQuestion');
@@ -240,6 +255,40 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fd6Form',Fd6FormController::class);
     Route::resource('fd7Form',Fd7FormController::class);
 
+    Route::resource('fdFiveForm',FdFiveFormController::class);
+
+    Route::controller(FdFiveFormController::class)->group(function () {
+
+        Route::get('fdFiveFormPdf/{id}', 'fdFiveFormPdf')->name('fdFiveFormPdf');
+    });
+
+
+
+
+    Route::resource('approvalOfConstitution',ApprovalOfConstitutionController::class);
+    Route::resource('duplicateCertificate',DuplicateCertificateController::class);
+    Route::resource('executiveCommitteeApproval',ExecutiveComitteeApprovalController::class);
+
+    Route::controller(DuplicateCertificateController::class)->group(function () {
+
+        Route::get('duplicateCertificate/{id}/{title}', 'duplicateCertificate')->name('duplicateCertificate');
+    });
+
+
+    Route::controller(ApprovalOfConstitutionController::class)->group(function () {
+
+        Route::get('approvalOfConstitution/{id}/{title}', 'approvalOfConstitution')->name('approvalOfConstitution');
+    });
+
+
+
+    Route::controller(ExecutiveComitteeApprovalController::class)->group(function () {
+
+        Route::get('executiveCommitteeApproval/{id}/{title}', 'executiveCommitteeApproval')->name('executiveCommitteeApproval');
+
+
+    });
+
     Route::controller(Fd7FormController::class)->group(function () {
 
         Route::get('reliefAssistanceProjectProposalPdf/{id}', 'reliefAssistanceProjectProposalPdf')->name('reliefAssistanceProjectProposalPdf');
@@ -302,6 +351,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('fdNineForm',Fd9Controller::class);
 
     Route::controller(Fd9Controller::class)->group(function () {
+
+
+        Route::get('/singlePdfDownload/{id}', 'singlePdfDownload')->name('singlePdfDownload');
+        Route::get('/singlePdfDelete', 'singlePdfDelete')->name('singlePdfDelete');
+        Route::get('/singlePdfUpdate/{data}', 'singlePdfUpdate')->name('singlePdfUpdate');
+
 
         Route::post('/mainFd9PdfUpload', 'mainFd9PdfUpload')->name('mainFd9PdfUpload');
         Route::get('fd9Chief', 'fd9Chief')->name('fd9Chief');

@@ -199,7 +199,7 @@ $count3 = 11;
 
                                     @if($localNgoTypem == 'Old')
 
-                                    @if(!empty($data->web_site_name))
+                                    @if(!empty($data->annual_budget))
                                     <tr>
                                         <td>{{ trans('first_info.fd_eight')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>
@@ -213,7 +213,7 @@ $count3 = 11;
 
                                     @else
 
-                                    @if(!empty($data->id))
+                                    @if(!empty($data->annual_budget))
                                     <tr>
                                         <td>{{ trans('first_info.fd_one')}}</td>
                                         <td><span class="badge bg-success">{{ trans('first_info.complete')}}</span></td>

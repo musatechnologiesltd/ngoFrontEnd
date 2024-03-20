@@ -386,13 +386,13 @@ if(empty($formCompleteStatus)){
             'email' => 'required|string',
             'profession' => 'required|string',
             'submit_value' => 'required|string',
-            'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            // 'digital_signature' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            // 'digital_seal' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
         ]);
 
-
-
+        try{
+            DB::beginTransaction();
 
         $uploadFormOneData = new FdOneForm();
 
@@ -401,7 +401,7 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->chief_desi = $request->chief_desi;
 
         $uploadFormOneData->place = $request->place;
-
+        $uploadFormOneData->district_id = $request->district_id;
         $uploadFormOneData->user_id = Auth::user()->id;
         $uploadFormOneData->registration_number = 0;
         $uploadFormOneData->local_address = 0 ;
@@ -428,18 +428,18 @@ if(empty($formCompleteStatus)){
         $uploadFormOneData->complete_status = $request->submit_value;
         $uploadFormOneData->time_for_api = $main_time;
 
-        if ($request->hasfile('digital_signature')) {
+        if (!empty($request->image_base64)) {
             $filePath="ngoHead";
             $file = $request->file('digital_signature');
-            $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+            $uploadFormOneData->digital_signature =CommonController::storeBase64($request->image_base64);
 
         }
 
 
-        if ($request->hasfile('digital_seal')) {
+        if (!empty($request->image_seal_base64)) {
             $filePath="ngoHead";
             $file = $request->file('digital_seal');
-            $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+            $uploadFormOneData->digital_seal =CommonController::storeBase64($request->image_seal_base64);
 
         }
 
@@ -478,7 +478,7 @@ if(!$checkCompleteStatusData){
 
 }
 
-
+DB::commit();
 //new code for fd eight
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
@@ -488,7 +488,15 @@ if($newOldNgo == 'Old'){
 
 }else{
 
+
+    if($request->submit_value == 'save_and_exit_from_one'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
 }
 
 //end new code for fd eight
@@ -497,7 +505,10 @@ if($newOldNgo == 'Old'){
 
 
 
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
 
 
     }
@@ -505,7 +516,8 @@ if($newOldNgo == 'Old'){
 
     public function particularsOfOrganisationUpdate(Request $request){
 
-
+        try{
+            DB::beginTransaction();
 //dd($request->all());
 
 
@@ -514,7 +526,7 @@ if($newOldNgo == 'Old'){
        $uploadFormOneData = FdOneForm::find($request->id);
        $uploadFormOneData->user_id = Auth::user()->id;
 
-
+       $uploadFormOneData->district_id = $request->district_id;
        $uploadFormOneData->place = $request->place;
 
        $uploadFormOneData->chief_name = $request->chief_name;
@@ -541,18 +553,18 @@ if($newOldNgo == 'Old'){
        $uploadFormOneData->citizenship = $arr_all;
        $uploadFormOneData->complete_status = $request->submit_value;
 
-       if ($request->hasfile('digital_signature')) {
+       if (!empty($request->image_base64)) {
         $filePath="ngoHead";
         $file = $request->file('digital_signature');
-        $uploadFormOneData->digital_signature =CommonController::imageUpload($request,$file,$filePath);
+        $uploadFormOneData->digital_signature =CommonController::storeBase64($request->image_base64);
 
     }
 
 
-    if ($request->hasfile('digital_seal')) {
+    if (!empty($request->image_seal_base64)) {
         $filePath="ngoHead";
         $file = $request->file('digital_seal');
-        $uploadFormOneData->digital_seal =CommonController::imageUpload($request,$file,$filePath);
+        $uploadFormOneData->digital_seal =CommonController::storeBase64($request->image_seal_base64);
 
     }
 
@@ -590,7 +602,7 @@ if(!$checkCompleteStatusData){
 
 
 }
-
+DB::commit();
 if($request->submit_value == 'exit_from_step_one_edit'){
 
     // return redirect('/ngoAllRegistrationForm');
@@ -604,7 +616,7 @@ if($newOldNgo == 'Old'){
 
 }else{
 
-    return redirect('/ngoAllRegistrationForm');
+    return redirect('/dashboard');
 }
 
 
@@ -643,12 +655,16 @@ if($newOldNgo == 'Old'){
        //return redirect('/ngoAllRegistrationForm');
     }
 
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
      }
 
 
     public function uploadFromOnePdf(Request $request){
-
+        try{
+            DB::beginTransaction();
          $cutomeFileName = time().date("Ymd");
 
         $uploadVerifiedPdf = FdOneForm::find($request->id);
@@ -659,14 +675,19 @@ if($newOldNgo == 'Old'){
 
         }
         $uploadVerifiedPdf->save();
-
+        DB::commit();
         return redirect()->back()->with('success','Uploaded successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function uploadFromEightPdfOld(Request $request){
 
-
+        try{
+            DB::beginTransaction();
         $cutomeFileName = time().date("Ymd");
 
         $uploadVerifiedPdf = FdOneForm::find($request->id);
@@ -677,10 +698,13 @@ if($newOldNgo == 'Old'){
 
         }
         $uploadVerifiedPdf->save();
-
+        DB::commit();
         return redirect()->back()->with('success','Uploaded successfully!');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -689,7 +713,8 @@ if($newOldNgo == 'Old'){
 
     public function sourceOfFundUpdate(Request $request){
 
-
+        try{
+            DB::beginTransaction();
 
         $cutomeFileName = time().date("Ymd");
 
@@ -704,23 +729,37 @@ if($newOldNgo == 'Old'){
 
         }
         $uploadOneSourceOfFund->save();
-
+        DB::commit();
         return redirect()->back();
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
     public function adviserDataUpdate(Request $request){
+
+        try{
+            DB::beginTransaction();
         $addAdviserData = FdOneAdviserList::find($request->id);
         $addAdviserData->name = $request->name;
         $addAdviserData->information = $request->information;
 
         $addAdviserData->save();
-
+        DB::commit();
         return redirect()->back();
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
     public function otherInformationAUpdate(Request $request){
+        try{
+            DB::beginTransaction();
         $cutomeFileName = time().date("Ymd");
         $otherInformationData = FdOneOtherPdfList::find($request->mid);
 
@@ -731,8 +770,13 @@ if($newOldNgo == 'Old'){
 
         }
         $otherInformationData->save();
-
+        DB::commit();
         return redirect()->back();
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -752,35 +796,47 @@ if($newOldNgo == 'Old'){
 
     public function adviserDataDelete(Request $request)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = FdOneAdviserList::find($request->id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
 
     public function otherInformationADelete(Request $request)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = FdOneOtherPdfList::find($request->id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
 
     public function fieldOfProposedActivitiesUpdate(Request $request){
 
-        //dd($request->all());
+       // dd($request->all());
         $cutomeFileName = time().date("Ymd");
 
 
@@ -802,7 +858,8 @@ if($newOldNgo == 'Old'){
 
 
 
-
+        try{
+            DB::beginTransaction();
 
         $updateDataStepTwo = FdOneForm::find($request->mid);
         $updateDataStepTwo->user_id = Auth::user()->id;
@@ -909,10 +966,10 @@ if($newOldNgo == 'Old'){
 
 
         }
-
+        DB::commit();
         if($request->submit_value == 'exit_from_step_two_edit'){
 
-
+              //dd(12);
             //new code for fd eight
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
@@ -922,13 +979,15 @@ if($newOldNgo == 'Old'){
 
 }else{
 
-    return redirect('/ngoAllRegistrationForm');
+    return redirect('/dashboard');
 }
 
-            return redirect('/ngoAllRegistrationForm');
+            //return redirect('/ngoAllRegistrationForm');
 
 
         }elseif($request->submit_value == 'go_to_step_three'){
+
+            //dd(122);
 
             Session::put('fdOneFormEditThree','go_to_step_three');
 
@@ -953,14 +1012,33 @@ if($newOldNgo == 'Old'){
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
 if($newOldNgo == 'Old'){
-
+    //dd(12223);
     return redirect()->route('addDataStepTwoFd8',base64_encode($mm_id));
 
 }else{
 
+
+
+    if($request->submit_value == 'save_and_exit_from_two'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
+
+   // return redirect('/ngoAllRegistrationForm');
+
+
+
 }
             }
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
 }
 
@@ -986,7 +1064,8 @@ if($newOldNgo == 'Old'){
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
         $main_time = $dt->format('H:i:s');
-
+        try{
+            DB::beginTransaction();
         $delete_all_the_data = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->delete();
 
 
@@ -1173,7 +1252,7 @@ if($newOldNgo == 'Old'){
 
 
     }
-
+    DB::commit();
     if($request->submit_value == 'exit_from_step_three_edit'){
 
 
@@ -1194,12 +1273,25 @@ if($newOldNgo == 'Old'){
     }else{
 
 
+        if($request->submit_value == 'save_and_exit_from_three'){
 
-           return redirect('/ngoAllRegistrationForm');
+            return redirect('/dashboard');
+
+        }else{
+
+        return redirect('/othersInformation');
+        }
+
+
+
+          // return redirect('/ngoAllRegistrationForm');
 
 
         }
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -1214,7 +1306,8 @@ if($newOldNgo == 'Old'){
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
         $main_time = $dt->format('H:i:s a');
         $cutomeFileName = time().date("Ymd");
-
+        try{
+            DB::beginTransaction();
     $stepFourData = FdOneForm::find($request->id);
     $stepFourData->user_id = Auth::user()->id;
     $stepFourData->treasury_number = $request->treasury_number;
@@ -1397,7 +1490,8 @@ if($request->oldOrNew == 'Old'){
                 'fd_one_form_step_four_status' => 1,
                 'ngo_member_status' => 1,
                 'form_eight_status' => 1,
-                'ngo_member_nid_photo_status' => 1
+                'ngo_member_nid_photo_status' => 1,
+                'ngo_other_document_status' => 0
              ]);
 
 
@@ -1451,7 +1545,8 @@ if($request->oldOrNew == 'Old'){
             'fd_one_form_step_four_status' => 1,
             'form_eight_status' => 1,
             'ngo_member_status' => 1,
-            'ngo_member_nid_photo_status' => 1
+            'ngo_member_nid_photo_status' => 1,
+            'ngo_other_document_status' => 0
          ]);
 
 
@@ -1572,7 +1667,8 @@ if(in_array(null, $input['name'])){
             'fd_one_form_step_four_status' => 1,
             'ngo_member_status' => 1,
             'form_eight_status' => 1,
-            'ngo_member_nid_photo_status' => 1
+            'ngo_member_nid_photo_status' => 1,
+            'ngo_other_document_status' => 0
          ]);
 
 
@@ -1600,7 +1696,8 @@ if(!$checkCompleteStatusData){
         'fd_one_form_step_four_status' => 1,
         'form_eight_status' => 1,
         'ngo_member_status' => 1,
-        'ngo_member_nid_photo_status' => 1
+        'ngo_member_nid_photo_status' => 1,
+        'ngo_other_document_status' => 0
      ]);
 
 
@@ -1618,17 +1715,31 @@ if(!$checkCompleteStatusData){
 //new code for fd eight
 $newOldNgo = CommonController::newOldNgo();
 //dd($newOldNgo);
+DB::commit();
 if($newOldNgo == 'Old'){
 
     return redirect()->route('addDataStepThreeFd8',base64_encode($mm_id));
 
 }else{
 
+
+    if($request->submit_value == 'save_and_exit_from_four'){
+
+        return redirect('/dashboard');
+
+    }else{
+
     return redirect('/ngoAllRegistrationForm');
+    }
+
+    //return redirect('/ngoAllRegistrationForm');
 }
 //end new code for  ngo
    //return redirect('/ngoAllRegistrationForm');
-
+} catch (\Exception $e) {
+    DB::rollBack();
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
 }
 
 

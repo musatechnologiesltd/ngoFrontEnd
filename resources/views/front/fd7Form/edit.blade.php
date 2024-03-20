@@ -99,6 +99,31 @@
                         </div>
 
                         <div class="profile_link_box">
+                            <a href="{{ route('fdFiveForm.index') }}">
+                                <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
+                            </a>
+                        </div>
+
+                        
+                        {{-- <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div> --}}
+                        <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
                             </a>
@@ -148,7 +173,7 @@
 
     @csrf
                                         <div class="mb-3 col-lg-12">
-                                            <label for="" class="form-label">এনজিও'র নাম</label>
+                                            <label for="" class="form-label">এনজিও'র নাম <span class="text-danger">*</span></label>
 
 
 
@@ -164,26 +189,26 @@
 
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ঠিকানা</label>
+                                            <label for="" class="form-label">ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_address" class="form-control" value="{{ $fd7FormList->ngo_address }}" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">নিবন্ধন নম্বর</label>
+                                            <label for="" class="form-label">নিবন্ধন নম্বর <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_registration_number" value="{{ $fd7FormList->ngo_registration_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
 
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ব্যুরোর নিবন্ধন তারিখ </label>
+                                            <label for="" class="form-label">ব্যুরোর নিবন্ধন তারিখ <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_registration_date" value="{{ $fd7FormList->ngo_registration_date }}" class="form-control datepicker" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">প্রস্তাবিত প্রকল্পের নাম</label>
+                                            <label for="" class="form-label">প্রস্তাবিত প্রকল্পের নাম <span class="text-danger">*</span></label>
                                             <input name="ngo_prokolpo_name" value="{{ $fd7FormList->ngo_prokolpo_name }}" type="text" class="form-control" id="ngo_prokolpo_name"
                                                    placeholder="" required>
                                         </div>
@@ -266,9 +291,11 @@
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
                                                     <label for="" class="form-label">অনুমোদনপত্র সংযুক্ত করতে
-                                                        হবে</label>
-                                                    <input type="file" accept=".pdf" name="bureau_approval_pdf" class="form-control" id=""
+                                                        হবে <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <input type="file" accept=".pdf" name="bureau_approval_pdf" class="form-control" id="fd7PdfN1"
                                                            placeholder="">
+
+                                                           <p id="fd7PdfN1_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                                            <?php
 
@@ -297,9 +324,11 @@
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
                                                     <label for="" class="form-label">দাতা সংস্থার প্রতিশ্রুতিপত্র (কপি
-                                                        সংযুক্ত করতে হবে)</label>
-                                                    <input type="file" accept=".pdf" name="letter_from_donor_agency_pdf" class="form-control" id=""
+                                                        সংযুক্ত করতে হবে) <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                                    <input type="file" accept=".pdf" name="letter_from_donor_agency_pdf" class="form-control" id="fd7PdfN2"
                                                            placeholder="">
+
+                                                           <p id="fd7PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                                            <?php
 
@@ -340,15 +369,15 @@
                                                                 <th>জেলা/সিটি কর্পোরেশন</th>
                                                                 <th>উপজেলা/থানা/পৌরসভা/</th>
 <th>ইউনিয়ন/ওয়ার্ড</th>
-                                                                <th>বরাদ্দকৃত বাজেট</th>
-                                                                <th>উপকারভোগীর সংখ্যা</th>
+                                                                <th>বরাদ্দকৃত বাজেট <span class="text-danger">*</span></th>
+                                                                <th>উপকারভোগীর সংখ্যা <span class="text-danger">*</span></th>
                                                                 <th></th>
                                                             </tr>
 
                                                             @foreach($prokolpoAreaList as $key=>$prokolpoAreaListAll)
                                                             <tr>
                                                                 <td style="width: 20%">
-                                                                    <label for="" class="form-label">বিভাগ</label>
+                                                                    <label for="" class="form-label">বিভাগ <span class="text-danger">*</span></label>
                                                                     {{-- <input type="text" required name="division_name[]" class="form-control" id=""
                                                                     placeholder=""> --}}
 
@@ -366,7 +395,7 @@
                                                                 <td style="width: 30%">
                                                                     <div class="row">
                                                                         <div class="col-lg-12 mb-3">
-                                                                            <label for="" class="form-label">জেলা</label>
+                                                                            <label for="" class="form-label">জেলা <span class="text-danger">*</span></label>
                                                                             {{-- <input type="text" required name="district_name[]" class="form-control" id=""
                                                                             placeholder=""> --}}
 
@@ -457,12 +486,12 @@
 
 
                                             <div class="mb-3 col-lg-6">
-                                                <label for="" class="form-label">আরম্ভের তারিখ </label>
+                                                <label for="" class="form-label">আরম্ভের তারিখ <span class="text-danger">*</span></label>
                                                 <input type="text" name="ngo_prokolpo_start_date" value="{{ $fd7FormList->ngo_prokolpo_start_date }}" class="form-control datepicker" id="ngo_prokolpo_start_date"
                                                        placeholder="" required>
                                             </div>
                                             <div class="mb-3 col-lg-6">
-                                                <label for="" class="form-label">সমাপ্তির তারিখ </label>
+                                                <label for="" class="form-label">সমাপ্তির তারিখ <span class="text-danger">*</span></label>
                                                 <input type="text" name="ngo_prokolpo_end_date" value="{{ $fd7FormList->ngo_prokolpo_end_date }}" class="form-control datepicker" id="ngo_prokolpo_end_date"
                                                        placeholder="" required>
                                             </div>
@@ -476,10 +505,10 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিএফ /এফডি -৭ ফরম  আপলোড করুন</label>
-                                                <input type="file" accept=".pdf"  name="relief_assistance_project_proposal_pdf" class="form-control" id=""
+                                                <label for="" class="form-label">দুর্যোগকালীন ও দুর্যোগ পরবর্তী জরুরি ত্রাণ সহায়তা কার্যক্রম/ প্রকল্প প্রস্তাব ফরম পিডিএফ /এফডি -৭ ফরম  আপলোড করুন <span class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" accept=".pdf"  name="relief_assistance_project_proposal_pdf" class="form-control" id="rPdfP"
                                                        placeholder="">
-
+                                                       <p id="rPdfP_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                                        <?php
 
                                                        $file_path = url($fd7FormList->relief_assistance_project_proposal_pdf);

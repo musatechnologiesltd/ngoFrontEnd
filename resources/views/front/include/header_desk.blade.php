@@ -10,20 +10,15 @@
                 </div>
                 <div class="header_box">
 
-                    @if (Auth::check())
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('/') }}public/front/assets/img/icon/apply_online.png" alt="">
-                        <h3>{{ trans('header.apply_online')}} </h3>
-                    </a>
-                    @else
-                    <a href="{{ route('login') }}">
+
+                    <a href="{{ route('ngoInstructionPageApply') }}">
                         <img src="{{ asset('/') }}public/front/assets/img/icon/apply_online.png" alt="">
                         <h3>{{ trans('header.apply_online')}}</h3>
                     </a>
 
 
-                    @endif
                 </div>
+
                 @if (Auth::check())
 
              <?php
@@ -31,51 +26,21 @@
                                            ->value('id');
              $ngo_status_list = DB::table('ngo_statuses')->where('fd_one_form_id',$fdoneFormId)->value('status');
               ?>
-
-                @if(empty($ngo_status_list) || $ngo_status_list == 'Ongoing')
+@endif
 
                 <div class="header_box">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('ngoInstructionPageaRenew') }}">
                         <img src="{{ asset('/') }}public/front/assets/img/icon/renew.png" alt="">
                         <h3>{{ trans('header.renew_application')}}</h3>
                     </a>
                 </div>
                 <div class="header_box">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('ngoInstructionPageNameChange') }}">
                         <img src="{{ asset('/') }}public/front/assets/img/icon/name_change.png" alt="">
                         <h3>{{ trans('header.name_change')}}</h3>
                     </a>
                 </div>
-                @else
 
-                <div class="header_box">
-                    <a href="{{ route('renew') }}">
-                        <img src="{{ asset('/') }}public/front/assets/img/icon/renew.png" alt="">
-                        <h3>{{ trans('header.renew_application')}}</h3>
-                    </a>
-                </div>
-                <div class="header_box">
-                    <a href="{{ route('nameChange') }}">
-                        <img src="{{ asset('/') }}public/front/assets/img/icon/name_change.png" alt="">
-                        <h3>{{ trans('header.name_change')}}</h3>
-                    </a>
-                </div>
-                @endif
-
-                @else
-                <div class="header_box">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('/') }}public/front/assets/img/icon/renew.png" alt="">
-                        <h3>{{ trans('header.renew_application')}}</h3>
-                    </a>
-                </div>
-                <div class="header_box">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('/') }}public/front/assets/img/icon/name_change.png" alt="">
-                        <h3>{{ trans('header.name_change')}}</h3>
-                    </a>
-                </div>
-                @endif
                 <div class="header_box">
                     <a href="{{ route('ngoInstructionPage') }}">
                         <img src="{{ asset('/') }}public/front/assets/img/icon/instruction.png" alt="">

@@ -78,60 +78,81 @@
 
 
                                     <label class="form-label" for="">
-                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
+                                      নিবন্ধন ফি ও ভ্যাট পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span>
+                                      <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span>
+                                    </label>
+                                    <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="renewFileNew1">
+                                    <p id="renewFileNew1_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
+                                        বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ তালিকা (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span>
+                                        <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span>
+                                    </label>
+                                    <input class="form-control" name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="renewFileNew2">
+                                    <p id="renewFileNew2_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                        সংস্থার বাই লজ (By laws)/গঠনতন্ত্র  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span>
+                                        <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
+                                    </label>
+                                    <input class="form-control" name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="renewFileNew3">
+                                    <p id="renewFileNew3_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                        সংস্থার বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টিজ সভার কার্যবিবরণী (কার্যবিবরনীতে বোর্ড গঠন সংক্রান্ত ,নিবন্ধন নবায়ন করার প্রস্তাব,গঠনতন্ত্র পরিবর্তন সংক্রান্ত বিষয়াদি উল্লেখপূর্বক ) (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত /সত্যায়িত )<span class="text-danger">*</span>
+                                        <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
+                                    </label>
+                                    <input class="form-control" name="work_procedure_of_organization"  accept=".pdf" type="file" id="renewFileNew4">
+                                    <p id="renewFileNew4_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                        সংস্থার বিগত ১০(দশ ) বছরের অডিট রিপোর্ট  এবং বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                                    <input class="form-control" name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="renewFileNew5">
+                                    <p id="renewFileNew5_text" class="text-danger" style="font-size: 12px;"></p>
+
+
                                 </div>
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="registration_certificate"  accept=".pdf" type="file" id="">
+                                        সংস্থার মূল কার্যালয়ের নিবন্ধনপত্রের (সংশ্লিষ্ট দেশের নোটারীকৃত /সত্যায়িত ) অনুলিপি <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                    <input class="form-control" name="registration_certificate"  accept=".pdf" type="file" id="renewFileNew6">
+                                    <p id="renewFileNew6_text" class="text-danger" style="font-size: 12px;"></p>
+
+
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                        সর্বশেষ নিবন্ধন /নবায়ন সনদপত্রের সত্যায়িত অনুলিপি <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                    <input class="form-control" name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="renewFileNew7">
+                                    <p id="renewFileNew7_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি<span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                        Right To Information Act- ২০০৯ - এর আওতায় - Focal Point নিয়োগ করত:ব্যুরোকে অবহিতকরণ পত্রের অনুলিপি<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+                                    <input class="form-control" name="right_to_information_act"  accept=".pdf" type="file" id="renewFileNew8">
+                                    <p id="renewFileNew8_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
 
 
                                 <div class="mb-3">
                                     <label class="form-label" for="">
-                                        তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="">
+                                        তফসিল-১ এ বর্ণিত যেকোন ফি এর ভ্যাট বকেয়া থাকলে পরিশোধ করা হয়েছে কিনা (চালানের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                    <input class="form-control" name="due_vat_pdf"  accept=".pdf" type="file" id="renewFileNew9">
+                                    <p id="renewFileNew9_text" class="text-danger" style="font-size: 12px;"></p>
                                 </div>
 
                                 <div class="mb-3">
@@ -178,8 +199,9 @@
         </div>
     </div>
     <div class="mb-3">
-        <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-        <input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+        <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="change_ac_number">
+                <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 12px;"></p>
     </div>
     @else
     @foreach($all_partiw as $mainAccount)
@@ -220,8 +242,9 @@
                                 </div>
                                 @endforeach
                                 <div class="mb-3">
-                                    <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                                    <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="">
+                                    <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="change_ac_number">
+                <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 12px;"></p>
                                 </div>
                                 @endif
 
@@ -333,8 +356,9 @@
 </div>
 </div>
 <div class="mb-3">
-<label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-<input class="form-control" name="change_ac_number"  accept=".pdf"  type="file" id="">
+    <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+    <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="change_ac_number">
+    <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 12px;"></p>
 </div>
 @else
 @foreach($all_partiw as $mainAccount)
@@ -375,8 +399,9 @@
             </div>
             @endforeach
             <div class="mb-3">
-                <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> </label>
-                <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="">
+                <label class="form-label" for="">In case of change of bank account number, copy of approval letter from Bureau should be attached: (ব্যাংক হিসাব নম্বর পরিবর্তন হয়ে থাকলে ব্যুরোর অনুমদনপত্রের কপি সংযুক্ত করতে হবে) <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                <input class="form-control" name="change_ac_number" accept=".pdf"  type="file" id="change_ac_number">
+                <p id="change_ac_number_text" class="text-danger mt-3" style="font-size: 12px;"></p>
             </div>
             @endif
 

@@ -97,7 +97,29 @@
                                 <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
                             </a>
                         </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('fdFiveForm.index') }}">
+                                <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
+                            </a>
+                        </div>
+                        {{-- <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
 
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div> --}}
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -145,9 +167,9 @@
                                     <div class="row">
 
 
-    @csrf
+
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">এনজিও'র নাম</label>
+                                            <label for="" class="form-label">এনজিও'র নাম <span class="text-danger">*</span></label>
 
 
                                             @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
@@ -169,38 +191,38 @@
 
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">সংস্থার ঠিকানা</label>
+                                            <label for="" class="form-label">সংস্থার ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_address" class="form-control" value="{{ $ngo_list_all->organization_address }}" id=""
                                                    placeholder="">
                                         </div>
 
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">টেলিফোন </label>
+                                            <label for="" class="form-label">টেলিফোন <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_telephone_number" value="{{ $ngo_list_all->tele_phone_number }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">মোবাইল নম্বর</label>
+                                            <label for="" class="form-label">মোবাইল নম্বর <span class="text-danger">*</span></label>
                                             <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                             type = "number" required
                                             maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="ngo_mobile_number" value="{{ $ngo_list_all->phone }}" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ইমেইল ঠিকানা</label>
+                                            <label for="" class="form-label">ইমেইল ঠিকানা <span class="text-danger">*</span></label>
                                             <input type="text" required name="ngo_email" class="form-control" id=""
                                                    placeholder="" value="{{ $ngo_list_all->email }}">
                                         </div>
 
                                         @if(empty($ngo_list_all->web_site_name))
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ওয়েবসাইট</label>
+                                            <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
                                             <input type="text" required value="{{ $renewWebsiteName }}" name="ngo_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
                                         @else
                                         <div class="mb-3 col-lg-6">
-                                            <label for="" class="form-label">ওয়েবসাইট</label>
+                                            <label for="" class="form-label">ওয়েবসাইট <span class="text-danger">*</span></label>
                                             <input type="text" required value="{{ $ngo_list_all->web_site_name }}" name="ngo_website" class="form-control" id=""
                                                    placeholder="">
                                         </div>
@@ -217,13 +239,13 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ</label>
-                                                    <input type="text" name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ <span class="text-danger">*</span></label>
+                                                    <input required type="text" name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ</label>
-                                                    <input type="text" name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -236,9 +258,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা</label>
+                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা <span class="text-danger">*</span></label>
 
-                                                    <input type="text" name="ngo_district" class="form-control" id=""
+                                                    <input type="text" required name="ngo_district" class="form-control" id=""
                                                            placeholder="">
 
 
@@ -246,13 +268,13 @@
 
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা</label>
-                                                    <input type="text" name="ngo_sub_district" class="form-control" id=""
+                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা <span class="text-danger">*</span></label>
+                                                    <input type="text" required name="ngo_sub_district" class="form-control" id=""
                                                     placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
-                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা</label>
-                                                    <input type="number" name="total_number_of_beneficiaries" class="form-control" id=""
+                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা <span class="text-danger">*</span></label>
+                                                    <input type="number" required name="total_number_of_beneficiaries" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -398,9 +420,11 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-lg-12">
-                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে</label>
-                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id=""
+                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id="fc1PdfN1"
                                                placeholder="">
+
+                                               <p id="fc1PdfN1_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                     </div>
                                     <div class="mb-3 col-lg-12">
                                         <div class="card-header">
@@ -466,9 +490,11 @@
                                         <div class="card-body">
 
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম</label>
-                                                <input type="file" name="verified_fc_one_form" class="form-control" id=""
-                                                       placeholder="">
+                                                <label for="" class="form-label">এককালীন অনুদান গ্রহণের আবেদন ফরম /এফসি -১ ফরম <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" name="verified_fc_one_form" class="form-control" id="fc1PdfN2"
+                                                       placeholder="" accept=".pdf" required>
+
+                                                       <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                             </div>
 
                                         </div>

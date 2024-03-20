@@ -98,6 +98,30 @@
                                 <p class="{{ Route::is('fd3Form.index') ||  Route::is('fd3Form.create') || Route::is('fd3Form.view') || Route::is('addFd2DetailForFd3') || Route::is('editFd2DetailForFd3') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd3')}}</p>
                             </a>
                         </div>
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('fdFiveForm.index') }}">
+                                <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
+                            </a>
+                        </div>
+                        {{-- <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div> --}}
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
                                 <p class=""><i class="fa fa-cog pe-2"></i>{{ trans('fd9.l')}}</p>
@@ -150,48 +174,48 @@
 
     @csrf
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> পূর্ণ নাম</label>
-        <input type="text" value="{{ $fc2FormList->person_full_name }}" name="person_full_name" class="form-control" id=""
+        <label for="" class="form-label"> পূর্ণ নাম <span class="text-danger">*</span></label>
+        <input type="text" required value="{{ $fc2FormList->person_full_name }}" name="person_full_name" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> পিতার নাম</label>
-        <input type="text" name="person_father_name" value="{{ $fc2FormList->person_father_name }}" class="form-control" id=""
+        <label for="" class="form-label"> পিতার নাম <span class="text-danger">*</span></label>
+        <input type="text" required name="person_father_name" value="{{ $fc2FormList->person_father_name }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">মাতার নাম</label>
-        <input type="text" name="person_mother_name" value="{{ $fc2FormList->person_mother_name }}" class="form-control" id=""
+        <label for="" class="form-label">মাতার নাম <span class="text-danger">*</span></label>
+        <input type="text" required name="person_mother_name" value="{{ $fc2FormList->person_mother_name }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পেশা</label>
-        <input type="text" name="person_occupation" value="{{ $fc2FormList->person_occupation }}" class="form-control" id=""
+        <label for="" class="form-label">পেশা <span class="text-danger">*</span></label>
+        <input type="text" required name="person_occupation" value="{{ $fc2FormList->person_occupation }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">জাতীয় পরিচয়পত্র নম্বর</label>
-        <input type="text" name="person_nid" value="{{ $fc2FormList->person_nid }}" class="form-control" id=""
+        <label for="" class="form-label">জাতীয় পরিচয়পত্র নম্বর <span class="text-danger">*</span></label>
+        <input type="text" required name="person_nid" value="{{ $fc2FormList->person_nid }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পাসপোর্ট নম্বর (যদি থাকে)</label>
-        <input type="text" name="person_passport" value="{{ $fc2FormList->person_passport }}" class="form-control" id=""
+        <label for="" class="form-label">পাসপোর্ট নম্বর (যদি থাকে)<span class="text-danger">*</span></label>
+        <input type="text" required name="person_passport" value="{{ $fc2FormList->person_passport }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label"> টি আই এন নম্বর</label>
-        <input type="text" name="person_tin" value="{{ $fc2FormList->person_tin }}" class="form-control" id=""
+        <label for="" class="form-label"> টি আই এন নম্বর <span class="text-danger">*</span></label>
+        <input type="text" required name="person_tin" value="{{ $fc2FormList->person_tin }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">জাতীয়তা/ নাগরিকত্ব</label>
-        <input type="text" name="person_nationality" value="{{ $fc2FormList->person_nationality }}"  class="form-control" id=""
+        <label for="" class="form-label">জাতীয়তা/ নাগরিকত্ব <span class="text-danger">*</span></label>
+        <input type="text" required name="person_nationality" value="{{ $fc2FormList->person_nationality }}"  class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">পূর্ণ ঠিকানা </label>
-        <input type="text" name="person_full_address" value="{{ $fc2FormList->person_full_address }}" class="form-control" id=""
+        <label for="" class="form-label">পূর্ণ ঠিকানা <span class="text-danger">*</span></label>
+        <input type="text" required name="person_full_address" value="{{ $fc2FormList->person_full_address }}" class="form-control" id=""
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
@@ -200,7 +224,7 @@
                placeholder="">
     </div>
     <div class="mb-3 col-lg-6">
-        <label for="" class="form-label">মোবাইল</label>
+        <label for="" class="form-label">মোবাইল <span class="text-danger">*</span></label>
         <input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
         type = "number" required
         maxlength = "11" data-parsley-required minlength="11"  data-parsley-trigger=“keyup” name="person_mobile" value="{{ $fc2FormList->person_mobile }}" class="form-control" id=""
@@ -224,13 +248,13 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ</label>
-                                                    <input type="text" value="{{ $fc2FormList->ngo_prokolpo_start_date }}" name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের আরম্ভের তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required value="{{ $fc2FormList->ngo_prokolpo_start_date }}" name="ngo_prokolpo_start_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ</label>
-                                                    <input type="text" value="{{ $fc2FormList->ngo_prokolpo_end_date }}" name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
+                                                    <label for="" class="form-label">প্রকল্পের সমাপ্তির তারিখ <span class="text-danger">*</span></label>
+                                                    <input type="text" required value="{{ $fc2FormList->ngo_prokolpo_end_date }}" name="ngo_prokolpo_end_date" class="form-control datepicker" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -243,9 +267,9 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা</label>
+                                                    <label for="" class="form-label"> কর্ম এলাকা জেলা <span class="text-danger">*</span></label>
 
-                                                    <input type="text" value="{{ $fc2FormList->ngo_district }}" name="ngo_district" class="form-control" id=""
+                                                    <input type="text" required value="{{ $fc2FormList->ngo_district }}" name="ngo_district" class="form-control" id=""
                                                            placeholder="">
 
 
@@ -253,13 +277,13 @@
 
                                                 </div>
                                                 <div class="mb-3 col-lg-6">
-                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা</label>
-                                                    <input type="text" value="{{ $fc2FormList->ngo_sub_district }}" name="ngo_sub_district" class="form-control" id=""
+                                                    <label for="" class="form-label">কর্ম এলাকা উপজেলা <span class="text-danger">*</span></label>
+                                                    <input type="text" required value="{{ $fc2FormList->ngo_sub_district }}" name="ngo_sub_district" class="form-control" id=""
                                                     placeholder="">
                                                 </div>
                                                 <div class="mb-3 col-lg-12">
-                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা</label>
-                                                    <input type="number" value="{{ $fc2FormList->total_number_of_beneficiaries }}" name="total_number_of_beneficiaries" class="form-control" id=""
+                                                    <label for="" class="form-label">মোট উপকারভোগীর সংখ্যা <span class="text-danger">*</span></label>
+                                                    <input type="number" required value="{{ $fc2FormList->total_number_of_beneficiaries }}" name="total_number_of_beneficiaries" class="form-control" id=""
                                                            placeholder="">
                                                 </div>
                                             </div>
@@ -405,9 +429,11 @@
                                         </select>
                                     </div>
                                     <div class="mb-3 col-lg-12">
-                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে</label>
-                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id=""
-                                               placeholder="">
+                                        <label for="" class="form-label">কাজের নাম, অর্থের পরিমান ও মেয়াদকাল সুস্পষ্টভাবে উল্লেখপূর্বক কপি সংযুক্ত করতে হবে <br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></label>
+                                        <input type="file" accept=".pdf" name="organization_name_of_the_job_amount_of_money_and_duration_pdf" class="form-control" id="fc1PdfN1"
+                                        placeholder="">
+
+                                        <p id="fc1PdfN1_text" class="text-danger mt-2" style="font-size:12px;"></p>
 
                                                <?php
 
@@ -487,9 +513,11 @@
                                         <div class="card-body">
 
                                             <div class="mb-3 col-lg-12">
-                                                <label for="" class="form-label">ব্যক্তি কর্তৃক বৈদেশিক অনুদানে গৃহীত প্রকল্প প্রস্তাব ফরম/এফসি -২ ফরম</label>
-                                                <input type="file" name="verified_fc_two_form" class="form-control" id=""
-                                                       placeholder="">
+                                                <label for="" class="form-label">ব্যক্তি কর্তৃক বৈদেশিক অনুদানে গৃহীত প্রকল্প প্রস্তাব ফরম/এফসি -২ ফরম <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input type="file" name="verified_fc_two_form" class="form-control" id="fc1PdfN2"
+                                                placeholder="">
+
+                                                <p id="fc1PdfN2_text" class="text-danger mt-2" style="font-size:12px;"></p>
                                                        <?php
 
                                                        $file_path = url($fc2FormList->verified_fc_two_form);

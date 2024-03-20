@@ -69,8 +69,9 @@
 
                         @if(empty($allFormOneData->foregin_pdf))
                         <div class="mb-3">
-                            <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
-                            <input type="file" name="foregin_pdf" data-parsley-required accept=".pdf" class="form-control" id="">
+                            <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
+                            <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="foregin_pdf">
+                        <p id="foregin_pdf_text" style="font-size: 12px;" class="text-danger mt-2"></p>
                         </div>
                         @else
                         <?php
@@ -85,8 +86,9 @@
 
                         ?>
      <div class="mb-3">
-        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span> </label>
-        <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="">
+        <label for="" class="form-label">{{ trans('fd_one_step_two.10y')}} <span class="text-danger">*</span><br><span class="text-danger" style="font-size: 12px;">(Maximum 5MB)</span> </label>
+        <input type="file" name="foregin_pdf"  accept=".pdf" class="form-control" id="foregin_pdf">
+        <p id="foregin_pdf_text" style="font-size: 12px;" class="text-danger mt-2"></p>
     </div>
     <b>{{ $filename.'.'.$extension }}</b>
                         @endif
@@ -98,8 +100,9 @@
 
                         @if(empty($allFormOneData->annual_budget_file))
                         <div class="mb-3">
-                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> </label>
-                            <input type="file" name="annual_budget_file"  data-parsley-required class="form-control" id="">
+                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span> </label>
+                            <input type="file" name="annual_budget_file" accept=".pdf"  class="form-control" id="annual_budget_file">
+                        <p id="annual_budget_file_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                         </div>
                         @else
                         <?php
@@ -114,8 +117,9 @@
 
                         ?>
                         <div class="mb-3">
-                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> </label>
-                            <input type="file" name="annual_budget_file"   class="form-control" id="">
+                            <label for="" class="form-label">সংস্থার সম্ভাব্য /প্রত্যাশিত বার্ষিক বাজেটের উৎস<span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 2 MB)</span></label>
+                            <input type="file" name="annual_budget_file" accept=".pdf"   class="form-control" id="annual_budget_file">
+                            <p id="annual_budget_file_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                         </div>
                         <b>{{ $filename.'.'.$extension }}</b>
                         @endif
@@ -124,8 +128,9 @@
                         @if(empty($allFormOneData->plan_of_operation))
 
                             <div class="mb-3">
-                                <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> </label>
-                                <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation" class="form-control" id="">
+                                <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                <input type="file" data-parsley-required accept=".pdf" name="plan_of_operation" class="form-control" id="plan_of_operation">
+                                <p id="plan_of_operation_text" class="text-danger mt-2" style="font-size: 12px;"></p>
                             </div>
 @else
 
@@ -141,8 +146,9 @@ $extension = pathinfo($file_path, PATHINFO_EXTENSION);
 
 ?>
 <div class="mb-3">
-    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> </label>
-    <input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="">
+    <label for="" class="form-label">{{ trans('fd_one_step_two.Plan_of_Operation')}} <span class="text-danger">*</span> <br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+    <input type="file" accept=".pdf" name="plan_of_operation" class="form-control" id="plan_of_operation">
+    <p id="plan_of_operation_text" class="text-danger mt-2" style="font-size: 12px;"></p>
 </div>
 <b>{{ $filename.'.'.$extension }}</b>
                         @endif
@@ -210,7 +216,7 @@ $getAllSourceOfFundData = DB::table('fd_one_source_of_funds')->Where('fd_one_for
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form method="post" action="{{ route('sourceOfFundUpdate') }}">
+            <form method="post" action="{{ route('sourceOfFundUpdate') }}" id="form">
                 @csrf
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">{{ trans('fd_one_step_two.Name_of_donor_organization')}} <span class="text-danger">*</span> </label>

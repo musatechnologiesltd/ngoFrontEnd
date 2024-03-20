@@ -5,7 +5,34 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
 
+
+
+<style>
+    img {
+        display: block;
+        max-width: 100%;
+    }
+    .preview {
+        text-align: center;
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+   
+    .section{
+        margin-top:150px;
+        background:#fff;
+        padding:50px 30px;
+    }
+    .modal-lg{
+        max-width: 1000px !important;
+    }
+</style>
 @endsection
 
 @section('body')
@@ -307,6 +334,8 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 @endsection
 
 @section('script')
+@include('front.imageCropScript')
+
 <script>
     $(document).on('click', '.organizational_structure', function () {
 

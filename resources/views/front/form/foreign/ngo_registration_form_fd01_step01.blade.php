@@ -164,6 +164,43 @@
                                                                     @else
 
                                                                     @endif
+
+                                                                                <!-- district list -->
+
+                                                                                <?php
+
+                                                                                $allDistrictList = DB::table('districts')->get();
+
+
+                                                                                ?>
+
+                                                                                @if(session()->get('locale') == 'en' || empty(session()->get('locale')))
+                                                                                <div class="mb-3">
+                                                                                    <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                                                                                    <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                                                                                        <option value="">{{ trans('civil.select')}}</option>
+                                                                                        @foreach($allDistrictList as $allDistrictLists)
+
+                                                                                        <option value="{{ $allDistrictLists->id }}">{{ $allDistrictLists->bn_name }}</option>
+
+                                                                                         @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                @else
+
+                                                                                <div class="mb-3">
+                                                                                    <label for="" class="form-label">{{ trans('fd_one_step_one.district')}} <span class="text-danger">*</span> </label>
+                                                                                    <select name="district_id" class="js-example-basic-single form-control custom-form-control" data-parsley-required  name="">
+                                                                                        <option value="">{{ trans('civil.select')}}</option>
+                                                                                        @foreach($allDistrictList as $allDistrictLists)
+
+                                                                                        <option value="{{ $allDistrictLists->id }}">{{ $allDistrictLists->name }}</option>
+
+                                                                                         @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                @endif
+                                                                                <!-- end district list -->
                                 <div class="mb-3">
                                     <h5 class="form_middle_text">
                                         {{ trans('fd_one_step_one.Particulars_of_Head_of_the_Organization_in_Bangladesh')}}
@@ -270,11 +307,11 @@
 
 
 
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="" class="form-label">Digital Signature: <span class="text-danger">*</span> </label>
-                                   <span class="text-success"><b>Dimension:(300*80) & Size:Max 60 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/*" class="form-control" id="">
-                                </div>
+                                   <span class="text-success"><b>Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG</b></span>
+                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control" id="">
+                                </div> --}}
 
                                 @if($foreignNgoType == 'Old')
 
@@ -290,10 +327,37 @@
 
 
                                 <div class="mb-3">
-                                    <label for="" class="form-label">Digital Seal: <span class="text-danger">*</span> </label>
-                                  <span class="text-success"><b>Dimension:(300*100) & Size:Max 80 KB</b></span>
-                                    <input type="file" data-parsley-required value="" name="digital_seal" accept="image/*" class="form-control" id="">
+                                    <label for="" class="form-label">{{ trans('oldorg.digiSign')}}: <span class="text-danger">*</span><br>
+                                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*80) , Size:Max 60 KB & Image Format:PNG)</b></span> </label>
+
+                                    <input type="file" data-parsley-required value="" name="digital_signature" accept="image/png" class="form-control digital_signature" id="digital_signature">
+                                    <small id="digital_signature_text" class="text-danger mt-2" style="font-size:12px;"></small>
+
+
+                                    {{-- <input type="file" name="image" class="image"> --}}
+                                    <input type="hidden" name="image_base64">
+                                    <img src="" style="width: 200px;display: none;" class="show-image">
+
                                 </div>
+
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">{{ trans('oldorg.digiSeal')}}: <span class="text-danger">*</span><br>
+                                        <span class="text-danger"><b style="font-size: 12px;">(Dimension:(300*100) , Size:Max 80 KB & Image Format:PNG)</b> </label>
+
+                                    <input type="file"  data-parsley-required value="" name="digital_seal" accept="image/png" class="form-control digital_seal" id="digital_seal">
+                                    <small id="digital_seal_text" class="text-danger" style="font-size: 12px;"></small>
+
+
+                                     <!-- new code start -->
+
+                                     <input type="hidden" name="image_seal_base64">
+                                     <img src="" style="width: 200px;display: none;" class="show_image_seal">
+
+                                     <!-- new code end -->
+
+                                </div>
+                                <!-- end new code -->
                                 <!-- end new code -->
 
 
@@ -318,3 +382,31 @@
     </div>
 
 </section>
+<!-- modal start --->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">{{ trans('oldorg.digiSign')}}</h5>
+
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="crop">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  modal end -->

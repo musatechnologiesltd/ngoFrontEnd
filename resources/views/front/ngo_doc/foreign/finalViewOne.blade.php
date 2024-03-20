@@ -95,7 +95,7 @@ $ngoTypeInfo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -179,7 +179,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                               @csrf
                                               @method('PUT')
@@ -262,7 +262,7 @@ Work Procedure of the Board of Directors / Board of Trustees meeting of the orga
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -345,7 +345,7 @@ Attested copy of last 10 (ten) years audit report and annual report of the organ
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -427,7 +427,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -509,7 +509,7 @@ Attested copy of latest registration/renewal certificate
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -591,7 +591,7 @@ Under Right To Information Act - 2009 - Focal Point appointed: Copy of notificat
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -676,7 +676,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -757,7 +757,7 @@ Attested copy of constitution approved by primary registering authority
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -838,7 +838,7 @@ Clean copy of the constitution jointly signed by the chairman and secretary of t
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -919,7 +919,7 @@ Original copy of invoice for payment of change fee in any section, sub-section o
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -999,7 +999,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1078,7 +1078,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1160,7 +1160,7 @@ Copy of 'Unchanged' certificate (notarized/attested by the Peace of Justice Depa
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                           <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                           <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                @csrf
                                @method('PUT')
@@ -1240,7 +1240,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>ফরম নং - ৮</h6>
                         @else
 
-                        <h6>Form No - 8</h6>
+                        <h6>List of Executive Committee (foreign)</h6>
                         @endif
 
                         @elseif($key+1 == 2)
@@ -1249,7 +1249,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                             @else
 
-                            <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                            <h6>Certificate of Incorporation in the Country of Origin</h6>
                             @endif
 
                         @elseif($key+1 == 3)
@@ -1277,7 +1277,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                         @else
 
-                        <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                        <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                         @endif
 
 
@@ -1288,7 +1288,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                         @else
 
-                        <h6>Letter Of Appoinment Of The Country Representative</h6>
+                        <h6>Letter of Appoinment of The Country Representative</h6>
                         @endif
                         @elseif($key+1 == 7)
 
@@ -1296,7 +1296,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                         @else
 
-                        <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                        <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                         @endif
                         @elseif($key+1 == 8)
 
@@ -1304,7 +1304,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                         <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                         @else
 
-                        <h6>Letter Of Intent </h6>
+                        <h6>Letter of Intent </h6>
                         @endif
                         @endif
 
@@ -1332,7 +1332,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                         <h6>ফরম নং - ৮</h6>
                                                         @else
 
-                                                        <h6>Form No - 8</h6>
+                                                        <h6>List of Executive Committee (foreign)</h6>
                                                         @endif
 
                                                         @elseif($key+1 == 2)
@@ -1341,7 +1341,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                         <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                         @else
 
-                                                        <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                        <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                         @endif
 
                                                     @elseif($key+1 == 3)
@@ -1369,7 +1369,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                     @else
 
-                                                    <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                    <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                     @endif
 
 
@@ -1380,7 +1380,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                     @else
 
-                                                    <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                    <h6>Letter of Appoinment of The Country Representative</h6>
                                                     @endif
                                                     @elseif($key+1 == 7)
 
@@ -1388,7 +1388,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                     @else
 
-                                                    <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                    <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                     @endif
                                                     @elseif($key+1 == 8)
 
@@ -1396,7 +1396,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                     @else
 
-                                                    <h6>Letter Of Intent </h6>
+                                                    <h6>Letter of Intent </h6>
                                                     @endif
                                                     @endif
 
@@ -1404,7 +1404,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')

@@ -20,23 +20,31 @@
         </tr> --}}
         <tr>
             <td>1</td>
-            <td>Copy of service contract/agreement/ appointment letter in case of employee</td>
-            <td><input type="file" accept="application/pdf" name="employee_contract_copy" class="form-control" id=""></td>
+            <td>Copy of service contract/agreement/ appointment letter in case of employee<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>
+            <td><input type="file" accept="application/pdf" name="employee_contract_copy" class="form-control" id="nVisaDoc1">
+                <p id="nVisaDoc1_text" class="text-danger mt-2" style="font-size:12px;"></p>
+            </td>
         </tr>
         <tr>
             <td>2</td>
-            <td>Decision of the board of the directors of the company regarding employment of foreign nationals (In case of limited company) showing salary & other facility only signed by directors present in the meeting</td>
-            <td><input type="file" accept="application/pdf" name="board_of_the_directors_sign_letter" class="form-control" id=""></td>
+            <td>Decision of the board of the directors of the company regarding employment of foreign nationals (In case of limited company) showing salary & other facility only signed by directors present in the meeting<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>
+            <td><input type="file" accept="application/pdf" name="board_of_the_directors_sign_letter" class="form-control" id="nVisaDoc2">
+                <p id="nVisaDoc2_text" class="text-danger mt-2" style="font-size:12px;"></p>
+            </td>
         </tr>
         <tr>
             <td>3</td>
-            <td>	Memorandum & Articles of Association of the company duly signed by shareholders along with certificate of incorporation (In case of limited company), if not sumitted earlier</td>
-            <td><input type="file" accept="application/pdf" name="share_holder_copy"  class="form-control" id=""></td>
+            <td>	Memorandum & Articles of Association of the company duly signed by shareholders along with certificate of incorporation (In case of limited company), if not sumitted earlier<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>
+            <td><input type="file" accept="application/pdf" name="share_holder_copy"  class="form-control" id="nVisaDoc3">
+                <p id="nVisaDoc3_text" class="text-danger mt-2" style="font-size:12px;"></p>
+            </td>
         </tr>
         <tr>
             <td>4</td>
-            <td>Photocopy of passport with E-type visa for employees/PI-type visa for Investors/Passport</td>
-            <td><input type="file" accept="application/pdf" name="passport_photocopy"  class="form-control" id=""></td>
+            <td>Photocopy of passport with E-type visa for employees/PI-type visa for Investors/Passport<br><span class="text-danger" style="font-size: 12px;">(Maximum 500 KB)</span></td>
+            <td><input type="file" accept="application/pdf" name="passport_photocopy"  class="form-control" id="nVisaDoc4">
+                <p id="nVisaDoc4_text" class="text-danger mt-2" style="font-size:12px;"></p>
+            </td>
         </tr>
     </table>
 </div>

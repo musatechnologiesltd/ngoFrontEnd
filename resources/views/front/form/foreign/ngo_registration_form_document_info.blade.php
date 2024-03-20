@@ -216,7 +216,7 @@ if($foreignNgoType == 'Old'){
                                                 <input class="form-control" name="copy_of_chalan" data-parsley-required accept=".pdf" type="file" id="">
                                             </div> --}}
 
-                                          
+
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
@@ -225,22 +225,24 @@ if($foreignNgoType == 'Old'){
 
                                                     List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
 
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
 
 
 
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="list_of_board_of_directors_or_board_of_trustees"  accept=".pdf" type="file" id="structurePartThree1">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree1_text"></small>
+
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-success">PDF Should not exceed 500 KB in size</span></label>
+                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span></label>
 
-                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="structurePartThree2">
 
 
-
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree2_text"></small>
 
 
                                             </div>
@@ -249,42 +251,48 @@ if($foreignNgoType == 'Old'){
                                                 <label class="form-label" for="">
             Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
 
-            <br><span class="text-success">PDF Should not exceed 1MB in size</span>
+            <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
             </label>
 
 
-                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="work_procedure_of_organization"  accept=".pdf" type="file" id="structurePartThree3">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree3_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-success">PDF Should not exceed 5 MB in size</span></label>
-                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
+                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization
+													<br><span class="text-danger" style="font-size: 12px;">(Maximum 10 MB)</span></label>
+                                                <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="structurePartThree4">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree4_text"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="structurePartThree5">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree5_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span>
                                                 </label>
-                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
+                                                <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="structurePartThree6">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree6_text"></small>
                                             </div>
 
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
-                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
+                                                    <br><span class="text-danger" style="font-size: 12px;">(Maximum 5 MB)</span> </label>
+                                                <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="structurePartThree7">
+                                                <small class="text-danger mt-2" style="font-size:12px;" id="structurePartThree7_text"></small>
                                             </div>
 
 
@@ -296,7 +304,10 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Form No - 8<span class="text-danger">*</span>
+                                            List of Executive Committee (foreign)<span class="text-danger">*</span>
+
+                                            <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -308,7 +319,9 @@ if($foreignNgoType == 'Old'){
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
+                                                Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 5 MB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -321,6 +334,8 @@ if($foreignNgoType == 'Old'){
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Constitution <span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 5mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -334,6 +349,7 @@ if($foreignNgoType == 'Old'){
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Activities Report <span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 5mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -346,7 +362,9 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                                Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span >PDF Should not exceed 2mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -359,21 +377,9 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
 
-
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 1mb in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -387,7 +393,23 @@ if($foreignNgoType == 'Old'){
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Intent <span class="text-danger">*</span>
+                                                Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter of Intent <span class="text-danger">*</span>
+                                                <br><span >PDF Should not exceed 500 KB in size</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
@@ -425,7 +447,7 @@ if($foreignNgoType == 'Old'){
 
 
 
-                                                FD-8 Form with seal and signature of Chief Executive Officer
+                                                FD-8 Form with seal and signature of Chief Executive officer
 
                                                   <div class="file-top">
                                                       <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -451,12 +473,12 @@ if($foreignNgoType == 'Old'){
                                                                       <div class="modal-content">
                                                                           <div class="modal-header">
                                                                               <h5 class="modal-title" id="exampleModalLabel">
-                                                                                FD-8 Form with seal and signature of Chief Executive Officer
+                                                                                FD-8 Form with seal and signature of Chief Executive officer
   </h5>
                                                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                           </div>
                                                                           <div class="modal-body">
-                                                                              <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                              <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                   @csrf
                                                                                   @method('PUT')
@@ -537,7 +559,7 @@ if($foreignNgoType == 'Old'){
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')
@@ -621,7 +643,7 @@ if($foreignNgoType == 'Old'){
                                                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                               </div>
                                                               <div class="modal-body">
-                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                       @csrf
                                                                       @method('PUT')
@@ -704,7 +726,7 @@ if($foreignNgoType == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -787,7 +809,7 @@ if($foreignNgoType == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -869,7 +891,7 @@ if($foreignNgoType == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -951,7 +973,7 @@ if($foreignNgoType == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1033,7 +1055,7 @@ if($foreignNgoType == 'Old'){
                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                  </div>
                                                  <div class="modal-body">
-                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                          @csrf
                                                          @method('PUT')
@@ -1118,7 +1140,7 @@ if($foreignNgoType == 'Old'){
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')
@@ -1199,7 +1221,7 @@ if($foreignNgoType == 'Old'){
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1280,7 +1302,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1361,7 +1383,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                               @csrf
                                               @method('PUT')
@@ -1441,7 +1463,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                      </div>
                                                      <div class="modal-body">
-                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                              @csrf
                                                              @method('PUT')
@@ -1520,7 +1542,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                      </div>
                                                      <div class="modal-body">
-                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                         <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                              @csrf
                                                              @method('PUT')
@@ -1602,7 +1624,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                   <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data" id="form">
 
                                                        @csrf
                                                        @method('PUT')
@@ -1706,7 +1728,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                                     List of Board of Directors / Board of Trustees (Notarized / Attested by the Justice of Peace of the concerned country)<span class="text-danger">*</span>
 
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger">PDF Should not exceed 5 MB in size</span>
 
 
 
@@ -1716,7 +1738,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-success">PDF Should not exceed 500 KB in size</span></label>
+                                                    By laws/Constitution of the organization (notarized/attested by the Peace of Justice of the concerned country)<span class="text-danger">*</span>                                         <br><span class="text-danger">PDF Should not exceed 500 KB in size</span></label>
 
                                                 <input class="form-control" data-parsley-required name="organization_by_laws_or_constitution"  accept=".pdf" type="file" id="">
 
@@ -1730,7 +1752,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <label class="form-label" for="">
             Work Procedure of the Board of Directors / Board of Trustees meeting of the organization (mentioning the matters related to the formation of the board, proposal to renew the registration, changes in the constitution in the minutes) (notarized / attested by the Peace of Justice Department of the concerned country)<span class="text-danger">*</span>
 
-            <br><span class="text-success">PDF Should not exceed 1MB in size</span>
+            <br><span class="text-danger">PDF Should not exceed 1MB in size</span>
             </label>
 
 
@@ -1739,14 +1761,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
-                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-success">PDF Should not exceed 5 MB in size</span></label>
+                                                    Attested copy of last 10 (ten) years audit report and annual report of the organization                                         <br><span class="text-danger">PDF Should not exceed 5 MB in size</span></label>
                                                 <input class="form-control"  name="last_ten_years_audit_report_and_annual_report_of_the_company"  accept=".pdf" type="file" id="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Copy of registration certificate (notarized/attested of the concerned country) of the head office of the company <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger">PDF Should not exceed 500 KB in size</span>
                                                 </label>
                                                 <input class="form-control" data-parsley-required name="registration_certificate"  accept=".pdf" type="file" id="">
                                             </div>
@@ -1755,7 +1777,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Attested copy of latest registration/renewal certificate <span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span>
+                                                    <br><span class="text-danger">PDF Should not exceed 500 KB in size</span>
                                                 </label>
                                                 <input class="form-control" data-parsley-required name="attested_copy_of_latest_registration_or_renewal_certificate"  accept=".pdf" type="file" id="">
                                             </div>
@@ -1764,7 +1786,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                             <div class="mb-3">
                                                 <label class="form-label" for="">
                                                     Under Right To Information Act - 2009 - Focal Point appointed: Copy of notification letter to Bureau<span class="text-danger">*</span>
-                                                    <br><span class="text-success">PDF Should not exceed 500 KB in size</span> </label>
+                                                    <br><span class="text-danger">PDF Should not exceed 5 MB in size</span> </label>
                                                 <input class="form-control" data-parsley-required name="right_to_information_act"  accept=".pdf" type="file" id="">
                                             </div>
 
@@ -1777,24 +1799,34 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Form No - 8<span class="text-danger">*</span>
+                                       List of Executive Committee (foreign)<span class="text-danger">*</span>
+
+                                       <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV1">
+
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV1_text"></p>
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Certificate Of Incorporation in the Country Of Origin <span class="text-danger">*</span>
+                                                Certificate of Incorporation in the Country of Origin <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV2">
+
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV2_text"></p>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1802,11 +1834,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Constitution <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
+
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf"  name="pdf_file_list[]" type="file" id="foreignNgoPdfV3">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV3_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1815,11 +1851,14 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                         <div class="card mb-3">
                                             <div class="card-header">
                                                 Activities Report <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV4">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV4_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1827,12 +1866,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Decision Of the Committee/Board To Open Office In Bangladesh<span class="text-danger">*</span>
+                                                Decision of the Committee/Board To Open office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV5">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV5_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1840,26 +1882,15 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Appoinment Of The Country Representative<span class="text-danger">*</span>
+                                                Letter of Appoinment of The Country Representative<span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="card mb-3">
-                                            <div class="card-header">
-                                                Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh<span class="text-danger">*</span>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV6">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV6_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1868,12 +1899,32 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
                                         <div class="card mb-3">
                                             <div class="card-header">
-                                                Letter Of Intent <span class="text-danger">*</span>
+                                                Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh<span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-6">
-                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV7">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV7_text"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card mb-3">
+                                            <div class="card-header">
+                                                Letter of Intent <span class="text-danger">*</span>
+
+                                                <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <input class="form-control" data-parsley-required accept=".pdf" name="pdf_file_list[]" type="file" id="foreignNgoPdfV8">
+                                                        <p class="text-danger mt-2" style="font-size:12px;" id="foreignNgoPdfV8_text"></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1913,7 +1964,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>ফরম নং - ৮</h6>
                                                 @else
 
-                                                <h6>Form No - 8</h6>
+                                                <h6>List of Executive Committee (foreign)</h6>
                                                 @endif
 
                                                 @elseif($key+1 == 2)
@@ -1922,7 +1973,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                     @else
 
-                                                    <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                    <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                     @endif
 
                                                 @elseif($key+1 == 3)
@@ -1950,7 +2001,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                 @else
 
-                                                <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                 @endif
 
 
@@ -1961,7 +2012,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                 @else
 
-                                                <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                <h6>Letter of Appoinment of The Country Representative</h6>
                                                 @endif
                                                 @elseif($key+1 == 7)
 
@@ -1969,7 +2020,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                 @else
 
-                                                <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                 @endif
                                                 @elseif($key+1 == 8)
 
@@ -1977,7 +2028,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                 <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                 @else
 
-                                                <h6>Letter Of Intent </h6>
+                                                <h6>Letter of Intent </h6>
                                                 @endif
                                                 @endif
 
@@ -2004,7 +2055,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>ফরম নং - ৮</h6>
                                                                                 @else
 
-                                                                                <h6>Form No - 8</h6>
+                                                                                <h6>List of Executive Committee (foreign)</h6>
                                                                                 @endif
                                                                                 @elseif($key+1 == 2)
 
@@ -2012,7 +2063,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                                 <h6>কমিটির তালিকা ও নিবন্ধন সনদপত্রের সত্যায়িত অনুলিপি</h6>
                                                                                 @else
 
-                                                                                <h6>Certificate Of Incorporation in the Country Of Origin</h6>
+                                                                                <h6>Certificate of Incorporation in the Country of Origin</h6>
                                                                                 @endif
 
                                                                             @elseif($key+1 == 3)
@@ -2040,7 +2091,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>দাতা সংস্হার প্রতিশুতিপত্র</h6>
                                                                             @else
 
-                                                                            <h6>Decision Of the Committee/Board To Open Office In Bangladesh</h6>
+                                                                            <h6>Decision of the Committee/Board To Open office In Bangladesh</h6>
                                                                             @endif
 
 
@@ -2051,7 +2102,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সাধারণ সভার কার্যবিবরণীর সত্যায়িত অনুলিপি</h6>
                                                                             @else
 
-                                                                            <h6>Letter Of Appoinment Of The Country Representative</h6>
+                                                                            <h6>Letter of Appoinment of The Country Representative</h6>
                                                                             @endif
                                                                             @elseif($key+1 == 7)
 
@@ -2059,7 +2110,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                                             @else
 
-                                                                            <h6>Deed Of Agreement Stamp Of TK.300/-with the landlord in Support Of Opening the Office In Bangladesh</h6>
+                                                                            <h6>Deed of Agreement Stamp of TK.300/-with the landlord in Support of Opening the office In Bangladesh</h6>
                                                                             @endif
                                                                             @elseif($key+1 == 8)
 
@@ -2067,7 +2118,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <h6>সংস্থার সাধারণ সদস্যদের নামের তালিকা</h6>
                                                                             @else
 
-                                                                            <h6>Letter Of Intent </h6>
+                                                                            <h6>Letter of Intent </h6>
                                                                             @endif
                                                                             @endif
 
@@ -2075,7 +2126,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                                            <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data" id="form">
 
                                                                                 @csrf
                                                                                 @method('PUT')

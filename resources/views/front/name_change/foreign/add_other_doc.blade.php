@@ -110,6 +110,29 @@
                             </a>
                         </div>
 
+                        <div class="profile_link_box">
+                            <a href="{{ route('fdFiveForm.index') }}">
+                                <p class="{{ Route::is('fdFiveForm.index') ||  Route::is('fdFiveForm.create') || Route::is('fdFiveForm.view')  || Route::is('fdFiveForm.edit') ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.fd5')}}</p>
+                            </a>
+                        </div>
+                        {{-- <div class="profile_link_box">
+                            <a href="{{ route('duplicateCertificate.index') }}">
+                                <p class="{{ Route::is('duplicateCertificate.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf1')}}</p>
+                            </a>
+                        </div>
+                        <div class="profile_link_box">
+                            <a href="{{ route('approvalOfConstitution.index') }}">
+                                <p class="{{ Route::is('approvalOfConstitution.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf2')}}</p>
+                            </a>
+                        </div>
+
+
+
+                        <div class="profile_link_box">
+                            <a href="{{ route('executiveCommitteeApproval.index') }}">
+                                <p class="{{ Route::is('executiveCommitteeApproval.index')  ? 'active_link' : '' }}"><i class="fa fa-desktop pe-2"></i>{{ trans('fd9.cf3')}}</p>
+                            </a>
+                        </div> --}}
 
                         <div class="profile_link_box">
                             <a href="{{ route('logout') }}">
@@ -133,12 +156,15 @@
                                 @if($ngoType == 'Foreign')
                                 <div class="card mb-3">
                                     <div class="card-header">
-                                        ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি <span class="text-danger">*</span>
+                                      ০২টি জাতীয় পত্রিকায় ( বাংলা ও ইংরেজী পত্রিকায় "নাম পরিবর্তন বিষয়ে বিজ্ঞাপনের মূলকপি <span class="text-danger">*</span>
+                                      <br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange1">
+
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange1_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -146,11 +172,13 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         নাম পরিবর্তন ফি বাবদ-২৬,০০০/- (ছাব্বিশ হাজার) টাকার (কোড নং-১-০৩২৩-০০০০- ১৮৩৬) চালানের মূলকপি এবং ১৫% ভ্যাট (কোড নং - ১-১১৩৩ -০০৩৫ - ০৩১১) প্রদানপূর্বক চালানের মূলকপিসহ <span class="text-danger">*</span>
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange2">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange2_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -162,11 +190,13 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির তালিকা ( সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত ) <span class="text-danger">*</span>
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange3">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange3_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -176,11 +206,14 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         নাম পরিবর্তন বিষয়ে সংশ্লিষ্ট দেশের বোর্ড অব ডিরেক্টরস /বোর্ড অব ট্রাস্টির সিদ্ধান্তের কপি  (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কর্তৃক নোটারীকৃত মূলকপিসহ ) <span class="text-danger">*</span>
+
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange4">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange4_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -189,11 +222,14 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         ৩০০/তিনশত) টাকার স্টাম্পে নাম পরিবর্তনের বিষয়ে এফিডেবিট এর কপি <span class="text-danger">*</span>
+
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange5">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange5_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -203,11 +239,14 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         এনজিও বিষয়ক ব্যুরোর মুল সনদপত্র <span class="text-danger">*</span>
+
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange6">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange6_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -217,11 +256,13 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         সংস্থার পরিবর্তিত নামের সনদপত্র /ইনকর্পোরেটর সার্টিফিকেট (সংশ্লিষ্ট দেশের নোটারীকৃত মূলকপি ) <span class="text-danger">*</span>
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 1 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange7">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange7_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -231,11 +272,13 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         সংস্থার পরিবর্তিত নামের বাই লজ (By Laws)/গঠনতন্ত্রের কপি (সংশ্লিষ্ট দেশের পিস অব জাস্টিস কতৃক নোটারীকৃত মূলকপিসহ ) <span class="text-danger">*</span>
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 5 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange8">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange8_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -245,11 +288,14 @@
                                 <div class="card mb-3">
                                     <div class="card-header">
                                         সংস্থার পূর্ববর্তী নামের সকল দায় -দায়িত্ব বর্তমানে পরিবর্তিত নামের সংস্থার উপর বর্তাইবে মর্মে অঙ্গীকার নামা (সংস্থার প্রধান কতৃক স্বাক্ষরিত ) <span class="text-danger">*</span>
+
+                                        <br><span class="text-light" style="font-size: 12px;">(Maximum 500 KB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control" data-parsley-required accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange9">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange9_text"></p>
                                             </div>
                                         </div>
                                     </div>
@@ -259,11 +305,14 @@
                                     <div class="card-header">
                                         ২০১০-২০১১ অর্থবছর হতে হালনাগাদ পর্যন্ত সংস্থার নিবন্ধন/নিবন্ধন নবায়ন /নাম পরিবর্তন /গঠনতন্ত্রের যে কোনো ধারা পরিবর্তনের বিষয়ের দাখিলকৃত ফি এর ১৫% বকেয়া ভ্যাট (যদি ইতিমধ্যে প্রদান করা হয়ে না থাকে ) সংশ্লিষ্ট কোডে
 জমাপূর্বক চালানের মুলকপিসহ
+
+<br><span class="text-light" style="font-size: 12px;">(Maximum 2 MB)</span>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="">
+                                                <input class="form-control"  accept=".pdf" name="primary_portal[]" type="file" id="foreignNameChange10">
+                                                <p class="text-danger mt-2" style="font-size:12px;" id="foreignNameChange10_text"></p>
                                             </div>
                                         </div>
                                     </div>

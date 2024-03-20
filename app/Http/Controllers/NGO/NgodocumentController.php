@@ -77,7 +77,8 @@ class NgodocumentController extends Controller
         $time_dy = time().date("Ymd");
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
+        try{
+            DB::beginTransaction();
         $main_time = $dt->format('H:i:s a');
         $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
        if($request->main_ngo_type == 'Old'){
@@ -85,6 +86,25 @@ class NgodocumentController extends Controller
 
         $newDataAll = new RenewalFile();
         $newDataAll->fd_one_form_id = $fdOneFormId;
+		 if ($request->hasfile('form_eight_executive_committee_member')) {
+            $filePath="RenewalFile";
+           $file = $request->file('form_eight_executive_committee_member');
+    $newDataAll->form_eight_executive_committee_member =CommonController::pdfUpload($request,$file,$filePath);
+        }
+
+
+        if ($request->hasfile('last_ten_year_annual_report')) {
+            $filePath="RenewalFile";
+           $file = $request->file('last_ten_year_annual_report');
+    $newDataAll->last_ten_year_annual_report =CommonController::pdfUpload($request,$file,$filePath);
+        }
+
+
+        if ($request->hasfile('constitution_extra')) {
+            $filePath="RenewalFile";
+           $file = $request->file('constitution_extra');
+    $newDataAll->constitution_extra =CommonController::pdfUpload($request,$file,$filePath);
+        }
 
         if ($request->hasfile('fd_eight_form_data')) {
             $filePath="RenewalFile";
@@ -266,14 +286,20 @@ $newDataAll->save();
 
     }
 
-
-         return redirect()->back()->with('success','Created Successfully');
-
+    DB::commit();
+    return redirect()->back()->with('success','Created Successfully');
+}catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
 
     public function ngoDocumentFinal(){
+
+        try{
+            DB::beginTransaction();
         $checkCompleteStatusData = DB::table('form_complete_statuses')
         ->where('user_id',Auth::user()->id)
         ->first();
@@ -300,8 +326,12 @@ $newDataAll->save();
 
 
         }
+        DB::commit();
         return redirect('/ngoAllRegistrationForm');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -346,6 +376,12 @@ $newDataAll->save();
             $get_file_data = RenewalFile::where('id',$id)->value('registration_renewal_fee');
         }elseif($title == 'fd_eight_form_data'){
             $get_file_data = RenewalFile::where('id',$id)->value('fd_eight_form_data');
+        }elseif($title == 'form_eight_executive_committee_member'){
+            $get_file_data = RenewalFile::where('id',$id)->value('form_eight_executive_committee_member');
+        }elseif($title == 'last_ten_year_annual_report'){
+            $get_file_data = RenewalFile::where('id',$id)->value('last_ten_year_annual_report');
+        }elseif($title == 'constitution_extra'){
+            $get_file_data = RenewalFile::where('id',$id)->value('constitution_extra');
         }
 
         $file_path = url('public/'.$get_file_data);
@@ -402,6 +438,9 @@ return Response::make(file_get_contents($file), 200, [
 
 
     public function deleteRenewalFile($title, $id){
+
+        try{
+            DB::beginTransaction();
         $newDataAll =RenewalFile::find($id);
         if($title == 'trustees'){
 
@@ -442,10 +481,20 @@ return Response::make(file_get_contents($file), 200, [
             $newDataAll->registration_renewal_fee = null;
         }elseif($title == 'fd_eight_form_data'){
             $newDataAll->fd_eight_form_data = null;
+        }elseif($title == 'constitution_extra'){
+            $newDataAll->constitution_extra = null;
+        }elseif($title == 'last_ten_year_annual_report'){
+            $newDataAll->last_ten_year_annual_report = null;
+        }elseif($title == 'form_eight_executive_committee_member'){
+            $newDataAll->form_eight_executive_committee_member = null;
         }
         $newDataAll->save();
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -472,20 +521,26 @@ return Response::make(file_get_contents($file), 200, [
 
     public function destroy($id)
     {
-
+        try{
+            DB::beginTransaction();
         $admins = NgoOtherDoc::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
 
-
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function update(Request $request,$id){
 
-
+        try{
+            DB::beginTransaction();
 
 
         if($request->main_ngo_type == 'Old'){
@@ -493,6 +548,26 @@ return Response::make(file_get_contents($file), 200, [
 
 
             $newDataAll =RenewalFile::find($id);
+
+			 if ($request->hasfile('form_eight_executive_committee_member')) {
+            $filePath="RenewalFile";
+           $file = $request->file('form_eight_executive_committee_member');
+    $newDataAll->form_eight_executive_committee_member =CommonController::pdfUpload($request,$file,$filePath);
+        }
+
+
+        if ($request->hasfile('last_ten_year_annual_report')) {
+            $filePath="RenewalFile";
+           $file = $request->file('last_ten_year_annual_report');
+    $newDataAll->last_ten_year_annual_report =CommonController::pdfUpload($request,$file,$filePath);
+        }
+
+
+        if ($request->hasfile('constitution_extra')) {
+            $filePath="RenewalFile";
+           $file = $request->file('constitution_extra');
+    $newDataAll->constitution_extra =CommonController::pdfUpload($request,$file,$filePath);
+        }
 
             if ($request->hasfile('fd_eight_form_data')) {
                 $filePath="RenewalFile";
@@ -659,8 +734,12 @@ return Response::make(file_get_contents($file), 200, [
         $updateOtherPdf->save();
 
     }
-        return redirect()->back()->with('success','Created Successfully');
-
+    DB::commit();
+    return redirect()->back()->with('success','Created Successfully');
+}catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 }

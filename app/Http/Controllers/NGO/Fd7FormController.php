@@ -145,7 +145,8 @@ class Fd7FormController extends Controller
 
 
        // dd(12);
-
+       try{
+        DB::beginTransaction();
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fd7FormInfo = new Fd7Form();
         $fd7FormInfo->fd_one_form_id =$fdOneFormID->id;
@@ -289,10 +290,13 @@ class Fd7FormController extends Controller
 
 
 
-
+   DB::commit();
         return redirect()->route('addFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Added Successfuly');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -300,7 +304,8 @@ class Fd7FormController extends Controller
     public function update(Request $request,$id){
 
            //dd($request->all());
-
+           try{
+            DB::beginTransaction();
         $fd7FormInfo = Fd7Form::find($id);
         $fd7FormInfo->ngo_name =$request->ngo_name;
         $fd7FormInfo->ngo_address =$request->ngo_address;
@@ -441,9 +446,12 @@ class Fd7FormController extends Controller
 
 
 
-
+   DB::commit();
         return redirect()->route('editFd2DetailForFd7',base64_encode($fd7FormInfoId))->with('success','Updated Successfuly');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 

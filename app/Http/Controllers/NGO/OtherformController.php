@@ -287,7 +287,8 @@ return redirect()->back();
 
 
     public function ngoTypeAndLanguagePost(Request $request){
-
+        try{
+            DB::beginTransaction();
         //dd($request->all());
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
@@ -314,6 +315,15 @@ return redirect()->back();
     }else{
         $category_list->last_renew_date = $request->last_renew_date;
     }
+
+    if(empty($request->ngo_registration_date)){
+        $category_list->ngo_registration_date = 0;
+    }else{
+        $category_list->ngo_registration_date = $request->ngo_registration_date;
+    }
+
+
+
         $category_list->user_id =Auth::user()->id;
         $category_list->time_for_api =$main_time;
         $category_list->save();
@@ -329,7 +339,7 @@ return redirect()->back();
 
         $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
 
-
+        DB::commit();
         if($first_form_check == 1){
 
             return redirect('ngoAllRegistrationForm');
@@ -341,7 +351,10 @@ return redirect()->back();
 
         }
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function ngoRegistrationFirstInfo(){
@@ -366,7 +379,8 @@ return redirect('ngoAllRegistrationForm');
 
 
     public function ngoAllRegistrationForm(){
-
+        try{
+            DB::beginTransaction();
 
         CommonController::checkNgotype(1);
 
@@ -380,7 +394,7 @@ return redirect('ngoAllRegistrationForm');
 
         $mainNgoType = CommonController::changeView();
 
-
+        DB::commit();
 
         if($first_form_check == 1){
 
@@ -392,7 +406,10 @@ return redirect('ngoAllRegistrationForm');
             return view('front.firstTwoStep.ngoTypeAndLanguage');
 
         }
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
@@ -417,7 +434,8 @@ return redirect('ngoAllRegistrationForm');
 //dd(11);
 
 
-
+try{
+    DB::beginTransaction();
 $mainNgoTypeOld = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
 
 
@@ -486,15 +504,19 @@ if($mainNgoTypeOld == 'Old'){
 
 }
 
-
+DB::commit();
 
         return redirect()->back();
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
     public function renewalSubmitForOld(Request $request){
-
+        try{
+            DB::beginTransaction();
         $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
@@ -526,7 +548,13 @@ if($mainNgoTypeOld == 'Old'){
             $message->to($get_v_email);
             $message->subject('Old NGOAB Renew Service');
         });
+        DB::commit();
         return redirect()->back();
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -574,5 +602,23 @@ if($mainNgoTypeOld == 'Old'){
     public function emailVerifiedPage(){
         return view('front.auth_page.first_reg_mail');
 
+    }
+
+
+    public function ngoInstructionPageApply(){
+
+        return view('front.instruction_page.ngoInstructionPageApply');
+    }
+
+
+    public function ngoInstructionPageaRenew(){
+
+        return view('front.instruction_page.ngoInstructionPageaRenew');
+    }
+
+
+    public function ngoInstructionPageNameChange(){
+
+        return view('front.instruction_page.ngoInstructionPageNameChange');
     }
 }

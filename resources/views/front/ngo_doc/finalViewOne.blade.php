@@ -33,7 +33,85 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
 
               @else
 
+      <!--new start -->
+            @if(empty($ngoOtherDocListsFirst->form_eight_executive_committee_member))
 
+            @else
+            <?php
+
+              $file_path = url($ngoOtherDocListsFirst->form_eight_executive_committee_member);
+              $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+              ?>
+
+
+                  <div class="file-box">
+
+
+
+                    ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+
+                      <div class="file-top">
+                          <i class="fa fa-file-pdf-o txt-primary"></i>
+                      </div>
+
+                      <div class="mt-2">
+                          <h6>{{ $filename }}</h6>
+                          <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal555551211"><i class="fa fa-pencil"></i></button>
+
+
+                                  <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                  <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'form_eight_executive_committee_member', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                    <!--modal -->
+                                    <div class="modal fade" id="exampleModal555551211" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">
+                                                    ফরম-৮ মোতাবেক কার্যনির্বাহী কমিটির সদস্যদের তালিকা
+</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                      @csrf
+                                                      @method('PUT')
+                                                      <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                      <input type="hidden" name="title" value="form_eight_executive_committee_member"/>
+                                                      <div class="mb-3">
+
+                                                          <input type="file" name="form_eight_executive_committee_member" class="form-control" id="">
+
+                                                          <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->form_eight_executive_committee_member  }}"
+style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                          <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                      </div>
+                                                  </form>
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--model end -->
+                      </div>
+
+
+                  </div>
+
+                  @endif
+
+                  <!--end if -->
 
                 <!--new start -->
                 @if(empty($ngoOtherDocListsFirst->registration_renewal_fee))
@@ -83,7 +161,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                   </div>
                                                   <div class="modal-body">
-                                                      <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                      <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                           @csrf
                                                           @method('PUT')
@@ -168,7 +246,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                        <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                             @csrf
                                                             @method('PUT')
@@ -252,7 +330,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                       </div>
                                                       <div class="modal-body">
-                                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                               @csrf
                                                               @method('PUT')
@@ -334,7 +412,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                    </div>
                                                    <div class="modal-body">
-                                                       <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                       <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                            @csrf
                                                            @method('PUT')
@@ -418,7 +496,7 @@ $ngoOtherDocLists = DB::table('ngo_other_docs')->where('fd_one_form_id',$fdOneFo
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -470,7 +548,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
           <div class="file-box">
 
 
-            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 
               <div class="file-top">
                   <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -496,12 +574,12 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                   <div class="modal-content">
                                       <div class="modal-header">
                                           <h5 class="modal-title" id="exampleModalLabel">
-                                            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কতৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
+                                            অন্য কোনো আইনে নিবন্ধিত হলে সংশিষ্ট কর্তৃপক্ষের অনুমোদিত নির্বাহী কমিটির তালিকার সত্যায়িত অনুলিপি
 </h5>
                                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                       </div>
                                       <div class="modal-body">
-                                          <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                          <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                               @csrf
                                               @method('PUT')
@@ -553,7 +631,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
 
-প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 
  <div class="file-top">
      <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -579,12 +657,12 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                      <div class="modal-content">
                          <div class="modal-header">
                              <h5 class="modal-title" id="exampleModalLabel">
-                                প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
+                                প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত অনুলিপি
 </h5>
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -619,85 +697,243 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
 
 
 
-<!--new start -->
-@if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
+                  <!--new start -->
+               @if(empty($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company))
 
-@else
-<?php
+               @else
+               <?php
 
-$file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
-$filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
-
-?>
+                 $file_path = url($ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company);
+                 $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
 
-<div class="file-box">
+                 ?>
+
+
+                     <div class="file-box">
 
 
 
-বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+                        সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
 
- <div class="file-top">
-     <i class="fa fa-file-pdf-o txt-primary"></i>
- </div>
+                         <div class="file-top">
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
+                         </div>
 
- <div class="mt-2">
-     <h6>{{ $filename }}</h6>
-     <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
-             data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
-
-
-             <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
-             <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+                         <div class="mt-2">
+                             <h6>{{ $filename }}</h6>
+                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
 
 
+                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                     <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_years', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
 
 
 
 
-               <!--modal -->
-               <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                     <div class="modal-content">
-                         <div class="modal-header">
-                             <h5 class="modal-title" id="exampleModalLabel">
-                                বিগত 10 (দশ) বছরের অডিট রিপোর্ট এবং সংস্থার বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+
+
+                                       <!--modal -->
+                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">
+                                                        সংস্থার বিগত ১০(দশ) বছরের অডিট রিপোর্টের সত্যায়িত অনুলিপি
 </h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                         @csrf
+                                                         @method('PUT')
+                                                         <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                         <input type="hidden" name="title" value="last_ten_years"/>
+                                                         <div class="mb-3">
+
+                                                             <input type="file" name="last_ten_years_audit_report_and_annual_report_of_the_company" class="form-control" id="">
+
+                                                             <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company  }}"
+ style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                             <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                         </div>
+                                                     </form>
+                                                 </div>
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!--model end -->
                          </div>
-                         <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
-                                 @csrf
-                                 @method('PUT')
-                                 <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
-                                 <input type="hidden" name="title" value="last_ten_years"/>
-                                 <div class="mb-3">
-
-                                     <input type="file" name="last_ten_years_audit_report_and_annual_report_of_the_company" class="form-control" id="">
-
-                                     <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_years_audit_report_and_annual_report_of_the_company  }}"
-style="width:300px; height:150px;" frameborder="0"></iframe>
-                                 </div>
-                                 <div class="modal-footer">
-                                     <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
-                                 </div>
-                             </form>
-                         </div>
 
                      </div>
-                 </div>
-             </div>
-             <!--model end -->
- </div>
+
+                     @endif
+
+                     <!--end if -->
 
 
-</div>
+                      <!--new start -->
+                      @if(empty($ngoOtherDocListsFirst->last_ten_year_annual_report))
 
-@endif
+                      @else
+                      <?php
 
-<!--end if -->
+                        $file_path = url($ngoOtherDocListsFirst->last_ten_year_annual_report);
+                        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                        ?>
+                     <div class="file-box">
+
+
+
+                        সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+
+                         <div class="file-top">
+                             <i class="fa fa-file-pdf-o txt-primary"></i>
+                         </div>
+
+                         <div class="mt-2">
+                             <h6>{{ $filename }}</h6>
+                             <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                     data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                                     <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                     <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'last_ten_year_annual_report', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                       <!--modal -->
+                                       <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">
+                                                        সংস্থার বিগত ১০(দশ) বছরের বার্ষিক প্রতিবেদনের সত্যায়িত অনুলিপি
+</h5>
+                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                         @csrf
+                                                         @method('PUT')
+                                                         <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                         <input type="hidden" name="title" value="last_ten_year_annual_report"/>
+                                                         <div class="mb-3">
+
+                                                             <input type="file" name="last_ten_year_annual_report" class="form-control" id="">
+
+                                                             <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->last_ten_year_annual_report  }}"
+ style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                             <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                         </div>
+                                                     </form>
+                                                 </div>
+
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <!--model end -->
+                         </div>
+
+
+                     </div>
+
+                     @endif
+
+                     <!--end if -->
+
+
+
+                       <!--new start -->
+                       @if(empty($ngoOtherDocListsFirst->constitution_extra))
+
+                       @else
+                       <?php
+
+                         $file_path = url($ngoOtherDocListsFirst->constitution_extra);
+                         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+
+                         ?>
+                      <div class="file-box">
+
+
+                        সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+
+                          <div class="file-top">
+                              <i class="fa fa-file-pdf-o txt-primary"></i>
+                          </div>
+
+                          <div class="mt-2">
+                              <h6>{{ $filename }}</h6>
+                              <button class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                      data-bs-target="#exampleModal4"><i class="fa fa-pencil"></i></button>
+
+
+                                      <a class="btn btn-sm btn-registration" target="_blank"  href = '{{ route('deleteRenewalFileDownload', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-download"></i></a>
+                                      <a   class="btn btn-sm btn-danger" href = '{{ route('deleteRenewalFile', ['title' =>'constitution_extra', 'id' =>$ngoOtherDocListsFirst->id]) }}'><i class="fa fa-trash"></i></a>
+
+
+
+
+
+
+                                        <!--modal -->
+                                        <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                  <div class="modal-header">
+                                                      <h5 class="modal-title" id="exampleModalLabel">
+                                                        সংস্থার গঠনতন্ত্র পরিবর্তন হয়ে থাকলে নির্ধারিত ফিসহ ভ্যাট বাবদ অর্থ জমাদানের মূলকপিসহ তার সত্যায়িত অনুলিপি অথবা সংস্থার গঠনতন্ত্র পরিবর্তন না হয়ে থাকলে "পরিবর্তন হয়নি' মর্মে প্রত্যয়নের অনুলিপি
+ </h5>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                      <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+
+                                                          @csrf
+                                                          @method('PUT')
+                                                          <input type="hidden" name="main_ngo_type" value="{{ $localNgoTypem }}"/>
+                                                          <input type="hidden" name="title" value="constitution_extra"/>
+                                                          <div class="mb-3">
+
+                                                              <input type="file" name="constitution_extra" class="form-control" id="">
+
+                                                              <iframe src="{{ asset('/') }}{{'public/'. $ngoOtherDocListsFirst->constitution_extra  }}"
+  style="width:300px; height:150px;" frameborder="0"></iframe>
+                                                          </div>
+                                                          <div class="modal-footer">
+                                                              <button type="submit" class="btn btn-success">{{ trans('form 8_bn.update')}}</button>
+                                                          </div>
+                                                      </form>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <!--model end -->
+                          </div>
+
+
+                      </div>
+
+                      @endif
+
+                      <!--end if -->
 
 
 
@@ -749,7 +985,7 @@ Copy of registration certificate (notarized/attested of the concerned country) o
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -831,7 +1067,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -912,7 +1148,7 @@ Right To Information Act - 2009-এর আওতায় ফোকাল Focal Poi
                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                          </div>
                          <div class="modal-body">
-                             <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                             <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                  @csrf
                                  @method('PUT')
@@ -997,7 +1233,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -1047,7 +1283,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 <div class="file-box">
 
 
-প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 
 <div class="file-top">
 <i class="fa fa-file-pdf-o txt-primary"></i>
@@ -1073,12 +1309,12 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
           <div class="modal-content">
               <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">
-                    প্রাথমিক নিবন্ধনকারী কতৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
+                    প্রাথমিক নিবন্ধনকারী কর্তৃপক্ষের অনুমোদিত গঠনতন্ত্রের সত্যায়িত কপি
 </h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1159,7 +1395,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1240,7 +1476,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                  <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                  <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                       @csrf
                       @method('PUT')
@@ -1320,7 +1556,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1399,7 +1635,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                              </div>
                              <div class="modal-body">
-                                 <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                                 <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                      @csrf
                                      @method('PUT')
@@ -1481,7 +1717,7 @@ $filename  = pathinfo($file_path, PATHINFO_FILENAME);
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                        </div>
                        <div class="modal-body">
-                           <form method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
+                           <form id="form" method="post" action="{{ route('ngoDocument.update',$ngoOtherDocListsFirst->id ) }}" enctype="multipart/form-data">
 
                                @csrf
                                @method('PUT')
@@ -1708,7 +1944,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
+                                                    <form id="form" method="post" action="{{ route('ngoDocument.update',$all_ngo_list_all->id ) }}" enctype="multipart/form-data">
 
                                                         @csrf
                                                         @method('PUT')
@@ -1735,7 +1971,7 @@ style="width:300px; height:150px;" frameborder="0"></iframe>
                             <button  onclick="deleteTag({{ $all_ngo_list_all->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                         </div>
                     </div>
-                    <form id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
+                    <form  id="delete-form-{{ $all_ngo_list_all->id }}" action="{{ route('ngoDocument.destroy',$all_ngo_list_all->id) }}" method="POST" style="display: none;">
 
                         @csrf
 @method('DELETE')

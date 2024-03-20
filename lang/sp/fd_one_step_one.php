@@ -3,6 +3,7 @@ return [
     'fd8'=>'FD-8 Form',
     'tele'=>'Telephone Number',
     'nn'=>'Nationality',
+    'district'=>'District',
     'fd_one_form_title'=>'FD-1 Form',
     'form_eight_title'=>'Form No-8',
     'member_title'=>'General Members',

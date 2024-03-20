@@ -178,7 +178,8 @@ class Fc2FormController extends Controller
 
 
         ]);
-
+        try{
+            DB::beginTransaction();
 //dd(11);
         $fdOneFormID = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fc2FormInfo = new Fc2Form();
@@ -259,10 +260,13 @@ class Fc2FormController extends Controller
 
         $fc2FormInfoId = $fc2FormInfo->id;
 
-
+        DB::commit();
         return redirect()->route('addFd2DetailForFc2',base64_encode($fc2FormInfoId))->with('success','Added Successfuly');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -270,7 +274,8 @@ class Fc2FormController extends Controller
 
 
     public function update(Request $request,$id){
-
+        try{
+            DB::beginTransaction();
 
         $fc2FormInfo = Fc2Form::find($id);
         $fc2FormInfo->person_full_name =$request->person_full_name;
@@ -348,20 +353,29 @@ class Fc2FormController extends Controller
         $fc2FormInfo->save();
 
         $fc2FormInfoId = $fc2FormInfo->id;
-
+        DB::commit();
         return redirect()->route('editFd2DetailForFc2',base64_encode($fc2FormInfoId))->with('success','Updated Successfuly');
 
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fc2Form::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 

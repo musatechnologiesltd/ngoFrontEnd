@@ -9,6 +9,7 @@ use App\Models\NgoStatus;
 use App\Models\NgoRenew;
 use App\Models\Country;
 use App\Models\Fd9Form;
+use App\Models\FdNineOtherFile;
 use App\Models\Fd9ForeignerEmployeeFamilyMemberList;
 use Illuminate\Support\Facades\Crypt;
 use DB;
@@ -47,24 +48,21 @@ class Fd9Controller extends Controller
 
 
     public function create(){
-       // dd(1);
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->first();
 
-
-//dd($checkNgoTypeForForeginNgo);
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')
+        ->where('user_id',Auth::user()->id) ->first();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
         $newOldNgo = CommonController::newOldNgo();
-//dd($newOldNgo);
-if($newOldNgo != 'Old'){
-        $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
-}else{
 
-    $ngoStatus = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->first();
+        if($newOldNgo != 'Old'){
 
-}
+                $ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+        }else{
+
+            $ngoStatus = NgoRenew::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+        }
         return view('front.fdNineForm.create',compact('ngo_list_all','ngoStatus','checkNgoTypeForForeginNgo'));
 
     }
@@ -104,20 +102,54 @@ CommonController::checkNgotype(1);
 $mainNgoType = CommonController::changeView();
 
 
-
-return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+$fdNineOtherFileList = FdNineOtherFile::where('fd9_form_id',$nVisaId)->get();
+return view('front.fdNineForm.edit',compact('fdNineOtherFileList','checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
 
     }
 
 
+
+    public function singlePdfDelete(Request $request){
+
+        $fdNineOtherFileList = FdNineOtherFile::where('id',$request->id)->delete();
+
+        return 1;
+
+    }
+
+
+    public function singlePdfDownload($id){
+
+
+        $get_file_data = FdNineOtherFile::where('id',$id)->value('main_file');
+
+        $file_path = url('public/'.$get_file_data);
+                                $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+
+        $file= public_path('/'). $get_file_data;
+
+        $headers = array(
+                  'Content-Type: application/pdf',
+                );
+
+        // return Response::download($file,$filename.'.pdf', $headers);
+
+        return Response::make(file_get_contents($file), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+
+
+       }
+
+
     public function store(Request $request){
 
-
+        //dd($request->all());
         $request->validate([
 
 
-            // 'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
-            // 'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
+            'digital_signature' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:60|dimensions:width=300,height=80',
+            'digital_seal' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:80|dimensions:width=300,height=100',
 
 
 
@@ -136,26 +168,33 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
             'fd9_male_or_female' => 'required|string',
             'fd9_marital_status' => 'required|string',
             'fd9_nationality_or_citizenship' => 'required|string',
-            'fd9_details_if_multiple_citizenships' => 'required|string',
-            'fd9_previous_citizenship_is_grounds_for_non_retention' => 'required|string',
+            'fd9_details_if_multiple_citizenships' => 'nullable|string',
+            'fd9_previous_citizenship_is_grounds_for_non_retention' => 'nullable|string',
             'fd9_current_address' => 'required|string',
             'fd9_number_of_family_members' => 'required|string',
             'fd9_academic_qualification' => 'required|file',
-            'fd9_technical_and_other_qualifications_if_any' => 'required|file',
+            'fd9_technical_and_other_qualifications_if_any' => 'nullable|file',
             'fd9_past_experience' => 'required|file',
-            'fd9_countries_that_have_traveled' => 'required|string',
+           // 'fd9_countries_that_have_traveled' => 'required|string',
             'fd9_offered_post' => 'required|file',
             'fd9_name_of_proposed_project' => 'required|file',
             'fd9_date_of_appointment' => 'required|string',
-            'fd9_extension_date' => 'required|string',
+            'fd9_extension_date' => 'nullable|string',
             'fd9_post_available_for_foreigner_and_working' => 'required|string',
-            'fd9_previous_work_experience_in_bangladesh' => 'required|string',
+            'fd9_previous_work_experience_in_bangladesh' => 'nullable|string',
             'fd9_total_foreigner_working' => 'required|string',
-            'fd9_other_information' => 'required|string',
+            'fd9_other_information' => 'nullable|string',
         ]);
 
-      //dd($request->passport_photocopy);
+if($request->fd9_countries_that_have_traveled == null){
 
+    $arr_all = null;
+}else{
+        $arr_all = implode(", ",$request->fd9_countries_that_have_traveled);
+}
+      //dd($arr_all);
+      try{
+        DB::beginTransaction();
          $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
          $fd9FormInfo = new Fd9Form();
          $fd9FormInfo->status = 'Ongoing';
@@ -163,7 +202,15 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $fd9FormInfo->chief_name = $request->chief_name;
          $fd9FormInfo->chief_desi = $request->chief_desi;
 
-
+         $fd9FormInfo->fd9_academic_qualification_des = $request->fd9_academic_qualification_des;
+         $fd9FormInfo->fd9_technical_and_other_qualifications_if_any_des = $request->fd9_technical_and_other_qualifications_if_any_des;
+         $fd9FormInfo->fd9_past_experience_des = $request->fd9_past_experience_des;
+         $fd9FormInfo->fd9_name_of_proposed_project_des = $request->fd9_name_of_proposed_project_des;
+         $fd9FormInfo->fd9_post_available_for_foreigner = $request->fd9_post_available_for_foreigner;
+         $fd9FormInfo->fd9_offered_post_name =$request->fd9_offered_post_name;
+         $fd9FormInfo->fd9_name_of_proposed_project_name=$request->fd9_name_of_proposed_project_name;
+         $fd9FormInfo->fd9_name_of_proposed_project_duration=$request->fd9_name_of_proposed_project_duration;
+         $fd9FormInfo->fd9_extension_date_new=$request->fd9_extension_date_new;
          $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
          $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
          $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
@@ -212,6 +259,22 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         }
 
 
+        if ($request->hasfile('fd9_offered_post_niyog')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_offered_post_niyog');
+            $fd9FormInfo->fd9_offered_post_niyog =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+
+        if ($request->hasfile('fd9_other_information_file')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_other_information_file');
+            $fd9FormInfo->fd9_other_information_file =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
+
+
 
          if ($request->hasfile('fd9_academic_qualification')) {
             $filePath="fd9FormInfo";
@@ -240,7 +303,7 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
 
 
 
-         $fd9FormInfo->fd9_countries_that_have_traveled = $request->fd9_countries_that_have_traveled;
+         $fd9FormInfo->fd9_countries_that_have_traveled = $arr_all;
 
 
          if ($request->hasfile('fd9_offered_post')) {
@@ -282,31 +345,93 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
          $input = $request->all();
 
 
-    //     $family_member_name_list = $input['family_member_name'];
+         // new code start
+         if (array_key_exists("file_name", $input) && array_key_exists("main_file", $input)){
+         $otherFileList = $input['file_name'];
 
 
-    //     foreach($family_member_name_list as $key => $family_member_name_list){
+              foreach($otherFileList as $key => $otherFileLists){
 
 
-    //         $form= new Fd9ForeignerEmployeeFamilyMemberList();
-    //         $form->fd9_form_id = $fd9FormId;
-    //         $form->family_member_name = $input['family_member_name'][$key];
-    //         $form->family_member_age = $input['family_member_age'][$key];
-    //         $form->save();
-    //    }
+            $form= new FdNineOtherFile();
+            $form->fd9_form_id = $fd9FormId;
+            $form->file_name = $input['file_name'][$key];
+            $file=$input['main_file'][$key];
+            $filePath="fd9FormInfo";
+            $form->main_file=CommonController::pdfUpload($request,$file,$filePath);
+            $form->save();
+       }
+    }
+
+         // end new code
+
+         if (array_key_exists("family_member_name", $input) && array_key_exists("family_member_age", $input)){
 
 
+        $family_member_name_list = $input['family_member_name'];
 
+
+        foreach($family_member_name_list as $key => $family_member_name_list){
+
+
+            $form= new Fd9ForeignerEmployeeFamilyMemberList();
+            $form->fd9_form_id = $fd9FormId;
+            $form->family_member_name = $input['family_member_name'][$key];
+            $form->family_member_age = $input['family_member_age'][$key];
+            $form->save();
+       }
+
+    }
+    DB::commit();
        return redirect()->route('fdNineForm.index')->with('success','Created Successfully');
-
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
     }
 
 
     public function update(Request $request,$id){
 
+//dd($request->all());
 
 
+if($request->submit_value == 'single_update'){
+
+try{
+
+    $fd9FormInfo = FdNineOtherFile::find($request->mid);
+
+    $fd9FormInfo->file_name = $request->file_name_edit;
+    if ($request->hasfile('main_file_edit')) {
+        $filePath="fd9FormInfo";
+        $file = $request->file('main_file_edit');
+        $fd9FormInfo->main_file_edit =CommonController::imageUpload($request,$file,$filePath);
+
+    }
+    $fd9FormInfo->save();
+
+    return redirect()->route('fdNineForm.index')->with('success','Updated Successfully');
+
+} catch (\Exception $e) {
+
+    return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+}
+
+
+
+}else{
+
+
+    if($request->fd9_countries_that_have_traveled == null){
+
+        $arr_all = null;
+    }else{
+            $arr_all = implode(", ",$request->fd9_countries_that_have_traveled);
+    }
+        try{
+            DB::beginTransaction();
 
 
         $fd9FormInfo = Fd9Form::find($id);
@@ -314,6 +439,17 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         $fd9FormInfo->chief_name = $request->chief_name;
        $fd9FormInfo->chief_desi = $request->chief_desi;
 
+
+       $fd9FormInfo->fd9_academic_qualification_des = $request->fd9_academic_qualification_des;
+       $fd9FormInfo->fd9_technical_and_other_qualifications_if_any_des = $request->fd9_technical_and_other_qualifications_if_any_des;
+       $fd9FormInfo->fd9_past_experience_des = $request->fd9_past_experience_des;
+       $fd9FormInfo->fd9_name_of_proposed_project_des = $request->fd9_name_of_proposed_project_des;
+       $fd9FormInfo->fd9_post_available_for_foreigner = $request->fd9_post_available_for_foreigner;
+
+       $fd9FormInfo->fd9_offered_post_name =$request->fd9_offered_post_name;
+       $fd9FormInfo->fd9_name_of_proposed_project_name=$request->fd9_name_of_proposed_project_name;
+       $fd9FormInfo->fd9_name_of_proposed_project_duration=$request->fd9_name_of_proposed_project_duration;
+       $fd9FormInfo->fd9_extension_date_new=$request->fd9_extension_date_new;
 
         $fd9FormInfo->fd9_foreigner_name = $request->fd9_foreigner_name;
         $fd9FormInfo->fd9_father_name = $request->fd9_father_name;
@@ -360,7 +496,20 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
 
         }
 
+        if ($request->hasfile('fd9_offered_post_niyog')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_offered_post_niyog');
+            $fd9FormInfo->fd9_offered_post_niyog =CommonController::pdfUpload($request,$file,$filePath);
 
+        }
+
+
+        if ($request->hasfile('fd9_other_information_file')) {
+            $filePath="fd9FormInfo";
+            $file = $request->file('fd9_other_information_file');
+            $fd9FormInfo->fd9_other_information_file =CommonController::pdfUpload($request,$file,$filePath);
+
+        }
 
 
         if ($request->hasfile('fd9_academic_qualification')) {
@@ -390,7 +539,7 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
 
 
 
-        $fd9FormInfo->fd9_countries_that_have_traveled = $request->fd9_countries_that_have_traveled;
+        $fd9FormInfo->fd9_countries_that_have_traveled = $arr_all;
 
 
         if ($request->hasfile('fd9_offered_post')) {
@@ -432,25 +581,55 @@ return view('front.fdNineForm.edit',compact('checkNgoTypeForForeginNgo','ngoStat
         $input = $request->all();
 
 
-    //    $family_member_name_list = $input['family_member_name'];
-
-    //    Fd9ForeignerEmployeeFamilyMemberList::where('fd9_form_id',$fd9FormId)->delete();
-
-    //    foreach($family_member_name_list as $key => $family_member_name_list){
+    // new code start
+    if (array_key_exists("file_name", $input) && array_key_exists("main_file", $input)){
+        $otherFileList = $input['file_name'];
 
 
-    //        $form= new Fd9ForeignerEmployeeFamilyMemberList();
-    //        $form->fd9_form_id = $fd9FormId;
-    //        $form->family_member_name = $input['family_member_name'][$key];
-    //        $form->family_member_age = $input['family_member_age'][$key];
-    //        $form->save();
-    //   }
+             foreach($otherFileList as $key => $otherFileLists){
+
+
+           $form= new FdNineOtherFile();
+           $form->fd9_form_id = $fd9FormId;
+           $form->file_name = $input['file_name'][$key];
+           $file=$input['main_file'][$key];
+           $filePath="fd9FormInfo";
+           $form->main_file=CommonController::pdfUpload($request,$file,$filePath);
+           $form->save();
+      }
+   }
+
+        // end new code
 
 
 
+    if (array_key_exists("family_member_name", $input) && array_key_exists("family_member_age", $input)){
+
+
+        $family_member_name_list = $input['family_member_name'];
+
+        Fd9ForeignerEmployeeFamilyMemberList::where('fd9_form_id',$fd9FormId)->delete();
+        foreach($family_member_name_list as $key => $family_member_name_list){
+
+
+            $form= new Fd9ForeignerEmployeeFamilyMemberList();
+            $form->fd9_form_id = $fd9FormId;
+            $form->family_member_name = $input['family_member_name'][$key];
+            $form->family_member_age = $input['family_member_age'][$key];
+            $form->save();
+       }
+
+    }
+
+    DB::commit();
       return redirect()->route('fdNineForm.index')->with('success','Updated Successfully');
 
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
 
+}
     }
 
     public function show($id){
@@ -487,9 +666,9 @@ CommonController::checkNgotype(1);
 
 $mainNgoType = CommonController::changeView();
 
+$fdNineOtherFileList = FdNineOtherFile::where('fd9_form_id',$nVisaId)->get();
 
-
-return view('front.fdNineForm.show',compact('checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
+return view('front.fdNineForm.show',compact('fdNineOtherFileList','checkNgoTypeForForeginNgo','ngoStatus','fdOneFormData','fdNineData','nVisaId','ngo_list_all','countryList','getCityzenshipData'));
 
     }
 
@@ -505,7 +684,31 @@ return view('front.fdNineForm.show',compact('checkNgoTypeForForeginNgo','ngoStat
 
 $countryList = Country::orderBy('id','asc')->get();
 $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+
+ //new code for old  and new
+
+ $checkOldorNew = DB::table('ngo_type_and_languages')
+ ->where('user_id',$ngo_list_all->user_id)->value('ngo_type_new_old');
+
+//end new code for old and new
+
+if($checkOldorNew == 'Old'){
+
+$ngoStatus = DB::table('ngo_renews')
+->where('fd_one_form_id',$ngo_list_all->id)->first();
+
+}else{
+
+$ngoStatus = DB::table('ngo_statuses')
+->where('fd_one_form_id',$ngo_list_all->id)->first();
+}
+
+
+
+//$ngoStatus = NgoStatus::where('fd_one_form_id',$ngo_list_all->id)->first();
+
+
 
 
 $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
@@ -526,7 +729,7 @@ $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id
 
 //         ],[],['format' => 'A4']);
 //     return $pdf->stream($file_Name_Custome.''.'.pdf');
-
+$fdNineOtherFileList = FdNineOtherFile::where('fd9_form_id',$nVisaId)->get();
 $file_Name_Custome = 'fd_nine_form';
 $data =view('front.fdNineForm.mainFd9PdfDownload',[
                  'checkNgoTypeForForeginNgo'=>$checkNgoTypeForForeginNgo,
@@ -535,7 +738,8 @@ $data =view('front.fdNineForm.mainFd9PdfDownload',[
                  'getCityzenshipData'=>$getCityzenshipData,
                  'countryList'=>$countryList,
                  'ngo_list_all'=>$ngo_list_all,
-             'ngoStatus'=>$ngoStatus
+             'ngoStatus'=>$ngoStatus,
+             'fdNineOtherFileList'=>$fdNineOtherFileList
 
              ])->render();
 
@@ -560,7 +764,8 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
     }
 
     public function mainFd9PdfUpload(Request $request){
-
+        try{
+            DB::beginTransaction();
         $fd9FormInfo = Fd9Form::find($request->id);
 
         if ($request->hasfile('verified_fd_nine_form')) {
@@ -573,8 +778,13 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
 
         $fd9FormInfo->save();
 
-
+        DB::commit();
         return redirect()->back()->with('success','Update Successfully');
+
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 
 
@@ -595,11 +805,17 @@ $pdfFilePath =$file_Name_Custome.'.pdf';
 
 
     public function destroy($id){
-
+        try{
+            DB::beginTransaction();
         $admins = Fd9Form::find($id);
         if (!is_null($admins)) {
             $admins->delete();
         }
+        DB::commit();
         return back()->with('error','Deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollBack();
+        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+    }
     }
 }
