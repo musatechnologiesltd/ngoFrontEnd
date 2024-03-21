@@ -25,16 +25,11 @@ class ApprovalOfConstitutionController extends Controller
 {
     public function index(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForAmendmentOrApprovalOfConstitution::where('fdId',$ngoListAll->id)->latest()->get();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.documentForAmendmentOrApprovalOfConstitution.index',compact('ngoListAll','documentForDuplicateCertificate'));
 
@@ -43,16 +38,11 @@ class ApprovalOfConstitutionController extends Controller
 
     public function create(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForAmendmentOrApprovalOfConstitution::where('fdId',$ngoListAll->id)->latest()->get();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.documentForAmendmentOrApprovalOfConstitution.create',compact('ngoListAll','documentForDuplicateCertificate'));
     }
@@ -73,8 +63,11 @@ class ApprovalOfConstitutionController extends Controller
 
 
       try{
-        DB::beginTransaction();
+
+         DB::beginTransaction();
+
          $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
          $fd9FormInfo = new DocumentForAmendmentOrApprovalOfConstitution();
          $fd9FormInfo->status = 'Ongoing';
          $fd9FormInfo->fdId = $ngo_list_all->id;
@@ -124,16 +117,11 @@ class ApprovalOfConstitutionController extends Controller
 
     public function edit($id){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForAmendmentOrApprovalOfConstitution::where('id',$id)->first();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.documentForAmendmentOrApprovalOfConstitution.edit',compact('ngoListAll','documentForDuplicateCertificate'));
     }
@@ -141,14 +129,13 @@ class ApprovalOfConstitutionController extends Controller
 
     public function update(Request $request,$id){
 
-
-
-
       try{
-        DB::beginTransaction();
-         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-         $fd9FormInfo = DocumentForAmendmentOrApprovalOfConstitution::find($id);
 
+         DB::beginTransaction();
+
+         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+         $fd9FormInfo = DocumentForAmendmentOrApprovalOfConstitution::find($id);
          $fd9FormInfo->fdId = $ngo_list_all->id;
 
          if ($request->hasfile('file_one')) {
@@ -189,22 +176,18 @@ class ApprovalOfConstitutionController extends Controller
         DB::rollBack();
         return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
     }
+
     }
 
 
 
     public function show($id){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForAmendmentOrApprovalOfConstitution::where('id',$id)->first();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.documentForAmendmentOrApprovalOfConstitution.view',compact('ngoListAll','documentForDuplicateCertificate'));
     }
@@ -230,37 +213,38 @@ class ApprovalOfConstitutionController extends Controller
 
         }
 
-
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+        $file= public_path('/'). $form_one_data;
 
-$file= public_path('/'). $form_one_data;
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-$headers = array(
-'Content-Type: application/pdf',
-);
-
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
 
     }
 
 
     public function destroy($id){
+
         try{
+
             DB::beginTransaction();
-        $admins = DocumentForAmendmentOrApprovalOfConstitution::find($id);
-        if (!is_null($admins)) {
-            $admins->delete();
+            $admins = DocumentForAmendmentOrApprovalOfConstitution::find($id);
+
+            if(!is_null($admins)) {
+                $admins->delete();
+            }
+
+            DB::commit();
+            return back()->with('error','Deleted successfully!');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-        DB::commit();
-        return back()->with('error','Deleted successfully!');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
     }
 }

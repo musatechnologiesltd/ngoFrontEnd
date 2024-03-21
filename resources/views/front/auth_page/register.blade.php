@@ -19,7 +19,7 @@
 
 
 
-                  
+
 
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.person_name')}} <span class="text-danger">*</span> </label>
@@ -32,13 +32,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.password')}} <span class="text-danger">*</span> </label>
-                        <input type="password" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-trigger=“keyup” name="password" id="password">
+                        <input type="password" autocomplete="off" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-trigger=“keyup” name="password" id="password">
                     </div>
 
 
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">{{ trans('header.passwordc')}} <span class="text-danger">*</span> </label>
-                        <input type="password" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-equalto="#password" data-parsley-trigger=“keyup” name="cpassword" id="cpassword">
+                        <input type="password" autocomplete="off" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-equalto="#password" data-parsley-trigger=“keyup” name="cpassword" id="cpassword">
                       <small id="p_result" style="color:red" ></small>
                     </div>
 

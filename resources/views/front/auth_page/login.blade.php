@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="form-group last mb-3">
                                     <label for="password">{{ trans('header.password')}} <span class="text-danger">*</span> </label>
-                                    <input type="password" name="password"  required data-parsley-length=“[5,32]” data-parsley-trigger=“keyup”  class="form-control" placeholder="Your Password" id="password">
+                                    <input type="password" name="password" autocomplete="off"  required data-parsley-length=“[5,32]” data-parsley-trigger=“keyup”  class="form-control" placeholder="Your Password" id="password">
                                 </div>
 
                                 <div class="d-flex mb-3 align-items-center">

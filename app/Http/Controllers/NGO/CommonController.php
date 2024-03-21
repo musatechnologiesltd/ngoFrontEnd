@@ -36,36 +36,6 @@ class CommonController extends Controller
     }
 
 
-    public static  function profileImageUpload($request,$file,$filePath){
-
-
-        $path = public_path('uploads/'.$filePath);
-
-        if(!File::isDirectory($path)){
-            File::makeDirectory($path, 0777, true, true);
-        }
-
-
-        $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
-        $directory = 'public/uploads/';
-        $imageUrl = $directory.$imageName;
-
-        //$img=Image::make($productImage)->resize(200,200);
-        $img=Image::make($imageName);
-        $img->save($imageUrl,60);
-
-
-        // $extension = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
-        // $filename = $extension;
-        // $file->move('public/uploads/'.$filePath.'/', $filename);
-        // $imageUrl =  'public/uploads/'.$filePath.'/'.$filename;
-
-
-    return $imageUrl;
-    //$imageUrl = $this->imageUpload($request);
-
-    }
-
 
     public static  function imageUpload($request,$file,$filePath){
 
@@ -76,23 +46,13 @@ class CommonController extends Controller
             File::makeDirectory($path, 0777, true, true);
         }
 
-
-        // $imageName = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
-        // $directory = 'public/uploads/';
-        // $imageUrl = $directory.$imageName;
-
-        // $img=Image::make($productImage)->resize(450,450);
-        // $img->save($imageUrl);
-
-
         $extension = date('Y-d-m').time().mt_rand(1000000000, 9999999999).".".$file->getClientOriginalExtension();
         $filename = $extension;
         $file->move('public/uploads/'.$filePath.'/', $filename);
         $imageUrl =  'public/uploads/'.$filePath.'/'.$filename;
 
 
-    return $imageUrl;
-    //$imageUrl = $this->imageUpload($request);
+        return $imageUrl;
 
     }
 
@@ -114,7 +74,6 @@ class CommonController extends Controller
 
 
     return $imageUrl;
-    //$imageUrl = $this->imageUpload($request);
 
     }
 
@@ -125,8 +84,6 @@ class CommonController extends Controller
         $engDATE = array('1','2','3','4','5','6','7','8','9','0','January','February','March','April',
         'May','June','July','August','September','October','November','December','Saturday','Sunday',
         'Monday','Tuesday','Wednesday','Thursday','Friday');
-
-
 
         $bangDATE = array('১','২','৩','৪','৫','৬','৭','৮','৯','০','জানুয়ারী','ফেব্রুয়ারী','মার্চ','এপ্রিল','মে',
         'জুন','জুলাই','আগস্ট','সেপ্টেম্বর','অক্টোবর','নভেম্বর','ডিসেম্বর','শনিবার','রবিবার','সোমবার','মঙ্গলবার','
@@ -142,82 +99,52 @@ class CommonController extends Controller
 
    public static function checkNgotype($status){
 
+        $mainSession = session()->get('locale');
 
+        if(!empty($mainSession)){
 
+            App::setLocale($mainSession);
+            session()->put('locale',$mainSession);
 
-    $mainSession = session()->get('locale');
+            return session()->put('locale',$mainSession);
 
-//dd($mainSession);
+        }else{
 
+            if($status == 1){
 
-if(!empty($mainSession)){
+            $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
 
+                if(empty($first_form_check)){
+                    App::setLocale('en');
+                    session()->put('locale','en');
 
-//dd(11);
+                return session()->put('locale','en');
 
-    App::setLocale($mainSession);
-    session()->put('locale',$mainSession);
+                }else{
 
-return session()->put('locale',$mainSession);
+                    App::setLocale($first_form_check);
+                    session()->put('locale',$first_form_check);
 
+                return session()->put('locale',$first_form_check);
 
+                }
 
+            }else{
 
-}else{
+                App::setLocale($status);
+                session()->put('locale',$status);
 
+                return session()->put('locale',$status);
 
-//dd(111);
+            }
 
-
-
-    if($status == 1){
-
-        //dd($status);
-
-
-    $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_language');
-
-
-
-
-
-    if(empty($first_form_check)){
-        App::setLocale('en');
-        session()->put('locale','en');
-
-    return session()->put('locale','en');
-
-    }else{
-
-       // dd($first_form_check);
-        App::setLocale($first_form_check);
-        session()->put('locale',$first_form_check);
-
-    return session()->put('locale',$first_form_check);
-
-    }
-
-}else{
-
-
-
-    App::setLocale($status);
-    session()->put('locale',$status);
-
-return session()->put('locale',$status);
-
-
-
-}
-
-}
+        }
 
     }
 
     public static function changeView(){
 
         $mainNgoType = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type');
-
         return $mainNgoType;
 
     }
@@ -226,13 +153,8 @@ return session()->put('locale',$status);
     public static function newOldNgo(){
 
         $newOldNgo = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
-
         return $newOldNgo;
 
     }
-
-
-
-
 
 }

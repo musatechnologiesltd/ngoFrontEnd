@@ -24,13 +24,13 @@
                                 @csrf
                                 <div class="form-group first mb-3">
                                     <label for="username">{{ trans('header.password')}} <span class="text-danger">*</span> </label>
-                                    <input type="password" id="password" name="password" maxlength="32" class="form-control" placeholder="" required data-parsley-length=“[5,32]” data-parsley-trigger=“keyup”>
+                                    <input type="password" autocomplete="off" id="password" name="password" maxlength="32" class="form-control" placeholder="" required data-parsley-length=“[5,32]” data-parsley-trigger=“keyup”>
                                     <input type="hidden" name="id" value="{{ $id }}" class="form-control" placeholder="Password" >
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">{{ trans('header.passwordc')}} <span class="text-danger">*</span> </label>
-                                    <input type="password" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-equalto="#password" data-parsley-trigger=“keyup” name="cpassword" id="cpassword">
+                                    <input type="password" autocomplete="off" class="form-control" required data-parsley-length=“[5,32]” maxlength="32" data-parsley-equalto="#password" data-parsley-trigger=“keyup” name="cpassword" id="cpassword">
                                   <small id="p_result" style="color:red" ></small>
                                 </div>
 

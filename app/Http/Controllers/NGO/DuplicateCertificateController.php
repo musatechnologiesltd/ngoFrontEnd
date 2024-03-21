@@ -25,36 +25,39 @@ class DuplicateCertificateController extends Controller
 {
     public function index(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
+        try{
 
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForDuplicateCertificate::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.documentForDuplicateCertificate.index',compact('ngoListAll','documentForDuplicateCertificate'));
 
+        } catch (\Exception $e) {
+
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
     public function create(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
+        try{
 
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForDuplicateCertificate::where('fd_one_form_id',$ngoListAll->id)->latest()->get();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
 
-
         return view('front.documentForDuplicateCertificate.create',compact('ngoListAll','documentForDuplicateCertificate'));
+
+        } catch (\Exception $e) {
+
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -72,13 +75,16 @@ class DuplicateCertificateController extends Controller
 
 
       try{
-        DB::beginTransaction();
-         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-         $fd9FormInfo = new DocumentForDuplicateCertificate();
-         $fd9FormInfo->status = 'Ongoing';
-         $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
 
-         if ($request->hasfile('file_one')) {
+        DB::beginTransaction();
+
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+        $fd9FormInfo = new DocumentForDuplicateCertificate();
+        $fd9FormInfo->status = 'Ongoing';
+        $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
+
+        if ($request->hasfile('file_one')) {
             $filePath="DocumentForDuplicateCertificate";
             $file = $request->file('file_one');
             $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
@@ -102,31 +108,34 @@ class DuplicateCertificateController extends Controller
             $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
 
         }
-         $fd9FormInfo->save();
 
-    DB::commit();
+        $fd9FormInfo->save();
+
+        DB::commit();
+
        return redirect()->route('duplicateCertificate.index')->with('success','Created Successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
+
     }
-    }
-
-
-
 
     public function edit($id){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
+        try{
 
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForDuplicateCertificate::where('id',$id)->first();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
 
+        } catch (\Exception $e) {
+
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
         return view('front.documentForDuplicateCertificate.edit',compact('ngoListAll','documentForDuplicateCertificate'));
     }
@@ -134,17 +143,16 @@ class DuplicateCertificateController extends Controller
 
     public function update(Request $request,$id){
 
-
-
-
       try{
+
         DB::beginTransaction();
-         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-         $fd9FormInfo = DocumentForDuplicateCertificate::find($id);
 
-         $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-         if ($request->hasfile('file_one')) {
+        $fd9FormInfo = DocumentForDuplicateCertificate::find($id);
+        $fd9FormInfo->fd_one_form_id = $ngo_list_all->id;
+
+        if ($request->hasfile('file_one')) {
             $filePath="DocumentForDuplicateCertificate";
             $file = $request->file('file_one');
             $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
@@ -168,7 +176,7 @@ class DuplicateCertificateController extends Controller
             $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
 
         }
-         $fd9FormInfo->save();
+        $fd9FormInfo->save();
 
     DB::commit();
        return redirect()->route('duplicateCertificate.index')->with('success','Updated Successfully');
@@ -182,16 +190,18 @@ class DuplicateCertificateController extends Controller
 
     public function show($id){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
+        try{
 
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $documentForDuplicateCertificate =  DocumentForDuplicateCertificate::where('id',$id)->first();
-
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
 
+        } catch (\Exception $e) {
+
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
         return view('front.documentForDuplicateCertificate.view',compact('ngoListAll','documentForDuplicateCertificate'));
     }
@@ -200,16 +210,23 @@ class DuplicateCertificateController extends Controller
 
     public function duplicateCertificate($id,$title){
 
+
+        try{
+
         if($title == 'file_one'){
 
             $form_one_data = DB::table('document_for_duplicate_certificates')->where('id',$id)->value('file_one');
+
         }elseif($title == 'file_two'){
 
             $form_one_data = DB::table('document_for_duplicate_certificates')->where('id',$id)->value('file_two');
+
         }elseif($title == 'file_three'){
 
             $form_one_data = DB::table('document_for_duplicate_certificates')->where('id',$id)->value('file_three');
+
         }elseif($title == 'file_four'){
+
             $form_one_data = DB::table('document_for_duplicate_certificates')->where('id',$id)->value('file_four');
 
         }
@@ -217,18 +234,20 @@ class DuplicateCertificateController extends Controller
 
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+        $file= public_path('/'). $form_one_data;
 
-$file= public_path('/'). $form_one_data;
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
 
-// return Response::download($file,$filename.'.pdf', $headers);
+        } catch (\Exception $e) {
 
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
