@@ -27,16 +27,12 @@ class FdFiveFormController extends Controller
 {
     public function index(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fdFiveForm =  FdFiveForm::where('fdId',$ngoListAll->id)->latest()->get();
 
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.fdFiveForm.index',compact('ngoListAll','fdFiveForm'));
 
@@ -45,17 +41,13 @@ class FdFiveFormController extends Controller
 
     public function create(){
 
-        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)
-        ->value('ngo_type');
-
+        $checkNgoTypeForForeginNgo = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
         $ngoListAll = FdOneForm::where('user_id',Auth::user()->id)->first();
         $fdFiveForm =  FdFiveForm::where('fdId',$ngoListAll->id)->latest()->get();
-        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngoListAll->id)
-        ->value('web_site_name');
+        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngoListAll->id)->value('web_site_name');
         CommonController::checkNgotype(1);
 
         $mainNgoType = CommonController::changeView();
-
 
         return view('front.fdFiveForm.create',compact('renewWebsiteName','ngoListAll','fdFiveForm'));
     }

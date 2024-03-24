@@ -75,16 +75,10 @@ class OtherformController extends Controller
 
     public function changeLanguage($lan){
 
-      //dd($lan);
-            // App::setLocale($lan);
-             session()->put('locale',$lan);
+        session()->put('locale',$lan);
+        CommonController::checkNgotype($lan);
 
-//dd(Session::get('locale'));
-
-
-CommonController::checkNgotype($lan);
-
-return redirect()->back();
+        return redirect()->back();
 
     }
 
@@ -98,6 +92,7 @@ return redirect()->back();
     }
 
     public function resetAllData(){
+
         $getFdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->value('id');
         $all_ngo_member_doc = NgoMemberNidPhoto::where('fd_one_form_id',$getFdOneFormId )->count();
         $all_data_list = NgoMemberList::where('fd_one_form_id',$getFdOneFormId )->count();
@@ -105,24 +100,12 @@ return redirect()->back();
         $all_data_list1 = FormEight::where('fd_one_form_id',$getFdOneFormId) ->count();
         $all_parti = FdOneForm::where('user_id',Auth::user()->id)->count();
         $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->count();
-
-
-
-
-
-
-
         $first_form_check_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$getFdOneFormId)->count();
         $first_form_check_staff = DB::table('fd_one_member_lists')->where('fd_one_form_id',$getFdOneFormId)->count();
         $first_form_check_account = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getFdOneFormId)->count();
         $first_form_check_account_info = DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$getFdOneFormId)->count();
         $first_form_check_sourceoffunds = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$getFdOneFormId)->count();
-
-
-        $checkCompleteStatus = DB::table('form_complete_statuses')
-          ->where('user_id',Auth::user()->id)->count();
-
-
+        $checkCompleteStatus = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->count();
 
         $get_final_result = $checkCompleteStatus + $first_form_check_sourceoffunds+$first_form_check_account_info+$first_form_check_account+$first_form_check_staff+$first_form_check_adviser+$all_ngo_member_doc + $all_data_list + $ngo_list_all + $all_data_list + $all_parti + $first_form_check;
 
@@ -130,31 +113,23 @@ return redirect()->back();
 
             return redirect('/dashboard')->with('error','You did not add any information');
 
-          }else{
-          //e//
+        }else{
 
-          //session()->forget('locale');
 
           if($checkCompleteStatus == 0){
 
-
-
           }else{
-              $checkCompleteStatus = DB::table('form_complete_statuses')
-              ->where('user_id',Auth::user()->id)
-      ->delete();
+
+              $checkCompleteStatus = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->delete();
 
           }
-
-
 
           if($first_form_check_adviser == 0){
 
 
-
             }else{
-                $all_ngo_member_doc = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$getFdOneFormId)
-        ->delete();
+
+                $all_ngo_member_doc = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
@@ -162,11 +137,9 @@ return redirect()->back();
 
            if($first_form_check_staff == 0){
 
-
-
             }else{
-                $all_ngo_member_doc = DB::table('fd_one_member_lists')->where('fd_one_form_id',$getFdOneFormId)
-        ->delete();
+
+                $all_ngo_member_doc = DB::table('fd_one_member_lists')->where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
@@ -174,88 +147,67 @@ return redirect()->back();
 
            if($first_form_check_account == 0){
 
-
-
             }else{
-                $all_ngo_member_doc = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getFdOneFormId)
-        ->delete();
+
+                $all_ngo_member_doc = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
-                     if($first_form_check_account_info == 0){
-
-
+            if($first_form_check_account_info == 0){
 
             }else{
-                $all_ngo_member_doc = DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$getFdOneFormId)
-        ->delete();
+
+                $all_ngo_member_doc = DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
-
-
 
            if($first_form_check_sourceoffunds == 0){
 
-
-
             }else{
-                $all_ngo_member_doc = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$getFdOneFormId)
-        ->delete();
+
+                $all_ngo_member_doc = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
-
-
             if($all_ngo_member_doc == 0){
 
-
-
             }else{
-                $all_ngo_member_doc = NgoMemberNidPhoto::where('fd_one_form_id',$getFdOneFormId)
-                ->delete();
+
+                $all_ngo_member_doc = NgoMemberNidPhoto::where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
 
             if($all_data_list1 == 0){
 
-
-
             }else{
-                $all_data_list1 = FormEight::where('fd_one_form_id',$getFdOneFormId)
-                ->delete();
+
+                $all_data_list1 = FormEight::where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
 
             if($all_data_list == 0){
 
-
-
             }else{
-                $all_data_list = NgoMemberList::where('fd_one_form_id',$getFdOneFormId)
-                ->delete();
+
+                $all_data_list = NgoMemberList::where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
             if($ngo_list_all == 0){
 
-
             }else{
-                $ngo_list_all = NgoOtherDoc::where('fd_one_form_id',$getFdOneFormId)
-                ->delete();
+
+                $ngo_list_all = NgoOtherDoc::where('fd_one_form_id',$getFdOneFormId)->delete();
 
             }
 
-
-
             if($all_parti == 0){
-
 
             }else{
 
-                $all_parti = FdOneForm::where('id',$getFdOneFormId)
-                ->delete();
+                $all_parti = FdOneForm::where('id',$getFdOneFormId)->delete();
             }
 
 
@@ -263,19 +215,11 @@ return redirect()->back();
 
 
             }else{
-                $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)
-                ->delete();
+                $first_form_check = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->delete();
 
             }
 
-
-
-
-
             return redirect('/dashboard')->with('error','Successfully Deleted');
-
-
-
 
         }
 
@@ -359,20 +303,15 @@ return redirect()->back();
 
     public function ngoRegistrationFirstInfo(){
 
-
         return view('front.firstTwoStep.ngoRegistrationFirstInfo');
-
 
     }
 
 
     public function ngoRegistrationFirstInfoPost(Request $request){
 
-        DB::table('ngo_type_and_languages')
-->where('user_id',Auth::user()->id)
-->update(['first_one_form_check_status'=>1]);
-
-return redirect('ngoAllRegistrationForm');
+        DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->update(['first_one_form_check_status'=>1]);
+        return redirect('ngoAllRegistrationForm');
 
     }
 
@@ -382,39 +321,30 @@ return redirect('ngoAllRegistrationForm');
         try{
             DB::beginTransaction();
 
-        CommonController::checkNgotype(1);
+            CommonController::checkNgotype(1);
 
-        $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
+            $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('first_one_form_check_status');
+            $ngoLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_language');
+            $mainNgoType = CommonController::changeView();
 
+            DB::commit();
 
+            if($first_form_check == 1){
 
+                return view('front.firstTwoStep.ngoAllRegistrationForm');
 
-        $ngoLanguage = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_language');
+            }elseif(!empty($ngoLanguage)){
+                return view('front.firstTwoStep.ngoRegistrationFirstInfo');
+            }else{
+                return view('front.firstTwoStep.ngoTypeAndLanguage');
 
-
-        $mainNgoType = CommonController::changeView();
-
-        DB::commit();
-
-        if($first_form_check == 1){
-
-            return view('front.firstTwoStep.ngoAllRegistrationForm');
-
-        }elseif(!empty($ngoLanguage)){
-            return view('front.firstTwoStep.ngoRegistrationFirstInfo');
-        }else{
-            return view('front.firstTwoStep.ngoTypeAndLanguage');
-
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
 
     }
-
-
-    //////3 march ///////////
 
     public function ngoInstructionPage(){
 
@@ -431,130 +361,102 @@ return redirect('ngoAllRegistrationForm');
 
     public function finalSubmitRegForm(Request $request){
 
-//dd(11);
+        try{
+            DB::beginTransaction();
 
-
-try{
-    DB::beginTransaction();
-$mainNgoTypeOld = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
-
-
-
-if($mainNgoTypeOld == 'Old'){
-
-    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-    // $category_list = new NgoStatus();
-    // $category_list->fd_one_form_id = $get_reg_id->id;
-    // $category_list->status = 'Old Ngo Renew';
-    // $category_list->email = Auth::user()->email;
-    // $category_list->save();
-
-
-    // $category_list = new NgoRenew();
-    // $category_list->fd_one_form_id = $get_reg_id->id;
-    // $category_list->status = 'Ongoing';
-    // $category_list->save();
-
-
-    $dt = new DateTime();
-    $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
-    $main_time = $dt->format('H:i:s a');
-
-
-    $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-    //dd($ngo_list_all->id);
-    $add_renew_request = new NgoRenew();
-    $add_renew_request->fd_one_form_id = $ngo_list_all->id;
-    $add_renew_request->time_for_api =$main_time;
-    $add_renew_request->status = 'Ongoing';
-    $add_renew_request->save();
+            $mainNgoTypeOld = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('ngo_type_new_old');
 
 
 
-        $get_v_email = Auth::user()->email;
+            if($mainNgoTypeOld == 'Old'){
 
-        $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+                $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-        Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
-        $message->to($get_v_email);
-        $message->subject('Old NGOAB Renew Service');
-    });
+                $dt = new DateTime();
+                $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-}else{
+                $main_time = $dt->format('H:i:s a');
 
-    $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+                $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+
+                $add_renew_request = new NgoRenew();
+                $add_renew_request->fd_one_form_id = $ngo_list_all->id;
+                $add_renew_request->time_for_api =$main_time;
+                $add_renew_request->status = 'Ongoing';
+                $add_renew_request->save();
+
+                $get_v_email = Auth::user()->email;
+
+                $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
+
+                Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+                    $message->to($get_v_email);
+                    $message->subject('Old NGOAB Renew Service');
+                });
+
+            }else{
+
+                $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
 
 
-    $category_list = new NgoStatus();
-    $category_list->fd_one_form_id = $get_reg_id->id;
-    $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
-    $category_list->reg_type = $request->reg_type;
-    $category_list->status = 'Ongoing';
-    $category_list->email = Auth::user()->email;
-    $category_list->save();
+                $category_list = new NgoStatus();
+                $category_list->fd_one_form_id = $get_reg_id->id;
+                $category_list->reg_id = $get_reg_id->registration_number_given_by_admin;
+                $category_list->reg_type = $request->reg_type;
+                $category_list->status = 'Ongoing';
+                $category_list->email = Auth::user()->email;
+                $category_list->save();
 
-        $get_v_email = Auth::user()->email;
+                $get_v_email = Auth::user()->email;
 
-    Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
-        $message->to($get_v_email);
-        $message->subject('NGOAB Registration Service || Tracking Number');
-    });
+                Mail::send('emails.reg_number_list', ['token' => $get_reg_id->registration_number_given_by_admin,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+                    $message->to($get_v_email);
+                    $message->subject('NGOAB Registration Service || Tracking Number');
+                });
 
-}
+            }
 
-DB::commit();
+            DB::commit();
+            return redirect()->back();
 
-        return redirect()->back();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
     }
 
     public function renewalSubmitForOld(Request $request){
         try{
             DB::beginTransaction();
-        $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $main_time = $dt->format('H:i:s a');
-        // $category_list = new NgoStatus();
-        // $category_list->fd_one_form_id = $get_reg_id->id;
-        // $category_list->status = 'Old Ngo Renew';
-        // $category_list->email = Auth::user()->email;
-        // $category_list->save();
+            $get_reg_id = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $dt = new DateTime();
+            $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
-        $add_renew_request = new NgoRenew();
-        $add_renew_request->fd_one_form_id = $get_reg_id->id;
-        $add_renew_request->time_for_api =$main_time;
-        $add_renew_request->status = 'Ongoing';
-        $add_renew_request->save();
+            $main_time = $dt->format('H:i:s a');
 
-
-        // $category_list = new NgoRenew();
-        // $category_list->fd_one_form_id = $get_reg_id->id;
-        // $category_list->status = 'Ongoing';
-        // $category_list->save();
+            $add_renew_request = new NgoRenew();
+            $add_renew_request->fd_one_form_id = $get_reg_id->id;
+            $add_renew_request->time_for_api =$main_time;
+            $add_renew_request->status = 'Ongoing';
+            $add_renew_request->save();
 
             $get_v_email = Auth::user()->email;
 
             $first_form_check = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('registration');
 
-        Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
-            $message->to($get_v_email);
-            $message->subject('Old NGOAB Renew Service');
-        });
-        DB::commit();
-        return redirect()->back();
+            Mail::send('emails.oldRenew', ['token' => $first_form_check,'organization_name' => $get_reg_id->organization_name], function($message) use($get_v_email){
+                $message->to($get_v_email);
+                $message->subject('Old NGOAB Renew Service');
+            });
+            DB::commit();
+            return redirect()->back();
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -592,10 +494,7 @@ DB::commit();
 
     public function emailVerifyPage(){
 
-
-
         return view('front.auth_page.err_msg_all');
-
 
     }
 

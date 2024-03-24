@@ -330,42 +330,19 @@ class Fc1FormController extends Controller
 
 
     public function show($id){
+
         $fc1Id = base64_decode($id);
 
-       $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-       $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-       ->value('ngo_duration_start_date');
-
-       $fd2FormList = Fd2FormForFc1Form::where('fd_one_form_id',$ngo_list_all->id)
-       ->where('fc1_form_id',$fc1Id)->latest()->first();
-
-       $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',$fd2FormList->id)->latest()->get();
-
-       $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)
-                              ->orderBy('id','desc')->first();
-
-
-                              $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngo_list_all->id)
-                              ->value('web_site_name');
-
-
-           $divisionList = DB::table('civilinfos')->groupBy('division_bn')
-           ->select('division_bn')->get();
-
-           $districtList = DB::table('civilinfos')->groupBy('district_bn')
-           ->select('district_bn')->get();
-
-           $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')
-           ->select('city_orporation')->get();
-
-           //dd($districtList);
-           $fc1FormList = Fc1Form::where('fd_one_form_id',$ngo_list_all->id)
-           ->where('id',$fc1Id)->latest()->first();
-
-
-
-
+        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $ngoDurationReg = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)->value('ngo_duration_start_date');
+        $fd2FormList = Fd2FormForFc1Form::where('fd_one_form_id',$ngo_list_all->id)->where('fc1_form_id',$fc1Id)->latest()->first();
+        $fd2OtherInfo = Fd2Fc1OtherInfo::where('fd2_form_for_fc1_form_id',$fd2FormList->id)->latest()->get();
+        $ngoDurationLastEx = NgoDuration::where('fd_one_form_id',$ngo_list_all->id)->orderBy('id','desc')->first();
+        $renewWebsiteName = NgoRenewInfo::where('fd_one_form_id',$ngo_list_all->id)->value('web_site_name');
+        $divisionList = DB::table('civilinfos')->groupBy('division_bn')->select('division_bn')->get();
+        $districtList = DB::table('civilinfos')->groupBy('district_bn')->select('district_bn')->get();
+        $cityCorporationList = DB::table('civilinfos')->whereNotNull('city_orporation')->groupBy('city_orporation')->select('city_orporation')->get();
+        $fc1FormList = Fc1Form::where('fd_one_form_id',$ngo_list_all->id)->where('id',$fc1Id)->latest()->first();
 
        return view('front.fc1Form.view',compact('fd2OtherInfo','fd2FormList','cityCorporationList','districtList','fc1FormList','divisionList','renewWebsiteName','ngoDurationLastEx','ngoDurationReg','ngo_list_all'));
 
@@ -378,15 +355,11 @@ class Fc1FormController extends Controller
     $get_file_data = Fc1Form::where('id',$id)->value('organization_name_of_the_job_amount_of_money_and_duration_pdf');
 
     $file_path = url('public/'.$get_file_data);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
+    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
     $file= public_path('/'). $get_file_data;
-
     $headers = array(
               'Content-Type: application/pdf',
             );
-
-    // return Response::download($file,$filename.'.pdf', $headers);
 
     return Response::make(file_get_contents($file), 200, [
         'content-type'=>'application/pdf',
@@ -401,15 +374,12 @@ class Fc1FormController extends Controller
     $get_file_data = Fc1Form::where('id',$id)->value('verified_fc_one_form');
 
     $file_path = url('public/'.$get_file_data);
-                            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-
+    $filename  = pathinfo($file_path, PATHINFO_FILENAME);
     $file= public_path('/'). $get_file_data;
-
+    
     $headers = array(
               'Content-Type: application/pdf',
             );
-
-    // return Response::download($file,$filename.'.pdf', $headers);
 
     return Response::make(file_get_contents($file), 200, [
         'content-type'=>'application/pdf',

@@ -64,52 +64,53 @@ class ApprovalOfConstitutionController extends Controller
 
       try{
 
-         DB::beginTransaction();
+            DB::beginTransaction();
 
-         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-         $fd9FormInfo = new DocumentForAmendmentOrApprovalOfConstitution();
-         $fd9FormInfo->status = 'Ongoing';
-         $fd9FormInfo->fdId = $ngo_list_all->id;
+            $fd9FormInfo = new DocumentForAmendmentOrApprovalOfConstitution();
+            $fd9FormInfo->status = 'Ongoing';
+            $fd9FormInfo->fdId = $ngo_list_all->id;
 
-         if ($request->hasfile('file_one')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_one');
-            $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
+            if ($request->hasfile('file_one')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_one');
+                $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
 
+            }
+            if ($request->hasfile('file_three')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_three');
+                $fd9FormInfo->file_three =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_two')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_two');
+                $fd9FormInfo->file_two =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_four')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_four');
+                $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_five')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_five');
+                $fd9FormInfo->file_five =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            $fd9FormInfo->save();
+
+            DB::commit();
+            return redirect()->route('approvalOfConstitution.index')->with('success','Created Successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-        if ($request->hasfile('file_three')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_three');
-            $fd9FormInfo->file_three =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_two')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_two');
-            $fd9FormInfo->file_two =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_four')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_four');
-            $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_five')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_five');
-            $fd9FormInfo->file_five =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-         $fd9FormInfo->save();
-
-    DB::commit();
-       return redirect()->route('approvalOfConstitution.index')->with('success','Created Successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
     }
 
 
@@ -131,51 +132,52 @@ class ApprovalOfConstitutionController extends Controller
 
       try{
 
-         DB::beginTransaction();
+            DB::beginTransaction();
 
-         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-         $fd9FormInfo = DocumentForAmendmentOrApprovalOfConstitution::find($id);
-         $fd9FormInfo->fdId = $ngo_list_all->id;
+            $fd9FormInfo = DocumentForAmendmentOrApprovalOfConstitution::find($id);
+            $fd9FormInfo->fdId = $ngo_list_all->id;
 
-         if ($request->hasfile('file_one')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_one');
-            $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
+            if ($request->hasfile('file_one')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_one');
+                $fd9FormInfo->file_one =CommonController::pdfUpload($request,$file,$filePath);
 
+            }
+            if ($request->hasfile('file_three')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_three');
+                $fd9FormInfo->file_three =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_two')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_two');
+                $fd9FormInfo->file_two =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_four')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_four');
+                $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            if ($request->hasfile('file_five')) {
+                $filePath="DocumentForDuplicateCertificate";
+                $file = $request->file('file_five');
+                $fd9FormInfo->file_five =CommonController::pdfUpload($request,$file,$filePath);
+
+            }
+            $fd9FormInfo->save();
+
+            DB::commit();
+            return redirect()->route('approvalOfConstitution.index')->with('success','Updated Successfully');
+
+        }catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-        if ($request->hasfile('file_three')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_three');
-            $fd9FormInfo->file_three =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_two')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_two');
-            $fd9FormInfo->file_two =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_four')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_four');
-            $fd9FormInfo->file_four =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-        if ($request->hasfile('file_five')) {
-            $filePath="DocumentForDuplicateCertificate";
-            $file = $request->file('file_five');
-            $fd9FormInfo->file_five =CommonController::pdfUpload($request,$file,$filePath);
-
-        }
-         $fd9FormInfo->save();
-
-    DB::commit();
-       return redirect()->route('approvalOfConstitution.index')->with('success','Updated Successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
 
     }
 

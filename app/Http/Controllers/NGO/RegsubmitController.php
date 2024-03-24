@@ -32,31 +32,20 @@ class RegsubmitController extends Controller
     public function regSubmitList(){
 
         $getFormOneId = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-
-
         $get_date_fd_ngodoc_mem = NgoMemberNidPhoto::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_ngodoc = NgoOtherDoc::where('fd_one_form_id', $getFormOneId)->value('updated_at');
-
-
-//dd($get_date_fd_ngodoc);
-
         $get_date_fd_ngomember = NgoMemberList::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_eight = FormEight::where('fd_one_form_id', $getFormOneId)->value('updated_at');
         $get_date_fd_one = FdOneForm::where('user_id',Auth::user()->id)->value('updated_at');
         $get_date_lan_one = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('updated_at');
         $get_value_fd_one_one = NgoTypeAndLanguage::where('user_id',Auth::user()->id)->value('first_one_form_check_status');
-
         $complete_status_fd_one_pdf_old = FdOneForm::where('user_id',Auth::user()->id)->value('chief_name');
-
         $complete_status_fd_one = FdOneForm::where('user_id',Auth::user()->id)->value('complete_status');
         $complete_status_fd_one_pdf = FdOneForm::where('user_id',Auth::user()->id)->value('chief_name');
-
         $complete_status_fd_eight = FormEight::where('fd_one_form_id', $getFormOneId)->value('complete_status');
         $complete_status_fd_eight_pdf = FormEight::where('fd_one_form_id', $getFormOneId)->value('verified_form_eight');
-
-
         $all_renewal_data = RenewalFile::where('fd_one_form_id', $getFormOneId)->first();
-        //CommonController::checkNgotype(1);
+
         $mainNgoType = CommonController::changeView();
 
         if($mainNgoType== 'দেশিও'){
