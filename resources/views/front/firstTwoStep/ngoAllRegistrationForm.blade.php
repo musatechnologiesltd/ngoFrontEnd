@@ -23,7 +23,7 @@
         margin: 10px;
         border: 1px solid red;
     }
-   
+
     .section{
         margin-top:150px;
         background:#fff;
@@ -335,7 +335,37 @@ $checkCompleteStatus = DB::table('form_complete_statuses')
 
 @section('script')
 @include('front.imageCropScript')
+<script type="text/javascript">
+    $(function() {
+        $(document).ready(function()
+        {
+            var SITEURL = "{{route('ngoAllRegistrationForm')}}";
+            var bar = $('.bar');
+            var percent = $('.percent');
+              $('.formFile').ajaxForm({
+                beforeSend: function() {
+                    //$("#div1").hide();
+                  $(".progress").show();
 
+                    var percentVal = '0%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal)
+                    percent.html(percentVal);
+                },
+                complete: function(xhr) {
+                    //alert('File Has Been Uploaded Successfully');
+                    alertify.set('notifier','position','top-center');
+                   alertify.success('Uploaded Successfully');
+                    window.location.href = SITEURL;
+                }
+              });
+        });
+     });
+    </script>
 <script>
     $(document).on('click', '.organizational_structure', function () {
 

@@ -168,6 +168,12 @@ if($foreignNgoType == 'Old'){
                         <div class="file-content">
                             <div class="card">
                                 <div class="card-body file-manager">
+
+                                    <div class="progress" style="display: none;">
+                                        <div class="bar"></div >
+                                               <div class="percent">0%</div >
+                                         </div>
+
                                     <div class="files">
                                        @if(count($ngoOtherDocLists) == 0)
 
@@ -179,7 +185,7 @@ if($foreignNgoType == 'Old'){
 
 
 
-                                      <form method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
+                                      <form class="formFile" method="post" action="{{ route('ngoDocument.store') }}" enctype="multipart/form-data" id="form" data-parsley-validate="">
 
                                         @csrf
             <input type="hidden" name="main_ngo_type" value="{{ $foreignNgoType }}"/>
@@ -420,7 +426,10 @@ if($foreignNgoType == 'Old'){
                                             </div>
                                         </div>
                                         @endif
-
+                                        <div class="progress" style="display: none;">
+                                            <div class="bar"></div >
+                                                   <div class="percent">0%</div >
+                                             </div>
                                         <div class="d-grid d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-registration"> {{ trans('other_doc.add_new_document')}}
                                             </button>

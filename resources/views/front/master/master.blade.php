@@ -162,9 +162,13 @@
 
     }
 
-
+    .progress { position:relative; width:100%; }
+.bar { background-color: #24695c; width:0%; height:50px; }
+.percent { position:absolute; display:inline-block; left:50%; color: white;}
 
     </style>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 </head>
 
 <body>
@@ -399,6 +403,8 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('/') }}public/front/assets/js/main.js"></script>
 {{-- <script src="{{ asset('/') }}public/front/assets/js/custom_js.js"></script> --}}
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script>
 <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
 <script type="text/javascript">
     function deleteTag(id) {
@@ -528,6 +534,7 @@ $("document").ready(function(){
   });//submit
 });//document ready
 </script>
+
 </body>
 
 </html>

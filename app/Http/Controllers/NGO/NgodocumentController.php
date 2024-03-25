@@ -290,7 +290,7 @@ $newDataAll->save();
     return redirect()->back()->with('success','Created Successfully');
 }catch (\Exception $e) {
         DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        return redirect()->back()->with('error','some thing went wrong ,this is why you redirect ');
     }
 
     }
