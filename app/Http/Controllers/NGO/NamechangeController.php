@@ -59,39 +59,40 @@ class NamechangeController extends Controller
 
     public function formEightData(Request $request){
         try{
+
             DB::beginTransaction();
 
-        $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
-             Session::put('previous_name',$request->previous_name);
-             Session::put('previous_name_ban',$request->previous_name_ban);
-             Session::put('new_name',$request->new_name);
-             Session::put('new_name_ban',$request->new_name_ban);
-
-
-        $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
+            Session::put('previous_name',$request->previous_name);
+            Session::put('previous_name_ban',$request->previous_name_ban);
+            Session::put('new_name',$request->new_name);
+            Session::put('new_name_ban',$request->new_name_ban);
 
 
-        $dt = new DateTime();
-        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+            $form_eight_list = FormEight::where('fd_one_form_id',$ngo_list_all->id)->get();
 
-        $main_time = $dt->format('H:i:s a');
-        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-        $new_data_add = new NgoNameChange();
-        $new_data_add->fd_one_form_id = $fdOneFormId;
-        $new_data_add->previous_name_eng =  Session::get('previous_name');
-        $new_data_add->previous_name_ban = Session::get('previous_name_ban');
-        $new_data_add->present_name_eng = Session::get('new_name');
-        $new_data_add->present_name_ban = Session::get('new_name_ban');
-        $new_data_add->status = 'Ongoing';
-        $new_data_add->time_for_api = $main_time;
-        $new_data_add->save();
-        DB::commit();
-        return redirect()->route('addOtherDoc');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+            $dt = new DateTime();
+            $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+
+            $main_time = $dt->format('H:i:s a');
+            $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+            $new_data_add = new NgoNameChange();
+            $new_data_add->fd_one_form_id = $fdOneFormId;
+            $new_data_add->previous_name_eng =  Session::get('previous_name');
+            $new_data_add->previous_name_ban = Session::get('previous_name_ban');
+            $new_data_add->present_name_eng = Session::get('new_name');
+            $new_data_add->present_name_ban = Session::get('new_name_ban');
+            $new_data_add->status = 'Ongoing';
+            $new_data_add->time_for_api = $main_time;
+            $new_data_add->save();
+            DB::commit();
+            return redirect()->route('addOtherDoc');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -104,12 +105,12 @@ class NamechangeController extends Controller
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
-}else{
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
+        }else{
 
-    return view('front.name_change.foreign.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
-}
+            return view('front.name_change.foreign.view_form_8_for_change_add',compact('ngo_list_all','form_eight_list'));
+        }
 
     }
 
@@ -123,42 +124,35 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
-}else{
-    return view('front.name_change.foreign.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
+        }else{
+            return view('front.name_change.foreign.committee_ngo_member_add',compact('ngo_list_all','form_eight_list'));
+        }
 
     }
 
     public function nameChangeView($id){
 
         $fdOneFormInfo = FdOneForm::where('user_id',Auth::user()->id)->first();
-
-
         $nameChangeInfo = NgoNameChange::where('id',base64_decode($id))->first();
-
-
         $nameChangeInfoDoc = NameChangeDoc::where('ngo_name_change_id',base64_decode($id))->get();
 
         CommonController::checkNgotype(1);
-
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-    return view('front.name_change.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
-}else{
-    return view('front.name_change.foreign.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
+        if($mainNgoType== 'দেশিও'){
+            return view('front.name_change.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
+        }else{
+            return view('front.name_change.foreign.nameChangeView',compact('nameChangeInfoDoc','fdOneFormInfo','nameChangeInfo'));
 
-}
-
-
-
+        }
 
     }
 
 
     public function ngoCommitteMemberEdit($id){
+
         $all_data_list = NgoMemberList::where('member_name_slug',$id)->first();
         $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
@@ -166,11 +160,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
-}else{
-    return view('front.name_change.foreign.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
+        }else{
+            return view('front.name_change.foreign.committee_ngo_member_edit',compact('all_data_list','ngo_list_all'));
+        }
     }
 
 
@@ -197,27 +191,30 @@ if($mainNgoType== 'দেশিও'){
         ]);
         try{
             DB::beginTransaction();
-        $ngoMemberData = new NgoMemberList();
-        $ngoMemberData->member_name = $request->name;
-        $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
-        $ngoMemberData->member_designation = $request->desi;
-        $ngoMemberData->member_dob = $request->dob;
-        $ngoMemberData->time_for_api = $main_time;
-        $ngoMemberData->member_mobile = $request->phone;
-        $ngoMemberData->member_nid_no = $request->nid_no;
-        $ngoMemberData->member_father_name = $request->father_name;
-        $ngoMemberData->member_present_address = $request->present_address;
-        $ngoMemberData->member_permanent_address = $request->permanent_address;
-        $ngoMemberData->member_name_supouse = $request->name_supouse;
-        $ngoMemberData->fd_one_form_id = $fdOneFormId;
-        $ngoMemberData->save();
 
-        DB::commit();
-        return redirect('/ngoCommitteMember')->with('success','Created Successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+            $ngoMemberData = new NgoMemberList();
+            $ngoMemberData->member_name = $request->name;
+            $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
+            $ngoMemberData->member_designation = $request->desi;
+            $ngoMemberData->member_dob = $request->dob;
+            $ngoMemberData->time_for_api = $main_time;
+            $ngoMemberData->member_mobile = $request->phone;
+            $ngoMemberData->member_nid_no = $request->nid_no;
+            $ngoMemberData->member_father_name = $request->father_name;
+            $ngoMemberData->member_present_address = $request->present_address;
+            $ngoMemberData->member_permanent_address = $request->permanent_address;
+            $ngoMemberData->member_name_supouse = $request->name_supouse;
+            $ngoMemberData->fd_one_form_id = $fdOneFormId;
+            $ngoMemberData->save();
+
+            DB::commit();
+            return redirect('/ngoCommitteMember')->with('success','Created Successfully');
+
+        }catch (\Exception $e) {
+
+           DB::rollBack();
+           return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+       }
     }
 
 
@@ -226,30 +223,29 @@ if($mainNgoType== 'দেশিও'){
 
         try{
             DB::beginTransaction();
-        $time_dy = time().date("Ymd");
 
-        $ngoMemberData = NgoMemberList::find($request->id);
-        $ngoMemberData->member_name = $request->name;
-        $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
-        $ngoMemberData->member_designation = $request->desi;
-        $ngoMemberData->member_dob = $request->dob;
-        $ngoMemberData->member_mobile = $request->phone;
-        $ngoMemberData->member_nid_no = $request->nid_no;
-        $ngoMemberData->member_father_name = $request->father_name;
-        $ngoMemberData->member_present_address = $request->present_address;
-        $ngoMemberData->member_permanent_address = $request->permanent_address;
-        $ngoMemberData->member_name_supouse = $request->name_supouse;
-        $ngoMemberData->save();
+            $time_dy = time().date("Ymd");
 
-        DB::commit();
-        return redirect('/ngoCommitteMember')->with('success','Created Successfully');
+            $ngoMemberData = NgoMemberList::find($request->id);
+            $ngoMemberData->member_name = $request->name;
+            $ngoMemberData->member_name_slug = Str::slug($request->name,"_");
+            $ngoMemberData->member_designation = $request->desi;
+            $ngoMemberData->member_dob = $request->dob;
+            $ngoMemberData->member_mobile = $request->phone;
+            $ngoMemberData->member_nid_no = $request->nid_no;
+            $ngoMemberData->member_father_name = $request->father_name;
+            $ngoMemberData->member_present_address = $request->present_address;
+            $ngoMemberData->member_permanent_address = $request->permanent_address;
+            $ngoMemberData->member_name_supouse = $request->name_supouse;
+            $ngoMemberData->save();
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+            DB::commit();
+            return redirect('/ngoCommitteMember')->with('success','Created Successfully');
 
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -279,54 +275,55 @@ if($mainNgoType== 'দেশিও'){
             'job_des' => 'required|string',
             'service_status' => 'required|string',
         ]);
+
         try{
             DB::beginTransaction();
 
-        $formEightData = new FormEight();
-        $formEightData->name = $request->name;
-        $formEightData->name_slug = Str::slug($request->name,"_");
-        $formEightData->desi = $request->desi;
-        $formEightData->dob = $request->dob;
-        $formEightData->time_for_api = $main_time;
-        $formEightData->phone = $request->phone;
-        $formEightData->nid_no = $request->nid_no;
-        $formEightData->father_name = $request->father_name;
-        $formEightData->present_address = $request->present_address;
-        $formEightData->permanent_address = $request->permanent_address;
-        $formEightData->name_supouse = $request->name_supouse;
-        $formEightData->edu_quali = $request->edu_quali;
-        $formEightData->profession = $request->profession;
-        $formEightData->job_des = $request->job_des;
-        $formEightData->service_status = $request->service_status;
-        $formEightData->fd_one_form_id = $fdOneFormId;
-        $formEightData->save();
+            $formEightData = new FormEight();
+            $formEightData->name = $request->name;
+            $formEightData->name_slug = Str::slug($request->name,"_");
+            $formEightData->desi = $request->desi;
+            $formEightData->dob = $request->dob;
+            $formEightData->time_for_api = $main_time;
+            $formEightData->phone = $request->phone;
+            $formEightData->nid_no = $request->nid_no;
+            $formEightData->father_name = $request->father_name;
+            $formEightData->present_address = $request->present_address;
+            $formEightData->permanent_address = $request->permanent_address;
+            $formEightData->name_supouse = $request->name_supouse;
+            $formEightData->edu_quali = $request->edu_quali;
+            $formEightData->profession = $request->profession;
+            $formEightData->job_des = $request->job_des;
+            $formEightData->service_status = $request->service_status;
+            $formEightData->fd_one_form_id = $fdOneFormId;
+            $formEightData->save();
 
-        DB::commit();
-        return redirect('/formEightData')->with('success','Created Successfully');
+            DB::commit();
+            return redirect('/formEightData')->with('success','Created Successfully');
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
     public function formEightDataEdit($id){
 
 
- $all_data_list = FormEight::where('name_slug',$id)->first();
- $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $all_data_list = FormEight::where('name_slug',$id)->first();
+            $ngo_list_all = FdOneForm::where('user_id',Auth::user()->id)->first();
 
- CommonController::checkNgotype(1);
+            CommonController::checkNgotype(1);
 
- $mainNgoType = CommonController::changeView();
+            $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
-}else{
+            if($mainNgoType== 'দেশিও'){
+                    return view('front.name_change.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
+            }else{
 
-    return view('front.name_change.foreign.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
-}
+                return view('front.name_change.foreign.view_form_8_for_change_edit',compact('ngo_list_all','all_data_list'));
+            }
     }
 
 
@@ -335,31 +332,30 @@ if($mainNgoType== 'দেশিও'){
         $time_dy = time().date("Ymd");
         try{
             DB::beginTransaction();
-        $formEightData =FormEight::find($request->id);
-        $formEightData->name = $request->name;
-        $formEightData->name_slug = Str::slug($request->name,"_");
-        $formEightData->desi = $request->desi;
-        $formEightData->dob = $request->dob;
-        $formEightData->phone = $request->phone;
-        $formEightData->nid_no = $request->nid_no;
-        $formEightData->father_name = $request->father_name;
-        $formEightData->present_address = $request->present_address;
-        $formEightData->permanent_address = $request->permanent_address;
-        $formEightData->name_supouse = $request->name_supouse;
-        $formEightData->edu_quali = $request->edu_quali;
-        $formEightData->profession = $request->profession;
-        $formEightData->job_des = $request->job_des;
-        $formEightData->service_status = $request->service_status;
-        $formEightData->save();
+            $formEightData =FormEight::find($request->id);
+            $formEightData->name = $request->name;
+            $formEightData->name_slug = Str::slug($request->name,"_");
+            $formEightData->desi = $request->desi;
+            $formEightData->dob = $request->dob;
+            $formEightData->phone = $request->phone;
+            $formEightData->nid_no = $request->nid_no;
+            $formEightData->father_name = $request->father_name;
+            $formEightData->present_address = $request->present_address;
+            $formEightData->permanent_address = $request->permanent_address;
+            $formEightData->name_supouse = $request->name_supouse;
+            $formEightData->edu_quali = $request->edu_quali;
+            $formEightData->profession = $request->profession;
+            $formEightData->job_des = $request->job_des;
+            $formEightData->service_status = $request->service_status;
+            $formEightData->save();
 
-        DB::commit();
-        return redirect('/formEightData')->with('info','Updated Successfully');
+            DB::commit();
+            return redirect('/formEightData')->with('info','Updated Successfully');
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -373,11 +369,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
-}else{
-    return view('front.name_change.foreign.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
+        }else{
+            return view('front.name_change.foreign.committee_ngo_member',compact('ngo_list_all','form_eight_list'));
+        }
     }
 
 
@@ -391,11 +387,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
-}else{
-    return view('front.name_change.foreign.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
+        }else{
+            return view('front.name_change.foreign.ngo_member_id_and_images',compact('ngo_list_all','form_eight_list'));
+        }
     }
 
 
@@ -408,11 +404,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
-}else{
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
+        }else{
 
-} return view('front.name_change.foreign.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
+        } return view('front.name_change.foreign.ngo_member_id_and_images_add',compact('ngo_list_all','form_eight_list'));
     }
 
 
@@ -432,32 +428,33 @@ if($mainNgoType== 'দেশিও'){
         try{
             DB::beginTransaction();
 
-        foreach($condition_main_image as $key => $all_condition_main_image){
+            foreach($condition_main_image as $key => $all_condition_main_image){
 
-            $file_size = number_format($input['person_nid_copy'][$key]->getSize() / 1048576,2);
+                $file_size = number_format($input['person_nid_copy'][$key]->getSize() / 1048576,2);
 
-            $form= new NgoMemberNidPhoto();
-            $filePath="NgoMemberNidPhoto";
-            $file=$input['person_nid_copy'][$key];
-            $file_image=$input['person_image'][$key];
+                $form= new NgoMemberNidPhoto();
+                $filePath="NgoMemberNidPhoto";
+                $file=$input['person_nid_copy'][$key];
+                $file_image=$input['person_image'][$key];
 
 
-            $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
-            $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
+                $form->member_image=CommonController::imageUpload($request,$file_image,$filePath);
+                $form->member_nid_copy=CommonController::pdfUpload($request,$file,$filePath);
 
-            $form->member_name=$input['person_name'][$key];
-            $form->time_for_api = $main_time;
-            $form->fd_one_form_id = $fdOneFormId;
-            $form->member_nid_copy_size =$file_size;
-            $form->save();
-       }
-       DB::commit();
-       return redirect('/ngoMemberNidAndImage')->with('success','Created Successfully');
+                $form->member_name=$input['person_name'][$key];
+                $form->time_for_api = $main_time;
+                $form->fd_one_form_id = $fdOneFormId;
+                $form->member_nid_copy_size =$file_size;
+                $form->save();
+            }
 
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
+            DB::commit();
+            return redirect('/ngoMemberNidAndImage')->with('success','Created Successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
     }
 
 
@@ -468,37 +465,37 @@ if($mainNgoType== 'দেশিও'){
 
         try{
             DB::beginTransaction();
-        $form= NgoMemberNidPhoto::find($request->id);
+            $form= NgoMemberNidPhoto::find($request->id);
 
-        if ($request->hasfile('person_nid_copy')) {
-            $filePath="NgoMemberNidPhoto";
-            $file = $request->file('person_nid_copy');
+            if ($request->hasfile('person_nid_copy')) {
+                $filePath="NgoMemberNidPhoto";
+                $file = $request->file('person_nid_copy');
 
 
 
-        $form->member_nid_copy =CommonController::pdfUpload($request,$file,$filePath);
-        $file_size = number_format($file->getSize() / 1048576,2);
-        $form->member_nid_copy_size =$file_size;
+            $form->member_nid_copy =CommonController::pdfUpload($request,$file,$filePath);
+            $file_size = number_format($file->getSize() / 1048576,2);
+            $form->member_nid_copy_size =$file_size;
 
+            }
+            if ($request->hasfile('person_image')) {
+                $filePath="NgoMemberNidPhoto";
+                $file1 = $request->file('person_image');
+
+
+            $form->member_image = CommonController::imageUpload($request,$file1,$filePath);
+
+            }
+            $form->member_name=$request->person_name;
+
+            $form->save();
+            DB::commit();
+            return redirect('/ngoMemberNidAndImage')->with('info','Updated Successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-        if ($request->hasfile('person_image')) {
-            $filePath="NgoMemberNidPhoto";
-            $file1 = $request->file('person_image');
-
-
-        $form->member_image = CommonController::imageUpload($request,$file1,$filePath);
-
-        }
-        $form->member_name=$request->person_name;
-
-        $form->save();
-        DB::commit();
-        return redirect('/ngoMemberNidAndImage')->with('info','Updated Successfully');
-
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
     }
 
 
@@ -512,11 +509,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
-}else{
-    return view('front.name_change.foreign.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
+        }else{
+            return view('front.name_change.foreign.all_ngo_related_document',compact('ngo_list_all','form_eight_list'));
+        }
     }
 
 
@@ -529,11 +526,11 @@ if($mainNgoType== 'দেশিও'){
 
         $mainNgoType = CommonController::changeView();
 
-if($mainNgoType== 'দেশিও'){
-        return view('front.name_change.add_other_doc',compact('ngo_list_all','form_eight_list'));
-}else{
-    return view('front.name_change.foreign.add_other_doc',compact('ngo_list_all','form_eight_list'));
-}
+        if($mainNgoType== 'দেশিও'){
+                return view('front.name_change.add_other_doc',compact('ngo_list_all','form_eight_list'));
+        }else{
+            return view('front.name_change.foreign.add_other_doc',compact('ngo_list_all','form_eight_list'));
+        }
     }
 
 
@@ -546,46 +543,36 @@ if($mainNgoType== 'দেশিও'){
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
 
         $main_time = $dt->format('H:i:s a');
-
-
         $input = $request->all();
-
-
         $condition_main_image = $input['primary_portal'];
+
         try{
             DB::beginTransaction();
 
-        $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+            $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
+            $ngo_name_change_id = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)->where('status','Ongoing')->value('id');
 
-        $ngo_name_change_id = DB::table('ngo_name_changes')->where('fd_one_form_id',$fdOneFormId)
-        ->where('status','Ongoing')->value('id');
+            foreach($condition_main_image as $key => $all_condition_main_image){
 
-        foreach($condition_main_image as $key => $all_condition_main_image){
+                $file_size = number_format($input['primary_portal'][$key]->getSize() / 1048576,2);
 
-            $file_size = number_format($input['primary_portal'][$key]->getSize() / 1048576,2);
+                $form= new NameChangeDoc();
+                $file=$input['primary_portal'][$key];
+                $filePath="NameChangeDoc";
+                $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
+                $form->time_for_api = $main_time;
+                $form->ngo_name_change_id  = $ngo_name_change_id;
+                $form->	file_size =$file_size;
+                $form->save();
+            }
 
-            $form= new NameChangeDoc();
-            $file=$input['primary_portal'][$key];
-            $filePath="NameChangeDoc";
-            // $name=$time_dy.$file->getClientOriginalName();
-            // $file->move('public/uploads/', $name);
-            $form->pdf_file_list=CommonController::pdfUpload($request,$file,$filePath);
-            $form->time_for_api = $main_time;
-            $form->ngo_name_change_id  = $ngo_name_change_id;
-            $form->	file_size =$file_size;
-            $form->save();
-       }
+            DB::commit();
+            return redirect('/nameChange')->with('success','Request Send Successfully');
 
-
-
-       DB::commit();
-       return redirect('/nameChange')->with('success','Request Send Successfully');
-
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
-
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -594,27 +581,24 @@ if($mainNgoType== 'দেশিও'){
         $time_dy = time().date("Ymd");
         try{
             DB::beginTransaction();
-        $ngoOtherDoc =NgoOtherDoc::find($request->id);
-      if ($request->hasfile('primary_portal')) {
-        $file_size = number_format($request->primary_portal->getSize() / 1048576,2);
-            $file = $request->file('primary_portal');
-            // $extension = $time_dy.$file->getClientOriginalName();
-            // $filename = $extension;
-            // $file->move('public/uploads/', $filename);
-            $filePath="NgoOtherDoc";
-            $ngoOtherDoc->pdf_file_list =CommonController::pdfUpload($request,$file,$filePath);
-            $ngoOtherDoc->file_size =$file_size;
+            $ngoOtherDoc =NgoOtherDoc::find($request->id);
+            if ($request->hasfile('primary_portal')) {
+                $file_size = number_format($request->primary_portal->getSize() / 1048576,2);
+                    $file = $request->file('primary_portal');
+                    $filePath="NgoOtherDoc";
+                    $ngoOtherDoc->pdf_file_list =CommonController::pdfUpload($request,$file,$filePath);
+                    $ngoOtherDoc->file_size =$file_size;
 
+            }
+
+            $ngoOtherDoc->save();
+
+            DB::commit();
+            return redirect('/nameChange')->with('success','Request Send Successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
         }
-
-        $ngoOtherDoc->save();
-
-        DB::commit();
-        return redirect('/nameChange')->with('success','Request Send Successfully');
-    } catch (\Exception $e) {
-        DB::rollBack();
-        return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-    }
 
     }
 
@@ -622,27 +606,7 @@ if($mainNgoType== 'দেশিও'){
 
     public function finalSubmitNameChange(Request $request){
 
-
-    //    dd(Session::get('previous_name'));
-
-    //     $dt = new DateTime();
-    //     $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
-
-    //     $main_time = $dt->format('H:i:s a');
-    //     $fdOneFormId = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('id');
-    //     $new_data_add = new NgoNameChange();
-    //     $new_data_add->fd_one_form_id = $fdOneFormId;
-    //     $new_data_add->previous_name_eng =  Session::get('previous_name');
-    //     $new_data_add->previous_name_ban = Session::get('previous_name_ban');
-    //     $new_data_add->present_name_eng = Session::get('new_name');
-    //     $new_data_add->present_name_ban = Session::get('new_name_ban');
-    //     $new_data_add->status = 'Ongoing';
-    //     $new_data_add->time_for_api = $main_time;
-    //     $new_data_add->save();
-
-
         return redirect('/nameChange')->with('success','Request Send Successfully');
-
     }
 
 
@@ -667,18 +631,15 @@ if($mainNgoType== 'দেশিও'){
 
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+        $file= public_path('/'). $form_one_data;
 
-$file= public_path('/'). $form_one_data;
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-$headers = array(
-'Content-Type: application/pdf',
-);
-
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 
 
@@ -686,44 +647,37 @@ return Response::make(file_get_contents($file), 200, [
     public function nameChangeDocDownload($id){
 
         $form_one_data = DB::table('name_change_docs')->where('id',$id)->value('pdf_file_list');
-
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
 
     }
 
     public function formEightPdf($main_id){
 
         $fdOneFormId = FdOneForm::where('user_id',Auth::user()->id)->value('id');
-
         $form_one_data = DB::table('form_eights')->where('fd_one_form_id',$fdOneFormId)->value('verified_form_eight');
-
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 
     public function sourceOfFund($id){
@@ -732,17 +686,15 @@ return Response::make(file_get_contents($file), 200, [
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 
     public function otherPdfFromFDOneForm($id){
@@ -751,17 +703,15 @@ return Response::make(file_get_contents($file), 200, [
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 
 
@@ -772,17 +722,15 @@ return Response::make(file_get_contents($file), 200, [
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 
 
@@ -793,16 +741,14 @@ return Response::make(file_get_contents($file), 200, [
         $file_path = url('public/'.$form_one_data);
         $filename  = pathinfo($file_path, PATHINFO_FILENAME);
 
-$file= public_path('/'). $form_one_data;
+        $file= public_path('/'). $form_one_data;
 
-$headers = array(
-'Content-Type: application/pdf',
-);
+        $headers = array(
+        'Content-Type: application/pdf',
+        );
 
-// return Response::download($file,$filename.'.pdf', $headers);
-
-return Response::make(file_get_contents($file), 200, [
-'content-type'=>'application/pdf',
-]);
+        return Response::make(file_get_contents($file), 200, [
+        'content-type'=>'application/pdf',
+        ]);
     }
 }

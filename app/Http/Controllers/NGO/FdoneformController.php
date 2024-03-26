@@ -68,17 +68,17 @@ class FdoneformController extends Controller
 
         try{
 
-        $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
-        CommonController::checkNgotype(1);
-        $mainNgoType = CommonController::changeView();
+            $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+            CommonController::checkNgotype(1);
+            $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
+            if($mainNgoType== 'দেশিও'){
 
-        return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
-        }else{
-        return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+            return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+            }else{
+            return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
 
-        }
+            }
 
         } catch (\Exception $e) {
 
@@ -90,19 +90,19 @@ class FdoneformController extends Controller
 
         try{
 
-        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('plan_of_operation');
+            $get_file_data = FdOneForm::where('id',base64_decode($id))->value('plan_of_operation');
 
-        $file_path = url('public/'.$get_file_data);
-        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-        $file= public_path('/'). $get_file_data;
+            $file_path = url('public/'.$get_file_data);
+            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            $file= public_path('/'). $get_file_data;
 
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
-        return Response::make(file_get_contents($file), 200, [
-            'content-type'=>'application/pdf',
-        ]);
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
 
         } catch (\Exception $e) {
 
@@ -116,18 +116,18 @@ class FdoneformController extends Controller
 
         try{
 
-        $get_file_data = FdOneForm::where('id',base64_decode($id))->value('attach_the__supporting_paper');
+            $get_file_data = FdOneForm::where('id',base64_decode($id))->value('attach_the__supporting_paper');
 
-        $file_path = url('public/'.$get_file_data);
-        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-        $file= public_path('/'). $get_file_data;
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
+            $file_path = url('public/'.$get_file_data);
+            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            $file= public_path('/'). $get_file_data;
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
-        return Response::make(file_get_contents($file), 200, [
-            'content-type'=>'application/pdf',
-        ]);
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
 
         } catch (\Exception $e) {
 
@@ -140,17 +140,17 @@ class FdoneformController extends Controller
 
         try{
 
-        $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_pdf');
+            $get_file_data = FdOneOtherPdfList::where('id',$id)->value('information_pdf');
 
-        $file_path = url('public/'.$get_file_data);
-        $file= public_path('/').$get_file_data;
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
+            $file_path = url('public/'.$get_file_data);
+            $file= public_path('/').$get_file_data;
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
-        return Response::make(file_get_contents($file), 200, [
-            'content-type'=>'application/pdf',
-        ]);
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
 
         } catch (\Exception $e) {
 
@@ -162,18 +162,18 @@ class FdoneformController extends Controller
 
         try{
 
-        $get_file_data = FdOneSourceOfFund::where('id',base64_decode($id))->value('letter_file');
+            $get_file_data = FdOneSourceOfFund::where('id',base64_decode($id))->value('letter_file');
 
-        $file_path = url('public/'.$get_file_data);
-        $filename  = pathinfo($file_path, PATHINFO_FILENAME);
-        $file= public_path('/'). $get_file_data;
-        $headers = array(
-                  'Content-Type: application/pdf',
-                );
+            $file_path = url('public/'.$get_file_data);
+            $filename  = pathinfo($file_path, PATHINFO_FILENAME);
+            $file= public_path('/'). $get_file_data;
+            $headers = array(
+                    'Content-Type: application/pdf',
+                    );
 
-        return Response::make(file_get_contents($file), 200, [
-            'content-type'=>'application/pdf',
-        ]);
+            return Response::make(file_get_contents($file), 200, [
+                'content-type'=>'application/pdf',
+            ]);
 
         } catch (\Exception $e) {
 
@@ -185,15 +185,16 @@ class FdoneformController extends Controller
 
 
         try{
-        $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
-        CommonController::checkNgotype(1);
-        $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
-            return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
-        }else{
-            return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
-        }
+            $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+            CommonController::checkNgotype(1);
+            $mainNgoType = CommonController::changeView();
+
+            if($mainNgoType== 'দেশিও'){
+                return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+            }else{
+                return view('front.form.foreign.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+            }
 
         } catch (\Exception $e) {
 
@@ -206,50 +207,50 @@ class FdoneformController extends Controller
 
         try{
 
-        $formCompleteStatus= DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('complete_status');
+            $formCompleteStatus= DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->value('complete_status');
 
-        if(empty($formCompleteStatus)){
+            if(empty($formCompleteStatus)){
+
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+
+            }elseif($formCompleteStatus == 'all_complete'){
+
+                return $this->fdFormOneInfo();
+
+            }elseif($formCompleteStatus == 'save_and_exit_from_one'){
 
             $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
             return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
 
-        }elseif($formCompleteStatus == 'all_complete'){
+            }elseif($formCompleteStatus == 'next_step_from_one'){
 
-            return $this->fdFormOneInfo();
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
 
-        }elseif($formCompleteStatus == 'save_and_exit_from_one'){
+            }elseif($formCompleteStatus == 'save_and_exit_from_two'){
 
-           $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-           return view('front.form.formone.particularsOfOrganisation',compact('particularsOfOrganisationData'));
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
 
-        }elseif($formCompleteStatus == 'next_step_from_one'){
+            }elseif($formCompleteStatus == 'next_step_from_two'){
 
-            $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
+                return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
 
-        }elseif($formCompleteStatus == 'save_and_exit_from_two'){
+            }elseif($formCompleteStatus == 'next_step_from_three'){
 
-            $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                return view('front.form.formone.othersInformation',compact('particularsOfOrganisationData'));
 
-        }elseif($formCompleteStatus == 'next_step_from_two'){
+            }elseif($formCompleteStatus == 'save_and_exit_from_three'){
 
-            $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
-            return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+                $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
+                $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
 
-        }elseif($formCompleteStatus == 'next_step_from_three'){
-
-            $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            return view('front.form.formone.othersInformation',compact('particularsOfOrganisationData'));
-
-        }elseif($formCompleteStatus == 'save_and_exit_from_three'){
-
-            $particularsOfOrganisationData = DB::table('fd_one_forms')->where('user_id',Auth::user()->id)->get();
-            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
-
-            return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
-        }
+                return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+            }
 
         } catch (\Exception $e) {
 
@@ -263,17 +264,17 @@ class FdoneformController extends Controller
 
         try{
 
-        CommonController::checkNgotype(1);
-        $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
-        $mainNgoType = CommonController::changeView();
+            CommonController::checkNgotype(1);
+            $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+            $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
+            if($mainNgoType== 'দেশিও'){
 
-        return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
-        }else{
+            return view('front.form.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+            }else{
 
-            return view('front.form.foreign.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
-        }
+                return view('front.form.foreign.formone.fieldOfProposedActivities',compact('particularsOfOrganisationData'));
+            }
 
         } catch (\Exception $e) {
 
@@ -286,16 +287,16 @@ class FdoneformController extends Controller
 
         try{
 
-        CommonController::checkNgotype(1);
-        $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
-        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
-        $mainNgoType = CommonController::changeView();
+            CommonController::checkNgotype(1);
+            $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->get();
+            $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
-        return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
-        }else{
-            return view('front.form.foreign.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
-        }
+            if($mainNgoType== 'দেশিও'){
+            return view('front.form.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+            }else{
+                return view('front.form.foreign.formone.allStaffDetailsInformation',compact('particularsOfOrganisationData','formOneMemberList'));
+            }
 
         } catch (\Exception $e) {
 
@@ -307,16 +308,16 @@ class FdoneformController extends Controller
 
         try{
 
-        CommonController::checkNgotype(1);
-        $mainNgoType = CommonController::changeView();
-        $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
+            CommonController::checkNgotype(1);
+            $mainNgoType = CommonController::changeView();
+            $particularsOfOrganisationData = FdOneForm::where('user_id',Auth::user()->id)->get();
 
-        if($mainNgoType== 'দেশিও'){
-        return view('front.form.formone.othersInformation',compact('particularsOfOrganisationData'));
-        }else{
-            return view('front.form.foreign.formone.othersInformation',compact('particularsOfOrganisationData'));
+            if($mainNgoType== 'দেশিও'){
+            return view('front.form.formone.othersInformation',compact('particularsOfOrganisationData'));
+            }else{
+                return view('front.form.foreign.formone.othersInformation',compact('particularsOfOrganisationData'));
 
-        }
+            }
 
         } catch (\Exception $e) {
 
@@ -329,17 +330,17 @@ class FdoneformController extends Controller
 
         try{
 
-        $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+            $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+            $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+            $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+            $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-        } catch (\Exception $e) {
+            } catch (\Exception $e) {
 
-            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-        }
+                return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+            }
 
         return view('front.form.formone.fdFormOneInfo',compact('get_all_source_of_fund_data','formOneMemberList','get_all_data_adviser','get_all_data_other','get_all_data_adviser_bank','allformOneData'));
 
@@ -474,10 +475,10 @@ class FdoneformController extends Controller
                     }
                 }
 
-            } catch (\Exception $e) {
-                DB::rollBack();
-                return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
+        }
 
     }
 
@@ -1600,36 +1601,36 @@ public function fdFormEightInfoPdfOld(){
 
     try{
 
-    $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
-    $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-    $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-    $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-    $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-    $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
-    $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+        $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
+        $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
 
-    $file_Name_Custome = '(এফডি-৮ ফরম)'.Auth::user()->user_name;
+        $file_Name_Custome = '(এফডি-৮ ফরম)'.Auth::user()->user_name;
 
-    $payment_detail = 11;
+        $payment_detail = 11;
 
-    $data =view('front.form.foreign.formone.fdFormEightInfoPdfOld',[
-                'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-                'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-                'formOneMemberList'=>$formOneMemberList,
-                'get_all_data_adviser'=>$get_all_data_adviser,
-                'get_all_data_other'=>$get_all_data_other,
-                'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-                'allformOneData'=>$allformOneData
+        $data =view('front.form.foreign.formone.fdFormEightInfoPdfOld',[
+                    'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+                    'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+                    'formOneMemberList'=>$formOneMemberList,
+                    'get_all_data_adviser'=>$get_all_data_adviser,
+                    'get_all_data_other'=>$get_all_data_other,
+                    'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+                    'allformOneData'=>$allformOneData
 
-            ])->render();
+                ])->render();
 
 
-    $pdfFilePath =$file_Name_Custome.'.pdf';
-    $mpdf = new Mpdf(['default_font' => 'nikosh']);
-    $mpdf->WriteHTML($data);
-    $mpdf->Output($pdfFilePath, "I");
-    die();
+        $pdfFilePath =$file_Name_Custome.'.pdf';
+        $mpdf = new Mpdf(['default_font' => 'nikosh']);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output($pdfFilePath, "I");
+        die();
 
     } catch (\Exception $e) {
 
@@ -1643,63 +1644,63 @@ public function fdFormEightInfoPdfOld(){
 
         try{
 
-        $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
-        $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
-        $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
-        $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
-        $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
-        $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
+            $allformOneData = FdOneForm::where('user_id',Auth::user()->id)->first();
+            $getNgoTypeForPdf = DB::table('ngo_type_and_languages')->where('user_id',Auth::user()->id)->value('ngo_type');
+            $get_all_data_adviser_bank = DB::table('fd_one_bank_accounts')->where('fd_one_form_id',$allformOneData->id)->first();
+            $get_all_data_other= DB::table('fd_one_other_pdf_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+            $get_all_data_adviser = DB::table('fd_one_adviser_lists')->where('fd_one_form_id',$allformOneData->id)->get();
+            $formOneMemberList = FdOneMemberList::where('fd_one_form_id',$allformOneData->id)->get();
+            $get_all_source_of_fund_data = DB::table('fd_one_source_of_funds')->where('fd_one_form_id',$allformOneData->id)->get();
 
-        $file_Name_Custome = '(এফডি-১ ফরম)'.Auth::user()->user_name;
-        $payment_detail = 11;
-        CommonController::checkNgotype(1);
-        $mainNgoType = CommonController::changeView();
+            $file_Name_Custome = '(এফডি-১ ফরম)'.Auth::user()->user_name;
+            $payment_detail = 11;
+            CommonController::checkNgotype(1);
+            $mainNgoType = CommonController::changeView();
 
-        if($mainNgoType== 'দেশিও'){
+            if($mainNgoType== 'দেশিও'){
 
-            $data =view('front.form.formone.fdFormOneInfoPdf',[
-                'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-                'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-                'formOneMemberList'=>$formOneMemberList,
-                'get_all_data_adviser'=>$get_all_data_adviser,
-                'get_all_data_other'=>$get_all_data_other,
-                'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-                'allformOneData'=>$allformOneData
+                $data =view('front.form.formone.fdFormOneInfoPdf',[
+                    'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+                    'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+                    'formOneMemberList'=>$formOneMemberList,
+                    'get_all_data_adviser'=>$get_all_data_adviser,
+                    'get_all_data_other'=>$get_all_data_other,
+                    'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+                    'allformOneData'=>$allformOneData
 
-            ])->render();
+                ])->render();
 
-            $pdfFilePath =$file_Name_Custome.'.pdf';
+                $pdfFilePath =$file_Name_Custome.'.pdf';
 
-            $mpdf = new Mpdf(['default_font' => 'nikosh']);
-            $mpdf->WriteHTML($data);
-            $mpdf->Output($pdfFilePath, "I");
-            die();
-
-
-        }else{
-
-            $data =view('front.form.foreign.formone.fdFormOneInfoPdf',[
-                'getNgoTypeForPdf'=>$getNgoTypeForPdf,
-                'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
-                'formOneMemberList'=>$formOneMemberList,
-                'get_all_data_adviser'=>$get_all_data_adviser,
-                'get_all_data_other'=>$get_all_data_other,
-                'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
-                'allformOneData'=>$allformOneData
-
-            ])->render();
+                $mpdf = new Mpdf(['default_font' => 'nikosh']);
+                $mpdf->WriteHTML($data);
+                $mpdf->Output($pdfFilePath, "I");
+                die();
 
 
-            $pdfFilePath =$file_Name_Custome.'.pdf';
+            }else{
 
-            $mpdf = new Mpdf(['default_font' => 'nikosh']);
-            $mpdf->WriteHTML($data);
-            $mpdf->Output($pdfFilePath, "I");
-            die();
+                $data =view('front.form.foreign.formone.fdFormOneInfoPdf',[
+                    'getNgoTypeForPdf'=>$getNgoTypeForPdf,
+                    'get_all_source_of_fund_data'=>$get_all_source_of_fund_data,
+                    'formOneMemberList'=>$formOneMemberList,
+                    'get_all_data_adviser'=>$get_all_data_adviser,
+                    'get_all_data_other'=>$get_all_data_other,
+                    'get_all_data_adviser_bank'=>$get_all_data_adviser_bank,
+                    'allformOneData'=>$allformOneData
+
+                ])->render();
 
 
-        }
+                $pdfFilePath =$file_Name_Custome.'.pdf';
+
+                $mpdf = new Mpdf(['default_font' => 'nikosh']);
+                $mpdf->WriteHTML($data);
+                $mpdf->Output($pdfFilePath, "I");
+                die();
+
+
+            }
 
         } catch (\Exception $e) {
 

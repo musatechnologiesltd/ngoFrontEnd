@@ -12,7 +12,7 @@
 
 <style>
     img {
-        display: block;
+        /* display: block; */
         max-width: 100%;
     }
     .preview {
