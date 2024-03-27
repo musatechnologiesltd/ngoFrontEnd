@@ -973,16 +973,126 @@ class FdoneformController extends Controller
 
     }
 
-    public function allStaffDetailsInformationUpdate(Request $request){
+    public function singleStaffDetailsInformationAdd(Request $request){
+
+        //dd($request->all());
 
         $dt = new DateTime();
         $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
         $main_time = $dt->format('H:i:s');
 
+
+        if(empty($request->citizenship)){
+        $arr_all = 0 ;
+        }else{
+        $arr_all = implode(",",$request->citizenship);
+        }
+
+        $dateFormate = date('Y-m-d', strtotime($request->date_of_join));
+
+
         try{
 
             DB::beginTransaction();
-            $delete_all_the_data = FdOneMemberList::where('fd_one_form_id',Session::get('mm_id'))->delete();
+
+
+                    $form= new FdOneMemberList();
+                    $form->name=$request->staff_name;
+                    $form->position=$request->staff_position;
+                    $form->now_working_at=$request->now_working_at;
+                    $form->address=$request->staff_address;
+                    $form->email=$request->staff_email;
+                    $form->mobile=$request->staff_mobile;
+                    $form->date_of_join=$dateFormate;
+                    $form->citizenship=$arr_all;
+                    $form->salary_statement=$request->salary_statement;
+                    $form->other_occupation	=$request->other_occupation;
+                    $form->time_for_api =  $main_time;
+                    $form->fd_one_form_id = $request->id;
+                    $form->save();
+
+            DB::commit();
+            return redirect()->back()->with('success','member added SuccessFully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error','some thing went wrong ,this is why you redirected');
+        }
+
+
+    }
+
+
+    public function singleStaffDetailsInformationUpdate(Request $request, $id){
+
+
+ //dd($request->all());
+
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+        $main_time = $dt->format('H:i:s');
+
+
+        if(empty($request->citizenship)){
+        $arr_all = 0 ;
+        }else{
+        $arr_all = implode(",",$request->citizenship);
+        }
+
+        $dateFormate = date('Y-m-d', strtotime($request->date_of_join));
+
+
+        try{
+
+            DB::beginTransaction();
+
+
+                    $form= FdOneMemberList::find($id);
+                    $form->name=$request->staff_name;
+                    $form->position=$request->staff_position;
+                    $form->now_working_at=$request->now_working_at;
+                    $form->address=$request->staff_address;
+                    $form->email=$request->staff_email;
+                    $form->mobile=$request->staff_mobile;
+                    $form->date_of_join=$dateFormate;
+                    $form->citizenship=$arr_all;
+                    $form->salary_statement=$request->salary_statement;
+                    $form->other_occupation	=$request->other_occupation;
+                    $form->time_for_api =  $main_time;
+                    $form->save();
+
+            DB::commit();
+            return redirect('ngoAllRegistrationForm')->with('success','member Update SuccessFully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error','some thing went wrong ,this is why you redirected');
+        }
+
+
+
+    }
+
+
+    public function singleStaffDetailsInformationDelete($id){
+
+        $delete_all_the_data = FdOneMemberList::where('id',$id)->delete();
+        return redirect()->back()->with('error','member added SuccessFully');
+    }
+
+    public function singleStaffDetailsInformationEdit($id){
+
+        $allFormOneMemberList = FdOneMemberList::where('id',$id)->first();
+        return view('front.form.allStaffDetailsInformationEdit',compact('allFormOneMemberList'));
+    }
+
+    public function allStaffDetailsInformationUpdate(Request $request){
+
+        //dd($request->all());
+
+        $dt = new DateTime();
+        $dt->setTimezone(new DateTimezone('Asia/Dhaka'));
+        $main_time = $dt->format('H:i:s');
+
+
 
             $allStaffDetailInfo = FdOneForm::find($request->id);
             $allStaffDetailInfo->user_id = Auth::user()->id;
@@ -990,153 +1100,7 @@ class FdoneformController extends Controller
             $allStaffDetailInfo->save();
 
             $input = $request->all();
-            $new_cat_dec = $input['staff_name'];
 
-
-            if (array_key_exists("now_working_at", $input)){
-
-                foreach($new_cat_dec as $key => $new_cat_dec){
-
-                    if($key == 0){
-                        if(empty($request->citizenship1)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship1);
-                        }
-                    }elseif($key == 1){
-
-                        if(empty($request->citizenship2)){
-
-                            $arr_all = 0 ;
-                        }else{
-
-                        $arr_all = implode(",",$request->citizenship2);
-                        }
-                    }elseif($key == 2){
-
-                        if(empty($request->citizenship3)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship3);
-                        }
-                    }
-                    elseif($key == 3){
-
-                        if(empty($request->citizenship4)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship4);
-                        }
-                    }elseif($key == 4){
-
-                        if(empty($request->citizenship5)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship5);
-                        }
-                    }
-
-                    $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
-
-
-                    if(empty($input['staff_name'][$key])){
-
-                    }else{
-                    $form= new FdOneMemberList();
-                    $form->name=$input['staff_name'][$key];
-                    $form->position=$input['staff_position'][$key];
-                    $form->now_working_at=$input['now_working_at'][$key];
-                    $form->address=$input['staff_address'][$key];
-
-                    $form->email=$input['staff_email'][$key];
-                    $form->mobile=$input['staff_mobile'][$key];
-
-
-                    $form->date_of_join=$dateFormate;
-                    $form->citizenship=$arr_all;
-                    $form->salary_statement=$input['salary_statement'][$key];
-                    $form->other_occupation	=$input['other_occupation'][$key];
-                    $form->time_for_api =  $main_time;
-                    $form->fd_one_form_id = $request->id;
-                    $form->save();
-                    }
-                }
-
-
-            }else{
-
-                foreach($new_cat_dec as $key => $new_cat_dec){
-
-                    if($key == 0){
-                        if(empty($request->citizenship1)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship1);
-                        }
-                    }elseif($key == 1){
-
-                        if(empty($request->citizenship2)){
-
-                            $arr_all = 0 ;
-                        }else{
-
-                        $arr_all = implode(",",$request->citizenship2);
-                        }
-                    }elseif($key == 2){
-
-                        if(empty($request->citizenship3)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship3);
-                        }
-                    }
-                    elseif($key == 3){
-
-                        if(empty($request->citizenship4)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship4);
-                        }
-                    }elseif($key == 4){
-
-                        if(empty($request->citizenship5)){
-
-                            $arr_all = 0 ;
-                        }else{
-                        $arr_all = implode(",",$request->citizenship5);
-                        }
-                    }
-                    $dateFormate = date('Y-m-d', strtotime($input['date_of_join'][$key]));
-
-                    if(empty($input['staff_name'][$key])){
-
-                    }else{
-                    $form= new FdOneMemberList();
-                    $form->name=$input['staff_name'][$key];
-                    $form->position=$input['staff_position'][$key];
-                    $form->address=$input['staff_address'][$key];
-
-                    $form->email=$input['staff_email'][$key];
-                        $form->mobile=$input['staff_mobile'][$key];
-
-                    $form->date_of_join=$dateFormate;
-                    $form->citizenship=$arr_all;
-                    $form->salary_statement=$input['salary_statement'][$key];
-                    $form->other_occupation	=$input['other_occupation'][$key];
-                    $form->time_for_api =  $main_time;
-                    $form->fd_one_form_id = $request->id;
-                    $form->save();
-                    }
-                }
-
-            }
 
             $checkCompleteStatusData = DB::table('form_complete_statuses')->where('user_id',Auth::user()->id)->first();
 
@@ -1185,10 +1149,8 @@ class FdoneformController extends Controller
                 }
             }
 
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect('/')->with('error','some thing went wrong ,this is why you redirect to dashboard');
-        }
+
+
     }
 
     public function othersInformationUpdate(Request $request){

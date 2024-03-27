@@ -412,6 +412,13 @@ Route::controller(FdoneformController::class)->group(function () {
 
 
 
+    Route::put('/singleStaffDetailsInformationUpdate/{id}', 'singleStaffDetailsInformationUpdate')->name('singleStaffDetailsInformationUpdate');
+    Route::post('/singleStaffDetailsInformationAdd', 'singleStaffDetailsInformationAdd')->name('singleStaffDetailsInformationAdd');
+    Route::delete('/singleStaffDetailsInformationDelete/{id}', 'singleStaffDetailsInformationDelete')->name('singleStaffDetailsInformationDelete');
+
+
+    Route::get('/singleStaffDetailsInformationEdit/{id}', 'singleStaffDetailsInformationEdit')->name('singleStaffDetailsInformationEdit');
+
 });
 
 

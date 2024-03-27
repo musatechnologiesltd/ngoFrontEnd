@@ -17,6 +17,7 @@ return [
     's_statement' => 'Present emoluments',
     'detail' => 'Provide details if associated (in the past or at present) with any other Voluntry Organization (s)',
   	'working' => 'Now working at',
+      'noInfo' => 'No Information',
     ];
 
 

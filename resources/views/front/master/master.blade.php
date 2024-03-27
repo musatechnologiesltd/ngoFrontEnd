@@ -480,6 +480,29 @@ $("document").ready(function(){
         $('.js-example-basic-single').select2();
     });
 </script>
+
+<script>
+
+    $(document).ready(function() {
+      $(".js-example-basic-multipleo").select2({
+        dropdownParent: $("#exampleModal")
+      });
+    });
+
+</script>
+
+
+<script>
+
+    $(document).ready(function() {
+      $(".js-example-basic-multipleo1").select2({
+        dropdownParent: $(".modal")
+      });
+    });
+
+</script>
+
+
 <script>
    $( function() {
 	$( "#datepicker" ).datepicker({
