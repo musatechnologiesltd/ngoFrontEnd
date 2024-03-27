@@ -25,7 +25,7 @@
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 @if(empty(Auth::user()->image))
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                <img src="{{ asset('/') }}public/demo_315x315.jpg" alt="Admin"
                                      class="rounded-circle" width="100">
                                      @else
                                      <img src="{{ asset('/') }}{{ Auth::user()->image }}" alt="Admin"
